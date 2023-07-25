@@ -3,7 +3,7 @@
 .card {
   width: 100%;
   display: flex;
-  gap: 40px;
+  column-gap: 40px;
   position: relative;
 
   &__left {
@@ -27,7 +27,7 @@
     height: 301px;
     display: flex;
     flex-direction: column;
-    padding: 10px 0 0 20px;
+    padding-top: 10px;
     justify-content: center;
     align-items: stretch;
   }

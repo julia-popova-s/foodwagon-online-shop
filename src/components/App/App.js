@@ -6,7 +6,7 @@ import { Footer, Header } from '../elements'
 import './styles/base.css'
 import './styles/normalize.css'
 
-function App() {
+export function App() {
   const [geolocation, setGeolocation] = useState(null)
 
   useEffect(() => {
@@ -15,10 +15,14 @@ function App() {
     function disableContext(e) {
       const clickedEl = e == null ? e.srcElement.tagName : e.target.tagName
       if (clickedEl === 'IMG') {
+        e.preventDefault()
         return false
       }
     }
+
     document.addEventListener('contextmenu', (e) => disableContext(e))
+
+    return document.addEventListener('contextmenu', (e) => disableContext(e))
   }, [])
 
   return (
@@ -29,5 +33,3 @@ function App() {
     </div>
   )
 }
-
-export default App

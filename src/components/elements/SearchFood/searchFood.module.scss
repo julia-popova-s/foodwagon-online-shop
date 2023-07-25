@@ -6,7 +6,7 @@
 
 .searchFood {
   padding-top: 82px;
-  padding-bottom: 55px;
+  // padding-bottom: 55px;
   position: relative;
 
   &__title {
@@ -88,7 +88,7 @@
   display: grid;
   column-gap: 16px;
   row-gap: 50px;
-  grid-template-columns: repeat(auto-fill, minmax(343px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(357px, 1fr));
   padding-bottom: 80px;
   justify-items: center;
 

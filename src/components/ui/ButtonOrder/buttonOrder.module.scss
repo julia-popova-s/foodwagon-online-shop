@@ -9,8 +9,15 @@
   text-align: center;
   text-transform: uppercase;
   color: $white-color;
+  background-size: 200%;
+  transition: all 0.3s ease;
 
   &__icon {
     margin-left: 10px;
+  }
+
+  &:hover {
+    background: linear-gradient(182.84deg, #ffb800 -47.72%, #ff8a00 136.81%);
+    transition: all 0.3s ease;
   }
 }

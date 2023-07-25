@@ -18,7 +18,8 @@
     transition: all 0.2s ease;
     cursor: pointer;
 
-    &_active {
+    &_active,
+    &:hover {
       background-color: $btn-active;
       transition: all 0.2s ease;
     }

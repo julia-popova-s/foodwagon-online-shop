@@ -4,14 +4,13 @@
   margin-bottom: 30px;
   padding: 10px 0;
   display: flex;
-  gap: 50px;
+  column-gap: 50px;
   align-items: flex-start;
   position: relative;
   max-width: 1250px;
 
   &__image {
     max-width: 300px;
-    max-height: 273px;
     position: relative;
   }
 
@@ -27,7 +26,7 @@
 
   &__info {
     flex-grow: 2;
-    padding: 10px 30px 10px 10px;
+    padding: 10px 30px 10px 0;
     max-width: 470px;
   }
 
