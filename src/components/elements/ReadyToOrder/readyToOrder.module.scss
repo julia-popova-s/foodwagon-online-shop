@@ -1,0 +1,29 @@
+@import "../../App/styles/variables";
+
+.readyOrderBlock {
+  background-image: url('../../../../public/images/ready-to-order/back.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.readyOrder {
+  height: 100%;
+
+  &__title {
+    @include setFontSize(900, 57px, 97.5%);
+    color: $white-color;
+    margin-bottom: 62px;
+  }
+
+  &__btn {
+    display: block;
+    width: 233px;
+    background: linear-gradient(93.41deg, $base-color -5.63%, #f15e28 100.8%);
+    margin: 0 auto;
+  }
+}

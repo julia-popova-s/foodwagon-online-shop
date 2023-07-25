@@ -1,0 +1,10 @@
+@import "../../App/styles/variables";
+
+.restaurantListWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(357px, 1fr));
+  column-gap: 16px;
+  row-gap: 64px;
+  margin-bottom: 88px;
+  justify-items: center;
+}

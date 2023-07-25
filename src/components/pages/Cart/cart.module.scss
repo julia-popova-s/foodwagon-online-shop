@@ -1,0 +1,148 @@
+@import "../../App/styles/variables";
+
+.cart {
+  padding-top: 78px + 60px;
+  background: linear-gradient(rgba(255, 206, 103, 0.22) -42.47%,
+      rgba(253, 237, 202, 0) 100%);
+  min-height: 100vh;
+
+  &__container {}
+
+  &__inner {
+    position: relative;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    max-width: 1250px;
+    padding-top: 30px;
+  }
+
+  &__list {
+    margin-bottom: 30px;
+  }
+
+  &__name {
+    @include setFontSize(700, 36px, 112%);
+    color: $base-color;
+    margin-bottom: 37px;
+    padding-top: 30px;
+  }
+
+  &__empty {
+    @include setFontSize(400, 20px, 112%);
+    color: #212121;
+  }
+
+  &__result {
+    @include setFontSize(700, 22px, 120%);
+    color: rgb(66, 66, 66);
+    margin-bottom: 20px;
+    padding-right: 20px;
+
+    &_color {
+      color: $base-color;
+    }
+  }
+
+  &__image {
+    max-width: 50%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    filter: blur(1px);
+  }
+
+  &__empty {
+    text-align: center;
+  }
+
+  &__clear {
+    max-width: 1250px;
+  }
+
+  &__clearIcon {
+    color: #9e9e9e;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+  }
+
+  &__clearBtn {
+    @include setFontSize(400, 18px, 120%);
+    color: #9e9e9e;
+    background-color: transparent;
+    margin-left: auto;
+    // margin-bottom: 40px;
+    display: block;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #434343;
+      transition: all 0.3s ease;
+    }
+  }
+
+  &__btnOrder {
+    width: fit-content;
+  }
+
+  &__orderInfo {
+    padding-bottom: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1250px;
+  }
+}
+
+.cart__clearBtn:hover .cart__clearIcon {
+  color: #434343;
+  transition: all 0.3s ease;
+}
+
+.cart__restaurantName {
+  @include setFontSize(700, 22px, 120%);
+  margin-bottom: 4px;
+}
+
+.cart__restaurantLink {
+  color: $base-color;
+}
+
+.cart__order {
+  position: relative;
+
+  &_border::after {
+    content: '';
+    width: 100%;
+    max-width: 1250px;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: #cfcfcf;
+    position: absolute;
+  }
+
+  &_border:nth-last-child(1)::after {
+    content: none;
+  }
+}
+
+@media (max-width:1100px) {
+  .cart {
+    padding-top: 132px + 60px;
+
+    &__orderInfo {
+      flex-wrap: wrap;
+    }
+
+    &__result {
+      width: 100%;
+    }
+  }
+
+}
+
+@media (max-width:1100px) {}

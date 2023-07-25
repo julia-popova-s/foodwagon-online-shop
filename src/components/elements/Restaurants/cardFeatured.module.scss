@@ -1,0 +1,98 @@
+@import "../../App/styles/variables";
+
+.card {
+  width: 357px;
+  height: 463px;
+
+  &__up {
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  &__discount,
+  &__fast,
+  &__text {
+    @include setFontSize(700, 22px, 120%);
+  }
+
+  &__discount,
+  &__fast {
+    color: $white-color;
+    position: absolute;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 8px;
+  }
+
+  &__discount {
+    background: $base-color;
+    left: 24px;
+    top: 24px;
+    width: 170px;
+    height: 42px;
+  }
+
+  &__discount>span,
+  &__fast>span {
+    vertical-align: middle;
+    padding-right: 10px;
+  }
+
+  &__fast {
+    top: 24px;
+    height: 42px;
+    background: $primary-color;
+    right: 40px;
+    width: 115px;
+  }
+
+  &__text {
+    display: inline-block;
+    text-align: center;
+    padding: 8px 16px;
+    background: rgba(121, 185, 60, 0.2);
+    border-radius: 16px;
+    color: #79b93c;
+  }
+}
+
+.location {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 32px;
+  height: 64px;
+
+  &__name {
+    @include setFontSize(700, 22px, 120%);
+    color: #424242;
+    margin-bottom: 4px;
+  }
+
+  &__icon {
+    max-width: 100%;
+    height: auto;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  &__img {
+    width: 50px;
+    height: 50px;
+  }
+
+  &__rating {
+    @include setFontSize(400, 22px, 120%);
+    color: $primary-color;
+  }
+}

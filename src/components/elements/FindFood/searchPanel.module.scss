@@ -1,0 +1,45 @@
+@import "../../App/styles/variables";
+
+.searchPanel {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 29.5px 24px;
+  position: relative;
+  height: 108px;
+  max-width: 856px;
+
+  &__input,
+  &__input::placeholder {
+    @include setFontSize(400, 18px, 140%);
+  }
+
+  &__input {
+    background-color: #f5f5f5;
+    color: #424242;
+    width: 593px;
+    height: 49px;
+    border-radius: 8px;
+    border: 0 solid;
+    padding: 11.5px 10px 12.5px 46px;
+  }
+
+  &__input::placeholder {
+    color: #9e9e9e;
+  }
+
+  &__input:focus {
+    outline: none;
+  }
+
+  &__inputIcon {
+    position: absolute;
+    left: 40px;
+    top: 41px;
+
+    path {
+      fill: #ff7474;
+    }
+  }
+}

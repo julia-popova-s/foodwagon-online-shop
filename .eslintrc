@@ -1,0 +1,6 @@
+{
+  "extends": ["react-app", "react-app/jest", "plugin:perfectionist/recommended-alphabetical"],
+  "rules": {
+    "perfectionist/sort-interfaces": "error"
+  }
+}

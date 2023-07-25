@@ -1,0 +1,26 @@
+@import "../../App/styles/variables";
+
+.categories {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  &__item {
+    @include setFontSize(700, 20px, 100%);
+    text-align: center;
+    width: 125px;
+    background-color: $base-color;
+    color: $white-color;
+    padding: 15px;
+    border-radius: 30px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &_active {
+      background-color: $btn-active;
+      transition: all 0.2s ease;
+    }
+  }
+}

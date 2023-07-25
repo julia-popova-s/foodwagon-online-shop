@@ -1,0 +1,196 @@
+@import "../../App/styles/variables";
+
+.card {
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  position: relative;
+
+  &__left {
+    width: 357px;
+    height: 301px;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 16px;
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    object-fit: cover;
+  }
+
+  &__right {
+    max-width: 700px;
+    height: 301px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0 0 20px;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  &__discount {
+    @include setFontSize(700, 68px, 106%);
+    background-color: $primary-color;
+    color: $white-color;
+    border-radius: 0px 32px 0px 14px;
+    padding: 3px 49px 10px 18px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 140px;
+    height: 83px;
+    text-align: right;
+  }
+
+  &__discount_size {
+    @include setFontSize(700, 35px, 120%);
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+  }
+
+  &__discount_off {
+    @include setFontSize(400, 22px, 120%);
+    position: absolute;
+    right: 24px;
+    bottom: 12px;
+  }
+
+  &__name {
+    @include setFontSize(700, 22px, 120%);
+    color: #424242;
+    margin-bottom: 14px;
+    min-height: 50px;
+  }
+
+  &__text {
+    @include setFontSize(700, 22px, 120%);
+    text-align: center;
+    padding: 8px 16px;
+    color: $base-color;
+    width: 204px;
+    height: 42px;
+    background: rgba(241, 114, 40, 0.2);
+    border-radius: 8px;
+  }
+
+  &__add {
+    display: block;
+    margin-top: auto;
+  }
+
+  &__btn {
+    box-shadow: rgba(253, 114, 92, 0.22) 0px 5px 10px,
+      rgba(250, 99, 35, 0.24) 0px 20px 40px;
+  }
+
+  &__rest {
+    margin-bottom: 15px;
+  }
+
+  &__restIcon {
+    margin-right: 8px;
+  }
+
+  &__restLink {
+    @include setFontSize(400, 22px, 120%);
+    color: rgb(255, 179, 14);
+  }
+
+  &__prices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+  }
+
+  &__price {
+    @include setFontSize(700, 24px, 120%);
+    color: rgb(33, 33, 33);
+    margin-bottom: 10px;
+
+    &_theme {
+      position: relative;
+      color: rgba(130, 126, 126, .9);
+
+
+      &::before {
+        position: absolute;
+        content: '';
+        width: 50px;
+        height: 2px;
+        top: 15px;
+        left: 14px;
+        z-index: 10;
+        background-color: rgba(130, 126, 126, 0.9);
+      }
+    }
+  }
+
+  &__ingredients {
+    @include setFontSize(400, 20px, 120%);
+    color: rgb(130, 126, 126);
+    margin-bottom: 15px;
+  }
+}
+
+// &:hover {
+// box-shadow: rgba(253, 114, 92, 0.22) 0px 5px 10px;
+// }
+
+.card__btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  &__btn {
+    // background: $base-color;
+    // mix-blend-mode: normal;
+    // box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
+    //   0px 20px 40px rgba(250, 99, 35, 0.24);
+    width: 283px;
+    // transition: background 0.5s ease;
+    // height: 60px;
+    // margin-top: auto;
+    // border: 2px solid transparent;
+    // transition: background 0.5s ease, color 0.5s ease;
+    // margin-left: 50%;
+  }
+
+  &__btn:hover {
+    // transition: background 0.5s ease;
+    // color: $base-color;
+    // background: $white-color;
+    // border: 3px solid $base-color;
+    // transition: background 0.5s ease, color 0.5s ease;
+  }
+
+  &__btn {
+    &_color {
+      color: $base-color;
+      background: $white-color;
+      width: 120px;
+      border: 3px solid $base-color;
+      transition: background 0.5s ease, color 0.5s ease;
+
+      &:hover {
+        background: $base-color;
+        mix-blend-mode: normal;
+        box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
+          0px 20px 40px rgba(250, 99, 35, 0.24);
+        color: $white-color;
+        transition: background 0.5s ease, color 0.5s ease;
+      }
+    }
+  }
+}
+
+@media (max-width:1000px) {
+  .card {
+    flex-wrap: wrap;
+  }
+}

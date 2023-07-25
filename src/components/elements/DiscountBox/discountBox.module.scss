@@ -1,0 +1,12 @@
+@import "../../App/styles/variables";
+
+.discountBox {}
+
+.discountBlock {
+  display: grid;
+  column-gap: 16px;
+  row-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(357px, 1fr));
+  padding: 80px 0;
+  justify-items: center;
+}

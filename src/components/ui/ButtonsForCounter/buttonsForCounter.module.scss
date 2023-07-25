@@ -1,0 +1,94 @@
+@import "../../App/styles/variables";
+
+.buttons {
+  @include setFontSize(400, 22px, 100%);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  width: 140px;
+
+  &__plus {}
+
+  &__input {
+    position: relative;
+  }
+
+  &__inputCount,
+  &__inputCount::placeholder,
+  &__quantity {
+    @include setFontSize(500, 20px, 100%);
+  }
+
+  &__inputCount {
+    position: absolute;
+    top: 0;
+    opacity: 1;
+    width: 40px;
+    height: 35px;
+    text-align: center;
+    border: 3px solid $base-color;
+    border-radius: 6px;
+    padding: 5px 0;
+    outline: none;
+    vertical-align: bottom;
+
+    &:focus {
+      border-color: $base-color;
+    }
+
+    &:active {
+      border-color: $base-color;
+    }
+
+    &::placeholder {
+      padding: 5px 0;
+      vertical-align: bottom;
+    }
+  }
+
+  &__inputCount_hidden {
+    opacity: 0;
+  }
+
+  &__quantity {
+    width: 40px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 5px 0;
+    border: 3px solid #f1722839;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    vertical-align: bottom;
+  }
+
+  &__minus {}
+
+  &__errorInput {
+    border: 3px solid $base-color;
+    border-radius: 6px;
+  }
+}
+
+.button {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: $base-color;
+  color: $white-color;
+  border: 2px solid transparent;
+  transition: color 0.5s ease, background-color 0.5s ease;
+
+  &:hover {
+    border: 2px solid $base-color;
+    color: $base-color;
+    background-color: $white-color;
+    transition: color 0.5s ease, background-color 0.5s ease;
+  }
+}
+
+.disabledBtn {
+  opacity: 0.5;
+}

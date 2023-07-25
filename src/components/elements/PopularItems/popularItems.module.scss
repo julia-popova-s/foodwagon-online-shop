@@ -1,0 +1,48 @@
+@import "../../App/styles/variables";
+
+.popularItemsBlock {}
+
+.popularItems {
+  position: relative;
+
+  &__title {
+    @include setFontSize(700, 43px, 112%);
+    color: #212121;
+    text-align: center;
+    margin-bottom: 88px;
+    padding-top: 80px;
+  }
+
+  &__list {
+    background-color: $white-color;
+  }
+
+  &__btn {
+    position: absolute;
+  }
+
+  &__btn_left {
+    left: -122px;
+    top: 130px;
+  }
+
+  &__btn_right {
+    right: -122px;
+    top: 130px;
+  }
+
+  &__card {
+    margin: 0 auto;
+    margin-bottom: 80px;
+  }
+}
+
+.container {
+  max-width: 1760px;
+  padding: 0 140px;
+  margin: 0 auto;
+}
+
+.loader {
+  margin-bottom: 80px;
+}

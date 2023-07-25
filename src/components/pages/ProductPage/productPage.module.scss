@@ -1,0 +1,19 @@
+@import "../../App/styles/variables";
+
+.productPage {
+  padding-top: 80px;
+  // min-height: 100vh;
+}
+
+.product {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding-top: 70px;
+}
+
+.placeholder {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}

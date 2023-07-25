@@ -1,0 +1,50 @@
+import { v4 as uuidv4 } from 'uuid'
+
+import { CardBig } from './CardBig'
+import styles from './cardBigList.module.scss'
+
+const dish = [
+  {
+    description:
+      'Enjoy the large size of sandwiches. Complete perfect slice of sandwiches. Crispy Chicken Sandwich: Beats anything from a fast-food joint! A total flavor-bomb and so moist & juicy. You’ll love the bold spices!',
+    food: 'Crispy Sandwiches',
+    id: uuidv4(),
+    imageSrc: '/images/cards-big/1.png',
+    link: 'restaurant/28d1abb8-f79f-4fd7-bb8d-09b5dd6af441/product/637631',
+    title: 'Best deals',
+  },
+  {
+    description:
+      'Get the best fried chicken smeared with a lip smacking lemon chili flavor. Check out best deals for fried chicken.',
+    food: 'Fried Chicken',
+    id: uuidv4(),
+    imageSrc: '/images/cards-big/2.png',
+    link: 'restaurant/333f1471-d10f-4b1d-a654-d3c070cb3500/product/649049',
+    title: 'Celebrate parties with',
+  },
+  {
+    description:
+      'Pair up with a friend and enjoy the hot and crispy pizza pops. Try it with the best deals. You want the best pizza to be cooked to a crisp. The cheese should be melted, the crust should have some crunch to it, the whole thing should be served piping hot.',
+    food: 'Pizza?',
+    id: uuidv4(),
+    imageSrc: '/images/cards-big/3.png',
+    link: 'restaurant/c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5/product/655525',
+    title: 'Wanna eat hot & spicy',
+  },
+]
+
+export function CardBigList() {
+  return (
+    <div className={styles.cardBigList}>
+      <div className="container">
+        <div className={styles.cardList}>
+          {dish &&
+            dish.map((item, i) => {
+              const { id } = item
+              return <CardBig key={id} {...item} flippedСard={(i + 1) % 2 !== 0} />
+            })}
+        </div>
+      </div>
+    </div>
+  )
+}

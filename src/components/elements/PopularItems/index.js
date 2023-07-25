@@ -1,0 +1,1 @@
+export { PopularItems } from './PopularItems'

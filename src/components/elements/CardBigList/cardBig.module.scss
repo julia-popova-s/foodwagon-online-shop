@@ -1,0 +1,95 @@
+@import "../../App/styles/variables";
+
+.cardBig {
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  filter: drop-shadow(0px 14px 15px rgba($drop-shadow, 0.06)) drop-shadow(0px 27px 82px rgba($drop-shadow, 0.28));
+  border-radius: 16px;
+  border: none;
+  justify-content: center;
+  margin-bottom: 80px;
+
+  &__image {
+    max-width: 961px;
+  }
+
+  &__img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px 0 0 16px;
+  }
+
+  &__description {
+    height: 512px;
+    padding: 102px 56px 56px 56px;
+    max-width: 519px;
+    display: flex;
+    flex-direction: column;
+    background: $white-color;
+    border-radius: 0 16px 16px 0;
+  }
+
+  &__title {
+    @include setFontSize(700, 48px, 110%);
+    color: #424242;
+    margin-bottom: 19px;
+  }
+
+  &__link {
+    color: $primary-color;
+    text-decoration: none;
+  }
+
+  &__text {
+    @include setFontSize(600, 18px, 140%);
+    margin-bottom: auto;
+    color: rgba(97, 97, 97, 0.69);
+  }
+
+  &__btn {
+    @include setFontSize(900, 18px, 100%);
+    width: 407px;
+    height: 60px;
+    background: linear-gradient(92.84deg, #ffb800 -47.72%, #ff8a00 136.81%);
+    border-radius: 8px;
+    text-align: center;
+    text-transform: uppercase;
+    color: $white-color;
+  }
+
+  &__btn>span {
+    margin-left: 10px;
+  }
+
+  @media screen and (max-width: 1570px) {
+    .cardBig {
+      &__description {
+        border-radius: 0 0 16px 16px;
+        max-width: 961px;
+      }
+
+      &__img {
+        border-radius: 16px 16px 0 0;
+      }
+    }
+  }
+}
+
+
+
+.cardBig {
+  &__img_right {
+    flex-direction: row-reverse;
+  }
+
+  &__img_border {
+    border-radius: 0 16px 16px 0;
+  }
+
+  &__description_border {
+    border-radius: 16px 0 0 16px;
+  }
+}

@@ -1,0 +1,150 @@
+@import "../../App/styles/variables";
+
+.installBlock {}
+
+.installApp {}
+
+.installApp {
+  &__up {
+    background-color: #feefd0;
+  }
+
+  &__down {
+    background-image: url('../../../../public//images/install-app/background.png');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+  }
+}
+
+.upBlock__container,
+.downBlock__container {
+  max-width: 1290px;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+.upBlock {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    padding: 130px 30px 80px 30px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 113.5px;
+    row-gap: 30px;
+    justify-content: center;
+    background: $white-color;
+    box-shadow: 0px 14px 15px rgba(255, 174, 0, 0.01),
+      0px 27px 82px rgba(255, 174, 0, 0.28);
+    border-radius: 46px;
+    padding: 55px 55px 0 55px;
+  }
+
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 55px;
+    position: relative;
+
+    &_border {
+      &::after {
+        content: '';
+        width: 2px;
+        height: 96px;
+        top: 20px;
+        right: -55.75px;
+        background: #cfcfcf;
+        position: absolute;
+      }
+
+      &:nth-child(3)::after {
+        content: none;
+      }
+    }
+  }
+
+  &__text {
+    @include setFontSize(700, 35px, 120%);
+    padding-left: 30px;
+    background: linear-gradient(92.84deg, #fb3c00 -47.72%, #ffb800 136.81%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  &__down {}
+}
+
+.downBlock {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    overflow: hidden;
+    max-width: 1430px;
+    padding: 0 100px;
+  }
+
+  &__image {
+    padding-top: 62px;
+    max-width: 603px;
+    padding-right: 50px;
+  }
+
+  &__imgBack {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0px 12.8649px 13.7838px rgba(255, 174, 0, 0.01)) drop-shadow(0px 24.8108px 75.3513px rgba(255, 174, 0, 0.28));
+  }
+
+  &__install {}
+}
+
+.install {
+  padding-top: 118px;
+  max-width: 479px;
+
+  &__title {
+    @include setFontSize(700, 68px, 106%);
+    background: linear-gradient(92.84deg, #ffb800 -47.72%, #ff8a00 136.81%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    margin-bottom: 16px;
+  }
+
+  &__text {
+    @include setFontSize(400, 18px, 140%);
+    color: #827e7e;
+    margin-bottom: 40px;
+  }
+
+  &__link {
+    margin-right: 8px;
+  }
+
+  &__linkImg {}
+}
+
+@media screen and (max-width: 1700px) {
+  .downBlock__container {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .upBlock__item_border::after {
+    content: none;
+  }
+}

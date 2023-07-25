@@ -1,0 +1,97 @@
+@import "../../App/styles/variables";
+
+.headerBlock {
+  min-height: 78px;
+  box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26),
+    0px 20px 40px rgba(255, 174, 0, 0.29);
+  position: fixed;
+  width: 100%;
+  z-index: 500;
+  background-color: $white-color;
+}
+
+.header,
+.address,
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  align-items: center;
+}
+
+.header {
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+
+  &__search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+}
+
+.address {
+  &__deliver {
+    margin-right: 12px;
+  }
+
+  &__icon {
+    margin-right: 9px;
+    width: 14px;
+    height: 25px;
+    color: $primary-color;
+  }
+
+  &__location {
+    @include setFontSize(400, 18px, 140%);
+    color: #424242;
+  }
+
+  &__location_weight {
+    font-weight: 700;
+    margin-left: 4px;
+  }
+}
+
+.search {
+  &__inner {
+    @include setFontSize(700, 18px, 100%);
+    padding-right: 30px;
+    text-decoration: none;
+    color: #424242;
+    height: 18px;
+  }
+
+  &__link {
+    cursor: pointer;
+  }
+
+  &__innerIcon {
+    margin-right: 8px;
+  }
+
+  &__innerName {
+    vertical-align: top;
+  }
+}
+
+.header__logoLink {
+  padding-right: 30px;
+}
+
+.header__logoLink,
+.header__address,
+.header__search {
+  margin-bottom: 16px;
+}
+
+@media (max-width: 760px) {
+  .header__address {
+    padding: 0;
+  }
+}
+
+.active .search__innerName {
+  color: $base-color;
+}

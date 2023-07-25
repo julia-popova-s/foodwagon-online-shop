@@ -1,0 +1,177 @@
+@import "../../App/styles/variables";
+
+.product {
+  margin-bottom: 30px;
+  padding: 10px 0;
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  position: relative;
+  max-width: 1250px;
+
+  &__image {
+    max-width: 300px;
+    max-height: 273px;
+    position: relative;
+  }
+
+  &__imageLink {}
+
+  &__img {
+    border-radius: 16px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+
+  &__info {
+    flex-grow: 2;
+    padding: 10px 30px 10px 10px;
+    max-width: 470px;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+  }
+
+  &__titleLink {
+    @include setFontSize(700, 22px, 120%);
+    color: rgb(66, 66, 66);
+  }
+
+  &__rest {
+    margin-bottom: 8px;
+  }
+
+  &__restIcon {
+    margin-right: 8px;
+    color: $primary-color;
+  }
+
+  &__restLink {
+    @include setFontSize(400, 22px, 120%);
+    color: $primary-color;
+  }
+
+  &__price {
+    @include setFontSize(700, 22px, 120%);
+    color: rgb(66, 66, 66);
+    margin-bottom: 8px;
+
+    &_theme {
+      position: relative;
+      color: rgba(130, 126, 126, 0.9);
+
+      &::before {
+        position: absolute;
+        content: "";
+        width: 45px;
+        height: 2px;
+        top: 14px;
+        left: 11px;
+        z-index: 10;
+        background-color: rgba(130, 126, 126, 0.9);
+      }
+    }
+  }
+
+  &__quantity {}
+
+  &__text {}
+
+  &__btnDelete {
+    background-color: transparent;
+    position: absolute;
+    top: 20px;
+    right: 0;
+  }
+
+  &__delete {
+    color: #9e9e9e;
+  }
+
+  &__priceWithSale {
+    @include setFontSize(700, 22px, 120%);
+    color: rgb(33, 33, 33);
+    padding: 10px 0;
+    min-width: 150px;
+  }
+
+  &__counter {
+    padding: 10px 0;
+  }
+
+  &__counterWithPrice {
+    display: flex;
+    gap: 50px;
+  }
+}
+
+.loadingBar {
+  width: 350px;
+  height: 100px;
+
+  &__inner {
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, $primary-color, $base-color);
+    margin-top: 10px;
+    background-size: 353px 5px;
+    border-radius: 12px;
+    animation: loading 3s ease-in-out forwards;
+  }
+
+  &__shadow {
+    width: 100%;
+    height: 35px;
+    background: linear-gradient(to bottom, rgba(185, 173, 173, 0.17), rgba(97, 91, 91, 0.1), rgba(53, 51, 51, 0));
+    transform: skew(45deg) translate(15px, 5px);
+  }
+}
+
+
+
+@keyframes loading {
+  to {
+    width: 0%;
+  }
+}
+
+.product__btnReturn {
+  margin-right: 50px;
+}
+
+.btnReturn {
+  @include setFontSize(600, 18px, 100%);
+  width: 180px;
+  border: 3px solid;
+  transition: background 0.5s ease,
+    color 0.5s ease;
+  padding: 5px;
+  border-image-source: linear-gradient(to right, $primary-color,
+      $base-color);
+  border-image-slice: 3;
+  background: linear-gradient(to top,
+      rgb(237, 101, 22),
+      $primary-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+@media (max-width:1200px) {
+  .product {
+    flex-wrap: wrap;
+
+    &__info {
+      width: 85%;
+    }
+
+    // &__btns,
+    // &__result {}
+
+    // &__counter,
+    // &__priceWithSale {}
+  }
+}
