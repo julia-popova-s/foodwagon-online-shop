@@ -9,12 +9,13 @@
   display: grid;
   column-gap: 36px;
   row-gap: 50px;
-  grid-template-columns: repeat(auto-fit, 343px);
+  grid-template-columns: repeat(auto-fill, minmax(343px, 1fr));
   padding-bottom: 80px;
 
   &__item {
     width: 343px;
     height: 503px;
+    margin: 0 auto;
   }
 
 }

@@ -9,6 +9,7 @@
   &__left {
     width: 357px;
     height: 301px;
+    flex-shrink: 0;
     position: relative;
     border: 1px solid transparent;
     border-radius: 16px;

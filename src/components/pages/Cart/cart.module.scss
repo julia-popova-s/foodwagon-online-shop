@@ -146,3 +146,9 @@
 }
 
 @media (max-width:1100px) {}
+
+@media (max-width:880px) {
+  .cart__top {
+    max-width: 470px;
+  }
+}

@@ -6,9 +6,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  padding-top: 78px;
-  // padding-bottom: 132.56px;
-  padding-bottom: 56px;
+  padding: 132px 0;
 }
 
 .findFood {
@@ -17,16 +15,11 @@
     color: $white-color;
     margin: 0;
     margin-bottom: 15px;
-    padding-top: 132px;
     text-shadow: 0px 14px 15px rgba(255, 174, 0, 0.01),
       0px 27px 82px rgba(255, 174, 0, 0.28);
   }
 
   &__search {
-    background-color: $white-color;
-    max-width: 856px;
-    height: 194px;
-    border-radius: 8px;
     margin-bottom: 30px;
   }
 
@@ -80,3 +73,9 @@
 // [class*="ground-pane"] {
 //   filter: grayscale(1)
 // }
+
+@media(max-width:500px) {
+  .findFood__title {
+    font-size: 66px;
+  }
+}

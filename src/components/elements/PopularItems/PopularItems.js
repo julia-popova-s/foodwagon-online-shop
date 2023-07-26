@@ -57,7 +57,7 @@ const settings = {
       },
     },
     {
-      breakpoint: 890,
+      breakpoint: 760,
       settings: {
         dots: false,
         infinite: true,

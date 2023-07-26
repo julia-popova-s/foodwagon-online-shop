@@ -5,11 +5,13 @@
   padding: 10px 0;
   display: flex;
   column-gap: 50px;
+  row-gap: 15px;
   align-items: flex-start;
   position: relative;
   max-width: 1250px;
 
   &__image {
+    flex-shrink: 0;
     max-width: 300px;
     position: relative;
   }
@@ -80,6 +82,8 @@
   &__text {}
 
   &__btnDelete {
+    width: 21px;
+    height: 24px;
     background-color: transparent;
     position: absolute;
     top: 20px;
@@ -94,7 +98,8 @@
     @include setFontSize(700, 22px, 120%);
     color: rgb(33, 33, 33);
     padding: 10px 0;
-    min-width: 150px;
+    margin-right: 21px;
+    min-width: 192px;
   }
 
   &__counter {
@@ -103,7 +108,7 @@
 
   &__counterWithPrice {
     display: flex;
-    gap: 50px;
+    gap: 30px;
   }
 }
 
@@ -159,12 +164,12 @@
 }
 
 
-@media (max-width:1200px) {
+@media (max-width:1100px) {
   .product {
     flex-wrap: wrap;
 
-    &__info {
-      width: 85%;
+    &__counterWithPrice {
+      width: 100%;
     }
 
     // &__btns,
@@ -172,5 +177,17 @@
 
     // &__counter,
     // &__priceWithSale {}
+  }
+}
+
+@media (max-width:1000px) {
+  .product__info {
+    width: 100%;
+  }
+}
+
+@media (max-width:880px) {
+  .product__btnDelete {
+    left: 325px;
   }
 }

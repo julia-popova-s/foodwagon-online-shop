@@ -8,3 +8,9 @@
   margin-bottom: 88px;
   justify-items: center;
 }
+
+@media(max-width:440px) {
+  .restaurantListWrapper {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}

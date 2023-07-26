@@ -1,8 +1,8 @@
 @import "../../App/styles/variables";
 
 .card {
-  width: 357px;
-  height: 463px;
+  max-width: 357px;
+  max-height: 463px;
 
   &__up {
     margin-bottom: 24px;

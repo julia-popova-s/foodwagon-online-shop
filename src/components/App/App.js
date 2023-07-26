@@ -27,9 +27,9 @@ export function App() {
 
   return (
     <div className="app">
-      <Header geolocation={geolocation} />
+      {/* <Header geolocation={geolocation} /> */}
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

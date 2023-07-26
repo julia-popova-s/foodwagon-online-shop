@@ -1,11 +1,12 @@
 @import "../../App/styles/variables";
 
 .card {
-  width: 283px;
-  height: 469px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  max-width: 283px;
+  height: 469px;
 
   &__up {
     margin-bottom: 16px;
@@ -15,17 +16,21 @@
   &__upLink {}
 
   &__image {
+    display: block;
+
     max-width: 100%;
     height: auto;
-    display: block;
+
     border-radius: 16px;
   }
 
   &__name {
     @include setFontSize(700, 22px, 120%);
     color: #424242;
+
+    min-height: 53px;
+
     margin-bottom: 8px;
-    height: 53px;
   }
 
   &__location {
@@ -52,8 +57,7 @@
     width: 100%;
     background: $base-color;
     mix-blend-mode: normal;
-    box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
-      0px 20px 40px rgba(250, 99, 35, 0.24);
+
     height: 60px;
     margin-top: auto;
     border: none;
@@ -61,6 +65,8 @@
   }
 
   &__btn:hover {
+    box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
+      0px 20px 40px rgba(250, 99, 35, 0.24);
     background-color: #da3802;
     transition: background 0.5s ease;
   }
@@ -90,5 +96,11 @@
     display: flex;
     justify-content: space-between;
     margin-top: auto;
+  }
+}
+
+@media(max-width:440px) {
+  .card {
+    height: 490px;
   }
 }

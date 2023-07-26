@@ -1,15 +1,14 @@
 @import "../../App/styles/variables";
 
 .card {
-  width: 357px;
-  height: 415px;
+  max-width: 357px;
+  max-height: 415px;
 
   &__up {
     margin-bottom: 32px;
     position: relative;
     max-height: 301px;
-    width: 357px;
-    height: 301px;
+    max-width: 357px;
   }
 
   &__image {
@@ -27,8 +26,8 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 140px;
-    height: 83px;
+    max-width: 140px;
+    max-height: 83px;
     padding: 3px 49px 10px 18px;
     border-radius: 0px 32px 0px 14px;
   }

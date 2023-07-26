@@ -5,12 +5,13 @@
 .popularItems {
   position: relative;
 
+  padding-top: 80px;
+
   &__title {
     @include setFontSize(700, 43px, 112%);
     color: #212121;
     text-align: center;
     margin-bottom: 88px;
-    padding-top: 80px;
   }
 
   &__list {
@@ -45,4 +46,34 @@
 
 .loader {
   margin-bottom: 80px;
+}
+
+@media(max-width:900px) {
+  .container {
+    padding: 0 70px;
+  }
+
+  .popularItems {
+
+    &__btn_left,
+    &__btn_right {
+      svg {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    &__btn {
+      width: 50px;
+      height: 50px;
+    }
+
+    &__btn_left {
+      left: -55px;
+    }
+
+    &__btn_right {
+      right: -55px;
+    }
+  }
 }
