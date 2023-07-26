@@ -96,3 +96,10 @@
     color: $primary-color;
   }
 }
+
+@media(max-width:440px) {
+  .card__fast {
+    left: 24px;
+    top: 75px;
+  }
+}

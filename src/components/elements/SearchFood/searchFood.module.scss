@@ -5,9 +5,9 @@
 }
 
 .searchFood {
-  padding-top: 82px;
-  // padding-bottom: 55px;
   position: relative;
+
+  padding-top: 82px;
 
   &__title {
     @include setFontSize(700, 43px, 112%);
@@ -44,12 +44,14 @@
   }
 
   &__btnView {
-    @include setFontSize(700, 18px, 100%);
-    color: $primary-color;
-    background-color: transparent;
     position: absolute;
     top: 91px;
     right: 212.5px;
+
+    @include setFontSize(700, 18px, 100%);
+    color: $primary-color;
+    background-color: transparent;
+
     padding: 20px 0;
   }
 
@@ -88,16 +90,23 @@
   display: grid;
   column-gap: 16px;
   row-gap: 50px;
-  grid-template-columns: repeat(auto-fill, minmax(357px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(357px, 1fr));
   padding-bottom: 80px;
   justify-items: center;
 
   &__item {
-    width: 357px;
+    max-width: 357px;
     height: 525px;
   }
 }
 
 .searchFood .searchFood__slider {
   position: static;
+}
+
+@media(max-width:700px) {
+  .searchFood__btnView {
+    right: 18px;
+    top: 158px;
+  }
 }
