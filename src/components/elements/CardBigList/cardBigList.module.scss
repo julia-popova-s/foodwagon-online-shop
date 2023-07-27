@@ -1,8 +1,13 @@
 @import "../../App/styles/variables";
 
-.cardBigList {}
-
 .cardList {
   margin-bottom: 135px;
   padding-top: 135px;
+}
+
+@media(max-width:325px) {
+  .cardList {
+    margin-bottom: 65px;
+    padding-top: 65px;
+  }
 }

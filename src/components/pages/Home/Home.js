@@ -20,9 +20,9 @@ export function Home() {
       {/* <PopularItems /> */}
       {/* <Restaurants /> */}
       {/* <SearchFood /> */}
-      <InstallApp />
+      {/* <InstallApp /> */}
       {/* <CardBigList /> */}
-      {/* <ReadyToOrder /> */}
+      <ReadyToOrder />
       {/* <Cities /> */}
     </>
   )

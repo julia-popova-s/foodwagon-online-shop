@@ -39,7 +39,7 @@ export function CardBig({ description, flippedСard, food, imageSrc, link, title
         </p>
         <p className={styles.cardBig__text}>{description}</p>
         <Link to={link}>
-          <ButtonOrder name={'Proceed to order'} />
+          <ButtonOrder classNames={styles.cardBig__btn} name={'Proceed to order'} />
         </Link>
       </div>
     </div>
