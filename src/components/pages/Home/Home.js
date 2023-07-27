@@ -19,8 +19,8 @@ export function Home() {
       {/* <OrderAlgorithm /> */}
       {/* <PopularItems /> */}
       {/* <Restaurants /> */}
-      <SearchFood />
-      {/* <InstallApp /> */}
+      {/* <SearchFood /> */}
+      <InstallApp />
       {/* <CardBigList /> */}
       {/* <ReadyToOrder /> */}
       {/* <Cities /> */}

@@ -25,6 +25,12 @@
   &__item {
     text-align: center;
     max-width: 218px;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+
+  &__slider {
+    margin-bottom: 100px;
   }
 
   &__up {
@@ -47,6 +53,7 @@
     position: absolute;
     top: 91px;
     right: 212.5px;
+    width: 82px;
 
     @include setFontSize(700, 18px, 100%);
     color: $primary-color;
@@ -59,29 +66,35 @@
     margin-left: 10px;
   }
 
-  &__slider {
-    margin-bottom: 100px;
-  }
-
-  &__item {
-    cursor: pointer;
-    margin: 0 auto;
-  }
-
   &__btn {
     position: absolute;
+
+    width: 75px;
+    height: 75px;
+    border-radius: 100%;
+
     filter: drop-shadow(0px 5px 8px rgba(222, 151, 0, 0.24)) drop-shadow(0px 14px 32px rgba(255, 178, 14, 0.29));
+
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22), 0px 20px 40px rgba(250, 99, 35, 0.24);
+      transition: all 0.3s ease;
+    }
+
+    &_right,
+    &_left {
+      position: absolute;
+    }
 
     &_right {
       top: 82px;
       right: 18px;
-      position: absolute;
     }
 
     &_left {
       top: 82px;
       right: 110px;
-      position: absolute;
     }
   }
 }
@@ -91,8 +104,9 @@
   column-gap: 16px;
   row-gap: 50px;
   grid-template-columns: repeat(auto-fit, minmax(357px, 1fr));
-  padding-bottom: 80px;
   justify-items: center;
+
+  padding-bottom: 80px;
 
   &__item {
     max-width: 357px;
@@ -105,8 +119,54 @@
 }
 
 @media(max-width:700px) {
-  .searchFood__btnView {
-    right: 18px;
-    top: 158px;
+  .searchFood {
+    &__btnView {
+      top: 166px;
+      left: 0;
+    }
+
+    &__btn,
+    &__btn svg {
+      width: 50px;
+      height: 50px;
+    }
+
+    &__btn {
+      top: 168px;
+    }
+
+    &__btn_right {
+      left: 164px;
+    }
+
+    &__btn_left {
+      left: 102px;
+    }
+
+    &__slider {
+      margin-bottom: 50px;
+    }
+  }
+}
+
+@media(max-width:400px) {
+  .menuList {
+    grid-template-columns: repeat(1, minmax(220px, 1fr));
+  }
+}
+
+@media(max-width:380px) {
+  .menuList__item {
+    max-height: 490px;
+  }
+}
+
+@media(max-width:300px) {
+  .searchFood__title {
+    margin-bottom: 75px;
+  }
+
+  .menuList__item {
+    max-height: 460px;
   }
 }

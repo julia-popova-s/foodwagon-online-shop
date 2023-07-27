@@ -19,7 +19,6 @@ export function InstallApp() {
       <div className={styles.installApp}>
         <div className={cn(styles.installApp__up, styles.upBlock)}>
           <div className={styles.upBlock__container}>
-            
             <div className={styles.upBlock__list}>
               {titles &&
                 titles.map(([oneTitle, twoTitle], i) => {
@@ -28,7 +27,10 @@ export function InstallApp() {
                       className={cn(styles.upBlock__item, styles.upBlock__item_border)}
                       key={`${oneTitle}_${i}`}
                     >
-                      <ReactSVG src={`${process.env.PUBLIC_URL}/images/install-app/discount.svg`} />
+                      <ReactSVG
+                        className={styles.upBlock__img}
+                        src={`${process.env.PUBLIC_URL}/images/install-app/discount.svg`}
+                      />
                       <div className={styles.upBlock__text}>
                         <p>{oneTitle}</p>
                         <p>{twoTitle}</p>
