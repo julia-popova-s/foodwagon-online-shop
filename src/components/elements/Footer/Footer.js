@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 
 import { validationEmail } from '../../../utils/validationEmail'
-import styles from './footer.module.scss'
+import style from './footer.module.scss'
 import { FooterNav } from './FooterNav'
 
 export const LINKS = [
@@ -41,43 +41,43 @@ export function Footer() {
   }
 
   return (
-    <footer className={styles.footer}>
+    <footer className={style.footer}>
       <div className="container">
-        <div className={styles.footer__service}>
-          <div className={styles.footer__nav}>
+        <div className={style.footer__service}>
+          <div className={style.footer__nav}>
             {LINKS.map(({ links, title }) => (
-              <FooterNav classNames={styles.footer__list} key={title} links={links} title={title} />
+              <FooterNav classNames={style.footer__list} key={title} links={links} title={title} />
             ))}
           </div>
 
-          <div className={styles.footer__mailbox}>
-            <p className={styles.footer__title}>Follow Us</p>
-            <div className={styles.footer__networks}>
-              <FontAwesomeIcon className={styles.footer__networksItem} icon={faInstagram} />
-              <FontAwesomeIcon className={styles.footer__networksItem} icon={faFacebook} />
-              <FontAwesomeIcon className={styles.footer__networksItem} icon={faTwitter} />
+          <div className={style.footer__mailbox}>
+            <p className={style.footer__title}>Follow Us</p>
+            <div className={style.footer__networks}>
+              <FontAwesomeIcon className={style.footer__networksItem} icon={faInstagram} />
+              <FontAwesomeIcon className={style.footer__networksItem} icon={faFacebook} />
+              <FontAwesomeIcon className={style.footer__networksItem} icon={faTwitter} />
             </div>
 
-            <form className={styles.footer__form} onSubmit={handleSubmitEmail}>
-              <p className={styles.footer__label}>Receive exclusive offers in your mailbox</p>
+            <form className={style.footer__form} onSubmit={handleSubmitEmail}>
+              <p className={style.footer__label}>Receive exclusive offers in your mailbox</p>
               <input
-                className={styles.footer__input}
+                className={style.footer__input}
                 name="email"
                 onChange={handleChange}
                 placeholder="Enter Your email"
                 value={email}
               />
-              <button className={styles.footer__btn} type="submit">
+              <button className={style.footer__btn} type="submit">
                 Subscribe
               </button>
-              <div className={styles.footer__error}>{error}</div>
+              <div className={style.footer__error}>{error}</div>
             </form>
           </div>
         </div>
-        <footer className={styles.footer__copyright}>
-          <div className={styles.footer__reserved}>All rights Reserved</div>
-          <div className={styles.footer__copy}>&copy;</div>
-          <div className={styles.footer__date}>Foodwagon, {2023}</div>
+        <footer className={style.footer__copyright}>
+          <div className={style.footer__reserved}>All rights Reserved</div>
+          <div className={style.footer__copy}>&copy;</div>
+          <div className={style.footer__date}>Foodwagon, {2023}</div>
         </footer>
       </div>
     </footer>

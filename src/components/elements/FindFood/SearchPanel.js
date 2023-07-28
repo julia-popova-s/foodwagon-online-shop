@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 
 import { ButtonFind } from '../../ui/ButtonFind'
-import styles from './searchPanel.module.scss'
+import style from './searchPanel.module.scss'
 
 export function SearchPanel() {
   const [text, setText] = useState('')
@@ -13,9 +13,9 @@ export function SearchPanel() {
   }
 
   return (
-    <div className={styles.searchPanel} onSubmit={handleSubmit}>
+    <form className={style.searchPanel} onSubmit={handleSubmit}>
       <input
-        className={styles.searchPanel__input}
+        className={style.searchPanel__input}
         name="find"
         onChange={(e) => setText(e.target.value)}
         placeholder="Enter Your Address"
@@ -23,9 +23,9 @@ export function SearchPanel() {
         value={text}
       />
 
-      <FontAwesomeIcon className={styles.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
+      <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
 
-      <ButtonFind classNames={styles.searchPanel__btn} icon="search" label="Find Food" />
-    </div>
+      <ButtonFind classNames={style.searchPanel__btn} icon="search" label="Find Food" />
+    </form>
   )
 }

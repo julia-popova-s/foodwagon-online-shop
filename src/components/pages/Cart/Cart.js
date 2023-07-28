@@ -16,7 +16,7 @@ import {
 } from '../../../store/reducers/cart'
 import { ButtonOrder } from '../../ui/ButtonOrder/ButtonOrder'
 import { CardProduct } from './CardProduct'
-import styles from './cart.module.scss'
+import style from './cart.module.scss'
 let orderNumber = 1
 
 export function Cart() {
@@ -62,9 +62,9 @@ export function Cart() {
   }
 
   return (
-    <div className={styles.cart}>
-      <div className={cn(styles.cart__container, 'container')}>
-        <div className={styles.cart__inner}>
+    <div className={style.cart}>
+      <div className={cn(style.cart__container, 'container')}>
+        <div className={style.cart__inner}>
           {totalQuantity ? (
             addedGoods.map((restaurant) => {
               const [restaurantId, info] = restaurant
@@ -75,23 +75,20 @@ export function Cart() {
               const restaurantName = products[0] && products[0].restaurantName
 
               return (
-                <div
-                  className={cn(styles.cart__order, styles.cart__order_border)}
-                  key={restaurantId}
-                >
-                  <div className={styles.cart__top}>
-                    <div className={styles.cart__restaurantName}>
-                      {/* <Link to={`/restaurant/${restaurantId}/product`} className={styles.cart__restaurantLink}> */}
+                <div className={cn(style.cart__order, style.cart__order_border)} key={restaurantId}>
+                  <div className={style.cart__top}>
+                    <div className={style.cart__restaurantName}>
+                      {/* <Link to={`/restaurant/${restaurantId}/product`} className={style.cart__restaurantLink}> */}
                       {restaurantName}
                       {/* </Link> */}
                     </div>
-                    <div className={styles.cart__clear}>
+                    <div className={style.cart__clear}>
                       <button
-                        className={styles.cart__clearBtn}
+                        className={style.cart__clearBtn}
                         onClick={() => handleClearCart({ restaurantId, restaurantName })}
                       >
                         <FontAwesomeIcon
-                          className={styles.cart__clearIcon}
+                          className={style.cart__clearIcon}
                           icon={faTrashCan}
                           size="lg"
                         />
@@ -100,7 +97,7 @@ export function Cart() {
                     </div>
                   </div>
 
-                  <div className={styles.cart__list}>
+                  <div className={style.cart__list}>
                     {quantity ? (
                       <>
                         {products.map(({ quantity, ...item }, i) => {
@@ -117,13 +114,13 @@ export function Cart() {
                             />
                           )
                         })}
-                        <div className={cn(styles.cart__orderInfo, styles.cart__orderInfo_border)}>
-                          <p className={styles.cart__result}>
+                        <div className={cn(style.cart__orderInfo, style.cart__orderInfo_border)}>
+                          <p className={style.cart__result}>
                             Your order for the total amount &#36;{' '}
-                            <span className={styles.cart__result_color}>
+                            <span className={style.cart__result_color}>
                               {price && price.toFixed(2)}
                             </span>{' '}
-                            and <span className={styles.cart__result_color}>{quantity}</span> items
+                            and <span className={style.cart__result_color}>{quantity}</span> items
                           </p>
                           <ButtonOrder
                             name={`Place an order`}
@@ -137,15 +134,15 @@ export function Cart() {
               )
             })
           ) : (
-            <div className={styles.cart__empty}>
-              <p className={styles.cart__name}>Shopping cart is empty</p>
-              {/* <p className={styles.cart__result}>
+            <div className={style.cart__empty}>
+              <p className={style.cart__name}>Shopping cart is empty</p>
+              {/* <p className={style.cart__result}>
                 Use the search to find everything you need.
               </p> */}
               {/* <img
                 src="/images/cart/soup.jpg"
                 alt="Creamy Tomato Soup"
-                className={styles.cart__image}
+                className={style.cart__image}
                 aria-label="cart"
               /> */}
             </div>

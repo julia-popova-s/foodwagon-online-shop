@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 import { CardFeatured } from './CardFeatured'
 import { Loader } from './Loader'
-import styles from './restaurantList.module.scss'
+import style from './restaurantList.module.scss'
 
 export function RestaurantList({ isLoading, list }) {
   return (
-    <div className={styles.restaurantListWrapper}>
+    <div className={style.restaurantListWrapper}>
       {isLoading && list
         ? list.map((obj, i) => {
             return (

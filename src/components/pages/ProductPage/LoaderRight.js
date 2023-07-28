@@ -4,9 +4,9 @@ export const LoaderRight = (props) => (
   <ContentLoader
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
-    height={301}
+    height={331}
     speed={2}
-    viewBox="0 0 700 301"
+    viewBox="0 0 700 331"
     width={700}
     {...props}
   >

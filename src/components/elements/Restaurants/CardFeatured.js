@@ -2,7 +2,7 @@ import cn from 'classnames'
 import { ReactSVG } from 'react-svg'
 
 import { getPartOfString } from '../../../utils/getPartOfString'
-import styles from './cardFeatured.module.scss'
+import style from './cardFeatured.module.scss'
 let theme = 'close'
 
 const getWeekDay = () => {
@@ -48,36 +48,36 @@ export function CardFeatured(props) {
   // console.log(timeNow)
   // if(date){}
   return (
-    <div className={styles.card} theme={theme}>
-      <div className={styles.card__up}>
+    <div className={style.card} theme={theme}>
+      <div className={style.card__up}>
         <img
           alt={name}
-          className={styles.card__image}
+          className={style.card__image}
           src={`${process.env.PUBLIC_URL}${imageSrc}`}
         />
-        <div className={styles.card__discount}>
+        <div className={style.card__discount}>
           <ReactSVG src={`${process.env.PUBLIC_URL}/images/food/label.svg`} wrapper="span" />
           time: {deliveryTime} min
         </div>
-        <div className={styles.card__fast}>
+        <div className={style.card__fast}>
           <ReactSVG src={`${process.env.PUBLIC_URL}/images/food/watch.svg`} wrapper="span" />
           {deliveryTime <= 100 ? 'Fast' : 'Not fast'}
         </div>
       </div>
 
-      <div className={cn(styles.card__location, styles.location)}>
-        <div className={styles.location__img}>
+      <div className={cn(style.card__location, style.location)}>
+        <div className={style.location__img}>
           <img
             alt={name}
-            className={styles.location__icon}
+            className={style.location__icon}
             src={`${process.env.PUBLIC_URL}${logo_photos}`}
           />
         </div>
-        <div className={styles.location__text}>
-          <p className={styles.location__name}>{getPartOfString(name, 25)}</p>
-          <span className={styles.location__rating}>
+        <div className={style.location__text}>
+          <p className={style.location__name}>{getPartOfString(name, 25)}</p>
+          <span className={style.location__rating}>
             <ReactSVG
-              className={styles.location__icon}
+              className={style.location__icon}
               src={`${process.env.PUBLIC_URL}/images/food/star.svg`}
               wrapper="span"
             />
@@ -86,7 +86,7 @@ export function CardFeatured(props) {
         </div>
       </div>
 
-      <div className={styles.card__text}>Open Now</div>
+      <div className={style.card__text}>Open Now</div>
     </div>
   )
 }

@@ -2,18 +2,24 @@
 
 .productPage {
   padding-top: 80px;
-  // min-height: 100vh;
 }
 
 .product {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+
   padding-top: 70px;
 }
 
 .placeholder {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  column-gap: 40px;
+}
+
+@media(max-width:485px) {
+  .product {
+    padding-top: 90px;
+  }
 }

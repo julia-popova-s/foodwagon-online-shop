@@ -1,7 +1,6 @@
 @import "../../App/styles/variables";
 
 .restaurant {
-  padding-top: 50px;
   min-height: 100vh;
 }
 
@@ -9,15 +8,14 @@
   display: grid;
   column-gap: 36px;
   row-gap: 50px;
-  grid-template-columns: repeat(auto-fill, minmax(343px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(283px, 1fr));
+
   padding-bottom: 80px;
 
   &__item {
-    width: 343px;
+    max-width: 343px;
     height: 503px;
-    margin: 0 auto;
   }
-
 }
 
 .filters {
@@ -25,9 +23,39 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: baseline;
+
   margin-bottom: 30px;
 
   &__sortBy {
     margin-left: auto;
+  }
+}
+
+@media(max-width:1540px) {
+  .filters__sortBy {
+    margin: 0;
+  }
+}
+
+@media(max-width:390px) {
+  .menuList__item {
+    height: 495px;
+  }
+}
+
+@media(max-width:662px) {
+  .menuList__item {
+    height: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media(max-width:365px) {
+  .menuList {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+
+    &__item {
+      height: 469px;
+    }
   }
 }

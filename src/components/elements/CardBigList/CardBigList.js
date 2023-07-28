@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
 
 import { CardBig } from './CardBig'
-import styles from './cardBigList.module.scss'
+import style from './cardBigList.module.scss'
 
 const dish = [
   {
@@ -35,9 +35,9 @@ const dish = [
 
 export function CardBigList() {
   return (
-    <div className={styles.cardBigList}>
+    <div className={style.cardBigList}>
       <div className="container">
-        <div className={styles.cardList}>
+        <div className={style.cardList}>
           {dish &&
             dish.map((item, i) => {
               const { id } = item

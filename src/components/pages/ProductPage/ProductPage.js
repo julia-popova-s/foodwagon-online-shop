@@ -10,7 +10,7 @@ import { RestaurantPage } from '../RestaurantPage/RestaurantPage'
 import { Card } from './Card'
 import { Loader, LoaderLeft } from './LoaderLeft'
 import { LoaderRight } from './LoaderRight'
-import styles from './productPage.module.scss'
+import style from './productPage.module.scss'
 
 export function ProductPage() {
   let { id, restaurantId } = useParams()
@@ -68,9 +68,9 @@ export function ProductPage() {
 
   return (
     <>
-      <div className={styles.productPage}>
+      <div className={style.productPage}>
         <div className="container">
-          <div className={styles.product}>
+          <div className={style.product}>
             {isLoaded && product
               ? product.map((item, i) => (
                   <Card
@@ -86,7 +86,7 @@ export function ProductPage() {
               : Array(1)
                   .fill(0)
                   .map((_, index) => (
-                    <div className={styles.placeholder} key={index}>
+                    <div className={style.placeholder} key={index}>
                       <LoaderLeft />
                       <LoaderRight />
                     </div>

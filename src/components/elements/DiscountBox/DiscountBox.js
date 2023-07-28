@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { fetchProductsWithDiscount } from '../../../store/reducers/productsWithDiscount'
 import { Card } from './Card'
-import styles from './discountBox.module.scss'
+import style from './discountBox.module.scss'
 import { Loader } from './Loader'
 const restaurantId = '333f1471-d10f-4b1d-a654-d3c070cb3500'
 
@@ -24,9 +24,9 @@ export function DiscountBox() {
   const { isLoaded, products } = useSelector((state) => state.productsWithDiscount)
 
   return (
-    <div className={styles.discountBox}>
+    <div className={style.discountBox}>
       <div className="container">
-        <div className={styles.discountBlock}>
+        <div className={style.discountBlock}>
           {isLoaded && products
             ? products.map((item, i) => {
                 return (

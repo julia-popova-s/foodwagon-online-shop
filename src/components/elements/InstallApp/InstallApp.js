@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import { ReactSVG } from 'react-svg'
 
-import styles from './installApp.module.scss'
+import style from './installApp.module.scss'
 
 const titles = [
   ['Daily', 'Discounts'],
@@ -15,23 +15,23 @@ const links = [
 
 export function InstallApp() {
   return (
-    <div className={styles.installBlock}>
-      <div className={styles.installApp}>
-        <div className={cn(styles.installApp__up, styles.upBlock)}>
-          <div className={styles.upBlock__container}>
-            <div className={styles.upBlock__list}>
+    <div className={style.installBlock}>
+      <div className={style.installApp}>
+        <div className={cn(style.installApp__up, style.upBlock)}>
+          <div className={style.upBlock__container}>
+            <div className={style.upBlock__list}>
               {titles &&
                 titles.map(([oneTitle, twoTitle], i) => {
                   return (
                     <div
-                      className={cn(styles.upBlock__item, styles.upBlock__item_border)}
+                      className={cn(style.upBlock__item, style.upBlock__item_border)}
                       key={`${oneTitle}_${i}`}
                     >
                       <ReactSVG
-                        className={styles.upBlock__img}
+                        className={style.upBlock__img}
                         src={`${process.env.PUBLIC_URL}/images/install-app/discount.svg`}
                       />
-                      <div className={styles.upBlock__text}>
+                      <div className={style.upBlock__text}>
                         <p>{oneTitle}</p>
                         <p>{twoTitle}</p>
                       </div>
@@ -42,31 +42,31 @@ export function InstallApp() {
           </div>
         </div>
 
-        <div className={cn(styles.installApp__down, styles.downBlock)}>
-          <div className={styles.downBlock__container}>
-            <div className={cn(styles.downBlock__install, styles.install)}>
-              <p className={styles.install__title}>Install the app</p>
-              <p className={styles.install__text}>
+        <div className={cn(style.installApp__down, style.downBlock)}>
+          <div className={style.downBlock__container}>
+            <div className={cn(style.downBlock__install, style.install)}>
+              <p className={style.install__title}>Install the app</p>
+              <p className={style.install__text}>
                 It's never been easier to order food. Look for the finest discounts and you'll be
                 lost in a world of delectable food.
               </p>
               {links &&
                 links.map(({ name, src }, i) => {
                   return (
-                    <a className={styles.install__link} href="##" key={`${name}_${i}`}>
+                    <a className={style.install__link} href="##" key={`${name}_${i}`}>
                       <img
                         alt={name}
-                        className={styles.install__linkImg}
+                        className={style.install__linkImg}
                         src={`${process.env.PUBLIC_URL}${src}`}
                       />
                     </a>
                   )
                 })}
             </div>
-            <div className={styles.downBlock__image}>
+            <div className={style.downBlock__image}>
               <img
                 alt="iphone"
-                className={styles.downBlock__imgBack}
+                className={style.downBlock__imgBack}
                 src={`${process.env.PUBLIC_URL}/images/install-app/iphone.png`}
               />
             </div>

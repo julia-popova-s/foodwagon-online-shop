@@ -6,7 +6,7 @@ import { ReactSVG } from 'react-svg'
 import { getPartOfString } from '../../../utils/getPartOfString'
 import { ButtonFind } from '../../ui/ButtonFind'
 import { ButtonsWithCounter } from '../../ui/ButtonsWithCounter'
-import styles from './card.module.scss'
+import style from './card.module.scss'
 
 export function Card({
   discount,
@@ -49,45 +49,45 @@ export function Card({
     })
   }
   return (
-    <div className={styles.card}>
-      <div className={styles.card__left}>
-        <img alt={title} className={styles.card__image} src={`${process.env.PUBLIC_URL}${image}`} />
+    <div className={style.card}>
+      <div className={style.card__left}>
+        <img alt={title} className={style.card__image} src={`${process.env.PUBLIC_URL}${image}`} />
         {discount ? (
-          <div className={styles.card__discount}>
+          <div className={style.card__discount}>
             {discount}
-            <div className={styles.card__discount_size}>%</div>
-            <div className={styles.card__discount_off}>off</div>
+            <div className={style.card__discount_size}>%</div>
+            <div className={style.card__discount_off}>off</div>
           </div>
         ) : null}
       </div>
-      <div className={styles.card__right}>
-        <p className={styles.card__name}>{title}</p>
-        <p className={styles.card__rest}>
+      <div className={style.card__right}>
+        <p className={style.card__name}>{title}</p>
+        <p className={style.card__rest}>
           <ReactSVG
-            className={styles.card__restIcon}
+            className={style.card__restIcon}
             src={`${process.env.PUBLIC_URL}/images/popular-items/map.svg`}
             wrapper="span"
           />
-          <Link className={styles.card__restLink}>{restaurantName}</Link>
+          <Link className={style.card__restLink}>{restaurantName}</Link>
         </p>
-        <div className={styles.card__prices}>
+        <div className={style.card__prices}>
           <div
-            className={cn(styles.card__price, {
-              [styles.card__price_theme]: discount,
+            className={cn(style.card__price, {
+              [style.card__price_theme]: discount,
             })}
           >
             &#36; {price}
           </div>
           {discount ? (
-            <div className={styles.card__price}>
+            <div className={style.card__price}>
               &#36; {(price - (price * discount) / 100).toFixed(2)}
             </div>
           ) : null}
         </div>
-        <p className={styles.card__ingredients}>
+        <p className={style.card__ingredients}>
           Ingredients: {getPartOfString(ingredients.join(', '), 215)}
         </p>
-        <div className={styles.card__add}>
+        <div className={style.card__add}>
           {quantity ? (
             <ButtonsWithCounter
               handleInputQuantity={handleInputQuantity}
@@ -97,7 +97,7 @@ export function Card({
             />
           ) : (
             <ButtonFind
-              classNames={styles.card__btn}
+              classNames={style.card__btn}
               handleClick={handlePlusProduct}
               label="Order Now"
             />

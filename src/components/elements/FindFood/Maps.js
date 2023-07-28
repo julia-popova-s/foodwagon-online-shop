@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { getCoords } from '../../../utils/getCurrentPosition'
-import './balloon.css'
+import style from './balloon.css'
 
 const center = [59.94971367493227, 30.35151817345885]
 
-const balloon = `<div class="balloon">
-    <div class="balloon__contact">Your location</div>
-    <div class="balloon__address">2388 Fairview Street, Burlington</div>
+const balloon = `<div class=${style.balloon}>
+    <div class=${style.balloon__contact}>Your location</div>
+    <div class=${style.balloon__address}>6537 Andreane Port, Severn</div>
   </div>`
 
 export const Maps = () => {

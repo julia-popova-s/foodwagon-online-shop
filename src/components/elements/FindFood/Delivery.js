@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import { ButtonDelivery } from '../../ui/ButtonDelivery'
-import styles from './delivery.module.scss'
+import style from './delivery.module.scss'
 
 const buttons = [
   { icon: '/images/find-food/delivery/delivery.svg', label: 'Delivery' },
@@ -15,7 +15,7 @@ export function Delivery() {
     setActiveBtn(index)
   }
   return (
-    <div className={styles.delivery}>
+    <div className={style.delivery}>
       {buttons &&
         buttons.map(({ icon, label }, i) => (
           <ButtonDelivery
