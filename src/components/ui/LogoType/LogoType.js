@@ -12,8 +12,8 @@ export function LogoType({ onClick }) {
         wrapper="span"
       />
 
-      <span className={styles.logo__name}>food</span>
-      <span className={cn(styles.logo__name, styles.logo__name_color)}>wagon</span>
+      <div className={styles.logo__name}>food</div>
+      <div className={cn(styles.logo__name, styles.logo__name_color)}>wagon</div>
     </div>
   )
 }

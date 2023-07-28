@@ -1,8 +1,8 @@
 @import "../../App/styles/variables";
 
 .logo {
+  display: flex;
   max-width: 100%;
-
 
   &__image {
     margin-right: 11.5px;

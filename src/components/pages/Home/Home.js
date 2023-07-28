@@ -14,16 +14,16 @@ import {
 export function Home() {
   return (
     <>
-      {/* <FindFood /> */}
-      {/* <DiscountBox /> */}
-      {/* <OrderAlgorithm /> */}
-      {/* <PopularItems /> */}
-      {/* <Restaurants /> */}
-      {/* <SearchFood /> */}
-      {/* <InstallApp /> */}
-      {/* <CardBigList /> */}
+      <FindFood />
+      <DiscountBox />
+      <OrderAlgorithm />
+      <PopularItems />
+      <Restaurants />
+      <SearchFood />
+      <InstallApp />
+      <CardBigList />
       <ReadyToOrder />
-      {/* <Cities /> */}
+      <Cities />
     </>
   )
 }

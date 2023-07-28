@@ -35,24 +35,24 @@ export function Header({ geolocation }) {
 
           <div className={cn(styles.search, styles.header__search)}>
             {location.pathname === '/' && (
-              <LinkScroll
-                activeClass={styles.active}
-                className={styles.search__link}
-                duration={500}
-                offset={-70}
-                smooth={true}
-                spy={true}
-                to="searchByFood"
-              >
-                <div className={styles.search__inner}>
+              <button className={styles.search__inner}>
+                <LinkScroll
+                  activeClass={styles.active}
+                  className={styles.search__link}
+                  duration={500}
+                  offset={-70}
+                  smooth={true}
+                  spy={true}
+                  to="searchByFood"
+                >
                   <ReactSVG
                     className={styles.search__innerIcon}
                     src={`${process.env.PUBLIC_URL}/images/header/search.svg`}
                     wrapper="span"
                   />
-                  <span className={styles.search__innerName}>Search Food </span>
-                </div>
-              </LinkScroll>
+                  <span className={styles.search__innerName}>Search Food</span>
+                </LinkScroll>
+              </button>
             )}
 
             <Link to={'login'}>

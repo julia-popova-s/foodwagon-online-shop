@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 
 import { validationEmail } from '../../../utils/validationEmail'
-import { CityList } from '../Cities/CityList'
 import styles from './footer.module.scss'
+import { FooterNav } from './FooterNav'
 
 export const LINKS = [
   {
@@ -46,7 +46,7 @@ export function Footer() {
         <div className={styles.footer__service}>
           <div className={styles.footer__nav}>
             {LINKS.map(({ links, title }) => (
-              <CityList key={title} links={links} title={title} />
+              <FooterNav classNames={styles.footer__list} key={title} links={links} title={title} />
             ))}
           </div>
 
@@ -58,7 +58,7 @@ export function Footer() {
               <FontAwesomeIcon className={styles.footer__networksItem} icon={faTwitter} />
             </div>
 
-            <form className={styles.footer__inputBtn} onSubmit={handleSubmitEmail}>
+            <form className={styles.footer__form} onSubmit={handleSubmitEmail}>
               <p className={styles.footer__label}>Receive exclusive offers in your mailbox</p>
               <input
                 className={styles.footer__input}

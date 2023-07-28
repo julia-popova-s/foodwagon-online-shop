@@ -8,7 +8,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-bottom: 32px;
+    padding-bottom: 22px;
     border-bottom: 2px solid #424242;
   }
 
@@ -16,7 +16,7 @@
     padding-top: 63px;
     display: flex;
     flex-wrap: wrap;
-    gap: 116px;
+    column-gap: 116px;
   }
 
   &__mailbox {
@@ -117,7 +117,34 @@
 
   &__error {
     @include setFontSize(400, 18px, 100%);
-    height: 21px;
+    height: 31px;
     color: red;
+    padding-top: 10px;
+  }
+
+  // &__form {}
+}
+
+
+// @media(max-width:650px) {
+//   .footer__list {
+//     height: auto;
+//   }
+// }
+
+// @media(max-width:450px) {
+//   .footer__list {
+//     height: auto;
+//   }
+// }
+
+// @media(max-width:310px) {
+//   .footer__list {
+//     height: auto;
+//   }
+// }
+@media(max-width:400px) {
+  .footer__input {
+    width: 100%;
   }
 }

@@ -2,11 +2,11 @@
 
 .findFoodWrapper {
   background-image: url('../../../../public/images/find-food/background.png');
-  // min-height: 100vh;
+  min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 132px 0;
+  padding: 210px 0 132px 0;
 }
 
 .findFood {
@@ -74,8 +74,14 @@
 //   filter: grayscale(1)
 // }
 
+// @media (max-width: 669px) {
+//   .header__address {
+//     display: none;
+//   }
+// }
+
 @media(max-width:500px) {
   .findFood__title {
-    font-size: 66px;
+    font-size: 55px;
   }
 }
