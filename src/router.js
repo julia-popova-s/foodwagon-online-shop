@@ -1,4 +1,5 @@
 import { App } from './components/App/App'
+import { SearchPage } from './components/pages'
 import { Cart, ErrorPage, Home, LoginForm } from './components/pages'
 import { ProductPage } from './components/pages/ProductPage'
 
@@ -20,6 +21,10 @@ export const router = [
       {
         element: <ProductPage />,
         path: 'restaurant/:restaurantId/product/:id',
+      },
+      {
+        element: <SearchPage />,
+        path: 'search',
       },
     ],
     element: <App />,
