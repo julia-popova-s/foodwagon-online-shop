@@ -20,7 +20,7 @@ export function SearchPanel() {
   const handleSearch = () => {
     dispatch(
       fetchProducts({
-        filter: `&title=${value}`,
+        filter: `&search=${value}`,
         limit: 8,
       })
     )
