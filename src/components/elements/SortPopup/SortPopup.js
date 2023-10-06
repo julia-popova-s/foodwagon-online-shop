@@ -29,6 +29,8 @@ export function SortPopup({ activeSortType, classNames, handleClickSortType, ite
 
   useEffect(() => {
     document.body.addEventListener('click', (e) => handleOutsideClick(e))
+
+    return document.body.removeEventListener('click', (e) => handleOutsideClick(e))
   }, [])
 
   return (

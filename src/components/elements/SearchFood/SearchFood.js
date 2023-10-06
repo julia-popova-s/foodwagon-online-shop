@@ -113,15 +113,15 @@ export function SearchFood() {
   const dispatch = useDispatch()
   const { searchBy } = useSelector((state) => state.filters)
 
-  useEffect(() => {
-    if (searchBy !== null)
-      dispatch(
-        fetchProducts({
-          filter: `&category=${typeFood[searchBy].name}`,
-          limit,
-        })
-      )
-  }, [searchBy, limit])
+  // useEffect(() => {
+  //   if (searchBy !== null)
+  //     dispatch(
+  //       fetchProducts({
+  //         filter: `&category=${typeFood[searchBy].name}`,
+  //         limit,
+  //       })
+  //     )
+  // }, [searchBy, limit])
 
   const handleSelectCategory = (index) => {
     dispatch(setSearchBy(index))
