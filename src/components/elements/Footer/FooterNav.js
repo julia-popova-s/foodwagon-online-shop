@@ -1,9 +1,9 @@
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
 
-import style from './cityList.module.scss'
+import style from './footerNav.module.scss'
 
-export function CityList({ links, title }) {
+export function FooterNav({ links, title }) {
   return (
     <div className={style.cityList}>
       <div className={style.cityList__title}>{title}</div>

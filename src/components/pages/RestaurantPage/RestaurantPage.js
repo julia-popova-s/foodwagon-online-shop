@@ -11,7 +11,7 @@ import { setSortType } from '../../../store/reducers/sortingType'
 import { CardPopular } from '../../elements/PopularItems/CardPopular'
 import { SortPopup } from '../../elements/SortPopup'
 import { Loader } from './Loader'
-import styles from './restaurantPage.module.scss'
+import style from './restaurantPage.module.scss'
 
 const sortItems = [
   { name: 'popularity ', order: 'desc', type: 'rating' },
@@ -84,10 +84,10 @@ export function RestaurantPage() {
   }
 
   return (
-    <div className={styles.restaurant}>
+    <div className={style.restaurant}>
       <div className="container">
         {/* <p className="restaurant__name">{'name'}</p> */}
-        <div className={styles.filters}>
+        <div className={style.filters}>
           {/* <Categories
             items={categoryNames}
             activeCategory={category}
@@ -95,17 +95,17 @@ export function RestaurantPage() {
           /> */}
           <SortPopup
             activeSortType={sortType}
-            classNames={styles.filters__sortBy}
+            classNames={style.filters__sortBy}
             handleClickSortType={handleSelectSortType}
             items={sortItems}
             orderType={order}
           />
         </div>
-        <div className={styles.menuList}>
+        <div className={style.menuList}>
           {isLoaded && products
             ? products.map((item, i) => (
                 <CardPopular
-                  classNames={styles.menuList__item}
+                  classNames={style.menuList__item}
                   key={`${item.id}${i}`}
                   {...item}
                   handleAddProduct={(obj) => handleAddProduct(obj)}

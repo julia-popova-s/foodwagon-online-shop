@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { ButtonFind } from '../ButtonFind'
 import { ButtonsForCounter } from '../ButtonsForCounter'
-import styles from './buttonsWithCounter.module.scss'
+import style from './buttonsWithCounter.module.scss'
 
 export function ButtonsWithCounter({
   handleInputQuantity,
@@ -13,15 +13,15 @@ export function ButtonsWithCounter({
   quantity,
 }) {
   return (
-    <div className={styles.buttons}>
-      <Link className={styles.buttons__link} to={'/cart'}>
+    <div className={style.buttons}>
+      <Link className={style.buttons__link} to={'/cart'}>
         <ButtonFind
-          classNames={cn(styles.buttons__btnToCart, styles.buttons__btnToCart_color)}
+          classNames={cn(style.buttons__btnToCart, style.buttons__btnToCart_color)}
           label="To Cart"
         />
       </Link>
       <ButtonsForCounter
-        classNames={styles.buttons__counter}
+        classNames={style.buttons__counter}
         handleInputQuantity={handleInputQuantity}
         handleMinusProduct={handleMinusProduct}
         handlePlusProduct={handlePlusProduct}

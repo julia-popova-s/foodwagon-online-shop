@@ -1,8 +1,8 @@
 @import "../../App/styles/variables";
 
 .card {
-  width: 357px;
-  height: 463px;
+  max-width: 357px;
+  max-height: 463px;
 
   &__up {
     margin-bottom: 24px;
@@ -94,5 +94,12 @@
   &__rating {
     @include setFontSize(400, 22px, 120%);
     color: $primary-color;
+  }
+}
+
+@media(max-width:440px) {
+  .card__fast {
+    left: 24px;
+    top: 75px;
   }
 }

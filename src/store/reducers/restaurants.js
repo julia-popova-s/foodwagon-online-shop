@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { getBalloon } from '../../utils/getBalloon'
-
 export const fetchRestaurants = createAsyncThunk(
   'products/fetchRestaurants',
   async function ({ category, limit, restaurantId, sortType }, { dispatch, rejectWithValue }) {
@@ -43,37 +41,6 @@ const restSlice = createSlice({
         state.list = action.payload
         state.status = 'resolve'
         state.isLoaded = true
-        state.placemarks = state.list.map((item) => {
-          const {
-            address: { city, latitude, longitude, street_addr },
-            backgroundId,
-            id,
-            logo_photos,
-            name,
-            phone_number,
-          } = item
-          return {
-            // route: item,
-            geometry: {
-              coordinates: [latitude, longitude],
-              type: 'Point',
-            },
-            id,
-            properties: {
-              balloonContent: getBalloon(
-                id,
-                name,
-                logo_photos,
-                phone_number,
-                street_addr,
-                latitude,
-                longitude,
-                backgroundId
-              ),
-            },
-            type: 'Feature',
-          }
-        })
       })
       .addCase(fetchRestaurants.pending, (state) => {
         state.status = 'loading'
@@ -88,7 +55,6 @@ const restSlice = createSlice({
     error: null,
     isLoaded: false,
     list: [],
-    placemarks: [],
     status: null,
   },
   name: 'restaurants',

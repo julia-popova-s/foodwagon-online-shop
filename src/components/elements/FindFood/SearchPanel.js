@@ -1,31 +1,35 @@
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { ButtonFind } from '../../ui/ButtonFind'
-import styles from './searchPanel.module.scss'
+import { Search } from './Search'
+import style from './searchPanel.module.scss'
 
 export function SearchPanel() {
-  const [text, setText] = useState('')
+  const dispatch = useDispatch()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSearch = () => {
+    // dispatch(
+    //   fetchProducts({
+    //     filter: `&search=${value}`,
+    //     limit: 8,
+    //   })
+    // )
   }
 
   return (
-    <div className={styles.searchPanel} onSubmit={handleSubmit}>
-      <input
-        className={styles.searchPanel__input}
-        name="find"
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Enter Your Address"
-        type="text"
-        value={text}
-      />
+    <div className={style.searchPanel}>
+      <Search />
 
-      <FontAwesomeIcon className={styles.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
-
-      <ButtonFind classNames={styles.searchPanel__btn} icon="search" label="Find Food" />
+      <Link to={'search'}>
+        <ButtonFind
+          classNames={style.searchPanel__btn}
+          handleClick={handleSearch}
+          icon="search"
+          label="Find Food"
+        />
+      </Link>
     </div>
   )
 }

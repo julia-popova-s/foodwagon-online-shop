@@ -1,5 +1,5 @@
-import styles from './cities.module.scss'
 import { CityList } from './CityList'
+import style from './cities.module.scss'
 
 export const CITY_LIST = {
   links: [
@@ -33,7 +33,7 @@ export const CITY_LIST = {
 
 export function Cities() {
   return (
-    <div className={styles.cities}>
+    <div className={style.cities}>
       <div className="container">
         <CityList links={CITY_LIST.links} title={CITY_LIST.title} />
       </div>

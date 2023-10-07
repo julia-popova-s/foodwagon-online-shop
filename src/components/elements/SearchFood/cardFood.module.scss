@@ -2,9 +2,11 @@
 
 .cardFoodBlock {
   text-align: center;
-  max-width: 252.2px;
-  padding: 0 17.1px;
+  width: 218px;
   cursor: pointer;
+  display: block;
+  // margin-right: 32.4px;
+  margin: 0 auto;
 }
 
 .cardFood {

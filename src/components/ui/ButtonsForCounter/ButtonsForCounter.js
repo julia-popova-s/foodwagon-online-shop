@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import React, { useState } from 'react'
 import { useRef } from 'react'
 
-import styles from './buttonsForCounter.module.scss'
+import style from './buttonsForCounter.module.scss'
 
 export function ButtonsForCounter({
   classNames,
@@ -51,21 +51,21 @@ export function ButtonsForCounter({
     setCount(count - 1)
   }
   return (
-    <div className={cn(styles.buttons, classNames)}>
-      <button className={cn(styles.button, styles.buttons__plus)} onClick={handleClickPlusProduct}>
+    <div className={cn(style.buttons, classNames)}>
+      <button className={cn(style.button, style.buttons__plus)} onClick={handleClickPlusProduct}>
         {'+'}
       </button>
-      <div className={styles.buttons__input} onClick={() => setIsHiddenInput(false)}>
+      <div className={style.buttons__input} onClick={() => setIsHiddenInput(false)}>
         <span
-          className={cn(styles.buttons__quantity, {
-            [styles.buttons__inputCount_hidden]: !isHiddenInput,
+          className={cn(style.buttons__quantity, {
+            [style.buttons__inputCount_hidden]: !isHiddenInput,
           })}
         >
           {quantity}
         </span>
         <input
-          className={cn(styles.buttons__inputCount, {
-            [styles.buttons__inputCount_hidden]: isHiddenInput,
+          className={cn(style.buttons__inputCount, {
+            [style.buttons__inputCount_hidden]: isHiddenInput,
           })}
           maxLength="3"
           onChange={handleChangeCount}
@@ -75,7 +75,7 @@ export function ButtonsForCounter({
         />
       </div>
       <button
-        className={cn(styles.buttons__minus, styles.button)}
+        className={cn(style.buttons__minus, style.button)}
         onClick={handleClickMinusProduct}
       >
         {'–'}

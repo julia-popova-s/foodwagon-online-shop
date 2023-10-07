@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 import { ButtonsForCounter } from '../../ui/ButtonsForCounter'
 import { Discount } from '../../ui/Discount/Discount'
-import styles from './cardProduct.module.scss'
+import style from './cardProduct.module.scss'
 
 export function CardProduct({
   amount,
@@ -60,20 +60,17 @@ export function CardProduct({
   }, [returnedProduct])
 
   return (
-    <div className={styles.product}>
-      <div className={styles.product__image}>
-        <Link
-          className={styles.product__imageLink}
-          to={`/restaurant/${restaurantId}/product/${id}`}
-        >
+    <div className={style.product}>
+      <div className={style.product__image}>
+        <Link className={style.product__imageLink} to={`/restaurant/${restaurantId}/product/${id}`}>
           <img
             alt={`${image}`}
-            className={styles.product__img}
+            className={style.product__img}
             src={`${process.env.PUBLIC_URL}${image}`}
           />
           {discount > 0 && (
             <Discount
-              classNames={styles.product__discount}
+              classNames={style.product__discount}
               discount={discount}
               view={'smallLabel'}
             />
@@ -82,66 +79,66 @@ export function CardProduct({
       </div>
       {!returnedProduct ? (
         <>
-          <div className={styles.product__info}>
-            <p className={styles.product__title}>
+          <div className={style.product__info}>
+            <p className={style.product__title}>
               <Link
-                className={styles.product__titleLink}
+                className={style.product__titleLink}
                 to={`/restaurant/${restaurantId}/product/${id}`}
               >
                 {title}
               </Link>
             </p>
-            <p className={styles.product__rest}>
-              <FontAwesomeIcon className={styles.product__restIcon} icon={faLocationDot} />
+            <p className={style.product__rest}>
+              <FontAwesomeIcon className={style.product__restIcon} icon={faLocationDot} />
               <Link
-                className={styles.product__restLink}
+                className={style.product__restLink}
                 to={`/restaurant/${restaurantId}/product/${id}`}
               >
                 {restaurantName}
               </Link>
             </p>
             <div
-              className={cn(styles.product__price, {
-                [styles.product__price_theme]: discount,
+              className={cn(style.product__price, {
+                [style.product__price_theme]: discount,
               })}
             >
               &#36;{price}
             </div>
             {discount ? (
-              <div className={styles.product__price}>
+              <div className={style.product__price}>
                 &#36;{(price - (price * discount) / 100).toFixed(2)}
               </div>
             ) : null}
           </div>
 
-          <div className={styles.product__counterWithPrice}>
+          <div className={style.product__counterWithPrice}>
             <ButtonsForCounter
-              classNames={styles.product__counter}
+              classNames={style.product__counter}
               handleInputQuantity={handleInputQuantity}
               handleMinusProduct={handleMinusProduct}
               handlePlusProduct={handlePlusProduct}
               quantity={quantity}
             />
-            <div className={styles.product__priceWithSale}>&#36; {amount && amount.toFixed(2)}</div>{' '}
+            <div className={style.product__priceWithSale}>&#36; {amount && amount.toFixed(2)}</div>{' '}
           </div>
         </>
       ) : (
         <>
           <button
-            className={cn(styles.btnReturn, styles.product__btnReturn)}
+            className={cn(style.btnReturn, style.product__btnReturn)}
             onClick={handleReturnProduct}
           >
             Restore to cart
           </button>
-          <div className={styles.loadingBar}>
-            <div className={styles.loadingBar__inner}>
-              <div className={styles.loadingBar__shadow}></div>
+          <div className={style.loadingBar}>
+            <div className={style.loadingBar__inner}>
+              <div className={style.loadingBar__shadow}></div>
             </div>
           </div>
         </>
       )}
-      <button className={styles.product__btnDelete} onClick={handleProductExclusion}>
-        <FontAwesomeIcon className={styles.product__delete} icon={faTrashCan} size="xl" />
+      <button className={style.product__btnDelete} onClick={handleProductExclusion}>
+        <FontAwesomeIcon className={style.product__delete} icon={faTrashCan} size="xl" />
       </button>
     </div>
   )

@@ -48,34 +48,6 @@
     margin-bottom: auto;
     color: rgba(97, 97, 97, 0.69);
   }
-
-  &__btn {
-    @include setFontSize(900, 18px, 100%);
-    width: 407px;
-    height: 60px;
-    background: linear-gradient(92.84deg, #ffb800 -47.72%, #ff8a00 136.81%);
-    border-radius: 8px;
-    text-align: center;
-    text-transform: uppercase;
-    color: $white-color;
-  }
-
-  &__btn>span {
-    margin-left: 10px;
-  }
-
-  @media screen and (max-width: 1570px) {
-    .cardBig {
-      &__description {
-        border-radius: 0 0 16px 16px;
-        max-width: 961px;
-      }
-
-      &__img {
-        border-radius: 16px 16px 0 0;
-      }
-    }
-  }
 }
 
 
@@ -91,5 +63,40 @@
 
   &__description_border {
     border-radius: 16px 0 0 16px;
+  }
+}
+
+@media(max-width: 1570px) {
+  .cardBig {
+    &__description {
+      border-radius: 0 0 16px 16px;
+      max-width: 961px;
+    }
+
+    &__img {
+      border-radius: 16px 16px 0 0;
+    }
+  }
+}
+
+@media(max-width:700px) {
+  .cardBig {
+    &__description {
+      padding: 56px 28px 28px 28px;
+    }
+
+    &__btn {
+      width: 100%;
+    }
+  }
+
+  .cardBig__title {
+    font-size: 28px;
+  }
+}
+
+@media(max-width:325px) {
+  .cardBig__description {
+    height: 550px;
   }
 }

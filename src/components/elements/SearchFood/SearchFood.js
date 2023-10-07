@@ -16,7 +16,7 @@ import { ButtonSlider } from '../../ui/ButtonSlider'
 import { CardPopular } from '../PopularItems/CardPopular'
 import { CardFood } from './CardFood'
 import { Loader } from './Loader'
-import styles from './searchFood.module.scss'
+import style from './searchFood.module.scss'
 
 const typeFood = [
   {
@@ -46,13 +46,13 @@ const settings = {
   infinite: true,
   nextArrow: (
     <ButtonSlider
-      classNames={cn(styles.searchFood__btn, styles.searchFood__btn_right)}
+      classNames={cn(style.searchFood__btn, style.searchFood__btn_right)}
       type={'right'}
     />
   ),
   prevArrow: (
     <ButtonSlider
-      classNames={cn(styles.searchFood__btn, styles.searchFood__btn_left)}
+      classNames={cn(style.searchFood__btn, style.searchFood__btn_left)}
       type={'left'}
     />
   ),
@@ -93,6 +93,15 @@ const settings = {
         slidesToShow: 2,
       },
     },
+    {
+      breakpoint: 625,
+      settings: {
+        dots: false,
+        infinite: true,
+        slidesToScroll: 1,
+        slidesToShow: 1,
+      },
+    },
   ],
   slidesToScroll: 1,
   slidesToShow: 6,
@@ -104,15 +113,15 @@ export function SearchFood() {
   const dispatch = useDispatch()
   const { searchBy } = useSelector((state) => state.filters)
 
-  useEffect(() => {
-    if (searchBy !== null)
-      dispatch(
-        fetchProducts({
-          filter: `&category=${typeFood[searchBy].name}`,
-          limit,
-        })
-      )
-  }, [searchBy, limit])
+  // useEffect(() => {
+  //   if (searchBy !== null)
+  //     dispatch(
+  //       fetchProducts({
+  //         filter: `&category=${typeFood[searchBy].name}`,
+  //         limit,
+  //       })
+  //     )
+  // }, [searchBy, limit])
 
   const handleSelectCategory = (index) => {
     dispatch(setSearchBy(index))
@@ -137,31 +146,31 @@ export function SearchFood() {
   const { cart } = useSelector((state) => state.cart)
 
   return (
-    <div className={styles.searchFoodBlock} id="searchByFood">
+    <div className={style.searchFoodBlock} id="searchByFood">
       <div className="container">
-        <div className={styles.searchFood}>
-          <h2 className={styles.searchFood__title}>Search by Food</h2>
-          <Slider {...settings} className={styles.searchFood__slider}>
+        <div className={style.searchFood}>
+          <h2 className={style.searchFood__title}>Search by Food</h2>
+          <Slider {...settings} className={style.searchFood__slider}>
             {typeFood &&
               typeFood.map((item, i) => {
                 return (
                   <CardFood
                     key={`${item.id}${i}`}
                     {...item}
-                    classNames={styles.searchFood__item}
+                    classNames={style.searchFood__item}
                     onClickCategory={() => handleSelectCategory(i)}
                   />
                 )
               })}
           </Slider>
-          <div className={styles.menuList}>
+          <div className={style.menuList}>
             {isLoaded && products
               ? products.map((item, i) => {
                   return (
                     <CardPopular
                       key={`${item.id}${i}`}
                       {...item}
-                      classNames={styles.menuList__item}
+                      classNames={style.menuList__item}
                       handleAddProduct={(obj) => handleAddProduct(obj)}
                       handleInputCount={(obj) => handleInputCount(obj)}
                       handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
@@ -173,10 +182,10 @@ export function SearchFood() {
                   .fill(0)
                   .map((_, index) => <Loader key={index} />)}
           </div>
-          <button className={styles.searchFood__btnView} onClick={handleViewAll}>
+          <button className={style.searchFood__btnView} onClick={handleViewAll}>
             View All
             <ReactSVG
-              className={styles.searchFood__btnViewArrow}
+              className={style.searchFood__btnViewArrow}
               src={`${process.env.PUBLIC_URL}/images/search-food/left.svg`}
               wrapper="span"
             />

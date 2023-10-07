@@ -2,23 +2,23 @@ import cn from 'classnames'
 import { Link } from 'react-router-dom'
 
 import { ButtonOrder } from '../../ui/ButtonOrder'
-import styles from './cardBig.module.scss'
+import style from './cardBig.module.scss'
 
 export function CardBig({ description, flippedСard, food, imageSrc, link, title }) {
   const flippedСardStyle = {
-    imgBorder: styles.cardBig__img_border,
-    imgRight: styles.cardBig__img_right,
-    textBorder: styles.cardBig__description_border,
+    imgBorder: style.cardBig__img_border,
+    imgRight: style.cardBig__img_right,
+    textBorder: style.cardBig__description_border,
   }
   return (
     <div
-      className={cn(styles.cardBig, {
+      className={cn(style.cardBig, {
         [flippedСardStyle.imgRight]: flippedСard,
       })}
     >
-      <div className={styles.cardBig__image}>
+      <div className={style.cardBig__image}>
         <img
-          className={cn(styles.cardBig__img, {
+          className={cn(style.cardBig__img, {
             [flippedСardStyle.imgBorder]: flippedСard,
           })}
           alt={`${title}${food}`}
@@ -26,20 +26,20 @@ export function CardBig({ description, flippedСard, food, imageSrc, link, title
         />
       </div>
       <div
-        className={cn(styles.cardBig__description, {
+        className={cn(style.cardBig__description, {
           [flippedСardStyle.textBorder]: flippedСard,
         })}
       >
-        <p className={styles.cardBig__title}>
+        <p className={style.cardBig__title}>
           {title}
-          <Link className={styles.cardBig__link} to={link}>
+          <Link className={style.cardBig__link} to={link}>
             {' '}
             {food}
           </Link>
         </p>
-        <p className={styles.cardBig__text}>{description}</p>
+        <p className={style.cardBig__text}>{description}</p>
         <Link to={link}>
-          <ButtonOrder name={'Proceed to order'} />
+          <ButtonOrder classNames={style.cardBig__btn} name={'Proceed to order'} />
         </Link>
       </div>
     </div>
