@@ -1,5 +1,5 @@
-import style from './cities.module.scss'
 import { CityList } from './CityList'
+import style from './cities.module.scss'
 
 export const CITY_LIST = {
   links: [

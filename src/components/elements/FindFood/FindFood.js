@@ -1,10 +1,8 @@
-
 import { Delivery } from './Delivery'
-import style from './findFood.module.scss'
 import { SearchPanel } from './SearchPanel'
+import style from './findFood.module.scss'
 
 export function FindFood() {
-
   return (
     <div className={style.findFoodWrapper}>
       <div className="container">
@@ -17,7 +15,6 @@ export function FindFood() {
             <Delivery />
             <SearchPanel />
           </div>
-          
         </div>
       </div>
     </div>

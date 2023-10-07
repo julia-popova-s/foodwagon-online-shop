@@ -19,38 +19,3 @@
 
 }
 
-.popup {
-  position: absolute;
-  left: 0;
-  top: 108px;
-  background-color: #f5f5f5;
-  width: 100%;
-  transition: all 0.2s ease;
-  max-height: 415px;
-  border-radius: 8px;
-}
-
-.popup__item {
-  margin-bottom: 15px;
-  padding: 0 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: left;
-
-}
-
-.popup__item:nth-child(1) {
-  padding-top: 15px;
-}
-
-.popup__left {
-  height: 85px;
-  width: 100px;
-}
-
-.popup__image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
