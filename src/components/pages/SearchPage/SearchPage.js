@@ -9,9 +9,11 @@ export function SearchPage() {
   const { isLoaded, products } = useSelector((state) => state.products)
   const { currentPage } = useSelector((state) => state.filters)
   const dispatch = useDispatch()
+
   const onChangePage = (number) => {
     dispatch(setCurrentPage(number))
   }
+  
   return (
     <div className={style.searchPage}>
       <div className="container">
