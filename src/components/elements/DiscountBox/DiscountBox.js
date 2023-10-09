@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 import { fetchProductsWithDiscount } from '../../../store/reducers/productsWithDiscount'
 import { Card } from './Card'
-import style from './discountBox.module.scss'
 import { Loader } from './Loader'
+import style from './discountBox.module.scss'
 const restaurantId = '333f1471-d10f-4b1d-a654-d3c070cb3500'
 
 export function DiscountBox() {

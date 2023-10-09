@@ -1,5 +1,5 @@
-import style from './orderAlgorithm.module.scss'
 import { OrderStep } from './OrderStep'
+import style from './orderAlgorithm.module.scss'
 
 const algorithm = [
   {

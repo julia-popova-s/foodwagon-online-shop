@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 
 import { validationEmail } from '../../../utils/validationEmail'
-import style from './footer.module.scss'
 import { FooterNav } from './FooterNav'
+import style from './footer.module.scss'
 
 export const LINKS = [
   {

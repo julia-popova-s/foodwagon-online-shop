@@ -13,7 +13,9 @@ export function FindFood() {
           </p>
           <div className={style.findFood__search}>
             <Delivery />
-            <SearchPanel />
+            <div className={style.searchPanel}>
+              <SearchPanel />
+            </div>
           </div>
         </div>
       </div>
