@@ -8,8 +8,7 @@
   gap: 16px;
   justify-content: space-between;
   align-items: center;
-  top: 50%;
-  transform: translate(-50%, -50%);
+
 
   &__input,
   &__input::placeholder {
@@ -68,7 +67,7 @@
   background-color: #f5f5f5;
   width: calc(100% - 199px - 16px);
   transition: all 0.2s ease;
-  max-height: 415px;
+  height: 415px;
   border-radius: 8px;
 
 

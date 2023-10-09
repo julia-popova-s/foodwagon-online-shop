@@ -4,12 +4,13 @@ import debounce from 'lodash.debounce'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { CSSTransition } from 'react-transition-group'
 
 import { fetchProducts } from '../../../store/reducers/products'
 import { ButtonFind } from '../../ui/ButtonFind'
 import style from './searchPanel.module.scss'
 
-export function SearchPanel() {
+export function SearchPanel({ currentPage }) {
   const [searchValue, setSearchValue] = useState('')
   const [value, setValue] = useState('')
   const [visiblePopup, setVisiblePopup] = useState(false)
@@ -40,12 +41,13 @@ export function SearchPanel() {
   }
 
   const handleSearch = () => {
-    // dispatch(
-    //   fetchProducts({
-    //     filter: `&search=${value}`,
-    //     limit: 8,
-    //   })
-    // )
+    dispatch(
+      fetchProducts({
+        filter: `&search=${value}`,
+        limit: 8,
+        page: currentPage,
+      })
+    )
   }
 
   useEffect(() => {
@@ -85,14 +87,14 @@ export function SearchPanel() {
         value={value}
       />
       <FontAwesomeIcon className={style.search__inputIcon} icon={faLocationDot} size="xl" />
-      <Link to={'search'}>
-        <ButtonFind
-          classNames={style.search__btn}
-          handleClick={handleSearch}
-          icon="search"
-          label="Find Food"
-        />
-      </Link>
+      {/* <Link to={'search'}> */}
+      <ButtonFind
+        classNames={style.search__btn}
+        handleClick={handleSearch}
+        icon="search"
+        label="Find Food"
+      />
+      {/* </Link> */}
       {value && (
         <svg
           className={style.search__clearIcon}
@@ -106,7 +108,8 @@ export function SearchPanel() {
           </g>
         </svg>
       )}
-      {visiblePopup && (
+
+      <CSSTransition classNames="alert" in={visiblePopup} timeout={2000} unmountOnExit>
         <div className={style.popup} ref={popupRef}>
           {products.map((el, i) => (
             <div className={style.popup__item} key={i}>
@@ -124,7 +127,7 @@ export function SearchPanel() {
             </div>
           ))}
         </div>
-      )}
+      </CSSTransition>
     </div>
   )
 }

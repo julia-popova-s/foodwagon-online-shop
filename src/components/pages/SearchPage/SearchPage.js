@@ -1,11 +1,17 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { setCurrentPage } from '../../../store/reducers/filters'
 import { SearchPanel } from '../../elements/FindFood/SearchPanel'
+import { Pagination } from './Pagination'
 import style from './searchPage.module.scss'
 
 export function SearchPage() {
   const { isLoaded, products } = useSelector((state) => state.products)
-
+  const { currentPage } = useSelector((state) => state.filters)
+  const dispatch = useDispatch()
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number))
+  }
   return (
     <div className={style.searchPage}>
       <div className="container">
@@ -25,6 +31,7 @@ export function SearchPage() {
             We didn't find anything. But there is a lot of interesting things in our catalog.
           </div>
         )}
+        <Pagination currentPage={currentPage} onChangePage={onChangePage} />
       </div>
     </div>
   )
