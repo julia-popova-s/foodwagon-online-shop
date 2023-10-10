@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
+import { setCurrentPage } from '../../../store/reducers/filters'
 import { fetchProducts } from '../../../store/reducers/products'
 import { ButtonFind } from '../../ui/ButtonFind'
 import style from './searchPanel.module.scss'
 
-export function SearchPanel({ currentPage }) {
+export function SearchPanel() {
   const [searchValue, setSearchValue] = useState('')
   const [value, setValue] = useState('')
   const [visiblePopup, setVisiblePopup] = useState(false)
@@ -20,7 +21,8 @@ export function SearchPanel({ currentPage }) {
   const searchRef = useRef(null)
 
   const dispatch = useDispatch()
-  const products = useSelector((state) => state.products.products)
+  const { products } = useSelector((state) => state.products)
+  const { currentPage } = useSelector((state) => state.filters)
 
   const onClickClear = () => {
     setValue('')
@@ -41,13 +43,17 @@ export function SearchPanel({ currentPage }) {
   }
 
   const handleSearch = () => {
-    dispatch(
-      fetchProducts({
-        filter: `&search=${value}`,
-        limit: 8,
-        page: currentPage,
-      })
-    )
+    dispatch(setCurrentPage(1))
+    if (searchValue) {
+      dispatch(
+        fetchProducts({
+          filter: `&search=${value}`,
+          limit: 8,
+          page: 1,
+          url: 'products',
+        })
+      )
+    }
   }
 
   useEffect(() => {
@@ -69,11 +75,13 @@ export function SearchPanel({ currentPage }) {
       dispatch(
         fetchProducts({
           filter: `&search=${searchValue.replace(' ', '&')}`,
-          limit: 4,
+          limit: 0,
+          page: currentPage,
+          url: 'products',
         })
       )
     }
-  }, [dispatch, searchValue])
+  }, [dispatch, searchValue, currentPage])
 
   return (
     <div className={style.search} ref={searchRef}>
@@ -87,14 +95,14 @@ export function SearchPanel({ currentPage }) {
         value={value}
       />
       <FontAwesomeIcon className={style.search__inputIcon} icon={faLocationDot} size="xl" />
-      {/* <Link to={'search'}> */}
-      <ButtonFind
-        classNames={style.search__btn}
-        handleClick={handleSearch}
-        icon="search"
-        label="Find Food"
-      />
-      {/* </Link> */}
+      <Link to={'/search'}>
+        <ButtonFind
+          classNames={style.search__btn}
+          handleClick={handleSearch}
+          icon="search"
+          label="Find Food"
+        />
+      </Link>
       {value && (
         <svg
           className={style.search__clearIcon}

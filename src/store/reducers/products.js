@@ -1,37 +1,72 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-export const fetchProducts = createAsyncThunk(
-  'products/fetchProducts',
-  async function (
-    { category, filter, limit, order, page, restaurantId, sortType },
-    { dispatch, rejectWithValue }
-  ) {
-    dispatch(setLoaded(false))
+export const fetchData = async function (params, { dispatch, rejectWithValue }) {
+  const { category, filter, limit, order, page, restaurantId, sortType, url } = params
 
-    const sortRequest = sortType ? `&sortBy=${sortType}&order=${order}` : ''
+  dispatch(setLoaded(false))
 
-    const categoryRequest = category && category !== 'All' ? `&category=${category}` : ''
+  const sortRequest = sortType ? `&sortBy=${sortType}&order=${order}` : ''
 
-    const idRequest = restaurantId ? `&restaurantId=${restaurantId}` : ''
+  const categoryRequest = category && category !== 'All' ? `&category=${category}` : ''
 
-    const limitRequest = limit ? `&limit=${limit}` : ''
-    const currentPage = page ? `&page=${page}` : `&page=1`
-    try {
-      const response = await fetch(
-        `https://647c7cd1c0bae2880ad0c1a4.mockapi.io/foodwagon/products?${
-          filter ? filter : ''
-        }${idRequest}${categoryRequest}${sortRequest}${currentPage}${limitRequest}
+  const idRequest = restaurantId ? `&restaurantId=${restaurantId}` : ''
+
+  const limitRequest = limit ? `&limit=${limit}` : ''
+  const currentPage = page ? `&page=${page}` : `&page=1`
+  try {
+    const response = await fetch(
+      `https://647c7cd1c0bae2880ad0c1a4.mockapi.io/foodwagon/products?${
+        filter ? filter : ''
+      }${idRequest}${categoryRequest}${sortRequest}${currentPage}${limitRequest}
         `
-      )
-      if (!response.ok) {
-        throw new Error(`ServerError: ${response.status} ${response.statusText}`)
-      }
-      return await response.json()
-    } catch (error) {
-      return rejectWithValue(error.message)
+    )
+
+    if (!response.ok) {
+      throw new Error(`ServerError: ${response.status} ${response.statusText}`)
     }
+    return await response.json()
+  } catch (error) {
+    return rejectWithValue(error.message)
   }
-)
+}
+
+// import { fetchData } from './fetchData'
+
+// export const fetchProducts = createAsyncThunk(
+//   'products/fetchProducts',
+//   async function (
+//     { category, filter, limit, order, page, restaurantId, sortType },
+//     { dispatch, rejectWithValue }
+//   ) {
+//     dispatch(setLoaded(false))
+
+//     const sortRequest = sortType ? `&sortBy=${sortType}&order=${order}` : ''
+
+//     const categoryRequest = category && category !== 'All' ? `&category=${category}` : ''
+
+//     const idRequest = restaurantId ? `&restaurantId=${restaurantId}` : ''
+
+//     const limitRequest = limit ? `&limit=${limit}` : ''
+//     const currentPage = page ? `&page=${page}` : `&page=1`
+//     try {
+//       const response = await fetch(
+//         `https://647c7cd1c0bae2880ad0c1a4.mockapi.io/foodwagon/products?${
+//           filter ? filter : ''
+//         }${idRequest}${categoryRequest}${sortRequest}${currentPage}${limitRequest}
+//         `
+//       )
+
+//       if (!response.ok) {
+//         // throw new Error(`ServerError: ${response.status} ${response.statusText}`)
+//         return rejectWithValue(response.status)
+//       }
+//       return await response.json()
+//     } catch (error) {
+//       return rejectWithValue(error.message)
+//     }
+//   }
+// )
+export const fetchProducts = createAsyncThunk('products/fetchProducts', fetchData)
 
 const productsSlice = createSlice({
   extraReducers: (builder) => {
@@ -56,13 +91,9 @@ const productsSlice = createSlice({
     products: [],
     status: null,
   },
-
   name: 'products',
 
   reducers: {
-    filterById(state, action) {
-      state.currentList = state.products.find((rest) => rest.id === action.payload.id)
-    },
     setLoaded(state, action) {
       state.isLoaded = action.payload
     },

@@ -13,7 +13,8 @@ export function SearchPage() {
   const onChangePage = (number) => {
     dispatch(setCurrentPage(number))
   }
-  
+  console.log(products.length)
+  console.log(products)
   return (
     <div className={style.searchPage}>
       <div className="container">
@@ -33,7 +34,13 @@ export function SearchPage() {
             We didn't find anything. But there is a lot of interesting things in our catalog.
           </div>
         )}
-        <Pagination currentPage={currentPage} onChangePage={onChangePage} />
+        {isLoaded && (
+          <Pagination
+            currentPage={currentPage}
+            onChangePage={onChangePage}
+            pageCount={3}
+          />
+        )}
       </div>
     </div>
   )

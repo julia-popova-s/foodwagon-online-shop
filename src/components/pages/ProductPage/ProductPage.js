@@ -37,6 +37,7 @@ export function ProductPage() {
     dispatch(
       fetchProduct({
         filter: `&id=${id}`,
+        url: 'products',
       })
     )
   }, [id, dispatch])
