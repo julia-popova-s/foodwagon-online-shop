@@ -18,6 +18,7 @@ export function ButtonsForCounter({
   const [count, setCount] = useState(quantity)
 
   const handleChangeCount = (e) => {
+    console.log(e.target.value)
     const counter = e.target.value.replace(/[^0-9]/gi, '')
     if (counter !== '') {
       setCount(+counter)
@@ -30,13 +31,14 @@ export function ButtonsForCounter({
   const inputRef = useRef()
 
   const handleOutsideClick = (e) => {
-    if (e.target.contains(inputRef.current)) {
+    if (!inputRef.current?.contains(e.target)) {
       setIsHiddenInput(true)
     }
   }
 
   useEffect(() => {
     document.body.addEventListener('click', (e) => handleOutsideClick(e))
+    return () => document.body.removeEventListener('click', (e) => handleOutsideClick(e))
   }, [])
 
   const handleClickPlusProduct = () => {
@@ -68,16 +70,13 @@ export function ButtonsForCounter({
             [style.buttons__inputCount_hidden]: isHiddenInput,
           })}
           maxLength="3"
-          onChange={handleChangeCount}
+          onChange={(e) => handleChangeCount(e)}
           ref={inputRef}
           type="text"
           value={count}
         />
       </div>
-      <button
-        className={cn(style.buttons__minus, style.button)}
-        onClick={handleClickMinusProduct}
-      >
+      <button className={cn(style.buttons__minus, style.button)} onClick={handleClickMinusProduct}>
         {'–'}
       </button>
     </div>

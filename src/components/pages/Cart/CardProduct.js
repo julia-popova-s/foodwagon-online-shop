@@ -47,7 +47,7 @@ export function CardProduct({
   const handleInputQuantity = (quantity) => {
     if (!quantity) {
       setReturnedProduct(true)
-    } else handleInputCount({ id, price, quantity, restaurantId })
+    } else handleInputCount({ id, price, quantity: quantity, restaurantId })
   }
 
   useEffect(() => {

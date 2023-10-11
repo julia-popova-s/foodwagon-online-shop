@@ -38,7 +38,7 @@ export function CardPopular(props) {
     handleRemoveProduct(data)
   }
 
-  const handleInputQuantity = (count) => handleInputCount({ count, id, restaurantId })
+  const handleInputQuantity = (count) => handleInputCount({ quantity: count, id, restaurantId })
 
   return (
     <div className={cn(style.card, classNames)}>
@@ -62,7 +62,7 @@ export function CardPopular(props) {
       <p className={style.card__price}>&#36; {price}</p>
       {quantity ? (
         <ButtonsWithCounter
-          handleInputQuantity={handleInputQuantity}
+          handleInputQuantity={(count) => handleInputQuantity(count)}
           handleMinusProduct={handleMinusProduct}
           handlePlusProduct={handlePlusProduct}
           quantity={quantity}

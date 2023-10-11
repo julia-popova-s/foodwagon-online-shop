@@ -1,5 +1,6 @@
 export const fetchProductsData = async function (params, { rejectWithValue }) {
   const { category, filter, limit, order, page, restaurantId, sortType } = params
+  
   const sortRequest = sortType ? `&sortBy=${sortType}&order=${order}` : ''
 
   const categoryRequest = category && category !== 'All' ? `&category=${category}` : ''
