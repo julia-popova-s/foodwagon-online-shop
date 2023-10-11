@@ -21,7 +21,7 @@ export function SearchPanel() {
   const searchRef = useRef(null)
 
   const dispatch = useDispatch()
-  const { products } = useSelector((state) => state.products)
+  const { products, isLoaded } = useSelector((state) => state.products)
   const { currentPage } = useSelector((state) => state.filters)
 
   const onClickClear = () => {
@@ -54,6 +54,7 @@ export function SearchPanel() {
         })
       )
     }
+    window.scroll(0, 0)
   }
 
   useEffect(() => {
@@ -75,12 +76,13 @@ export function SearchPanel() {
       dispatch(
         fetchProducts({
           filter: `&search=${searchValue.replace(' ', '&')}`,
-          limit: 0,
+          limit: 8,
           page: currentPage,
           url: 'products',
         })
       )
     }
+    window.scroll(0, 0)
   }, [dispatch, searchValue, currentPage])
 
   return (
@@ -117,7 +119,7 @@ export function SearchPanel() {
         </svg>
       )}
 
-      <CSSTransition classNames="alert" in={visiblePopup} timeout={2000} unmountOnExit>
+      <CSSTransition classNames="alert" in={visiblePopup && isLoaded} timeout={1000} unmountOnExit>
         <div className={style.popup} ref={popupRef}>
           {products.map((el, i) => (
             <div className={style.popup__item} key={i}>

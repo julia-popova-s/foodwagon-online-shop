@@ -20,25 +20,22 @@ import style from './searchFood.module.scss'
 
 const typeFood = [
   {
-    id: uuidv4(),
     imageSrc: '/images/search-food/2.png',
     name: 'Burger',
   },
   {
-    id: uuidv4(),
     imageSrc: '/images/search-food/5.png',
     name: 'Pasta',
   },
   {
-    id: uuidv4(),
     imageSrc: '/images/search-food/8.jpg',
     name: 'Salad',
   },
-  { id: uuidv4(), imageSrc: '/images/search-food/11.jpg', name: 'Soup' },
-  { id: uuidv4(), imageSrc: '/images/search-food/10.jpg', name: 'Potato' },
-  { id: uuidv4(), imageSrc: '/images/search-food/9.jpg', name: 'Drink' },
-  { id: uuidv4(), imageSrc: '/images/search-food/7.jpg', name: 'Fish' },
-  { id: uuidv4(), imageSrc: '/images/search-food/6.png', name: 'Meat' },
+  { imageSrc: '/images/search-food/11.jpg', name: 'Soup' },
+  { imageSrc: '/images/search-food/10.jpg', name: 'Potato' },
+  { imageSrc: '/images/search-food/9.jpg', name: 'Drink' },
+  { imageSrc: '/images/search-food/7.jpg', name: 'Fish' },
+  { imageSrc: '/images/search-food/6.png', name: 'Meat' },
 ]
 
 const settings = {
@@ -157,7 +154,7 @@ export function SearchFood() {
               typeFood.map((item, i) => {
                 return (
                   <CardFood
-                    key={`${item.id}${i}`}
+                    key={uuidv4()}
                     {...item}
                     classNames={style.searchFood__item}
                     onClickCategory={() => handleSelectCategory(i)}

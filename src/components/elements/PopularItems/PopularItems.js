@@ -81,6 +81,7 @@ export function PopularItems() {
       fetchProductsPopular({
         filter: '&rating=5',
         limit,
+        page: 2,
       })
     )
   }, [limit])

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useLocation } from 'react-use'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
+import { setCurrentPage } from '../../../store/reducers/filters'
 import { setCategory } from '../../../store/reducers/filters'
 import { fetchProducts } from '../../../store/reducers/products'
 import { setSortType } from '../../../store/reducers/sortingType'
@@ -11,6 +12,8 @@ import { setSortType } from '../../../store/reducers/sortingType'
 import { CardPopular } from '../../elements/PopularItems/CardPopular'
 import { SortPopup } from '../../elements/SortPopup'
 import { Loader } from './Loader'
+import { Pagination } from '../../ui/Pagination/Pagination'
+
 import style from './restaurantPage.module.scss'
 
 const sortItems = [
@@ -46,9 +49,15 @@ export function RestaurantPage() {
 
   const { category } = useSelector((state) => state.filters)
   const { order, sortType } = useSelector((state) => state.sortingType)
+  const { currentPage } = useSelector((state) => state.filters)
+  const { isLoaded, status, products } = useSelector((state) => state.products)
 
   const handleSelectCategory = (index) => {
     dispatch(setCategory(index))
+  }
+
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number))
   }
 
   const handleSelectSortType = (type, order) => {
@@ -58,16 +67,15 @@ export function RestaurantPage() {
   useEffect(() => {
     dispatch(
       fetchProducts({
-        limit,
+        limit: 4,
+        page: currentPage,
         order,
         // category: categoryNames[category],
         restaurantId,
         sortType,
       })
     )
-  }, [sortType, category, limit, restaurantId, dispatch, order])
-
-  const { isLoaded, products } = useSelector((state) => state.products)
+  }, [sortType, category, limit, restaurantId, dispatch, order, currentPage])
 
   const handleAddProduct = (obj) => {
     dispatch(addProduct(obj))
@@ -118,6 +126,11 @@ export function RestaurantPage() {
                 .fill(0)
                 .map((_, index) => <Loader key={index} />)}
         </div>
+        <Pagination
+          currentPage={currentPage}
+          onChangePage={onChangePage}
+          pageCount={status && isLoaded ? 3 : 0}
+        />
       </div>
     </div>
   )

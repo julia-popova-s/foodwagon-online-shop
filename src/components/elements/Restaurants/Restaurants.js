@@ -19,7 +19,7 @@ const sortItems = [
 ]
 
 export function Restaurants() {
-  const [limit, setLimit] = useState(10)
+  const [limit, setLimit] = useState(4)
   const dispatch = useDispatch()
 
   const { category, sortType } = useSelector((state) => state.filters)

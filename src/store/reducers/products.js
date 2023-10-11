@@ -1,36 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-export const fetchData = async function (params, { dispatch, rejectWithValue }) {
-  const { category, filter, limit, order, page, restaurantId, sortType, url } = params
-
-  dispatch(setLoaded(false))
-
-  const sortRequest = sortType ? `&sortBy=${sortType}&order=${order}` : ''
-
-  const categoryRequest = category && category !== 'All' ? `&category=${category}` : ''
-
-  const idRequest = restaurantId ? `&restaurantId=${restaurantId}` : ''
-
-  const limitRequest = limit ? `&limit=${limit}` : ''
-  const currentPage = page ? `&page=${page}` : `&page=1`
-  try {
-    const response = await fetch(
-      `https://647c7cd1c0bae2880ad0c1a4.mockapi.io/foodwagon/products?${
-        filter ? filter : ''
-      }${idRequest}${categoryRequest}${sortRequest}${currentPage}${limitRequest}
-        `
-    )
-
-    if (!response.ok) {
-      throw new Error(`ServerError: ${response.status} ${response.statusText}`)
-    }
-    return await response.json()
-  } catch (error) {
-    return rejectWithValue(error.message)
-  }
-}
-
-// import { fetchData } from './fetchData'
+import { fetchProductsData } from '../../utils/fetchProductsData'
 
 // export const fetchProducts = createAsyncThunk(
 //   'products/fetchProducts',
@@ -66,7 +36,7 @@ export const fetchData = async function (params, { dispatch, rejectWithValue }) 
 //     }
 //   }
 // )
-export const fetchProducts = createAsyncThunk('products/fetchProducts', fetchData)
+export const fetchProducts = createAsyncThunk('products/fetchProducts', fetchProductsData)
 
 const productsSlice = createSlice({
   extraReducers: (builder) => {
@@ -74,14 +44,16 @@ const productsSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.products = action.payload
         state.status = 'resolve'
-        state.isLoaded = true
+        state.isLoaded = !!state.products?.length
       })
       .addCase(fetchProducts.pending, (state) => {
         state.status = 'loading'
+        state.isLoaded = false
         state.error = null
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = 'rejected'
+        state.isLoaded = false
         state.error = action.payload
       })
   },
@@ -100,5 +72,5 @@ const productsSlice = createSlice({
   },
 })
 
-export const { filterById, setLoaded } = productsSlice.actions
+export const { setLoaded } = productsSlice.actions
 export default productsSlice.reducer

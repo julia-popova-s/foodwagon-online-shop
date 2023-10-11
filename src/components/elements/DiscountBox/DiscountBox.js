@@ -15,19 +15,20 @@ export function DiscountBox() {
   useEffect(() => {
     dispatch(
       fetchProductsWithDiscount({
-        filter: `&sortBy=discount&order=desc&page=1&limit=${limit}`,
+        filter: `&sortBy=discount&order=desc`,
         restaurantId,
+        limit,
       })
     )
   }, [limit, restaurantId])
 
-  const { isLoaded, products } = useSelector((state) => state.productsWithDiscount)
+  const { status, products } = useSelector((state) => state.productsWithDiscount)
 
   return (
     <div className={style.discountBox}>
       <div className="container">
         <div className={style.discountBlock}>
-          {isLoaded && products
+          {status === 'resolve' && products
             ? products.map((item, i) => {
                 return (
                   <Link

@@ -1,27 +1,30 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { fetchProductsData } from '../../utils/fetchProductsData'
 
-export const fetchProduct = createAsyncThunk(
-  'products/fetchProduct',
-  async function (
-    { category, filter, limit, order, restaurantId, sortType },
-    { dispatch, rejectWithValue }
-  ) {
-    dispatch(setLoaded(false))
+// export const fetchProduct = createAsyncThunk(
+//   'products/fetchProduct',
+//   async function (
+//     { category, filter, limit, order, restaurantId, sortType },
+//     { dispatch, rejectWithValue }
+//   ) {
+//     dispatch(setLoaded(false))
 
-    try {
-      const response = await fetch(
-        `https://647c7cd1c0bae2880ad0c1a4.mockapi.io/foodwagon/products?${filter ? filter : ''}
-        `
-      )
-      if (!response.ok) {
-        throw new Error(`ServerError: ${response.status} ${response.statusText}`)
-      }
-      return await response.json()
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
-  }
-)
+//     try {
+//       const response = await fetch(
+//         `https://647c7cd1c0bae2880ad0c1a4.mockapi.io/foodwagon/products?${filter ? filter : ''}
+//         `
+//       )
+//       if (!response.ok) {
+//         throw new Error(`ServerError: ${response.status} ${response.statusText}`)
+//       }
+//       return await response.json()
+//     } catch (error) {
+//       return rejectWithValue(error.message)
+//     }
+//   }
+// )
+
+export const fetchProduct = createAsyncThunk('products/fetchProduct', fetchProductsData)
 
 const productSlice = createSlice({
   extraReducers: (builder) => {

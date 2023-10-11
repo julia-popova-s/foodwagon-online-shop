@@ -1,4 +1,22 @@
 .searchPage {
   padding-top: 150px;
-  min-height: 800px;
+  min-height: 100vh;
+}
+
+.panel {
+  margin-bottom: 50px;
+}
+
+.menuList {
+  display: grid;
+  column-gap: 36px;
+  row-gap: 50px;
+  grid-template-columns: repeat(auto-fill, minmax(283px, 1fr));
+
+  padding-bottom: 80px;
+
+  &__item {
+    max-width: 343px;
+    height: 503px;
+  }
 }

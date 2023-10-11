@@ -42,14 +42,15 @@ export function ProductPage() {
     )
   }, [id, dispatch])
 
-  // useEffect(() => {
-  //   dispatch(
-  //     fetchRestaurants({
-  //       restaurantId,
-  //       limit: 20,
-  //     })
-  //   )
-  // }, [restaurantId, dispatch])
+  useEffect(() => {
+    dispatch(
+      fetchRestaurants({
+        restaurantId,
+        limit: 20,
+        url: 'restaurants',
+      })
+    )
+  }, [restaurantId, dispatch])
 
   // // const { list } = useSelector((state) => state.restaurants)
   const { isLoaded, product } = useSelector((state) => state.product)

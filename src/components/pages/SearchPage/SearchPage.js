@@ -1,46 +1,73 @@
 import { useDispatch, useSelector } from 'react-redux'
 
+import { CardPopular } from '../../elements/PopularItems/CardPopular'
 import { setCurrentPage } from '../../../store/reducers/filters'
 import { SearchPanel } from '../../elements/FindFood/SearchPanel'
-import { Pagination } from './Pagination'
+import { Pagination } from '../../ui/Pagination/Pagination'
+import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
+import { Loader } from './Loader'
 import style from './searchPage.module.scss'
 
 export function SearchPage() {
-  const { isLoaded, products } = useSelector((state) => state.products)
+  const { isLoaded, status, products } = useSelector((state) => state.products)
   const { currentPage } = useSelector((state) => state.filters)
+  const { cart } = useSelector((state) => state.cart)
   const dispatch = useDispatch()
 
   const onChangePage = (number) => {
     dispatch(setCurrentPage(number))
   }
-  console.log(products.length)
-  console.log(products)
+
+  const handleAddProduct = (obj) => {
+    dispatch(addProduct(obj))
+  }
+
+  const handleRemoveProduct = (product) => {
+    dispatch(deleteOneProduct(product))
+  }
+
+  const handleInputCount = (obj) => {
+    dispatch(setProductCount(obj))
+  }
+
   return (
     <div className={style.searchPage}>
       <div className="container">
-        <SearchPanel />
-        {isLoaded &&
-          products?.map((item, index) => {
-            // console.log(item)
-            return (
-              <div key={index}>
-                <img alt="" src={'/foodwagon' + item.image} />
-                {item.title}
-              </div>
-            )
-          })}
-        {!isLoaded && !products.length && (
+        <div className={style.panel}>
+          <SearchPanel />
+        </div>
+
+        <div className={style.menuList}>
+          {isLoaded &&
+            products.map((item, i) => (
+              <CardPopular
+                classNames={style.menuList__item}
+                key={`${item.id}${i}`}
+                {...item}
+                handleAddProduct={(obj) => handleAddProduct(obj)}
+                handleInputCount={(obj) => handleInputCount(obj)}
+                handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
+                quantity={cart[item.restaurantId]?.items[item.id]?.quantity}
+              />
+            ))}{' '}
+          {!isLoaded &&
+            status === 'loading' &&
+            Array(8)
+              .fill(0)
+              .map((_, index) => <Loader key={index} />)}
+        </div>
+
+        {!isLoaded && status === 'resolve' && (
           <div>
             We didn't find anything. But there is a lot of interesting things in our catalog.
           </div>
         )}
-        {isLoaded && (
-          <Pagination
-            currentPage={currentPage}
-            onChangePage={onChangePage}
-            pageCount={3}
-          />
-        )}
+
+        <Pagination
+          currentPage={currentPage}
+          onChangePage={onChangePage}
+          pageCount={status && isLoaded ? 3 : 0}
+        />
       </div>
     </div>
   )
