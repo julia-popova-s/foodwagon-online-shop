@@ -6,6 +6,7 @@ const filterSlice = createSlice({
     currentPage: 1,
     searchBy: null,
     sortType: 'popular',
+    visiblePopup: false,
   },
   name: 'filter',
   reducers: {
@@ -21,8 +22,12 @@ const filterSlice = createSlice({
     setSortBy(state, action) {
       state.sortType = action.payload
     },
+    setVisiblePopup(state, action) {
+      state.visiblePopup = action.payload
+    },
   },
 })
 
-export const { setCategory, setCurrentPage, setSearchBy, setSortBy } = filterSlice.actions
+export const { setCategory, setCurrentPage, setSearchBy, setSortBy, setVisiblePopup } =
+  filterSlice.actions
 export default filterSlice.reducer

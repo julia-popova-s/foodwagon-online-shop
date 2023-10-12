@@ -1,11 +1,10 @@
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import cn from 'classnames'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-
 // import { clearCart } from '../../../store/reducers/cart'
 import {
   addProduct,
@@ -17,10 +16,14 @@ import {
 import { ButtonOrder } from '../../ui/ButtonOrder/ButtonOrder'
 import { CardProduct } from './CardProduct'
 import style from './cart.module.scss'
+import { setVisiblePopup } from '../../../store/reducers/filters'
+import { Popup } from '../../ui/Popup/Popup'
 let orderNumber = 1
 
 export function Cart() {
   const { pathname } = useLocation()
+  const [name, setName] = useState('')
+  const { visiblePopup } = useSelector((state) => state.filters)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -31,10 +34,12 @@ export function Cart() {
   const dispatch = useDispatch()
 
   const handleClearCart = ({ restaurantId, restaurantName }) => {
-    if (
-      window.confirm(`Are you sure you want to empty the cart from «${restaurantName}» restaurant?`)
-    )
-      dispatch(clearCart({ restaurantId }))
+    // if (
+    //   window.confirm(`Are you sure you want to empty the cart from «${restaurantName}» restaurant?`)
+    // )
+    setName(restaurantName)
+    dispatch(setVisiblePopup(true))
+    // dispatch(clearCart({ restaurantId }))
   }
 
   const handleRemoveProduct = ({ id, restaurantId }) => {
@@ -149,6 +154,7 @@ export function Cart() {
           )}
         </div>
       </div>
+      {visiblePopup && <Popup show={visiblePopup} name={name} />}
     </div>
   )
 }

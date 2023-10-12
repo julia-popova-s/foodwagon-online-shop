@@ -55,7 +55,7 @@ export function SearchPanel() {
       dispatch(setCurrentPage(1))
       setVisiblePopup(false)
     }
-    window.scroll(0, 0)
+    window.scrollTo(0, 0)
   }
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export function SearchPanel() {
       )
       dispatch(setCurrentPage(1))
     }
-    window.scroll(0, 0)
+    window.scrollTo(0, 0)
   }, [dispatch, searchValue])
 
   useEffect(() => {
@@ -96,7 +96,7 @@ export function SearchPanel() {
       })
     )
     // }
-    window.scroll(0, 0)
+    window.scrollTo(0, 0)
   }, [currentPage])
 
   return (

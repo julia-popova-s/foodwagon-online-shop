@@ -35,7 +35,8 @@ export function Card({
     handleRemoveProduct(data)
   }
 
-  const handleInputQuantity = (count) => handleInputCount({ count, id, price })
+  const handleInputQuantity = (count) =>
+    handleInputCount({ quantity: count, id, price, restaurantId })
 
   const handlePlusProduct = () => {
     handleAddProduct({

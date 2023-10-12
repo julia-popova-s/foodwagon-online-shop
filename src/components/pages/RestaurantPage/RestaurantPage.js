@@ -75,6 +75,7 @@ export function RestaurantPage() {
         sortType,
       })
     )
+    window.scrollTo(0, 0)
   }, [sortType, category, limit, restaurantId, dispatch, order, currentPage])
 
   const handleAddProduct = (obj) => {
@@ -126,11 +127,7 @@ export function RestaurantPage() {
                 .fill(0)
                 .map((_, index) => <Loader key={index} />)}
         </div>
-        <Pagination
-          currentPage={currentPage}
-          onChangePage={onChangePage}
-          pageCount={status && isLoaded ? 3 : 0}
-        />
+        <Pagination currentPage={currentPage} onChangePage={onChangePage} pageCount={3} />
       </div>
     </div>
   )
