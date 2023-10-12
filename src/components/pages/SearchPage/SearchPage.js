@@ -58,16 +58,15 @@ export function SearchPage() {
         </div>
 
         {!isLoaded && status === 'resolve' && (
-          <div>
+          <div className={style.message}>
             We didn't find anything. But there is a lot of interesting things in our catalog.
           </div>
         )}
 
-        <Pagination
-          currentPage={currentPage}
-          onChangePage={onChangePage}
-          pageCount={status && isLoaded ? 3 : 0}
-        />
+        {status && (
+          <Pagination currentPage={currentPage} onChangePage={onChangePage} pageCount={3} />
+        )}
+        {!status && <div>hjuyui</div>}
       </div>
     </div>
   )

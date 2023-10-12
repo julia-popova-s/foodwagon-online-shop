@@ -17,20 +17,20 @@ export function SortPopup({ activeSortType, classNames, handleClickSortType, ite
     setVisiblePopup(!visiblePopup)
   }
 
-  const handleOutsideClick = (e) => {
-    if (e.target.parentNode !== sortRef.current) {
-      setVisiblePopup(false)
-    }
-  }
   const handleSelectFilter = (type, order) => {
     handleClickSortType(type, order)
     // activeLabel = items[index].name
   }
 
   useEffect(() => {
-    document.body.addEventListener('click', (e) => handleOutsideClick(e))
+    const handleOutsideClick = (e) => {
+      if (!sortRef.current?.contains(e.target)) {
+        setVisiblePopup(false)
+      }
+    }
+    document.body.addEventListener('click', handleOutsideClick)
 
-    return document.body.removeEventListener('click', (e) => handleOutsideClick(e))
+    return () => document.body.removeEventListener('click', handleOutsideClick)
   }, [])
 
   return (

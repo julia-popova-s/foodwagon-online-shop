@@ -1,6 +1,7 @@
 @import "../../App/styles/variables";
 
 .loginForm {
-  padding-top: 78px;
+  padding-top: 78px +100px;
+  font-size: 26px;
   min-height: 100vh;
 }

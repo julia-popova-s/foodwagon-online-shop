@@ -10,6 +10,7 @@ import { setCurrentPage } from '../../../store/reducers/filters'
 import { fetchProducts } from '../../../store/reducers/products'
 import { ButtonFind } from '../../ui/ButtonFind'
 import style from './searchPanel.module.scss'
+import { fetchProductsSearch } from '../../../store/reducers/productsSearch'
 
 export function SearchPanel() {
   const [searchValue, setSearchValue] = useState('')
@@ -21,7 +22,7 @@ export function SearchPanel() {
   const searchRef = useRef(null)
 
   const dispatch = useDispatch()
-  const { products, isLoaded } = useSelector((state) => state.products)
+  const { products, isLoaded } = useSelector((state) => state.productsSearch)
   const { currentPage } = useSelector((state) => state.filters)
 
   const onClickClear = () => {
@@ -43,16 +44,16 @@ export function SearchPanel() {
   }
 
   const handleSearch = () => {
-    dispatch(setCurrentPage(1))
     if (searchValue) {
       dispatch(
         fetchProducts({
           filter: `&search=${value}`,
           limit: 8,
           page: 1,
-          url: 'products',
         })
       )
+      dispatch(setCurrentPage(1))
+      setVisiblePopup(false)
     }
     window.scroll(0, 0)
   }
@@ -66,60 +67,73 @@ export function SearchPanel() {
       }
       return
     }
-    document.body.addEventListener('click', (e) => handleOutsideClick(e))
+    document.body.addEventListener('click', handleOutsideClick)
 
-    return () => document.body.removeEventListener('click', (e) => handleOutsideClick(e))
+    return () => document.body.removeEventListener('click', handleOutsideClick)
   }, [])
 
   useEffect(() => {
     if (searchValue) {
       dispatch(
-        fetchProducts({
+        fetchProductsSearch({
           filter: `&search=${searchValue.replace(' ', '&')}`,
-          limit: 8,
-          page: currentPage,
-          url: 'products',
+          limit: 4,
+          page: 1,
         })
       )
+      dispatch(setCurrentPage(1))
     }
     window.scroll(0, 0)
-  }, [dispatch, searchValue, currentPage])
+  }, [dispatch, searchValue])
+
+  useEffect(() => {
+    // if (searchValue) {
+    dispatch(
+      fetchProducts({
+        filter: `&search=${searchValue.replace(' ', '&')}`,
+        limit: 8,
+        page: currentPage,
+      })
+    )
+    // }
+    window.scroll(0, 0)
+  }, [currentPage])
 
   return (
-    <div className={style.search} ref={searchRef}>
-      <input
-        className={style.search__input}
-        name="find"
-        onChange={onChangeValue}
-        placeholder="Enter your request"
-        ref={inputRef}
-        type="text"
-        value={value}
-      />
-      <FontAwesomeIcon className={style.search__inputIcon} icon={faLocationDot} size="xl" />
-      <Link to={'/search'}>
-        <ButtonFind
-          classNames={style.search__btn}
-          handleClick={handleSearch}
-          icon="search"
-          label="Find Food"
+    <div className={style.search}>
+      <div className={style.search__inputWrapper} ref={searchRef}>
+        <input
+          className={style.search__input}
+          name="find"
+          onChange={onChangeValue}
+          placeholder="Enter your request"
+          type="text"
+          value={value}
+          autoComplete="off"
         />
-      </Link>
-      {value && (
-        <svg
-          className={style.search__clearIcon}
-          onClick={onClickClear}
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g fillRule="evenodd" id="Fail">
-            <path d="m16 3a13 13 0 1 1 -13 13 13.006 13.006 0 0 1 13-13zm0-2a15 15 0 1 0 15 15 15.007 15.007 0 0 0 -15-15z"></path>
-            <path d="m14.586 16-4.293 4.293a1 1 0 0 0 1.414 1.414l4.293-4.293 4.293 4.293a1 1 0 1 0 1.414-1.414l-4.293-4.293 4.293-4.293a1 1 0 0 0 -1.414-1.414l-4.293 4.293-4.293-4.293a1 1 0 0 0 -1.414 1.414z"></path>
-          </g>
-        </svg>
-      )}
+        {value && (
+          <svg
+            className={style.search__clearIcon}
+            onClick={onClickClear}
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g fillRule="evenodd" id="Fail">
+              <path d="m16 3a13 13 0 1 1 -13 13 13.006 13.006 0 0 1 13-13zm0-2a15 15 0 1 0 15 15 15.007 15.007 0 0 0 -15-15z"></path>
+              <path d="m14.586 16-4.293 4.293a1 1 0 0 0 1.414 1.414l4.293-4.293 4.293 4.293a1 1 0 1 0 1.414-1.414l-4.293-4.293 4.293-4.293a1 1 0 0 0 -1.414-1.414l-4.293 4.293-4.293-4.293a1 1 0 0 0 -1.414 1.414z"></path>
+            </g>
+          </svg>
+        )}
+      </div>
+      {/* <FontAwesomeIcon className={style.search__inputIcon} icon={faLocationDot} size="xl" /> */}
+      <ButtonFind
+        classNames={style.search__btn}
+        handleClick={handleSearch}
+        icon="search"
+        label="Find Food"
+      />
 
-      <CSSTransition classNames="alert" in={visiblePopup && isLoaded} timeout={1000} unmountOnExit>
+      <CSSTransition classNames="alert" in={visiblePopup && isLoaded} timeout={2000} unmountOnExit>
         <div className={style.popup} ref={popupRef}>
           {products.map((el, i) => (
             <div className={style.popup__item} key={i}>

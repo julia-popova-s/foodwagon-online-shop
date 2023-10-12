@@ -12,7 +12,7 @@ export function LoginForm() {
 
   return (
     <div className={style.loginForm}>
-      <div className="container">Login</div>
+      <div className="container">The Page is under construction...</div>
     </div>
   )
 }
