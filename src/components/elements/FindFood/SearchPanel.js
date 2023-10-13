@@ -1,16 +1,20 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import cn from 'classnames'
 import debounce from 'lodash.debounce'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { createRef, useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { ReactSVG } from 'react-svg'
 import { CSSTransition } from 'react-transition-group'
+import { v4 as uuidv4 } from 'uuid'
 
 import { setCurrentPage } from '../../../store/reducers/filters'
-import { ButtonFind } from '../../ui/ButtonFind'
-import style from './searchPanel.module.scss'
-import { fetchProductsSearch } from '../../../store/reducers/productsSearch'
 import { fetchProductsFastAccess } from '../../../store/reducers/productsFastAccess'
+import { fetchProductsSearch } from '../../../store/reducers/productsSearch'
+import { ButtonFind } from '../../ui/ButtonFind'
+import { Popup } from './Popup'
+import style from './searchPanel.module.scss'
 
 export function SearchPanel() {
   const [searchValue, setSearchValue] = useState('')
@@ -22,7 +26,7 @@ export function SearchPanel() {
   const searchRef = useRef(null)
 
   const dispatch = useDispatch()
-  const { products, isLoaded } = useSelector((state) => state.productsFastAccess)
+  const { isLoaded, products } = useSelector((state) => state.productsFastAccess)
   const { currentPage } = useSelector((state) => state.filters)
 
   const onClickClear = () => {
@@ -83,7 +87,6 @@ export function SearchPanel() {
       )
       dispatch(setCurrentPage(1))
     }
-    window.scrollTo(0, 0)
   }, [dispatch, searchValue])
 
   useEffect(() => {
@@ -103,13 +106,14 @@ export function SearchPanel() {
     <div className={style.search}>
       <div className={style.search__inputWrapper} ref={searchRef}>
         <input
+          autoComplete="off"
           className={style.search__input}
           name="find"
           onChange={onChangeValue}
           placeholder="Enter your request"
+          ref={inputRef}
           type="text"
           value={value}
-          autoComplete="off"
         />
         {value && (
           <svg
@@ -126,32 +130,18 @@ export function SearchPanel() {
         )}
       </div>
       {/* <FontAwesomeIcon className={style.search__inputIcon} icon={faLocationDot} size="xl" /> */}
+      <ReactSVG
+        className={style.search__inputIcon}
+        src={`${process.env.PUBLIC_URL}/images/header/search.svg`}
+        wrapper="span"
+      />
       <ButtonFind
         classNames={style.search__btn}
         handleClick={handleSearch}
         icon="search"
         label="Find Food"
       />
-
-      <CSSTransition classNames="alert" in={visiblePopup && isLoaded} timeout={2000} unmountOnExit>
-        <div className={style.popup} ref={popupRef}>
-          {products.map((el, i) => (
-            <div className={style.popup__item} key={i}>
-              <div className={style.popup__left}>
-                <img
-                  alt={el.title}
-                  className={style.popup__image}
-                  src={process.env.PUBLIC_URL + el.image}
-                />
-              </div>
-              <div>
-                {el.title}
-                <div>{el.price}$</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </CSSTransition>
+      <Popup isLoaded={isLoaded} list={products} ref={popupRef} show={visiblePopup} />
     </div>
   )
 }

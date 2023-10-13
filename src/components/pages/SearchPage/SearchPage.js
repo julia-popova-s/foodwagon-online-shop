@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import { CardPopular } from '../../elements/PopularItems/CardPopular'
+import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
 import { setCurrentPage } from '../../../store/reducers/filters'
 import { SearchPanel } from '../../elements/FindFood/SearchPanel'
+import { CardPopular } from '../../elements/PopularItems/CardPopular'
 import { Pagination } from '../../ui/Pagination/Pagination'
-import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
 import { Loader } from './Loader'
 import style from './searchPage.module.scss'
 
 export function SearchPage() {
-  const { isLoaded, status, products } = useSelector((state) => state.productsSearch)
+  const { isLoaded, products, status } = useSelector((state) => state.productsSearch)
   const { currentPage } = useSelector((state) => state.filters)
   const { cart } = useSelector((state) => state.cart)
   const dispatch = useDispatch()

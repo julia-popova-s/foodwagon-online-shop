@@ -1,10 +1,12 @@
-import style from './popup.module.scss'
+import { forwardRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 
-export function Popup({ show, name, handleClearOrder, handleClosePopup }) {
+import style from './popup.module.scss'
+
+export const Popup = forwardRef(({ handleClearOrder, handleClosePopup, name, show }, ref) => {
   return (
-    <CSSTransition classNames="alert" in={show} timeout={2000} unmountOnExit>
-      <div className={style.popupWrapper}>
+    <CSSTransition classNames="alert" in={show} timeout={300} unmountOnExit>
+      <div className={style.popupWrapper} ref={ref}>
         <div className={style.popup}>
           <div className={style.popup__title}>
             Are you sure you want to empty the cart from{' '}
@@ -22,4 +24,4 @@ export function Popup({ show, name, handleClearOrder, handleClosePopup }) {
       </div>
     </CSSTransition>
   )
-}
+})

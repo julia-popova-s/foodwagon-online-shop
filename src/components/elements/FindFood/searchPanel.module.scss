@@ -45,9 +45,8 @@
   &__inputIcon {
     position: absolute;
 
-    left: 13px;
-    top: 15px;
-
+    left: 17px;
+    top: 21px;
 
     path {
       fill: #ff7474;
@@ -65,44 +64,5 @@
     path {
       fill: #ff747490;
     }
-  }
-}
-
-
-
-.popup {
-  z-index: 999;
-  position: absolute;
-  left: 0;
-  top: 60px;
-  background: #fff;
-  width: calc(100% - 199px - 16px);
-  transition: all 0.2s ease;
-  height: 415px;
-  border-radius: 8px;
-  box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .15);
-
-
-  &__item {
-    margin-bottom: 15px;
-    padding: 0 20px;
-    display: flex;
-    gap: 30px;
-    justify-content: left;
-
-    &:nth-child(1) {
-      padding-top: 15px;
-    }
-  }
-
-  &__left {
-    height: 85px;
-    width: 100px;
-  }
-
-  &__image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
   }
 }

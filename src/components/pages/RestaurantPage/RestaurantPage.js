@@ -11,9 +11,8 @@ import { setSortType } from '../../../store/reducers/sortingType'
 // import { Categories } from '../../elements/Categories'
 import { CardPopular } from '../../elements/PopularItems/CardPopular'
 import { SortPopup } from '../../elements/SortPopup'
-import { Loader } from './Loader'
 import { Pagination } from '../../ui/Pagination/Pagination'
-
+import { Loader } from './Loader'
 import style from './restaurantPage.module.scss'
 
 const sortItems = [
@@ -50,7 +49,7 @@ export function RestaurantPage() {
   const { category } = useSelector((state) => state.filters)
   const { order, sortType } = useSelector((state) => state.sortingType)
   const { currentPage } = useSelector((state) => state.filters)
-  const { isLoaded, status, products } = useSelector((state) => state.products)
+  const { isLoaded, products, status } = useSelector((state) => state.products)
 
   const handleSelectCategory = (index) => {
     dispatch(setCategory(index))
@@ -68,8 +67,8 @@ export function RestaurantPage() {
     dispatch(
       fetchProducts({
         limit: 4,
-        page: currentPage,
         order,
+        page: currentPage,
         // category: categoryNames[category],
         restaurantId,
         sortType,

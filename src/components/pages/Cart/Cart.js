@@ -1,11 +1,12 @@
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import cn from 'classnames'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+
 import { useDisableBodyScroll } from '../../../hooks/useDisableBodyscroll'
-// import { clearCart } from '../../../store/reducers/cart'
 import {
   addProduct,
   clearCart,
@@ -14,38 +15,48 @@ import {
   setProductCount,
 } from '../../../store/reducers/cart'
 import { ButtonOrder } from '../../ui/ButtonOrder/ButtonOrder'
+import { Popup } from '../../ui/Popup/Popup'
 import { CardProduct } from './CardProduct'
 import style from './cart.module.scss'
-import { setVisiblePopup } from '../../../store/reducers/filters'
-import { Popup } from '../../ui/Popup/Popup'
-import { Link } from 'react-router-dom'
 let orderNumber = 1
 
 export function Cart() {
   const { pathname } = useLocation()
+
   const [name, setName] = useState('')
   const [id, setId] = useState('')
+  const [visiblePopup, setVisiblePopup] = useState(false)
 
-  const { visiblePopup } = useSelector((state) => state.filters)
+  const popupRef = useRef(null)
+
+  const { addedGoods, cart, totalQuantity } = useSelector(({ cart }) => cart)
+
+  const dispatch = useDispatch()
+
+  useDisableBodyScroll(visiblePopup)
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
 
   useEffect(() => {
-    //  const hansleClick
+    const handleOutsideClick = (e) => {
+      if (popupRef.current?.contains(e.target)) {
+        setVisiblePopup(false)
+      } else {
+        // setVisiblePopup(false)
+      }
+      return
+    }
+    document.body.addEventListener('click', handleOutsideClick)
+
+    return () => document.body.removeEventListener('click', handleOutsideClick)
   }, [])
-
-  useDisableBodyScroll(visiblePopup)
-
-  const { addedGoods, cart, totalQuantity } = useSelector(({ cart }) => cart)
-
-  const dispatch = useDispatch()
 
   const handleClearCart = ({ restaurantId, restaurantName }) => {
     setName(restaurantName)
     setId(restaurantId)
-    dispatch(setVisiblePopup(true))
+    setVisiblePopup(true)
   }
 
   const handleRemoveProduct = ({ id, restaurantId }) => {
@@ -73,12 +84,12 @@ export function Cart() {
   }
 
   const handleClosePopup = () => {
-    dispatch(setVisiblePopup(false))
+    setVisiblePopup(false)
   }
 
   const handleClearOrder = () => {
     dispatch(clearCart({ restaurantId: id }))
-    dispatch(setVisiblePopup(false))
+    setVisiblePopup(false)
   }
 
   return (
@@ -171,14 +182,13 @@ export function Cart() {
         </div>
       </div>
 
-      
-        <Popup
-          show={visiblePopup}
-          name={name}
-          handleClosePopup={handleClosePopup}
-          handleClearOrder={handleClearOrder}
-        />
-      
+      <Popup
+        handleClearOrder={handleClearOrder}
+        handleClosePopup={handleClosePopup}
+        name={name}
+        ref={popupRef}
+        show={visiblePopup}
+      />
     </div>
   )
 }

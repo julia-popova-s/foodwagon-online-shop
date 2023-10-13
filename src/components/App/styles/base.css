@@ -17,7 +17,7 @@ body {
 
 .alert-enter {
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(1);
 }
 
 .alert-enter-active {
