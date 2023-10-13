@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 
 import { setCurrentPage } from '../../../store/reducers/filters'
-import { fetchProducts } from '../../../store/reducers/products'
 import { ButtonFind } from '../../ui/ButtonFind'
 import style from './searchPanel.module.scss'
 import { fetchProductsSearch } from '../../../store/reducers/productsSearch'
+import { fetchProductsFastAccess } from '../../../store/reducers/productsFastAccess'
 
 export function SearchPanel() {
   const [searchValue, setSearchValue] = useState('')
@@ -22,7 +22,7 @@ export function SearchPanel() {
   const searchRef = useRef(null)
 
   const dispatch = useDispatch()
-  const { products, isLoaded } = useSelector((state) => state.productsSearch)
+  const { products, isLoaded } = useSelector((state) => state.productsFastAccess)
   const { currentPage } = useSelector((state) => state.filters)
 
   const onClickClear = () => {
@@ -46,7 +46,7 @@ export function SearchPanel() {
   const handleSearch = () => {
     if (searchValue) {
       dispatch(
-        fetchProducts({
+        fetchProductsSearch({
           filter: `&search=${value}`,
           limit: 8,
           page: 1,
@@ -75,7 +75,7 @@ export function SearchPanel() {
   useEffect(() => {
     if (searchValue) {
       dispatch(
-        fetchProductsSearch({
+        fetchProductsFastAccess({
           filter: `&search=${searchValue.replace(' ', '&')}`,
           limit: 4,
           page: 1,
@@ -87,15 +87,15 @@ export function SearchPanel() {
   }, [dispatch, searchValue])
 
   useEffect(() => {
-    // if (searchValue) {
-    dispatch(
-      fetchProducts({
-        filter: `&search=${searchValue.replace(' ', '&')}`,
-        limit: 8,
-        page: currentPage,
-      })
-    )
-    // }
+    if (searchValue) {
+      dispatch(
+        fetchProductsSearch({
+          filter: `&search=${searchValue.replace(' ', '&')}`,
+          limit: 8,
+          page: currentPage,
+        })
+      )
+    }
     window.scrollTo(0, 0)
   }, [currentPage])
 

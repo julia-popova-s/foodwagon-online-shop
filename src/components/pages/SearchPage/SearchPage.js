@@ -9,7 +9,7 @@ import { Loader } from './Loader'
 import style from './searchPage.module.scss'
 
 export function SearchPage() {
-  const { isLoaded, status, products } = useSelector((state) => state.products)
+  const { isLoaded, status, products } = useSelector((state) => state.productsSearch)
   const { currentPage } = useSelector((state) => state.filters)
   const { cart } = useSelector((state) => state.cart)
   const dispatch = useDispatch()
@@ -66,7 +66,7 @@ export function SearchPage() {
         {status && (
           <Pagination currentPage={currentPage} onChangePage={onChangePage} pageCount={3} />
         )}
-        {!status && <div>hjuyui</div>}
+        {!status && <div>Are you ready to order with the best deals?</div>}
       </div>
     </div>
   )

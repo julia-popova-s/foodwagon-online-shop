@@ -4,7 +4,7 @@ import cn from 'classnames'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { useDisableBodyScroll } from '../../../hooks/useDisableBodyscroll'
 // import { clearCart } from '../../../store/reducers/cart'
 import {
   addProduct,
@@ -18,28 +18,34 @@ import { CardProduct } from './CardProduct'
 import style from './cart.module.scss'
 import { setVisiblePopup } from '../../../store/reducers/filters'
 import { Popup } from '../../ui/Popup/Popup'
+import { Link } from 'react-router-dom'
 let orderNumber = 1
 
 export function Cart() {
   const { pathname } = useLocation()
   const [name, setName] = useState('')
+  const [id, setId] = useState('')
+
   const { visiblePopup } = useSelector((state) => state.filters)
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
 
+  useEffect(() => {
+    //  const hansleClick
+  }, [])
+
+  useDisableBodyScroll(visiblePopup)
+
   const { addedGoods, cart, totalQuantity } = useSelector(({ cart }) => cart)
 
   const dispatch = useDispatch()
 
   const handleClearCart = ({ restaurantId, restaurantName }) => {
-    // if (
-    //   window.confirm(`Are you sure you want to empty the cart from «${restaurantName}» restaurant?`)
-    // )
     setName(restaurantName)
+    setId(restaurantId)
     dispatch(setVisiblePopup(true))
-    // dispatch(clearCart({ restaurantId }))
   }
 
   const handleRemoveProduct = ({ id, restaurantId }) => {
@@ -64,6 +70,15 @@ export function Cart() {
   const handlePlaceAnOrder = (id, name) => {
     console.log(`${name}. Order № ${orderNumber++}:`, cart[id])
     dispatch(clearCart({ restaurantId: id }))
+  }
+
+  const handleClosePopup = () => {
+    dispatch(setVisiblePopup(false))
+  }
+
+  const handleClearOrder = () => {
+    dispatch(clearCart({ restaurantId: id }))
+    dispatch(setVisiblePopup(false))
   }
 
   return (
@@ -141,6 +156,7 @@ export function Cart() {
           ) : (
             <div className={style.cart__empty}>
               <p className={style.cart__name}>Shopping cart is empty</p>
+              <Link to="/search">go to search page</Link>
               {/* <p className={style.cart__result}>
                 Use the search to find everything you need.
               </p> */}
@@ -154,7 +170,15 @@ export function Cart() {
           )}
         </div>
       </div>
-      {visiblePopup && <Popup show={visiblePopup} name={name} />}
+
+      
+        <Popup
+          show={visiblePopup}
+          name={name}
+          handleClosePopup={handleClosePopup}
+          handleClearOrder={handleClearOrder}
+        />
+      
     </div>
   )
 }

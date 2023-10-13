@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import cn from 'classnames'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Link as LinkScroll } from 'react-scroll'
 import { ReactSVG } from 'react-svg'
 
@@ -12,8 +12,8 @@ import { ButtonLogin } from '../../ui/ButtonLogin'
 import { LogoType } from '../../ui/LogoType'
 import style from './header.module.scss'
 export function Header({ geolocation }) {
-  // let navigate = useNavigate()
-  // const goBack = () => navigate(-1)
+  let navigate = useNavigate()
+  const goBack = () => navigate(-1)
   const location = useLocation()
 
   return (
@@ -21,7 +21,7 @@ export function Header({ geolocation }) {
       <div className="container">
         <div className={style.header}>
           <Link className={style.header__logoLink} to={'/'}>
-            <LogoType classNames={style.header__logo} />
+            <LogoType classNames={style.header__logo}/>
           </Link>
 
           <div className={cn(style.address, style.header__address)}>

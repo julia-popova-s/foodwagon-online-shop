@@ -100,7 +100,7 @@ export function PopularItems() {
   const handleInputCount = (obj) => {
     dispatch(setProductCount(obj))
   }
-  console.log(products)
+
   return (
     <div className={style.popularItemsBlock}>
       <div className={style.container}>
@@ -111,7 +111,6 @@ export function PopularItems() {
             <Slider {...settings}>
               {isLoaded
                 ? products.map((item, i) => {
-                    console.log(cart[item.restaurantId]?.items[item.id]?.quantity)
                     return (
                       <CardPopular
                         key={item.id}
@@ -120,9 +119,7 @@ export function PopularItems() {
                         handleAddProduct={(obj) => handleAddProduct(obj)}
                         handleInputCount={(obj) => handleInputCount(obj)}
                         handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
-                        quantity={
-                          cart[item.restaurantId]?.items[item.id]?.quantity
-                        }
+                        quantity={cart[item.restaurantId]?.items[item.id]?.quantity}
                       />
                     )
                   })
