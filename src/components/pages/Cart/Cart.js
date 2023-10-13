@@ -167,7 +167,9 @@ export function Cart() {
           ) : (
             <div className={style.cart__empty}>
               <p className={style.cart__name}>Shopping cart is empty</p>
-              <Link to="/search">go to search page</Link>
+              <Link className={style.cart__linkSearch} to="/search">
+                Go to search page
+              </Link>
               {/* <p className={style.cart__result}>
                 Use the search to find everything you need.
               </p> */}
