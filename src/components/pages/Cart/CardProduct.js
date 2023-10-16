@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { ButtonsForCounter } from '../../ui/ButtonsForCounter'
+import { Counter } from '../../ui/Counter'
 import { Discount } from '../../ui/Discount/Discount'
 import style from './cardProduct.module.scss'
 
@@ -79,47 +79,47 @@ export function CardProduct({
       </div>
       {!returnedProduct ? (
         <>
-          <div className={style.product__info}>
-            <p className={style.product__title}>
+          <div className={cn(style.product__info, style.info)}>
+            <p className={style.info__title}>
               <Link
-                className={style.product__titleLink}
+                className={style.info__titleLink}
                 to={`/restaurant/${restaurantId}/product/${id}`}
               >
                 {title}
               </Link>
             </p>
-            <p className={style.product__rest}>
-              <FontAwesomeIcon className={style.product__restIcon} icon={faLocationDot} />
+            <p className={style.info__name}>
+              <FontAwesomeIcon className={style.info__nameIcon} icon={faLocationDot} />
               <Link
-                className={style.product__restLink}
+                className={style.info__nameLink}
                 to={`/restaurant/${restaurantId}/product/${id}`}
               >
                 {restaurantName}
               </Link>
             </p>
             <div
-              className={cn(style.product__price, {
-                [style.product__price_theme]: discount,
+              className={cn(style.info__price, {
+                [style.info__price_theme]: discount,
               })}
             >
               &#36;{price}
             </div>
             {discount ? (
-              <div className={style.product__price}>
+              <div className={style.info__price}>
                 &#36;{(price - (price * discount) / 100).toFixed(2)}
               </div>
             ) : null}
           </div>
 
-          <div className={style.product__counterWithPrice}>
-            <ButtonsForCounter
-              classNames={style.product__counter}
+          <div className={cn(style.product__counter, style.counter)}>
+            <Counter
+              classNames={style.counter__btns}
               handleInputQuantity={handleInputQuantity}
               handleMinusProduct={handleMinusProduct}
               handlePlusProduct={handlePlusProduct}
               quantity={quantity}
             />
-            <div className={style.product__priceWithSale}>&#36; {amount && amount.toFixed(2)}</div>{' '}
+            <div className={style.counter__price}>&#36; {amount && amount.toFixed(2)}</div>{' '}
           </div>
         </>
       ) : (
@@ -130,15 +130,18 @@ export function CardProduct({
           >
             Restore to cart
           </button>
-          <div className={style.loadingBar}>
+          <div className={cn(style.loadingBar, style.product__loadingBar)}>
             <div className={style.loadingBar__inner}>
               <div className={style.loadingBar__shadow}></div>
             </div>
           </div>
         </>
       )}
-      <button className={style.product__btnDelete} onClick={handleProductExclusion}>
-        <FontAwesomeIcon className={style.product__delete} icon={faTrashCan} size="xl" />
+      <button
+        className={cn(style.product__btnDelete, style.btnDelete)}
+        onClick={handleProductExclusion}
+      >
+        <FontAwesomeIcon className={style.btnDelete__icon} icon={faTrashCan} size="xl" />
       </button>
     </div>
   )

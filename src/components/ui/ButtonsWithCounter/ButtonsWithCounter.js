@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { ButtonFind } from '../ButtonFind'
-import { ButtonsForCounter } from '../ButtonsForCounter'
+import { Counter } from '../Counter'
 import style from './buttonsWithCounter.module.scss'
 
 export function ButtonsWithCounter({
@@ -20,7 +20,7 @@ export function ButtonsWithCounter({
           label="To Cart"
         />
       </Link>
-      <ButtonsForCounter
+      <Counter
         classNames={style.buttons__counter}
         handleInputQuantity={handleInputQuantity}
         handleMinusProduct={handleMinusProduct}

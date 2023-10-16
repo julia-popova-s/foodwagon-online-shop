@@ -52,34 +52,34 @@ export function Card({
           </div>
         ) : null}
       </div>
-      <div className={style.card__right}>
-        <p className={style.card__name}>{title}</p>
-        <p className={style.card__rest}>
+      <div className={cn(style.card__info, style.info)}>
+        <p className={style.info__title}>{title}</p>
+        <p className={style.info__name}>
           <ReactSVG
-            className={style.card__restIcon}
+            className={style.info__nameIcon}
             src={`${process.env.PUBLIC_URL}/images/popular-items/map.svg`}
             wrapper="span"
           />
-          <Link className={style.card__restLink}>{restaurantName}</Link>
+          <Link className={style.info__nameLink}>{restaurantName}</Link>
         </p>
-        <div className={style.card__prices}>
+        <div className={style.info__prices}>
           <div
-            className={cn(style.card__price, {
-              [style.card__price_theme]: discount,
+            className={cn(style.info__price, {
+              [style.info__price_theme]: discount,
             })}
           >
             &#36; {price}
           </div>
           {discount ? (
-            <div className={style.card__price}>
+            <div className={style.info__price}>
               &#36; {(price - (price * discount) / 100).toFixed(2)}
             </div>
           ) : null}
         </div>
-        <p className={style.card__ingredients}>
+        <p className={style.info__ingredients}>
           Ingredients: {getPartOfString(ingredients.join(', '), 215)}
         </p>
-        <div className={style.card__add}>
+        <div className={cn(style.info__btns, style.buttons)}>
           {quantity ? (
             <ButtonsWithCounter
               handleInputQuantity={handleInputQuantity}
@@ -89,7 +89,7 @@ export function Card({
             />
           ) : (
             <ButtonFind
-              classNames={style.card__btn}
+              classNames={style.buttons__order}
               handleClick={handlePlusProduct}
               label="Order Now"
             />

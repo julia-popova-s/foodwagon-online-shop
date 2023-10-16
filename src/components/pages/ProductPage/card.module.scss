@@ -28,16 +28,8 @@
     object-fit: cover;
   }
 
-  &__right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-
+  &__info {
     padding-top: 10px;
-    height: 301px;
-    max-width: 700px;
-
     margin-bottom: 30px;
   }
 
@@ -69,38 +61,45 @@
     bottom: 12px;
   }
 
-  &__name {
+  // &__text {
+  //   @include setFontSize(700, 22px, 120%);
+  //   text-align: center;
+  //   padding: 8px 16px;
+  //   color: $base-color;
+  //   width: 204px;
+  //   height: 42px;
+  //   background: rgba(241, 114, 40, 0.2);
+  //   border-radius: 8px;
+  // }
+
+
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+
+  height: 301px;
+  max-width: 700px;
+
+  &__title {
     @include setFontSize(700, 22px, 120%);
     color: #424242;
     margin-bottom: 14px;
     min-height: 50px;
   }
 
-  &__text {
-    @include setFontSize(700, 22px, 120%);
-    text-align: center;
-    padding: 8px 16px;
-    color: $base-color;
-    width: 204px;
-    height: 42px;
-    background: rgba(241, 114, 40, 0.2);
-    border-radius: 8px;
-  }
-
-  &__add {
-    display: block;
-    margin-top: auto;
-  }
-
-  &__rest {
+  &__name {
     margin-bottom: 15px;
   }
 
-  &__restIcon {
+  &__nameIcon {
     margin-right: 8px;
   }
 
-  &__restLink {
+  &__nameLink {
     @include setFontSize(400, 22px, 120%);
     color: rgb(255, 179, 14);
   }
@@ -139,19 +138,18 @@
     color: rgb(130, 126, 126);
     margin-bottom: 15px;
   }
+
+  &__btns {
+    margin-top: auto;
+  }
 }
 
-
-
-.card {
-  &__btns {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__btn {
-    width: 283px;
+.buttons {
+  &__order {
     transition: all 0.3s ease;
+    margin-left: auto;
+    width: 283px;
+    display: block;
 
     &:hover {
       box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22), 0px 20px 40px rgba(250, 99, 35, 0.24);
@@ -159,6 +157,7 @@
     }
   }
 }
+
 
 @media(max-width:662px) {
   .card {
@@ -172,7 +171,7 @@
     height: auto;
   }
 
-  .card__right {
+  .card__info {
     height: auto;
   }
 }

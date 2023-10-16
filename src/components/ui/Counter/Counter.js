@@ -2,9 +2,9 @@ import cn from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 
-import style from './buttonsForCounter.module.scss'
+import style from './counter.module.scss'
 
-export function ButtonsForCounter({
+export function Counter({
   classNames,
   handleInputQuantity,
   handleMinusProduct,
@@ -57,10 +57,10 @@ export function ButtonsForCounter({
   )
 }
 
-ButtonsForCounter.propTypes = {
+Counter.propTypes = {
   handleMinusProduct: PropTypes.func.isRequired,
   handlePlusProduct: PropTypes.func.isRequired,
   quantity: PropTypes.number.isRequired,
 }
 
-ButtonsForCounter.defaultProps = { quantity: 0 }
+Counter.defaultProps = { quantity: 0 }
