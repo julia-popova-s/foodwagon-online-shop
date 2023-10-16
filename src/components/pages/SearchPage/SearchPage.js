@@ -11,7 +11,7 @@ import style from './searchPage.module.scss'
 export function SearchPage() {
   const { isLoaded, products, status } = useSelector((state) => state.productsSearch)
   const { currentPage } = useSelector((state) => state.filters)
-  const { cart } = useSelector((state) => state.cart)
+
   const dispatch = useDispatch()
 
   const onChangePage = (number) => {
@@ -44,12 +44,11 @@ export function SearchPage() {
                 classNames={style.menuList__item}
                 key={`${item.id}${i}`}
                 {...item}
-                handleAddProduct={(obj) => handleAddProduct(obj)}
-                handleInputCount={(obj) => handleInputCount(obj)}
-                handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
-                quantity={cart[item.restaurantId]?.items[item.id]?.quantity}
+                handleAddProduct={handleAddProduct}
+                handleInputCount={handleInputCount}
+                handleRemoveProduct={handleRemoveProduct}
               />
-            ))}{' '}
+            ))}
           {!isLoaded &&
             status === 'loading' &&
             Array(8)

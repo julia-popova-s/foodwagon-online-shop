@@ -5,10 +5,10 @@ import { useLocation } from 'react-use'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
 import { fetchProduct } from '../../../store/reducers/product'
-import Restaurants, { fetchRestaurants } from '../../../store/reducers/restaurants'
+import { fetchRestaurants } from '../../../store/reducers/restaurants'
 import { RestaurantPage } from '../RestaurantPage/RestaurantPage'
 import { Card } from './Card'
-import { Loader, LoaderLeft } from './LoaderLeft'
+import { LoaderLeft } from './LoaderLeft'
 import { LoaderRight } from './LoaderRight'
 import style from './productPage.module.scss'
 
@@ -21,23 +21,11 @@ export function ProductPage() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
-  // const [limit, setLimit] = useState(4)
-
-  // const { category, sortType } = useSelector((state) => state.filters)
-
-  // const handleSelectCategory = (index) => {
-  //   dispatch(setCategory(index))
-  // }
-
-  // const handleSelectSortType = (type) => {
-  //   dispatch(setSortBy(type))
-  // }
 
   useEffect(() => {
     dispatch(
       fetchProduct({
         filter: `&id=${id}`,
-        url: 'products',
       })
     )
   }, [id, dispatch])
@@ -45,16 +33,13 @@ export function ProductPage() {
   useEffect(() => {
     dispatch(
       fetchRestaurants({
-        restaurantId,
         limit: 20,
-        url: 'restaurants',
+        restaurantId,
       })
     )
   }, [restaurantId, dispatch])
 
-  // // const { list } = useSelector((state) => state.restaurants)
   const { isLoaded, product } = useSelector((state) => state.product)
-  const { cart } = useSelector((state) => state.cart)
 
   const handleAddProduct = (product) => {
     dispatch(addProduct(product))
@@ -77,12 +62,10 @@ export function ProductPage() {
               ? product.map((item, i) => (
                   <Card
                     {...item}
-                    handleAddProduct={(obj) => handleAddProduct(obj)}
-                    handleInputCount={(obj) => handleInputCount(obj)}
-                    handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
+                    handleAddProduct={handleAddProduct}
+                    handleInputCount={handleInputCount}
+                    handleRemoveProduct={handleRemoveProduct}
                     key={`${item.id}${i}`}
-                    quantity={cart[item.restaurantId]?.items[item.id]?.quantity}
-                    restaurantId={restaurantId}
                   />
                 ))
               : Array(1)

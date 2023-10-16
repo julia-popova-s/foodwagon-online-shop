@@ -119,7 +119,6 @@ export function PopularItems() {
                         handleAddProduct={(obj) => handleAddProduct(obj)}
                         handleInputCount={(obj) => handleInputCount(obj)}
                         handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
-                        quantity={cart[item.restaurantId]?.items[item.id]?.quantity}
                       />
                     )
                   })

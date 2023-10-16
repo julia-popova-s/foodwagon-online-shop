@@ -142,12 +142,13 @@
 }
 
 
-.card__btns {
-  display: flex;
-  justify-content: space-between;
-}
 
 .card {
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__btn {
     width: 283px;
     transition: all 0.3s ease;

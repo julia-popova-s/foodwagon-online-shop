@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -10,19 +10,18 @@ const restaurantId = '333f1471-d10f-4b1d-a654-d3c070cb3500'
 
 export function DiscountBox() {
   const dispatch = useDispatch()
-  const [limit, setLimit] = useState(4)
 
   useEffect(() => {
     dispatch(
       fetchProductsWithDiscount({
         filter: `&sortBy=discount&order=desc`,
+        limit: 4,
         restaurantId,
-        limit,
       })
     )
-  }, [limit, restaurantId])
+  }, [restaurantId])
 
-  const { status, products } = useSelector((state) => state.productsWithDiscount)
+  const { products, status } = useSelector((state) => state.productsWithDiscount)
 
   return (
     <div className={style.discountBox}>

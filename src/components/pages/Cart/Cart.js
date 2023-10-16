@@ -131,7 +131,7 @@ export function Cart() {
                   <div className={style.cart__list}>
                     {quantity ? (
                       <>
-                        {products.map(({ quantity, ...item }, i) => {
+                        {products.map(({ quantity, ...item }) => {
                           return (
                             <CardProduct
                               {...item}
@@ -141,7 +141,6 @@ export function Cart() {
                               handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
                               key={item.id}
                               quantity={quantity}
-                              restaurantId={item.restaurantId}
                             />
                           )
                         })}

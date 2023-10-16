@@ -2,6 +2,7 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { ButtonsForCounter } from '../../ui/ButtonsForCounter';
 import cn from 'classnames'
+import { useSelector } from 'react-redux'
 // import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -22,13 +23,14 @@ export function CardPopular(props) {
     id,
     image,
     price,
-    quantity = 0,
     restaurantId,
     restaurantName,
     title,
   } = props
 
   const data = { discount, id, image, price, restaurantId, restaurantName, title }
+  const { cart } = useSelector((state) => state.cart)
+  const quantity = cart[restaurantId]?.items[id]?.quantity
 
   const handlePlusProduct = () => {
     handleAddProduct(data)
@@ -38,7 +40,7 @@ export function CardPopular(props) {
     handleRemoveProduct(data)
   }
 
-  const handleInputQuantity = (count) => handleInputCount({ quantity: count, id, restaurantId })
+  const handleInputQuantity = (quantity) => handleInputCount({ id, quantity, restaurantId })
 
   return (
     <div className={cn(style.card, classNames)}>
@@ -62,10 +64,10 @@ export function CardPopular(props) {
       <p className={style.card__price}>&#36; {price}</p>
       {quantity ? (
         <ButtonsWithCounter
-          handleInputQuantity={(count) => handleInputQuantity(count)}
+          handleInputQuantity={handleInputQuantity}
           handleMinusProduct={handleMinusProduct}
           handlePlusProduct={handlePlusProduct}
-          quantity={quantity}
+          quantity={quantity ? quantity : 0}
         />
       ) : (
         <ButtonFind

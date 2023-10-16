@@ -22,7 +22,7 @@ export function ButtonsWithCounter({
       </Link>
       <ButtonsForCounter
         classNames={style.buttons__counter}
-        handleInputQuantity={(count) => handleInputQuantity(count)}
+        handleInputQuantity={handleInputQuantity}
         handleMinusProduct={handleMinusProduct}
         handlePlusProduct={handlePlusProduct}
         quantity={quantity}

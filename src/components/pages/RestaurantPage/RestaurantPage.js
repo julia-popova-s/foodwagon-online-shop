@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useLocation } from 'react-use'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
 import { setCurrentPage } from '../../../store/reducers/filters'
-import { setCategory } from '../../../store/reducers/filters'
 import { fetchProducts } from '../../../store/reducers/products'
 import { setSortType } from '../../../store/reducers/sortingType'
-// import { Categories } from '../../elements/Categories'
 import { CardPopular } from '../../elements/PopularItems/CardPopular'
 import { SortPopup } from '../../elements/SortPopup'
 import { Pagination } from '../../ui/Pagination/Pagination'
@@ -31,8 +29,6 @@ const sortItems = [
   { name: 'alphabetically', order: 'asc', type: 'title' },
 ]
 
-const categoryNames = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup', 'Burger', 'Dessert']
-
 export function RestaurantPage() {
   const { pathname } = useLocation()
 
@@ -43,17 +39,11 @@ export function RestaurantPage() {
   const { restaurantId } = useParams()
 
   const dispatch = useDispatch()
-  const [limit, setLimit] = useState(10)
-  const [page, setPage] = useState(1)
 
   const { category } = useSelector((state) => state.filters)
   const { order, sortType } = useSelector((state) => state.sortingType)
   const { currentPage } = useSelector((state) => state.filters)
-  const { isLoaded, products, status } = useSelector((state) => state.products)
-
-  const handleSelectCategory = (index) => {
-    dispatch(setCategory(index))
-  }
+  const { isLoaded, products } = useSelector((state) => state.products)
 
   const onChangePage = (number) => {
     dispatch(setCurrentPage(number))
@@ -69,19 +59,16 @@ export function RestaurantPage() {
         limit: 4,
         order,
         page: currentPage,
-        // category: categoryNames[category],
         restaurantId,
         sortType,
       })
     )
     window.scrollTo(0, 0)
-  }, [sortType, category, limit, restaurantId, dispatch, order, currentPage])
+  }, [sortType, category, restaurantId, dispatch, order, currentPage])
 
   const handleAddProduct = (obj) => {
     dispatch(addProduct(obj))
   }
-
-  const { cart } = useSelector((state) => state.cart)
 
   const handleRemoveProduct = (product) => {
     dispatch(deleteOneProduct(product))
@@ -94,13 +81,7 @@ export function RestaurantPage() {
   return (
     <div className={style.restaurant}>
       <div className="container">
-        {/* <p className="restaurant__name">{'name'}</p> */}
         <div className={style.filters}>
-          {/* <Categories
-            items={categoryNames}
-            activeCategory={category}
-            handleClickCategory={handleSelectCategory}
-          /> */}
           <SortPopup
             activeSortType={sortType}
             classNames={style.filters__sortBy}
@@ -116,10 +97,9 @@ export function RestaurantPage() {
                   classNames={style.menuList__item}
                   key={`${item.id}${i}`}
                   {...item}
-                  handleAddProduct={(obj) => handleAddProduct(obj)}
-                  handleInputCount={(obj) => handleInputCount(obj)}
-                  handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
-                  quantity={cart[item.restaurantId]?.items[item.id]?.quantity}
+                  handleAddProduct={handleAddProduct}
+                  handleInputCount={handleInputCount}
+                  handleRemoveProduct={handleRemoveProduct}
                 />
               ))
             : Array(4)

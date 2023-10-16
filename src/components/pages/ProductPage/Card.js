@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ReactSVG } from 'react-svg'
 
@@ -17,26 +17,17 @@ export function Card({
   image,
   ingredients,
   price,
-  quantity,
   restaurantId,
   restaurantName,
   title,
 }) {
-  // const [count, setCount] = useState(200)
-  // const [visible, setVisible] = useState(false)
-
-  // const handleVisibleText = () => {
-  //   setCount(500)
-  //   setVisible(true)
-  // }
-
   const handleMinusProduct = () => {
     const data = { discount, id, image, price, restaurantId, restaurantName, title }
     handleRemoveProduct(data)
   }
-
-  const handleInputQuantity = (count) =>
-    handleInputCount({ quantity: count, id, price, restaurantId })
+  const { cart } = useSelector((state) => state.cart)
+  const quantity = cart[restaurantId]?.items[id]?.quantity
+  const handleInputQuantity = (quantity) => handleInputCount({ id, price, quantity, restaurantId })
 
   const handlePlusProduct = () => {
     handleAddProduct({
@@ -94,7 +85,7 @@ export function Card({
               handleInputQuantity={handleInputQuantity}
               handleMinusProduct={handleMinusProduct}
               handlePlusProduct={handlePlusProduct}
-              quantity={quantity}
+              quantity={quantity ? quantity : 0}
             />
           ) : (
             <ButtonFind
