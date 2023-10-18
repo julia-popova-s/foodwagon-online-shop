@@ -61,21 +61,18 @@
 }
 
 .search {
-  &__inner {
+  &__link {
     @include setFontSize(700, 18px, 100%);
-    padding-right: 30px;
-    height: 23px;
     text-decoration: none;
     color: #424242;
     background-color: transparent;
-  }
 
-  &__link {
+
     position: relative;
 
     cursor: pointer;
 
-    &:hover::before {
+    &::before {
       position: absolute;
       content: '';
 
@@ -85,16 +82,22 @@
       width: 97px;
       height: 2px;
 
-      background-color: #FFB30E;
+      background-color: transparent;
       border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+
+    &:hover::before {
+      background-color: #FFB30E;
+      transition: all 0.2s ease;
     }
   }
 
-  &__innerIcon {
+  &__icon {
     margin-right: 8px;
   }
 
-  &__innerName {
+  &__name {
     vertical-align: top;
   }
 }

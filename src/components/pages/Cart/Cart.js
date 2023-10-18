@@ -43,8 +43,6 @@ export function Cart() {
     const handleOutsideClick = (e) => {
       if (popupRef.current?.contains(e.target)) {
         setVisiblePopup(false)
-      } else {
-        // setVisiblePopup(false)
       }
       return
     }
@@ -92,11 +90,29 @@ export function Cart() {
     setVisiblePopup(false)
   }
 
+  if (!totalQuantity) {
+    return (
+      <div className={style.cart}>
+        <div className={cn(style.cart__container, 'container')}>
+          <div className={style.cart__inner}>
+            <div className={style.cart__empty}>
+              <p className={style.cart__name}>Shopping cart is empty</p>{' '}
+              <p className={style.cart__result}>Use the search to find everything you need.</p>
+              <Link className={style.cart__linkSearch} to="/search">
+                Go to search page
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={style.cart}>
       <div className={cn(style.cart__container, 'container')}>
         <div className={style.cart__inner}>
-          {totalQuantity ? (
+          {totalQuantity &&
             addedGoods.map((restaurant) => {
               const [restaurantId, info] = restaurant
               const products = Object.values(info.items)
@@ -162,24 +178,7 @@ export function Cart() {
                   </div>
                 </div>
               )
-            })
-          ) : (
-            <div className={style.cart__empty}>
-              <p className={style.cart__name}>Shopping cart is empty</p>
-              <Link className={style.cart__linkSearch} to="/search">
-                Go to search page
-              </Link>
-              {/* <p className={style.cart__result}>
-                Use the search to find everything you need.
-              </p> */}
-              {/* <img
-                src="/images/cart/soup.jpg"
-                alt="Creamy Tomato Soup"
-                className={style.cart__image}
-                aria-label="cart"
-              /> */}
-            </div>
-          )}
+            })}
         </div>
       </div>
 
