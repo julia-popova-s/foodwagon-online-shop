@@ -7,7 +7,7 @@ const filterSlice = createSlice({
     searchBy: null,
     sortType: 'popular',
   },
-  name: 'filter',
+  name: 'filters',
   reducers: {
     setCategory(state, action) {
       state.category = action.payload
@@ -23,6 +23,11 @@ const filterSlice = createSlice({
     },
   },
 })
+
+export const categorySelector = (state) => state.filters.category
+export const currentPageSelector = (state) => state.filters.currentPage
+export const searchBySelector = (state) => state.filters.searchBy
+export const sortTypeSelector = (state) => state.filters.sortType
 
 export const { setCategory, setCurrentPage, setSearchBy, setSortBy } = filterSlice.actions
 export default filterSlice.reducer

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Slider from 'react-slick'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
+import { isLoadedSelector, productListSelector } from '../../../store/reducers/productsPopular'
 // import { getRandomNumber } from '../../../utils/getRandomNumber'
 import { fetchProductsPopular } from '../../../store/reducers/productsPopular'
 import { ButtonSlider } from '../../ui/ButtonSlider'
@@ -86,8 +87,8 @@ export function PopularItems() {
     )
   }, [limit])
 
-  const { isLoaded, products } = useSelector((state) => state.productsPopular)
-  const { cart } = useSelector((state) => state.cart)
+  const isLoaded = useSelector(isLoadedSelector)
+  const products = useSelector(productListSelector)
 
   const handleAddProduct = (product) => {
     dispatch(addProduct(product))

@@ -42,9 +42,10 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.products = action.payload
         state.status = 'resolve'
-        state.isLoaded = !!state.products?.length
+        state.products = action.payload
+        state.isLoaded = true
+        state.error = null
       })
       .addCase(fetchProducts.pending, (state) => {
         state.status = 'loading'
@@ -57,7 +58,6 @@ const productsSlice = createSlice({
         state.isLoaded = false
         state.products = []
         state.error = action.payload
-        console.log(state.error)
       })
   },
   initialState: {
@@ -74,6 +74,11 @@ const productsSlice = createSlice({
     },
   },
 })
+
+export const productListSelector = (state) => state.products.products
+export const errorSelector = (state) => state.products.error
+export const isLoadedSelector = (state) => state.products.isLoaded
+export const statusSelector = (state) => state.products.status
 
 export const { setLoaded } = productsSlice.actions
 export default productsSlice.reducer

@@ -10,7 +10,7 @@ import { ReactSVG } from 'react-svg'
 import { v4 as uuidv4 } from 'uuid'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
-import { setSearchBy } from '../../../store/reducers/filters'
+import { searchBySelector, setSearchBy } from '../../../store/reducers/filters'
 import { fetchProducts } from '../../../store/reducers/products'
 import { ButtonSlider } from '../../ui/ButtonSlider'
 import { CardPopular } from '../PopularItems/CardPopular'
@@ -108,7 +108,12 @@ const settings = {
 export function SearchFood() {
   const [limit, setLimit] = useState(4)
   const dispatch = useDispatch()
-  const { searchBy } = useSelector((state) => state.filters)
+  const searchBy = useSelector(searchBySelector)
+
+  const isLoaded = useSelector((state) => state.products.isLoaded)
+  const products = useSelector((state) => state.products.products)
+
+  const cart = useSelector((state) => state.cart.cart)
 
   useEffect(() => {
     if (searchBy !== null)
@@ -140,9 +145,6 @@ export function SearchFood() {
   const handleViewAll = () => {
     setLimit(false)
   }
-
-  const { isLoaded, products } = useSelector((state) => state.products)
-  const { cart } = useSelector((state) => state.cart)
 
   return (
     <div className={style.searchFoodBlock} id="searchByFood">

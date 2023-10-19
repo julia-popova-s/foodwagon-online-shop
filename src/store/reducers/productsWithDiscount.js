@@ -66,6 +66,10 @@ const productsWithDiscountSlice = createSlice({
     },
   },
 })
+export const productListSelector = (state) => state.productsWithDiscount.products
+export const errorSelector = (state) => state.productsWithDiscount.error
+export const isLoadedSelector = (state) => state.productsWithDiscount.isLoaded
+export const statusSelector = (state) => state.productsWithDiscount.status
 
 export const { setLoaded } = productsWithDiscountSlice.actions
 export default productsWithDiscountSlice.reducer

@@ -35,7 +35,7 @@ const productsSlice = createSlice({
     products: [],
     status: null,
   },
-  name: 'products',
+  name: 'productsFastAccess',
 
   reducers: {
     setLoaded(state, action) {
@@ -43,6 +43,11 @@ const productsSlice = createSlice({
     },
   },
 })
+
+export const productListSelector = (state) => state.productsFastAccess.products
+export const errorSelector = (state) => state.productsFastAccess.error
+export const isLoadedSelector = (state) => state.productsFastAccess.isLoaded
+export const statusSelector = (state) => state.productsFastAccess.status
 
 export const { setLoaded } = productsSlice.actions
 export default productsSlice.reducer

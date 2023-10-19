@@ -67,5 +67,10 @@ const productsPopularSlice = createSlice({
   },
 })
 
+export const productListSelector = (state) => state.productsPopular.products
+export const errorSelector = (state) => state.productsPopular.error
+export const isLoadedSelector = (state) => state.productsPopular.isLoaded
+export const statusSelector = (state) => state.productsPopular.status
+
 export const { setLoaded } = productsPopularSlice.actions
 export default productsPopularSlice.reducer

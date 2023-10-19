@@ -39,5 +39,5 @@ const productSlice = createSlice({
   },
 })
 
-export const { filterById, setLoaded } = productSlice.actions
+export const { setLoaded } = productSlice.actions
 export default productSlice.reducer

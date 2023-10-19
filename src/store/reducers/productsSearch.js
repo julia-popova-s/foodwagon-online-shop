@@ -38,7 +38,7 @@ const productsSlice = createSlice({
     searchValue: '',
     status: null,
   },
-  name: 'products',
+  name: 'productsSearch',
 
   reducers: {
     setCurrentPage(state, action) {
@@ -52,6 +52,12 @@ const productsSlice = createSlice({
     },
   },
 })
+
+export const productListSelector = (state) => state.productsSearch.products
+export const errorSelector = (state) => state.productsSearch.error
+export const isLoadedSelector = (state) => state.productsSearch.isLoaded
+export const statusSelector = (state) => state.productsSearch.status
+export const currentPageSelector = (state) => state.productsSearch.currentPage
 
 export const { setCurrentPage, setLoaded } = productsSlice.actions
 export default productsSlice.reducer

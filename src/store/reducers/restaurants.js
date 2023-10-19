@@ -40,18 +40,21 @@ const restSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchRestaurants.fulfilled, (state, action) => {
-        state.list = action.payload
         state.status = 'resolve'
+        state.list = action.payload
         state.isLoaded = true
+        state.error = null
       })
       .addCase(fetchRestaurants.pending, (state) => {
         state.status = 'loading'
         state.list = []
+        state.isLoaded = false
         state.error = null
       })
       .addCase(fetchRestaurants.rejected, (state, action) => {
         state.status = 'rejected'
         state.list = []
+        state.isLoaded = false
         state.error = action.payload
       })
   },
@@ -69,5 +72,11 @@ const restSlice = createSlice({
     },
   },
 })
+
+export const restaurantListSelector = (state) => state.restaurants.list
+export const errorSelector = (state) => state.restaurants.error
+export const isLoadedSelector = (state) => state.restaurants.isLoaded
+export const statusSelector = (state) => state.restaurants.status
+
 export const { setLoaded } = restSlice.actions
 export default restSlice.reducer

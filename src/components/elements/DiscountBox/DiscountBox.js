@@ -2,14 +2,18 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import { productListSelector, statusSelector } from '../../../store/reducers/productsWithDiscount'
 import { fetchProductsWithDiscount } from '../../../store/reducers/productsWithDiscount'
 import { Card } from './Card'
 import { Loader } from './Loader'
 import style from './discountBox.module.scss'
+
 const restaurantId = '333f1471-d10f-4b1d-a654-d3c070cb3500'
 
 export function DiscountBox() {
   const dispatch = useDispatch()
+  const products = useSelector(productListSelector)
+  const status = useSelector(statusSelector)
 
   useEffect(() => {
     dispatch(
@@ -20,8 +24,6 @@ export function DiscountBox() {
       })
     )
   }, [restaurantId])
-
-  const { products, status } = useSelector((state) => state.productsWithDiscount)
 
   return (
     <div className={style.discountBox}>

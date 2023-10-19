@@ -18,5 +18,9 @@ const sortingTypeSlice = createSlice({
   },
 })
 
+export const categorySelector = (state) => state.sortingType.category
+export const orderSelector = (state) => state.sortingType.order
+export const sortTypeSelector = (state) => state.sortingType.sortType
+
 export const { setCategory, setSortType } = sortingTypeSlice.actions
 export default sortingTypeSlice.reducer

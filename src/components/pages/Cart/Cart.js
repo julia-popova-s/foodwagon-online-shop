@@ -3,10 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import cn from 'classnames'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { useDisableBodyScroll } from '../../../hooks/useDisableBodyscroll'
+import {
+  addedGoodsSelector,
+  cartSelector,
+  totalQuantitySelector,
+} from '../../../store/reducers/cart'
 import {
   addProduct,
   clearCart,
@@ -29,7 +34,9 @@ export function Cart() {
 
   const popupRef = useRef(null)
 
-  const { addedGoods, cart, totalQuantity } = useSelector(({ cart }) => cart)
+  const addedGoods = useSelector(addedGoodsSelector)
+  const cart = useSelector(cartSelector)
+  const totalQuantity = useSelector(totalQuantitySelector)
 
   const dispatch = useDispatch()
 
