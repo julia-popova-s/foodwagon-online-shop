@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+
 import { fetchProductsData } from '../utils/fetchProductsData'
 
 // export const fetchProductsPopular = createAsyncThunk(
@@ -40,11 +41,13 @@ const productsPopularSlice = createSlice({
       .addCase(fetchProductsPopular.pending, (state) => {
         state.status = 'loading'
         state.isLoaded = false
+        state.products = []
         state.error = null
       })
       .addCase(fetchProductsPopular.rejected, (state, action) => {
         state.status = 'rejected'
         state.isLoaded = false
+        state.products = []
         state.error = action.payload
       })
   },
@@ -58,14 +61,11 @@ const productsPopularSlice = createSlice({
   name: 'productsPopular',
 
   reducers: {
-    filterById(state, action) {
-      state.currentList = state.products.find((rest) => rest.id === action.payload.id)
-    },
     setLoaded(state, action) {
       state.isLoaded = action.payload
     },
   },
 })
 
-export const { filterById, setLoaded } = productsPopularSlice.actions
+export const { setLoaded } = productsPopularSlice.actions
 export default productsPopularSlice.reducer

@@ -11,17 +11,20 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProductsFastAccess.fulfilled, (state, action) => {
-        state.products = action.payload
         state.status = 'resolve'
-        state.isLoaded = !!state.products?.length
+        state.products = action.payload
+        state.isLoaded = true
+        state.error = null
       })
       .addCase(fetchProductsFastAccess.pending, (state) => {
         state.status = 'loading'
+        state.products = []
         state.isLoaded = false
         state.error = null
       })
       .addCase(fetchProductsFastAccess.rejected, (state, action) => {
         state.status = 'rejected'
+        state.products = []
         state.isLoaded = false
         state.error = action.payload
       })

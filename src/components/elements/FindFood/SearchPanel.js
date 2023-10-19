@@ -6,9 +6,9 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { setCurrentPage } from '../../../store/reducers/filters'
 import { fetchProductsFastAccess } from '../../../store/reducers/productsFastAccess'
 import { fetchProductsSearch } from '../../../store/reducers/productsSearch'
+import { setCurrentPage } from '../../../store/reducers/productsSearch'
 import { ButtonFind } from '../../ui/ButtonFind'
 import { TextInput } from '../../ui/TextInput'
 import { Popup } from './Popup'
@@ -22,12 +22,13 @@ export function SearchPanel() {
   const searchRef = useRef(null)
 
   const dispatch = useDispatch()
-  const { isLoaded, products } = useSelector((state) => state.productsFastAccess)
-  const { currentPage } = useSelector((state) => state.filters)
+
+  const isLoaded = useSelector((state) => state.productsFastAccess.isLoaded)
+  const products = useSelector((state) => state.productsFastAccess.products)
+  const currentPage = useSelector((state) => state.productsSearch.currentPage)
 
   const handleSearchValue = (text) => {
     setSearchValue(text.replace(' ', '&'))
-    console.log(searchValue)
   }
 
   const handleSearch = () => {

@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+
 import { fetchRestaurantsData } from '../utils/fetchRestaurantsData'
 // export const fetchRestaurants = createAsyncThunk(
 //   'products/fetchRestaurants',
@@ -45,10 +46,12 @@ const restSlice = createSlice({
       })
       .addCase(fetchRestaurants.pending, (state) => {
         state.status = 'loading'
+        state.list = []
         state.error = null
       })
       .addCase(fetchRestaurants.rejected, (state, action) => {
         state.status = 'rejected'
+        state.list = []
         state.error = action.payload
       })
   },

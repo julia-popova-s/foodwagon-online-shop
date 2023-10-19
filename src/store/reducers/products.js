@@ -49,12 +49,15 @@ const productsSlice = createSlice({
       .addCase(fetchProducts.pending, (state) => {
         state.status = 'loading'
         state.isLoaded = false
+        state.products = []
         state.error = null
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = 'rejected'
         state.isLoaded = false
+        state.products = []
         state.error = action.payload
+        console.log(state.error)
       })
   },
   initialState: {
