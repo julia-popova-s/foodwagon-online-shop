@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { fetchProductsData } from '../utils/fetchProductsData'
+import { getExtraReducers } from '../utils/getExtraReducers'
 
 export const fetchProductsSearch = createAsyncThunk(
   'products/fetchProductsSearch',
@@ -8,33 +9,13 @@ export const fetchProductsSearch = createAsyncThunk(
 )
 
 const productsSlice = createSlice({
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchProductsSearch.fulfilled, (state, action) => {
-        state.status = 'resolve'
-        state.isLoaded = true
-        state.products = action.payload
-        state.error = null
-      })
-      .addCase(fetchProductsSearch.pending, (state) => {
-        state.status = 'loading'
-        state.isLoaded = false
-        state.products = []
-        state.error = null
-      })
-      .addCase(fetchProductsSearch.rejected, (state, action) => {
-        state.status = 'rejected'
-        state.isLoaded = false
-        state.products = []
-        state.error = action.payload
-        console.log(action.payload)
-      })
-  },
+  extraReducers: (builder) => getExtraReducers(builder)(fetchProductsSearch),
+
   initialState: {
     currentPage: 1,
     error: null,
     isLoaded: false,
-    products: [],
+    list: [],
     searchValue: '',
     status: null,
   },
@@ -53,7 +34,7 @@ const productsSlice = createSlice({
   },
 })
 
-export const productListSelector = (state) => state.productsSearch.products
+export const productListSelector = (state) => state.productsSearch.list
 export const errorSelector = (state) => state.productsSearch.error
 export const isLoadedSelector = (state) => state.productsSearch.isLoaded
 export const statusSelector = (state) => state.productsSearch.status

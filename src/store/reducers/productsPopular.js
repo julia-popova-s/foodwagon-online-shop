@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { fetchProductsData } from '../utils/fetchProductsData'
+import { getExtraReducers } from '../utils/getExtraReducers'
 
 // export const fetchProductsPopular = createAsyncThunk(
 //   'products/fetchProductsPopular',
@@ -31,30 +32,12 @@ export const fetchProductsPopular = createAsyncThunk(
 )
 
 const productsPopularSlice = createSlice({
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchProductsPopular.fulfilled, (state, action) => {
-        state.products = action.payload
-        state.status = 'resolve'
-        state.isLoaded = !!state.products?.length
-      })
-      .addCase(fetchProductsPopular.pending, (state) => {
-        state.status = 'loading'
-        state.isLoaded = false
-        state.products = []
-        state.error = null
-      })
-      .addCase(fetchProductsPopular.rejected, (state, action) => {
-        state.status = 'rejected'
-        state.isLoaded = false
-        state.products = []
-        state.error = action.payload
-      })
-  },
+  extraReducers: (builder) => getExtraReducers(builder)(fetchProductsPopular),
+ 
   initialState: {
     error: null,
     isLoaded: false,
-    products: [],
+    list: [],
     status: null,
   },
 
@@ -67,7 +50,7 @@ const productsPopularSlice = createSlice({
   },
 })
 
-export const productListSelector = (state) => state.productsPopular.products
+export const productListSelector = (state) => state.productsPopular.list
 export const errorSelector = (state) => state.productsPopular.error
 export const isLoadedSelector = (state) => state.productsPopular.isLoaded
 export const statusSelector = (state) => state.productsPopular.status

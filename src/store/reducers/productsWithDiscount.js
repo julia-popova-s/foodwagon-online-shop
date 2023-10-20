@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { fetchProductsData } from '../utils/fetchProductsData'
+import { getExtraReducers } from '../utils/getExtraReducers'
 
 // export const fetchProductsWithDiscount = createAsyncThunk(
 //   'products/productsWithDiscount',
@@ -31,30 +32,12 @@ export const fetchProductsWithDiscount = createAsyncThunk(
 )
 
 const productsWithDiscountSlice = createSlice({
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchProductsWithDiscount.fulfilled, (state, action) => {
-        state.products = action.payload
-        state.status = 'resolve'
-        state.isLoaded = !!state.products?.length
-      })
-      .addCase(fetchProductsWithDiscount.pending, (state) => {
-        state.status = 'loading'
-        state.isLoaded = false
-        state.products = []
-        state.error = null
-      })
-      .addCase(fetchProductsWithDiscount.rejected, (state, action) => {
-        state.status = 'rejected'
-        state.isLoaded = false
-        state.products = []
-        state.error = action.payload
-      })
-  },
+  extraReducers: (builder) => getExtraReducers(builder)(fetchProductsWithDiscount),
+
   initialState: {
     error: null,
     isLoaded: false,
-    products: [],
+    list: [],
     status: null,
   },
 
@@ -66,7 +49,7 @@ const productsWithDiscountSlice = createSlice({
     },
   },
 })
-export const productListSelector = (state) => state.productsWithDiscount.products
+export const productListSelector = (state) => state.productsWithDiscount.list
 export const errorSelector = (state) => state.productsWithDiscount.error
 export const isLoadedSelector = (state) => state.productsWithDiscount.isLoaded
 export const statusSelector = (state) => state.productsWithDiscount.status

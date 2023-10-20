@@ -1,5 +1,9 @@
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { ButtonFind } from '../../ui/ButtonFind'
+import { TextInput } from '../../ui/TextInput'
 import { Delivery } from './Delivery'
-import { SearchPanel } from './SearchPanel'
 import style from './findFood.module.scss'
 
 export function FindFood() {
@@ -14,7 +18,15 @@ export function FindFood() {
           <div className={style.findFood__search}>
             <Delivery />
             <div className={style.searchPanel}>
-              <SearchPanel />
+              <TextInput>
+                <FontAwesomeIcon
+                  className={style.search__inputIcon}
+                  icon={faLocationDot}
+                  size="xl"
+                />
+              </TextInput>
+              <ButtonFind classNames={style.search__btn} icon="search" label="Find Food" />
+              {/* <SearchPanel /> */}
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { fetchRestaurantsData } from '../utils/fetchRestaurantsData'
+import { getExtraReducers } from '../utils/getExtraReducers'
 // export const fetchRestaurants = createAsyncThunk(
 //   'products/fetchRestaurants',
 //   async function ({ category, limit, restaurantId, sortType }, { dispatch, rejectWithValue }) {
@@ -36,28 +37,10 @@ import { fetchRestaurantsData } from '../utils/fetchRestaurantsData'
 // )
 
 export const fetchRestaurants = createAsyncThunk('products/fetchRestaurants', fetchRestaurantsData)
+
 const restSlice = createSlice({
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchRestaurants.fulfilled, (state, action) => {
-        state.status = 'resolve'
-        state.list = action.payload
-        state.isLoaded = true
-        state.error = null
-      })
-      .addCase(fetchRestaurants.pending, (state) => {
-        state.status = 'loading'
-        state.list = []
-        state.isLoaded = false
-        state.error = null
-      })
-      .addCase(fetchRestaurants.rejected, (state, action) => {
-        state.status = 'rejected'
-        state.list = []
-        state.isLoaded = false
-        state.error = action.payload
-      })
-  },
+  extraReducers: (builder) => getExtraReducers(builder)(fetchRestaurants),
+
   initialState: {
     error: null,
     isLoaded: false,

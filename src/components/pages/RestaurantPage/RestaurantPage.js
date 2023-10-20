@@ -4,9 +4,17 @@ import { useParams } from 'react-router-dom'
 import { useLocation } from 'react-use'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
-import { setCurrentPage } from '../../../store/reducers/filters'
-import { fetchProducts } from '../../../store/reducers/products'
-import { setSortType } from '../../../store/reducers/sortingType'
+import {
+  categorySelector,
+  currentPageSelector,
+  setCurrentPage,
+} from '../../../store/reducers/filters'
+import {
+  fetchProducts,
+  isLoadedSelector,
+  productListSelector,
+} from '../../../store/reducers/products'
+import { orderSelector, setSortType, sortTypeSelector } from '../../../store/reducers/sortingType'
 import { CardPopular } from '../../elements/PopularItems/CardPopular'
 import { SortPopup } from '../../elements/SortPopup'
 import { Pagination } from '../../ui/Pagination/Pagination'
@@ -40,12 +48,15 @@ export function RestaurantPage() {
 
   const dispatch = useDispatch()
 
-  const { category } = useSelector((state) => state.filters)
-  const { order, sortType } = useSelector((state) => state.sortingType)
-  const { currentPage } = useSelector((state) => state.filters)
-  const { isLoaded, products } = useSelector((state) => state.products)
+  const category = useSelector(categorySelector)
+  const order = useSelector(orderSelector)
+  const sortType = useSelector(sortTypeSelector)
 
-  const onChangePage = (number) => {
+  const currentPage = useSelector(currentPageSelector)
+  const isLoaded = useSelector(isLoadedSelector)
+  const products = useSelector(productListSelector)
+
+  const handleChangePage = (number) => {
     dispatch(setCurrentPage(number))
   }
 
@@ -56,15 +67,15 @@ export function RestaurantPage() {
   useEffect(() => {
     dispatch(
       fetchProducts({
+        currentPage,
         limit: 4,
         order,
-        page: currentPage,
         restaurantId,
         sortType,
       })
     )
     window.scrollTo(0, 0)
-  }, [sortType, category, restaurantId, dispatch, order, currentPage])
+  }, [sortType, category, restaurantId, order, currentPage])
 
   const handleAddProduct = (obj) => {
     dispatch(addProduct(obj))
@@ -106,7 +117,7 @@ export function RestaurantPage() {
                 .fill(0)
                 .map((_, index) => <Loader key={index} />)}
         </div>
-        <Pagination currentPage={currentPage} onChangePage={onChangePage} pageCount={3} />
+        <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />
       </div>
     </div>
   )

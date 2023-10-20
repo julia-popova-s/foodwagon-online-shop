@@ -1,14 +1,28 @@
-export function getFilterForProducts(sortType, category, restaurantId, limit, page, order) {
-  const sortRequest = sortType ? `&sortBy=${sortType}` : ''
-  const orderRequest = sortType && order ? `&order=${order}` : ''
+export function getFilterForProducts({
+  category,
+  currentPage,
+  id,
+  limit,
+  order,
+  restaurantId,
+  searchValue,
+  sortType,
+}) {
+  const currentPageFilter = currentPage ? `?page=${currentPage}` : `?page=1`
 
-  const categoryRequest = category && category !== 'All' ? `&category=${category}` : ''
+  const limitFilter = limit ? `&limit=${limit}` : `&limit=4`
 
-  const idRequest = restaurantId ? `&restaurantId=${restaurantId}` : ''
+  const sortFilter = sortType ? `&sortBy=${sortType}` : ''
 
-  const limitRequest = limit ? `&limit=${limit}` : `&limit=8`
+  const orderFilter = sortType && order ? `&order=${order}` : ''
 
-  const currentPage = page ? `&page=${page}` : `&page=1`
+  const categoryFilter = category && category !== 'All' ? `&category=${category}` : ''
 
-  return `${currentPage}${limitRequest}${sortRequest}${orderRequest}${categoryRequest}${idRequest}`
+  const idFilter = restaurantId ? `&restaurantId=${restaurantId}` : ''
+
+  const searchState = searchValue ? `&search=${searchValue.replace(' ', '&')}` : ''
+
+  const idProductFilter = id ? `&id=${id}` : ''
+
+  return `${currentPageFilter}${limitFilter}${sortFilter}${orderFilter}${categoryFilter}${idFilter}${searchState}${idProductFilter}`
 }

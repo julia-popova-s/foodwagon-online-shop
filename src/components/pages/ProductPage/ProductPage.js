@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useLocation } from 'react-use'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
-import { fetchProduct } from '../../../store/reducers/product'
+import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/reducers/product'
 import { fetchRestaurants } from '../../../store/reducers/restaurants'
 import { RestaurantPage } from '../RestaurantPage/RestaurantPage'
 import { Card } from './Card'
@@ -18,6 +18,9 @@ export function ProductPage() {
 
   const { pathname } = useLocation()
 
+  const isLoaded = useSelector(isLoadedSelector)
+  const product = useSelector(productSelector)
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
@@ -25,21 +28,20 @@ export function ProductPage() {
   useEffect(() => {
     dispatch(
       fetchProduct({
-        filter: `&id=${id}`,
+        id,
+        limit: 1,
       })
     )
   }, [id, dispatch])
 
-  useEffect(() => {
-    dispatch(
-      fetchRestaurants({
-        limit: 20,
-        restaurantId,
-      })
-    )
-  }, [restaurantId, dispatch])
-
-  const { isLoaded, product } = useSelector((state) => state.product)
+  // useEffect(() => {
+  //   dispatch(
+  //     fetchRestaurants({
+  //       limit: 20,
+  //       restaurantId,
+  //     })
+  //   )
+  // }, [restaurantId, dispatch])
 
   const handleAddProduct = (product) => {
     dispatch(addProduct(product))

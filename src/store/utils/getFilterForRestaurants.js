@@ -1,6 +1,9 @@
-export function getFilterForRestaurants(sortType, category, restaurantId, limit, page) {
-  const idRequest = restaurantId ? `&id=${restaurantId}` : ''
-  const sortRequest =
+export function getFilterForRestaurants({ category, limit, page, restaurantId, sortType }) {
+  const currentPage = page ? `?page=${page}` : `?page=1`
+  
+  const limitFilter = limit ? `&limit=${limit}` : `&limit=8`
+
+  const sortFilter =
     sortType && sortType === 'rating'
       ? '&sortBy=weighted_rating_value&order=desc'
       : sortType === 'popular'
@@ -11,11 +14,9 @@ export function getFilterForRestaurants(sortType, category, restaurantId, limit,
       ? '&sortBy=deliveryTime&order=asc'
       : ''
 
-  const categoryRequest = category && category !== 'All' ? `&cuisines=${category}` : ''
+  const categoryFilter = category && category !== 'All' ? `&cuisines=${category}` : ''
 
-  const limitRequest = limit ? `&limit=${limit}` : `&limit=8`
+  const idFilter = restaurantId ? `&id=${restaurantId}` : ''
 
-  const currentPage = page ? `&page=${page}` : `&page=1`
-
-  return `${currentPage}${limitRequest}${sortRequest}${categoryRequest}${idRequest}`
+  return `${currentPage}${limitFilter}${sortFilter}${categoryFilter}${idFilter}`
 }

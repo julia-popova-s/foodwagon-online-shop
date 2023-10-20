@@ -4,7 +4,7 @@ import { ReactSVG } from 'react-svg'
 
 import style from './textInput.module.scss'
 
-export const TextInput = forwardRef(({ handleSearchValue, iconUrl }, ref) => {
+export const TextInput = forwardRef(({ children, handleSearchValue, iconUrl }, ref) => {
   const inputRef = useRef(null)
   const [value, setValue] = useState('')
 
@@ -49,12 +49,15 @@ export const TextInput = forwardRef(({ handleSearchValue, iconUrl }, ref) => {
             <path d="m14.586 16-4.293 4.293a1 1 0 0 0 1.414 1.414l4.293-4.293 4.293 4.293a1 1 0 1 0 1.414-1.414l-4.293-4.293 4.293-4.293a1 1 0 0 0 -1.414-1.414l-4.293 4.293-4.293-4.293a1 1 0 0 0 -1.414 1.414z"></path>
           </g>
         </svg>
-      )}{' '}
-      <ReactSVG
-        className={style.search__inputIcon}
-        src={`${process.env.PUBLIC_URL}${iconUrl}`}
-        wrapper="span"
-      />
+      )}
+      {children}
+      {iconUrl && (
+        <ReactSVG
+          className={style.search__inputIcon}
+          src={`${process.env.PUBLIC_URL}${iconUrl}`}
+          wrapper="span"
+        />
+      )}
     </div>
   )
 })

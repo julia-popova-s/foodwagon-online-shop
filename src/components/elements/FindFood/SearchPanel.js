@@ -6,14 +6,16 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { fetchProductsFastAccess } from '../../../store/reducers/productsFastAccess'
-import { setCurrentPage } from '../../../store/reducers/productsSearch'
 import {
-  currentPageSelector,
+  fetchProductsFastAccess,
   isLoadedSelector,
   productListSelector,
+} from '../../../store/reducers/productsFastAccess'
+import {
+  currentPageSelector,
+  fetchProductsSearch,
+  setCurrentPage,
 } from '../../../store/reducers/productsSearch'
-import { fetchProductsSearch } from '../../../store/reducers/productsSearch'
 import { ButtonFind } from '../../ui/ButtonFind'
 import { TextInput } from '../../ui/TextInput'
 import { Popup } from './Popup'
@@ -33,21 +35,19 @@ export function SearchPanel() {
   const currentPage = useSelector(currentPageSelector)
 
   const handleSearchValue = (text) => {
-    setSearchValue(text.replace(' ', '&'))
+    setSearchValue(text)
   }
 
   const handleSearch = () => {
-    if (searchValue) {
-      dispatch(
-        fetchProductsSearch({
-          filter: `&search=${searchValue}`,
-          limit: 8,
-          page: 1,
-        })
-      )
-      dispatch(setCurrentPage(1))
-      setVisiblePopup(false)
-    }
+    dispatch(
+      fetchProductsSearch({
+        currentPage: 1,
+        limit: 8,
+        searchValue,
+      })
+    )
+    dispatch(setCurrentPage(1))
+    setVisiblePopup(false)
     window.scrollTo(0, 0)
   }
 
@@ -66,39 +66,35 @@ export function SearchPanel() {
   }, [])
 
   useEffect(() => {
-    if (searchValue) {
-      dispatch(
-        fetchProductsFastAccess({
-          filter: `&search=${searchValue}`,
-          limit: 4,
-          page: 1,
-        })
-      )
-      dispatch(setCurrentPage(1))
-    }
+    dispatch(
+      fetchProductsFastAccess({
+        currentPage: 1,
+        limit: 4,
+        searchValue,
+      })
+    )
+    dispatch(setCurrentPage(1))
   }, [dispatch, searchValue])
 
   useEffect(() => {
-    if (searchValue) {
-      dispatch(
-        fetchProductsSearch({
-          filter: `&search=${searchValue}`,
-          limit: 8,
-          page: currentPage,
-        })
-      )
-    }
+    dispatch(
+      fetchProductsSearch({
+        currentPage,
+        limit: 8,
+        searchValue,
+      })
+    )
     window.scrollTo(0, 0)
   }, [currentPage])
 
   return (
     <div className={style.search}>
-      {/* <FontAwesomeIcon className={style.search__inputIcon} icon={faLocationDot} size="xl" /> */}
       <TextInput
         handleSearchValue={handleSearchValue}
         iconUrl={'/images/header/search.svg'}
         ref={searchRef}
-      />
+      >
+      </TextInput>
       <ButtonFind
         classNames={style.search__btn}
         handleClick={handleSearch}

@@ -2,8 +2,12 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { productListSelector, statusSelector } from '../../../store/reducers/productsWithDiscount'
-import { fetchProductsWithDiscount } from '../../../store/reducers/productsWithDiscount'
+import {
+  errorSelector,
+  fetchProductsWithDiscount,
+  productListSelector,
+  statusSelector,
+} from '../../../store/reducers/productsWithDiscount'
 import { Card } from './Card'
 import { Loader } from './Loader'
 import style from './discountBox.module.scss'
@@ -14,13 +18,17 @@ export function DiscountBox() {
   const dispatch = useDispatch()
   const products = useSelector(productListSelector)
   const status = useSelector(statusSelector)
+  const error = useSelector(errorSelector)
+  console.log(error)
 
   useEffect(() => {
     dispatch(
       fetchProductsWithDiscount({
-        filter: `&sortBy=discount&order=desc`,
         limit: 4,
+        order: 'desc',
         restaurantId,
+        // filter: `&sortBy=discount&order=desc`,
+        sortType: 'discount',
       })
     )
   }, [restaurantId])

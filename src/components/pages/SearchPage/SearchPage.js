@@ -1,7 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
-import { setCurrentPage } from '../../../store/reducers/productsSearch'
+import {
+  currentPageSelector,
+  errorSelector,
+  isLoadedSelector,
+  productListSelector,
+  setCurrentPage,
+  statusSelector,
+} from '../../../store/reducers/productsSearch'
 import { SearchPanel } from '../../elements/FindFood/SearchPanel'
 import { CardPopular } from '../../elements/PopularItems/CardPopular'
 import { Pagination } from '../../ui/Pagination/Pagination'
@@ -12,11 +19,11 @@ let render = 0
 
 export function SearchPage() {
   console.log(render++)
-  const error = useSelector((state) => state.productsSearch.error)
-  const currentPage = useSelector((state) => state.productsSearch.currentPage)
-  const products = useSelector((state) => state.productsSearch.products)
-  const isLoaded = useSelector((state) => state.productsSearch.isLoaded)
-  const status = useSelector((state) => state.productsSearch.status)
+  const error = useSelector(errorSelector)
+  const currentPage = useSelector(currentPageSelector)
+  const products = useSelector(productListSelector)
+  const isLoaded = useSelector(isLoadedSelector)
+  const status = useSelector(statusSelector)
 
   const dispatch = useDispatch()
 

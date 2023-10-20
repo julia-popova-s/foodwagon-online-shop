@@ -11,7 +11,11 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
 import { searchBySelector, setSearchBy } from '../../../store/reducers/filters'
-import { fetchProducts } from '../../../store/reducers/products'
+import {
+  fetchProducts,
+  isLoadedSelector,
+  productListSelector,
+} from '../../../store/reducers/products'
 import { ButtonSlider } from '../../ui/ButtonSlider'
 import { CardPopular } from '../PopularItems/CardPopular'
 import { CardFood } from './CardFood'
@@ -110,8 +114,8 @@ export function SearchFood() {
   const dispatch = useDispatch()
   const searchBy = useSelector(searchBySelector)
 
-  const isLoaded = useSelector((state) => state.products.isLoaded)
-  const products = useSelector((state) => state.products.products)
+  const isLoaded = useSelector(isLoadedSelector)
+  const products = useSelector(productListSelector)
 
   const cart = useSelector((state) => state.cart.cart)
 
@@ -119,10 +123,9 @@ export function SearchFood() {
     if (searchBy !== null)
       dispatch(
         fetchProducts({
-          filter: `&category=${typeFood[searchBy].name}`,
+          category: `${typeFood[searchBy].name}`,
           limit,
           page: 1,
-          url: 'products',
         })
       )
   }, [dispatch, searchBy, limit])
