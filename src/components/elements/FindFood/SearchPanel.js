@@ -1,10 +1,7 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import cn from 'classnames'
-import debounce from 'lodash.debounce'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import {
   fetchProductsFastAccess,
@@ -93,8 +90,7 @@ export function SearchPanel() {
         handleSearchValue={handleSearchValue}
         iconUrl={'/images/header/search.svg'}
         ref={searchRef}
-      >
-      </TextInput>
+      ></TextInput>
       <ButtonFind
         classNames={style.search__btn}
         handleClick={handleSearch}

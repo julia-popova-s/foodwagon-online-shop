@@ -132,9 +132,12 @@ export function Cart() {
                 <div className={cn(style.cart__order, style.cart__order_border)} key={restaurantId}>
                   <div className={style.cart__top}>
                     <div className={style.cart__restaurantName}>
-                      {/* <Link to={`/restaurant/${restaurantId}/product`} className={style.cart__restaurantLink}> */}
-                      {restaurantName}
-                      {/* </Link> */}
+                      <Link
+                        className={style.cart__restaurantLink}
+                        // to={`/restaurant/09f0fe36-8d60-4c64-ab0d-74f3d61be998/product/187d81f3-d149-4c0f-ba70-0082b563140c`}
+                      >
+                        {restaurantName}
+                      </Link>
                     </div>
                     <div className={style.cart__clear}>
                       <button

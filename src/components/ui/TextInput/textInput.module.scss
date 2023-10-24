@@ -3,12 +3,6 @@
 
 .search {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: space-between;
-  align-items: center;
-
 
   &__input,
   &__input::placeholder {
@@ -24,10 +18,7 @@
     border-radius: 8px;
     border: 0 solid;
     padding: 11.5px 10px 12.5px 46px;
-
   }
-
-
 
   &__inputWrapper {
     position: relative;
@@ -45,8 +36,8 @@
   &__inputIcon {
     position: absolute;
 
-    left: 17px;
-    top: 21px;
+    left: 16px;
+    top: 15px;
 
     path {
       fill: #ff7474;

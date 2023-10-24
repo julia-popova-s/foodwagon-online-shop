@@ -4,18 +4,19 @@ import cn from 'classnames'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import { Link as LinkScroll } from 'react-scroll'
+// import { Link as LinkScroll } from 'react-scroll'
 import { ReactSVG } from 'react-svg'
 
 import { ButtonCart } from '../../ui/ButtonCart'
 import { ButtonLogin } from '../../ui/ButtonLogin'
 import { LogoType } from '../../ui/LogoType'
 import style from './header.module.scss'
+
 export function Header({ geolocation }) {
   let navigate = useNavigate()
   const goBack = () => navigate(-1)
-  const location = useLocation()
-
+  const { pathname } = useLocation()
+  console.log(pathname)
   return (
     <header className={style.headerBlock}>
       <div className="container">
@@ -59,9 +60,11 @@ export function Header({ geolocation }) {
               <ButtonLogin classNames={style.search__login} />
             </Link>
 
-            <Link to={'cart'}>
-              <ButtonCart />
-            </Link>
+            {pathname !== '/cart' && (
+              <Link to={'cart'}>
+                <ButtonCart />
+              </Link>
+            )}
           </div>
         </div>
       </div>
