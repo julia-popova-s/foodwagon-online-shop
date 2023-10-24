@@ -4,18 +4,17 @@
   margin-bottom: 30px;
   padding: 10px 0;
   display: flex;
-  gap: 50px;
+  column-gap: 50px;
+  row-gap: 15px;
   align-items: flex-start;
   position: relative;
   max-width: 1250px;
 
   &__image {
+    flex-shrink: 0;
     max-width: 300px;
-    max-height: 273px;
     position: relative;
   }
-
-  &__imageLink {}
 
   &__img {
     border-radius: 16px;
@@ -24,12 +23,21 @@
     display: block;
   }
 
-
-  &__info {
-    flex-grow: 2;
-    padding: 10px 30px 10px 10px;
-    max-width: 470px;
+  &__btnReturn {
+    margin-right: 50px;
   }
+
+  &__btnDelete {
+    position: absolute;
+    top: 20px;
+    right: 0;
+  }
+}
+
+.info {
+  flex-grow: 2;
+  padding: 10px 30px 10px 0;
+  max-width: 470px;
 
   &__title {
     margin-bottom: 10px;
@@ -40,16 +48,16 @@
     color: rgb(66, 66, 66);
   }
 
-  &__rest {
+  &__name {
     margin-bottom: 8px;
   }
 
-  &__restIcon {
+  &__nameIcon {
     margin-right: 8px;
     color: $primary-color;
   }
 
-  &__restLink {
+  &__nameLink {
     @include setFontSize(400, 22px, 120%);
     color: $primary-color;
   }
@@ -75,36 +83,22 @@
       }
     }
   }
+}
 
-  &__quantity {}
+.counter {
+  display: flex;
+  gap: 30px;
 
-  &__text {}
-
-  &__btnDelete {
-    background-color: transparent;
-    position: absolute;
-    top: 20px;
-    right: 0;
+  &__btns {
+    padding: 10px 0;
   }
 
-  &__delete {
-    color: #9e9e9e;
-  }
-
-  &__priceWithSale {
+  &__price {
     @include setFontSize(700, 22px, 120%);
     color: rgb(33, 33, 33);
     padding: 10px 0;
-    min-width: 150px;
-  }
-
-  &__counter {
-    padding: 10px 0;
-  }
-
-  &__counterWithPrice {
-    display: flex;
-    gap: 50px;
+    margin-right: 21px;
+    min-width: 192px;
   }
 }
 
@@ -138,10 +132,6 @@
   }
 }
 
-.product__btnReturn {
-  margin-right: 50px;
-}
-
 .btnReturn {
   @include setFontSize(600, 18px, 100%);
   width: 180px;
@@ -159,19 +149,35 @@
   -webkit-text-fill-color: transparent;
 }
 
+.btnDelete {
+  width: 21px;
+  height: 24px;
+  background-color: transparent;
 
-@media (max-width:1200px) {
+
+  &__icon {
+    color: #9e9e9e;
+  }
+}
+
+@media (max-width:1100px) {
   .product {
     flex-wrap: wrap;
 
-    &__info {
-      width: 85%;
+    &__counterWithPrice {
+      width: 100%;
     }
+  }
+}
 
-    // &__btns,
-    // &__result {}
+@media (max-width:1000px) {
+  .product__info {
+    width: 100%;
+  }
+}
 
-    // &__counter,
-    // &__priceWithSale {}
+@media (max-width:880px) {
+  .product__btnDelete {
+    left: 325px;
   }
 }

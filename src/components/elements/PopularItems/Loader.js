@@ -1,6 +1,7 @@
 import ContentLoader from 'react-content-loader'
 
 import style from './popularItems.module.scss'
+
 export const Loader = (props) => (
   <ContentLoader
     backgroundColor="#f3f3f3"

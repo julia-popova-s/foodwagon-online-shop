@@ -107,6 +107,17 @@
   margin-bottom: 4px;
 }
 
+.cart__linkSearch {
+  color: #212121;
+  text-decoration: underline;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: #f17228;
+    transition: all 0.3s ease;
+  }
+}
+
 .cart__restaurantLink {
   color: $base-color;
 }
@@ -146,3 +157,9 @@
 }
 
 @media (max-width:1100px) {}
+
+@media (max-width:880px) {
+  .cart__top {
+    max-width: 470px;
+  }
+}

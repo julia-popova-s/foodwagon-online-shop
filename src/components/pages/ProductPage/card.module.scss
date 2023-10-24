@@ -1,35 +1,36 @@
 @import "../../App/styles/variables";
 
 .card {
-  width: 100%;
-  display: flex;
-  gap: 40px;
   position: relative;
+  display: flex;
+  column-gap: 40px;
+  flex-wrap: wrap;
+
+  width: 100%;
 
   &__left {
+    position: relative;
     width: 357px;
     height: 301px;
-    position: relative;
+
+    flex-shrink: 0;
     border: 1px solid transparent;
     border-radius: 16px;
+
+    margin-bottom: 30px;
   }
 
   &__image {
+    display: block;
     max-width: 100%;
     height: auto;
-    display: block;
     border-radius: 16px;
     object-fit: cover;
   }
 
-  &__right {
-    max-width: 700px;
-    height: 301px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px 0 0 20px;
-    justify-content: center;
-    align-items: stretch;
+  &__info {
+    padding-top: 10px;
+    margin-bottom: 30px;
   }
 
   &__discount {
@@ -60,43 +61,45 @@
     bottom: 12px;
   }
 
-  &__name {
+  // &__text {
+  //   @include setFontSize(700, 22px, 120%);
+  //   text-align: center;
+  //   padding: 8px 16px;
+  //   color: $base-color;
+  //   width: 204px;
+  //   height: 42px;
+  //   background: rgba(241, 114, 40, 0.2);
+  //   border-radius: 8px;
+  // }
+
+
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+
+  height: 301px;
+  max-width: 700px;
+
+  &__title {
     @include setFontSize(700, 22px, 120%);
     color: #424242;
     margin-bottom: 14px;
     min-height: 50px;
   }
 
-  &__text {
-    @include setFontSize(700, 22px, 120%);
-    text-align: center;
-    padding: 8px 16px;
-    color: $base-color;
-    width: 204px;
-    height: 42px;
-    background: rgba(241, 114, 40, 0.2);
-    border-radius: 8px;
-  }
-
-  &__add {
-    display: block;
-    margin-top: auto;
-  }
-
-  &__btn {
-    box-shadow: rgba(253, 114, 92, 0.22) 0px 5px 10px,
-      rgba(250, 99, 35, 0.24) 0px 20px 40px;
-  }
-
-  &__rest {
+  &__name {
     margin-bottom: 15px;
   }
 
-  &__restIcon {
+  &__nameIcon {
     margin-right: 8px;
   }
 
-  &__restLink {
+  &__nameLink {
     @include setFontSize(400, 22px, 120%);
     color: rgb(255, 179, 14);
   }
@@ -135,62 +138,40 @@
     color: rgb(130, 126, 126);
     margin-bottom: 15px;
   }
+
+  &__btns {
+    margin-top: auto;
+  }
 }
 
-// &:hover {
-// box-shadow: rgba(253, 114, 92, 0.22) 0px 5px 10px;
-// }
-
-.card__btns {
-  display: flex;
-  justify-content: space-between;
-}
-
-.card {
-  &__btn {
-    // background: $base-color;
-    // mix-blend-mode: normal;
-    // box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
-    //   0px 20px 40px rgba(250, 99, 35, 0.24);
+.buttons {
+  &__order {
+    transition: all 0.3s ease;
+    margin-left: auto;
     width: 283px;
-    // transition: background 0.5s ease;
-    // height: 60px;
-    // margin-top: auto;
-    // border: 2px solid transparent;
-    // transition: background 0.5s ease, color 0.5s ease;
-    // margin-left: 50%;
-  }
+    display: block;
 
-  &__btn:hover {
-    // transition: background 0.5s ease;
-    // color: $base-color;
-    // background: $white-color;
-    // border: 3px solid $base-color;
-    // transition: background 0.5s ease, color 0.5s ease;
-  }
-
-  &__btn {
-    &_color {
-      color: $base-color;
-      background: $white-color;
-      width: 120px;
-      border: 3px solid $base-color;
-      transition: background 0.5s ease, color 0.5s ease;
-
-      &:hover {
-        background: $base-color;
-        mix-blend-mode: normal;
-        box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
-          0px 20px 40px rgba(250, 99, 35, 0.24);
-        color: $white-color;
-        transition: background 0.5s ease, color 0.5s ease;
-      }
+    &:hover {
+      box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22), 0px 20px 40px rgba(250, 99, 35, 0.24);
+      transition: all 0.3s ease;
     }
   }
 }
 
-@media (max-width:1000px) {
+
+@media(max-width:662px) {
   .card {
-    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width:620px) {
+  .card__left {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .card__info {
+    height: auto;
   }
 }

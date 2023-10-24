@@ -4,13 +4,13 @@ import { useParams } from 'react-router-dom'
 import { useLocation } from 'react-use'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
-import { fetchProduct } from '../../../store/reducers/product'
-import Restaurants, { fetchRestaurants } from '../../../store/reducers/restaurants'
+import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/reducers/product'
+import { fetchRestaurants } from '../../../store/reducers/restaurants'
 import { RestaurantPage } from '../RestaurantPage/RestaurantPage'
 import { Card } from './Card'
-import { Loader, LoaderLeft } from './LoaderLeft'
+import { LoaderLeft } from './LoaderLeft'
 import { LoaderRight } from './LoaderRight'
-import styles from './productPage.module.scss'
+import style from './productPage.module.scss'
 
 export function ProductPage() {
   let { id, restaurantId } = useParams()
@@ -18,25 +18,18 @@ export function ProductPage() {
 
   const { pathname } = useLocation()
 
+  const isLoaded = useSelector(isLoadedSelector)
+  const product = useSelector(productSelector)
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
-  // const [limit, setLimit] = useState(4)
-
-  // const { category, sortType } = useSelector((state) => state.filters)
-
-  // const handleSelectCategory = (index) => {
-  //   dispatch(setCategory(index))
-  // }
-
-  // const handleSelectSortType = (type) => {
-  //   dispatch(setSortBy(type))
-  // }
 
   useEffect(() => {
     dispatch(
       fetchProduct({
-        filter: `&id=${id}`,
+        id,
+        limit: 1,
       })
     )
   }, [id, dispatch])
@@ -44,15 +37,11 @@ export function ProductPage() {
   // useEffect(() => {
   //   dispatch(
   //     fetchRestaurants({
-  //       restaurantId,
   //       limit: 20,
+  //       restaurantId,
   //     })
   //   )
   // }, [restaurantId, dispatch])
-
-  // // const { list } = useSelector((state) => state.restaurants)
-  const { isLoaded, product } = useSelector((state) => state.product)
-  const { cart } = useSelector((state) => state.cart)
 
   const handleAddProduct = (product) => {
     dispatch(addProduct(product))
@@ -68,25 +57,23 @@ export function ProductPage() {
 
   return (
     <>
-      <div className={styles.productPage}>
+      <div className={style.productPage}>
         <div className="container">
-          <div className={styles.product}>
+          <div className={style.product}>
             {isLoaded && product
               ? product.map((item, i) => (
                   <Card
                     {...item}
-                    handleAddProduct={(obj) => handleAddProduct(obj)}
-                    handleInputCount={(obj) => handleInputCount(obj)}
-                    handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
+                    handleAddProduct={handleAddProduct}
+                    handleInputCount={handleInputCount}
+                    handleRemoveProduct={handleRemoveProduct}
                     key={`${item.id}${i}`}
-                    quantity={cart[item.restaurantId]?.items[item.id]?.quantity}
-                    restaurantId={restaurantId}
                   />
                 ))
               : Array(1)
                   .fill(0)
                   .map((_, index) => (
-                    <div className={styles.placeholder} key={index}>
+                    <div className={style.placeholder} key={index}>
                       <LoaderLeft />
                       <LoaderRight />
                     </div>

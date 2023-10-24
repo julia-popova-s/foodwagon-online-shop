@@ -20,3 +20,13 @@
     color: #9e9e9e;
   }
 }
+
+@media(max-width:650px) {
+  .orderStep__icon svg {
+    width: 55px;
+  }
+
+  .orderStep__icon {
+    margin-bottom: 21px;
+  }
+}

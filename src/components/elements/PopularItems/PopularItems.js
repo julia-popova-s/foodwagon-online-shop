@@ -5,26 +5,27 @@ import { useDispatch, useSelector } from 'react-redux'
 import Slider from 'react-slick'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
+import { isLoadedSelector, productListSelector } from '../../../store/reducers/productsPopular'
 // import { getRandomNumber } from '../../../utils/getRandomNumber'
 import { fetchProductsPopular } from '../../../store/reducers/productsPopular'
 import { ButtonSlider } from '../../ui/ButtonSlider'
 // import { Loader } from '../../ui/Loader'
 import { CardPopular } from './CardPopular'
 import { Loader } from './Loader'
-import styles from './popularItems.module.scss'
+import style from './popularItems.module.scss'
 
 const settings = {
   dots: false,
   infinite: true,
   nextArrow: (
     <ButtonSlider
-      classNames={cn(styles.popularItems__btn, styles.popularItems__btn_right)}
+      classNames={cn(style.popularItems__btn, style.popularItems__btn_right)}
       type={'right'}
     />
   ),
   prevArrow: (
     <ButtonSlider
-      classNames={cn(styles.popularItems__btn, styles.popularItems__btn_left)}
+      classNames={cn(style.popularItems__btn, style.popularItems__btn_left)}
       type={'left'}
     />
   ),
@@ -57,7 +58,7 @@ const settings = {
       },
     },
     {
-      breakpoint: 890,
+      breakpoint: 760,
       settings: {
         dots: false,
         infinite: true,
@@ -81,12 +82,13 @@ export function PopularItems() {
       fetchProductsPopular({
         filter: '&rating=5',
         limit,
+        page: 2,
       })
     )
   }, [limit])
 
-  const { isLoaded, products } = useSelector((state) => state.productsPopular)
-  const { cart } = useSelector((state) => state.cart)
+  const isLoaded = useSelector(isLoadedSelector)
+  const products = useSelector(productListSelector)
 
   const handleAddProduct = (product) => {
     dispatch(addProduct(product))
@@ -101,12 +103,12 @@ export function PopularItems() {
   }
 
   return (
-    <div className={styles.popularItemsBlock}>
-      <div className={styles.container}>
-        <div className={styles.popularItems}>
-          <h3 className={styles.popularItems__title}>Popular items</h3>
+    <div className={style.popularItemsBlock}>
+      <div className={style.container}>
+        <div className={style.popularItems}>
+          <h3 className={style.popularItems__title}>Popular items</h3>
 
-          <div className={styles.popularItems__list}>
+          <div className={style.popularItems__list}>
             <Slider {...settings}>
               {isLoaded
                 ? products.map((item, i) => {
@@ -114,11 +116,10 @@ export function PopularItems() {
                       <CardPopular
                         key={item.id}
                         {...item}
-                        classNames={styles.popularItems__card}
+                        classNames={style.popularItems__card}
                         handleAddProduct={(obj) => handleAddProduct(obj)}
                         handleInputCount={(obj) => handleInputCount(obj)}
                         handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
-                        quantity={cart[item.restaurantId]?.items[item.id]?.quantity}
                       />
                     )
                   })

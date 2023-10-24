@@ -1,19 +1,39 @@
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useRef, useState } from 'react'
+
+import { ButtonFind } from '../../ui/ButtonFind'
+import { TextInput } from '../../ui/TextInput'
 import { Delivery } from './Delivery'
-import styles from './findFood.module.scss'
-import { SearchPanel } from './SearchPanel'
+import style from './findFood.module.scss'
 
 export function FindFood() {
+  const searchRef = useRef(null)
+  const [searchValue, setSearchValue] = useState('')
+
+  const handleSearchValue = (text) => {
+    setSearchValue(text)
+  }
   return (
-    <div className={styles.findFoodWrapper}>
+    <div className={style.findFoodWrapper}>
       <div className="container">
-        <div className={styles.findFood}>
-          <h1 className={styles.findFood__title}>Are you starving?</h1>
-          <p className={styles.findFood__text}>
+        <div className={style.findFood}>
+          <h1 className={style.findFood__title}>Are you starving?</h1>
+          <p className={style.findFood__text}>
             Within a few clicks, find meals that are accessible near you
           </p>
-          <div className={styles.findFood__search}>
+          <div className={style.findFood__search}>
             <Delivery />
-            <SearchPanel />
+            <div className={style.searchPanel}>
+              <TextInput handleSearchValue={handleSearchValue} ref={searchRef}>
+                <FontAwesomeIcon
+                  className={style.searchPanel__inputIcon}
+                  icon={faLocationDot}
+                  size="xl"
+                />
+              </TextInput>
+              <ButtonFind classNames={style.search__btn} icon="search" label="Find Food" />
+            </div>
           </div>
         </div>
       </div>

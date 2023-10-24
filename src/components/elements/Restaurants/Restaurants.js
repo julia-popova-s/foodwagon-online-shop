@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ReactSVG } from 'react-svg'
 
+import { categorySelector, sortTypeSelector } from '../../../store/reducers/filters'
 import { setCategory, setSortBy } from '../../../store/reducers/filters'
 import { fetchRestaurants } from '../../../store/reducers/restaurants'
+import { isLoadedSelector, restaurantListSelector } from '../../../store/reducers/restaurants'
 import { Categories } from '../Categories'
 import { SortPopup } from '../SortPopup'
 import { RestaurantList } from './RestaurantList'
-import styles from './restaurants.module.scss'
-
+import style from './restaurants.module.scss'
 const categoryNames = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup', 'Burger']
 
 const sortItems = [
@@ -19,10 +20,14 @@ const sortItems = [
 ]
 
 export function Restaurants() {
-  const [limit, setLimit] = useState(10)
+  const [limit, setLimit] = useState(4)
   const dispatch = useDispatch()
 
-  const { category, sortType } = useSelector((state) => state.filters)
+  const category = useSelector(categorySelector)
+  const sortType = useSelector(sortTypeSelector)
+
+  const isLoaded = useSelector(isLoadedSelector)
+  const list = useSelector(restaurantListSelector)
 
   const handleSelectCategory = (index) => {
     dispatch(setCategory(index))
@@ -46,14 +51,12 @@ export function Restaurants() {
     )
   }, [sortType, category, dispatch, limit])
 
-  const { isLoaded, list } = useSelector((state) => state.restaurants)
-
   return (
-    <div className={styles.restaurants} id="featuredRestaurants">
+    <div className={style.restaurants} id="featuredRestaurants">
       <div className="container">
-        <div className={styles.restaurantList}>
-          <h4 className={styles.restaurantList__title}>Featured Restaurants</h4>
-          <div className={styles.restaurantList__filters}>
+        <div className={style.restaurantList}>
+          <h4 className={style.restaurantList__title}>Featured Restaurants</h4>
+          <div className={style.restaurantList__filters}>
             <Categories
               activeCategory={category}
               handleClickCategory={handleSelectCategory}
@@ -68,10 +71,10 @@ export function Restaurants() {
 
           <RestaurantList isLoading={isLoaded} list={list} />
 
-          <button className={styles.restaurantList__btn} onClick={handleLimit}>
+          <button className={style.restaurantList__btn} onClick={handleLimit}>
             View All
             <ReactSVG
-              className={styles.restaurantList__btnLeft}
+              className={style.restaurantList__btnLeft}
               src={`${process.env.PUBLIC_URL}/images/food/btn_left.svg`}
               wrapper="span"
             />

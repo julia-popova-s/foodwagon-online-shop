@@ -7,69 +7,25 @@
   align-items: center;
   width: 140px;
 
-  &__plus {}
-
   &__input {
-    position: relative;
-  }
-
-  &__inputCount,
-  &__inputCount::placeholder,
-  &__quantity {
     @include setFontSize(500, 20px, 100%);
-  }
-
-  &__inputCount {
-    position: absolute;
-    top: 0;
-    opacity: 1;
     width: 40px;
     height: 35px;
     text-align: center;
-    border: 3px solid $base-color;
+    border: 3px solid #f1722839;
     border-radius: 6px;
     padding: 5px 0;
     outline: none;
-    vertical-align: bottom;
+    transition: all 0.3s ease;
+    background-color: transparent;
 
-    &:focus {
-      border-color: $base-color;
-    }
-
+    &:focus,
     &:active {
+      transition: all 0.3s ease;
       border-color: $base-color;
     }
-
-    &::placeholder {
-      padding: 5px 0;
-      vertical-align: bottom;
-    }
   }
 
-  &__inputCount_hidden {
-    opacity: 0;
-  }
-
-  &__quantity {
-    width: 40px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding: 5px 0;
-    border: 3px solid #f1722839;
-    border-radius: 6px;
-    text-align: center;
-    cursor: pointer;
-    vertical-align: bottom;
-  }
-
-  &__minus {}
-
-  &__errorInput {
-    border: 3px solid $base-color;
-    border-radius: 6px;
-  }
 }
 
 .button {

@@ -1,94 +1,50 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { getBalloon } from '../../utils/getBalloon'
+import { fetchRestaurantsData } from '../utils/fetchRestaurantsData'
+import { getExtraReducers } from '../utils/getExtraReducers'
+// export const fetchRestaurants = createAsyncThunk(
+//   'products/fetchRestaurants',
+//   async function ({ category, limit, restaurantId, sortType }, { dispatch, rejectWithValue }) {
+//     dispatch(setLoaded(false))
+//     const idRequest = restaurantId ? `&id=${restaurantId}` : ''
+//     const sortRequest =
+//       sortType && sortType === 'rating'
+//         ? '&sortBy=weighted_rating_value&order=desc'
+//         : sortType === 'popular'
+//         ? '&sortBy=aggregated_rating_count&order=desc'
+//         : sortType === 'name'
+//         ? '&sortBy=name&order=asc'
+//         : sortType === 'time'
+//         ? '&sortBy=deliveryTime&order=asc'
+//         : ''
 
-export const fetchRestaurants = createAsyncThunk(
-  'products/fetchRestaurants',
-  async function ({ category, limit, restaurantId, sortType }, { dispatch, rejectWithValue }) {
-    dispatch(setLoaded(false))
-    const idRequest = restaurantId ? `&id=${restaurantId}` : ''
-    const sortRequest =
-      sortType && sortType === 'rating'
-        ? '&sortBy=weighted_rating_value&order=desc'
-        : sortType === 'popular'
-        ? '&sortBy=aggregated_rating_count&order=desc'
-        : sortType === 'name'
-        ? '&sortBy=name&order=asc'
-        : sortType === 'time'
-        ? '&sortBy=deliveryTime&order=asc'
-        : ''
+//     const categoryRequest = category && category !== 'All' ? `&cuisines=${category}` : ''
 
-    const categoryRequest = category && category !== 'All' ? `&cuisines=${category}` : ''
+//     try {
+//       const response = await fetch(
+//         `https://647c7cd1c0bae2880ad0c1a4.mockapi.io/foodwagon/restaurants?${categoryRequest}${
+//           limit ? `&page=1&limit=${limit}` : ''
+//         }${sortRequest}${idRequest}`
+//       )
+//       if (!response.ok) {
+//         throw new Error(`ServerError: ${response.status} ${response.statusText}`)
+//       }
+//       return await response.json()
+//     } catch (error) {
+//       return rejectWithValue(error.message)
+//     }
+//   }
+// )
 
-    try {
-      const response = await fetch(
-        `https://647c7cd1c0bae2880ad0c1a4.mockapi.io/foodwagon/restaurants?${categoryRequest}${
-          limit ? `&page=1&limit=${limit}` : ''
-        }${sortRequest}${idRequest}`
-      )
-      if (!response.ok) {
-        throw new Error(`ServerError: ${response.status} ${response.statusText}`)
-      }
-      return await response.json()
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
-  }
-)
+export const fetchRestaurants = createAsyncThunk('products/fetchRestaurants', fetchRestaurantsData)
 
 const restSlice = createSlice({
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchRestaurants.fulfilled, (state, action) => {
-        state.list = action.payload
-        state.status = 'resolve'
-        state.isLoaded = true
-        state.placemarks = state.list.map((item) => {
-          const {
-            address: { city, latitude, longitude, street_addr },
-            backgroundId,
-            id,
-            logo_photos,
-            name,
-            phone_number,
-          } = item
-          return {
-            // route: item,
-            geometry: {
-              coordinates: [latitude, longitude],
-              type: 'Point',
-            },
-            id,
-            properties: {
-              balloonContent: getBalloon(
-                id,
-                name,
-                logo_photos,
-                phone_number,
-                street_addr,
-                latitude,
-                longitude,
-                backgroundId
-              ),
-            },
-            type: 'Feature',
-          }
-        })
-      })
-      .addCase(fetchRestaurants.pending, (state) => {
-        state.status = 'loading'
-        state.error = null
-      })
-      .addCase(fetchRestaurants.rejected, (state, action) => {
-        state.status = 'rejected'
-        state.error = action.payload
-      })
-  },
+  extraReducers: (builder) => getExtraReducers(builder)(fetchRestaurants),
+
   initialState: {
     error: null,
     isLoaded: false,
     list: [],
-    placemarks: [],
     status: null,
   },
   name: 'restaurants',
@@ -99,5 +55,11 @@ const restSlice = createSlice({
     },
   },
 })
+
+export const restaurantListSelector = (state) => state.restaurants.list
+export const errorSelector = (state) => state.restaurants.error
+export const isLoadedSelector = (state) => state.restaurants.isLoaded
+export const statusSelector = (state) => state.restaurants.status
+
 export const { setLoaded } = restSlice.actions
 export default restSlice.reducer

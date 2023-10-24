@@ -1,33 +1,43 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { fetchProductsWithDiscount } from '../../../store/reducers/productsWithDiscount'
+import {
+  errorSelector,
+  fetchProductsWithDiscount,
+  productListSelector,
+  statusSelector,
+} from '../../../store/reducers/productsWithDiscount'
 import { Card } from './Card'
-import styles from './discountBox.module.scss'
 import { Loader } from './Loader'
+import style from './discountBox.module.scss'
+
 const restaurantId = '333f1471-d10f-4b1d-a654-d3c070cb3500'
 
 export function DiscountBox() {
   const dispatch = useDispatch()
-  const [limit, setLimit] = useState(4)
+  const products = useSelector(productListSelector)
+  const status = useSelector(statusSelector)
+  const error = useSelector(errorSelector)
+  console.log(error)
 
   useEffect(() => {
     dispatch(
       fetchProductsWithDiscount({
-        filter: `&sortBy=discount&order=desc&page=1&limit=${limit}`,
+        limit: 4,
+        order: 'desc',
         restaurantId,
+        // filter: `&sortBy=discount&order=desc`,
+        sortType: 'discount',
       })
     )
-  }, [limit, restaurantId])
-
-  const { isLoaded, products } = useSelector((state) => state.productsWithDiscount)
+  }, [restaurantId])
 
   return (
-    <div className={styles.discountBox}>
+    <div className={style.discountBox}>
       <div className="container">
-        <div className={styles.discountBlock}>
-          {isLoaded && products
+        <div className={style.discountBlock}>
+          {status === 'resolve' && products
             ? products.map((item, i) => {
                 return (
                   <Link

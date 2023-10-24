@@ -1,16 +1,16 @@
-import styles from './cardFood.module.scss'
+import style from './cardFood.module.scss'
 
 export function CardFood({ classNames, imageSrc, name, onClickCategory }) {
   return (
-    <div className={(classNames, styles.cardFoodBlock)} onClick={onClickCategory}>
-      <div className={styles.cardFood__up}>
+    <div className={(classNames, style.cardFoodBlock)} onClick={onClickCategory}>
+      <div className={style.cardFood__up}>
         <img
           alt={name}
-          className={styles.cardFood__image}
+          className={style.cardFood__image}
           src={`${process.env.PUBLIC_URL}${imageSrc}`}
         />
       </div>
-      <p className={styles.cardFood__label}>{name}</p>
+      <p className={style.cardFood__label}>{name}</p>
     </div>
   )
 }

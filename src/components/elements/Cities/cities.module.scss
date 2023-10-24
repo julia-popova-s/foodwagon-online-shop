@@ -6,3 +6,10 @@
   border-bottom: 2px solid #424242;
   padding-bottom: 167px;
 }
+
+@media(max-width:650px) {
+  .cities {
+    padding-bottom: 83px;
+    padding-top: 50px;
+  }
+}

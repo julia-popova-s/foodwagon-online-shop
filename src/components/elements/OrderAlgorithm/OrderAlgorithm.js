@@ -1,5 +1,5 @@
-import styles from './orderAlgorithm.module.scss'
 import { OrderStep } from './OrderStep'
+import style from './orderAlgorithm.module.scss'
 
 const algorithm = [
   {
@@ -26,11 +26,11 @@ const algorithm = [
 
 export function OrderAlgorithm() {
   return (
-    <div className={styles.orderAlgorithmBlock}>
+    <div className={style.orderAlgorithmBlock}>
       <div className="container">
-        <div className={styles.orderAlgorithm}>
-          <h2 className={styles.orderAlgorithm__title}>How does it work</h2>
-          <div className={styles.orderAlgorithm__list}>
+        <div className={style.orderAlgorithm}>
+          <h2 className={style.orderAlgorithm__title}>How does it work</h2>
+          <div className={style.orderAlgorithm__list}>
             {algorithm &&
               algorithm.map(({ id, label, ...others }, i) => {
                 return <OrderStep key={`${label}_${i}`} label={label} {...others} />

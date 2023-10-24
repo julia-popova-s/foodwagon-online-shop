@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-use'
 
-import styles from './loginForm.module.scss'
+import style from './loginForm.module.scss'
 
 export function LoginForm() {
   const { pathname } = useLocation()
@@ -11,8 +11,8 @@ export function LoginForm() {
   }, [pathname])
 
   return (
-    <div className={styles.loginForm}>
-      <div className="container">Login</div>
+    <div className={style.loginForm}>
+      <div className="container">The Page is under construction...</div>
     </div>
   )
 }

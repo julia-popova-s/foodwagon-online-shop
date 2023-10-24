@@ -1,17 +1,25 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useLocation } from 'react-use'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
-import { setCategory } from '../../../store/reducers/filters'
-import { fetchProducts } from '../../../store/reducers/products'
-import { setSortType } from '../../../store/reducers/sortingType'
-// import { Categories } from '../../elements/Categories'
+import {
+  categorySelector,
+  currentPageSelector,
+  setCurrentPage,
+} from '../../../store/reducers/filters'
+import {
+  fetchProducts,
+  isLoadedSelector,
+  productListSelector,
+} from '../../../store/reducers/products'
+import { orderSelector, setSortType, sortTypeSelector } from '../../../store/reducers/sortingType'
 import { CardPopular } from '../../elements/PopularItems/CardPopular'
 import { SortPopup } from '../../elements/SortPopup'
+import { Pagination } from '../../ui/Pagination/Pagination'
 import { Loader } from './Loader'
-import styles from './restaurantPage.module.scss'
+import style from './restaurantPage.module.scss'
 
 const sortItems = [
   { name: 'popularity ', order: 'desc', type: 'rating' },
@@ -29,8 +37,6 @@ const sortItems = [
   { name: 'alphabetically', order: 'asc', type: 'title' },
 ]
 
-const categoryNames = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup', 'Burger', 'Dessert']
-
 export function RestaurantPage() {
   const { pathname } = useLocation()
 
@@ -41,14 +47,17 @@ export function RestaurantPage() {
   const { restaurantId } = useParams()
 
   const dispatch = useDispatch()
-  const [limit, setLimit] = useState(10)
-  const [page, setPage] = useState(1)
 
-  const { category } = useSelector((state) => state.filters)
-  const { order, sortType } = useSelector((state) => state.sortingType)
+  const category = useSelector(categorySelector)
+  const order = useSelector(orderSelector)
+  const sortType = useSelector(sortTypeSelector)
 
-  const handleSelectCategory = (index) => {
-    dispatch(setCategory(index))
+  const currentPage = useSelector(currentPageSelector)
+  const isLoaded = useSelector(isLoadedSelector)
+  const products = useSelector(productListSelector)
+
+  const handleChangePage = (number) => {
+    dispatch(setCurrentPage(number))
   }
 
   const handleSelectSortType = (type, order) => {
@@ -58,22 +67,19 @@ export function RestaurantPage() {
   useEffect(() => {
     dispatch(
       fetchProducts({
-        limit,
+        currentPage,
+        limit: 4,
         order,
-        // category: categoryNames[category],
         restaurantId,
         sortType,
       })
     )
-  }, [sortType, category, limit, restaurantId, dispatch, order])
-
-  const { isLoaded, products } = useSelector((state) => state.products)
+    window.scrollTo(0, 0)
+  }, [sortType, category, restaurantId, order, currentPage])
 
   const handleAddProduct = (obj) => {
     dispatch(addProduct(obj))
   }
-
-  const { cart } = useSelector((state) => state.cart)
 
   const handleRemoveProduct = (product) => {
     dispatch(deleteOneProduct(product))
@@ -84,40 +90,34 @@ export function RestaurantPage() {
   }
 
   return (
-    <div className={styles.restaurant}>
+    <div className={style.restaurant}>
       <div className="container">
-        {/* <p className="restaurant__name">{'name'}</p> */}
-        <div className={styles.filters}>
-          {/* <Categories
-            items={categoryNames}
-            activeCategory={category}
-            handleClickCategory={handleSelectCategory}
-          /> */}
+        <div className={style.filters}>
           <SortPopup
             activeSortType={sortType}
-            classNames={styles.filters__sortBy}
+            classNames={style.filters__sortBy}
             handleClickSortType={handleSelectSortType}
             items={sortItems}
             orderType={order}
           />
         </div>
-        <div className={styles.menuList}>
+        <div className={style.menuList}>
           {isLoaded && products
             ? products.map((item, i) => (
                 <CardPopular
-                  classNames={styles.menuList__item}
+                  classNames={style.menuList__item}
                   key={`${item.id}${i}`}
                   {...item}
-                  handleAddProduct={(obj) => handleAddProduct(obj)}
-                  handleInputCount={(obj) => handleInputCount(obj)}
-                  handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
-                  quantity={cart[item.restaurantId]?.items[item.id]?.quantity}
+                  handleAddProduct={handleAddProduct}
+                  handleInputCount={handleInputCount}
+                  handleRemoveProduct={handleRemoveProduct}
                 />
               ))
             : Array(4)
                 .fill(0)
                 .map((_, index) => <Loader key={index} />)}
         </div>
+        <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />
       </div>
     </div>
   )

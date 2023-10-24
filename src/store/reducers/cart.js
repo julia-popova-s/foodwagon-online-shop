@@ -24,7 +24,8 @@ const cartSlice = createSlice({
 
           //увеличить сумму данной позиции
           state.cart[restaurantId].items[id].amount +=
-            state.cart[restaurantId].items[id].price * (1 - state.cart[restaurantId].items[id].discount / 100)
+            state.cart[restaurantId].items[id].price *
+            (1 - state.cart[restaurantId].items[id].discount / 100)
         } else {
           //если нет данной позиции, то поместить в корзину по id ресторана
           state.cart[restaurantId].items[id] = {
@@ -84,7 +85,8 @@ const cartSlice = createSlice({
     deleteOneProduct(state, { payload: { id, restaurantId } }) {
       //зафиксировать цену удаляемого товара
       const currentPrice =
-        state.cart[restaurantId].items[id].price * (1 - state.cart[restaurantId].items[id].discount / 100)
+        state.cart[restaurantId].items[id].price *
+        (1 - state.cart[restaurantId].items[id].discount / 100)
 
       //удалить товар, если количество меньше 1
       if (state.cart[restaurantId].items[id].quantity < 2) {
@@ -100,7 +102,8 @@ const cartSlice = createSlice({
         }
       } else {
         //обновить сумму данной позиции
-        state.cart[restaurantId].items[id].amount = state.cart[restaurantId].items[id].amount - currentPrice
+        state.cart[restaurantId].items[id].amount =
+          state.cart[restaurantId].items[id].amount - currentPrice
 
         //обновить количество данной позиции
         state.cart[restaurantId].items[id].quantity -= 1
@@ -170,6 +173,10 @@ const cartSlice = createSlice({
     },
   },
 })
+
+export const addedGoodsSelector = (state) => state.cart.addedGoods
+export const cartSelector = (state) => state.cart.cart
+export const totalQuantitySelector = (state) => state.cart.totalQuantity
 
 export const { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } =
   cartSlice.actions

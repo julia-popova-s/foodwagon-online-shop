@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useEffect, useRef, useState } from 'react'
 import React from 'react'
 
-import styles from './sortPopup.module.scss'
+import style from './sortPopup.module.scss'
 // let render = 0
 
 export function SortPopup({ activeSortType, classNames, handleClickSortType, items, orderType }) {
@@ -17,38 +17,39 @@ export function SortPopup({ activeSortType, classNames, handleClickSortType, ite
     setVisiblePopup(!visiblePopup)
   }
 
-  const handleOutsideClick = (e) => {
-    if (e.target.parentNode !== sortRef.current) {
-      setVisiblePopup(false)
-    }
-  }
   const handleSelectFilter = (type, order) => {
     handleClickSortType(type, order)
     // activeLabel = items[index].name
   }
 
   useEffect(() => {
-    document.body.addEventListener('click', (e) => handleOutsideClick(e))
+    const handleOutsideClick = (e) => {
+      if (!sortRef.current?.contains(e.target)) {
+        setVisiblePopup(false)
+      }
+    }
+    document.body.addEventListener('click', handleOutsideClick)
+
+    return () => document.body.removeEventListener('click', handleOutsideClick)
   }, [])
 
   return (
-    <div className={cn(styles.sort, classNames)}>
-      <div className={styles.sort__title} ref={sortRef}>
+    <div className={cn(style.sort, classNames)}>
+      <div className={style.sort__title} ref={sortRef}>
         sort by
-        {/* Сортировать по: */}
-        <span className={styles.sort__link} onClick={handleVisiblePopup}>
+        <span className={style.sort__link} onClick={handleVisiblePopup}>
           {activeLabel}
         </span>
       </div>
       {visiblePopup && (
-        <div className={styles.sort__popup}>
-          <ul className={styles.sort__list}>
+        <div className={style.sort__popup}>
+          <ul className={style.sort__list}>
             {items &&
               items.map(({ name, order, type }, i) => {
                 return (
                   <li
-                    className={cn(styles.sort__item, {
-                      [styles.sort__item_active]: type === activeSortType && order === orderType,
+                    className={cn(style.sort__item, {
+                      [style.sort__item_active]: type === activeSortType && order === orderType,
                     })}
                     key={`${type}_${i}`}
                     onClick={() => handleSelectFilter(type, order)}
