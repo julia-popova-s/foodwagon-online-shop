@@ -1,0 +1,29 @@
+@import "../../App/styles/variables";
+
+.logo {
+  display: flex;
+  max-width: 100%;
+
+  &__image {
+    margin-right: 11.5px;
+  }
+
+  &__image svg {
+    vertical-align: top;
+  }
+
+  &__name {
+    @include setFontSize(700, 31.1102px, 120%);
+    letter-spacing: -0.025em;
+    color: $base-color;
+  }
+
+  &__name_color {
+    letter-spacing: -0.02em;
+    color: $primary-color;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

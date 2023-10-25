@@ -1,0 +1,50 @@
+@import "../../App/styles/variables";
+
+.buttons {
+  @include setFontSize(400, 22px, 100%);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  width: 140px;
+
+  &__input {
+    @include setFontSize(500, 20px, 100%);
+    width: 40px;
+    height: 35px;
+    text-align: center;
+    border: 3px solid #f1722839;
+    border-radius: 6px;
+    padding: 5px 0;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: transparent;
+
+    &:focus,
+    &:active {
+      transition: all 0.3s ease;
+      border-color: $base-color;
+    }
+  }
+
+}
+
+.button {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: $base-color;
+  color: $white-color;
+  border: 2px solid transparent;
+  transition: color 0.5s ease, background-color 0.5s ease;
+
+  &:hover {
+    border: 2px solid $base-color;
+    color: $base-color;
+    background-color: $white-color;
+    transition: color 0.5s ease, background-color 0.5s ease;
+  }
+}
+
+.disabledBtn {
+  opacity: 0.5;
+}

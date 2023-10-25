@@ -1,0 +1,52 @@
+@import "../../App/styles/variables";
+
+.buttons {
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  row-gap: 10px;
+  margin-top: auto;
+
+  &__link {}
+
+  &__counter {}
+
+  &__btnToCart {
+    background: $base-color;
+    mix-blend-mode: normal;
+
+    width: 120px;
+    height: 60px;
+    margin-top: auto;
+    margin-right: 15px;
+    border: none;
+    transition: all 0.5s ease;
+
+    &:hover {
+      // color: $base-color;
+      // background: $white-color;
+      background: $base-color;
+      transition: all 0.5s ease;
+      box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
+        0px 20px 40px rgba(250, 99, 35, 0.24);
+    }
+
+    &_color {
+      background: $btn-active;
+      mix-blend-mode: normal;
+
+      color: $white-color;
+      border: none;
+      transition: all 0.5s ease;
+
+      &:hover {
+        // color: $base-color;
+        // background: $white-color;
+        transition: all 0.5s ease;
+        box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
+          0px 20px 40px rgba(250, 99, 35, 0.24);
+      }
+    }
+  }
+}

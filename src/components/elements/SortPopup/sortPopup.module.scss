@@ -1,0 +1,62 @@
+@import "../../App/styles/variables";
+
+.sort {
+  max-width: 375px;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 120%;
+  color: #434343;
+  position: relative;
+  margin-bottom: 15px;
+
+
+  &__title {
+    padding: 10px;
+  }
+
+  &__list,
+  &__link {
+    @include setFontSize(400, 22px, 100%);
+  }
+
+  &__link {
+    color: $base-color;
+    border-bottom: 1px dashed $base-color;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  &__popup {
+    position: absolute;
+    background-color: $white-color;
+    border-radius: 10px;
+    top: 50px px;
+    right: 0px;
+    z-index: 5;
+    box-shadow: rgb(241, 114, 40, 0.73) 2px 6px 8px;
+  }
+
+  // &__list {}
+
+  &__item {
+    padding: 15px 30px;
+    transition: color 500ms ease;
+    background-color: transparent;
+    transition: all 300ms ease;
+    border-bottom: 1px solid rgb(241, 114, 40, 0.08);
+
+    &:hover {
+      color: $base-color;
+      transition: all 300ms ease;
+      background-color: rgb(241, 114, 40, 0.05);
+      cursor: pointer;
+    }
+
+    &_active {
+      color: $base-color;
+      transition: all 300ms ease;
+      background-color: rgb(241, 114, 40, 0.05);
+      font-weight: 700;
+    }
+  }
+}
