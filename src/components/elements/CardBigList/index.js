@@ -1,1 +1,0 @@
-export { CardBigList } from './CardBigList'

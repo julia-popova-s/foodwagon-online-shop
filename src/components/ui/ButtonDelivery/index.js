@@ -1,1 +1,0 @@
-export { ButtonDelivery } from './ButtonDelivery'
