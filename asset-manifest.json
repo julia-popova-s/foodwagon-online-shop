@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/foodwagon_project/static/css/main.c93d50d5.css",
+    "main.js": "/foodwagon_project/static/js/main.4827f567.js",
+    "static/media/back.png": "/foodwagon_project/static/media/back.9d8cc9f420bbb1a169e4.png",
+    "static/media/background.png": "/foodwagon_project/static/media/background.6465b0787fc37e83f3dd.png",
+    "static/media/slick.svg": "/foodwagon_project/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/foodwagon_project/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/foodwagon_project/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/foodwagon_project/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/foodwagon_project/index.html",
+    "main.c93d50d5.css.map": "/foodwagon_project/static/css/main.c93d50d5.css.map",
+    "main.4827f567.js.map": "/foodwagon_project/static/js/main.4827f567.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c93d50d5.css",
+    "static/js/main.4827f567.js"
+  ]
+}
