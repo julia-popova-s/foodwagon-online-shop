@@ -46,7 +46,7 @@ export function CardPopular(props) {
     <div className={cn(style.card, classNames)}>
       <div className={style.card__up}>
         <Link className={style.card__upLink} to={`/restaurant/${restaurantId}/product/${id}`}>
-          <img alt="food" className={style.card__image} src={`${process.env.PUBLIC_URL}${image}`} />
+          <img alt="food" className={style.card__image} src={image} />
           {discount > 0 && <Discount discount={discount} view={'smallLabel'} />}
         </Link>
       </div>
