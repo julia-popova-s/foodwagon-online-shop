@@ -7,7 +7,7 @@ export function Card({ discount, image, restaurantName }) {
         <img
           alt={restaurantName}
           className={style.card__image}
-          src={`${process.env.PUBLIC_URL}${image}`}
+          src={image}
         />
         {discount && discount ? (
           <div className={style.card__discount}>
