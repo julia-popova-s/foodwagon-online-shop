@@ -5,12 +5,12 @@ import { getPartOfString } from '../../../utils/getPartOfString'
 import style from './cardFeatured.module.scss'
 let theme = 'close'
 
-const getWeekDay = () => {
-  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-  var date = new Date()
-  var number = date.getDay()
-  return days[number]
-}
+// const getWeekDay = () => {
+//   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+//   var date = new Date()
+//   var number = date.getDay()
+//   return days[number]
+// }
 
 export function CardFeatured(props) {
   const {
@@ -50,17 +50,13 @@ export function CardFeatured(props) {
   return (
     <div className={style.card} theme={theme}>
       <div className={style.card__up}>
-        <img
-          alt={name}
-          className={style.card__image}
-          src={`${process.env.PUBLIC_URL}${imageSrc}`}
-        />
+        <img alt={name} className={style.card__image} src={process.env.PUBLIC_URL + imageSrc} />
         <div className={style.card__discount}>
           <ReactSVG src={`${process.env.PUBLIC_URL}/images/food/label.svg`} wrapper="span" />
           time: {deliveryTime} min
         </div>
         <div className={style.card__fast}>
-          <ReactSVG src={`${process.env.PUBLIC_URL}/images/food/watch.svg`} wrapper="span" />
+          <ReactSVG src={process.env.PUBLIC_URL + '/images/food/watch.svg'} wrapper="span" />
           {deliveryTime <= 100 ? 'Fast' : 'Not fast'}
         </div>
       </div>
@@ -70,7 +66,7 @@ export function CardFeatured(props) {
           <img
             alt={name}
             className={style.location__icon}
-            src={`${process.env.PUBLIC_URL}${logo_photos}`}
+            src={process.env.PUBLIC_URL + logo_photos}
           />
         </div>
         <div className={style.location__text}>
@@ -78,7 +74,7 @@ export function CardFeatured(props) {
           <span className={style.location__rating}>
             <ReactSVG
               className={style.location__icon}
-              src={`${process.env.PUBLIC_URL}/images/food/star.svg`}
+              src={process.env.PUBLIC_URL + '/images/food/star.svg'}
               wrapper="span"
             />
             {weighted_rating_value.toFixed(2)}

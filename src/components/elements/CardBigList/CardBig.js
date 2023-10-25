@@ -22,7 +22,7 @@ export function CardBig({ description, flippedСard, food, imageSrc, link, title
             [flippedСardStyle.imgBorder]: flippedСard,
           })}
           alt={`${title}${food}`}
-          src={imageSrc}
+          src={process.env.PUBLIC_URL + imageSrc}
         />
       </div>
       <div

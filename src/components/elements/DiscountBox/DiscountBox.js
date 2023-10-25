@@ -19,7 +19,6 @@ export function DiscountBox() {
   const products = useSelector(productListSelector)
   const status = useSelector(statusSelector)
   const error = useSelector(errorSelector)
-  console.log(error)
 
   useEffect(() => {
     dispatch(

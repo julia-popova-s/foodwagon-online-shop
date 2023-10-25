@@ -1,14 +1,14 @@
 {
-  "name": "foodwagon",
-  "short_name": "foodwagon",
+  "name": "foodwagon_project",
+  "short_name": "foodwagon_project",
   "icons": [
     {
-      "src": "/foodwagon/android-chrome-192x192.png",
+      "src": "/foodwagon_project/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/foodwagon/android-chrome-512x512.png",
+      "src": "/foodwagon_project/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

@@ -75,7 +75,7 @@ export function Restaurants() {
             View All
             <ReactSVG
               className={style.restaurantList__btnLeft}
-              src={`${process.env.PUBLIC_URL}/images/food/btn_left.svg`}
+              src={process.env.PUBLIC_URL + '/images/food/btn_left.svg'}
               wrapper="span"
             />
           </button>

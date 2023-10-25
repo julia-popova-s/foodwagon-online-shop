@@ -13,10 +13,10 @@ import { LogoType } from '../../ui/LogoType'
 import style from './header.module.scss'
 
 export function Header({ geolocation }) {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const goBack = () => navigate(-1)
   const { pathname } = useLocation()
-  console.log(pathname)
+
   return (
     <header className={style.headerBlock}>
       <div className="container">
@@ -48,7 +48,7 @@ export function Header({ geolocation }) {
                 > */}
               <ReactSVG
                 className={style.search__icon}
-                src={`${process.env.PUBLIC_URL}/images/header/search.svg`}
+                src={process.env.PUBLIC_URL + '/images/header/search.svg'}
                 wrapper="span"
               />
               <span className={style.search__name}>Search Food</span>

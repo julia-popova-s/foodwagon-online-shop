@@ -8,7 +8,7 @@ export function LogoType({ onClick }) {
     <div className={style.logo} onClick={onClick}>
       <ReactSVG
         className={style.logo__image}
-        src={`${process.env.PUBLIC_URL}/images/header/logo.svg`}
+        src={process.env.PUBLIC_URL + '/images/header/logo.svg'}
         wrapper="span"
       />
 

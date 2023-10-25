@@ -190,7 +190,7 @@ export function SearchFood() {
             View All
             <ReactSVG
               className={style.searchFood__btnViewArrow}
-              src={`${process.env.PUBLIC_URL}/images/search-food/left.svg`}
+              src={process.env.PUBLIC_URL + '/images/search-food/left.svg'}
               wrapper="span"
             />
           </button>

@@ -7,7 +7,7 @@ export function OrderStep({ description, imageSrc, label }) {
     <div className={style.orderStep}>
       <ReactSVG
         className={style.orderStep__icon}
-        src={imageSrc}
+        src={process.env.PUBLIC_URL + imageSrc}
         wrapper="div"
       />
       <p className={style.orderStep__label}>{label}</p>

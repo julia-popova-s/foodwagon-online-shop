@@ -30,7 +30,7 @@ export function Card({
     <div className={style.card}>
       {/* <Link to={`restaurant/${restaurantId}/product/${id}`}> */}
       <div className={style.card__up}>
-        <img alt="food" className={style.card__image} src={image} />
+        <img alt="food" className={style.card__image} src={process.env.PUBLIC_URL + image} />
         {discount && discount ? (
           <div className={style.card__discount}>
             {discount}
@@ -44,7 +44,7 @@ export function Card({
       <p className={style.card__name}>{title}</p>
 
       <p className={style.card__rest}>
-        <ReactSVG src="/images/popular-items/map.svg" wrapper="span" />
+        <ReactSVG src={process.env.PUBLIC_URL + '/images/popular-items/map.svg'} wrapper="span" />
         <span>{restaurantName}</span>
       </p>
       <p className={style.card__price}>&#36; {price}</p>

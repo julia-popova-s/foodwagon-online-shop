@@ -5,7 +5,7 @@ import { useLocation } from 'react-use'
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
 import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/reducers/product'
-import { fetchRestaurants } from '../../../store/reducers/restaurants'
+// import { fetchRestaurants } from '../../../store/reducers/restaurants'
 import { RestaurantPage } from '../RestaurantPage/RestaurantPage'
 import { Card } from './Card'
 import { LoaderLeft } from './LoaderLeft'

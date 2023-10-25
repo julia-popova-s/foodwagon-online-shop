@@ -57,7 +57,7 @@ export function Card({
         <p className={style.info__name}>
           <ReactSVG
             className={style.info__nameIcon}
-            src={`${process.env.PUBLIC_URL}/images/popular-items/map.svg`}
+            src={process.env.PUBLIC_URL + '/images/popular-items/map.svg'}
             wrapper="span"
           />
           <Link className={style.info__nameLink}>{restaurantName}</Link>

@@ -63,11 +63,7 @@ export function CardProduct({
     <div className={style.product}>
       <div className={style.product__image}>
         <Link className={style.product__imageLink} to={`/restaurant/${restaurantId}/product/${id}`}>
-          <img
-            alt={`${image}`}
-            className={style.product__img}
-            src={`${process.env.PUBLIC_URL}${image}`}
-          />
+          <img alt={title} className={style.product__img} src={process.env.PUBLIC_URL + image} />
           {discount > 0 && (
             <Discount
               classNames={style.product__discount}

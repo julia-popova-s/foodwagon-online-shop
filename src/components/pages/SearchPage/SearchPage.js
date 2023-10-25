@@ -15,10 +15,10 @@ import { Pagination } from '../../ui/Pagination/Pagination'
 import { Loader } from './Loader'
 import style from './searchPage.module.scss'
 
-let render = 0
+// let render = 0
 
 export function SearchPage() {
-  console.log(render++)
+  // console.log(render++)
   const error = useSelector(errorSelector)
   const currentPage = useSelector(currentPageSelector)
   const products = useSelector(productListSelector)
@@ -57,7 +57,7 @@ export function SearchPage() {
             products.map((item, i) => (
               <CardPopular
                 classNames={style.menuList__item}
-                key={`${item.id}${i}`}
+                key={item.id}
                 {...item}
                 handleAddProduct={handleAddProduct}
                 handleInputCount={handleInputCount}

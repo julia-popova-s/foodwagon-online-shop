@@ -29,7 +29,7 @@ export function InstallApp() {
                     >
                       <ReactSVG
                         className={style.upBlock__img}
-                        src={'/images/install-app/discount.svg'}
+                        src={process.env.PUBLIC_URL + '/images/install-app/discount.svg'}
                       />
                       <div className={style.upBlock__text}>
                         <p>{oneTitle}</p>
@@ -67,7 +67,7 @@ export function InstallApp() {
               <img
                 alt="iphone"
                 className={style.downBlock__imgBack}
-                src={'/images/install-app/iphone.png'}
+                src={process.env.PUBLIC_URL + '/images/install-app/iphone.png'}
               />
             </div>
           </div>
