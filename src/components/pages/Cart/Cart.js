@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import cn from 'classnames'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import { useDisableBodyScroll } from '../../../hooks/useDisableBodyscroll'
 import {
@@ -22,6 +22,7 @@ import {
 import { ButtonOrder } from '../../ui/ButtonOrder/ButtonOrder'
 import { Popup } from '../../ui/Popup/Popup'
 import { CardProduct } from './CardProduct'
+import { Modal } from './Modal'
 import style from './cart.module.scss'
 let orderNumber = 1
 
@@ -29,10 +30,14 @@ export function Cart() {
   const { pathname } = useLocation()
 
   const [name, setName] = useState('')
+  const [idOrder, setIdOrder] = useState('')
+
   const [id, setId] = useState('')
   const [visiblePopup, setVisiblePopup] = useState(false)
+  const [visibleModal, setVisibleModal] = useState(false)
 
   const popupRef = useRef(null)
+  const modalRef = useRef(null)
 
   const addedGoods = useSelector(addedGoodsSelector)
   const cart = useSelector(cartSelector)
@@ -41,22 +46,11 @@ export function Cart() {
   const dispatch = useDispatch()
 
   useDisableBodyScroll(visiblePopup)
+  useDisableBodyScroll(visibleModal)
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
-
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (popupRef.current?.contains(e.target)) {
-        setVisiblePopup(false)
-      }
-      return
-    }
-    document.body.addEventListener('click', handleOutsideClick)
-
-    return () => document.body.removeEventListener('click', handleOutsideClick)
-  }, [])
 
   const handleClearCart = ({ restaurantId, restaurantName }) => {
     setName(restaurantName)
@@ -84,18 +78,56 @@ export function Cart() {
   }
 
   const handlePlaceAnOrder = (id, name) => {
-    console.log(`${name}. Order № ${orderNumber++}:`, cart[id])
-    dispatch(clearCart({ restaurantId: id }))
+    setName(name)
+    setId(id)
+    console.log(id)
+    orderNumber++
+    console.log(`${name}. Order № ${orderNumber}:`, cart[id])
+    setVisibleModal(true)
+    // dispatch(clearCart({ restaurantId: id }))
   }
 
   const handleClosePopup = () => {
     setVisiblePopup(false)
   }
 
+  const handleCloseModal = (state) => {
+    setVisibleModal(state)
+  }
+
   const handleClearOrder = () => {
     dispatch(clearCart({ restaurantId: id }))
     setVisiblePopup(false)
   }
+
+  const handleClear = () => {
+    dispatch(clearCart({ restaurantId: id }))
+    setVisibleModal(false)
+  }
+
+  // useEffect(() => {
+  //   const handleOutsideClick = (e) => {
+  //     if (modalRef.current?.contains(e.target)) {
+  //       setVisibleModal(false)
+  //     }
+  //     return
+  //   }
+  //   document.body.addEventListener('click', handleOutsideClick)
+
+  //   return () => document.body.removeEventListener('click', handleOutsideClick)
+  // }, [])
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (popupRef.current?.contains(e.target)) {
+        setVisiblePopup(false)
+      }
+      return
+    }
+    document.body.addEventListener('click', handleOutsideClick)
+
+    return () => document.body.removeEventListener('click', handleOutsideClick)
+  }, [])
 
   if (!totalQuantity) {
     return (
@@ -192,6 +224,14 @@ export function Cart() {
         </div>
       </div>
 
+      <Modal
+        // handleClearOrder={handleClear}
+        handleCloseModal={handleClear}
+        idOrder={orderNumber}
+        name={name}
+        ref={modalRef}
+        show={visibleModal}
+      />
       <Popup
         handleClearOrder={handleClearOrder}
         handleClosePopup={handleClosePopup}

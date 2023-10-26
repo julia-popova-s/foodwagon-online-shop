@@ -1,4 +1,3 @@
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import cn from 'classnames'
@@ -93,18 +92,19 @@ export function CardProduct({
                 {restaurantName}
               </Link>
             </p>
-            <div
-              className={cn(style.info__price, {
-                [style.info__price_theme]: discount,
-              })}
-            >
-              &#36;{price}
-            </div>
+
             {discount ? (
               <div className={style.info__price}>
                 &#36;{(price - (price * discount) / 100).toFixed(2)}
               </div>
             ) : null}
+            <div
+              className={cn(style.info__price, {
+                [style.info__price_theme]: discount,
+              })}
+            >
+              &#36;{price.toFixed(2)}
+            </div>
           </div>
 
           <div className={cn(style.product__counter, style.counter)}>
@@ -137,7 +137,7 @@ export function CardProduct({
         className={cn(style.product__btnDelete, style.btnDelete)}
         onClick={handleProductExclusion}
       >
-        <FontAwesomeIcon className={style.btnDelete__icon} icon={faTrashCan} size="xl" />
+        {'x'}
       </button>
     </div>
   )
