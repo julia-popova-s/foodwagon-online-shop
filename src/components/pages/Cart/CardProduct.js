@@ -116,6 +116,12 @@ export function CardProduct({
               quantity={quantity}
             />
             <div className={style.counter__price}>&#36; {amount && amount.toFixed(2)}</div>{' '}
+            <button
+              className={cn(style.product__btnDelete, style.btnDelete)}
+              onClick={handleProductExclusion}
+            >
+              {'x'}
+            </button>
           </div>
         </>
       ) : (
@@ -133,12 +139,12 @@ export function CardProduct({
           </div>
         </>
       )}
-      <button
+      {/* <button
         className={cn(style.product__btnDelete, style.btnDelete)}
         onClick={handleProductExclusion}
       >
         {'x'}
-      </button>
+      </button> */}
     </div>
   )
 }

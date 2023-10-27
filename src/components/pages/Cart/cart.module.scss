@@ -70,7 +70,7 @@
   }
 
   &__clearBtn {
-    @include setFontSize(400, 18px, 120%);
+    @include setFontSize(400, 22px, 120%);
     color: #9e9e9e;
     background-color: transparent;
     margin-left: auto;
@@ -120,6 +120,7 @@
 
 .cart__restaurantLink {
   color: $base-color;
+  font-size: 28px;
 }
 
 // .cart__order {

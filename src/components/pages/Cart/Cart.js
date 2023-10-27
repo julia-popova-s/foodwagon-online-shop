@@ -91,16 +91,12 @@ export function Cart() {
     setVisiblePopup(false)
   }
 
-  const handleCloseModal = (state) => {
-    setVisibleModal(state)
-  }
-
   const handleClearOrder = () => {
     dispatch(clearCart({ restaurantId: id }))
     setVisiblePopup(false)
   }
 
-  const handleClear = () => {
+  const handleCloseModal = () => {
     dispatch(clearCart({ restaurantId: id }))
     setVisibleModal(false)
   }
@@ -225,8 +221,7 @@ export function Cart() {
       </div>
 
       <Modal
-        // handleClearOrder={handleClear}
-        handleCloseModal={handleClear}
+        handleCloseModal={handleCloseModal}
         idOrder={orderNumber}
         name={name}
         ref={modalRef}
