@@ -3,9 +3,8 @@
 .findFoodWrapper {
   background-image: url('../../../../public/images/find-food/background.png');
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
+  background-position: 50% 100%;
+  
   padding: 210px 0 132px 0;
 }
 
@@ -23,7 +22,7 @@
   }
 
   &__search {
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
   }
 
   &__text {
