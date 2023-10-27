@@ -89,6 +89,10 @@ export function RestaurantPage() {
     dispatch(setProductCount(obj))
   }
 
+  const skeleton = Array(4)
+    .fill(0)
+    .map((_, index) => <Loader key={index} />)
+
   return (
     <div className={style.restaurant}>
       <div className="container">
@@ -103,19 +107,17 @@ export function RestaurantPage() {
         </div>
         <div className={style.menuList}>
           {isLoaded && products
-            ? products.map((item, i) => (
+            ? products.map((item) => (
                 <CardPopular
                   classNames={style.menuList__item}
-                  key={`${item.id}${i}`}
+                  key={item.id}
                   {...item}
                   handleAddProduct={handleAddProduct}
                   handleInputCount={handleInputCount}
                   handleRemoveProduct={handleRemoveProduct}
                 />
               ))
-            : Array(4)
-                .fill(0)
-                .map((_, index) => <Loader key={index} />)}
+            : skeleton}
         </div>
         <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />
       </div>
