@@ -13,7 +13,11 @@ export function LogoType({ onClick }) {
       />
 
       <div className={style.logo__name}>food</div>
-      <div className={cn(style.logo__name, style.logo__name_color)}>wagon</div>
+      <div className={cn(style.logo__name, style.logo__name_color)}>
+        <span className={style.logo__nameWa}>wa</span>
+        <span className={style.logo__nameG}>G</span>
+        <span className={style.logo__nameOn}>on</span>
+      </div>
     </div>
   )
 }

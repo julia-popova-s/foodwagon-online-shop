@@ -1,38 +1,120 @@
-# React Project
+![Preview](/public/preview.jpg)
 
-## Available Scripts
+# FoodWagon Project
 
-In the project directory, you can run:
+## Подготовка
 
-### `npm start`
+Перед началом работы убедитесь, что на вашем компьютере установлены Node.js и npm.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Клонирование репозитория
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Склонируйте репозиторий проекта на свой компьютер с помощью следующей команды:
 
-### `npm test`
+```bash
+git clone https://github.com/julia-popova-s/foodwagon_project.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Для более подробной информации по работе с Git через консоль, обратитесь к статье [Работа с git через консоль](https://htmlacademy.ru/blog/git/git-console).
 
-### `npm run build`
+2. Перейдите в папку проекта
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+cd foodwagon_project
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Установка зависимостей
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3.Установите необходимые зависимости проекта с помощью следующей команды:
 
-### `npm run eject`
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Запуск проект
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4.  Запустите проект в режиме разработки
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm run dev
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Доступные скрипты
+
+- `dev`: Запускает проект в режиме разработки с помощью Webpack.
+
+- `predeploy`: Собирает проект для production-режима.
+
+- `lint`: Выполняет проверку и исправление ошибок кода проекта с помощью ESLint.
+
+## Настройка ESLint и Prettier
+
+Для автоматической проверки и форматирования кода проекта используются конфигурации ESLint и Prettier. Для настройки автоматического применения исправлений при сохранении файлов в вашей среде разработки (IDE), следуйте указаниям ниже.
+
+## Visual Studio Code (VSCode):
+
+### ESLint:
+
+1. В файле настроек VSCode (File > Preferences > Settings) добавьте следующую строку:
+
+```json
+"editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+}
+```
+
+Теперь при сохранении файлов в VSCode, ESLint будет автоматически применять исправления.
+
+### Prettier:
+
+1. В файле настроек VSCode (File > Preferences > Settings) добавьте следующие строки:
+
+```json
+"[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+},
+"[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+},
+"[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+}
+```
+
+Теперь при сохранении файлов в VSCode, Prettier будет автоматически форматировать их в соответствии с настройками.
+
+## WebStorm:
+
+### ESLint:
+
+В настройках WebStorm перейдите в раздел Languages & Frameworks > JavaScript > Code Quality Tools > ESLint и отметьте опцию "Auto-fix on Save". Это позволит ESLint автоматически применять исправления при сохранении файлов в WebStorm.
+
+### Prettier:
+
+В настройках WebStorm перейдите в раздел Languages & Frameworks > JavaScript > Prettier и отметьте опцию "Run on save for files".
+Это настроит Prettier на автоматическое форматирование файлов в соответствии с настройками при сохранении в WebStorm.
+
+## Использование других пакетных менеджеров
+
+Если вы предпочитаете использовать другие менеджеры пакетов, такие как Yarn или PNPM, следуйте указанным ниже шагам:
+
+### Yarn
+
+1. Установите Yarn на свой компьютер, используя инструкции из [официальной документации](https://yarnpkg.com/getting-started/install).
+2. Склонируйте репозиторий проекта на свой компьютер.
+3. Перейдите в папку проекта.
+4. Установите зависимости проекта с помощью команды `yarn install`.
+5. Запустите проект с помощью команды `yarn dev`.
+
+Все скрипты остаются такими же, как и в случае использования npm.
+
+### PNPM
+
+1. Установите PNPM на свой компьютер, используя инструкции из [официальной документации](https://pnpm.io/installation).
+2. Склонируйте репозиторий проекта на свой компьютер.
+3. Перейдите в папку проекта.
+4. Установите зависимости проекта с помощью команды `pnpm install`.
+5. Запустите проект с помощью команды `pnpm run dev`.
+
+Все скрипты остаются такими же, как и в случае использования npm.
+
+Независимо от выбранного менеджера пакетов, вы можете использовать все предоставленные скрипты без изменений.
