@@ -31,7 +31,7 @@ export function CardBig({ description, flippedСard, food, imageSrc, link, title
         })}
       >
         <p className={style.cardBig__title}>
-          {title}
+          {title}{' '}
           <Link className={style.cardBig__link} to={link}>
             {food}
           </Link>

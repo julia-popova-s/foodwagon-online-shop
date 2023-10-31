@@ -24,7 +24,7 @@ import { Popup } from '../../ui/Popup/Popup'
 import { CardProduct } from './CardProduct'
 import { Modal } from './Modal'
 import style from './cart.module.scss'
-let orderNumber = 1
+let orderNumber = 0
 
 export function Cart() {
   const { pathname } = useLocation()
