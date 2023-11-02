@@ -1,18 +1,22 @@
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 
-import { useAuth } from '../../hooks/useAuth'
+import { isAuthSelector } from '../../store/reducers/user'
 import { Footer, Header } from '../elements'
 import './styles/base.css'
 import './styles/normalize.css'
 
 export function App() {
-  const navigate = useNavigate()
-  const { isAuth } = useAuth()
+  // const navigate = useNavigate()
+  // const isAuth = useSelector(isAuthSelector)
 
-  if (!isAuth) {
-    navigate('/login')
-  }
+  // useEffect(() => {
+  //   if (!isAuth) {
+  //     navigate('/login')
+  //   }
+  // }, [])
 
   return (
     <div className="app">
