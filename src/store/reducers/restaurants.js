@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { fetchRestaurantsData } from '../utils/fetchRestaurantsData'
-import { getExtraReducers } from '../utils/getExtraReducers'
+import { fetchRestaurantsData } from '../../utils/fetchRestaurantsData'
+import { getExtraReducers } from '../../utils/getExtraReducers'
 // export const fetchRestaurants = createAsyncThunk(
 //   'products/fetchRestaurants',
 //   async function ({ category, limit, restaurantId, sortType }, { dispatch, rejectWithValue }) {
