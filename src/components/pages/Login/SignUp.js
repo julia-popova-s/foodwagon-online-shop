@@ -1,9 +1,7 @@
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import { useLocation } from 'react-use'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { setUser } from '../../../store/reducers/user'
 import { AuthRegForm } from './AuthRegForm'
@@ -36,11 +34,7 @@ export function SignUp() {
 
   return (
     <div className={style.login}>
-      <p>Sign Up</p>
-      <AuthRegForm handleClick={handleRegister} title={'Register'} />
-      <p>
-        Or <Link to="/login">sign in</Link>
-      </p>
+      <AuthRegForm handleClick={handleRegister} title={'Sign Up'} />
     </div>
   )
 }
