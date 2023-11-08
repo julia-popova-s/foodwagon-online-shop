@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getSumOfValues } from '../../utils/getSumOfValues'
-import { updateAddedGoods, updateTotalQuantity } from '../../utils/helperForCart'
+import { getSumOfValues } from '../../utils/utilsForCart/getSumOfValues'
+import { updateAddedGoods } from '../../utils/utilsForCart/updateAddedGoods'
+import { updateTotalQuantity } from '../../utils/utilsForCart/updateTotalQuantity'
 
 const initialState = {
   addedGoods: [],
@@ -38,13 +39,13 @@ const cartSlice = createSlice({
         //подсчитать сумму всех товаров из ресторана
         state.cart[restaurantId].totalAmount = getSumOfValues(
           Object.values(state.cart[restaurantId].items),
-          'amount'
+          'amount',
         )
 
         //подсчитать количество всех товаров из ресторана
         state.cart[restaurantId].totalCount = getSumOfValues(
           Object.values(state.cart[restaurantId].items),
-          'quantity'
+          'quantity',
         )
       } else {
         //если ресторана нет в корзине, поместить позицию по id ресторана
@@ -156,13 +157,13 @@ const cartSlice = createSlice({
       //подсчитать сумму всех товаров из ресторана
       state.cart[restaurantId].totalAmount = getSumOfValues(
         Object.values(state.cart[restaurantId].items),
-        'amount'
+        'amount',
       )
 
       //подсчитать количество всех товаров из ресторана
       state.cart[restaurantId].totalCount = getSumOfValues(
         Object.values(state.cart[restaurantId].items),
-        'quantity'
+        'quantity',
       )
 
       //обновить список добавленных товаров

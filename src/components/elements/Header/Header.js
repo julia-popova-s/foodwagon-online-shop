@@ -71,7 +71,7 @@ export function Header({ geolocation }) {
               <ButtonLogin
                 classNames={style.search__login}
                 handleClick={handleLogOut}
-                title={'Log out'}
+                title={'Logout'}
               />
             ) : (
               <ButtonLogin

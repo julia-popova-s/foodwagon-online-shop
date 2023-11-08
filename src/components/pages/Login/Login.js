@@ -1,9 +1,10 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { setUser } from '../../../store/reducers/user'
+import { loginSchema } from '../../../utils/utilsForForm/fieldValidationSchemes'
 import { AuthRegForm } from './AuthRegForm'
 import style from './login.module.scss'
 
@@ -12,6 +13,7 @@ export function Login() {
   const { pathname } = useLocation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleLogin = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -25,8 +27,16 @@ export function Login() {
         )
         navigate('/')
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(({ code, message }) => {
+        switch (code) {
+          case 'auth/invalid-login-credentials':
+            setErrorMessage('Invalid login details')
+            break
+
+          default:
+            setErrorMessage(message)
+            break
+        }
       })
   }
 
@@ -36,7 +46,12 @@ export function Login() {
 
   return (
     <div className={style.login}>
-      <AuthRegForm handleClick={handleLogin} title={'Log in'} />
+      <AuthRegForm
+        errorMessage={errorMessage}
+        handleClick={handleLogin}
+        schema={loginSchema}
+        title={'Log in'}
+      />
     </div>
   )
 }

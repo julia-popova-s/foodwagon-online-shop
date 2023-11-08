@@ -2,7 +2,7 @@ import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 
-import { validationEmail } from '../../../utils/validationEmail'
+import { validationEmail } from '../../../utils/utilsForForm/validationEmail'
 import { FooterNav } from './FooterNav'
 import style from './footer.module.scss'
 

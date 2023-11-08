@@ -2,26 +2,15 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import cn from 'classnames'
 import { Controller, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import * as yup from 'yup'
-import { string } from 'yup'
 
-import { regExpEmail } from '../../../utils/regExpEmail.js'
 import style from './authRegForm.module.scss'
 
-const schema = yup
-  .object({
-    email: string()
-      .matches(regExpEmail, { excludeEmptyString: true, message: 'email is in incorrect format' })
-      .required(),
-    password: yup.string().required().min(8),
-  })
-  .required()
-
-export function AuthRegForm({ handleClick, title }) {
+export function AuthRegForm({ errorMessage, handleClick, schema, title }) {
   const {
     control,
     formState: { errors, isValid },
     handleSubmit,
+    reset,
   } = useForm({
     defaultValues: {
       email: '',
@@ -30,8 +19,11 @@ export function AuthRegForm({ handleClick, title }) {
     mode: 'onBlur',
     resolver: yupResolver(schema),
   })
-  console.log(isValid)
-  const onSubmit = ({ email, password }) => handleClick(email, password)
+
+  const onSubmit = ({ email, password }) => {
+    handleClick(email, password)
+    reset()
+  }
 
   return (
     <form className={style.regForm} onSubmit={handleSubmit(onSubmit)}>
@@ -89,6 +81,10 @@ export function AuthRegForm({ handleClick, title }) {
         type="submit"
         value={title}
       />
+
+      <p className={style.regForm__error} role="alert">
+        {errorMessage && errorMessage}
+      </p>
     </form>
   )
 }
