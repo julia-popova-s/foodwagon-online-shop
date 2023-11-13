@@ -14,6 +14,7 @@ import {
   productsWithDiscount,
   restaurants,
   sortingType,
+  user,
 } from './reducers'
 
 const persistConfig = {
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   productsWithDiscount,
   restaurants,
   sortingType,
+  user,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

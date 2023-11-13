@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 
 import { Counter } from '../../ui/Counter'
 import { Discount } from '../../ui/Discount/Discount'
+import { PriceBlock } from './PriceBlock'
 import style from './cardProduct.module.scss'
 
 export function CardProduct({
@@ -92,19 +93,7 @@ export function CardProduct({
                 {restaurantName}
               </Link>
             </p>
-
-            {discount ? (
-              <div className={style.info__price}>
-                &#36;{(price - (price * discount) / 100).toFixed(2)}
-              </div>
-            ) : null}
-            <div
-              className={cn(style.info__price, {
-                [style.info__price_theme]: discount,
-              })}
-            >
-              &#36;{price.toFixed(2)}
-            </div>
+            <PriceBlock discount={discount} price={price} />
           </div>
 
           <div className={cn(style.product__counter, style.counter)}>
@@ -125,7 +114,7 @@ export function CardProduct({
           </div>
         </>
       ) : (
-        <>
+        <div className={style.returnedBlock}>
           <button
             className={cn(style.btnReturn, style.product__btnReturn)}
             onClick={handleReturnProduct}
@@ -137,7 +126,7 @@ export function CardProduct({
               <div className={style.loadingBar__shadow}></div>
             </div>
           </div>
-        </>
+        </div>
       )}
       {/* <button
         className={cn(style.product__btnDelete, style.btnDelete)}

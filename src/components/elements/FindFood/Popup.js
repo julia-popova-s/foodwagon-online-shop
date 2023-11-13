@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { CSSTransition } from 'react-transition-group'
 import { v4 as uuidv4 } from 'uuid'
 
+import { PriceBlock } from '../../pages/Cart/PriceBlock'
 import style from './popup.module.scss'
 
 export const Popup = forwardRef(({ isLoaded, list, show }, ref) => {
@@ -22,18 +23,7 @@ export const Popup = forwardRef(({ isLoaded, list, show }, ref) => {
               </div>
               <div className={style.card__right}>
                 <div className={style.card__title}>{title}</div>
-                {discount ? (
-                  <div className={style.card__price}>
-                    &#36;{(price - (price * discount) / 100).toFixed(2)}
-                  </div>
-                ) : null}
-                <div
-                  className={cn(style.card__price, {
-                    [style.card__price_theme]: discount,
-                  })}
-                >
-                  &#36;{price}
-                </div>
+                <PriceBlock discount={discount} price={price} />
               </div>
             </div>
           </Link>

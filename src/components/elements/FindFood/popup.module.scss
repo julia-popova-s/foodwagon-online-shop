@@ -21,6 +21,7 @@
   &__left {
     height: 85px;
     width: 100px;
+    flex-shrink: 0;
   }
 
   &__image {
@@ -30,8 +31,27 @@
   }
 
   &__title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 120%;
+    color: #424242;
+    min-height: 45px;
     margin-bottom: 10px;
   }
 
-  &__price {}
+  &__price {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 120%;
+    color: rgb(66, 66, 66);
+    margin-bottom: 8px;
+    display: inline-block;
+    margin-right: 30px;
+  }
+
+  &_priceDiscount {
+    position: relative;
+    color: rgba(130, 126, 126, 0.9);
+    font-weight: 500;
+  }
 }

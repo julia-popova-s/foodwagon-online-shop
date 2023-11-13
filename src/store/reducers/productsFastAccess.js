@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { fetchProductsData } from '../utils/fetchProductsData'
-import { getExtraReducers } from '../utils/getExtraReducers'
+import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData'
+import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers'
 
 export const fetchProductsFastAccess = createAsyncThunk(
   'products/fetchProductsFastAccess',
-  fetchProductsData
+  fetchProductsData,
 )
 
 const productsSlice = createSlice({
