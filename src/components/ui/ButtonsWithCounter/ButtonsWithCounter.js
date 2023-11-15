@@ -1,10 +1,10 @@
-import cn from 'classnames'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import cn from 'classnames';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { ButtonFind } from '../ButtonFind'
-import { Counter } from '../Counter'
-import style from './buttonsWithCounter.module.scss'
+import { ButtonFind } from '../ButtonFind';
+import { Counter } from '../Counter';
+import style from './buttonsWithCounter.module.scss';
 
 export function ButtonsWithCounter({
   handleInputQuantity,
@@ -28,5 +28,5 @@ export function ButtonsWithCounter({
         quantity={quantity}
       />
     </div>
-  )
+  );
 }

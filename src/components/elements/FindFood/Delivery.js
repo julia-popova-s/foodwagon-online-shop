@@ -1,19 +1,19 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import { ButtonDelivery } from '../../ui/ButtonDelivery'
-import style from './delivery.module.scss'
+import { ButtonDelivery } from '../../ui/ButtonDelivery';
+import style from './delivery.module.scss';
 
 const buttons = [
   { icon: '/images/find-food/delivery/delivery.svg', label: 'Delivery' },
   { icon: '/images/find-food/delivery/pickup.svg', label: 'Pickup' },
-]
+];
 
 export function Delivery() {
-  const [activeBtn, setActiveBtn] = useState(0)
+  const [activeBtn, setActiveBtn] = useState(0);
 
   const handleSelectItem = (index) => {
-    setActiveBtn(index)
-  }
+    setActiveBtn(index);
+  };
   return (
     <div className={style.delivery}>
       {buttons &&
@@ -27,5 +27,5 @@ export function Delivery() {
           />
         ))}
     </div>
-  )
+  );
 }

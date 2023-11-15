@@ -1,1 +1,1 @@
-export { CardBigList } from './CardBigList'
+export { CardBigList } from './CardBigList';

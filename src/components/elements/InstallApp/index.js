@@ -1,1 +1,1 @@
-export { InstallApp } from './InstallApp'
+export { InstallApp } from './InstallApp';

@@ -1,8 +1,8 @@
-import { App } from './components/App/App'
-import { SearchPage } from './components/pages'
-import { Cart, ErrorPage, Home, Login } from './components/pages'
-import { SignUp } from './components/pages/Login/SignUp'
-import { ProductPage } from './components/pages/ProductPage'
+import { App } from './components/App/App';
+import { SearchPage } from './components/pages';
+import { Cart, ErrorPage, Home, Login } from './components/pages';
+import { SignUp } from './components/pages/Login/SignUp';
+import { ProductPage } from './components/pages/ProductPage';
 
 export const router = [
   {
@@ -31,4 +31,4 @@ export const router = [
   },
   { element: <Login />, errorElement: <ErrorPage />, path: '/login' },
   { element: <SignUp />, errorElement: <ErrorPage />, path: '/register' },
-]
+];

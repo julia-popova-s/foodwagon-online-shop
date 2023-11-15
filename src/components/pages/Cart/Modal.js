@@ -1,7 +1,7 @@
-import { forwardRef } from 'react'
-import { CSSTransition } from 'react-transition-group'
+import { forwardRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
-import style from './modal.module.scss'
+import style from './modal.module.scss';
 
 export const Modal = forwardRef(({ handleCloseModal, idOrder, name, show }, ref) => {
   return (
@@ -22,5 +22,5 @@ export const Modal = forwardRef(({ handleCloseModal, idOrder, name, show }, ref)
         </div>
       </div>
     </CSSTransition>
-  )
-})
+  );
+});

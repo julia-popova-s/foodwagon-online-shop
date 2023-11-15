@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 
-import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
+import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
 import {
   currentPageSelector,
   errorSelector,
@@ -8,40 +8,40 @@ import {
   productListSelector,
   setCurrentPage,
   statusSelector,
-} from '../../../store/reducers/productsSearch'
-import { SearchPanel } from '../../elements/FindFood/SearchPanel'
-import { CardPopular } from '../../elements/PopularItems/CardPopular'
-import { Pagination } from '../../ui/Pagination/Pagination'
-import { Loader } from './Loader'
-import style from './searchPage.module.scss'
+} from '../../../store/reducers/productsSearch';
+import { SearchPanel } from '../../elements/FindFood/SearchPanel';
+import { CardPopular } from '../../elements/PopularItems/CardPopular';
+import { Pagination } from '../../ui/Pagination/Pagination';
+import { Loader } from './Loader';
+import style from './searchPage.module.scss';
 
 // let render = 0
 
 export function SearchPage() {
   // console.log(render++)
-  const error = useSelector(errorSelector)
-  const currentPage = useSelector(currentPageSelector)
-  const products = useSelector(productListSelector)
-  const isLoaded = useSelector(isLoadedSelector)
-  const status = useSelector(statusSelector)
+  const error = useSelector(errorSelector);
+  const currentPage = useSelector(currentPageSelector);
+  const products = useSelector(productListSelector);
+  const isLoaded = useSelector(isLoadedSelector);
+  const status = useSelector(statusSelector);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleChangePage = (number) => {
-    dispatch(setCurrentPage(number))
-  }
+    dispatch(setCurrentPage(number));
+  };
 
   const handleAddProduct = (obj) => {
-    dispatch(addProduct(obj))
-  }
+    dispatch(addProduct(obj));
+  };
 
   const handleRemoveProduct = (product) => {
-    dispatch(deleteOneProduct(product))
-  }
+    dispatch(deleteOneProduct(product));
+  };
 
   const handleInputCount = (obj) => {
-    dispatch(setProductCount(obj))
-  }
+    dispatch(setProductCount(obj));
+  };
 
   return (
     <div className={style.searchPage}>
@@ -79,5 +79,5 @@ export function SearchPage() {
         )}
       </div>
     </div>
-  )
+  );
 }

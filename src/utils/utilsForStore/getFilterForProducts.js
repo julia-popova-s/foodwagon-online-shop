@@ -8,21 +8,21 @@ export function getFilterForProducts({
   searchValue,
   sortType,
 }) {
-  const currentPageFilter = currentPage ? `?page=${currentPage}` : `?page=1`
+  const currentPageFilter = currentPage ? `?page=${currentPage}` : '?page=1';
 
-  const limitFilter = limit ? `&limit=${limit}` : `&limit=4`
+  const limitFilter = limit ? `&limit=${limit}` : '&limit=4';
 
-  const sortFilter = sortType ? `&sortBy=${sortType}` : ''
+  const sortFilter = sortType ? `&sortBy=${sortType}` : '';
 
-  const orderFilter = sortType && order ? `&order=${order}` : ''
+  const orderFilter = sortType && order ? `&order=${order}` : '';
 
-  const categoryFilter = category && category !== 'All' ? `&category=${category}` : ''
+  const categoryFilter = category && category !== 'All' ? `&category=${category}` : '';
 
-  const idFilter = restaurantId ? `&restaurantId=${restaurantId}` : ''
+  const idFilter = restaurantId ? `&restaurantId=${restaurantId}` : '';
 
-  const searchState = searchValue ? `&search=${searchValue.replace(' ', '&')}` : ''
+  const searchState = searchValue ? `&search=${searchValue.replace(' ', '&')}` : '';
 
-  const idProductFilter = id ? `&id=${id}` : ''
+  const idProductFilter = id ? `&id=${id}` : '';
 
-  return `${currentPageFilter}${limitFilter}${sortFilter}${orderFilter}${categoryFilter}${idFilter}${searchState}${idProductFilter}`
+  return `${currentPageFilter}${limitFilter}${sortFilter}${orderFilter}${categoryFilter}${idFilter}${searchState}${idProductFilter}`;
 }

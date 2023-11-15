@@ -1,9 +1,10 @@
-import cn from 'classnames'
-import { ReactSVG } from 'react-svg'
+import cn from 'classnames';
+import { ReactSVG } from 'react-svg';
 
-import { getPartOfString } from '../../../utils/getPartOfString'
-import style from './cardFeatured.module.scss'
-let theme = 'close'
+import { getPartOfString } from '../../../utils/getPartOfString';
+import style from './cardFeatured.module.scss';
+
+const theme = 'close';
 
 // const getWeekDay = () => {
 //   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -20,7 +21,7 @@ export function CardFeatured(props) {
     name,
     weighted_rating_value,
     // local_hours: { delivery, pickup },
-  } = props
+  } = props;
 
   const options = {
     day: 'numeric',
@@ -32,7 +33,7 @@ export function CardFeatured(props) {
     timezone: 'UTC',
     weekday: 'long',
     year: 'numeric',
-  }
+  };
   // const date = new Date()
   // console.log(date.toLocaleDateString())
   // console.log(date.toLocaleTimeString())
@@ -84,5 +85,5 @@ export function CardFeatured(props) {
 
       <div className={style.card__text}>Open Now</div>
     </div>
-  )
+  );
 }

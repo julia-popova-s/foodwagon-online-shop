@@ -1,22 +1,22 @@
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { Outlet } from 'react-router-dom'
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
-import { isAuthSelector } from '../../store/reducers/user'
-import { Footer, Header } from '../elements'
-import './styles/base.css'
-import './styles/normalize.css'
+import { isAuthSelector } from '../../store/reducers/user';
+import { Footer, Header } from '../elements';
+import './styles/base.css';
+import './styles/normalize.css';
 
 export function App() {
-  // const navigate = useNavigate()
-  // const isAuth = useSelector(isAuthSelector)
+  const navigate = useNavigate();
+  const isAuth = useSelector(isAuthSelector);
 
-  // useEffect(() => {
-  //   if (!isAuth) {
-  //     navigate('/login')
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (!isAuth) {
+      navigate('/login');
+    }
+  }, [isAuth]);
 
   return (
     <div className="app">
@@ -24,5 +24,5 @@ export function App() {
       <Outlet />
       <Footer />
     </div>
-  )
+  );
 }

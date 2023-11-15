@@ -1,29 +1,29 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { useLocation } from 'react-use'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-use';
 
-import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart'
-import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/reducers/product'
+import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
+import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/reducers/product';
 // import { fetchRestaurants } from '../../../store/reducers/restaurants'
-import { RestaurantPage } from '../RestaurantPage/RestaurantPage'
-import { Card } from './Card'
-import { LoaderLeft } from './LoaderLeft'
-import { LoaderRight } from './LoaderRight'
-import style from './productPage.module.scss'
+import { RestaurantPage } from '../RestaurantPage/RestaurantPage';
+import { Card } from './Card';
+import { LoaderLeft } from './LoaderLeft';
+import { LoaderRight } from './LoaderRight';
+import style from './productPage.module.scss';
 
 export function ProductPage() {
-  let { id, restaurantId } = useParams()
-  const dispatch = useDispatch()
+  const { id, restaurantId } = useParams();
+  const dispatch = useDispatch();
 
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
 
-  const isLoaded = useSelector(isLoadedSelector)
-  const product = useSelector(productSelector)
+  const isLoaded = useSelector(isLoadedSelector);
+  const product = useSelector(productSelector);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     dispatch(
@@ -31,8 +31,8 @@ export function ProductPage() {
         id,
         limit: 1,
       })
-    )
-  }, [id, dispatch])
+    );
+  }, [id, dispatch]);
 
   // useEffect(() => {
   //   dispatch(
@@ -44,16 +44,16 @@ export function ProductPage() {
   // }, [restaurantId, dispatch])
 
   const handleAddProduct = (product) => {
-    dispatch(addProduct(product))
-  }
+    dispatch(addProduct(product));
+  };
 
   const handleRemoveProduct = (product) => {
-    dispatch(deleteOneProduct(product))
-  }
+    dispatch(deleteOneProduct(product));
+  };
 
   const handleInputCount = (obj) => {
-    dispatch(setProductCount(obj))
-  }
+    dispatch(setProductCount(obj));
+  };
 
   return (
     <>
@@ -62,26 +62,26 @@ export function ProductPage() {
           <div className={style.product}>
             {isLoaded && product
               ? product.map((item, i) => (
-                  <Card
-                    {...item}
-                    handleAddProduct={handleAddProduct}
-                    handleInputCount={handleInputCount}
-                    handleRemoveProduct={handleRemoveProduct}
-                    key={`${item.id}${i}`}
-                  />
-                ))
+                <Card
+                  {...item}
+                  handleAddProduct={handleAddProduct}
+                  handleInputCount={handleInputCount}
+                  handleRemoveProduct={handleRemoveProduct}
+                  key={`${item.id}${i}`}
+                />
+              ))
               : Array(1)
-                  .fill(0)
-                  .map((_, index) => (
-                    <div className={style.placeholder} key={index}>
-                      <LoaderLeft />
-                      <LoaderRight />
-                    </div>
-                  ))}
+                .fill(0)
+                .map((_, index) => (
+                  <div className={style.placeholder} key={index}>
+                    <LoaderLeft />
+                    <LoaderRight />
+                  </div>
+                ))}
           </div>
         </div>
       </div>
       <RestaurantPage />
     </>
-  )
+  );
 }

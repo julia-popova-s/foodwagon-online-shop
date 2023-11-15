@@ -1,11 +1,11 @@
-import cn from 'classnames'
-import { forwardRef } from 'react'
-import { Link } from 'react-router-dom'
-import { CSSTransition } from 'react-transition-group'
-import { v4 as uuidv4 } from 'uuid'
+import cn from 'classnames';
+import { forwardRef } from 'react';
+import { Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
+import { v4 as uuidv4 } from 'uuid';
 
-import { PriceBlock } from '../../pages/Cart/PriceBlock'
-import style from './popup.module.scss'
+import { PriceBlock } from '../../pages/Cart/PriceBlock';
+import style from './popup.module.scss';
 
 export const Popup = forwardRef(({ isLoaded, list, show }, ref) => {
   return (
@@ -30,5 +30,5 @@ export const Popup = forwardRef(({ isLoaded, list, show }, ref) => {
         ))}
       </div>
     </CSSTransition>
-  )
-})
+  );
+});

@@ -1,17 +1,17 @@
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { ButtonsForCounter } from '../../ui/ButtonsForCounter';
-import cn from 'classnames'
-import { useSelector } from 'react-redux'
+import cn from 'classnames';
+import { useSelector } from 'react-redux';
 // import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom';
 
-import { getPartOfString } from '../../../utils/getPartOfString'
-import { ButtonFind } from '../../ui/ButtonFind'
+import { getPartOfString } from '../../../utils/getPartOfString';
+import { ButtonFind } from '../../ui/ButtonFind';
 // import { useState } from 'react';
-import { ButtonsWithCounter } from '../../ui/ButtonsWithCounter'
-import { Discount } from '../../ui/Discount/Discount'
-import style from './cardPopular.module.scss'
+import { ButtonsWithCounter } from '../../ui/ButtonsWithCounter';
+import { Discount } from '../../ui/Discount/Discount';
+import style from './cardPopular.module.scss';
 
 export function CardPopular(props) {
   const {
@@ -26,21 +26,21 @@ export function CardPopular(props) {
     restaurantId,
     restaurantName,
     title,
-  } = props
+  } = props;
 
-  const data = { discount, id, image, price, restaurantId, restaurantName, title }
-  const { cart } = useSelector((state) => state.cart)
-  const quantity = cart[restaurantId]?.items[id]?.quantity
+  const data = { discount, id, image, price, restaurantId, restaurantName, title };
+  const { cart } = useSelector((state) => state.cart);
+  const quantity = cart[restaurantId]?.items[id]?.quantity;
 
   const handlePlusProduct = () => {
-    handleAddProduct(data)
-  }
+    handleAddProduct(data);
+  };
 
   const handleMinusProduct = () => {
-    handleRemoveProduct(data)
-  }
+    handleRemoveProduct(data);
+  };
 
-  const handleInputQuantity = (quantity) => handleInputCount({ id, quantity, restaurantId })
+  const handleInputQuantity = (quantity) => handleInputCount({ id, quantity, restaurantId });
 
   return (
     <div className={cn(style.card, classNames)}>
@@ -77,5 +77,5 @@ export function CardPopular(props) {
         />
       )}
     </div>
-  )
+  );
 }

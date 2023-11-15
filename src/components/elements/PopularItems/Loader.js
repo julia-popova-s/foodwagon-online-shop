@@ -1,6 +1,6 @@
-import ContentLoader from 'react-content-loader'
+import ContentLoader from 'react-content-loader';
 
-import style from './popularItems.module.scss'
+import style from './popularItems.module.scss';
 
 export const Loader = (props) => (
   <ContentLoader
@@ -19,4 +19,4 @@ export const Loader = (props) => (
     <rect height="26" rx="8" ry="8" width="70" x="0" y="350" />
     <rect height="60" rx="8" ry="8" width="283" x="0" y="409" />
   </ContentLoader>
-)
+);

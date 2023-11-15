@@ -1,7 +1,7 @@
-import cn from 'classnames'
-import { Link } from 'react-router-dom'
+import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
-import style from './cityList.module.scss'
+import style from './cityList.module.scss';
 
 export function CityList({ links, title }) {
   return (
@@ -16,9 +16,9 @@ export function CityList({ links, title }) {
                   {item}
                 </Link>
               </li>
-            )
+            );
           })}
       </ul>
     </div>
-  )
+  );
 }

@@ -1,8 +1,8 @@
 @import "../../App/styles/variables";
 
 .product {
-
   display: flex;
+  // flex-wrap: wrap;
   column-gap: 50px;
   row-gap: 15px;
   align-items: flex-start;
@@ -39,6 +39,7 @@
     justify-content: center;
     align-items: center;
 
+    margin: 20px 0;
     // position: absolute;
     // top: 20px;
     // right: 20px;
@@ -66,7 +67,9 @@
 .info {
   flex-grow: 2;
   padding: 20px 30px 0 10px;
-  max-width: 470px;
+  max-width: 460px;
+  max-width: 36.8%;
+
 
   &__title {
     margin-bottom: 10px;
@@ -121,8 +124,10 @@
 
 .counter {
   display: flex;
-  gap: 30px;
+  flex-wrap: wrap;
+  column-gap: 30px;
   align-items: center;
+  justify-content: space-between;
   padding: 0 20px 0 10px;
 
   &__btns {
@@ -203,9 +208,23 @@
 //   }
 // }
 
+@media (max-width:1350px) {
+
+  // .counter {
+  //  margin-right: auto;
+  // }
+  .info {
+    // min-width: 100%;
+  }
+}
+
 @media (max-width:1100px) {
+  .info {
+    // width: 100%;
+  }
+
   .product {
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
 
     &__counterWithPrice {
       width: 100%;

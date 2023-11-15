@@ -1,34 +1,34 @@
 // import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import classNames from 'classnames'
-import cn from 'classnames'
-import debounce from 'lodash.debounce'
-import { forwardRef, useCallback, useRef, useState } from 'react'
-import { ReactSVG } from 'react-svg'
+import cn from 'classnames';
+import debounce from 'lodash.debounce';
+import { forwardRef, useCallback, useRef, useState } from 'react';
+import { ReactSVG } from 'react-svg';
 
-import style from './textInput.module.scss'
+import style from './textInput.module.scss';
 
 export const TextInput = forwardRef(({ children, classNames, handleSearchValue, iconUrl }, ref) => {
-  const inputRef = useRef(null)
-  const [value, setValue] = useState('')
+  const inputRef = useRef(null);
+  const [value, setValue] = useState('');
 
   const handleClickClear = () => {
-    setValue('')
-    handleSearchValue('')
-    inputRef.current.focus()
-  }
+    setValue('');
+    handleSearchValue('');
+    inputRef.current.focus();
+  };
 
   const updateSearchValue = useCallback(
     debounce((str) => {
-      handleSearchValue(str)
+      handleSearchValue(str);
     }, 300),
     []
-  )
+  );
 
   const handleChangeValue = (e) => {
-    setValue(e.target.value)
-    updateSearchValue(e.target.value)
-  }
+    setValue(e.target.value);
+    updateSearchValue(e.target.value);
+  };
 
   return (
     <div className={cn(style.search__inputWrapper, classNames)} ref={ref}>
@@ -64,5 +64,5 @@ export const TextInput = forwardRef(({ children, classNames, handleSearchValue, 
         />
       )}
     </div>
-  )
-})
+  );
+});

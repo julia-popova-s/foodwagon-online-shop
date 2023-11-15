@@ -1,9 +1,9 @@
-import { yupResolver } from '@hookform/resolvers/yup'
-import cn from 'classnames'
-import { Controller, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { yupResolver } from '@hookform/resolvers/yup';
+import cn from 'classnames';
+import { Controller, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
-import style from './authRegForm.module.scss'
+import style from './authRegForm.module.scss';
 
 export function AuthRegForm({ errorMessage, handleClick, schema, title }) {
   const {
@@ -18,12 +18,12 @@ export function AuthRegForm({ errorMessage, handleClick, schema, title }) {
     },
     mode: 'onBlur',
     resolver: yupResolver(schema),
-  })
+  });
 
   const onSubmit = ({ email, password }) => {
-    handleClick(email, password)
-    reset()
-  }
+    handleClick(email, password);
+    reset();
+  };
 
   return (
     <form className={style.regForm} onSubmit={handleSubmit(onSubmit)}>
@@ -86,5 +86,5 @@ export function AuthRegForm({ errorMessage, handleClick, schema, title }) {
         {errorMessage && errorMessage}
       </p>
     </form>
-  )
+  );
 }

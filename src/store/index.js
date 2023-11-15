@@ -1,7 +1,7 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 // import storage from 'redux-persist/lib/storage'
-import { persistReducer, persistStore } from 'redux-persist'
-import storageSession from 'reduxjs-toolkit-persist/lib/storage/session'
+import { persistReducer, persistStore } from 'redux-persist';
+import storageSession from 'reduxjs-toolkit-persist/lib/storage/session';
 
 import {
   cart,
@@ -15,13 +15,13 @@ import {
   restaurants,
   sortingType,
   user,
-} from './reducers'
+} from './reducers';
 
 const persistConfig = {
   key: 'root',
   storage: storageSession,
-  whitelist: ['cart'],
-}
+  whitelist: ['cart', 'user'],
+};
 
 const rootReducer = combineReducers({
   cart,
@@ -35,9 +35,9 @@ const rootReducer = combineReducers({
   restaurants,
   sortingType,
   user,
-})
+});
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -45,6 +45,6 @@ export const store = configureStore({
       serializableCheck: false,
     }),
   reducer: persistedReducer,
-})
+});
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);

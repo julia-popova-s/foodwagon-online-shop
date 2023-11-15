@@ -1,19 +1,19 @@
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import { setUser } from '../../../store/reducers/user'
-import { loginSchema } from '../../../utils/utilsForForm/fieldValidationSchemes'
-import { AuthRegForm } from './AuthRegForm'
-import style from './login.module.scss'
+import { setUser } from '../../../store/reducers/user';
+import { loginSchema } from '../../../utils/utilsForForm/fieldValidationSchemes';
+import { AuthRegForm } from './AuthRegForm';
+import style from './login.module.scss';
 
 export function Login() {
-  const auth = getAuth()
-  const { pathname } = useLocation()
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [errorMessage, setErrorMessage] = useState('')
+  const auth = getAuth();
+  const { pathname } = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -24,25 +24,25 @@ export function Login() {
             id: user.uid,
             token: user.accessToken,
           }),
-        )
-        navigate('/')
+        );
+        navigate('/');
       })
       .catch(({ code, message }) => {
         switch (code) {
-          case 'auth/invalid-login-credentials':
-            setErrorMessage('Invalid login details')
-            break
+        case 'auth/invalid-login-credentials':
+          setErrorMessage('Invalid login details');
+          break;
 
-          default:
-            setErrorMessage(message)
-            break
+        default:
+          setErrorMessage(message);
+          break;
         }
-      })
-  }
+      });
+  };
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className={style.login}>
@@ -53,5 +53,5 @@ export function Login() {
         title={'Log in'}
       />
     </div>
-  )
+  );
 }

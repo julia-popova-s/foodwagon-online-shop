@@ -1,7 +1,7 @@
-import { forwardRef } from 'react'
-import { CSSTransition } from 'react-transition-group'
+import { forwardRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
-import style from './popup.module.scss'
+import style from './popup.module.scss';
 
 export const Popup = forwardRef(({ handleClearOrder, handleClosePopup, name, show }, ref) => {
   return (
@@ -23,5 +23,5 @@ export const Popup = forwardRef(({ handleClearOrder, handleClosePopup, name, sho
         </div>
       </div>
     </CSSTransition>
-  )
-})
+  );
+});

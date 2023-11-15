@@ -1,12 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData'
-import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers'
+import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData';
+import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
 
 export const fetchProductsSearch = createAsyncThunk(
   'products/fetchProductsSearch',
   fetchProductsData,
-)
+);
 
 const productsSlice = createSlice({
   extraReducers: (builder) => getExtraReducers(builder)(fetchProductsSearch),
@@ -23,22 +23,22 @@ const productsSlice = createSlice({
 
   reducers: {
     setCurrentPage(state, action) {
-      state.currentPage = action.payload
+      state.currentPage = action.payload;
     },
     setLoaded(state, action) {
-      state.isLoaded = action.payload
+      state.isLoaded = action.payload;
     },
     setSearchValue(state, action) {
-      state.searchValue = action.payload.replace(' ', '&')
+      state.searchValue = action.payload.replace(' ', '&');
     },
   },
-})
+});
 
-export const productListSelector = (state) => state.productsSearch.list
-export const errorSelector = (state) => state.productsSearch.error
-export const isLoadedSelector = (state) => state.productsSearch.isLoaded
-export const statusSelector = (state) => state.productsSearch.status
-export const currentPageSelector = (state) => state.productsSearch.currentPage
+export const productListSelector = (state) => state.productsSearch.list;
+export const errorSelector = (state) => state.productsSearch.error;
+export const isLoadedSelector = (state) => state.productsSearch.isLoaded;
+export const statusSelector = (state) => state.productsSearch.status;
+export const currentPageSelector = (state) => state.productsSearch.currentPage;
 
-export const { setCurrentPage, setLoaded } = productsSlice.actions
-export default productsSlice.reducer
+export const { setCurrentPage, setLoaded } = productsSlice.actions;
+export default productsSlice.reducer;

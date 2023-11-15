@@ -1,1 +1,1 @@
-export { ButtonsWithCounter } from './ButtonsWithCounter'
+export { ButtonsWithCounter } from './ButtonsWithCounter';

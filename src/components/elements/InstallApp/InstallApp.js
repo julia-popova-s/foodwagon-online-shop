@@ -1,17 +1,17 @@
-import cn from 'classnames'
-import { ReactSVG } from 'react-svg'
+import cn from 'classnames';
+import { ReactSVG } from 'react-svg';
 
-import style from './installApp.module.scss'
+import style from './installApp.module.scss';
 
 const titles = [
   ['Daily', 'Discounts'],
   ['Live', 'Tracing'],
   ['Quick', 'Delivery'],
-]
+];
 const links = [
   { name: 'google-play', src: '/images/install-app/google-play.png' },
   { name: 'app-store', src: '/images/install-app/app-store.png' },
-]
+];
 
 export function InstallApp() {
   return (
@@ -36,7 +36,7 @@ export function InstallApp() {
                         <p>{twoTitle}</p>
                       </div>
                     </div>
-                  )
+                  );
                 })}
             </div>
           </div>
@@ -60,7 +60,7 @@ export function InstallApp() {
                         src={`${process.env.PUBLIC_URL}${src}`}
                       />
                     </a>
-                  )
+                  );
                 })}
             </div>
             <div className={style.downBlock__image}>
@@ -74,5 +74,5 @@ export function InstallApp() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import cn from 'classnames'
-import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import cn from 'classnames';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
-import style from './counter.module.scss'
+import style from './counter.module.scss';
 
 export function Counter({
   classNames,
@@ -11,27 +11,27 @@ export function Counter({
   handlePlusProduct,
   quantity,
 }) {
-  const [count, setCount] = useState(quantity)
+  const [count, setCount] = useState(quantity);
 
   const handleChangeCount = (e) => {
-    const counter = e.target.value.replace(/[^0-9]/gi, '')
+    const counter = e.target.value.replace(/[^0-9]/gi, '');
     if (counter !== '') {
-      setCount(+counter)
-      handleInputQuantity(+counter)
+      setCount(+counter);
+      handleInputQuantity(+counter);
     } else {
-      setCount('')
+      setCount('');
     }
-  }
+  };
 
   const handleClickPlusProduct = () => {
-    handlePlusProduct()
-    setCount(count + 1)
-  }
+    handlePlusProduct();
+    setCount(count + 1);
+  };
 
   const handleClickMinusProduct = () => {
-    handleMinusProduct()
-    setCount(count - 1)
-  }
+    handleMinusProduct();
+    setCount(count - 1);
+  };
   return (
     <div className={cn(style.buttons, classNames)}>
       <button
@@ -54,13 +54,13 @@ export function Counter({
         {'–'}
       </button>
     </div>
-  )
+  );
 }
 
 Counter.propTypes = {
   handleMinusProduct: PropTypes.func.isRequired,
   handlePlusProduct: PropTypes.func.isRequired,
   quantity: PropTypes.number.isRequired,
-}
+};
 
-Counter.defaultProps = { quantity: 0 }
+Counter.defaultProps = { quantity: 0 };

@@ -1,7 +1,7 @@
-import { Link as LinkScroll } from 'react-scroll'
+import { Link as LinkScroll } from 'react-scroll';
 
-import { ButtonOrder } from '../../ui/ButtonOrder'
-import style from './readyToOrder.module.scss'
+import { ButtonOrder } from '../../ui/ButtonOrder';
+import style from './readyToOrder.module.scss';
 
 export function ReadyToOrder() {
   return (
@@ -15,5 +15,5 @@ export function ReadyToOrder() {
         </div>
       </div>
     </div>
-  )
+  );
 }

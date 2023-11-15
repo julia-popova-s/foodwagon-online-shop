@@ -1,11 +1,11 @@
-import classNames from 'classnames'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { ReactSVG } from 'react-svg'
+import classNames from 'classnames';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
-import { getPartOfString } from '../../../utils/getPartOfString'
-import { ButtonFind } from '../../ui/ButtonFind'
-import style from './card.module.scss'
+import { getPartOfString } from '../../../utils/getPartOfString';
+import { ButtonFind } from '../../ui/ButtonFind';
+import style from './card.module.scss';
 
 export function Card({
   discount,
@@ -18,13 +18,13 @@ export function Card({
   restaurantName,
   title,
 }) {
-  const [count, setCount] = useState(70)
-  const [visible, setVisible] = useState(false)
+  const [count, setCount] = useState(70);
+  const [visible, setVisible] = useState(false);
 
   const handleVisibleText = () => {
-    setCount(500)
-    setVisible(true)
-  }
+    setCount(500);
+    setVisible(true);
+  };
 
   return (
     <div className={style.card}>
@@ -51,5 +51,5 @@ export function Card({
 
       <ButtonFind classNames={style.card__btn} handleClick={handleClick} name="Add To Cart" />
     </div>
-  )
+  );
 }

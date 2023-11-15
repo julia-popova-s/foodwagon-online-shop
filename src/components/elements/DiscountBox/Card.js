@@ -1,4 +1,4 @@
-import style from './card.module.scss'
+import style from './card.module.scss';
 
 export function Card({ discount, image, restaurantName }) {
   return (
@@ -20,5 +20,5 @@ export function Card({ discount, image, restaurantName }) {
       <p className={style.card__name}>{restaurantName}</p>
       <p className={style.card__text}>6 Days Remaining</p>
     </div>
-  )
+  );
 }

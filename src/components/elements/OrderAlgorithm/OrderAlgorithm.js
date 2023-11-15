@@ -1,5 +1,5 @@
-import { OrderStep } from './OrderStep'
-import style from './orderAlgorithm.module.scss'
+import { OrderStep } from './OrderStep';
+import style from './orderAlgorithm.module.scss';
 
 const algorithm = [
   {
@@ -13,7 +13,7 @@ const algorithm = [
     label: 'Choose order',
   },
   {
-    description: " It's quick, safe, and simple. Select several methods of payment",
+    description: ' It\'s quick, safe, and simple. Select several methods of payment',
     imageSrc: '/images/order-algorithm/invoice.svg',
     label: 'Pay advanced',
   },
@@ -22,7 +22,7 @@ const algorithm = [
     imageSrc: '/images/order-algorithm/donut.svg',
     label: 'Enjoy meals',
   },
-]
+];
 
 export function OrderAlgorithm() {
   return (
@@ -33,11 +33,11 @@ export function OrderAlgorithm() {
           <div className={style.orderAlgorithm__list}>
             {algorithm &&
               algorithm.map(({ id, label, ...others }, i) => {
-                return <OrderStep key={`${label}_${i}`} label={label} {...others} />
+                return <OrderStep key={`${label}_${i}`} label={label} {...others} />;
               })}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

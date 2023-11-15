@@ -1,1 +1,1 @@
-export { SortPopup } from './SortPopup'
+export { SortPopup } from './SortPopup';

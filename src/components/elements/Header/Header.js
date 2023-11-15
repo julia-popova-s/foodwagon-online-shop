@@ -1,33 +1,33 @@
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import cn from 'classnames'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
-import { Button } from 'react-scroll'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import cn from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-scroll';
 // import { Link as LinkScroll } from 'react-scroll'
-import { ReactSVG } from 'react-svg'
+import { ReactSVG } from 'react-svg';
 
-import { isAuthSelector } from '../../../store/reducers/user'
-import { removeUser } from '../../../store/reducers/user'
-import { ButtonCart } from '../../ui/ButtonCart'
-import { ButtonLogin } from '../../ui/ButtonLogin'
-import { LogoType } from '../../ui/LogoType'
-import style from './header.module.scss'
+import { isAuthSelector } from '../../../store/reducers/user';
+import { removeUser } from '../../../store/reducers/user';
+import { ButtonCart } from '../../ui/ButtonCart';
+import { ButtonLogin } from '../../ui/ButtonLogin';
+import { LogoType } from '../../ui/LogoType';
+import style from './header.module.scss';
 
 export function Header({ geolocation }) {
-  const navigate = useNavigate()
-  const goBack = () => navigate(-1)
-  const { pathname } = useLocation()
-  const isAuth = useSelector(isAuthSelector)
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const goBack = () => navigate(-1);
+  const { pathname } = useLocation();
+  const isAuth = useSelector(isAuthSelector);
+  const dispatch = useDispatch();
   const handleLogOut = () => {
-    dispatch(removeUser())
-  }
+    dispatch(removeUser());
+  };
   const handleLogin = () => {
-    navigate('/login')
-  }
+    navigate('/login');
+  };
   return (
     <header className={style.headerBlock}>
       <div className="container">
@@ -90,5 +90,5 @@ export function Header({ geolocation }) {
         </div>
       </div>
     </header>
-  )
+  );
 }

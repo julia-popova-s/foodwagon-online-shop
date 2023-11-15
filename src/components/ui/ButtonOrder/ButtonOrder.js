@@ -1,7 +1,7 @@
-import cn from 'classnames'
-import { ReactSVG } from 'react-svg'
+import cn from 'classnames';
+import { ReactSVG } from 'react-svg';
 
-import style from './buttonOrder.module.scss'
+import style from './buttonOrder.module.scss';
 
 export function ButtonOrder({ classNames, name, onClick }) {
   return (
@@ -13,5 +13,5 @@ export function ButtonOrder({ classNames, name, onClick }) {
         wrapper="span"
       />
     </button>
-  )
+  );
 }

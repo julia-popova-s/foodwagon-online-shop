@@ -1,1 +1,1 @@
-export { ButtonLogin } from './ButtonLogin'
+export { ButtonLogin } from './ButtonLogin';
