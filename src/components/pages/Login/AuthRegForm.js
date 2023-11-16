@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import style from './authRegForm.module.scss';
 
-export function AuthRegForm({ errorMessage, handleClick, schema, title }) {
+function AuthRegForm({ errorMessage, handleClick, schema, title }) {
   const {
     control,
     formState: { errors, isValid },
@@ -88,3 +88,4 @@ export function AuthRegForm({ errorMessage, handleClick, schema, title }) {
     </form>
   );
 }
+export default AuthRegForm;

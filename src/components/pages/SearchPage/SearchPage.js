@@ -17,7 +17,7 @@ import style from './searchPage.module.scss';
 
 // let render = 0
 
-export function SearchPage() {
+function SearchPage() {
   // console.log(render++)
   const error = useSelector(errorSelector);
   const currentPage = useSelector(currentPageSelector);
@@ -27,19 +27,19 @@ export function SearchPage() {
 
   const dispatch = useDispatch();
 
-  const handleChangePage = (number) => {
+  const handleChangePage = number => {
     dispatch(setCurrentPage(number));
   };
 
-  const handleAddProduct = (obj) => {
+  const handleAddProduct = obj => {
     dispatch(addProduct(obj));
   };
 
-  const handleRemoveProduct = (product) => {
+  const handleRemoveProduct = product => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj) => {
+  const handleInputCount = obj => {
     dispatch(setProductCount(obj));
   };
 
@@ -71,13 +71,10 @@ export function SearchPage() {
               .map((_, index) => <Loader key={index} />)}
         </div>
 
-        {status && !error && (
-          <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />
-        )}
-        {!status && (
-          <div className={style.message}>Are you ready to order with the best deals?</div>
-        )}
+        {status && !error && <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />}
+        {!status && <div className={style.message}>Are you ready to order with the best deals?</div>}
       </div>
     </div>
   );
 }
+export default SearchPage;

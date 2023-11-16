@@ -10,7 +10,6 @@ export const Modal = forwardRef(({ handleCloseModal, idOrder, name, show }, ref)
         <div className={style.popup}>
           <div className={style.popup__title}>
             <span className={style.popup__name}>
-              {/* «{name}». Order №{idOrder++} */}
               Order №{idOrder} from «{name}» restaurant is completed!
             </span>
           </div>

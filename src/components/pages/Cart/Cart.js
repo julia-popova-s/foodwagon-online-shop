@@ -7,18 +7,8 @@ import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { useDisableBodyScroll } from '../../../hooks/useDisableBodyscroll';
-import {
-  addedGoodsSelector,
-  cartSelector,
-  totalQuantitySelector,
-} from '../../../store/reducers/cart';
-import {
-  addProduct,
-  clearCart,
-  deleteOneProduct,
-  removeProduct,
-  setProductCount,
-} from '../../../store/reducers/cart';
+import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/reducers/cart';
+import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
 import { ButtonOrder } from '../../ui/ButtonOrder/ButtonOrder';
 import { Popup } from '../../ui/Popup/Popup';
 import { CardProduct } from './CardProduct';
@@ -27,7 +17,7 @@ import style from './cart.module.scss';
 
 let orderNumber = 0;
 
-export function Cart() {
+function Cart() {
   const { pathname } = useLocation();
 
   const [name, setName] = useState('');
@@ -63,7 +53,7 @@ export function Cart() {
     dispatch(removeProduct({ id, restaurantId }));
   };
 
-  const handleAddProduct = (product) => {
+  const handleAddProduct = product => {
     dispatch(addProduct(product));
   };
 
@@ -74,14 +64,13 @@ export function Cart() {
     } else dispatch(deleteOneProduct({ id, restaurantId }));
   };
 
-  const handleInputQuantity = (obj) => {
+  const handleInputQuantity = obj => {
     dispatch(setProductCount(obj));
   };
 
   const handlePlaceAnOrder = (id, name) => {
     setName(name);
     setId(id);
-    console.log(id);
     orderNumber++;
     console.log(`${name}. Order № ${orderNumber}:`, cart[id]);
     setVisibleModal(true);
@@ -115,7 +104,7 @@ export function Cart() {
   // }, [])
 
   useEffect(() => {
-    const handleOutsideClick = (e) => {
+    const handleOutsideClick = e => {
       if (popupRef.current?.contains(e.target)) {
         setVisiblePopup(false);
       }
@@ -149,7 +138,7 @@ export function Cart() {
       <div className={cn(style.cart__container, 'container')}>
         <div className={style.cart__inner}>
           {totalQuantity &&
-            addedGoods.map((restaurant) => {
+            addedGoods.map(restaurant => {
               const [restaurantId, info] = restaurant;
               const products = Object.values(info.items);
 
@@ -161,23 +150,14 @@ export function Cart() {
                 <div className={cn(style.cart__order, style.cart__order_border)} key={restaurantId}>
                   <div className={style.cart__top}>
                     <div className={style.cart__restaurantName}>
-                      <Link
-                        className={style.cart__restaurantLink}
-                        // to={`/restaurant/09f0fe36-8d60-4c64-ab0d-74f3d61be998/product/187d81f3-d149-4c0f-ba70-0082b563140c`}
-                      >
-                        {restaurantName}
-                      </Link>
+                      <Link className={style.cart__restaurantLink}>{restaurantName}</Link>
                     </div>
                     <div className={style.cart__clear}>
                       <button
                         className={style.cart__clearBtn}
                         onClick={() => handleClearCart({ restaurantId, restaurantName })}
                       >
-                        <FontAwesomeIcon
-                          className={style.cart__clearIcon}
-                          icon={faTrashCan}
-                          size="lg"
-                        />
+                        <FontAwesomeIcon className={style.cart__clearIcon} icon={faTrashCan} size="lg" />
                         clear
                       </button>
                     </div>
@@ -190,10 +170,10 @@ export function Cart() {
                           return (
                             <CardProduct
                               {...item}
-                              handleAddProduct={(item) => handleAddProduct(item)}
-                              handleDeleteProduct={(obj) => handleDeleteProduct(obj, quantity)}
-                              handleInputCount={(obj) => handleInputQuantity(obj)}
-                              handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
+                              handleAddProduct={item => handleAddProduct(item)}
+                              handleDeleteProduct={obj => handleDeleteProduct(obj, quantity)}
+                              handleInputCount={obj => handleInputQuantity(obj)}
+                              handleRemoveProduct={obj => handleRemoveProduct(obj)}
                               key={item.id}
                               quantity={quantity}
                             />
@@ -202,10 +182,8 @@ export function Cart() {
                         <div className={cn(style.cart__orderInfo, style.cart__orderInfo_border)}>
                           <p className={style.cart__result}>
                             Your order for the total amount &#36;{' '}
-                            <span className={style.cart__result_color}>
-                              {price && price.toFixed(2)}
-                            </span>{' '}
-                            and <span className={style.cart__result_color}>{quantity}</span> items
+                            <span className={style.cart__result_color}>{price && price.toFixed(2)}</span> and{' '}
+                            <span className={style.cart__result_color}>{quantity}</span> items
                           </p>
                           <ButtonOrder
                             name={'Place an order'}
@@ -221,13 +199,7 @@ export function Cart() {
         </div>
       </div>
 
-      <Modal
-        handleCloseModal={handleCloseModal}
-        idOrder={orderNumber}
-        name={name}
-        ref={modalRef}
-        show={visibleModal}
-      />
+      <Modal handleCloseModal={handleCloseModal} idOrder={orderNumber} name={name} ref={modalRef} show={visibleModal} />
       <Popup
         handleClearOrder={handleClearOrder}
         handleClosePopup={handleClosePopup}
@@ -238,3 +210,4 @@ export function Cart() {
     </div>
   );
 }
+export default Cart;

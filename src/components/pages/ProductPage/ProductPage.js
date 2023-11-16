@@ -12,7 +12,7 @@ import { LoaderLeft } from './LoaderLeft';
 import { LoaderRight } from './LoaderRight';
 import style from './productPage.module.scss';
 
-export function ProductPage() {
+function ProductPage() {
   const { id, restaurantId } = useParams();
   const dispatch = useDispatch();
 
@@ -30,7 +30,7 @@ export function ProductPage() {
       fetchProduct({
         id,
         limit: 1,
-      })
+      }),
     );
   }, [id, dispatch]);
 
@@ -43,15 +43,15 @@ export function ProductPage() {
   //   )
   // }, [restaurantId, dispatch])
 
-  const handleAddProduct = (product) => {
+  const handleAddProduct = product => {
     dispatch(addProduct(product));
   };
 
-  const handleRemoveProduct = (product) => {
+  const handleRemoveProduct = product => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj) => {
+  const handleInputCount = obj => {
     dispatch(setProductCount(obj));
   };
 
@@ -62,22 +62,22 @@ export function ProductPage() {
           <div className={style.product}>
             {isLoaded && product
               ? product.map((item, i) => (
-                <Card
-                  {...item}
-                  handleAddProduct={handleAddProduct}
-                  handleInputCount={handleInputCount}
-                  handleRemoveProduct={handleRemoveProduct}
-                  key={`${item.id}${i}`}
-                />
-              ))
+                  <Card
+                    {...item}
+                    handleAddProduct={handleAddProduct}
+                    handleInputCount={handleInputCount}
+                    handleRemoveProduct={handleRemoveProduct}
+                    key={`${item.id}${i}`}
+                  />
+                ))
               : Array(1)
-                .fill(0)
-                .map((_, index) => (
-                  <div className={style.placeholder} key={index}>
-                    <LoaderLeft />
-                    <LoaderRight />
-                  </div>
-                ))}
+                  .fill(0)
+                  .map((_, index) => (
+                    <div className={style.placeholder} key={index}>
+                      <LoaderLeft />
+                      <LoaderRight />
+                    </div>
+                  ))}
           </div>
         </div>
       </div>
@@ -85,3 +85,4 @@ export function ProductPage() {
     </>
   );
 }
+export default ProductPage;

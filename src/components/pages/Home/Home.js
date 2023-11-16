@@ -11,7 +11,7 @@ import {
   SearchFood,
 } from '../../elements';
 
-export function Home() {
+function Home() {
   return (
     <>
       <FindFood />
@@ -27,3 +27,4 @@ export function Home() {
     </>
   );
 }
+export default Home;

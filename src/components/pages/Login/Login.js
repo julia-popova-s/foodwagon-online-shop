@@ -1,14 +1,15 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { setUser } from '../../../store/reducers/user';
 import { loginSchema } from '../../../utils/utilsForForm/fieldValidationSchemes';
-import { AuthRegForm } from './AuthRegForm';
+import Spinner from '../../App/Spinner';
+import AuthRegForm from './AuthRegForm';
 import style from './login.module.scss';
 
-export function Login() {
+function Login() {
   const auth = getAuth();
   const { pathname } = useLocation();
   const dispatch = useDispatch();
@@ -29,13 +30,13 @@ export function Login() {
       })
       .catch(({ code, message }) => {
         switch (code) {
-        case 'auth/invalid-login-credentials':
-          setErrorMessage('Invalid login details');
-          break;
+          case 'auth/invalid-login-credentials':
+            setErrorMessage('Invalid login details');
+            break;
 
-        default:
-          setErrorMessage(message);
-          break;
+          default:
+            setErrorMessage(message);
+            break;
         }
       });
   };
@@ -46,12 +47,10 @@ export function Login() {
 
   return (
     <div className={style.login}>
-      <AuthRegForm
-        errorMessage={errorMessage}
-        handleClick={handleLogin}
-        schema={loginSchema}
-        title={'Log in'}
-      />
+      <Suspense fallback={<Spinner />}>
+        <AuthRegForm errorMessage={errorMessage} handleClick={handleLogin} schema={loginSchema} title={'Log in'} />
+      </Suspense>
     </div>
   );
 }
+export default Login;
