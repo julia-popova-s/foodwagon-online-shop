@@ -42,7 +42,7 @@ export const router = [
   {
     element: (
      
-        <LoginPage />
+      <LoginPage />
    
     ),
     errorElement: <ErrorPage />,
@@ -50,7 +50,7 @@ export const router = [
   },
   {
     element: (
-        <SignUpPage />
+      <SignUpPage />
       
     ),
     errorElement: <ErrorPage />,

@@ -32,13 +32,13 @@ function SignUp() {
       })
       .catch(({ code, message }) => {
         switch (code) {
-          case 'auth/email-already-in-use':
-            setErrorMessage('This email address is already in use by another account.');
-            break;
+        case 'auth/email-already-in-use':
+          setErrorMessage('This email address is already in use by another account.');
+          break;
 
-          default:
-            setErrorMessage(message);
-            break;
+        default:
+          setErrorMessage(message);
+          break;
         }
       });
   };

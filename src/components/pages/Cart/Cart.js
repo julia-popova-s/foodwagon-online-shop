@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useDisableBodyScroll } from '../../../hooks/useDisableBodyscroll';
 import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/reducers/cart';
 import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
+import { isAuthSelector, setOrders } from '../../../store/reducers/user';
 import { ButtonOrder } from '../../ui/ButtonOrder/ButtonOrder';
 import { Popup } from '../../ui/Popup/Popup';
 import { CardProduct } from './CardProduct';
@@ -21,9 +22,8 @@ function Cart() {
   const { pathname } = useLocation();
 
   const [name, setName] = useState('');
-  const [idOrder, setIdOrder] = useState('');
-
   const [id, setId] = useState('');
+
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [visibleModal, setVisibleModal] = useState(false);
 
@@ -33,11 +33,14 @@ function Cart() {
   const addedGoods = useSelector(addedGoodsSelector);
   const cart = useSelector(cartSelector);
   const totalQuantity = useSelector(totalQuantitySelector);
+  const isAuth = useSelector(isAuthSelector);
 
   const dispatch = useDispatch();
 
   useDisableBodyScroll(visiblePopup);
   useDisableBodyScroll(visibleModal);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -69,12 +72,16 @@ function Cart() {
   };
 
   const handlePlaceAnOrder = (id, name) => {
-    setName(name);
-    setId(id);
-    orderNumber++;
-    console.log(`${name}. Order № ${orderNumber}:`, cart[id]);
-    setVisibleModal(true);
-    // dispatch(clearCart({ restaurantId: id }))
+    const list = cart[id];
+    if (!isAuth) {
+      navigate('/login');
+    } else {
+      setName(name);
+      setId(id);
+      orderNumber++;
+      setVisibleModal(true);
+      dispatch(setOrders({ list, name, orderNumber }));
+    }
   };
 
   const handleClosePopup = () => {
@@ -90,18 +97,6 @@ function Cart() {
     dispatch(clearCart({ restaurantId: id }));
     setVisibleModal(false);
   };
-
-  // useEffect(() => {
-  //   const handleOutsideClick = (e) => {
-  //     if (modalRef.current?.contains(e.target)) {
-  //       setVisibleModal(false)
-  //     }
-  //     return
-  //   }
-  //   document.body.addEventListener('click', handleOutsideClick)
-
-  //   return () => document.body.removeEventListener('click', handleOutsideClick)
-  // }, [])
 
   useEffect(() => {
     const handleOutsideClick = e => {
@@ -199,7 +194,13 @@ function Cart() {
         </div>
       </div>
 
-      <Modal handleCloseModal={handleCloseModal} idOrder={orderNumber} name={name} ref={modalRef} show={visibleModal} />
+      <Modal
+        handleCloseModal={handleCloseModal}
+        name={name}
+        orderNumber={orderNumber}
+        ref={modalRef}
+        show={visibleModal}
+      />
       <Popup
         handleClearOrder={handleClearOrder}
         handleClosePopup={handleClosePopup}

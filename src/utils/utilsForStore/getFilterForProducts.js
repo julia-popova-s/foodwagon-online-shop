@@ -1,13 +1,4 @@
-export function getFilterForProducts({
-  category,
-  currentPage,
-  id,
-  limit,
-  order,
-  restaurantId,
-  searchValue,
-  sortType,
-}) {
+export function getFilterForProducts({ category, currentPage, id, limit, order, restaurantId, searchValue, sortType }) {
   const currentPageFilter = currentPage ? `?page=${currentPage}` : '?page=1';
 
   const limitFilter = limit ? `&limit=${limit}` : '&limit=4';

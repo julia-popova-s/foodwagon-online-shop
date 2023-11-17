@@ -30,13 +30,13 @@ function Login() {
       })
       .catch(({ code, message }) => {
         switch (code) {
-          case 'auth/invalid-login-credentials':
-            setErrorMessage('Invalid login details');
-            break;
+        case 'auth/invalid-login-credentials':
+          setErrorMessage('Invalid login details');
+          break;
 
-          default:
-            setErrorMessage(message);
-            break;
+        default:
+          setErrorMessage(message);
+          break;
         }
       });
   };

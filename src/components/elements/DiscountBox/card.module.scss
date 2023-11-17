@@ -20,7 +20,9 @@
   }
 
   &__discount {
-    @include setFontSize(700, 68px, 106%);
+    font-size: 68px;
+    font-weight: 700;
+    line-height: 106%;
     color: $white-color;
     background-color: $primary-color;
     position: absolute;
@@ -33,27 +35,35 @@
   }
 
   &__discount_size {
-    @include setFontSize(700, 35px, 120%);
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 120%;
     position: absolute;
     right: 20px;
     bottom: 30px;
   }
 
   &__discount_off {
-    @include setFontSize(400, 22px, 120%);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 120%;
     position: absolute;
     right: 24px;
     bottom: 12px;
   }
 
   &__name {
-    @include setFontSize(700, 22px, 120%);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 120%;
     color: #424242;
     margin-bottom: 14px;
   }
 
   &__text {
-    @include setFontSize(700, 22px, 120%);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 120%;
     background: rgba(241, 114, 40, 0.2);
     color: $base-color;
     text-align: center;

@@ -12,7 +12,6 @@
     "jsx-quotes": ["error", "prefer-double"],
     "max-len": ["warn", { "code": 120 }],
     "comma-dangle": ["error", "always-multiline"],
-    "prefer-const": "error",
-    "indent": ["warn", 2]
+    "prefer-const": "error"
   }
 }
