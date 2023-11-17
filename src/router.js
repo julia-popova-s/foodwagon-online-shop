@@ -1,27 +1,37 @@
-import { App } from './components/App/App'
-import { SearchPage } from './components/pages'
-import { Cart, ErrorPage, Home, Login } from './components/pages'
-import { SignUp } from './components/pages/Login/SignUp'
-import { ProductPage } from './components/pages/ProductPage'
+import { Suspense, lazy } from 'react';
+
+import Spinner from './components/App/Spinner.js';
+import { ErrorPage } from './components/pages/ErrorPage';
+
+const App = lazy(() => import('./components/App/App.js'));
+
+const HomePage = lazy(() => import('./components/pages/Home/Home.js'));
+const CartPage = lazy(() => import('./components/pages/Cart/Cart.js'));
+
+const SignUpPage = lazy(() => import('./components/pages/Login/SignUp.js'));
+const LoginPage = lazy(() => import('./components/pages/Login/Login.js'));
+
+const Product = lazy(() => import('./components/pages/ProductPage/ProductPage.js'));
+const Search = lazy(() => import('./components/pages/SearchPage/SearchPage.js'));
 
 export const router = [
   {
     children: [
       {
-        element: <Home />,
+        element: <HomePage />,
         path: '',
       },
       {
-        element: <Cart />,
+        element: <CartPage />,
         path: 'cart',
       },
 
       {
-        element: <ProductPage />,
+        element: <Product />,
         path: 'restaurant/:restaurantId/product/:id',
       },
       {
-        element: <SearchPage />,
+        element: <Search />,
         path: 'search',
       },
     ],
@@ -29,6 +39,21 @@ export const router = [
     errorElement: <ErrorPage />,
     path: '/',
   },
-  { element: <Login />, errorElement: <ErrorPage />, path: '/login' },
-  { element: <SignUp />, errorElement: <ErrorPage />, path: '/register' },
-]
+  {
+    element: (
+     
+        <LoginPage />
+   
+    ),
+    errorElement: <ErrorPage />,
+    path: '/login',
+  },
+  {
+    element: (
+        <SignUpPage />
+      
+    ),
+    errorElement: <ErrorPage />,
+    path: '/register',
+  },
+];

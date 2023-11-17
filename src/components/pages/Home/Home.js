@@ -9,9 +9,9 @@ import {
   ReadyToOrder,
   Restaurants,
   SearchFood,
-} from '../../elements'
+} from '../../elements';
 
-export function Home() {
+function Home() {
   return (
     <>
       <FindFood />
@@ -25,5 +25,6 @@ export function Home() {
       <ReadyToOrder />
       <Cities />
     </>
-  )
+  );
 }
+export default Home;

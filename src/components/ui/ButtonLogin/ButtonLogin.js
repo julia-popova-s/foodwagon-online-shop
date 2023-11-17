@@ -1,7 +1,7 @@
-import cn from 'classnames'
-import { ReactSVG } from 'react-svg'
+import cn from 'classnames';
+import { ReactSVG } from 'react-svg';
 
-import style from './buttonLogin.module.scss'
+import style from './buttonLogin.module.scss';
 
 export function ButtonLogin({ classNames, handleClick, title }) {
   return (
@@ -13,5 +13,5 @@ export function ButtonLogin({ classNames, handleClick, title }) {
       />
       <span className={style.buttonLogin__name}>{title}</span>
     </button>
-  )
+  );
 }

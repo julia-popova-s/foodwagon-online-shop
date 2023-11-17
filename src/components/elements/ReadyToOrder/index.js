@@ -1,1 +1,1 @@
-export { ReadyToOrder } from './ReadyToOrder'
+export { ReadyToOrder } from './ReadyToOrder';

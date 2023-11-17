@@ -1,8 +1,7 @@
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-import style from './categories.module.scss'
+import style from './categories.module.scss';
 
 export function Categories({ activeCategory, handleClickCategory, items }) {
   return (
@@ -19,17 +18,17 @@ export function Categories({ activeCategory, handleClickCategory, items }) {
             >
               {item}
             </li>
-          )
+          );
         })}
       </ul>
     </div>
-  )
+  );
 }
 
 Categories.propTypes = {
   activeCategory: PropTypes.number.isRequired,
   handleClickCategory: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
-}
+};
 
-Categories.defaultProps = { activeCategory: 0, items: [] }
+Categories.defaultProps = { activeCategory: 0, items: [] };

@@ -1,6 +1,6 @@
-import ReactPaginate from 'react-paginate'
+import ReactPaginate from 'react-paginate';
 
-import style from './pagination.module.scss'
+import style from './pagination.module.scss';
 
 export function Pagination({ currentPage, handleChangePage, pageCount }) {
   return (
@@ -15,5 +15,5 @@ export function Pagination({ currentPage, handleChangePage, pageCount }) {
       previousLabel="<"
       renderOnZeroPageCount={null}
     />
-  )
+  );
 }

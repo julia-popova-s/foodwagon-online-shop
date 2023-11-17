@@ -1,7 +1,7 @@
-import cn from 'classnames'
-import { ReactSVG } from 'react-svg'
+import cn from 'classnames';
+import { ReactSVG } from 'react-svg';
 
-import style from './logoType.module.scss'
+import style from './logoType.module.scss';
 
 export function LogoType({ onClick }) {
   return (
@@ -19,5 +19,5 @@ export function LogoType({ onClick }) {
         <span className={style.logo__nameOn}>on</span>
       </div>
     </div>
-  )
+  );
 }

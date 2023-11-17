@@ -1,10 +1,10 @@
-import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react'
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 
-import { validationEmail } from '../../../utils/utilsForForm/validationEmail'
-import { FooterNav } from './FooterNav'
-import style from './footer.module.scss'
+import { validationEmail } from '../../../utils/utilsForForm/validationEmail';
+import { FooterNav } from './FooterNav';
+import style from './footer.module.scss';
 
 export const LINKS = [
   {
@@ -20,25 +20,25 @@ export const LINKS = [
     links: ['Terms & Conditions', 'Refund & Cancellation', 'Privacy Policy', 'Cookie Policy'],
     title: 'Legal',
   },
-]
+];
 
 export function Footer() {
-  const [email, setEmail] = useState('')
-  const [error, setError] = useState('')
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     if (!validationEmail(e.target.value)) {
-      setError('Email is invalid')
+      setError('Email is invalid');
     } else {
-      setError(null)
+      setError(null);
     }
 
-    setEmail(e.target.value)
-  }
+    setEmail(e.target.value);
+  };
 
   const handleSubmitEmail = (e) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+  };
 
   return (
     <footer className={style.footer}>
@@ -81,5 +81,5 @@ export function Footer() {
         </footer>
       </div>
     </footer>
-  )
+  );
 }

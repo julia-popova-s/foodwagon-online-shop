@@ -1,1 +1,1 @@
-export { ButtonFind } from './ButtonFind'
+export { ButtonFind } from './ButtonFind';

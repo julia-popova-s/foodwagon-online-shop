@@ -1,1 +1,1 @@
-export { FindFood } from './FindFood'
+export { FindFood } from './FindFood';

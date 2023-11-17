@@ -1,7 +1,7 @@
-import cn from 'classnames'
-import { ReactSVG } from 'react-svg'
+import cn from 'classnames';
+import { ReactSVG } from 'react-svg';
 
-import style from './buttonFind.module.scss'
+import style from './buttonFind.module.scss';
 
 export function ButtonFind({ classNames, handleClick, icon, label }) {
   return (
@@ -15,5 +15,5 @@ export function ButtonFind({ classNames, handleClick, icon, label }) {
       )}
       <span>{label}</span>
     </button>
-  )
+  );
 }

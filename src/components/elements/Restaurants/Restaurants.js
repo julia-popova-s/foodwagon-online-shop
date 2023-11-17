@@ -1,45 +1,46 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { ReactSVG } from 'react-svg'
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ReactSVG } from 'react-svg';
 
-import { categorySelector, sortTypeSelector } from '../../../store/reducers/filters'
-import { setCategory, setSortBy } from '../../../store/reducers/filters'
-import { fetchRestaurants } from '../../../store/reducers/restaurants'
-import { isLoadedSelector, restaurantListSelector } from '../../../store/reducers/restaurants'
-import { Categories } from '../Categories'
-import { SortPopup } from '../SortPopup'
-import { RestaurantList } from './RestaurantList'
-import style from './restaurants.module.scss'
-const categoryNames = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup', 'Burger']
+import { categorySelector, sortTypeSelector } from '../../../store/reducers/filters';
+import { setCategory, setSortBy } from '../../../store/reducers/filters';
+import { fetchRestaurants } from '../../../store/reducers/restaurants';
+import { isLoadedSelector, restaurantListSelector } from '../../../store/reducers/restaurants';
+import { Categories } from '../Categories';
+import { SortPopup } from '../SortPopup';
+import { RestaurantList } from './RestaurantList';
+import style from './restaurants.module.scss';
+
+const categoryNames = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup', 'Burger'];
 
 const sortItems = [
   { name: 'popularity', type: 'popular' },
   { name: 'rating', type: 'rating' },
   { name: 'delivery time', type: 'time' },
   { name: 'alphabetically', type: 'name' },
-]
+];
 
 export function Restaurants() {
-  const [limit, setLimit] = useState(4)
-  const dispatch = useDispatch()
+  const [limit, setLimit] = useState(4);
+  const dispatch = useDispatch();
 
-  const category = useSelector(categorySelector)
-  const sortType = useSelector(sortTypeSelector)
+  const category = useSelector(categorySelector);
+  const sortType = useSelector(sortTypeSelector);
 
-  const isLoaded = useSelector(isLoadedSelector)
-  const list = useSelector(restaurantListSelector)
+  const isLoaded = useSelector(isLoadedSelector);
+  const list = useSelector(restaurantListSelector);
 
   const handleSelectCategory = (index) => {
-    dispatch(setCategory(index))
-  }
+    dispatch(setCategory(index));
+  };
 
   const handleSelectSortType = (type) => {
-    dispatch(setSortBy(type))
-  }
+    dispatch(setSortBy(type));
+  };
 
   const handleLimit = () => {
-    setLimit(false)
-  }
+    setLimit(false);
+  };
 
   useEffect(() => {
     dispatch(
@@ -48,8 +49,8 @@ export function Restaurants() {
         limit,
         sortType,
       })
-    )
-  }, [sortType, category, dispatch, limit])
+    );
+  }, [sortType, category, dispatch, limit]);
 
   return (
     <div className={style.restaurants} id="featuredRestaurants">
@@ -82,5 +83,5 @@ export function Restaurants() {
         </div>
       </div>
     </div>
-  )
+  );
 }

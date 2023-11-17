@@ -1,1 +1,1 @@
-export { ButtonOrder } from './ButtonOrder'
+export { ButtonOrder } from './ButtonOrder';

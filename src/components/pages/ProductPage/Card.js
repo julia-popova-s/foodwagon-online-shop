@@ -1,12 +1,12 @@
-import cn from 'classnames'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { ReactSVG } from 'react-svg'
+import cn from 'classnames';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
-import { getPartOfString } from '../../../utils/getPartOfString'
-import { ButtonFind } from '../../ui/ButtonFind'
-import { ButtonsWithCounter } from '../../ui/ButtonsWithCounter'
-import style from './card.module.scss'
+import { getPartOfString } from '../../../utils/getPartOfString';
+import { ButtonFind } from '../../ui/ButtonFind';
+import { ButtonsWithCounter } from '../../ui/ButtonsWithCounter';
+import style from './card.module.scss';
 
 export function Card({
   discount,
@@ -22,12 +22,12 @@ export function Card({
   title,
 }) {
   const handleMinusProduct = () => {
-    const data = { discount, id, image, price, restaurantId, restaurantName, title }
-    handleRemoveProduct(data)
-  }
-  const { cart } = useSelector((state) => state.cart)
-  const quantity = cart[restaurantId]?.items[id]?.quantity
-  const handleInputQuantity = (quantity) => handleInputCount({ id, price, quantity, restaurantId })
+    const data = { discount, id, image, price, restaurantId, restaurantName, title };
+    handleRemoveProduct(data);
+  };
+  const { cart } = useSelector((state) => state.cart);
+  const quantity = cart[restaurantId]?.items[id]?.quantity;
+  const handleInputQuantity = (quantity) => handleInputCount({ id, price, quantity, restaurantId });
 
   const handlePlusProduct = () => {
     handleAddProduct({
@@ -38,8 +38,8 @@ export function Card({
       restaurantId,
       restaurantName,
       title,
-    })
-  }
+    });
+  };
   return (
     <div className={style.card}>
       <div className={style.card__left}>
@@ -97,5 +97,5 @@ export function Card({
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import * as yup from 'yup'
+import * as yup from 'yup';
 
-import { regExpEmail } from './regExpEmail.js'
-import { regExpPassword } from './regExpPassword.js'
+import { regExpEmail } from './regExpEmail.js';
+import { regExpPassword } from './regExpPassword.js';
 
 export const signupSchema = yup
   .object({
@@ -21,7 +21,7 @@ export const signupSchema = yup
       .required()
       .min(8),
   })
-  .required()
+  .required();
 
 export const loginSchema = yup
   .object({
@@ -34,4 +34,4 @@ export const loginSchema = yup
       .required(),
     password: yup.string().required(),
   })
-  .required()
+  .required();

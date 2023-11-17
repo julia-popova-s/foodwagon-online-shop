@@ -1,7 +1,7 @@
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 
-import { CardBig } from './CardBig'
-import style from './cardBigList.module.scss'
+import { CardBig } from './CardBig';
+import style from './cardBigList.module.scss';
 
 const dish = [
   {
@@ -31,7 +31,7 @@ const dish = [
     link: 'restaurant/c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5/product/5452bd6c-654a-46d7-830a-e3b5b673de64',
     title: 'Wanna eat hot & spicy',
   },
-]
+];
 
 export function CardBigList() {
   return (
@@ -40,11 +40,11 @@ export function CardBigList() {
         <div className={style.cardList}>
           {dish &&
             dish.map((item, i) => {
-              const { id } = item
-              return <CardBig key={id} {...item} flippedСard={(i + 1) % 2 !== 0} />
+              const { id } = item;
+              return <CardBig key={id} {...item} flippedСard={(i + 1) % 2 !== 0} />;
             })}
         </div>
       </div>
     </div>
-  )
+  );
 }

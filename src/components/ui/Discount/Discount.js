@@ -1,9 +1,9 @@
-import cn from 'classnames'
+import cn from 'classnames';
 
-import style from './discount.module.scss'
+import style from './discount.module.scss';
 
 export function Discount({ classNames, discount, view }) {
-  const labelView = view === 'smallLabel'
+  const labelView = view === 'smallLabel';
 
   return (
     <div
@@ -33,5 +33,5 @@ export function Discount({ classNames, discount, view }) {
         {'off'}
       </div>
     </div>
-  )
+  );
 }

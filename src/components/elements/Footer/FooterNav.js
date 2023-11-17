@@ -1,7 +1,7 @@
-import cn from 'classnames'
-import { Link } from 'react-router-dom'
+import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
-import style from './footerNav.module.scss'
+import style from './footerNav.module.scss';
 
 export function FooterNav({ links, title }) {
   return (
@@ -16,9 +16,9 @@ export function FooterNav({ links, title }) {
                   {item}
                 </Link>
               </li>
-            )
+            );
           })}
       </ul>
     </div>
-  )
+  );
 }

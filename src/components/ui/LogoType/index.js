@@ -1,1 +1,1 @@
-export {LogoType} from "./LogoType"
+export {LogoType} from './LogoType';

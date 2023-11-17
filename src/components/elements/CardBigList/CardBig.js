@@ -1,15 +1,15 @@
-import cn from 'classnames'
-import { Link } from 'react-router-dom'
+import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
-import { ButtonOrder } from '../../ui/ButtonOrder'
-import style from './cardBig.module.scss'
+import { ButtonOrder } from '../../ui/ButtonOrder';
+import style from './cardBig.module.scss';
 
 export function CardBig({ description, flippedСard, food, imageSrc, link, title }) {
   const flippedСardStyle = {
     imgBorder: style.cardBig__img_border,
     imgRight: style.cardBig__img_right,
     textBorder: style.cardBig__description_border,
-  }
+  };
   return (
     <div
       className={cn(style.cardBig, {
@@ -31,7 +31,7 @@ export function CardBig({ description, flippedСard, food, imageSrc, link, title
         })}
       >
         <p className={style.cardBig__title}>
-          {title}{' '}
+          {title}
           <Link className={style.cardBig__link} to={link}>
             {food}
           </Link>
@@ -42,5 +42,5 @@ export function CardBig({ description, flippedСard, food, imageSrc, link, title
         </Link>
       </div>
     </div>
-  )
+  );
 }

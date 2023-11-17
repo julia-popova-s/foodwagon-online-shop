@@ -1,4 +1,4 @@
-import style from './cardFood.module.scss'
+import style from './cardFood.module.scss';
 
 export function CardFood({ classNames, imageSrc, name, onClickCategory }) {
   return (
@@ -8,5 +8,5 @@ export function CardFood({ classNames, imageSrc, name, onClickCategory }) {
       </div>
       <p className={style.cardFood__label}>{name}</p>
     </div>
-  )
+  );
 }

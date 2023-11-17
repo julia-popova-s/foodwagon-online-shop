@@ -1,7 +1,7 @@
-import classNames from 'classnames'
-import { ReactSVG } from 'react-svg'
+import classNames from 'classnames';
+import { ReactSVG } from 'react-svg';
 
-import style from './buttonDelivery.module.scss'
+import style from './buttonDelivery.module.scss';
 
 export function ButtonDelivery({ active, icon, label, onClickItem }) {
   return (
@@ -24,5 +24,5 @@ export function ButtonDelivery({ active, icon, label, onClickItem }) {
       )}
       <span className={style.delivery__btnName}>{label}</span>
     </button>
-  )
+  );
 }

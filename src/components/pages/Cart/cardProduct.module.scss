@@ -1,8 +1,8 @@
 @import "../../App/styles/variables";
 
 .product {
-
   display: flex;
+  flex-wrap: wrap;
   column-gap: 50px;
   row-gap: 15px;
   align-items: flex-start;
@@ -39,9 +39,7 @@
     justify-content: center;
     align-items: center;
 
-    // position: absolute;
-    // top: 20px;
-    // right: 20px;
+    margin: 20px 0;
 
     width: 35px;
     height: 35px;
@@ -66,7 +64,9 @@
 .info {
   flex-grow: 2;
   padding: 20px 30px 0 10px;
-  max-width: 470px;
+  max-width: 460px;
+  max-width: 36.8%;
+
 
   &__title {
     margin-bottom: 10px;
@@ -121,8 +121,9 @@
 
 .counter {
   display: flex;
-  gap: 30px;
+  column-gap: 30px;
   align-items: center;
+  justify-content: start;
   padding: 0 20px 0 10px;
 
   &__btns {
@@ -133,7 +134,6 @@
     @include setFontSize(700, 22px, 120%);
     color: rgb(33, 33, 33);
     padding: 20px 0;
-    // margin-right: 31px;
     min-width: 125px;
     display: block;
     vertical-align: bottom;
@@ -192,24 +192,15 @@
   padding-top: 20px;
 }
 
-// .btnDelete {
-//   width: 21px;
-//   height: 24px;
-//   background-color: transparent;
-
-
-//   &__icon {
-//     color: #9e9e9e;
-//   }
-// }
+@media (max-width:1350px) {
+  .counter {
+    min-width: 100%;
+  }
+}
 
 @media (max-width:1100px) {
-  .product {
-    flex-wrap: wrap;
-
-    &__counterWithPrice {
-      width: 100%;
-    }
+  .product__counterWithPrice {
+    width: 100%;
   }
 }
 
@@ -222,5 +213,16 @@
 @media (max-width:880px) {
   .product__btnDelete {
     left: 325px;
+  }
+}
+
+@media (max-width:650px) {
+  .info {
+    max-width: 100%;
+  }
+
+  .counter {
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 }

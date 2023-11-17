@@ -1,5 +1,5 @@
-import { CityList } from './CityList'
-import style from './cities.module.scss'
+import { CityList } from './CityList';
+import style from './cities.module.scss';
 
 export const CITY_LIST = {
   links: [
@@ -29,7 +29,7 @@ export const CITY_LIST = {
     'New Orleans',
   ],
   title: 'Our top cities',
-}
+};
 
 export function Cities() {
   return (
@@ -38,5 +38,5 @@ export function Cities() {
         <CityList links={CITY_LIST.links} title={CITY_LIST.title} />
       </div>
     </div>
-  )
+  );
 }

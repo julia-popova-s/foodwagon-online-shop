@@ -1,6 +1,6 @@
-import { ReactSVG } from 'react-svg'
+import { ReactSVG } from 'react-svg';
 
-import style from './orderStep.module.scss'
+import style from './orderStep.module.scss';
 
 export function OrderStep({ description, imageSrc, label }) {
   return (
@@ -13,5 +13,5 @@ export function OrderStep({ description, imageSrc, label }) {
       <p className={style.orderStep__label}>{label}</p>
       <p className={style.orderStep__descr}>{description}</p>
     </div>
-  )
+  );
 }

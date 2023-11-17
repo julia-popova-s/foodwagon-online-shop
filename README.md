@@ -9,11 +9,13 @@
 - **Axios + Fetch** (отправка запроса на бэкенд)
 - React Hooks (хуки)
 - Prettier (форматирование кода)
+- ESLint (выявление, исправление ошибок в коде)
 - CSS-Modules / SCSS (стилизация)
 - React Content Loader (скелетон)
 - React Pagination (пагинация)
 - Lodash.Debounce (отсрочка запросов)
 - Firebase (авторизация)
+- lazy (ленивая загрузка компонентов)
 
 ## Подготовка
 
@@ -57,7 +59,7 @@ npm run dev
 
 - `predeploy`: Собирает проект для production-режима.
 
-- `lint`: Выполняет проверку и исправление ошибок кода проекта с помощью ESLint.
+- `lint:fix`: Выполняет проверку и исправление ошибок кода проекта с помощью ESLint.
 
 ## Настройка ESLint и Prettier
 

@@ -1,4 +1,4 @@
-import ContentLoader from 'react-content-loader'
+import ContentLoader from 'react-content-loader';
 
 export const LoaderRight = (props) => (
   <ContentLoader
@@ -16,4 +16,4 @@ export const LoaderRight = (props) => (
     <rect height="72" rx="8" ry="8" width="700" x="0" y="154" />
     <rect height="60" rx="8" ry="8" width="283" x="0" y="241" />
   </ContentLoader>
-)
+);
