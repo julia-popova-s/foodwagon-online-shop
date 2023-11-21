@@ -118,8 +118,20 @@
   color: $base-color;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1200px) {
   .header__address {
-    display: none;
+    position: absolute;
+    top: 78px;
+    // visibility: hidden;
+  }
+
+  .header {
+    position: relative;
+  }
+
+  .header__search {
+    position: absolute;
+    flex-direction: column;
+    top: 78px;
   }
 }

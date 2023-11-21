@@ -56,7 +56,7 @@ function Cart() {
     dispatch(removeProduct({ id, restaurantId }));
   };
 
-  const handleAddProduct = product => {
+  const handleAddProduct = (product) => {
     dispatch(addProduct(product));
   };
 
@@ -67,7 +67,7 @@ function Cart() {
     } else dispatch(deleteOneProduct({ id, restaurantId }));
   };
 
-  const handleInputQuantity = obj => {
+  const handleInputQuantity = (obj) => {
     dispatch(setProductCount(obj));
   };
 
@@ -99,7 +99,7 @@ function Cart() {
   };
 
   useEffect(() => {
-    const handleOutsideClick = e => {
+    const handleOutsideClick = (e) => {
       if (popupRef.current?.contains(e.target)) {
         setVisiblePopup(false);
       }
@@ -116,8 +116,10 @@ function Cart() {
         <div className={cn(style.cart__container, 'container')}>
           <div className={style.cart__inner}>
             <div className={style.cart__empty}>
-              <p className={style.cart__name}>Shopping cart is empty</p>{' '}
+              <p className={style.cart__name}>Shopping cart is empty</p>
+
               <p className={style.cart__result}>Use the search to find everything you need.</p>
+
               <Link className={style.cart__linkSearch} to="/search">
                 Go to search page
               </Link>
@@ -133,7 +135,7 @@ function Cart() {
       <div className={cn(style.cart__container, 'container')}>
         <div className={style.cart__inner}>
           {totalQuantity &&
-            addedGoods.map(restaurant => {
+            addedGoods.map((restaurant) => {
               const [restaurantId, info] = restaurant;
               const products = Object.values(info.items);
 
@@ -165,10 +167,10 @@ function Cart() {
                           return (
                             <CardProduct
                               {...item}
-                              handleAddProduct={item => handleAddProduct(item)}
-                              handleDeleteProduct={obj => handleDeleteProduct(obj, quantity)}
-                              handleInputCount={obj => handleInputQuantity(obj)}
-                              handleRemoveProduct={obj => handleRemoveProduct(obj)}
+                              handleAddProduct={(item) => handleAddProduct(item)}
+                              handleDeleteProduct={(obj) => handleDeleteProduct(obj, quantity)}
+                              handleInputCount={(obj) => handleInputQuantity(obj)}
+                              handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
                               key={item.id}
                               quantity={quantity}
                             />

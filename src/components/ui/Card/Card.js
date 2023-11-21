@@ -1,19 +1,16 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { ButtonsForCounter } from '../../ui/ButtonsForCounter';
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
-// import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { getPartOfString } from '../../../utils/getPartOfString';
 import { ButtonFind } from '../../ui/ButtonFind';
-// import { useState } from 'react';
 import { ButtonsWithCounter } from '../../ui/ButtonsWithCounter';
 import { Discount } from '../../ui/Discount/Discount';
-import style from './cardPopular.module.scss';
+import style from './card.module.scss';
 
-export function CardPopular(props) {
+export function Card(props) {
   const {
     classNames,
     discount,
@@ -50,18 +47,18 @@ export function CardPopular(props) {
           {discount > 0 && <Discount discount={discount} view={'smallLabel'} />}
         </Link>
       </div>
-      {/* <FontAwesomeIcon icon={faHeart} size="xl" /> */}
+
       <Link className={style.card__name} to={`/restaurant/${restaurantId}/product/${id}`}>
         {getPartOfString(title, 47)}
       </Link>
-      <Link
-        // to={`/restaurant/${restaurantId}`}
-        className={style.card__location}
-      >
+
+      <Link className={style.card__location}>
         <FontAwesomeIcon className={style.card__locationIcon} icon={faLocationDot} />
         {getPartOfString(restaurantName, 24)}
       </Link>
+
       <p className={style.card__price}>&#36; {price}</p>
+
       {quantity ? (
         <ButtonsWithCounter
           handleInputQuantity={handleInputQuantity}
@@ -70,11 +67,7 @@ export function CardPopular(props) {
           quantity={quantity ? quantity : 0}
         />
       ) : (
-        <ButtonFind
-          classNames={style.card__btn}
-          handleClick={handlePlusProduct}
-          label="Order Now"
-        />
+        <ButtonFind classNames={style.card__btn} handleClick={handlePlusProduct} label="Order Now" />
       )}
     </div>
   );

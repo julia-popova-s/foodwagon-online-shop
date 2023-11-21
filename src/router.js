@@ -1,6 +1,5 @@
-import { Suspense, lazy } from 'react';
+import { lazy } from 'react';
 
-import Spinner from './components/App/Spinner.js';
 import { ErrorPage } from './components/pages/ErrorPage';
 
 const App = lazy(() => import('./components/App/App.js'));
@@ -40,19 +39,12 @@ export const router = [
     path: '/',
   },
   {
-    element: (
-     
-      <LoginPage />
-   
-    ),
+    element: <LoginPage />,
     errorElement: <ErrorPage />,
     path: '/login',
   },
   {
-    element: (
-      <SignUpPage />
-      
-    ),
+    element: <SignUpPage />,
     errorElement: <ErrorPage />,
     path: '/register',
   },

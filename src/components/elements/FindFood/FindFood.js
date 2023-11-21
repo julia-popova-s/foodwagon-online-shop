@@ -20,8 +20,10 @@ export function FindFood() {
         <div className={style.findFood}>
           <h1 className={style.findFood__title}>Are you starving?</h1>
           <p className={style.findFood__text}>Within a few clicks, find meals that are accessible near you</p>
+
           <div className={style.findFood__search}>
             <Delivery />
+
             <div className={style.searchPanel}>
               <TextInput classNames={style.searchPanel__input} handleSearchValue={handleSearchValue} ref={searchRef}>
                 <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />

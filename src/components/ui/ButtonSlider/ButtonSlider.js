@@ -12,15 +12,9 @@ export function ButtonSlider({ classNames, onClick, type }) {
   return (
     <button className={cn(style.buttonSlider, classNames)} onClick={onClick}>
       {type === 'left' ? (
-        <ReactSVG
-          className={style.buttonSlider__arrow}
-          src={`${process.env.PUBLIC_URL}${arrows.arrowLeftSrc}`}
-        />
+        <ReactSVG className={style.buttonSlider__arrow} src={`${process.env.PUBLIC_URL}${arrows.arrowLeftSrc}`} />
       ) : (
-        <ReactSVG
-          className={style.buttonSlider__arrow}
-          src={`${process.env.PUBLIC_URL}${arrows.arrowRightSrc}`}
-        />
+        <ReactSVG className={style.buttonSlider__arrow} src={`${process.env.PUBLIC_URL}${arrows.arrowRightSrc}`} />
       )}
     </button>
   );

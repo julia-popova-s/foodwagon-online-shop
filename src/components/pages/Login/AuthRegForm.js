@@ -28,15 +28,18 @@ function AuthRegForm({ errorMessage, handleClick, schema, title }) {
   return (
     <form className={style.regForm} onSubmit={handleSubmit(onSubmit)}>
       <p className={style.regForm__title}>{title}</p>
+
       <p className={style.regForm__link}>
         Or{' '}
         <Link className={style.regForm__linkTo} to={title === 'Log in' ? '/register' : '/login'}>
           {title === 'Log in' ? 'Sign up' : 'Log in'}
         </Link>
       </p>
+
       <label className={style.regForm__label} htmlFor="email">
         Email address{' '}
       </label>
+
       <Controller
         render={({ field }) => (
           <input
@@ -57,6 +60,7 @@ function AuthRegForm({ errorMessage, handleClick, schema, title }) {
       <label className={style.regForm__label} htmlFor="password">
         Password
       </label>
+
       <Controller
         render={({ field }) => (
           <input
@@ -73,6 +77,7 @@ function AuthRegForm({ errorMessage, handleClick, schema, title }) {
       <p className={style.regForm__error} role="alert">
         {errors.password?.message}
       </p>
+
       <input
         className={cn(style.regForm__button, {
           [style.regForm__isValid]: isValid,

@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
@@ -15,12 +14,9 @@ export const Popup = forwardRef(({ isLoaded, list, show }, ref) => {
           <Link key={uuidv4()} to={`/restaurant/${restaurantId}/product/${id}`}>
             <div className={style.card}>
               <div className={style.card__left}>
-                <img
-                  alt={title}
-                  className={style.card__image}
-                  src={process.env.PUBLIC_URL + image}
-                />
+                <img alt={title} className={style.card__image} src={process.env.PUBLIC_URL + image} />
               </div>
+
               <div className={style.card__right}>
                 <div className={style.card__title}>{title}</div>
                 <PriceBlock discount={discount} price={price} />

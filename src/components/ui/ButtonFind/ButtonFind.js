@@ -13,6 +13,7 @@ export function ButtonFind({ classNames, handleClick, icon, label }) {
           wrapper="span"
         />
       )}
+
       <span>{label}</span>
     </button>
   );

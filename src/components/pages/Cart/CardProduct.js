@@ -43,7 +43,7 @@ export function CardProduct({
 
   const handleReturnProduct = () => setReturnedProduct(false);
 
-  const handleInputQuantity = quantity => {
+  const handleInputQuantity = (quantity) => {
     if (!quantity) {
       setReturnedProduct(true);
     } else handleInputCount({ id, price, quantity: quantity, restaurantId });
@@ -63,9 +63,11 @@ export function CardProduct({
       <div className={style.product__image}>
         <Link className={style.product__imageLink} to={`/restaurant/${restaurantId}/product/${id}`}>
           <img alt={title} className={style.product__img} src={process.env.PUBLIC_URL + image} />
+
           {discount > 0 && <Discount classNames={style.product__discount} discount={discount} view={'smallLabel'} />}
         </Link>
       </div>
+
       {!returnedProduct ? (
         <>
           <div className={cn(style.product__info, style.info)}>
@@ -74,12 +76,14 @@ export function CardProduct({
                 {title}
               </Link>
             </p>
+
             <p className={style.info__name}>
               <FontAwesomeIcon className={style.info__nameIcon} icon={faLocationDot} />
               <Link className={style.info__nameLink} to={`/restaurant/${restaurantId}/product/${id}`}>
                 {restaurantName}
               </Link>
             </p>
+
             <PriceBlock discount={discount} price={price} />
           </div>
 
@@ -91,7 +95,9 @@ export function CardProduct({
               handlePlusProduct={handlePlusProduct}
               quantity={quantity}
             />
-            <div className={style.counter__price}>&#36; {amount && amount.toFixed(2)}</div>{' '}
+
+            <div className={style.counter__price}>&#36; {amount && amount.toFixed(2)}</div>
+
             <button className={cn(style.product__btnDelete, style.btnDelete)} onClick={handleProductExclusion}>
               {'x'}
             </button>
@@ -102,6 +108,7 @@ export function CardProduct({
           <button className={cn(style.btnReturn, style.product__btnReturn)} onClick={handleReturnProduct}>
             Restore to cart
           </button>
+
           <div className={cn(style.loadingBar, style.product__loadingBar)}>
             <div className={style.loadingBar__inner}>
               <div className={style.loadingBar__shadow}></div>

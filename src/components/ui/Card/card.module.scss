@@ -13,8 +13,6 @@
     position: relative;
   }
 
-  &__upLink {}
-
   &__image {
     display: block;
 
@@ -70,27 +68,6 @@
     background-color: #da3802;
     transition: background 0.5s ease;
   }
-
-  &__btn {
-    &_color {
-      // color: $base-color;
-      // background: $white-color;
-      // width: 120px;
-      // border: none;
-      // transition: background 0.5s ease;
-
-      // &:hover {
-      //   background: $base-color;
-      //   mix-blend-mode: normal;
-      //   box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
-      //     0px 20px 40px rgba(250, 99, 35, 0.24);
-      //   color: $white-color;
-      //   transition: background 0.5s ease, color 0.5s ease;
-      // }
-    }
-  }
-
-  &__link {}
 
   &__btns {
     display: flex;

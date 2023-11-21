@@ -30,6 +30,7 @@ export function OrderAlgorithm() {
       <div className="container">
         <div className={style.orderAlgorithm}>
           <h2 className={style.orderAlgorithm__title}>How does it work</h2>
+
           <div className={style.orderAlgorithm__list}>
             {algorithm &&
               algorithm.map(({ id, label, ...others }, i) => {

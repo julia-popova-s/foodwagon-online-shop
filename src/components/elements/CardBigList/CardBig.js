@@ -5,11 +5,13 @@ import { ButtonOrder } from '../../ui/ButtonOrder';
 import style from './cardBig.module.scss';
 
 export function CardBig({ description, flippedСard, food, imageSrc, link, title }) {
+  
   const flippedСardStyle = {
     imgBorder: style.cardBig__img_border,
     imgRight: style.cardBig__img_right,
     textBorder: style.cardBig__description_border,
   };
+
   return (
     <div
       className={cn(style.cardBig, {

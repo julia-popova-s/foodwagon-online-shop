@@ -1,4 +1,14 @@
-export function getFilterForProducts({ category, currentPage, id, limit, order, restaurantId, searchValue, sortType }) {
+export function getFilterForProducts({
+  category,
+  currentPage,
+  id,
+  limit,
+  order,
+  rating,
+  restaurantId,
+  searchValue,
+  sortType,
+}) {
   const currentPageFilter = currentPage ? `?page=${currentPage}` : '?page=1';
 
   const limitFilter = limit ? `&limit=${limit}` : '&limit=4';
@@ -15,5 +25,10 @@ export function getFilterForProducts({ category, currentPage, id, limit, order, 
 
   const idProductFilter = id ? `&id=${id}` : '';
 
-  return `${currentPageFilter}${limitFilter}${sortFilter}${orderFilter}${categoryFilter}${idFilter}${searchState}${idProductFilter}`;
+  const ratingFilter = rating ? `&raiting=${rating}` : '';
+
+  return (
+    `${currentPageFilter}${limitFilter}${sortFilter}${orderFilter}${categoryFilter}` +
+    `${idFilter}${searchState}${idProductFilter}${ratingFilter}`
+  );
 }

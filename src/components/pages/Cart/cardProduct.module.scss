@@ -12,6 +12,7 @@
   position: relative;
 
   max-width: 1250px;
+  min-width: 300px;
 
   background-color: #ffffff;
   border-radius: 16px;
@@ -136,7 +137,6 @@
     padding: 20px 0;
     min-width: 125px;
     display: block;
-    vertical-align: bottom;
   }
 }
 
@@ -183,6 +183,7 @@
   background: linear-gradient(to top,
       rgb(237, 101, 22),
       $primary-color);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
@@ -195,6 +196,10 @@
 @media (max-width:1350px) {
   .counter {
     min-width: 100%;
+  }
+
+  .product {
+    max-width: 700px;
   }
 }
 
@@ -219,6 +224,10 @@
 @media (max-width:650px) {
   .info {
     max-width: 100%;
+  }
+
+  .product {
+    max-width: 300px;
   }
 
   .counter {

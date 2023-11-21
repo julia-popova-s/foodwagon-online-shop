@@ -7,9 +7,10 @@ export function FooterNav({ links, title }) {
   return (
     <div className={style.cityList}>
       <div className={style.cityList__title}>{title}</div>
+
       <ul className={cn(style.cityList__items)}>
         {links &&
-          links.map((item) => {
+          links.map(item => {
             return (
               <li className={style.cityList__item} key={item}>
                 <Link className={style.cityList__item} to={''}>

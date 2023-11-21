@@ -20,6 +20,7 @@ export function ButtonsWithCounter({
           label="To Cart"
         />
       </Link>
+      
       <Counter
         classNames={style.buttons__counter}
         handleInputQuantity={handleInputQuantity}

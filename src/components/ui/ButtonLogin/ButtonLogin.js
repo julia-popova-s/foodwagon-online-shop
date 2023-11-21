@@ -11,6 +11,7 @@ export function ButtonLogin({ classNames, handleClick, title }) {
         src={`${process.env.PUBLIC_URL}/images/header/user.svg`}
         wrapper="span"
       />
+
       <span className={style.buttonLogin__name}>{title}</span>
     </button>
   );

@@ -1,6 +1,10 @@
 @import "../../App/styles/variables";
 
 .cityList {
+  padding-top: 99px;
+  border-bottom: 2px solid #424242;
+  padding-bottom: 167px;
+
   &__title {
     @include setFontSize(700, 22px, 120%);
     color: $white-color;

@@ -4,19 +4,11 @@ import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-use';
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
-import {
-  categorySelector,
-  currentPageSelector,
-  setCurrentPage,
-} from '../../../store/reducers/filters';
-import {
-  fetchProducts,
-  isLoadedSelector,
-  productListSelector,
-} from '../../../store/reducers/products';
+import { categorySelector, currentPageSelector, setCurrentPage } from '../../../store/reducers/filters';
+import { fetchProducts, isLoadedSelector, productListSelector } from '../../../store/reducers/products';
 import { orderSelector, setSortType, sortTypeSelector } from '../../../store/reducers/sortingType';
-import { CardPopular } from '../../elements/PopularItems/CardPopular';
 import { SortPopup } from '../../elements/SortPopup';
+import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
 import style from './restaurantPage.module.scss';
@@ -72,7 +64,7 @@ export function RestaurantPage() {
         order,
         restaurantId,
         sortType,
-      })
+      }),
     );
     window.scrollTo(0, 0);
   }, [sortType, category, restaurantId, order, currentPage]);
@@ -105,20 +97,22 @@ export function RestaurantPage() {
             orderType={order}
           />
         </div>
+
         <div className={style.menuList}>
           {isLoaded && products
             ? products.map((item) => (
-              <CardPopular
-                classNames={style.menuList__item}
-                key={item.id}
-                {...item}
-                handleAddProduct={handleAddProduct}
-                handleInputCount={handleInputCount}
-                handleRemoveProduct={handleRemoveProduct}
-              />
-            ))
+                <Card
+                  classNames={style.menuList__item}
+                  key={item.id}
+                  {...item}
+                  handleAddProduct={handleAddProduct}
+                  handleInputCount={handleInputCount}
+                  handleRemoveProduct={handleRemoveProduct}
+                />
+              ))
             : skeleton}
         </div>
+
         <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />
       </div>
     </div>

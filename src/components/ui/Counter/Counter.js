@@ -4,16 +4,10 @@ import React, { useState } from 'react';
 
 import style from './counter.module.scss';
 
-export function Counter({
-  classNames,
-  handleInputQuantity,
-  handleMinusProduct,
-  handlePlusProduct,
-  quantity,
-}) {
+export function Counter({ classNames, handleInputQuantity, handleMinusProduct, handlePlusProduct, quantity }) {
   const [count, setCount] = useState(quantity);
 
-  const handleChangeCount = (e) => {
+  const handleChangeCount = e => {
     const counter = e.target.value.replace(/[^0-9]/gi, '');
     if (counter !== '') {
       setCount(+counter);
@@ -32,6 +26,7 @@ export function Counter({
     handleMinusProduct();
     setCount(count - 1);
   };
+
   return (
     <div className={cn(style.buttons, classNames)}>
       <button
@@ -43,6 +38,7 @@ export function Counter({
       >
         {'+'}
       </button>
+
       <input
         className={cn(style.buttons__input)}
         maxLength="2"
@@ -50,6 +46,7 @@ export function Counter({
         type="text"
         value={count}
       />
+
       <button className={cn(style.buttons__minus, style.button)} onClick={handleClickMinusProduct}>
         {'–'}
       </button>

@@ -33,10 +33,10 @@ const userSlice = createSlice({
   },
 });
 
-export const emailSelector = state => state.user.email;
-export const tokenSelector = state => state.user.token;
-export const idSelector = state => state.user.id;
-export const isAuthSelector = state => state.user.isAuth;
+export const emailSelector = (state) => state.user.email;
+export const tokenSelector = (state) => state.user.token;
+export const idSelector = (state) => state.user.id;
+export const isAuthSelector = (state) => state.user.isAuth;
 
 export const { removeUser, setOrders, setUser } = userSlice.actions;
 export default userSlice.reducer;

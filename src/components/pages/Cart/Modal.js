@@ -16,6 +16,7 @@ export const Modal = forwardRef(({ handleCloseModal, name, orderNumber, show }, 
               Order №{orderNumber} from restaurant «{name}» was created, user: {email}
             </span>
           </div>
+
           <div className={style.popup__btns}>
             <button className={style.popup__btnClose} onClick={handleCloseModal}>
               Close

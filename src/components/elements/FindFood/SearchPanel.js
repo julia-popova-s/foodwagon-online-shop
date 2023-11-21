@@ -1,5 +1,3 @@
-// import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,11 +6,7 @@ import {
   isLoadedSelector,
   productListSelector,
 } from '../../../store/reducers/productsFastAccess';
-import {
-  currentPageSelector,
-  fetchProductsSearch,
-  setCurrentPage,
-} from '../../../store/reducers/productsSearch';
+import { currentPageSelector, fetchProductsSearch, setCurrentPage } from '../../../store/reducers/productsSearch';
 import { ButtonFind } from '../../ui/ButtonFind';
 import { TextInput } from '../../ui/TextInput';
 import { Popup } from './Popup';
@@ -31,7 +25,7 @@ export function SearchPanel() {
   const products = useSelector(productListSelector);
   const currentPage = useSelector(currentPageSelector);
 
-  const handleSearchValue = (text) => {
+  const handleSearchValue = text => {
     setSearchValue(text);
   };
 
@@ -41,15 +35,17 @@ export function SearchPanel() {
         currentPage: 1,
         limit: 8,
         searchValue,
-      })
+      }),
     );
+
     dispatch(setCurrentPage(1));
     setVisiblePopup(false);
+
     window.scrollTo(0, 0);
   };
 
   useEffect(() => {
-    const handleOutsideClick = (e) => {
+    const handleOutsideClick = e => {
       if (popupRef.current?.contains(e.target) || searchRef.current?.contains(e.target)) {
         setVisiblePopup(true);
       } else {
@@ -57,6 +53,7 @@ export function SearchPanel() {
       }
       return;
     };
+
     document.body.addEventListener('click', handleOutsideClick);
 
     return () => document.body.removeEventListener('click', handleOutsideClick);
@@ -68,7 +65,7 @@ export function SearchPanel() {
         currentPage: 1,
         limit: 4,
         searchValue,
-      })
+      }),
     );
     dispatch(setCurrentPage(1));
   }, [dispatch, searchValue]);
@@ -79,7 +76,7 @@ export function SearchPanel() {
         currentPage,
         limit: 8,
         searchValue,
-      })
+      }),
     );
     window.scrollTo(0, 0);
   }, [currentPage]);
@@ -89,14 +86,10 @@ export function SearchPanel() {
       <TextInput
         handleSearchValue={handleSearchValue}
         iconUrl={'/images/header/search.svg'}
-        ref={searchRef}
-      ></TextInput>
-      <ButtonFind
-        classNames={style.search__btn}
-        handleClick={handleSearch}
-        icon="search"
-        label="Find Food"
-      />
+        ref={searchRef}></TextInput>
+
+      <ButtonFind classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
+
       <Popup isLoaded={isLoaded} list={products} ref={popupRef} show={visiblePopup} />
     </div>
   );

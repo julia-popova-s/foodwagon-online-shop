@@ -9,6 +9,7 @@ export function ButtonCart() {
   return (
     <button className={style.cartButton}>
       <FontAwesomeIcon className={style.cartButton__icon} icon={faCartShopping} size="xl" />
+      
       {totalQuantity > 0 && <div className={style.cartButton__counter}>{totalQuantity}</div>}
     </button>
   );

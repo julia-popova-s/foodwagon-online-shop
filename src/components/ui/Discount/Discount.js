@@ -18,6 +18,7 @@ export function Discount({ classNames, discount, view }) {
       >
         {discount}
       </div>
+
       <div
         className={cn(style.label__discountPercent, {
           [style.smallLabel__discountPercent]: labelView,
@@ -25,6 +26,7 @@ export function Discount({ classNames, discount, view }) {
       >
         {'%'}
       </div>
+      
       <div
         className={cn(style.label__discountOff, {
           [style.smallLabel__discountOff]: labelView,
