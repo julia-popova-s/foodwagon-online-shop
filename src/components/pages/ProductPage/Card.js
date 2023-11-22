@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { getPartOfString } from '../../../utils/getPartOfString';
-import { ButtonFind } from '../../ui/ButtonFind';
-import { ButtonsWithCounter } from '../../ui/ButtonsWithCounter';
+import { ButtonFind } from '../../ui/buttons/ButtonFind';
+import { ButtonsWithCounter } from '../../ui/buttons/ButtonsWithCounter';
 import style from './card.module.scss';
 
 export function Card({

@@ -3,18 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useDisableBodyScroll } from '../../../hooks/useDisableBodyscroll';
-import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/reducers/cart';
 import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
+import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/reducers/cart';
 import { isAuthSelector, setOrders } from '../../../store/reducers/user';
-import { ButtonOrder } from '../../ui/ButtonOrder/ButtonOrder';
 import { Popup } from '../../ui/Popup/Popup';
+import { ButtonOrder } from '../../ui/buttons/ButtonOrder';
 import { CardProduct } from './CardProduct';
 import { Modal } from './Modal';
-import style from './cart.module.scss';
+import style from './cartPage.module.scss';
 
 let orderNumber = 0;
 

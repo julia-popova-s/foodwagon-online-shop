@@ -123,11 +123,11 @@
 
 @media (max-width:1350px) {
   .cart__top {
-    max-width: 700px;
+    max-width: 900px;
   }
 
   .cart__orderInfo {
-    max-width: 700px;
+    max-width: 900px;
   }
 }
 
@@ -142,10 +142,8 @@
 
 }
 
-@media (max-width:1100px) {}
-
-@media (max-width:880px) {
+@media (max-width:650px) {
   .cart__top {
-    max-width: 470px;
+    max-width: 300px;
   }
 }

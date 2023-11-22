@@ -4,14 +4,14 @@ import { ErrorPage } from './components/pages/ErrorPage';
 
 const App = lazy(() => import('./components/App/App.js'));
 
-const HomePage = lazy(() => import('./components/pages/Home/Home.js'));
-const CartPage = lazy(() => import('./components/pages/Cart/Cart.js'));
+const HomePage = lazy(() => import('./components/pages/HomePage/HomePage.js'));
+const CartPage = lazy(() => import('./components/pages/CartPage/CartPage.js'));
 
-const SignUpPage = lazy(() => import('./components/pages/Login/SignUp.js'));
-const LoginPage = lazy(() => import('./components/pages/Login/Login.js'));
+const SignUpPage = lazy(() => import('./components/pages/LoginPage/SignUpPage.js'));
+const LoginPage = lazy(() => import('./components/pages/LoginPage/LoginPage.js'));
 
-const Product = lazy(() => import('./components/pages/ProductPage/ProductPage.js'));
-const Search = lazy(() => import('./components/pages/SearchPage/SearchPage.js'));
+const ProductPage = lazy(() => import('./components/pages/ProductPage/ProductPage.js'));
+const SearchPage = lazy(() => import('./components/pages/SearchPage/SearchPage.js'));
 
 export const router = [
   {
@@ -26,11 +26,11 @@ export const router = [
       },
 
       {
-        element: <Product />,
+        element: <ProductPage />,
         path: 'restaurant/:restaurantId/product/:id',
       },
       {
-        element: <Search />,
+        element: <SearchPage />,
         path: 'search',
       },
     ],

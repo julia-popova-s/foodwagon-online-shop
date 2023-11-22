@@ -7,7 +7,7 @@ import { setUser } from '../../../store/reducers/user';
 import { loginSchema } from '../../../utils/utilsForForm/fieldValidationSchemes';
 import Spinner from '../../App/Spinner';
 import AuthRegForm from './AuthRegForm';
-import style from './login.module.scss';
+import style from './loginPage.module.scss';
 
 function Login() {
   const auth = getAuth();

@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { getPartOfString } from '../../../utils/getPartOfString';
-import { ButtonFind } from '../../ui/ButtonFind';
-import { ButtonsWithCounter } from '../../ui/ButtonsWithCounter';
 import { Discount } from '../../ui/Discount/Discount';
+import { ButtonFind } from '../../ui/buttons/ButtonFind';
+import { ButtonsWithCounter } from '../../ui/buttons/ButtonsWithCounter';
 import style from './card.module.scss';
 
 export function Card(props) {

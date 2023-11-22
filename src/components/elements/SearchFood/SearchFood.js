@@ -12,8 +12,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
 import { searchBySelector, setSearchBy } from '../../../store/reducers/filters';
 import { fetchProducts, isLoadedSelector, productListSelector } from '../../../store/reducers/products';
-import { ButtonSlider } from '../../ui/ButtonSlider';
 import { Card } from '../../ui/Card';
+import { ButtonSlider } from '../../ui/buttons/ButtonSlider';
 import { CardFood } from './CardFood';
 import { Loader } from './Loader';
 import style from './searchFood.module.scss';
@@ -103,7 +103,7 @@ export function SearchFood() {
   const isLoaded = useSelector(isLoadedSelector);
   const products = useSelector(productListSelector);
 
-  const cart = useSelector(state => state.cart.cart);
+  const cart = useSelector((state) => state.cart.cart);
 
   useEffect(() => {
     if (searchBy !== null)
@@ -116,19 +116,19 @@ export function SearchFood() {
       );
   }, [dispatch, searchBy, limit]);
 
-  const handleSelectCategory = index => {
+  const handleSelectCategory = (index) => {
     dispatch(setSearchBy(index));
   };
 
-  const handleAddProduct = product => {
+  const handleAddProduct = (product) => {
     dispatch(addProduct(product));
   };
 
-  const handleRemoveProduct = product => {
+  const handleRemoveProduct = (product) => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = obj => {
+  const handleInputCount = (obj) => {
     dispatch(setProductCount(obj));
   };
 
@@ -164,9 +164,9 @@ export function SearchFood() {
                       key={`${item.id}${i}`}
                       {...item}
                       classNames={style.menuList__item}
-                      handleAddProduct={obj => handleAddProduct(obj)}
-                      handleInputCount={obj => handleInputCount(obj)}
-                      handleRemoveProduct={obj => handleRemoveProduct(obj)}
+                      handleAddProduct={(obj) => handleAddProduct(obj)}
+                      handleInputCount={(obj) => handleInputCount(obj)}
+                      handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
                       quantity={cart[item.restaurantId]?.items[item.id]?.quantity}
                     />
                   );

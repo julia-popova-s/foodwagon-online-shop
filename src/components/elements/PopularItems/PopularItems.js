@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
-import { isLoadedSelector, productListSelector } from '../../../store/reducers/productsPopular';
 import { fetchProductsPopular } from '../../../store/reducers/productsPopular';
-import { ButtonSlider } from '../../ui/ButtonSlider';
+import { isLoadedSelector, productListSelector } from '../../../store/reducers/productsPopular';
 import { Card } from '../../ui/Card';
+import { ButtonSlider } from '../../ui/buttons/ButtonSlider';
 import { Loader } from './Loader';
 import style from './popularItems.module.scss';
 

@@ -7,8 +7,8 @@ import {
   productListSelector,
 } from '../../../store/reducers/productsFastAccess';
 import { currentPageSelector, fetchProductsSearch, setCurrentPage } from '../../../store/reducers/productsSearch';
-import { ButtonFind } from '../../ui/ButtonFind';
 import { TextInput } from '../../ui/TextInput';
+import { ButtonFind } from '../../ui/buttons/ButtonFind';
 import { Popup } from './Popup';
 import style from './searchPanel.module.scss';
 
@@ -25,7 +25,7 @@ export function SearchPanel() {
   const products = useSelector(productListSelector);
   const currentPage = useSelector(currentPageSelector);
 
-  const handleSearchValue = text => {
+  const handleSearchValue = (text) => {
     setSearchValue(text);
   };
 
@@ -45,7 +45,7 @@ export function SearchPanel() {
   };
 
   useEffect(() => {
-    const handleOutsideClick = e => {
+    const handleOutsideClick = (e) => {
       if (popupRef.current?.contains(e.target) || searchRef.current?.contains(e.target)) {
         setVisiblePopup(true);
       } else {
@@ -86,7 +86,8 @@ export function SearchPanel() {
       <TextInput
         handleSearchValue={handleSearchValue}
         iconUrl={'/images/header/search.svg'}
-        ref={searchRef}></TextInput>
+        ref={searchRef}
+      ></TextInput>
 
       <ButtonFind classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
 

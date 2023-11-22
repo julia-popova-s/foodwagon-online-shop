@@ -2,8 +2,8 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRef, useState } from 'react';
 
-import { ButtonFind } from '../../ui/ButtonFind';
 import { TextInput } from '../../ui/TextInput';
+import { ButtonFind } from '../../ui/buttons/ButtonFind';
 import { Delivery } from './Delivery';
 import style from './findFood.module.scss';
 
@@ -11,7 +11,7 @@ export function FindFood() {
   const searchRef = useRef(null);
   const [searchValue, setSearchValue] = useState('');
 
-  const handleSearchValue = text => {
+  const handleSearchValue = (text) => {
     setSearchValue(text);
   };
   return (

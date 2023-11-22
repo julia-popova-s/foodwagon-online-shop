@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
 
-import { PriceBlock } from '../../pages/Cart/PriceBlock';
+import { PriceBlock } from '../../pages/CartPage/PriceBlock';
 import style from './popup.module.scss';
 
 export const Popup = forwardRef(({ isLoaded, list, show }, ref) => {

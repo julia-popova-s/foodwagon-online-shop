@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { ButtonOrder } from '../../ui/ButtonOrder';
+import { ButtonOrder } from '../../ui/buttons/ButtonOrder';
 import style from './cardBig.module.scss';
 
 export function CardBig({ description, flippedСard, food, imageSrc, link, title }) {

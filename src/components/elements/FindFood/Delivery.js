@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ButtonDelivery } from '../../ui/ButtonDelivery';
+import { ButtonDelivery } from '../../ui/buttons/ButtonDelivery';
 import style from './delivery.module.scss';
 
 const buttons = [

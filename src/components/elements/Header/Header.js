@@ -1,5 +1,3 @@
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -9,9 +7,10 @@ import { ReactSVG } from 'react-svg';
 
 import { isAuthSelector } from '../../../store/reducers/user';
 import { removeUser } from '../../../store/reducers/user';
-import { ButtonCart } from '../../ui/ButtonCart';
-import { ButtonLogin } from '../../ui/ButtonLogin';
 import { LogoType } from '../../ui/LogoType';
+import { ButtonCart } from '../../ui/buttons/ButtonCart';
+import { ButtonLogin } from '../../ui/buttons/ButtonLogin';
+import { CurrentLocation } from './CurrentLocation';
 import style from './header.module.scss';
 
 export function Header() {
@@ -31,7 +30,7 @@ export function Header() {
   const handleLogin = () => {
     navigate('/login');
   };
-  
+
   return (
     <header className={style.headerBlock}>
       <div className="container">
@@ -40,14 +39,7 @@ export function Header() {
             <LogoType classNames={style.header__logo} />
           </Link>
 
-          <div className={cn(style.address, style.header__address)}>
-            <p className={style.address__deliver}>Deliver to:</p>
-            <FontAwesomeIcon className={style.address__icon} icon={faLocationDot} />
-            <span className={style.address__location}>Current Location</span>
-            <span className={cn(style.address__location, style.address__location_weight)}>
-              Lakeshore Road East, Mississauga
-            </span>
-          </div>
+          <CurrentLocation classNames={style.header__address} />
 
           <div className={cn(style.search, style.header__search)}>
             <Link className={style.search__link} to="search">
@@ -71,6 +63,42 @@ export function Header() {
               </Link>
             )}
           </div>
+
+          <button></button>
+
+          <nav className={style.menu}>
+            <ul className={style.menu__list}>
+              <li className={style.menu__item}>
+                <Link className={style.menu__link} to={'/'}>
+                  Home
+                </Link>
+              </li>
+              <li className={style.menu__item}>
+                <Link className={style.menu__link} to={'/search'}>
+                  Search
+                </Link>
+              </li>
+              <li className={style.menu__item}>
+                {isAuth ? (
+                  <button className={style.menu__link} onClick={handleLogOut}>
+                    Logout
+                  </button>
+                ) : (
+                  <Link className={style.menu__link} to={'/login'}>
+                    Login
+                  </Link>
+                )}
+              </li>
+              <li className={style.menu__item}>
+                <Link className={style.menu__link} to={'/cart'}>
+                  Cart
+                </Link>
+              </li>
+              <li className={style.menu__item}>
+                <CurrentLocation />
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </header>

@@ -1,6 +1,6 @@
 import { Link as LinkScroll } from 'react-scroll';
 
-import { ButtonOrder } from '../../ui/ButtonOrder';
+import { ButtonOrder } from '../../ui/buttons/ButtonOrder';
 import style from './readyToOrder.module.scss';
 
 export function ReadyToOrder() {
