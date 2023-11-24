@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/foodwagon_project/static/css/main.858436cb.css",
-    "main.js": "/foodwagon_project/static/js/main.bf737b2d.js",
+    "main.js": "/foodwagon_project/static/js/main.952bae18.js",
     "static/css/295.8c23c801.chunk.css": "/foodwagon_project/static/css/295.8c23c801.chunk.css",
     "static/js/295.f7d97f17.chunk.js": "/foodwagon_project/static/js/295.f7d97f17.chunk.js",
     "static/js/558.d7ddec16.chunk.js": "/foodwagon_project/static/js/558.d7ddec16.chunk.js",
-    "static/css/490.597b5d52.chunk.css": "/foodwagon_project/static/css/490.597b5d52.chunk.css",
+    "static/css/490.cf6a9f82.chunk.css": "/foodwagon_project/static/css/490.cf6a9f82.chunk.css",
     "static/js/490.6c760659.chunk.js": "/foodwagon_project/static/js/490.6c760659.chunk.js",
     "static/css/899.ce593882.chunk.css": "/foodwagon_project/static/css/899.ce593882.chunk.css",
     "static/js/899.973fb862.chunk.js": "/foodwagon_project/static/js/899.973fb862.chunk.js",
@@ -13,7 +13,7 @@
     "static/js/774.cab6a074.chunk.js": "/foodwagon_project/static/js/774.cab6a074.chunk.js",
     "static/css/810.8ac760b1.chunk.css": "/foodwagon_project/static/css/810.8ac760b1.chunk.css",
     "static/js/810.79fc99db.chunk.js": "/foodwagon_project/static/js/810.79fc99db.chunk.js",
-    "static/css/148.3df2324b.chunk.css": "/foodwagon_project/static/css/148.3df2324b.chunk.css",
+    "static/css/148.f8aca12a.chunk.css": "/foodwagon_project/static/css/148.f8aca12a.chunk.css",
     "static/js/148.cbaa0ad9.chunk.js": "/foodwagon_project/static/js/148.cbaa0ad9.chunk.js",
     "static/js/887.b5028c6b.chunk.js": "/foodwagon_project/static/js/887.b5028c6b.chunk.js",
     "static/js/261.3c1a49e8.chunk.js": "/foodwagon_project/static/js/261.3c1a49e8.chunk.js",
@@ -21,7 +21,7 @@
     "static/js/240.7f161171.chunk.js": "/foodwagon_project/static/js/240.7f161171.chunk.js",
     "static/js/549.cd27869d.chunk.js": "/foodwagon_project/static/js/549.cd27869d.chunk.js",
     "static/js/48.369b8f12.chunk.js": "/foodwagon_project/static/js/48.369b8f12.chunk.js",
-    "static/css/364.8363ecf3.chunk.css": "/foodwagon_project/static/css/364.8363ecf3.chunk.css",
+    "static/css/364.19b7ccca.chunk.css": "/foodwagon_project/static/css/364.19b7ccca.chunk.css",
     "static/js/364.7669ed83.chunk.js": "/foodwagon_project/static/js/364.7669ed83.chunk.js",
     "static/media/background.jpg": "/foodwagon_project/static/media/background.d6c7c3206358ce0879c0.jpg",
     "static/media/back.png": "/foodwagon_project/static/media/back.9d8cc9f420bbb1a169e4.png",
@@ -32,11 +32,11 @@
     "static/media/slick.woff": "/foodwagon_project/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/foodwagon_project/index.html",
     "main.858436cb.css.map": "/foodwagon_project/static/css/main.858436cb.css.map",
-    "main.bf737b2d.js.map": "/foodwagon_project/static/js/main.bf737b2d.js.map",
+    "main.952bae18.js.map": "/foodwagon_project/static/js/main.952bae18.js.map",
     "295.8c23c801.chunk.css.map": "/foodwagon_project/static/css/295.8c23c801.chunk.css.map",
     "295.f7d97f17.chunk.js.map": "/foodwagon_project/static/js/295.f7d97f17.chunk.js.map",
     "558.d7ddec16.chunk.js.map": "/foodwagon_project/static/js/558.d7ddec16.chunk.js.map",
-    "490.597b5d52.chunk.css.map": "/foodwagon_project/static/css/490.597b5d52.chunk.css.map",
+    "490.cf6a9f82.chunk.css.map": "/foodwagon_project/static/css/490.cf6a9f82.chunk.css.map",
     "490.6c760659.chunk.js.map": "/foodwagon_project/static/js/490.6c760659.chunk.js.map",
     "899.ce593882.chunk.css.map": "/foodwagon_project/static/css/899.ce593882.chunk.css.map",
     "899.973fb862.chunk.js.map": "/foodwagon_project/static/js/899.973fb862.chunk.js.map",
@@ -44,7 +44,7 @@
     "774.cab6a074.chunk.js.map": "/foodwagon_project/static/js/774.cab6a074.chunk.js.map",
     "810.8ac760b1.chunk.css.map": "/foodwagon_project/static/css/810.8ac760b1.chunk.css.map",
     "810.79fc99db.chunk.js.map": "/foodwagon_project/static/js/810.79fc99db.chunk.js.map",
-    "148.3df2324b.chunk.css.map": "/foodwagon_project/static/css/148.3df2324b.chunk.css.map",
+    "148.f8aca12a.chunk.css.map": "/foodwagon_project/static/css/148.f8aca12a.chunk.css.map",
     "148.cbaa0ad9.chunk.js.map": "/foodwagon_project/static/js/148.cbaa0ad9.chunk.js.map",
     "887.b5028c6b.chunk.js.map": "/foodwagon_project/static/js/887.b5028c6b.chunk.js.map",
     "261.3c1a49e8.chunk.js.map": "/foodwagon_project/static/js/261.3c1a49e8.chunk.js.map",
@@ -52,11 +52,11 @@
     "240.7f161171.chunk.js.map": "/foodwagon_project/static/js/240.7f161171.chunk.js.map",
     "549.cd27869d.chunk.js.map": "/foodwagon_project/static/js/549.cd27869d.chunk.js.map",
     "48.369b8f12.chunk.js.map": "/foodwagon_project/static/js/48.369b8f12.chunk.js.map",
-    "364.8363ecf3.chunk.css.map": "/foodwagon_project/static/css/364.8363ecf3.chunk.css.map",
+    "364.19b7ccca.chunk.css.map": "/foodwagon_project/static/css/364.19b7ccca.chunk.css.map",
     "364.7669ed83.chunk.js.map": "/foodwagon_project/static/js/364.7669ed83.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.858436cb.css",
-    "static/js/main.bf737b2d.js"
+    "static/js/main.952bae18.js"
   ]
 }
