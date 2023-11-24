@@ -27,3 +27,9 @@
   text-align: center;
   padding-top: 50px;
 }
+
+@media(max-width:750px) {
+  .searchPage {
+    padding-top: 330px;
+  }
+}

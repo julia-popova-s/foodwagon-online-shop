@@ -3,7 +3,7 @@
   background-repeat: no-repeat;
   background-position: 50% 100%;
 
-  padding: 210px 0 132px 0;
+  padding: 132px 0;
 }
 
 .findFood {
@@ -111,14 +111,28 @@
   }
 }
 
+@media(min-width:1920px) {
+  .findFoodWrapper {
+    background-size: cover;
+  }
+}
+
+@media(max-width:800px) {
+  .findFoodWrapper {
+    background-size: cover;
+  }
+
+  .findFoodWrapper {
+    padding: 250px 0 132px 0;
+  }
+}
+
 @media(max-width:500px) {
   .findFood__title {
     font-size: 55px;
   }
-}
 
-@media(min-width:1920px) {
   .findFoodWrapper {
-    background-size: cover;
+    padding: 360px 0 132px 0;
   }
 }
