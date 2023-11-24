@@ -1,10 +1,9 @@
-import cn from 'classnames';
 import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
 
-import { PriceBlock } from '../../pages/Cart/PriceBlock';
+import { PriceBlock } from '../../pages/CartPage/PriceBlock';
 import style from './popup.module.scss';
 
 export const Popup = forwardRef(({ isLoaded, list, show }, ref) => {
@@ -15,12 +14,9 @@ export const Popup = forwardRef(({ isLoaded, list, show }, ref) => {
           <Link key={uuidv4()} to={`/restaurant/${restaurantId}/product/${id}`}>
             <div className={style.card}>
               <div className={style.card__left}>
-                <img
-                  alt={title}
-                  className={style.card__image}
-                  src={process.env.PUBLIC_URL + image}
-                />
+                <img alt={title} className={style.card__image} src={process.env.PUBLIC_URL + image} />
               </div>
+
               <div className={style.card__right}>
                 <div className={style.card__title}>{title}</div>
                 <PriceBlock discount={discount} price={price} />

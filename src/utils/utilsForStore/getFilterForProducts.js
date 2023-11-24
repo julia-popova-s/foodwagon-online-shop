@@ -4,6 +4,7 @@ export function getFilterForProducts({
   id,
   limit,
   order,
+  rating,
   restaurantId,
   searchValue,
   sortType,
@@ -24,5 +25,10 @@ export function getFilterForProducts({
 
   const idProductFilter = id ? `&id=${id}` : '';
 
-  return `${currentPageFilter}${limitFilter}${sortFilter}${orderFilter}${categoryFilter}${idFilter}${searchState}${idProductFilter}`;
+  const ratingFilter = rating ? `&raiting=${rating}` : '';
+
+  return (
+    `${currentPageFilter}${limitFilter}${sortFilter}${orderFilter}${categoryFilter}` +
+    `${idFilter}${searchState}${idProductFilter}${ratingFilter}`
+  );
 }

@@ -4,10 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import React from 'react';
 
 import style from './sortPopup.module.scss';
-// let render = 0
 
 export function SortPopup({ activeSortType, classNames, handleClickSortType, items, orderType }) {
-  // console.log('render SortPopup', ++render)
   const [visiblePopup, setVisiblePopup] = useState(false);
   const sortRef = useRef();
 
@@ -19,7 +17,6 @@ export function SortPopup({ activeSortType, classNames, handleClickSortType, ite
 
   const handleSelectFilter = (type, order) => {
     handleClickSortType(type, order);
-    // activeLabel = items[index].name
   };
 
   useEffect(() => {
@@ -41,6 +38,7 @@ export function SortPopup({ activeSortType, classNames, handleClickSortType, ite
           {activeLabel}
         </span>
       </div>
+
       {visiblePopup && (
         <div className={style.sort__popup}>
           <ul className={style.sort__list}>

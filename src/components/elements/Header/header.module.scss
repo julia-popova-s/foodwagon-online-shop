@@ -11,7 +11,6 @@
 }
 
 .header,
-.address,
 .search {
   display: flex;
   flex-wrap: wrap;
@@ -30,35 +29,8 @@
     column-gap: 30px;
     row-gap: 15px;
   }
-
-  &__address {
-    row-gap: 5px;
-  }
 }
 
-.address {
-  &__deliver {
-    margin-right: 12px;
-  }
-
-  &__icon {
-    margin-right: 9px;
-    width: 14px;
-    height: 25px;
-    color: $primary-color;
-  }
-
-  &__location {
-    @include setFontSize(400, 18px, 140%);
-    color: #424242;
-    margin-right: 4px;
-  }
-
-  &__location_weight {
-    font-weight: 700;
-    margin-right: 10px;
-  }
-}
 
 .search {
   &__link {
@@ -114,12 +86,6 @@
 
 
 
-.active .search__innerName {
-  color: $base-color;
-}
-
-@media (max-width: 1180px) {
-  .header__address {
-    display: none;
-  }
+.menu{
+  display: none;
 }

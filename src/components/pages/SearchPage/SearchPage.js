@@ -10,15 +10,12 @@ import {
   statusSelector,
 } from '../../../store/reducers/productsSearch';
 import { SearchPanel } from '../../elements/FindFood/SearchPanel';
-import { CardPopular } from '../../elements/PopularItems/CardPopular';
+import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
 import style from './searchPage.module.scss';
 
-// let render = 0
-
 function SearchPage() {
-  // console.log(render++)
   const error = useSelector(errorSelector);
   const currentPage = useSelector(currentPageSelector);
   const products = useSelector(productListSelector);
@@ -27,19 +24,19 @@ function SearchPage() {
 
   const dispatch = useDispatch();
 
-  const handleChangePage = number => {
+  const handleChangePage = (number) => {
     dispatch(setCurrentPage(number));
   };
 
-  const handleAddProduct = obj => {
+  const handleAddProduct = (obj) => {
     dispatch(addProduct(obj));
   };
 
-  const handleRemoveProduct = product => {
+  const handleRemoveProduct = (product) => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = obj => {
+  const handleInputCount = (obj) => {
     dispatch(setProductCount(obj));
   };
 
@@ -55,7 +52,7 @@ function SearchPage() {
         <div className={style.menuList}>
           {isLoaded &&
             products.map((item, i) => (
-              <CardPopular
+              <Card
                 classNames={style.menuList__item}
                 key={item.id}
                 {...item}
@@ -72,6 +69,7 @@ function SearchPage() {
         </div>
 
         {status && !error && <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />}
+
         {!status && <div className={style.message}>Are you ready to order with the best deals?</div>}
       </div>
     </div>

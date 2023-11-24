@@ -23,14 +23,12 @@ export function InstallApp() {
               {titles &&
                 titles.map(([oneTitle, twoTitle], i) => {
                   return (
-                    <div
-                      className={cn(style.upBlock__item, style.upBlock__item_border)}
-                      key={`${oneTitle}_${i}`}
-                    >
+                    <div className={cn(style.upBlock__item, style.upBlock__item_border)} key={`${oneTitle}_${i}`}>
                       <ReactSVG
                         className={style.upBlock__img}
                         src={process.env.PUBLIC_URL + '/images/install-app/discount.svg'}
                       />
+
                       <div className={style.upBlock__text}>
                         <p>{oneTitle}</p>
                         <p>{twoTitle}</p>
@@ -47,18 +45,14 @@ export function InstallApp() {
             <div className={cn(style.downBlock__install, style.install)}>
               <p className={style.install__title}>Install the app</p>
               <p className={style.install__text}>
-                It's never been easier to order food. Look for the finest discounts and you'll be
-                lost in a world of delectable food.
+                It's never been easier to order food. Look for the finest discounts and you'll be lost in a world of
+                delectable food.
               </p>
               {links &&
                 links.map(({ name, src }, i) => {
                   return (
                     <a className={style.install__link} href="##" key={`${name}_${i}`}>
-                      <img
-                        alt={name}
-                        className={style.install__linkImg}
-                        src={`${process.env.PUBLIC_URL}${src}`}
-                      />
+                      <img alt={name} className={style.install__linkImg} src={`${process.env.PUBLIC_URL}${src}`} />
                     </a>
                   );
                 })}

@@ -4,6 +4,7 @@ const initialState = {
   email: null,
   id: null,
   isAuth: false,
+  list: [],
   token: null,
 };
 
@@ -16,6 +17,12 @@ const userSlice = createSlice({
       state.token = null;
       state.id = null;
       state.isAuth = false;
+    },
+    setOrders(state, action) {
+      state.list.push({
+        [action.payload.orderNumber]: action.payload.list,
+        name: action.payload.name,
+      });
     },
     setUser(state, action) {
       state.email = action.payload.email;
@@ -31,5 +38,5 @@ export const tokenSelector = (state) => state.user.token;
 export const idSelector = (state) => state.user.id;
 export const isAuthSelector = (state) => state.user.isAuth;
 
-export const { removeUser, setUser } = userSlice.actions;
+export const { removeUser, setOrders, setUser } = userSlice.actions;
 export default userSlice.reducer;

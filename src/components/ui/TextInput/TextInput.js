@@ -1,6 +1,3 @@
-// import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import classNames from 'classnames'
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { forwardRef, useCallback, useRef, useState } from 'react';
@@ -22,7 +19,7 @@ export const TextInput = forwardRef(({ children, classNames, handleSearchValue, 
     debounce((str) => {
       handleSearchValue(str);
     }, 300),
-    []
+    [],
   );
 
   const handleChangeValue = (e) => {
@@ -42,6 +39,7 @@ export const TextInput = forwardRef(({ children, classNames, handleSearchValue, 
         type="text"
         value={value}
       />
+
       {value && (
         <svg
           className={style.search__clearIcon}
@@ -55,13 +53,11 @@ export const TextInput = forwardRef(({ children, classNames, handleSearchValue, 
           </g>
         </svg>
       )}
+
       {children}
+
       {iconUrl && (
-        <ReactSVG
-          className={style.search__inputIcon}
-          src={`${process.env.PUBLIC_URL}${iconUrl}`}
-          wrapper="span"
-        />
+        <ReactSVG className={style.search__inputIcon} src={`${process.env.PUBLIC_URL}${iconUrl}`} wrapper="span" />
       )}
     </div>
   );

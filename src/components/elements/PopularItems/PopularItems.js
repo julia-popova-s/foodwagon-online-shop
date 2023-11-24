@@ -1,34 +1,21 @@
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
-// import { cutPartOfString } from '../../../utils/cutPartOfString'
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
-import { isLoadedSelector, productListSelector } from '../../../store/reducers/productsPopular';
-// import { getRandomNumber } from '../../../utils/getRandomNumber'
 import { fetchProductsPopular } from '../../../store/reducers/productsPopular';
-import { ButtonSlider } from '../../ui/ButtonSlider';
-// import { Loader } from '../../ui/Loader'
-import { CardPopular } from './CardPopular';
+import { isLoadedSelector, productListSelector } from '../../../store/reducers/productsPopular';
+import { Card } from '../../ui/Card';
+import { ButtonSlider } from '../../ui/buttons/ButtonSlider';
 import { Loader } from './Loader';
 import style from './popularItems.module.scss';
 
 const settings = {
   dots: false,
   infinite: true,
-  nextArrow: (
-    <ButtonSlider
-      classNames={cn(style.popularItems__btn, style.popularItems__btn_right)}
-      type={'right'}
-    />
-  ),
-  prevArrow: (
-    <ButtonSlider
-      classNames={cn(style.popularItems__btn, style.popularItems__btn_left)}
-      type={'left'}
-    />
-  ),
+  nextArrow: <ButtonSlider classNames={cn(style.popularItems__btn, style.popularItems__btn_right)} type={'right'} />,
+  prevArrow: <ButtonSlider classNames={cn(style.popularItems__btn, style.popularItems__btn_left)} type={'left'} />,
   responsive: [
     {
       breakpoint: 1770,
@@ -73,19 +60,17 @@ const settings = {
 };
 
 export function PopularItems() {
-  const [limit, setLimit] = useState(10);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(
       fetchProductsPopular({
-        filter: '&rating=5',
-        limit,
+        limit: 10,
         page: 2,
-      })
+        rating: 5,
+      }),
     );
-  }, [limit]);
+  }, []);
 
   const isLoaded = useSelector(isLoadedSelector);
   const products = useSelector(productListSelector);
@@ -112,20 +97,20 @@ export function PopularItems() {
             <Slider {...settings}>
               {isLoaded
                 ? products.map((item, i) => {
-                  return (
-                    <CardPopular
-                      key={item.id}
-                      {...item}
-                      classNames={style.popularItems__card}
-                      handleAddProduct={(obj) => handleAddProduct(obj)}
-                      handleInputCount={(obj) => handleInputCount(obj)}
-                      handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
-                    />
-                  );
-                })
+                    return (
+                      <Card
+                        key={item.id}
+                        {...item}
+                        classNames={style.popularItems__card}
+                        handleAddProduct={(obj) => handleAddProduct(obj)}
+                        handleInputCount={(obj) => handleInputCount(obj)}
+                        handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
+                      />
+                    );
+                  })
                 : Array(5)
-                  .fill(0)
-                  .map((_, index) => <Loader key={index} />)}
+                    .fill(0)
+                    .map((_, index) => <Loader key={index} />)}
             </Slider>
           </div>
         </div>

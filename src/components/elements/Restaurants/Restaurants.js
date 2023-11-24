@@ -48,7 +48,7 @@ export function Restaurants() {
         category: categoryNames[category],
         limit,
         sortType,
-      })
+      }),
     );
   }, [sortType, category, dispatch, limit]);
 
@@ -57,17 +57,11 @@ export function Restaurants() {
       <div className="container">
         <div className={style.restaurantList}>
           <h4 className={style.restaurantList__title}>Featured Restaurants</h4>
+
           <div className={style.restaurantList__filters}>
-            <Categories
-              activeCategory={category}
-              handleClickCategory={handleSelectCategory}
-              items={categoryNames}
-            />
-            <SortPopup
-              activeSortType={sortType}
-              handleClickSortType={handleSelectSortType}
-              items={sortItems}
-            />
+            <Categories activeCategory={category} handleClickCategory={handleSelectCategory} items={categoryNames} />
+
+            <SortPopup activeSortType={sortType} handleClickSortType={handleSelectSortType} items={sortItems} />
           </div>
 
           <RestaurantList isLoading={isLoaded} list={list} />

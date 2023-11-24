@@ -83,7 +83,7 @@
   &__copyright {
     display: flex;
     flex-wrap: wrap;
-    padding: 16px 0px 36px 0;
+    padding: 16px 0px 88px 0;
     gap: 10px;
   }
 
@@ -121,28 +121,8 @@
     color: red;
     padding-top: 10px;
   }
-
-  // &__form {}
 }
 
-
-// @media(max-width:650px) {
-//   .footer__list {
-//     height: auto;
-//   }
-// }
-
-// @media(max-width:450px) {
-//   .footer__list {
-//     height: auto;
-//   }
-// }
-
-// @media(max-width:310px) {
-//   .footer__list {
-//     height: auto;
-//   }
-// }
 @media(max-width:400px) {
   .footer__input {
     width: 100%;

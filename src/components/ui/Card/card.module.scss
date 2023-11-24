@@ -1,0 +1,83 @@
+@import "../../App/styles/variables";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  max-width: 283px;
+  height: 469px;
+
+  &__up {
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  &__image {
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+
+    border-radius: 16px;
+  }
+
+  &__name {
+    @include setFontSize(700, 22px, 120%);
+    color: #424242;
+
+    min-height: 53px;
+
+    margin-bottom: 8px;
+  }
+
+  &__location {
+    @include setFontSize(400, 22px, 120%);
+    color: $primary-color;
+    margin-bottom: 8px;
+  }
+
+  &__location span {
+    vertical-align: middle;
+  }
+
+  &__locationIcon {
+    margin-right: 8px;
+  }
+
+  &__price {
+    @include setFontSize(700, 22px, 120%);
+    color: #212121;
+    margin-bottom: 16px;
+  }
+
+  &__btn {
+    width: 100%;
+    background: $base-color;
+    mix-blend-mode: normal;
+
+    height: 60px;
+    margin-top: auto;
+    border: none;
+    transition: background 0.5s ease;
+  }
+
+  &__btn:hover {
+    box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
+      0px 20px 40px rgba(250, 99, 35, 0.24);
+    background-color: #da3802;
+    transition: background 0.5s ease;
+  }
+
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+}
+
+@media(max-width:440px) {
+  .card {
+    height: 490px;
+  }
+}
