@@ -133,7 +133,6 @@
 
 @media (max-width:1100px) {
   .cart {
-    padding-top: 132px + 60px;
 
     &__result {
       width: 100%;
@@ -145,9 +144,5 @@
 @media (max-width:650px) {
   .cart__top {
     max-width: 300px;
-  }
-
-  .cart {
-    padding-top: 310px;
   }
 }

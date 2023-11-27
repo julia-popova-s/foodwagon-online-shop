@@ -1,0 +1,147 @@
+.menuButton {
+  width: 35px;
+  height: 30px;
+
+  background-color: transparent;
+
+  position: relative;
+
+  display: none;
+}
+
+.menuButton__border {
+  position: absolute;
+  width: 35px;
+  height: 4px;
+
+  background-color: #424242;
+  border-radius: 20px;
+
+  transition: transform 300ms ease-out;
+}
+
+.menuButton__border_top {
+  top: 0;
+  left: 0;
+}
+
+.menuButton__border_center {
+  top: 10px;
+  left: 0;
+}
+
+.menuButton__border_bottom {
+  top: 20px;
+  left: 0;
+}
+
+.buttonClose {
+  transition: transform 300ms ease-out;
+}
+
+.buttonClose .menuButton__border_top,
+.buttonClose .menuButton__border_bottom {
+  top: 13px;
+}
+
+.buttonClose .menuButton__border_top {
+  transform: rotate(45deg);
+}
+
+.buttonClose .menuButton__border_center {
+  display: none;
+}
+
+.buttonClose .menuButton__border_bottom {
+  transform: rotate(-45deg);
+}
+
+.buttonClose .menuButton__border {
+  background-color: #f17228;
+}
+
+.menu {
+  display: block;
+
+  padding: 50px;
+
+  max-width: 400px;
+  height: 100vh;
+
+  top: 78px;
+  right: 0;
+
+  position: absolute;
+
+  background-color: var(--white-color);
+  box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.15);
+
+  animation: fadeIn 1s forwards;
+}
+
+.menu__item {
+  margin-bottom: 30px;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  color: #424242;
+}
+
+.menu__link {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  text-decoration: none;
+  color: #424242;
+
+  background-color: transparent;
+
+  position: relative;
+
+  cursor: pointer;
+}
+
+.menu__link::before {
+  position: absolute;
+
+  content: "";
+
+  left: 0;
+  bottom: -3px;
+
+  width: 100%;
+  height: 3px;
+
+  background-color: transparent;
+  border-radius: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.menu__link:hover::before {
+  background-color: #FFB30E;
+  transition: all 0.2s ease;
+}
+
+@media(max-width:1190px) {
+
+  .menuButton {
+    display: block;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translate(100%);
+  }
+
+  to {
+    transform: translate(0%);
+  }
+}
+
+
+.menuClosed {
+  display: none;
+}
