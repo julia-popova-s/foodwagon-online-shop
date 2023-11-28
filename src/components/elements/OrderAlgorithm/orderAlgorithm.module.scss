@@ -10,9 +10,10 @@
   padding: 80px 74px;
 
   &__title {
-    @include setFontSize(700, 43px, 112%);
+    @include setTextStyle($font-bold, 43px, 112%);
     color: $base-color;
     text-align: center;
+
     margin-bottom: 71px;
   }
 

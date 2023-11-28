@@ -6,6 +6,17 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  font-size: 16px;
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
 body {
   font-family: 'Source Sans Pro', "Arial", sans-serif;
   background-color: #FFFFFF;
@@ -36,4 +47,16 @@ body {
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 300ms, transform 300ms;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  background-color: transparent;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--link-color-hover);
+    transition: color 0.15s ease;
+  }
 }

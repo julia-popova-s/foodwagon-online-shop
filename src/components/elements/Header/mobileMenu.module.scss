@@ -1,23 +1,26 @@
+@import "../../App/styles/variables";
+
 .menuButton {
+  position: relative;
+
+  display: none;
+
   width: 35px;
   height: 30px;
 
   background-color: transparent;
-
-  position: relative;
-
-  display: none;
 }
 
 .menuButton__border {
   position: absolute;
+
   width: 35px;
   height: 4px;
 
-  background-color: #424242;
-  border-radius: 20px;
+  background-color: $text-color;
+  border-radius: $border-radius-20;
 
-  transition: transform 300ms ease-out;
+  transition: transform $transition-long linear;
 }
 
 .menuButton__border_top {
@@ -57,7 +60,7 @@
 }
 
 .buttonClose .menuButton__border {
-  background-color: #f17228;
+  background-color: $base-color;
 }
 
 .menu {
@@ -73,7 +76,7 @@
 
   position: absolute;
 
-  background-color: var(--white-color);
+  background-color: $white-color;
   box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.15);
 
   animation: fadeIn 1s forwards;
@@ -85,15 +88,13 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
-  color: #424242;
+  color: $text-color;
 }
 
 .menu__link {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 100%;
+  @include setTextStyle($font-bold, 18px, 100%);
+  color: $text-color;
   text-decoration: none;
-  color: #424242;
 
   background-color: transparent;
 
@@ -116,12 +117,13 @@
   background-color: transparent;
   border-radius: 10px;
 
-  transition: all 0.2s ease;
+  transition: all $transition-short ease;
 }
 
 .menu__link:hover::before {
-  background-color: #FFB30E;
-  transition: all 0.2s ease;
+  background-color: $primary-color;
+
+  transition: all $transition-short ease;
 }
 
 @media(max-width:1190px) {

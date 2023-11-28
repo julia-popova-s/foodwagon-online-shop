@@ -10,13 +10,13 @@
   }
 
   &__label {
-    @include setFontSize(700, 22px, 120%);
+    @include setTextStyle(700, 22px, 120%);
     color: #434343;
     margin-bottom: 10px;
   }
 
   &__descr {
-    @include setFontSize(400, 18px, 140%);
+    @include setTextStyle(400, 18px, 140%);
     color: #9e9e9e;
   }
 }

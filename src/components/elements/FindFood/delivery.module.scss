@@ -4,10 +4,13 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 24px;
-  border-bottom: 2px solid #f5f5f5;
-  background-color: $white-color;
+
   max-width: 856px;
+
+  padding: 24px;
+
+  border-bottom: 2px solid $main-color-white;
+  background-color: $white-color;
   border-radius: 8px 8px 0 0;
 }
 

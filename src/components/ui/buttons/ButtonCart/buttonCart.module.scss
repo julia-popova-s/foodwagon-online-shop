@@ -23,7 +23,7 @@
   }
 
   &__counter {
-    @include setFontSize(400, 14px, 17px);
+    @include setTextStyle(400, 14px, 17px);
     color: $white-color;
     position: absolute;
     padding: 0px 8px;

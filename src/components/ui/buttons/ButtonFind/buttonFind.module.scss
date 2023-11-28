@@ -1,7 +1,7 @@
 @import "../../../App/styles/variables";
 
 .buttonFind {
-  @include setFontSize(700, 18px, 100%);
+  @include setTextStyle(700, 18px, 100%);
   color: $white-color;
   width: 199px;
   height: 60px;

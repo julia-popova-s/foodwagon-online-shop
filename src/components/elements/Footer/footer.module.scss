@@ -1,15 +1,15 @@
 @import "../../App/styles/variables";
 
 .footer {
-  background-color: #212121;
-  border-bottom: 2px solid #424242;
+  background-color: $main-color-gray;
+  border-bottom: 2px solid $text-color;
 
   &__service {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding-bottom: 22px;
-    border-bottom: 2px solid #424242;
+    border-bottom: 2px solid $text-color;
   }
 
   &__nav {
@@ -25,16 +25,19 @@
   }
 
   &__title {
-    @include setFontSize(700, 18px, 120%);
-    color: #f5f5f5;
+    @include setTextStyle($font-bold, 18px, 120%);
+    color: $main-color-white;
+
     text-transform: uppercase;
+
     opacity: 0.6;
+
     margin-bottom: 40px;
   }
 
   &__networks {
-    @include setFontSize(400, 24px, 100%);
-    color: #f5f5f5;
+    @include setTextStyle(400, 24px, 100%);
+    color: $main-color-white;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
@@ -42,25 +45,29 @@
   }
 
   &__label {
-    @include setFontSize(700, 18px, 140%);
+    @include setTextStyle($font-bold, 18px, 140%);
     color: #bbbbbb;
     margin-bottom: 40px;
   }
 
   &__input,
   &__input::placeholder {
-    @include setFontSize(400, 18px, 140%);
+    @include setTextStyle(400, 18px, 140%);
   }
 
   &__input {
-    background: #424242;
+    background: $text-color;
     color: #adadad;
+    border-radius: 8px;
+
     width: 334px;
     height: 60px;
-    border-radius: 8px;
+
     padding: 17px 0 18px 50px;
+
     margin-right: 16px;
     margin-bottom: 10px;
+
     outline: none;
   }
 
@@ -69,13 +76,16 @@
   }
 
   &__btn {
-    @include setFontSize(700, 18px, 100%);
+    @include setTextStyle($font-bold, 18px, 100%);
+    text-align: center;
     color: $white-color;
+
     width: 133px;
     height: 60px;
+
     background: linear-gradient(92.84deg, #ffb800 -47.72%, #ff8a00 136.81%);
-    border-radius: 8px;
-    text-align: center;
+    border-radius: $border-radius-8;
+
     box-shadow: 0px 5px 8px rgba(222, 151, 0, 0.24),
       0px 14px 32px rgba(255, 178, 14, 0.29);
   }
@@ -88,37 +98,39 @@
   }
 
   &__reserved {
-    @include setFontSize(400, 15px, 120%);
-    color: #f5f5f5;
+    @include setTextStyle(400, 15px, 120%);
+    color: $main-color-white;
   }
 
   &__copy {
-    @include setFontSize(400, 16px, 18px);
-    color: #f5f5f5;
+    @include setTextStyle(400, 16px, 18px);
+    color: $main-color-white;
   }
 
   &__date {
-    @include setFontSize(700, 15px, 120%);
-    color: #f5f5f5;
+    @include setTextStyle(700, 15px, 120%);
+    color: $main-color-white;
   }
 
   &__networksItem {
-    @include setFontSize(400, 24px, 100%);
+    @include setTextStyle(400, 24px, 100%);
     color: #636363;
     width: 24px;
     height: 24px;
-    transition: all 0.5s ease;
+    transition: all $transition-long ease;
 
     &:hover {
       color: $white-color;
-      transition: all 0.5s ease;
+      transition: all $transition-long ease;
     }
   }
 
   &__error {
-    @include setFontSize(400, 18px, 100%);
+    @include setTextStyle(400, 18px, 100%);
+    color: $btn-active;
+
     height: 31px;
-    color: red;
+
     padding-top: 10px;
   }
 }

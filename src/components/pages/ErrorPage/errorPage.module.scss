@@ -12,7 +12,7 @@
   }
 
   &__text {
-    @include setFontSize(700, 32px, 120%);
+    @include setTextStyle(700, 32px, 120%);
     color: #000;
     text-align: center;
     margin-bottom: 20px;

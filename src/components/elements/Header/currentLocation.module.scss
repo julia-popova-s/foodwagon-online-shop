@@ -13,19 +13,23 @@
 
   &__icon {
     margin-right: 9px;
+
     width: 14px;
     height: 25px;
+
     color: $primary-color;
   }
 
   &__location {
-    @include setFontSize(400, 18px, 140%);
-    color: #424242;
+    @include setTextStyle($font-normal, 18px, 140%);
+    color: $text-color;
+
     margin-right: 4px;
   }
 
   &__location_weight {
-    font-weight: 700;
+    font-weight: $font-bold;
+
     margin-right: 10px;
   }
 }

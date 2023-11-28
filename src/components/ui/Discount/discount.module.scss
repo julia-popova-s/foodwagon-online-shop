@@ -13,18 +13,18 @@
   color: $white-color;
 
   &__discount {
-    @include setFontSize(700, 68px, 106%);
+    @include setTextStyle(700, 68px, 106%);
   }
 
   &__discountPercent {
-    @include setFontSize(700, 35px, 120%);
+    @include setTextStyle(700, 35px, 120%);
     position: absolute;
     right: 20px;
     bottom: 30px;
   }
 
   &__discountOff {
-    @include setFontSize(400, 22px, 120%);
+    @include setTextStyle(400, 22px, 120%);
     position: absolute;
     right: 24px;
     bottom: 12px;
@@ -37,18 +37,18 @@
   height: 50px;
 
   &__discount {
-    @include setFontSize(700, 40px, 106%);
+    @include setTextStyle(700, 40px, 106%);
   }
 
   &__discountPercent {
-    @include setFontSize(700, 24px, 120%);
+    @include setTextStyle(700, 24px, 120%);
     position: absolute;
     right: 17px;
     bottom: 19px;
   }
 
   &__discountOff {
-    @include setFontSize(400, 18px, 120%);
+    @include setTextStyle(400, 18px, 120%);
     position: absolute;
     right: 18px;
     bottom: 4px;

@@ -1,7 +1,7 @@
 @import "../../App/styles/variables";
 
 .cities {
-  background-color: #212121;
+  background-color: $main-color-gray;
 }
 
 @media(max-width:650px) {

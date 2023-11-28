@@ -7,7 +7,7 @@ import { isAuthSelector } from '../../../store/reducers/user';
 import { CurrentLocation } from './CurrentLocation';
 import style from './mobileMenu.module.scss';
 
-export function MobileMenu({ handleLogOut, show }) {
+export function MobileMenu({ handleLogOut }) {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
 
   const handleClickMenu = () => {
@@ -31,8 +31,14 @@ export function MobileMenu({ handleLogOut, show }) {
   }, []);
 
   return (
-    <div>
-      <button className={style.menuButton} onClick={handleClickMenu} ref={buttonRef}>
+    <div className={style.mobileMenu}>
+      <button
+        className={cn(style.menuButton, {
+          [style.buttonClose]: menuIsVisible,
+        })}
+        onClick={handleClickMenu}
+        ref={buttonRef}
+      >
         <div className={cn(style.menuButton__border, style.menuButton__border_top)}></div>
         <div className={cn(style.menuButton__border, style.menuButton__border_center)}></div>
         <div className={cn(style.menuButton__border, style.menuButton__border_bottom)}></div>

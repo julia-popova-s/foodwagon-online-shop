@@ -23,7 +23,7 @@
   }
 
   &__name {
-    @include setFontSize(700, 22px, 120%);
+    @include setTextStyle(700, 22px, 120%);
     color: #424242;
 
     min-height: 53px;
@@ -32,7 +32,7 @@
   }
 
   &__location {
-    @include setFontSize(400, 22px, 120%);
+    @include setTextStyle(400, 22px, 120%);
     color: $primary-color;
     margin-bottom: 8px;
   }
@@ -46,7 +46,7 @@
   }
 
   &__price {
-    @include setFontSize(700, 22px, 120%);
+    @include setTextStyle(700, 22px, 120%);
     color: #212121;
     margin-bottom: 16px;
   }

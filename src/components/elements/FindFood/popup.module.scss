@@ -1,14 +1,23 @@
+@import "../../App/styles/variables";
+
 .popup {
-  z-index: 999;
   position: absolute;
+
+  z-index: 999;
+
   left: 0;
   top: 60px;
-  background: #fff;
-  width: calc(100% - 199px - 16px);
-  transition: all 0.2s ease;
+
+  background: $white-color;
   border-radius: 8px;
+
+  width: calc(100% - 199px - 16px);
+
   box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .15);
+
   padding-top: 15px;
+
+  transition: all $transition-short ease;
 }
 
 .card {
@@ -27,31 +36,37 @@
   &__image {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: $border-radius-8;
   }
 
   &__title {
     font-weight: 700;
     font-size: 18px;
     line-height: 120%;
-    color: #424242;
+    color: $text-color;
+
     min-height: 45px;
+
     margin-bottom: 10px;
   }
 
   &__price {
-    font-weight: 700;
+    display: inline-block;
+
+    font-weight: $font-bold;
     font-size: 18px;
     line-height: 120%;
     color: rgb(66, 66, 66);
+
     margin-bottom: 8px;
-    display: inline-block;
     margin-right: 30px;
   }
 
   &_priceDiscount {
     position: relative;
+
     color: rgba(130, 126, 126, 0.9);
-    font-weight: 500;
+
+    font-weight: $font-medium-500;
   }
 }

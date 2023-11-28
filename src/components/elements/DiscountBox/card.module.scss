@@ -5,8 +5,10 @@
   max-height: 415px;
 
   &__up {
-    margin-bottom: 32px;
     position: relative;
+
+    margin-bottom: 32px;
+
     max-height: 301px;
     max-width: 357px;
   }
@@ -14,7 +16,9 @@
   &__image {
     max-width: 100%;
     height: auto;
+
     display: block;
+
     border-radius: 16px;
     object-fit: cover;
   }
@@ -24,12 +28,17 @@
     font-weight: 700;
     line-height: 106%;
     color: $white-color;
+
     background-color: $primary-color;
+
     position: absolute;
+
     left: 0;
     bottom: 0;
+
     max-width: 140px;
     max-height: 83px;
+
     padding: 3px 49px 10px 18px;
     border-radius: 0px 32px 0px 14px;
   }
@@ -38,38 +47,42 @@
     font-size: 35px;
     font-weight: 700;
     line-height: 120%;
+
     position: absolute;
+
     right: 20px;
     bottom: 30px;
   }
 
   &__discount_off {
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 120%;
+    @include setTextStyle($font-normal, 22px, 120%);
+    color: $white-color;
+
     position: absolute;
+
     right: 24px;
     bottom: 12px;
   }
 
   &__name {
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 120%;
-    color: #424242;
+    @include setTextStyle($font-bold, 22px, 120%);
+    color: $white-color;
+
     margin-bottom: 14px;
   }
 
   &__text {
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 120%;
-    background: rgba(241, 114, 40, 0.2);
+    @include setTextStyle($font-bold, 22px, 120%);
     color: $base-color;
+
     text-align: center;
-    padding: 8px 16px;
+
+    background: rgba(241, 114, 40, 0.2);
+    border-radius: $border-radius-8;
+
+    padding: 8px $border-radius-16;
+
     width: 204px;
     height: 42px;
-    border-radius: 8px;
   }
 }

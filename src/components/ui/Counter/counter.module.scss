@@ -1,14 +1,14 @@
 @import "../../App/styles/variables";
 
 .buttons {
-  @include setFontSize(400, 22px, 100%);
+  @include setTextStyle(400, 22px, 100%);
   display: flex;
   gap: 15px;
   align-items: center;
   width: 140px;
 
   &__input {
-    @include setFontSize(500, 20px, 100%);
+    @include setTextStyle(500, 20px, 100%);
     width: 40px;
     height: 35px;
     text-align: center;

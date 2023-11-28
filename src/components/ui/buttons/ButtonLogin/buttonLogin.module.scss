@@ -1,7 +1,7 @@
 @import "../../../App/styles/variables";
 
 .buttonLogin {
-  @include setFontSize(700, 18px, 100%);
+  @include setTextStyle(700, 18px, 100%);
   width: 118px;
   height: 46px;
   border: none;

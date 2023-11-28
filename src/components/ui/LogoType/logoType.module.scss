@@ -14,7 +14,7 @@
   }
 
   &__name {
-    @include setFontSize(700, 31.1102px, 120%);
+    @include setTextStyle(700, 31.1102px, 120%);
     color: $base-color;
     letter-spacing: -0.778px;
     flex-shrink: 0;

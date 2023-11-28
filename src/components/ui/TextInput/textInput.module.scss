@@ -6,7 +6,7 @@
 
   &__input,
   &__input::placeholder {
-    @include setFontSize(400, 18px, 140%);
+    @include setTextStyle(400, 18px, 140%);
   }
 
   &__input {

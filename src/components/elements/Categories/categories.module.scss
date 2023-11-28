@@ -8,20 +8,28 @@
   }
 
   &__item {
-    @include setFontSize(700, 20px, 100%);
+    font-size: 20px;
+    font-weight: $font-bold;
+    line-height: 100%;
     text-align: center;
+
     width: 125px;
+
     background-color: $base-color;
     color: $white-color;
-    padding: 15px;
     border-radius: 30px;
-    transition: all 0.2s ease;
+
+    padding: 15px;
+
+    transition: all $transition-short ease;
+
     cursor: pointer;
 
     &_active,
     &:hover {
       background-color: $btn-active;
-      transition: all 0.2s ease;
+
+      transition: all $transition-short ease;
     }
   }
 }

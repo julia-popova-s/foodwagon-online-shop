@@ -34,7 +34,7 @@
   }
 
   &__discount {
-    @include setFontSize(700, 68px, 106%);
+    @include setTextStyle(700, 68px, 106%);
     background-color: $primary-color;
     color: $white-color;
     border-radius: 0px 32px 0px 14px;
@@ -48,14 +48,14 @@
   }
 
   &__discount_size {
-    @include setFontSize(700, 35px, 120%);
+    @include setTextStyle(700, 35px, 120%);
     position: absolute;
     right: 20px;
     bottom: 30px;
   }
 
   &__discount_off {
-    @include setFontSize(400, 22px, 120%);
+    @include setTextStyle(400, 22px, 120%);
     position: absolute;
     right: 24px;
     bottom: 12px;
@@ -72,7 +72,7 @@
   max-width: 700px;
 
   &__title {
-    @include setFontSize(700, 22px, 120%);
+    @include setTextStyle(700, 22px, 120%);
     color: #424242;
     margin-bottom: 14px;
     min-height: 50px;
@@ -87,7 +87,7 @@
   }
 
   &__nameLink {
-    @include setFontSize(400, 22px, 120%);
+    @include setTextStyle(400, 22px, 120%);
     color: rgb(255, 179, 14);
   }
 
@@ -98,7 +98,7 @@
   }
 
   &__price {
-    @include setFontSize(700, 24px, 120%);
+    @include setTextStyle(700, 24px, 120%);
     color: rgb(33, 33, 33);
     margin-bottom: 10px;
 
@@ -121,7 +121,7 @@
   }
 
   &__ingredients {
-    @include setFontSize(400, 20px, 120%);
+    @include setTextStyle(400, 20px, 120%);
     color: rgb(130, 126, 126);
     margin-bottom: 15px;
   }
