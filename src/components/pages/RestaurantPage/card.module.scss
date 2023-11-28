@@ -1,76 +1,93 @@
 @import "../../App/styles/variables";
 
 .card {
-  width: 357px;
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
   position: relative;
 
+  display: flex;
+  flex-direction: column;
+
+  width: 357px;
+  min-height: 480px;
+
   &__up {
-    margin-bottom: 32px;
     position: relative;
+
     border: 1px solid transparent;
     border-radius: 16px;
+
+    margin-bottom: 32px;
   }
 
   &__image {
+    display: block;
+
     max-width: 100%;
     height: auto;
-    display: block;
+
     border-radius: 16px;
   }
 
   &__discount {
-    @include setFontSize(700, 68px, 106%);
-    color: $white-color;
     position: absolute;
     left: 0;
     bottom: 0;
+
+    @include setTextStyle(700, 68px, 106%);
+    color: $white-color;
+    text-align: right;
+
     background-color: $primary-color;
     border-radius: 0px 32px 0px 14px;
+
     width: 140px;
     height: 83px;
+
     padding: 3px 49px 10px 18px;
-    text-align: right;
   }
 
   &__discount_size {
-    @include setFontSize(700, 35px, 120%);
     position: absolute;
+
+    @include setTextStyle(700, 35px, 120%);
     right: 20px;
     bottom: 30px;
   }
 
   &__discount_off {
-    @include setFontSize(400, 22px, 120%);
     position: absolute;
+
+    @include setTextStyle(400, 22px, 120%);
     right: 24px;
     bottom: 12px;
   }
 
   &__name {
-    @include setFontSize(700, 22px, 120%);
-    color: #424242;
-    margin-bottom: 14px;
+    @include setTextStyle(700, 22px, 120%);
+    color: $text-color;
+
     min-height: 50px;
+
+    margin-bottom: 14px;
   }
 
   &__rest {
-    @include setFontSize(400, 22px, 120%);
+    @include setTextStyle(400, 22px, 120%);
     color: rgb(255, 179, 14);
+
     margin-bottom: 15px;
   }
 
   &__price {
-    @include setFontSize(700, 24px, 120%);
+    @include setTextStyle(700, 24px, 120%);
     color: rgb(33, 33, 33);
+
     margin-bottom: 10px;
   }
 
   &__btn {
-    margin-top: auto;
     box-shadow: rgba(253, 114, 92, 0.22) 0px 5px 10px,
       rgba(250, 99, 35, 0.24) 0px 20px 40px;
+
+    margin-top: auto;
   }
 }

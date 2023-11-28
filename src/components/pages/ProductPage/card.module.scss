@@ -10,6 +10,7 @@
 
   &__left {
     position: relative;
+
     width: 357px;
     height: 301px;
 
@@ -22,8 +23,10 @@
 
   &__image {
     display: block;
+
     max-width: 100%;
     height: auto;
+
     border-radius: 16px;
     object-fit: cover;
   }
@@ -34,21 +37,26 @@
   }
 
   &__discount {
-    @include setTextStyle(700, 68px, 106%);
-    background-color: $primary-color;
-    color: $white-color;
-    border-radius: 0px 32px 0px 14px;
-    padding: 3px 49px 10px 18px;
     position: absolute;
     left: 0;
     bottom: 0;
+
+    @include setTextStyle(700, 68px, 106%);
+    color: $white-color;
+    text-align: right;
+
+    background-color: $primary-color;
+    border-radius: 0px 32px 0px 14px;
+
     width: 140px;
     height: 83px;
-    text-align: right;
+
+    padding: 3px 49px 10px 18px;
   }
 
   &__discount_size {
     @include setTextStyle(700, 35px, 120%);
+
     position: absolute;
     right: 20px;
     bottom: 30px;
@@ -56,6 +64,7 @@
 
   &__discount_off {
     @include setTextStyle(400, 22px, 120%);
+
     position: absolute;
     right: 24px;
     bottom: 12px;
@@ -74,7 +83,9 @@
   &__title {
     @include setTextStyle(700, 22px, 120%);
     color: #424242;
+
     margin-bottom: 14px;
+
     min-height: 50px;
   }
 
@@ -100,6 +111,7 @@
   &__price {
     @include setTextStyle(700, 24px, 120%);
     color: rgb(33, 33, 33);
+
     margin-bottom: 10px;
 
     &_theme {
@@ -108,13 +120,15 @@
 
 
       &::before {
-        position: absolute;
         content: '';
-        width: 50px;
-        height: 2px;
+        position: absolute;
         top: 15px;
         left: 14px;
         z-index: 10;
+
+        width: 50px;
+        height: 2px;
+
         background-color: rgba(130, 126, 126, 0.9);
       }
     }
@@ -123,6 +137,7 @@
   &__ingredients {
     @include setTextStyle(400, 20px, 120%);
     color: rgb(130, 126, 126);
+
     margin-bottom: 15px;
   }
 
@@ -133,14 +148,17 @@
 
 .buttons {
   &__order {
-    transition: all 0.3s ease;
-    margin-left: auto;
-    width: 283px;
     display: block;
+
+    width: 283px;
+
+    margin-left: auto;
+
+    transition: all $transition-long ease;
 
     &:hover {
       box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22), 0px 20px 40px rgba(250, 99, 35, 0.24);
-      transition: all 0.3s ease;
+      transition: all $transition-long ease;
     }
   }
 }

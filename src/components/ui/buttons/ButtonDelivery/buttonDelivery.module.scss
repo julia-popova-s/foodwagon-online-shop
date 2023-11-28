@@ -3,12 +3,17 @@
 .delivery {
   @include setTextStyle(700, 18px, 100%);
   color: #757575;
+
   padding: 10px 24px;
+
   width: 148px;
   height: 38px;
+
   background-color: transparent;
+
   cursor: pointer;
   outline: none;
+
   border: none;
   border-radius: 8px;
 }
@@ -16,6 +21,7 @@
 .delivery__btnName {
   padding-left: 9px;
   margin-bottom: 5px;
+  
   vertical-align: top;
 }
 

@@ -3,13 +3,16 @@
 .buttonSlider {
   width: 76px;
   height: 76px;
+
   background-color: transparent;
   border-radius: 100%;
-  transition: all 0.3s ease;
+
+  transition: all $transition-long ease;
 
   &:hover {
     box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
       0px 20px 40px rgba(250, 99, 35, 0.24);
-    transition: all 0.3s ease;
+      
+    transition: all $transition-long ease;
   }
 }

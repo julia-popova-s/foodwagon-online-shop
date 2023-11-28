@@ -2,23 +2,29 @@
 
 .buttonLogin {
   @include setTextStyle(700, 18px, 100%);
+
   width: 118px;
   height: 46px;
+
   border: none;
-  background: $white-color;
+  border-radius: $border-radius-8;
+
   box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26),
     0px 20px 40px rgba(255, 174, 0, 0.29);
-  border-radius: 8px;
+    
+  background: $white-color;
   background: linear-gradient(92.84deg, #ffb800 -47.72%, #ff8a00 136.81%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
-  transition: all 0.5s ease;
+
+  transition: all $transition-long ease;
 
   &:hover &__icon svg>path {
     fill: $base-color;
-    transition: all 0.5s ease;
+
+    transition: all $transition-long ease;
   }
 
   &:hover &__name {
@@ -29,17 +35,21 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
-    transition: all 0.5s ease;
+
+    transition: all $transition-long ease;
   }
 
   &__icon {
-    transition: all 0.5s ease;
     margin-right: 10px;
+
     vertical-align: middle;
+
+    transition: all $transition-long ease;
   }
 
   &__name {
-    transition: all 0.5s ease;
+    transition: all $transition-long ease;
+
     margin-bottom: 15px;
   }
 }

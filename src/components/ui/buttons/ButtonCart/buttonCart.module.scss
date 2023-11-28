@@ -1,16 +1,19 @@
 @import "../../../App/styles/variables";
 
 .cartButton {
-  background-color: $white-color;
-  width: 60px;
-  height: 46px;
-  border-radius: 8px;
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 60px;
+  height: 46px;
+
+  border-radius: 8px;
+  background-color: $white-color;
   box-shadow: rgba(255, 174, 0, 0.26) 0px 5px 10px,
     rgba(255, 174, 0, 0.29) 0px 20px 40px;
-  position: relative;
 
   &:hover &__icon {
     color: $base-color;
@@ -23,15 +26,20 @@
   }
 
   &__counter {
+    position: absolute;
+
     @include setTextStyle(400, 14px, 17px);
     color: $white-color;
-    position: absolute;
-    padding: 0px 8px;
+    text-align: center;
+
     top: -5px;
     right: -5px;
-    text-align: center;
+
     background-color: rgb(255, 138, 0);
     border-radius: 8px;
+
     height: 16px;
+
+    padding: 0px 8px;
   }
 }

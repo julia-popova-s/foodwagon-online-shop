@@ -6,15 +6,20 @@
     display: inline-block;
 
     a {
-      color: #ff7474;
       display: inline-block;
+
+      color: #ff7474;
       text-align: center;
+
       width: 40px;
       height: 40px;
-      padding: 10px;
+
       border: 1px solid #ff7474;
       border-radius: 30px;
+
+      padding: 10px;
       margin-right: 10px;
+
       cursor: pointer;
 
       &:hover {
