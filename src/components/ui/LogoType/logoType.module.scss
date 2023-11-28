@@ -3,6 +3,7 @@
 .logo {
   display: flex;
   align-items: center;
+
   max-width: 100%;
 
   &__image {
@@ -14,16 +15,20 @@
   }
 
   &__name {
-    @include setFontSize(700, 31.1102px, 120%);
+    @include setTextStyle(700, 31.1102px, 120%);
     color: $base-color;
     letter-spacing: -0.778px;
+
     flex-shrink: 0;
+
     margin-right: 1px;
   }
 
   &__name_color {
     letter-spacing: -0.622px;
+
     color: $primary-color;
+
     margin-bottom: 3px;
   }
 
@@ -32,18 +37,14 @@
   }
 
   &__nameG {
-    font-size: 25.454px;
-    font-style: normal;
-    font-weight: 900;
-    line-height: 120%;
+    @include setTextStyle(900, 25.454px, 120%);
+
     letter-spacing: -0.509px;
   }
 
   &__nameOn {
-    font-size: 31.11px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%;
+    @include setTextStyle(700, 31.11px, 120%);
+
     letter-spacing: -0.778px;
   }
 }

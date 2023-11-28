@@ -1,9 +1,11 @@
+@import "../../App/styles/variables";
+
 .findFoodWrapper {
   background-image: url('../../../../public/images/find-food/background.png');
   background-repeat: no-repeat;
   background-position: 50% 100%;
 
-  padding: 132px 0;
+  padding: 132px + 78px 0 132px 0;
 }
 
 .findFood {
@@ -12,7 +14,7 @@
     font-weight: 700;
     line-height: 100%;
 
-    color: var(--white-color);
+    color: $white-color;
 
     margin: 0;
     margin-bottom: 15px;
@@ -68,7 +70,7 @@
     font-weight: 900;
     line-height: 100%;
 
-    color: var(--white-color);
+    color: $white-color;
 
     background: linear-gradient(95.71deg, #ff7a7a -39.64%, #f75900 135.31%);
     border-radius: 8px;
@@ -92,7 +94,7 @@
   min-height: 108px;
   max-width: 856px;
 
-  background-color: var(--white-color);
+  background-color: $white-color;
   border-radius: 0 0 8px 8px;
 
   &__input {
@@ -111,7 +113,7 @@
   }
 }
 
-@media(min-width:1920px) {
+@media(min-width:1921px) {
   .findFoodWrapper {
     background-size: cover;
   }
@@ -121,18 +123,10 @@
   .findFoodWrapper {
     background-size: cover;
   }
-
-  .findFoodWrapper {
-    padding: 250px 0 132px 0;
-  }
 }
 
 @media(max-width:500px) {
   .findFood__title {
     font-size: 55px;
-  }
-
-  .findFoodWrapper {
-    padding: 360px 0 132px 0;
   }
 }

@@ -1,7 +1,7 @@
 @import "../../App/styles/variables";
 
 .productPage {
-  padding-top: 80px;
+  padding-top: 78px;
 }
 
 .product {
@@ -9,17 +9,11 @@
   flex-wrap: wrap;
   flex-direction: column;
 
-  padding-top: 70px;
+  padding-top: 78px;
 }
 
 .placeholder {
   display: flex;
   flex-wrap: wrap;
   column-gap: 40px;
-}
-
-@media(max-width:485px) {
-  .product {
-    padding-top: 90px;
-  }
 }

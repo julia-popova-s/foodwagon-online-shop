@@ -1,28 +1,37 @@
 @import "../../App/styles/variables";
 
 .buttons {
-  @include setFontSize(400, 22px, 100%);
   display: flex;
   gap: 15px;
   align-items: center;
+
+  @include setTextStyle(400, 22px, 100%);
+
   width: 140px;
 
   &__input {
-    @include setFontSize(500, 20px, 100%);
+    @include setTextStyle(500, 20px, 100%);
+    text-align: center;
+
     width: 40px;
     height: 35px;
-    text-align: center;
+
     border: 3px solid #f1722839;
     border-radius: 6px;
+
     padding: 5px 0;
+
     outline: none;
-    transition: all 0.3s ease;
+
+    transition: all $transition-long ease;
+
     background-color: transparent;
 
     &:focus,
     &:active {
-      transition: all 0.3s ease;
       border-color: $base-color;
+
+      transition: all $transition-long ease;
     }
   }
 
@@ -31,17 +40,20 @@
 .button {
   width: 35px;
   height: 35px;
+
   border-radius: 50%;
   background-color: $base-color;
   color: $white-color;
-  border: 2px solid transparent;
-  transition: color 0.5s ease, background-color 0.5s ease;
+    border: 2px solid transparent;
+
+  transition: color $transition-long ease, background-color $transition-long ease;
 
   &:hover {
     border: 2px solid $base-color;
     color: $base-color;
     background-color: $white-color;
-    transition: color 0.5s ease, background-color 0.5s ease;
+    
+    transition: color $transition-long ease, background-color $transition-long ease;
   }
 }
 

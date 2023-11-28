@@ -10,9 +10,10 @@
   padding: 80px 74px;
 
   &__title {
-    @include setFontSize(700, 43px, 112%);
+    @include setTextStyle($font-bold, 43px, 112%);
     color: $base-color;
     text-align: center;
+
     margin-bottom: 71px;
   }
 
@@ -33,5 +34,11 @@
 @media(max-width:800px) {
   .orderAlgorithm__list {
     grid-template-columns: repeat(1, minmax(180px, 1fr));
+  }
+}
+
+@media(max-width:$mobile-l) {
+  .orderAlgorithm {
+    padding: 40px 0;
   }
 }

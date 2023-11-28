@@ -10,8 +10,8 @@
   padding-top: 82px;
 
   &__title {
-    @include setFontSize(700, 43px, 112%);
-    color: #212121;
+    @include setTextStyle(700, 43px, 112%);
+    color: $main-color-gray;
     margin-bottom: 116px;
   }
 
@@ -45,17 +45,19 @@
 
   &__label {
 
-    @include setFontSize(700, 22px, 120%);
+    @include setTextStyle(700, 22px, 120%);
     color: #424242;
   }
 
   &__btnView {
     position: absolute;
+
     top: 91px;
     right: 212.5px;
+
     width: 82px;
 
-    @include setFontSize(700, 18px, 100%);
+    @include setTextStyle(700, 18px, 100%);
     color: $primary-color;
     background-color: transparent;
 

@@ -1,8 +1,10 @@
 @import "../../App/styles/variables";
 
 .errorPage {
-  font-family: 'Source Sans Pro', "Arial", sans-serif;
+  font-family: $font-family;
+
   padding-top: 138px;
+
   background: linear-gradient(rgba(255, 206, 103, 0.22) -42.47%, rgba(253, 237, 202, 0) 100%);
 
   &__container {
@@ -12,9 +14,10 @@
   }
 
   &__text {
-    @include setFontSize(700, 32px, 120%);
-    color: #000;
+    @include setTextStyle(700, 32px, 120%);
+    color: $black-color;
     text-align: center;
+    
     margin-bottom: 20px;
   }
 }
