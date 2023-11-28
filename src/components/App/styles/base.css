@@ -60,3 +60,11 @@ a {
     transition: color 0.15s ease;
   }
 }
+
+@media(max-width:320px) {
+
+  .container {
+    max-width: 1510px;
+    padding: 0 15px;
+  }
+}

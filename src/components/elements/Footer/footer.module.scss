@@ -8,7 +8,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
     padding-bottom: 22px;
+
     border-bottom: 2px solid $text-color;
   }
 
@@ -21,6 +23,7 @@
 
   &__mailbox {
     padding-top: 63px;
+
     max-width: 483px;
   }
 
@@ -36,11 +39,13 @@
   }
 
   &__networks {
-    @include setTextStyle(400, 24px, 100%);
-    color: $main-color-white;
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+
+    @include setTextStyle(400, 24px, 100%);
+    color: $main-color-white;
+
     margin-bottom: 43px;
   }
 
@@ -138,5 +143,7 @@
 @media(max-width:400px) {
   .footer__input {
     width: 100%;
+    
+    margin-right: 0;
   }
 }

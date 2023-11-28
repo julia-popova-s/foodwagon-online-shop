@@ -88,3 +88,9 @@
     display: none;
   }
 }
+
+@media(max-width:$mobile-s) {
+  .header__logoLink {
+    padding-right: 5px;
+  }
+}

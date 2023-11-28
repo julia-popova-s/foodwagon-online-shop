@@ -36,3 +36,9 @@
     grid-template-columns: repeat(1, minmax(180px, 1fr));
   }
 }
+
+@media(max-width:$mobile-l) {
+  .orderAlgorithm {
+    padding: 40px 0;
+  }
+}

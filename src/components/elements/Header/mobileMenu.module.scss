@@ -3,8 +3,6 @@
 .menuButton {
   position: relative;
 
-  display: none;
-
   width: 35px;
   height: 30px;
 
@@ -126,12 +124,7 @@
   transition: all $transition-short ease;
 }
 
-@media(max-width:1190px) {
 
-  .menuButton {
-    display: block;
-  }
-}
 
 @keyframes fadeIn {
   from {
@@ -146,4 +139,15 @@
 
 .menuClosed {
   display: none;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+@media(max-width:1190px) {
+
+  .mobileMenu {
+    display: block;
+  }
 }

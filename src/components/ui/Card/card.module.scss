@@ -76,7 +76,7 @@
   &__btns {
     display: flex;
     justify-content: space-between;
-    
+
     margin-top: auto;
   }
 }
@@ -84,5 +84,11 @@
 @media(max-width:440px) {
   .card {
     height: 490px;
+  }
+}
+
+@media(max-width:$mobile-s) {
+  .card {
+    height: 410px;
   }
 }
