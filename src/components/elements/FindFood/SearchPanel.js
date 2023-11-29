@@ -83,11 +83,7 @@ export function SearchPanel() {
 
   return (
     <div className={style.search}>
-      <TextInput
-        handleSearchValue={handleSearchValue}
-        iconUrl={'/images/header/search.svg'}
-        ref={searchRef}
-      ></TextInput>
+      <TextInput handleSearchValue={handleSearchValue} iconUrl={'/images/header/search.svg'} ref={searchRef} />
 
       <ButtonFind classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
 

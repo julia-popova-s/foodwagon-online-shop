@@ -26,6 +26,8 @@
     transition: all $transition-long ease;
 
     background-color: transparent;
+    
+    cursor: pointer;
 
     &:focus,
     &:active {
