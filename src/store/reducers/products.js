@@ -9,6 +9,7 @@ const productsSlice = createSlice({
   extraReducers: (builder) => getExtraReducers(builder)(fetchProducts),
 
   initialState: {
+    currentPage: 1,
     error: null,
     isLoaded: false,
     list: [],
@@ -23,6 +24,7 @@ const productsSlice = createSlice({
   },
 });
 
+export const currentPageSelector = (state) => state.filters.currentPage;
 export const productListSelector = (state) => state.products.list;
 export const errorSelector = (state) => state.products.error;
 export const isLoadedSelector = (state) => state.products.isLoaded;

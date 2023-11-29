@@ -106,8 +106,10 @@
   }
 }
 
-@media(max-width:325px) {
+@media(max-width:450px) {
   .cardBig__description {
-    height: 550px;
+    height: 500px;
+    max-width: 100%;
+    padding: 28px;
   }
 }

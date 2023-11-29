@@ -146,9 +146,7 @@ function Cart() {
               return (
                 <div className={cn(style.cart__order, style.cart__order_border)} key={restaurantId}>
                   <div className={style.cart__top}>
-                    <div className={style.cart__restaurantName}>
-                      <Link className={style.cart__restaurantLink}>{restaurantName}</Link>
-                    </div>
+                    <div className={style.cart__restaurantName}>{restaurantName}</div>
                     <div className={style.cart__clear}>
                       <button
                         className={style.cart__clearBtn}
