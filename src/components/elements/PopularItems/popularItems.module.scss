@@ -1,7 +1,5 @@
 @import "../../App/styles/variables";
 
-.popularItemsBlock {}
-
 .popularItems {
   position: relative;
 
@@ -16,6 +14,8 @@
 
   &__list {
     background-color: $white-color;
+
+
   }
 
   &__btn {
@@ -75,5 +75,14 @@
     &__btn_right {
       right: -55px;
     }
+  }
+}
+
+@media(max-width:460px) {
+  .popularItems__card {
+    margin-left: 10px;
+    margin-right: 10px;
+
+    height: 460px;
   }
 }

@@ -25,7 +25,7 @@
     position: relative;
 
     min-width: 199px;
-    width: calc(85% - 199px - 16px);
+    width: calc(70% - 199px - 16px);
   }
 
   &__input::placeholder {
@@ -60,5 +60,11 @@
     path {
       fill: #ff747490;
     }
+  }
+}
+
+@media(max-width:495px) {
+  .search__inputWrapper {
+    width: 100%;
   }
 }

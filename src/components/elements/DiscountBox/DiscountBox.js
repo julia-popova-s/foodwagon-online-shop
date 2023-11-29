@@ -42,9 +42,7 @@ export function DiscountBox() {
                   </Link>
                 );
               })
-            : Array(4)
-                .fill(0)
-                .map((_, index) => <Loader key={index} />)}
+            : new Array(4).fill(0).map((_, index) => <Loader key={index} />)}
         </div>
       </div>
     </div>

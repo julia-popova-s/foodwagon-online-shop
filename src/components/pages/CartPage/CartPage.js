@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import { useDisableBodyScroll } from '../../../hooks/useDisableBodyscroll';
 import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
 import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/reducers/cart';
 import { isAuthSelector, setOrders } from '../../../store/reducers/user';
@@ -36,9 +35,6 @@ function Cart() {
   const isAuth = useSelector(isAuthSelector);
 
   const dispatch = useDispatch();
-
-  useDisableBodyScroll(visiblePopup);
-  useDisableBodyScroll(visibleModal);
 
   const navigate = useNavigate();
 
