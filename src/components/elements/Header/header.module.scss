@@ -19,7 +19,7 @@
   justify-content: space-between;
   align-items: center;
 
-  padding-top: 16px;
+  padding: 16px 0;
 }
 
 .search {
@@ -34,8 +34,8 @@
     position: relative;
 
     @include setTextStyle($font-bold, 18px, 100%);
-    text-decoration: none;
     color: $text-color;
+    text-decoration: none;
 
     background-color: transparent;
 
@@ -57,7 +57,7 @@
     }
 
     &:hover::before {
-      background-color: $primary-color;
+      background-color: $base-color;
       transition: all $transition-short ease;
     }
   }
@@ -72,13 +72,7 @@
 }
 
 .header__logoLink {
-  padding-right: 30px;
-}
-
-.header__logoLink,
-.header__address,
-.header__search {
-  margin-bottom: 16px;
+  margin-right: 30px;
 }
 
 @media(max-width:1190px) {
@@ -91,6 +85,6 @@
 
 @media(max-width:$mobile-s) {
   .header__logoLink {
-    padding-right: 5px;
+    margin-right: 5px;
   }
 }

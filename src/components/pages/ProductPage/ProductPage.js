@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { useLocation } from 'react-use';
+import { useLocation, useParams } from 'react-router-dom';
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
 import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/reducers/product';
@@ -33,17 +32,24 @@ function ProductPage() {
     );
   }, [id, dispatch]);
 
-  const handleAddProduct = product => {
+  const handleAddProduct = (product) => {
     dispatch(addProduct(product));
   };
 
-  const handleRemoveProduct = product => {
+  const handleRemoveProduct = (product) => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = obj => {
+  const handleInputCount = (obj) => {
     dispatch(setProductCount(obj));
   };
+
+  const skeleton = new Array(1).fill(0).map((_, index) => (
+    <div className={style.placeholder} key={index}>
+      <LoaderLeft />
+      <LoaderRight />
+    </div>
+  ));
 
   return (
     <>
@@ -60,14 +66,7 @@ function ProductPage() {
                     key={`${item.id}${i}`}
                   />
                 ))
-              : Array(1)
-                  .fill(0)
-                  .map((_, index) => (
-                    <div className={style.placeholder} key={index}>
-                      <LoaderLeft />
-                      <LoaderRight />
-                    </div>
-                  ))}
+              : skeleton}
           </div>
         </div>
       </div>
@@ -75,4 +74,5 @@ function ProductPage() {
     </>
   );
 }
+
 export default ProductPage;

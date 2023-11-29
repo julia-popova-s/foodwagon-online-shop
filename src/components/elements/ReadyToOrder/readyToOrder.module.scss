@@ -28,13 +28,12 @@
   }
 
   &__btn {
-    display: block;
+    max-width: 233px;
 
-    width: 233px;
+    padding: 21px 25px;
+    margin: 0 auto;
 
     background: linear-gradient(139deg, $base-color 0%, #F15E28 100%);
-
-    margin: 0 auto;
 
     transition: all $transition-long ease;
 

@@ -1,11 +1,17 @@
-import { useEffect } from 'react';
+import cn from 'classnames';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { useLocation } from 'react-use';
+import { useLocation, useParams } from 'react-router-dom';
+import { useScroll } from 'react-use';
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
-import { categorySelector, currentPageSelector, setCurrentPage } from '../../../store/reducers/filters';
-import { fetchProducts, isLoadedSelector, productListSelector } from '../../../store/reducers/products';
+import { categorySelector, setCurrentPage } from '../../../store/reducers/filters';
+import {
+  currentPageSelector,
+  fetchProducts,
+  isLoadedSelector,
+  productListSelector,
+} from '../../../store/reducers/products';
 import { orderSelector, setSortType, sortTypeSelector } from '../../../store/reducers/sortingType';
 import { SortPopup } from '../../elements/SortPopup';
 import { Card } from '../../ui/Card';
@@ -32,10 +38,11 @@ const sortItems = [
 export function RestaurantPage() {
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  const box = useRef(null);
+  const [scroll, setScroll] = useState({ x: 0, y: 0 });
 
+  useScroll(box, ({ scrollX, scrollY }) => setScroll({ x: scrollX, y: scrollY }));
+  console.log(scroll);
   const { restaurantId } = useParams();
 
   const dispatch = useDispatch();
@@ -66,7 +73,6 @@ export function RestaurantPage() {
         sortType,
       }),
     );
-    window.scrollTo(0, 0);
   }, [sortType, category, restaurantId, order, currentPage]);
 
   const handleAddProduct = (obj) => {
@@ -81,12 +87,21 @@ export function RestaurantPage() {
     dispatch(setProductCount(obj));
   };
 
-  const skeleton = Array(4)
-    .fill(0)
-    .map((_, index) => <Loader key={index} />);
+  const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
+
+  if (!isLoaded && !products?.length) {
+    return (
+      <div className={cn(style.restaurant)} ref={box}>
+        <div className="container">
+          <div className={style.alert}>Nothing was found according to your request. Go to another page.</div>
+          <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={5} />
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className={style.restaurant}>
+    <div className={style.restaurant} ref={box}>
       <div className="container">
         <div className={style.filters}>
           <SortPopup
@@ -97,7 +112,6 @@ export function RestaurantPage() {
             orderType={order}
           />
         </div>
-
         <div className={style.menuList}>
           {isLoaded && products
             ? products.map((item) => (
@@ -112,8 +126,10 @@ export function RestaurantPage() {
               ))
             : skeleton}
         </div>
+      </div>
 
-        <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />
+      <div className="container">
+        <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={5} />
       </div>
     </div>
   );

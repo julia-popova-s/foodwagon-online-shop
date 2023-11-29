@@ -136,6 +136,8 @@ export function SearchFood() {
     setLimit(false);
   };
 
+  const skeleton = new Array(products?.length).fill(0).map((_, index) => <Loader key={index} />);
+  
   return (
     <div className={style.searchFoodBlock} id="searchByFood">
       <div className="container">
@@ -171,9 +173,7 @@ export function SearchFood() {
                     />
                   );
                 })
-              : Array(products?.length)
-                  .fill(0)
-                  .map((_, index) => <Loader key={index} />)}
+              : skeleton}
           </div>
 
           <button className={style.searchFood__btnView} onClick={handleViewAll}>

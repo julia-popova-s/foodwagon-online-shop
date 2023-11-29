@@ -1,6 +1,7 @@
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { validationEmail } from '../../../utils/utilsForForm/validationEmail';
 import { FooterNav } from './FooterNav';
@@ -38,6 +39,7 @@ export function Footer() {
 
   const handleSubmitEmail = (e) => {
     e.preventDefault();
+    setEmail('');
   };
 
   return (
@@ -53,9 +55,15 @@ export function Footer() {
           <div className={style.footer__mailbox}>
             <p className={style.footer__title}>Follow Us</p>
             <div className={style.footer__networks}>
-              <FontAwesomeIcon className={style.footer__networksItem} icon={faInstagram} />
-              <FontAwesomeIcon className={style.footer__networksItem} icon={faFacebook} />
-              <FontAwesomeIcon className={style.footer__networksItem} icon={faTwitter} />
+              <Link to={''}>
+                <FontAwesomeIcon className={style.footer__networksItem} icon={faInstagram} />
+              </Link>
+              <Link to={''}>
+                <FontAwesomeIcon className={style.footer__networksItem} icon={faFacebook} />
+              </Link>
+              <Link to={''}>
+                <FontAwesomeIcon className={style.footer__networksItem} icon={faTwitter} />
+              </Link>
             </div>
 
             <form className={style.footer__form} onSubmit={handleSubmitEmail}>
