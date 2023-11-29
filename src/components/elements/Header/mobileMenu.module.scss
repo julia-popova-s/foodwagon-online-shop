@@ -124,7 +124,7 @@
 }
 
 .menu__link:hover::before {
-  background-color: $primary-color;
+  background-color: $base-color;
 
   transition: all $transition-short ease;
 }

@@ -1,8 +1,7 @@
 import cn from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useParams } from 'react-router-dom';
-import { useScroll } from 'react-use';
+import { useParams } from 'react-router-dom';
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
 import { categorySelector, setCurrentPage } from '../../../store/reducers/filters';
@@ -36,13 +35,6 @@ const sortItems = [
 ];
 
 export function RestaurantPage() {
-  const { pathname } = useLocation();
-
-  const box = useRef(null);
-  const [scroll, setScroll] = useState({ x: 0, y: 0 });
-
-  useScroll(box, ({ scrollX, scrollY }) => setScroll({ x: scrollX, y: scrollY }));
-  console.log(scroll);
   const { restaurantId } = useParams();
 
   const dispatch = useDispatch();
@@ -54,6 +46,10 @@ export function RestaurantPage() {
   const currentPage = useSelector(currentPageSelector);
   const isLoaded = useSelector(isLoadedSelector);
   const products = useSelector(productListSelector);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
 
   const handleChangePage = (number) => {
     dispatch(setCurrentPage(number));
@@ -91,7 +87,7 @@ export function RestaurantPage() {
 
   if (!isLoaded && !products?.length) {
     return (
-      <div className={cn(style.restaurant)} ref={box}>
+      <div className={cn(style.restaurant)}>
         <div className="container">
           <div className={style.alert}>Nothing was found according to your request. Go to another page.</div>
           <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={5} />
@@ -101,7 +97,7 @@ export function RestaurantPage() {
   }
 
   return (
-    <div className={style.restaurant} ref={box}>
+    <div className={style.restaurant}>
       <div className="container">
         <div className={style.filters}>
           <SortPopup

@@ -11,7 +11,7 @@ export const Popup = forwardRef(({ isLoaded, list, show }, ref) => {
     <CSSTransition classNames="alert" in={show && isLoaded} timeout={300} unmountOnExit>
       <div className={style.popup} ref={ref}>
         {list.map(({ discount, id, image, price, restaurantId, title }) => (
-          <Link key={uuidv4()} to={`/restaurant/${restaurantId}/product/${id}`}>
+          <Link className={style.link} key={uuidv4()} to={`/restaurant/${restaurantId}/product/${id}`}>
             <div className={style.card}>
               <div className={style.card__left}>
                 <img alt={title} className={style.card__image} src={process.env.PUBLIC_URL + image} />
@@ -19,7 +19,7 @@ export const Popup = forwardRef(({ isLoaded, list, show }, ref) => {
 
               <div className={style.card__right}>
                 <div className={style.card__title}>{title}</div>
-                <PriceBlock discount={discount} price={price} />
+                <PriceBlock classNames={style.card__prices} discount={discount} price={price} />
               </div>
             </div>
           </Link>

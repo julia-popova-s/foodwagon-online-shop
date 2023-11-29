@@ -2,15 +2,17 @@ import cn from 'classnames';
 
 import style from './priceBlock.module.scss';
 
-export function PriceBlock({ discount, price }) {
+export function PriceBlock({ classNames, discount, price }) {
   return (
     <div className={style.priceBlock}>
       {discount ? (
-        <div className={style.priceBlock__price}>&#36; {(price - (price * discount) / 100).toFixed(2)}</div>
+        <div className={cn(style.priceBlock__price, classNames)}>
+          &#36; {(price - (price * discount) / 100).toFixed(2)}
+        </div>
       ) : null}
 
       <div
-        className={cn(style.priceBlock__price, {
+        className={cn(style.priceBlock__price, classNames, {
           [style.priceBlock__price_theme]: discount,
         })}
       >

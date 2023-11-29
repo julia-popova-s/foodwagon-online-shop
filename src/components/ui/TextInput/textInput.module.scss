@@ -2,7 +2,6 @@
 
 
 .search {
-  position: relative;
 
   &__input,
   &__input::placeholder {
@@ -13,8 +12,8 @@
     background-color: $main-color-white;
     color: $text-color;
 
-    width: 100%;
     height: 49px;
+    width: 100%;
 
     border-radius: 8px;
     border: 0 solid;
@@ -24,7 +23,9 @@
 
   &__inputWrapper {
     position: relative;
-    width: calc(100% - 199px - 16px);
+
+    min-width: 199px;
+    width: calc(85% - 199px - 16px);
   }
 
   &__input::placeholder {
