@@ -11,7 +11,7 @@
   background: $white-color;
   border-radius: 8px;
 
-  width: calc(85% - 199px - 16px);
+  width: calc(70% - 199px - 16px);
   min-width: 199px;
 
   box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .15);
@@ -101,6 +101,12 @@
 
 @media(max-width:1190px) {
   .card__right {
+    width: 100%;
+  }
+}
+
+@media(max-width:495px) {
+  .popup {
     width: 100%;
   }
 }
