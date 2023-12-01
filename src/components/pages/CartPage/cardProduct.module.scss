@@ -1,4 +1,4 @@
-@import "../../App/styles/variables";
+@import "../../../styles/variables";
 
 .product {
   display: flex;
@@ -135,7 +135,7 @@
   display: flex;
   column-gap: 30px;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   padding: 0 20px 0 10px;
 
   &__btns {

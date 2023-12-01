@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { setUser } from '../../../store/reducers/user';
 import { signupSchema } from '../../../utils/utilsForForm/fieldValidationSchemes';
-import Spinner from '../../App/Spinner';
+import Spinner from '../../ui/Spinner/Spinner';
 import AuthRegForm from './AuthRegForm';
 import style from './loginPage.module.scss';
 
@@ -32,13 +32,13 @@ function SignUp() {
       })
       .catch(({ code, message }) => {
         switch (code) {
-        case 'auth/email-already-in-use':
-          setErrorMessage('This email address is already in use by another account.');
-          break;
+          case 'auth/email-already-in-use':
+            setErrorMessage('This email address is already in use by another account.');
+            break;
 
-        default:
-          setErrorMessage(message);
-          break;
+          default:
+            setErrorMessage(message);
+            break;
         }
       });
   };

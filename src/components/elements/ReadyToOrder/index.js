@@ -1,1 +1,0 @@
-export { ReadyToOrder } from './ReadyToOrder';

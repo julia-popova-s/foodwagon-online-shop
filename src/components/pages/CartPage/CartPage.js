@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
 import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/reducers/cart';
 import { isAuthSelector, setOrders } from '../../../store/reducers/user';
-import { Popup } from '../../ui/Popup/Popup';
-import { ButtonOrder } from '../../ui/buttons/ButtonOrder';
+import { Popup } from '../../ui/Popup';
+import { OrderButton } from '../../ui/buttons/OrderButton';
 import { CardProduct } from './CardProduct';
 import { Modal } from './Modal';
 import style from './cartPage.module.scss';
@@ -113,12 +113,17 @@ function Cart() {
           <div className={style.cart__inner}>
             <div className={style.cart__empty}>
               <p className={style.cart__name}>Shopping cart is empty</p>
-
               <p className={style.cart__result}>Use the search to find everything you need.</p>
-
-              <Link className={style.cart__linkSearch} to="/search">
-                Go to search page
-              </Link>
+              <p className={style.cart__links}>
+                Go to{' '}
+                <Link className={style.cart__linkItem} to="/search">
+                  search page
+                </Link>{' '}
+                or{' '}
+                <Link className={style.cart__linkItem} to={'/'}>
+                  menu
+                </Link>
+              </p>
             </div>
           </div>
         </div>
@@ -129,6 +134,7 @@ function Cart() {
   return (
     <div className={style.cart}>
       <div className={cn(style.cart__container, 'container')}>
+        <h1 className={style.cart__title}>Shopping cart</h1>
         <div className={style.cart__inner}>
           {totalQuantity &&
             addedGoods.map((restaurant) => {
@@ -176,7 +182,7 @@ function Cart() {
                             <span className={style.cart__result_color}>{price && price.toFixed(2)}</span> and{' '}
                             <span className={style.cart__result_color}>{quantity}</span> items
                           </p>
-                          <ButtonOrder
+                          <OrderButton
                             name={'Place an order'}
                             onClick={() => handlePlaceAnOrder(restaurantId, restaurantName)}
                           />
@@ -197,13 +203,11 @@ function Cart() {
         ref={modalRef}
         show={visibleModal}
       />
-      <Popup
-        handleClearOrder={handleClearOrder}
-        handleClosePopup={handleClosePopup}
-        name={name}
-        ref={popupRef}
-        show={visiblePopup}
-      />
+      <Popup handleClickClose={handleClosePopup} handleClickOk={handleClearOrder} ref={popupRef} show={visiblePopup}>
+        <>
+          Are you sure you want to empty the cart from <span className={style.popup__name}>«{name}»</span>?
+        </>
+      </Popup>
     </div>
   );
 }

@@ -1,0 +1,66 @@
+@import "../../../styles/variables";
+
+.card {
+  max-width: 357px;
+  max-height: 415px;
+
+  &__up {
+    position: relative;
+
+    margin-bottom: 32px;
+
+    max-height: 301px;
+    max-width: 357px;
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+
+    display: block;
+
+    border-radius: 16px;
+    object-fit: cover;
+  }
+
+  &__discount {
+    display: block;
+  }
+
+  &__name {
+    @include setTextStyle($font-bold, 22px, 120%);
+    color: $text-color;
+
+    margin-bottom: 14px;
+  }
+
+  &__text {
+    @include setTextStyle($font-bold, 22px, 120%);
+    color: $base-color;
+
+    text-align: center;
+
+    background: rgba(241, 114, 40, 0.2);
+    border-radius: $border-radius-8;
+
+    padding: 8px $border-radius-16;
+
+    width: 204px;
+    height: 42px;
+  }
+}
+
+.discount {
+  display: none;
+}
+
+@media(max-width:320px) {
+
+  .discount {
+    display: block;
+  }
+
+  .card__discount {
+    display: none;
+  }
+}

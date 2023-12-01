@@ -1,6 +1,17 @@
+@import "../../../styles/variables";
+
 .searchPage {
   padding-top: 150px;
   min-height: 100vh;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 120%;
+  color: $text-color;
+
+  margin-bottom: 50px;
 }
 
 .panel {

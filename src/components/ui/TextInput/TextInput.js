@@ -28,7 +28,7 @@ export const TextInput = forwardRef(({ children, classNames, handleSearchValue, 
   };
 
   return (
-    <div className={cn(style.search__inputWrapper, classNames)} ref={ref}>
+    <div className={cn(style.search, classNames)} ref={ref}>
       <input
         autoComplete="off"
         className={style.search__input}

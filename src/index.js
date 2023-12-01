@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import Spinner from './components/App/Spinner.js';
+import Spinner from './components/ui/Spinner/Spinner';
 import './firebase';
 import { router } from './router';
 import { persistor, store } from './store';

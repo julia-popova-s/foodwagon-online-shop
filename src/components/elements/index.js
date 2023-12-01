@@ -1,12 +1,12 @@
-export { CardBigList } from './CardBigList';
+export { AppDownLoad } from './AppDownLoad';
+export { CallToAction } from './CallToAction';
 export { Cities } from './Cities';
-export { DiscountBox } from './DiscountBox';
+export { Details } from './Details';
+export { FeaturedRestaurants } from './FeaturedRestaurants';
 export { FindFood } from './FindFood';
+export { FlashDeals } from './FlashDeals';
 export { Footer } from './Footer';
 export { Header } from './Header';
-export { InstallApp } from './InstallApp';
 export { OrderAlgorithm } from './OrderAlgorithm';
 export { PopularItems } from './PopularItems';
-export { ReadyToOrder } from './ReadyToOrder';
-export { Restaurants } from './Restaurants';
 export { SearchFood } from './SearchFood';

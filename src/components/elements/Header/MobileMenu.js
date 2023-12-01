@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { isAuthSelector } from '../../../store/reducers/user';
-import { CurrentLocation } from './CurrentLocation';
+import { DeliverAddress } from './DeliverAddress';
 import style from './mobileMenu.module.scss';
 
 export function MobileMenu({ handleLogOut }) {
@@ -81,7 +81,7 @@ export function MobileMenu({ handleLogOut }) {
             </Link>
           </li>
           <li className={style.menu__item}>
-            <CurrentLocation />
+            <DeliverAddress />
           </li>
         </ul>
       </nav>

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { getPartOfString } from '../../../utils/getPartOfString';
-import { ButtonFind } from '../../ui/buttons/ButtonFind';
-import { ButtonsWithCounter } from '../../ui/buttons/ButtonsWithCounter';
+import { CounterAndButton } from '../../ui/buttons/CounterAndButton';
+import { SearchButton } from '../../ui/buttons/SearchButton';
 import style from './card.module.scss';
 
 export function Card({
@@ -89,14 +89,14 @@ export function Card({
 
         <div className={cn(style.info__btns, style.buttons)}>
           {quantity ? (
-            <ButtonsWithCounter
+            <CounterAndButton
               handleInputQuantity={handleInputQuantity}
               handleMinusProduct={handleMinusProduct}
               handlePlusProduct={handlePlusProduct}
               quantity={quantity ? quantity : 0}
             />
           ) : (
-            <ButtonFind classNames={style.buttons__order} handleClick={handlePlusProduct} label="Order Now" />
+            <SearchButton classNames={style.buttons__order} handleClick={handlePlusProduct} label="Order Now" />
           )}
         </div>
       </div>

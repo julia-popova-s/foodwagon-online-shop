@@ -1,13 +1,13 @@
 import {
-  CardBigList,
+  AppDownLoad,
+  CallToAction,
   Cities,
-  DiscountBox,
+  Details,
+  FeaturedRestaurants,
   FindFood,
-  InstallApp,
+  FlashDeals,
   OrderAlgorithm,
   PopularItems,
-  ReadyToOrder,
-  Restaurants,
   SearchFood,
 } from '../../elements';
 
@@ -15,14 +15,14 @@ function Home() {
   return (
     <>
       <FindFood />
-      <DiscountBox />
+      <FlashDeals />
       <OrderAlgorithm />
       <PopularItems />
-      <Restaurants />
+      <FeaturedRestaurants />
       <SearchFood />
-      <InstallApp />
-      <CardBigList />
-      <ReadyToOrder />
+      <AppDownLoad />
+      <Details />
+      <CallToAction />
       <Cities />
     </>
   );

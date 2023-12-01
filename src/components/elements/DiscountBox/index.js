@@ -1,1 +1,0 @@
-export { DiscountBox } from './DiscountBox';

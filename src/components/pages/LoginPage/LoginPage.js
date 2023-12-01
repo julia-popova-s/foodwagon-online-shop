@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { setUser } from '../../../store/reducers/user';
 import { loginSchema } from '../../../utils/utilsForForm/fieldValidationSchemes';
-import Spinner from '../../App/Spinner';
+import Spinner from '../../ui/Spinner/Spinner';
 import AuthRegForm from './AuthRegForm';
 import style from './loginPage.module.scss';
 
@@ -30,13 +30,13 @@ function Login() {
       })
       .catch(({ code, message }) => {
         switch (code) {
-        case 'auth/invalid-login-credentials':
-          setErrorMessage('Invalid login details');
-          break;
+          case 'auth/invalid-login-credentials':
+            setErrorMessage('Invalid login details');
+            break;
 
-        default:
-          setErrorMessage(message);
-          break;
+          default:
+            setErrorMessage(message);
+            break;
         }
       });
   };

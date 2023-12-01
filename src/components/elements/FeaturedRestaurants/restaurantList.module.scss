@@ -1,0 +1,17 @@
+@import "../../../styles/variables";
+
+.restaurantListWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(357px, 1fr));
+  column-gap: 16px;
+  justify-items: center;
+  row-gap: 64px;
+
+  margin-bottom: 88px;
+}
+
+@media(max-width:440px) {
+  .restaurantListWrapper {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}

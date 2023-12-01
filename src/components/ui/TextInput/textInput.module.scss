@@ -1,7 +1,10 @@
-@import "../../App/styles/variables";
-
+@import "../../../styles/variables";
 
 .search {
+  position: relative;
+
+  min-width: 199px;
+  width: calc(100% - 199px - 16px);
 
   &__input,
   &__input::placeholder {
@@ -19,13 +22,6 @@
     border: 0 solid;
 
     padding: 11.5px 10px 12.5px 46px;
-  }
-
-  &__inputWrapper {
-    position: relative;
-
-    min-width: 199px;
-    width: calc(70% - 199px - 16px);
   }
 
   &__input::placeholder {

@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRef, useState } from 'react';
 
 import { TextInput } from '../../ui/TextInput';
-import { ButtonFind } from '../../ui/buttons/ButtonFind';
-import { Delivery } from './Delivery';
+import { SearchButton } from '../../ui/buttons/SearchButton';
+import { DeliveryMethod } from './DeliveryMethod';
 import style from './findFood.module.scss';
 
 export function FindFood() {
@@ -22,13 +22,13 @@ export function FindFood() {
           <p className={style.findFood__text}>Within a few clicks, find meals that are accessible near you</p>
 
           <div className={style.findFood__search}>
-            <Delivery />
+            <DeliveryMethod />
 
             <div className={style.searchPanel}>
               <TextInput classNames={style.searchPanel__input} handleSearchValue={handleSearchValue} ref={searchRef}>
                 <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
               </TextInput>
-              <ButtonFind classNames={style.search__btn} icon="search" label="Find Food" />
+              <SearchButton classNames={style.search__btn} icon="search" label="Find Food" />
             </div>
           </div>
         </div>

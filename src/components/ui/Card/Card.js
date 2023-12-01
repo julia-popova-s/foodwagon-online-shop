@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 
 import { getPartOfString } from '../../../utils/getPartOfString';
 import { Discount } from '../../ui/Discount/Discount';
-import { ButtonFind } from '../../ui/buttons/ButtonFind';
-import { ButtonsWithCounter } from '../../ui/buttons/ButtonsWithCounter';
+import { CounterAndButton } from '../buttons/CounterAndButton';
+import { SearchButton } from '../buttons/SearchButton';
 import style from './card.module.scss';
 
 export function Card(props) {
@@ -60,14 +60,14 @@ export function Card(props) {
       <p className={style.card__price}>&#36; {price}</p>
 
       {quantity ? (
-        <ButtonsWithCounter
+        <CounterAndButton
           handleInputQuantity={handleInputQuantity}
           handleMinusProduct={handleMinusProduct}
           handlePlusProduct={handlePlusProduct}
           quantity={quantity ? quantity : 0}
         />
       ) : (
-        <ButtonFind classNames={style.card__btn} handleClick={handlePlusProduct} label="Order Now" />
+        <SearchButton classNames={style.card__btn} handleClick={handlePlusProduct} label="Order Now" />
       )}
     </div>
   );

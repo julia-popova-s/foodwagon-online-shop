@@ -40,9 +40,12 @@ function SearchPage() {
     dispatch(setProductCount(obj));
   };
 
+  const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
+
   return (
     <div className={style.searchPage}>
       <div className="container">
+        <div className={style.title}>Search Food</div>
         <div className={style.panel}>
           <SearchPanel />
         </div>
@@ -62,10 +65,7 @@ function SearchPage() {
               />
             ))}
 
-          {status === 'loading' &&
-            Array(4)
-              .fill(0)
-              .map((_, index) => <Loader key={index} />)}
+          {status === 'loading' && skeleton}
         </div>
 
         {status && !error && <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />}

@@ -9,9 +9,9 @@ import { ReactSVG } from 'react-svg';
 import { removeUser } from '../../../store/reducers/user';
 import { isAuthSelector } from '../../../store/reducers/user';
 import { LogoType } from '../../ui/LogoType';
-import { ButtonCart } from '../../ui/buttons/ButtonCart';
-import { ButtonLogin } from '../../ui/buttons/ButtonLogin';
-import { CurrentLocation } from './CurrentLocation';
+import { CartButton } from '../../ui/buttons/CartButton';
+import { LoginButton } from '../../ui/buttons/LoginButton';
+import { DeliverAddress } from './DeliverAddress';
 import { MobileMenu } from './MobileMenu';
 import style from './header.module.scss';
 
@@ -41,7 +41,7 @@ export function Header() {
             <LogoType classNames={style.header__logo} />
           </Link>
 
-          <CurrentLocation classNames={style.header__address} />
+          <DeliverAddress classNames={style.header__address} />
 
           <div className={cn(style.search, style.header__search)}>
             <Link className={style.search__link} to="search">
@@ -54,14 +54,14 @@ export function Header() {
             </Link>
 
             {isAuth ? (
-              <ButtonLogin classNames={style.search__login} handleClick={handleLogOut} title={'Logout'} />
+              <LoginButton classNames={style.search__login} handleClick={handleLogOut} title={'Logout'} />
             ) : (
-              <ButtonLogin classNames={style.search__login} handleClick={handleLogin} title={'Login'} />
+              <LoginButton classNames={style.search__login} handleClick={handleLogin} title={'Login'} />
             )}
 
             {pathname !== '/cart' && (
               <Link to={'cart'}>
-                <ButtonCart />
+                <CartButton />
               </Link>
             )}
           </div>

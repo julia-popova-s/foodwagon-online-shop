@@ -1,6 +1,5 @@
 import '/node_modules/slick-carousel/slick/slick.css';
 import '/node_modules/slick-carousel/slick/slick-theme.css';
-import cn from 'classnames';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -13,10 +12,10 @@ import { addProduct, deleteOneProduct, setProductCount } from '../../../store/re
 import { searchBySelector, setSearchBy } from '../../../store/reducers/filters';
 import { fetchProducts, isLoadedSelector, productListSelector } from '../../../store/reducers/products';
 import { Card } from '../../ui/Card';
-import { ButtonSlider } from '../../ui/buttons/ButtonSlider';
 import { CardFood } from './CardFood';
 import { Loader } from './Loader';
 import style from './searchFood.module.scss';
+import { sliderSettings } from './sliderSettings';
 
 const typeFood = [
   {
@@ -37,63 +36,6 @@ const typeFood = [
   { imageSrc: '/images/search-food/7.jpg', name: 'Fish' },
   { imageSrc: '/images/search-food/6.png', name: 'Meat' },
 ];
-
-const settings = {
-  dots: false,
-  infinite: true,
-  nextArrow: <ButtonSlider classNames={cn(style.searchFood__btn, style.searchFood__btn_right)} type={'right'} />,
-  prevArrow: <ButtonSlider classNames={cn(style.searchFood__btn, style.searchFood__btn_left)} type={'left'} />,
-  responsive: [
-    {
-      breakpoint: 1770,
-      settings: {
-        dots: false,
-        infinite: true,
-        slidesToScroll: 1,
-        slidesToShow: 5,
-      },
-    },
-    {
-      breakpoint: 1480,
-      settings: {
-        dots: false,
-        infinite: true,
-        slidesToScroll: 1,
-        slidesToShow: 4,
-      },
-    },
-    {
-      breakpoint: 1180,
-      settings: {
-        dots: false,
-        infinite: true,
-        slidesToScroll: 1,
-        slidesToShow: 3,
-      },
-    },
-    {
-      breakpoint: 890,
-      settings: {
-        dots: false,
-        infinite: true,
-        slidesToScroll: 1,
-        slidesToShow: 2,
-      },
-    },
-    {
-      breakpoint: 625,
-      settings: {
-        dots: false,
-        infinite: true,
-        slidesToScroll: 1,
-        slidesToShow: 1,
-      },
-    },
-  ],
-  slidesToScroll: 1,
-  slidesToShow: 6,
-  speed: 500,
-};
 
 export function SearchFood() {
   const [limit, setLimit] = useState(4);
@@ -137,14 +79,14 @@ export function SearchFood() {
   };
 
   const skeleton = new Array(products?.length).fill(0).map((_, index) => <Loader key={index} />);
-  
+
   return (
     <div className={style.searchFoodBlock} id="searchByFood">
       <div className="container">
         <div className={style.searchFood}>
           <h2 className={style.searchFood__title}>Search by Food</h2>
 
-          <Slider {...settings} className={style.searchFood__slider}>
+          <Slider {...sliderSettings} className={style.searchFood__slider}>
             {typeFood &&
               typeFood.map((item, i) => {
                 return (

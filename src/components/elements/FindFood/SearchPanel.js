@@ -8,7 +8,7 @@ import {
 } from '../../../store/reducers/productsFastAccess';
 import { currentPageSelector, fetchProductsSearch, setCurrentPage } from '../../../store/reducers/productsSearch';
 import { TextInput } from '../../ui/TextInput';
-import { ButtonFind } from '../../ui/buttons/ButtonFind';
+import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Popup } from './Popup';
 import style from './searchPanel.module.scss';
 
@@ -85,7 +85,7 @@ export function SearchPanel() {
     <div className={style.search}>
       <TextInput handleSearchValue={handleSearchValue} iconUrl={'/images/header/search.svg'} ref={searchRef} />
 
-      <ButtonFind classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
+      <SearchButton classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
 
       <Popup isLoaded={isLoaded} list={products} ref={popupRef} show={visiblePopup} />
     </div>
