@@ -1,0 +1,66 @@
+@import "../../../styles/variables";
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  max-width: 100%;
+
+  &__image {
+    margin-right: 11.5px;
+  }
+
+  &__image svg {
+    vertical-align: top;
+  }
+
+  &__name {
+    @include setTextStyle(700, 31.1102px, 120%);
+    color: $base-color;
+    letter-spacing: -0.778px;
+
+    flex-shrink: 0;
+
+    margin-right: 1px;
+  }
+
+  &__name_color {
+    letter-spacing: -0.622px;
+
+    color: $primary-color;
+
+    margin-bottom: 3px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__nameG {
+    @include setTextStyle(900, 25.454px, 120%);
+
+    letter-spacing: -0.509px;
+  }
+
+  &__nameOn {
+    @include setTextStyle(700, 31.11px, 120%);
+
+    letter-spacing: -0.778px;
+  }
+}
+
+@media(max-width:410px) {
+  .logo {
+    &__name {
+      font-size: 26.1102px;
+    }
+
+    &__nameOn {
+      font-size: 26.11px;
+    }
+
+    &__nameG {
+      font-size: 20.454px;
+    }
+  }
+}

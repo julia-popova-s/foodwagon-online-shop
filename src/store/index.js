@@ -1,0 +1,49 @@
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { persistReducer, persistStore } from 'redux-persist';
+import storageSession from 'reduxjs-toolkit-persist/lib/storage/session';
+
+import {
+  cart,
+  filters,
+  product,
+  products,
+  productsFastAccess,
+  productsPopular,
+  productsSearch,
+  productsWithDiscount,
+  restaurants,
+  sortingType,
+  user,
+} from './reducers';
+
+const persistConfig = {
+  key: 'root',
+  storage: storageSession,
+  whitelist: ['cart', 'user'],
+};
+
+const rootReducer = combineReducers({
+  cart,
+  filters,
+  product,
+  products,
+  productsFastAccess,
+  productsPopular,
+  productsSearch,
+  productsWithDiscount,
+  restaurants,
+  sortingType,
+  user,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+  reducer: persistedReducer,
+});
+
+export const persistor = persistStore(store);

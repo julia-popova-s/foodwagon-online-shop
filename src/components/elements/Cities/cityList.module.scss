@@ -1,0 +1,49 @@
+@import "../../../styles/variables";
+
+.cityList {
+  padding-top: 99px;
+  border-bottom: 2px solid $text-color;
+  padding-bottom: 167px;
+
+  &__title {
+    @include setTextStyle($font-bold, 22px, 120%);
+    color: $white-color;
+    margin-bottom: 40px;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: space-between;
+
+    gap: 16px;
+    height: 170px;
+  }
+
+  &__item {
+    max-width: fit-content;
+    @include setTextStyle($font-normal, 18px, 100%);
+    color: $main-color-white;
+  }
+}
+
+@media(max-width:650px) {
+  .cityList__items {
+    min-height: 300px;
+  }
+}
+
+@media(max-width:450px) {
+  .cityList__items {
+    min-height: 395px;
+  }
+}
+
+@media(max-width:310px) {
+  .cityList__items {
+    height: auto;
+  }
+}

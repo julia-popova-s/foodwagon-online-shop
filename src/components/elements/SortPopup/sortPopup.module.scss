@@ -1,0 +1,73 @@
+@import "../../../styles/variables";
+
+.sort {
+  position: relative;
+
+  @include setTextStyle(700, 22px, 120%);
+  color: $text-color;
+
+  max-width: 375px;
+
+  margin-bottom: 15px;
+
+
+  &__title {
+    padding: 10px;
+  }
+
+  &__list,
+  &__link {
+    @include setTextStyle(400, 22px, 100%);
+  }
+
+  &__link {
+    color: $base-color;
+
+    border-bottom: 1px dashed $base-color;
+
+    margin-left: 10px;
+
+    cursor: pointer;
+  }
+
+  &__popup {
+    position: absolute;
+
+    background-color: $white-color;
+    border-radius: 10px;
+
+    top: 50px px;
+    right: 0px;
+    z-index: 5;
+
+    box-shadow: rgb(241, 114, 40, 0.73) 2px 6px 8px;
+  }
+
+  &__item {
+    padding: 15px 30px;
+
+
+    background-color: transparent;
+    border-bottom: 1px solid rgb(241, 114, 40, 0.08);
+
+    transition: all $transition-long ease;
+
+    &:hover {
+      color: $base-color;
+      background-color: rgb(241, 114, 40, 0.05);
+
+      cursor: pointer;
+
+      transition: all $transition-long ease;
+    }
+
+    &_active {
+      color: $base-color;
+      font-weight: 700;
+
+      background-color: rgb(241, 114, 40, 0.05);
+
+      transition: all $transition-long ease;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import "../../../styles/variables";
+
+.categories {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    margin-bottom: 10px;
+  }
+
+  &__item {
+    font-size: 20px;
+    font-weight: $font-bold;
+    line-height: 100%;
+    text-align: center;
+
+    width: 125px;
+
+    background-color: $base-color;
+    color: $white-color;
+    border-radius: 30px;
+
+    padding: 15px;
+
+    transition: all $transition-short ease;
+
+    cursor: pointer;
+
+    &_active,
+    &:hover {
+      background-color: $btn-active;
+
+      transition: all $transition-short ease;
+    }
+  }
+}
+
+@media(max-width:460px) {
+  .categories__list {
+    justify-content: center;
+  }
+}

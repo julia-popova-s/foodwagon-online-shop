@@ -1,0 +1,12 @@
+export { AppDownLoad } from './AppDownLoad';
+export { CallToAction } from './CallToAction';
+export { Cities } from './Cities';
+export { Details } from './Details';
+export { FeaturedRestaurants } from './FeaturedRestaurants';
+export { FindFood } from './FindFood';
+export { FlashDeals } from './FlashDeals';
+export { Footer } from './Footer';
+export { Header } from './Header';
+export { OrderAlgorithm } from './OrderAlgorithm';
+export { PopularItems } from './PopularItems';
+export { SearchFood } from './SearchFood';

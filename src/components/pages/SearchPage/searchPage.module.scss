@@ -1,0 +1,41 @@
+@import "../../../styles/variables";
+
+.searchPage {
+  padding-top: 138px;
+  min-height: 100vh;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 120%;
+  color: $text-color;
+
+  margin-bottom: 50px;
+}
+
+.panel {
+  margin-bottom: 50px;
+}
+
+.menuList {
+  display: grid;
+  column-gap: 36px;
+  row-gap: 50px;
+  grid-template-columns: repeat(auto-fill, minmax(283px, 1fr));
+
+  padding-bottom: 80px;
+
+  &__item {
+    max-width: 343px;
+    height: 503px;
+  }
+}
+
+.message {
+  font-size: 28px;
+
+  margin-bottom: 50px;
+
+  padding-top: 50px;
+}

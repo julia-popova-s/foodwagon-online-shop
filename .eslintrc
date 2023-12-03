@@ -1,0 +1,17 @@
+{
+  "extends": ["react-app", "react-app/jest", "plugin:perfectionist/recommended-natural"],
+  "rules": {
+    "perfectionist/sort-interfaces": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "import/no-default-export": "off",
+    "import/newline-after-import": "warn",
+    "no-console": "warn",
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "max-len": ["warn", { "code": 120 }],
+    "comma-dangle": ["error", "always-multiline"],
+    "prefer-const": "error"
+  }
+}

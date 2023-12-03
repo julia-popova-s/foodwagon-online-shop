@@ -1,0 +1,12 @@
+@import "../../../styles/variables";
+
+.cities {
+  background-color: $main-color-gray;
+}
+
+@media(max-width:650px) {
+  .cities {
+    padding-bottom: 83px;
+    padding-top: 50px;
+  }
+}

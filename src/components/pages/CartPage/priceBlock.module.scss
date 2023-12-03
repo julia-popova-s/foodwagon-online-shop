@@ -1,0 +1,33 @@
+@import "../../../styles/variables";
+
+.priceBlock__price {
+  display: inline-block;
+
+  @include setTextStyle($font-bold, 22px, 120%);
+  color: rgb(66, 66, 66);
+
+  margin-right: 30px;
+
+  &_theme {
+    position: relative;
+
+    color: rgba(130, 126, 126, 0.9);
+
+    font-weight: 500;
+
+    margin-right: 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: 0;
+      z-index: 10;
+
+      width: calc(100% - 11px);
+      height: 2px;
+
+      background-color: #868695;
+    }
+  }
+}

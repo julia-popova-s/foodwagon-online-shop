@@ -1,0 +1,1 @@
+export { FlashDeals } from './FlashDeals';

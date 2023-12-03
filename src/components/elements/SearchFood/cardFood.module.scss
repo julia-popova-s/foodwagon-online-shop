@@ -1,0 +1,36 @@
+@import "../../../styles/variables";
+
+.cardFoodBlock {
+  display: block;
+
+  text-align: center;
+
+  width: 218px;
+
+  margin: 0 auto;
+
+  cursor: pointer;
+}
+
+.cardFood {
+  &__up {
+    width: 218px;
+    height: 218px;
+
+    margin-bottom: 26px;
+  }
+
+  &__image {
+    display: block;
+
+    max-width: 100%;
+    height: 100%;
+
+    border-radius: 109px;
+  }
+
+  &__label {
+    @include setTextStyle(700, 22px, 120%);
+    color: $text-color;
+  }
+}

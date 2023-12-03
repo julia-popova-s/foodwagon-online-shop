@@ -1,0 +1,151 @@
+@import "../../../styles/variables";
+
+.footer {
+  background-color: $main-color-gray;
+  border-bottom: 2px solid $text-color;
+
+  &__service {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    padding-bottom: 22px;
+
+    border-bottom: 2px solid $text-color;
+  }
+
+  &__nav {
+    padding-top: 63px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 116px;
+
+    margin-right: 25px;
+  }
+
+  &__mailbox {
+    padding-top: 63px;
+
+    max-width: 483px;
+  }
+
+  &__title {
+    @include setTextStyle($font-bold, 18px, 120%);
+    color: $main-color-white;
+
+    text-transform: uppercase;
+
+    opacity: 0.6;
+
+    margin-bottom: 40px;
+  }
+
+  &__networks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    @include setTextStyle(400, 24px, 100%);
+    color: $main-color-white;
+
+    margin-bottom: 43px;
+  }
+
+  &__label {
+    @include setTextStyle($font-bold, 18px, 140%);
+    color: #bbbbbb;
+    margin-bottom: 40px;
+  }
+
+  &__input,
+  &__input::placeholder {
+    @include setTextStyle(400, 18px, 140%);
+  }
+
+  &__input {
+    background: $text-color;
+    color: #adadad;
+    border-radius: 8px;
+
+    width: 334px;
+    height: 60px;
+
+    padding: 17px 0 18px 50px;
+
+    margin-right: 16px;
+    margin-bottom: 10px;
+
+    outline: none;
+  }
+
+  &__input::placeholder {
+    color: #adadad;
+  }
+
+  &__btn {
+    @include setTextStyle($font-bold, 18px, 100%);
+    text-align: center;
+    color: $white-color;
+
+    width: 133px;
+    height: 60px;
+
+    background: linear-gradient(92.84deg, #ffb800 -47.72%, #ff8a00 136.81%);
+    border-radius: $border-radius-8;
+
+    box-shadow: 0px 5px 8px rgba(222, 151, 0, 0.24),
+      0px 14px 32px rgba(255, 178, 14, 0.29);
+  }
+
+  &__copyright {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 16px 0px 88px 0;
+    gap: 10px;
+  }
+
+  &__reserved {
+    @include setTextStyle(400, 15px, 120%);
+    color: $main-color-white;
+  }
+
+  &__copy {
+    @include setTextStyle(400, 16px, 18px);
+    color: $main-color-white;
+  }
+
+  &__date {
+    @include setTextStyle(700, 15px, 120%);
+    color: $main-color-white;
+  }
+
+  &__networksItem {
+    @include setTextStyle(400, 24px, 100%);
+    color: #636363;
+    width: 24px;
+    height: 24px;
+    transition: all $transition-long ease;
+
+    &:hover {
+      color: $white-color;
+      transition: all $transition-long ease;
+    }
+  }
+
+  &__error {
+    @include setTextStyle(400, 18px, 100%);
+    color: $btn-active;
+
+    height: 31px;
+
+    padding-top: 10px;
+  }
+}
+
+@media(max-width:400px) {
+  .footer__input {
+    width: 100%;
+    
+    margin-right: 0;
+  }
+}

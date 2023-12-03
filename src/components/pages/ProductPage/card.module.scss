@@ -1,0 +1,204 @@
+@import "../../../styles/variables";
+
+.card {
+  position: relative;
+  display: flex;
+  column-gap: 40px;
+  flex-wrap: wrap;
+
+  width: 100%;
+
+  &__left {
+    position: relative;
+
+    width: 357px;
+    height: 301px;
+
+    flex-shrink: 0;
+    border: 1px solid transparent;
+    border-radius: 16px;
+
+    margin-bottom: 30px;
+  }
+
+  &__image {
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+
+    border-radius: 16px;
+    object-fit: cover;
+  }
+
+  &__info {
+    padding-top: 10px;
+    margin-bottom: 30px;
+  }
+
+  &__discount {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    @include setTextStyle(700, 68px, 106%);
+    color: $white-color;
+    text-align: right;
+
+    background-color: $primary-color;
+    border-radius: 0px 32px 0px 14px;
+
+    width: 140px;
+    height: 83px;
+
+    padding: 3px 49px 10px 18px;
+  }
+
+  &__discount_size {
+    @include setTextStyle(700, 35px, 120%);
+
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+  }
+
+  &__discount_off {
+    @include setTextStyle(400, 22px, 120%);
+
+    position: absolute;
+    right: 24px;
+    bottom: 12px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+
+  height: 301px;
+  max-width: 700px;
+
+  &__title {
+    @include setTextStyle(700, 22px, 120%);
+    color: #424242;
+
+    margin-bottom: 14px;
+
+    min-height: 50px;
+  }
+
+  &__name {
+    margin-bottom: 15px;
+  }
+
+  &__nameIcon {
+    margin-right: 8px;
+  }
+
+  &__nameLink {
+    @include setTextStyle(400, 22px, 120%);
+    color: rgb(255, 179, 14);
+  }
+
+  &__prices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+  }
+
+  &__price {
+    @include setTextStyle(700, 24px, 120%);
+    color: rgb(33, 33, 33);
+
+    margin-bottom: 10px;
+
+    &_theme {
+      position: relative;
+      color: rgba(130, 126, 126, .9);
+
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 15px;
+        left: 14px;
+        z-index: 10;
+
+        width: 50px;
+        height: 2px;
+
+        background-color: rgba(130, 126, 126, 0.9);
+      }
+    }
+  }
+
+  &__ingredients {
+    @include setTextStyle(400, 20px, 120%);
+    color: rgb(130, 126, 126);
+
+    margin-bottom: 15px;
+  }
+
+  &__btns {
+    margin-top: auto;
+  }
+}
+
+.buttons {
+  &__order {
+    display: block;
+
+    width: 283px;
+
+    margin-left: auto;
+
+    transition: all $transition-long ease;
+
+    &:hover {
+      box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22), 0px 20px 40px rgba(250, 99, 35, 0.24);
+      transition: all $transition-long ease;
+    }
+  }
+}
+
+@media (max-width:1160px) {
+  .buttons__order {
+    margin-left: 0;
+  }
+}
+
+@media(max-width:662px) {
+  .card {
+    justify-content: center;
+  }
+}
+
+@media (max-width:620px) {
+  .card__left {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .card__info {
+    height: auto;
+  }
+}
+
+@media (max-width:500px) {
+  .buttons__order {
+    width: 100%;
+  }
+}
+
+@media(max-width:420px) {
+
+  .discount {
+    display: block;
+  }
+
+  .card__discount {
+    display: none;
+  }
+}

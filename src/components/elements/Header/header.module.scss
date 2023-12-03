@@ -1,0 +1,90 @@
+@import "../../../styles/variables";
+
+.headerBlock {
+  position: fixed;
+  z-index: 500;
+
+  min-height: 78px;
+  width: 100%;
+
+  box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26),
+    0px 20px 40px rgba(255, 174, 0, 0.29);
+
+  background-color: $white-color;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 0;
+}
+
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 30px;
+  row-gap: 15px;
+  justify-content: stretch;
+  align-items: center;
+
+  &__link {
+    position: relative;
+
+    @include setTextStyle($font-bold, 18px, 100%);
+    color: $text-color;
+    text-decoration: none;
+
+    background-color: transparent;
+
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      content: '';
+
+      top: 22px;
+      right: 0;
+
+      width: 97px;
+      height: 2px;
+
+      background-color: transparent;
+      border-radius: 10px;
+      transition: all $transition-short ease;
+    }
+
+    &:hover::before {
+      background-color: $base-color;
+      transition: all $transition-short ease;
+    }
+  }
+
+  &__icon {
+    margin-right: 8px;
+  }
+
+  &__name {
+    vertical-align: top;
+  }
+}
+
+.header__logoLink {
+  margin-right: 30px;
+}
+
+@media(max-width:1190px) {
+
+  .header__address,
+  .header__search {
+    display: none;
+  }
+}
+
+@media(max-width:410px) {
+  .header__logoLink {
+    margin-right: 5px;
+  }
+}

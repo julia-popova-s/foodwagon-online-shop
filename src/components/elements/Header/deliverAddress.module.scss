@@ -1,0 +1,35 @@
+@import "../../../styles/variables";
+
+.address {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  align-items: center;
+  row-gap: 5px;
+
+  &__deliver {
+    margin-right: 12px;
+  }
+
+  &__icon {
+    margin-right: 9px;
+
+    width: 14px;
+    height: 25px;
+
+    color: $primary-color;
+  }
+
+  &__location {
+    @include setTextStyle($font-normal, 18px, 140%);
+    color: $text-color;
+
+    margin-right: 4px;
+  }
+
+  &__location_weight {
+    font-weight: $font-bold;
+
+    margin-right: 10px;
+  }
+}

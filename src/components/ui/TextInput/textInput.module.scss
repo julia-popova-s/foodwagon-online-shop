@@ -1,0 +1,66 @@
+@import "../../../styles/variables";
+
+.search {
+  position: relative;
+
+  min-width: 199px;
+  width: calc(100% - 199px - 16px);
+
+  &__input,
+  &__input::placeholder {
+    @include setTextStyle(400, 18px, 140%);
+  }
+
+  &__input {
+    background-color: $main-color-white;
+    color: $text-color;
+
+    height: 49px;
+    width: 100%;
+
+    border-radius: 8px;
+    border: 0 solid;
+
+    padding: 11.5px 10px 12.5px 46px;
+  }
+
+  &__input::placeholder {
+    color: #9e9e9e;
+  }
+
+  &__input:focus {
+    outline: none;
+  }
+
+  &__inputIcon {
+    position: absolute;
+
+    left: 16px;
+    top: 15px;
+
+    path {
+      fill: #ff7474;
+    }
+  }
+
+  &__clearIcon {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+
+    width: 35px;
+    height: 35px;
+
+    cursor: pointer;
+
+    path {
+      fill: #ff747490;
+    }
+  }
+}
+
+@media(max-width:555px) {
+  .search {
+    width: 100%;
+  }
+}
