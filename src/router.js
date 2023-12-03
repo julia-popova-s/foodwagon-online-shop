@@ -33,19 +33,17 @@ export const router = [
         element: <SearchPage />,
         path: 'search',
       },
+      {
+        element: <LoginPage />,
+        path: 'login',
+      },
+      {
+        element: <SignUpPage />,
+        path: 'register',
+      },
     ],
     element: <App />,
     errorElement: <ErrorPage />,
     path: '/',
-  },
-  {
-    element: <LoginPage />,
-    errorElement: <ErrorPage />,
-    path: '/login',
-  },
-  {
-    element: <SignUpPage />,
-    errorElement: <ErrorPage />,
-    path: '/register',
   },
 ];

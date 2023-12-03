@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { isAuthSelector } from '../../../store/reducers/user';
+import { CartButton } from '../../ui/buttons/CartButton';
 import { DeliverAddress } from './DeliverAddress';
 import style from './mobileMenu.module.scss';
 
@@ -32,6 +33,9 @@ export function MobileMenu({ handleLogOut }) {
 
   return (
     <div className={style.mobileMenu}>
+      <Link to={'cart'}>
+        <CartButton />
+      </Link>
       <button
         className={cn(style.menuButton, {
           [style.buttonClose]: menuIsVisible,

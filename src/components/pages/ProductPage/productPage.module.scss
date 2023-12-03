@@ -1,7 +1,7 @@
 @import "../../../styles/variables";
 
 .productPage {
-  padding-top: 78px;
+  padding-top: 138px;
 }
 
 .product {
@@ -9,7 +9,6 @@
   flex-wrap: wrap;
   flex-direction: column;
 
-  padding-top: 78px;
   margin-bottom: 50px;
 }
 
@@ -17,4 +16,12 @@
   display: flex;
   flex-wrap: wrap;
   column-gap: 40px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 120%;
+  color: $text-color;
+  margin-bottom: 20px;
 }

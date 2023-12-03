@@ -46,6 +46,7 @@ function AuthRegForm({ errorMessage, handleClick, schema, title }) {
             <input
               className={style.regForm__input}
               id="email"
+              type="email"
               {...field}
               aria-invalid={errors.email ? 'true' : 'false'}
             />
@@ -67,6 +68,7 @@ function AuthRegForm({ errorMessage, handleClick, schema, title }) {
             <input
               className={style.regForm__input}
               id="password"
+              type="password"
               {...field}
               aria-invalid={errors.password ? 'true' : 'false'}
             />
