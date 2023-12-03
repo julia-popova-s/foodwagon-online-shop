@@ -48,3 +48,19 @@
     letter-spacing: -0.778px;
   }
 }
+
+@media(max-width:410px) {
+  .logo {
+    &__name {
+      font-size: 26.1102px;
+    }
+
+    &__nameOn {
+      font-size: 26.11px;
+    }
+
+    &__nameG {
+      font-size: 20.454px;
+    }
+  }
+}

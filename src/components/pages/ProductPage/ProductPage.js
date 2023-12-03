@@ -55,6 +55,7 @@ function ProductPage() {
     <>
       <div className={style.productPage}>
         <div className="container">
+          <h1 className={style.title}>Restaurant menu</h1>
           <div className={style.product}>
             {isLoaded && product
               ? product.map((item, i) => (
