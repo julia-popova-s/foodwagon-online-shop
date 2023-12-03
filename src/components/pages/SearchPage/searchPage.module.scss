@@ -39,3 +39,15 @@
 
   padding-top: 50px;
 }
+
+@media(max-width:365px) {
+  .menuList {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+  }
+
+  .menuList__item {
+    height: 470px;
+    max-width: 283px;
+  }
+}
