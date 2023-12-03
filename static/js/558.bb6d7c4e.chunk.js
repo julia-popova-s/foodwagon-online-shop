@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfoodwagon_online_shop=self.webpackChunkfoodwagon_online_shop||[]).push([[558],{5558:function(s,n,e){e.r(n);var j=e(7451),o=e(184);n.default=function(){return(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(j.bH,{}),(0,o.jsx)(j.du,{}),(0,o.jsx)(j.KN,{}),(0,o.jsx)(j.Jj,{}),(0,o.jsx)(j.cl,{}),(0,o.jsx)(j.eB,{}),(0,o.jsx)(j.Hk,{}),(0,o.jsx)(j.PO,{}),(0,o.jsx)(j.Jd,{}),(0,o.jsx)(j.SM,{})]})}}}]);
+//# sourceMappingURL=558.bb6d7c4e.chunk.js.map
