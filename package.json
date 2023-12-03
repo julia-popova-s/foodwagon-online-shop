@@ -1,6 +1,6 @@
 {
-  "name": "foodwagon_project",
-  "version": "1.0.15",
+  "name": "foodwagon-online-shop",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "firebase": "^10.5.2",
