@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { getPartOfString } from '../../../utils/getPartOfString';
+import { Discount } from '../../ui/Discount';
 import { CounterAndButton } from '../../ui/buttons/CounterAndButton';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import style from './card.module.scss';
@@ -48,14 +49,16 @@ export function Card({
     <div className={style.card}>
       <div className={style.card__left}>
         <img alt={title} className={style.card__image} src={`${process.env.PUBLIC_URL}${image}`} />
-
+        {/* 
         {discount ? (
           <div className={style.card__discount}>
             {discount}
             <div className={style.card__discount_size}>%</div>
             <div className={style.card__discount_off}>off</div>
           </div>
-        ) : null}
+        ) : null} */}
+        {discount && discount ? <Discount classNames={style.card__discount} discount={discount} /> : null}
+        <Discount classNames={style.discount} discount={discount} view={'smallLabel'} />
       </div>
 
       <div className={cn(style.card__info, style.info)}>

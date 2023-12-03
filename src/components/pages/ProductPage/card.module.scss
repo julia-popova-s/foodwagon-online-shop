@@ -163,6 +163,11 @@
   }
 }
 
+@media (max-width:1160px) {
+  .buttons__order {
+    margin-left: 0;
+  }
+}
 
 @media(max-width:662px) {
   .card {
@@ -178,5 +183,22 @@
 
   .card__info {
     height: auto;
+  }
+}
+
+@media (max-width:500px) {
+  .buttons__order {
+    width: 100%;
+  }
+}
+
+@media(max-width:420px) {
+
+  .discount {
+    display: block;
+  }
+
+  .card__discount {
+    display: none;
   }
 }

@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { isAuthSelector } from '../../../store/reducers/user';
 import { CartButton } from '../../ui/buttons/CartButton';
@@ -9,6 +9,10 @@ import { DeliverAddress } from './DeliverAddress';
 import style from './mobileMenu.module.scss';
 
 export function MobileMenu({ handleLogOut }) {
+  const { pathname } = useLocation();
+
+  useEffect(() => setMenuIsVisible(false), [pathname]);
+  
   const [menuIsVisible, setMenuIsVisible] = useState(false);
 
   const handleClickMenu = () => {

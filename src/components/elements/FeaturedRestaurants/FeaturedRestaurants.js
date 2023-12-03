@@ -9,7 +9,7 @@ import { isLoadedSelector, restaurantListSelector } from '../../../store/reducer
 import { Categories } from '../Categories';
 import { SortPopup } from '../SortPopup';
 import { RestaurantList } from './RestaurantList';
-import style from './restaurants.module.scss';
+import style from './featuredRestaurants.module.scss';
 
 const categoryNames = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup', 'Burger'];
 

@@ -19,9 +19,8 @@
 }
 
 .title {
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 120%;
+  @include setTextStyle(700, 28px, 120%);
   color: $text-color;
-  margin-bottom: 20px;
+
+  margin-bottom: 30px;
 }
