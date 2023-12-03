@@ -7,9 +7,11 @@
 
   font-size: 24px;
   color: black;
+  line-height: 140%;
 
   min-height: 250px;
   max-width: 560px;
+  min-width: 280px;
 
   padding: 30px;
   margin: 0;
@@ -40,9 +42,9 @@
   &__btns {
     display: flex;
     flex-wrap: wrap;
-    gap: 70px;
+    column-gap: 70px;
+    row-gap: 15px;
     justify-content: left;
-
   }
 
   &__btnOk,
@@ -84,4 +86,10 @@
   overflow-y: auto;
 
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+@media(max-width:420px) {
+  .popup {
+    padding: 15px;
+  }
 }
