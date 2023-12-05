@@ -3,16 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
 import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/reducers/cart';
+import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
 import { isAuthSelector, setOrders } from '../../../store/reducers/user';
 import { Popup } from '../../ui/Popup';
 import { OrderButton } from '../../ui/buttons/OrderButton';
-import { CardProduct } from './CardProduct';
 import { Modal } from './Modal';
+import { ProductCard } from './ProductCard';
 import style from './cartPage.module.scss';
 
 let orderNumber = 0;
@@ -146,7 +146,7 @@ function Cart() {
               const restaurantName = products[0] && products[0].restaurantName;
 
               return (
-                <div className={cn(style.cart__order, style.cart__order_border)} key={restaurantId}>
+                <div className={style.cart__list} key={restaurantId}>
                   <div className={style.cart__top}>
                     <div className={style.cart__restaurantName}>{restaurantName}</div>
                     <div className={style.cart__clear}>
@@ -160,36 +160,35 @@ function Cart() {
                     </div>
                   </div>
 
-                  <div className={style.cart__list}>
-                    {quantity ? (
-                      <>
-                        {products.map(({ quantity, ...item }) => {
-                          return (
-                            <CardProduct
-                              {...item}
-                              handleAddProduct={(item) => handleAddProduct(item)}
-                              handleDeleteProduct={(obj) => handleDeleteProduct(obj, quantity)}
-                              handleInputCount={(obj) => handleInputQuantity(obj)}
-                              handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
-                              key={item.id}
-                              quantity={quantity}
-                            />
-                          );
-                        })}
-                        <div className={cn(style.cart__orderInfo, style.cart__orderInfo_border)}>
-                          <p className={style.cart__result}>
-                            Your order for the total amount &#36;{' '}
-                            <span className={style.cart__result_color}>{price && price.toFixed(2)}</span> and{' '}
-                            <span className={style.cart__result_color}>{quantity}</span> items
-                          </p>
-                          <OrderButton
-                            name={'Place an order'}
-                            onClick={() => handlePlaceAnOrder(restaurantId, restaurantName)}
+                  {quantity ? (
+                    <>
+                      {products.map(({ quantity, ...item }) => {
+                        return (
+                          <ProductCard
+                            {...item}
+                            handleAddProduct={(item) => handleAddProduct(item)}
+                            handleDeleteProduct={(obj) => handleDeleteProduct(obj, quantity)}
+                            handleInputCount={(obj) => handleInputQuantity(obj)}
+                            handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
+                            key={item.id}
+                            quantity={quantity}
                           />
-                        </div>
-                      </>
-                    ) : null}
-                  </div>
+                        );
+                      })}
+                      <div className={cn(style.cart__orderInfo, style.cart__orderInfo_border)}>
+                        <p className={style.cart__result}>
+                          Your order for the total amount{' '}
+                          <span className={style.cart__result_color}>&#36;{price && price.toFixed(2)}</span> and{' '}
+                          <span className={style.cart__result_color}>{quantity}</span> items
+                        </p>
+                        <OrderButton
+                          classNames={style.cart__orderBtn}
+                          name={'Place an order'}
+                          onClick={() => handlePlaceAnOrder(restaurantId, restaurantName)}
+                        />
+                      </div>
+                    </>
+                  ) : null}
                 </div>
               );
             })}

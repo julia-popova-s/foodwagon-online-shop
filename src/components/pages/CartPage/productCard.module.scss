@@ -13,7 +13,6 @@
   position: relative;
 
   max-width: 1250px;
-  min-width: 300px;
 
   background-color: $white-color;
   border-radius: $border-radius-16;
@@ -193,13 +192,13 @@
   @include setTextStyle(600, 18px, 100%);
 
   width: 180px;
-  
+
   transition: background $transition-long ease,
-  color $transition-long ease;
-  
+    color $transition-long ease;
+
   margin-bottom: 20px;
   padding: 5px;
-  
+
   border: 3px solid;
   border-image-source: linear-gradient(to right, $primary-color,
       $base-color);
@@ -252,10 +251,31 @@
 
   .product {
     max-width: 300px;
+
+    margin: 0 auto;
+    margin-bottom: 30px;
+
+    &__discount {
+      border-radius: 0px 32px 0px 0;
+    }
+
+    &__img {
+      border-radius: $border-radius-16 $border-radius-16 0 0;
+    }
   }
 
   .counter {
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+}
+
+@media(max-width:350px) {
+  .product {
+    width: 100%;
+  }
+
+  .product__image {
+    max-width: 100%;
   }
 }

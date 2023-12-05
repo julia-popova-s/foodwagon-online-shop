@@ -49,7 +49,7 @@ export function RestaurantPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [currentPage]);
+  }, []);
 
   const handleChangePage = (number) => {
     dispatch(setCurrentPage(number));

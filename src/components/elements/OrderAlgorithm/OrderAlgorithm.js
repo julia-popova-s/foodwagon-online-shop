@@ -26,7 +26,7 @@ const algorithm = [
 
 export function OrderAlgorithm() {
   return (
-    <div className={style.orderAlgorithmBlock}>
+    <section className={style.orderAlgorithmBlock}>
       <div className="container">
         <div className={style.orderAlgorithm}>
           <h2 className={style.orderAlgorithm__title}>How does it work</h2>
@@ -39,6 +39,6 @@ export function OrderAlgorithm() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

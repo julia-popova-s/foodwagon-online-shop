@@ -41,7 +41,7 @@ export function PopularItems() {
   const skeleton = new Array(5).fill(0).map((_, index) => <Loader key={index} />);
 
   return (
-    <div className={style.popularItemsBlock}>
+    <section className={style.popularItemsBlock}>
       <div className={style.container}>
         <div className={style.popularItems}>
           <h3 className={style.popularItems__title}>Popular items</h3>
@@ -66,6 +66,6 @@ export function PopularItems() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

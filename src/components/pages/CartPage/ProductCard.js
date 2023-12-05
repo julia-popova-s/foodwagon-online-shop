@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom';
 import { Counter } from '../../ui/Counter';
 import { Discount } from '../../ui/Discount/Discount';
 import { PriceBlock } from './PriceBlock';
-import style from './cardProduct.module.scss';
+import style from './productCard.module.scss';
 
-export function CardProduct({
+export function ProductCard({
   amount,
   discount,
   handleAddProduct,
