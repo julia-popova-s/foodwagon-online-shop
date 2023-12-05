@@ -53,7 +53,7 @@ export function FeaturedRestaurants() {
   }, [sortType, category, dispatch, limit]);
 
   return (
-    <div className={style.restaurants} id="featuredRestaurants">
+    <section className={style.restaurants} id="featuredRestaurants">
       <div className="container">
         <div className={style.restaurantList}>
           <h4 className={style.restaurantList__title}>Featured Restaurants</h4>
@@ -76,6 +76,6 @@ export function FeaturedRestaurants() {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

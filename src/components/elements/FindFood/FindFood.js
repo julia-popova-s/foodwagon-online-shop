@@ -15,7 +15,7 @@ export function FindFood() {
     setSearchValue(text);
   };
   return (
-    <div className={style.findFoodWrapper}>
+    <main className={style.findFoodWrapper}>
       <div className="container">
         <div className={style.findFood}>
           <h1 className={style.findFood__title}>Are you starving?</h1>
@@ -33,6 +33,6 @@ export function FindFood() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

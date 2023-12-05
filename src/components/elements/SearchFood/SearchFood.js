@@ -81,10 +81,10 @@ export function SearchFood() {
   const skeleton = new Array(products?.length).fill(0).map((_, index) => <Loader key={index} />);
 
   return (
-    <div className={style.searchFoodBlock} id="searchByFood">
+    <section className={style.searchFoodBlock} id="searchByFood">
       <div className="container">
         <div className={style.searchFood}>
-          <h2 className={style.searchFood__title}>Search by Food</h2>
+          <h5 className={style.searchFood__title}>Search by Food</h5>
 
           <Slider {...sliderSettings} className={style.searchFood__slider}>
             {typeFood &&
@@ -128,6 +128,6 @@ export function SearchFood() {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
