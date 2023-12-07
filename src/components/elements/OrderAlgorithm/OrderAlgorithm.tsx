@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import { OrderStep } from './OrderStep';
 import style from './orderAlgorithm.module.scss';
 
@@ -13,7 +15,7 @@ const algorithm = [
     label: 'Choose order',
   },
   {
-    description: ' It\'s quick, safe, and simple. Select several methods of payment',
+    description: " It's quick, safe, and simple. Select several methods of payment",
     imageSrc: '/images/order-algorithm/invoice.svg',
     label: 'Pay advanced',
   },
@@ -24,7 +26,7 @@ const algorithm = [
   },
 ];
 
-export function OrderAlgorithm() {
+export const OrderAlgorithm: FC = () => {
   return (
     <section className={style.orderAlgorithmBlock}>
       <div className="container">
@@ -41,4 +43,4 @@ export function OrderAlgorithm() {
       </div>
     </section>
   );
-}
+};

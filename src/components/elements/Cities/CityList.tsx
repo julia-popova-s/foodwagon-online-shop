@@ -1,9 +1,10 @@
 import cn from 'classnames';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import style from './cityList.module.scss';
 
-export function CityList({ links, title }) {
+export const CityList: FC = ({ links, title }) => {
   return (
     <div className={style.cityList}>
       <div className={style.cityList__title}>{title}</div>
@@ -21,4 +22,4 @@ export function CityList({ links, title }) {
       </ul>
     </div>
   );
-}
+};

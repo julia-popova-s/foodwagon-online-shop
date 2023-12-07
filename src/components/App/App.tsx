@@ -1,11 +1,11 @@
-import { Suspense } from 'react';
+import { FC, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import '../../styles/index.scss';
 import { Footer, Header } from '../elements';
 import Spinner from '../ui/Spinner/Spinner';
 
-function App() {
+const App: FC = () => {
   return (
     <div className="app">
       <Header />
@@ -15,6 +15,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;

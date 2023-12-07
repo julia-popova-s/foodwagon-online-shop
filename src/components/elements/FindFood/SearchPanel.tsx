@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -12,7 +12,7 @@ import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Popup } from './Popup';
 import style from './searchPanel.module.scss';
 
-export function SearchPanel() {
+export const SearchPanel: FC = () => {
   const [searchValue, setSearchValue] = useState('');
   const [visiblePopup, setVisiblePopup] = useState(false);
 
@@ -90,4 +90,4 @@ export function SearchPanel() {
       <Popup isLoaded={isLoaded} list={products} ref={popupRef} show={visiblePopup} />
     </div>
   );
-}
+};

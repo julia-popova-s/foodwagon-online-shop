@@ -1,11 +1,11 @@
-import { forwardRef } from 'react';
+import { FC, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
 import { emailSelector } from '../../../store/reducers/user';
 import style from './modal.module.scss';
 
-export const Modal = forwardRef(({ handleCloseModal, name, orderNumber, show }, ref) => {
+export const Modal: FC = forwardRef(({ handleCloseModal, name, orderNumber, show }, ref) => {
   const email = useSelector(emailSelector);
   return (
     <CSSTransition classNames="alert" in={show} timeout={300} unmountOnExit>

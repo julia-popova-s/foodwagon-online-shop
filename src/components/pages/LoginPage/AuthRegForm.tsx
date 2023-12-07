@@ -1,11 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import cn from 'classnames';
+import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import style from './authRegForm.module.scss';
 
-function AuthRegForm({ errorMessage, handleClick, schema, title }) {
+const AuthRegForm: FC = ({ errorMessage, handleClick, schema, title }) => {
   const {
     control,
     formState: { errors, isValid },
@@ -96,5 +97,5 @@ function AuthRegForm({ errorMessage, handleClick, schema, title }) {
       </form>
     </div>
   );
-}
+};
 export default AuthRegForm;

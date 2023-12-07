@@ -1,8 +1,9 @@
 import cn from 'classnames';
+import { FC } from 'react';
 
 import style from './priceBlock.module.scss';
 
-export function PriceBlock({ classNames, discount, price }) {
+export const PriceBlock: FC = ({ classNames, discount, price }) => {
   return (
     <div className={style.priceBlock}>
       {discount ? (
@@ -20,4 +21,4 @@ export function PriceBlock({ classNames, discount, price }) {
       </div>
     </div>
   );
-}
+};

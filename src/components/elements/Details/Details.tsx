@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DetailsCard } from './DetailsCard';
@@ -33,7 +34,7 @@ const dish = [
   },
 ];
 
-export function Details() {
+export const Details: FC = () => {
   return (
     <div className={style.cardBigList}>
       <div className="container">
@@ -47,4 +48,4 @@ export function Details() {
       </div>
     </div>
   );
-}
+};

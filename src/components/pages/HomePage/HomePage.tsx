@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import {
   AppDownLoad,
   CallToAction,
@@ -11,7 +13,7 @@ import {
   SearchFood,
 } from '../../elements';
 
-function Home() {
+const Home: FC = () => {
   return (
     <>
       <FindFood />
@@ -26,5 +28,5 @@ function Home() {
       <Cities />
     </>
   );
-}
+};
 export default Home;

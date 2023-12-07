@@ -1,7 +1,7 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Counter } from '../../ui/Counter';
@@ -9,7 +9,7 @@ import { Discount } from '../../ui/Discount/Discount';
 import { PriceBlock } from './PriceBlock';
 import style from './productCard.module.scss';
 
-export function ProductCard({
+export const ProductCard: FC = ({
   amount,
   discount,
   handleAddProduct,
@@ -23,7 +23,7 @@ export function ProductCard({
   restaurantId,
   restaurantName,
   title,
-}) {
+}) => {
   const [returnedProduct, setReturnedProduct] = useState(false);
   const handleProductExclusion = () => setReturnedProduct(true);
 
@@ -118,4 +118,4 @@ export function ProductCard({
       )}
     </div>
   );
-}
+};

@@ -1,7 +1,9 @@
+import { FC } from 'react';
+
 import { Discount } from '../../ui/Discount';
 import style from './flashDealCard.module.scss';
 
-export function FlashDealCard({ discount, image, restaurantName }) {
+export const FlashDealCard: FC = ({ discount, image, restaurantName }) => {
   return (
     <div className={style.card}>
       <div className={style.card__up}>
@@ -15,4 +17,4 @@ export function FlashDealCard({ discount, image, restaurantName }) {
       <p className={style.card__text}>6 Days Remaining</p>
     </div>
   );
-}
+};

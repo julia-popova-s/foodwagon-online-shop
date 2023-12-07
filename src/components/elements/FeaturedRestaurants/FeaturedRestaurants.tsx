@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
@@ -20,7 +20,7 @@ const sortItems = [
   { name: 'alphabetically', type: 'name' },
 ];
 
-export function FeaturedRestaurants() {
+export const FeaturedRestaurants: FC = () => {
   const [limit, setLimit] = useState(4);
   const dispatch = useDispatch();
 
@@ -78,4 +78,4 @@ export function FeaturedRestaurants() {
       </div>
     </section>
   );
-}
+};

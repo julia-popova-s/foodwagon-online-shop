@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -8,11 +8,11 @@ import { CartButton } from '../../ui/buttons/CartButton';
 import { DeliverAddress } from './DeliverAddress';
 import style from './mobileMenu.module.scss';
 
-export function MobileMenu({ handleLogOut }) {
+export const MobileMenu: FC = ({ handleLogOut }) => {
   const { pathname } = useLocation();
 
   useEffect(() => setMenuIsVisible(false), [pathname]);
-  
+
   const [menuIsVisible, setMenuIsVisible] = useState(false);
 
   const handleClickMenu = () => {
@@ -95,4 +95,4 @@ export function MobileMenu({ handleLogOut }) {
       </nav>
     </div>
   );
-}
+};

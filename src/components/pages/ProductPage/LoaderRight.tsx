@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import ContentLoader from 'react-content-loader';
 
-export const LoaderRight = (props) => (
+export const LoaderRight: FC = (props) => (
   <ContentLoader
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"

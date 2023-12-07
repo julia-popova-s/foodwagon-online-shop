@@ -1,11 +1,10 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
-import React from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
 import style from './sortPopup.module.scss';
 
-export function SortPopup({ activeSortType, classNames, handleClickSortType, items, orderType }) {
+export const SortPopup: FC = ({ activeSortType, classNames, handleClickSortType, items, orderType }) => {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const sortRef = useRef();
 
@@ -61,7 +60,7 @@ export function SortPopup({ activeSortType, classNames, handleClickSortType, ite
       )}
     </div>
   );
-}
+};
 SortPopup.propTypes = {
   activeSortType: PropTypes.string.isRequired,
   handleClickSortType: PropTypes.func.isRequired,

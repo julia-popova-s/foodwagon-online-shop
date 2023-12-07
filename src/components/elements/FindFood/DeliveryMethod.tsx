@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 
 import { DeliveryTab } from '../../ui/buttons/DeliveryTab';
 import style from './deliveryMethod.module.scss';
@@ -8,10 +8,10 @@ const buttons = [
   { icon: '/images/find-food/delivery/pickup.svg', label: 'Pickup' },
 ];
 
-export function DeliveryMethod() {
+export const DeliveryMethod: FC = () => {
   const [activeBtn, setActiveBtn] = useState(0);
 
-  const handleSelectItem = (index) => {
+  const handleSelectItem = (index: number) => {
     setActiveBtn(index);
   };
   return (
@@ -28,4 +28,4 @@ export function DeliveryMethod() {
         ))}
     </div>
   );
-}
+};

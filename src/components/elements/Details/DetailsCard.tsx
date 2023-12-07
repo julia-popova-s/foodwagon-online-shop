@@ -1,10 +1,11 @@
 import cn from 'classnames';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { OrderButton } from '../../ui/buttons/OrderButton';
 import style from './detailsCard.module.scss';
 
-export function DetailsCard({ description, flippedСard, food, imageSrc, link, title }) {
+export const DetailsCard: FC = ({ description, flippedСard, food, imageSrc, link, title }) => {
   const flippedСardStyle = {
     imgBorder: style.cardBig__img_border,
     imgRight: style.cardBig__img_right,
@@ -44,4 +45,4 @@ export function DetailsCard({ description, flippedСard, food, imageSrc, link, t
       </div>
     </div>
   );
-}
+};

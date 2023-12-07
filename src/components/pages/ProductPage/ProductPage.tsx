@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ import { LoaderLeft } from './LoaderLeft';
 import { LoaderRight } from './LoaderRight';
 import style from './productPage.module.scss';
 
-function ProductPage() {
+const ProductPage: FC = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -74,6 +74,6 @@ function ProductPage() {
       <RestaurantPage />
     </>
   );
-}
+};
 
 export default ProductPage;

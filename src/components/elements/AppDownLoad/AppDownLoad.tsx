@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import style from './appDownLoad.module.scss';
@@ -13,7 +14,7 @@ const links = [
   { name: 'app-store', src: '/images/install-app/app-store.png' },
 ];
 
-export function AppDownLoad() {
+export const AppDownLoad: FC = () => {
   return (
     <div className={style.installBlock}>
       <div className={style.appDownLoad}>
@@ -69,4 +70,4 @@ export function AppDownLoad() {
       </div>
     </div>
   );
-}
+};

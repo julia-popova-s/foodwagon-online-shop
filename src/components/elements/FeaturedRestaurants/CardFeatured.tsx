@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import { getPartOfString } from '../../../utils/getPartOfString';
@@ -6,7 +7,7 @@ import style from './cardFeatured.module.scss';
 
 const theme = 'close';
 
-export function CardFeatured(props) {
+export const CardFeatured: FC = (props) => {
   const { deliveryTime, imageSrc, logo_photos, name, weighted_rating_value } = props;
 
   return (
@@ -47,4 +48,4 @@ export function CardFeatured(props) {
       <div className={style.card__text}>Open Now</div>
     </div>
   );
-}
+};

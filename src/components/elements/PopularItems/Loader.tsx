@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import ContentLoader from 'react-content-loader';
 
 import style from './popularItems.module.scss';
 
-export const Loader = (props) => (
+export const Loader: FC = (props) => (
   <ContentLoader
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"

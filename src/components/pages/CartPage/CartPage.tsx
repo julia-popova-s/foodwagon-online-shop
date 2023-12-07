@@ -1,7 +1,7 @@
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ import style from './cartPage.module.scss';
 
 let orderNumber = 0;
 
-function Cart() {
+const Cart: FC = () => {
   const { pathname } = useLocation();
 
   const [name, setName] = useState('');
@@ -209,5 +209,5 @@ function Cart() {
       </Popup>
     </div>
   );
-}
+};
 export default Cart;

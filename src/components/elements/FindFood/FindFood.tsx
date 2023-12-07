@@ -1,17 +1,17 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { DeliveryMethod } from './DeliveryMethod';
 import style from './findFood.module.scss';
 
-export function FindFood() {
+export const FindFood: FC = () => {
   const searchRef = useRef(null);
   const [searchValue, setSearchValue] = useState('');
 
-  const handleSearchValue = (text) => {
+  const handleSearchValue = (text: string) => {
     setSearchValue(text);
   };
   return (
@@ -35,4 +35,4 @@ export function FindFood() {
       </div>
     </main>
   );
-}
+};

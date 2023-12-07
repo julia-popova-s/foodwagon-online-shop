@@ -1,9 +1,9 @@
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
+import { FC } from 'react';
 
 import style from './categories.module.scss';
 
-export function Categories({ activeCategory, handleClickCategory, items }) {
+export const Categories: FC = ({ activeCategory, handleClickCategory, items }) => {
   return (
     <div className={style.categories}>
       <ul className={style.categories__list}>
@@ -23,12 +23,4 @@ export function Categories({ activeCategory, handleClickCategory, items }) {
       </ul>
     </div>
   );
-}
-
-Categories.propTypes = {
-  activeCategory: PropTypes.number.isRequired,
-  handleClickCategory: PropTypes.func.isRequired,
-  items: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
-
-Categories.defaultProps = { activeCategory: 0, items: [] };

@@ -1,12 +1,12 @@
 import cn from 'classnames';
-import React from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Counter } from '../../Counter';
 import { SearchButton } from '../SearchButton';
 import style from './counterAndButton.module.scss';
 
-export function CounterAndButton({ handleInputQuantity, handleMinusProduct, handlePlusProduct, quantity }) {
+export const CounterAndButton: FC = ({ handleInputQuantity, handleMinusProduct, handlePlusProduct, quantity }) => {
   return (
     <div className={style.buttons}>
       <Link className={style.buttons__link} to={'/cart'}>
@@ -22,4 +22,4 @@ export function CounterAndButton({ handleInputQuantity, handleMinusProduct, hand
       />
     </div>
   );
-}
+};

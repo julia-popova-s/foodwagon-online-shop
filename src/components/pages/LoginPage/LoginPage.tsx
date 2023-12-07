@@ -1,5 +1,5 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { Suspense, useEffect, useState } from 'react';
+import { FC, Suspense, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import Spinner from '../../ui/Spinner/Spinner';
 import AuthRegForm from './AuthRegForm';
 import style from './loginPage.module.scss';
 
-function Login() {
+const Login: FC = () => {
   const auth = getAuth();
   const { pathname } = useLocation();
   const dispatch = useDispatch();
@@ -52,5 +52,5 @@ function Login() {
       </Suspense>
     </div>
   );
-}
+};
 export default Login;

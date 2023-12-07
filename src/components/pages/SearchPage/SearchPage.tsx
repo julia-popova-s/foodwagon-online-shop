@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
@@ -15,7 +16,7 @@ import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
 import style from './searchPage.module.scss';
 
-function SearchPage() {
+const SearchPage: FC = () => {
   const error = useSelector(errorSelector);
   const currentPage = useSelector(currentPageSelector);
   const products = useSelector(productListSelector);
@@ -74,5 +75,5 @@ function SearchPage() {
       </div>
     </div>
   );
-}
+};
 export default SearchPage;

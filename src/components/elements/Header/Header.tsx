@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ import { DeliverAddress } from './DeliverAddress';
 import { MobileMenu } from './MobileMenu';
 import style from './header.module.scss';
 
-export function Header() {
+export const Header: FC = () => {
   const navigate = useNavigate();
   const goBack = () => navigate('/');
 
@@ -71,4 +71,4 @@ export function Header() {
       </div>
     </header>
   );
-}
+};

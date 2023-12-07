@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import { CityList } from './CityList';
 import style from './cities.module.scss';
 
@@ -31,7 +33,7 @@ export const CITY_LIST = {
   title: 'Our top cities',
 };
 
-export function Cities() {
+export const Cities: FC = () => {
   return (
     <div className={style.cities}>
       <div className="container">
@@ -39,4 +41,4 @@ export function Cities() {
       </div>
     </div>
   );
-}
+};

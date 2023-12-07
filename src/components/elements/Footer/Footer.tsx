@@ -1,6 +1,6 @@
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { validationEmail } from '../../../utils/utilsForForm/validationEmail';
@@ -23,7 +23,7 @@ export const LINKS = [
   },
 ];
 
-export function Footer() {
+export const Footer: FC = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
 
@@ -90,4 +90,4 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+};

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
@@ -10,7 +10,7 @@ import { Loader } from './Loader';
 import style from './popularItems.module.scss';
 import { sliderSettings } from './sliderSettings';
 
-export function PopularItems() {
+export const PopularItems: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -68,4 +68,4 @@ export function PopularItems() {
       </div>
     </section>
   );
-}
+};

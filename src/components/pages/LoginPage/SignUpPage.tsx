@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { Suspense, useEffect, useState } from 'react';
+import { FC, Suspense, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import Spinner from '../../ui/Spinner/Spinner';
 import AuthRegForm from './AuthRegForm';
 import style from './loginPage.module.scss';
 
-function SignUp() {
+const SignUp: FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const auth = getAuth();
@@ -54,5 +54,5 @@ function SignUp() {
       </Suspense>
     </div>
   );
-}
+};
 export default SignUp;

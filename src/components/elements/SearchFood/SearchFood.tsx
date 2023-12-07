@@ -1,9 +1,7 @@
 import '/node_modules/slick-carousel/slick/slick.css';
 import '/node_modules/slick-carousel/slick/slick-theme.css';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { ReactSVG } from 'react-svg';
 import { v4 as uuidv4 } from 'uuid';
@@ -37,7 +35,7 @@ const typeFood = [
   { imageSrc: '/images/search-food/6.png', name: 'Meat' },
 ];
 
-export function SearchFood() {
+export const SearchFood: FC = () => {
   const [limit, setLimit] = useState(4);
   const dispatch = useDispatch();
   const searchBy = useSelector(searchBySelector);
@@ -130,4 +128,4 @@ export function SearchFood() {
       </div>
     </section>
   );
-}
+};

@@ -1,9 +1,10 @@
+import { FC } from 'react';
 import { Link as LinkScroll } from 'react-scroll';
 
 import { OrderButton } from '../../ui/buttons/OrderButton';
 import style from './callToAction.module.scss';
 
-export function CallToAction() {
+export const CallToAction: FC = () => {
   return (
     <div className={style.callToActionBlock}>
       <div className="container">
@@ -17,4 +18,4 @@ export function CallToAction() {
       </div>
     </div>
   );
-}
+};

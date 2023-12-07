@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
@@ -9,7 +10,7 @@ import { CounterAndButton } from '../../ui/buttons/CounterAndButton';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import style from './card.module.scss';
 
-export function Card({
+export const Card: FC = ({
   discount,
   handleAddProduct,
   handleInputCount,
@@ -21,7 +22,7 @@ export function Card({
   restaurantId,
   restaurantName,
   title,
-}) {
+}) => {
   const handleMinusProduct = () => {
     const data = { discount, id, image, price, restaurantId, restaurantName, title };
     handleRemoveProduct(data);
@@ -105,4 +106,4 @@ export function Card({
       </div>
     </div>
   );
-}
+};

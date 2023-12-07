@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ const sortItems = [
   { name: 'alphabetically', order: 'asc', type: 'title' },
 ];
 
-export function RestaurantPage() {
+export const RestaurantPage: FC = () => {
   const { restaurantId } = useParams();
 
   const dispatch = useDispatch();
@@ -129,4 +129,4 @@ export function RestaurantPage() {
       </div>
     </div>
   );
-}
+};
