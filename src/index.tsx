@@ -13,7 +13,7 @@ const browserRouter = createBrowserRouter(router, {
   basename: `${process.env.PUBLIC_URL}`,
 });
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   <Suspense fallback={<Spinner />}>

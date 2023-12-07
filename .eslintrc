@@ -13,5 +13,6 @@
     "max-len": ["warn", { "code": 120 }],
     "comma-dangle": ["error", "always-multiline"],
     "prefer-const": "error"
-  }
+  },
+  "parser": "@typescript-eslint/parser",
 }

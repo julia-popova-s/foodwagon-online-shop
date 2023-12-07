@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-import { regExpEmail } from './regExpEmail.js';
+import { regExpEmail } from './regExpEmail.js.js';
 import { regExpPassword } from './regExpPassword.js';
 
 export const signupSchema = yup

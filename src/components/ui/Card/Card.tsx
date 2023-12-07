@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { getPartOfString } from '../../../utils/getPartOfString';
-import { Discount } from '../../ui/Discount/Discount';
+import { Discount } from '../Discount/Discount';
 import { CounterAndButton } from '../buttons/CounterAndButton';
 import { SearchButton } from '../buttons/SearchButton';
 import style from './card.module.scss';

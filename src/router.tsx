@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-import { ErrorPage } from './components/pages/ErrorPage';
+import { ErrorPage } from './components/pages/ErrorPage/index.js';
 
 const App = lazy(() => import('./components/App/App.js'));
 
