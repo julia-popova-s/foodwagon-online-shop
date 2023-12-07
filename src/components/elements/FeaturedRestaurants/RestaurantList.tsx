@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { CardFeatured } from './CardFeatured';
 import { Loader } from './Loader';
 import style from './restaurantList.module.scss';
-
+type RestaurantList ={
+  isLoading:boolean; list:[];
+}
 export const RestaurantList: FC = ({ isLoading, list }) => {
   const skeleton = new Array(list.length).fill(0).map((_, index) => <Loader key={index} />);
 

@@ -3,7 +3,13 @@ import { FC } from 'react';
 
 import style from './categories.module.scss';
 
-export const Categories: FC = ({ activeCategory, handleClickCategory, items }) => {
+type CategoryProps = {
+  activeCategory: number;
+  handleClickCategory: (index: number) => void;
+  items: string[];
+};
+
+export const Categories: FC<CategoryProps> = ({ activeCategory, handleClickCategory, items }) => {
   return (
     <div className={style.categories}>
       <ul className={style.categories__list}>

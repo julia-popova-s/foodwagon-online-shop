@@ -46,7 +46,7 @@ export const SearchFood: FC = () => {
   const cart = useSelector((state) => state.cart.cart);
 
   useEffect(() => {
-    if (searchBy !== null)
+    if (searchBy !== -1)
       dispatch(
         fetchProducts({
           category: `${typeFood[searchBy].name}`,

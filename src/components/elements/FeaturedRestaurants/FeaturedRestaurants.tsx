@@ -8,12 +8,13 @@ import { fetchRestaurants } from '../../../store/reducers/restaurants';
 import { isLoadedSelector, restaurantListSelector } from '../../../store/reducers/restaurants';
 import { Categories } from '../Categories';
 import { SortPopup } from '../SortPopup';
+import { SortItem, SortType } from '../SortPopup/SortPopup';
 import { RestaurantList } from './RestaurantList';
 import style from './featuredRestaurants.module.scss';
 
 const categoryNames = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup', 'Burger'];
 
-const sortItems = [
+const sortItems: SortItem[] = [
   { name: 'popularity', type: 'popular' },
   { name: 'rating', type: 'rating' },
   { name: 'delivery time', type: 'time' },
@@ -21,7 +22,7 @@ const sortItems = [
 ];
 
 export const FeaturedRestaurants: FC = () => {
-  const [limit, setLimit] = useState(4);
+  const [limit, setLimit] = useState<number>(4);
   const dispatch = useDispatch();
 
   const category = useSelector(categorySelector);
@@ -30,16 +31,16 @@ export const FeaturedRestaurants: FC = () => {
   const isLoaded = useSelector(isLoadedSelector);
   const list = useSelector(restaurantListSelector);
 
-  const handleSelectCategory = (index) => {
+  const handleSelectCategory = (index: number) => {
     dispatch(setCategory(index));
   };
 
-  const handleSelectSortType = (type) => {
+  const handleSelectSortType = (type: SortType) => {
     dispatch(setSortBy(type));
   };
 
   const handleLimit = () => {
-    setLimit(false);
+    setLimit(0);
   };
 
   useEffect(() => {

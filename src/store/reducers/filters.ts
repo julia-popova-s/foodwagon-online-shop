@@ -1,12 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { SortType } from '../../components/elements/SortPopup/SortPopup';
+import { RootStore } from '../index';
+
+interface FilterSliceState {
+  category: number;
+  currentPage: number;
+  searchBy: number;
+  sortType: SortType;
+}
+
+const initialState: FilterSliceState = {
+  category: 0,
+  currentPage: 1,
+  searchBy: -1,
+  sortType: 'popular',
+};
+
 const filterSlice = createSlice({
-  initialState: {
-    category: 0,
-    currentPage: 1,
-    searchBy: null,
-    sortType: 'popular',
-  },
+  initialState,
   name: 'filters',
   reducers: {
     setCategory(state, action) {
@@ -24,10 +36,10 @@ const filterSlice = createSlice({
   },
 });
 
-export const categorySelector = (state) => state.filters.category;
-export const currentPageSelector = (state) => state.filters.currentPage;
-export const searchBySelector = (state) => state.filters.searchBy;
-export const sortTypeSelector = (state) => state.filters.sortType;
+export const categorySelector = (state: RootStore) => state.filters.category;
+export const currentPageSelector = (state: RootStore) => state.filters.currentPage;
+export const searchBySelector = (state: RootStore) => state.filters.searchBy;
+export const sortTypeSelector = (state: RootStore) => state.filters.sortType;
 
 export const { setCategory, setCurrentPage, setSearchBy, setSortBy } = filterSlice.actions;
 export default filterSlice.reducer;

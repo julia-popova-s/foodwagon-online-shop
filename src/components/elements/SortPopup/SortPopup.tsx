@@ -1,25 +1,48 @@
 import cn from 'classnames';
-import PropTypes from 'prop-types';
 import { FC, useEffect, useRef, useState } from 'react';
 
 import style from './sortPopup.module.scss';
 
-export const SortPopup: FC = ({ activeSortType, classNames, handleClickSortType, items, orderType }) => {
-  const [visiblePopup, setVisiblePopup] = useState(false);
-  const sortRef = useRef();
+export type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
 
-  const activeLabel = items.find((obj) => obj.type === activeSortType).name;
+export type OrderType = 'asc' | 'desc';
+
+export type SortItem = {
+  name: string;
+  order?: OrderType;
+  type: SortType;
+};
+
+type SortPopupProps = {
+  activeSortType: SortType;
+  classNames?: string;
+  handleClickSortType: (type: SortType, order?: OrderType) => void;
+  items?: SortItem[];
+  orderType?: OrderType;
+};
+
+export const SortPopup: FC<SortPopupProps> = ({
+  activeSortType,
+  classNames,
+  handleClickSortType,
+  items,
+  orderType,
+}) => {
+  const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
+  const sortRef = useRef<HTMLDivElement>(null);
+
+  const activeLabel = items?.find((obj) => obj.type === activeSortType)?.name;
 
   const handleVisiblePopup = () => {
     setVisiblePopup(!visiblePopup);
   };
 
-  const handleSelectFilter = (type, order) => {
+  const handleSelectFilter = (type: SortType, order: OrderType) => {
     handleClickSortType(type, order);
   };
 
   useEffect(() => {
-    const handleOutsideClick = (e) => {
+    const handleOutsideClick = (e: any) => {
       if (!sortRef.current?.contains(e.target)) {
         setVisiblePopup(false);
       }
@@ -41,32 +64,22 @@ export const SortPopup: FC = ({ activeSortType, classNames, handleClickSortType,
       {visiblePopup && (
         <div className={style.sort__popup}>
           <ul className={style.sort__list}>
-            {items &&
-              items.map(({ name, order, type }, i) => {
-                return (
-                  <li
-                    className={cn(style.sort__item, {
-                      [style.sort__item_active]: type === activeSortType && order === orderType,
-                    })}
-                    key={`${type}_${i}`}
-                    onClick={() => handleSelectFilter(type, order)}
-                  >
-                    {name}
-                  </li>
-                );
-              })}
+            {items?.map(({ name, order, type }, i) => {
+              return (
+                <li
+                  className={cn(style.sort__item, {
+                    [style.sort__item_active]: type === activeSortType && order === orderType,
+                  })}
+                  key={`${type}_${i}`}
+                  onClick={() => handleSelectFilter(type, order)}
+                >
+                  {name}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
     </div>
   );
-};
-SortPopup.propTypes = {
-  activeSortType: PropTypes.string.isRequired,
-  handleClickSortType: PropTypes.func.isRequired,
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-SortPopup.defaultProps = {
-  items: [],
 };

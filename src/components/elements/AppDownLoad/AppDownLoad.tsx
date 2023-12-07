@@ -4,12 +4,18 @@ import { ReactSVG } from 'react-svg';
 
 import style from './appDownLoad.module.scss';
 
-const titles = [
+type LinkType = {
+  name: string;
+  src: string;
+};
+
+const titles: string[][] = [
   ['Daily', 'Discounts'],
   ['Live', 'Tracing'],
   ['Quick', 'Delivery'],
 ];
-const links = [
+
+const links: LinkType[] = [
   { name: 'google-play', src: '/images/install-app/google-play.png' },
   { name: 'app-store', src: '/images/install-app/app-store.png' },
 ];

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getSumOfValues } from '../../utils/utilsForCart/getSumOfValues';
 import { updateAddedGoods } from '../../utils/utilsForCart/updateAddedGoods';
 import { updateTotalQuantity } from '../../utils/utilsForCart/updateTotalQuantity';
+import { RootStore } from '../index';
 
 const initialState = {
   addedGoods: [],
@@ -25,8 +26,7 @@ const cartSlice = createSlice({
 
           //увеличить сумму данной позиции
           state.cart[restaurantId].items[id].amount +=
-            state.cart[restaurantId].items[id].price *
-            (1 - state.cart[restaurantId].items[id].discount / 100);
+            state.cart[restaurantId].items[id].price * (1 - state.cart[restaurantId].items[id].discount / 100);
         } else {
           //если нет данной позиции, то поместить в корзину по id ресторана
           state.cart[restaurantId].items[id] = {
@@ -37,16 +37,10 @@ const cartSlice = createSlice({
         }
 
         //подсчитать сумму всех товаров из ресторана
-        state.cart[restaurantId].totalAmount = getSumOfValues(
-          Object.values(state.cart[restaurantId].items),
-          'amount',
-        );
+        state.cart[restaurantId].totalAmount = getSumOfValues(Object.values(state.cart[restaurantId].items), 'amount');
 
         //подсчитать количество всех товаров из ресторана
-        state.cart[restaurantId].totalCount = getSumOfValues(
-          Object.values(state.cart[restaurantId].items),
-          'quantity',
-        );
+        state.cart[restaurantId].totalCount = getSumOfValues(Object.values(state.cart[restaurantId].items), 'quantity');
       } else {
         //если ресторана нет в корзине, поместить позицию по id ресторана
         state.cart[restaurantId] = {
@@ -86,8 +80,7 @@ const cartSlice = createSlice({
     deleteOneProduct(state, { payload: { id, restaurantId } }) {
       //зафиксировать цену удаляемого товара
       const currentPrice =
-        state.cart[restaurantId].items[id].price *
-        (1 - state.cart[restaurantId].items[id].discount / 100);
+        state.cart[restaurantId].items[id].price * (1 - state.cart[restaurantId].items[id].discount / 100);
 
       //удалить товар, если количество меньше 1
       if (state.cart[restaurantId].items[id].quantity < 2) {
@@ -103,8 +96,7 @@ const cartSlice = createSlice({
         }
       } else {
         //обновить сумму данной позиции
-        state.cart[restaurantId].items[id].amount =
-          state.cart[restaurantId].items[id].amount - currentPrice;
+        state.cart[restaurantId].items[id].amount = state.cart[restaurantId].items[id].amount - currentPrice;
 
         //обновить количество данной позиции
         state.cart[restaurantId].items[id].quantity -= 1;
@@ -150,21 +142,13 @@ const cartSlice = createSlice({
 
       //обновить сумму данной позиции
       state.cart[restaurantId].items[id].amount =
-        quantity *
-        state.cart[restaurantId].items[id].price *
-        (1 - state.cart[restaurantId].items[id].discount / 100);
+        quantity * state.cart[restaurantId].items[id].price * (1 - state.cart[restaurantId].items[id].discount / 100);
 
       //подсчитать сумму всех товаров из ресторана
-      state.cart[restaurantId].totalAmount = getSumOfValues(
-        Object.values(state.cart[restaurantId].items),
-        'amount',
-      );
+      state.cart[restaurantId].totalAmount = getSumOfValues(Object.values(state.cart[restaurantId].items), 'amount');
 
       //подсчитать количество всех товаров из ресторана
-      state.cart[restaurantId].totalCount = getSumOfValues(
-        Object.values(state.cart[restaurantId].items),
-        'quantity',
-      );
+      state.cart[restaurantId].totalCount = getSumOfValues(Object.values(state.cart[restaurantId].items), 'quantity');
 
       //обновить список добавленных товаров
       updateAddedGoods(state);
@@ -175,10 +159,9 @@ const cartSlice = createSlice({
   },
 });
 
-export const addedGoodsSelector = (state) => state.cart.addedGoods;
-export const cartSelector = (state) => state.cart.cart;
-export const totalQuantitySelector = (state) => state.cart.totalQuantity;
+export const addedGoodsSelector = (state: RootStore) => state.cart.addedGoods;
+export const cartSelector = (state: RootStore) => state.cart.cart;
+export const totalQuantitySelector = (state: RootStore) => state.cart.totalQuantity;
 
-export const { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } =
-  cartSlice.actions;
+export const { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,11 +1,18 @@
 import cn from 'classnames';
+import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import style from './orderButton.module.scss';
 
-export function OrderButton({ classNames, name, onClick }) {
+type OrderButtonProps = {
+  classNames: string;
+  handleClick?: () => void;
+  name: string;
+};
+
+export const OrderButton: FC<OrderButtonProps> = ({ classNames, handleClick, name }) => {
   return (
-    <button className={cn(style.orderButton, classNames)} onClick={onClick}>
+    <button className={cn(style.orderButton, classNames)} onClick={handleClick}>
       {name}
 
       <ReactSVG
@@ -15,4 +22,4 @@ export function OrderButton({ classNames, name, onClick }) {
       />
     </button>
   );
-}
+};

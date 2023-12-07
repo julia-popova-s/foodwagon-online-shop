@@ -13,12 +13,15 @@ import {
 } from '../../../store/reducers/products';
 import { orderSelector, setSortType, sortTypeSelector } from '../../../store/reducers/sortingType';
 import { SortPopup } from '../../elements/SortPopup';
+import { SortItem } from '../../elements/SortPopup/SortPopup';
 import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
 import style from './restaurantPage.module.scss';
 
-const sortItems = [
+
+
+const sortItems: SortItem[] = [
   { name: 'popularity ', order: 'desc', type: 'rating' },
   {
     name: 'price ascending',
