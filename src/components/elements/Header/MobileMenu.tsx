@@ -8,7 +8,10 @@ import { CartButton } from '../../ui/buttons/CartButton';
 import { DeliverAddress } from './DeliverAddress';
 import style from './mobileMenu.module.scss';
 
-export const MobileMenu: FC = ({ handleLogOut }) => {
+type MobileMenuProps = {
+  handleLogOut: () => void;
+};
+export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
   const { pathname } = useLocation();
 
   useEffect(() => setMenuIsVisible(false), [pathname]);
@@ -19,14 +22,14 @@ export const MobileMenu: FC = ({ handleLogOut }) => {
     setMenuIsVisible(!menuIsVisible);
   };
 
-  const menuRef = useRef(null);
-  const buttonRef = useRef(null);
+  const menuRef = useRef<HTMLElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const isAuth = useSelector(isAuthSelector);
 
   useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (!menuRef.current?.contains(e.target) && !buttonRef.current?.contains(e.target)) {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (!menuRef.current?.contains(e.target as Node) && !buttonRef.current?.contains(e.target as Node)) {
         setMenuIsVisible(false);
       }
     };

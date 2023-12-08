@@ -7,11 +7,19 @@ import style from './cardFeatured.module.scss';
 
 const theme = 'close';
 
-export const CardFeatured: FC = (props) => {
+type CardFeaturedProps = {
+  deliveryTime: number;
+  imageSrc: string;
+  logo_photos: string;
+  name: string;
+  weighted_rating_value: number;
+};
+
+export const CardFeatured: FC<CardFeaturedProps> = (props) => {
   const { deliveryTime, imageSrc, logo_photos, name, weighted_rating_value } = props;
 
   return (
-    <div className={style.card} theme={theme}>
+    <div className={style.card}>
       <div className={style.card__up}>
         <img alt={name} className={style.card__image} src={process.env.PUBLIC_URL + imageSrc} />
 

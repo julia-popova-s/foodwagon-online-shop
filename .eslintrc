@@ -8,11 +8,11 @@
     "import/newline-after-import": "warn",
     "no-console": "warn",
     "semi": ["error", "always"],
-    "quotes": ["error", "single"],
+    "quotes": ["error", "single", { "avoidEscape": true }],
     "jsx-quotes": ["error", "prefer-double"],
     "max-len": ["warn", { "code": 120 }],
     "comma-dangle": ["error", "always-multiline"],
     "prefer-const": "error"
   },
-  "parser": "@typescript-eslint/parser",
+  "parser": "@typescript-eslint/parser"
 }

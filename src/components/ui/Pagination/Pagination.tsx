@@ -1,8 +1,11 @@
+import { FC } from 'react';
 import ReactPaginate from 'react-paginate';
 
 import style from './pagination.module.scss';
 
-export function Pagination({ currentPage, handleChangePage, pageCount }) {
+type PaginationProps = { currentPage: number; handleChangePage: (pageNumber: number) => void; pageCount: number };
+
+export const Pagination: FC<PaginationProps> = ({ currentPage, handleChangePage, pageCount }) => {
   return (
     <ReactPaginate
       breakLabel="..."
@@ -16,4 +19,4 @@ export function Pagination({ currentPage, handleChangePage, pageCount }) {
       renderOnZeroPageCount={null}
     />
   );
-}
+};

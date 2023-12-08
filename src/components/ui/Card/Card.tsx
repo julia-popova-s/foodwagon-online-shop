@@ -1,16 +1,48 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { cartSelector } from '../../../store/reducers/cart';
 import { getPartOfString } from '../../../utils/getPartOfString';
 import { Discount } from '../Discount/Discount';
 import { CounterAndButton } from '../buttons/CounterAndButton';
 import { SearchButton } from '../buttons/SearchButton';
 import style from './card.module.scss';
 
-export function Card(props) {
+type ProductQuantity = {
+  id: string;
+  quantity: number;
+  restaurantId: string;
+};
+
+type Product = {
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
+
+type CardProps = {
+  classNames: string;
+  discount: number;
+  handleAddProduct: (item: Product) => void;
+  handleInputCount: (item: ProductQuantity) => void;
+  handleRemoveProduct: (item: Product) => void;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
+
+export const Card: FC<CardProps> = (props) => {
   const {
     classNames,
     discount,
@@ -25,8 +57,10 @@ export function Card(props) {
     title,
   } = props;
 
-  const data = { discount, id, image, price, restaurantId, restaurantName, title };
-  const { cart } = useSelector((state) => state.cart);
+  const data: Product = { discount, id, image, price, restaurantId, restaurantName, title };
+
+  const cart = useSelector(cartSelector);
+
   const quantity = cart[restaurantId]?.items[id]?.quantity;
 
   const handlePlusProduct = () => {
@@ -37,7 +71,7 @@ export function Card(props) {
     handleRemoveProduct(data);
   };
 
-  const handleInputQuantity = (quantity) => handleInputCount({ id, quantity, restaurantId });
+  const handleInputQuantity = (quantity: number) => handleInputCount({ id, quantity, restaurantId });
 
   return (
     <div className={cn(style.card, classNames)}>
@@ -52,7 +86,7 @@ export function Card(props) {
         {getPartOfString(title, 47)}
       </Link>
 
-      <Link className={style.card__location}>
+      <Link className={style.card__location} to={`/restaurant/${restaurantId}/product/${id}`}>
         <FontAwesomeIcon className={style.card__locationIcon} icon={faLocationDot} />
         {getPartOfString(restaurantName, 24)}
       </Link>
@@ -71,4 +105,4 @@ export function Card(props) {
       )}
     </div>
   );
-}
+};

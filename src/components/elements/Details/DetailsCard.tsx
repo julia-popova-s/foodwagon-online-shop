@@ -5,7 +5,16 @@ import { Link } from 'react-router-dom';
 import { OrderButton } from '../../ui/buttons/OrderButton';
 import style from './detailsCard.module.scss';
 
-export const DetailsCard: FC = ({ description, flippedСard, food, imageSrc, link, title }) => {
+type DetailsCardProps = {
+  description: string;
+  flippedСard: boolean;
+  food: string;
+  imageSrc: string;
+  link: string;
+  title: string;
+};
+
+export const DetailsCard: FC<DetailsCardProps> = ({ description, flippedСard, food, imageSrc, link, title }) => {
   const flippedСardStyle = {
     imgBorder: style.cardBig__img_border,
     imgRight: style.cardBig__img_right,

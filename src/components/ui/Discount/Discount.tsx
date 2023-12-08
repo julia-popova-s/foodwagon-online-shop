@@ -1,8 +1,11 @@
 import cn from 'classnames';
+import { FC } from 'react';
 
 import style from './discount.module.scss';
 
-export function Discount({ classNames, discount, view }) {
+type DiscountProps = { classNames?: string; discount: number; view?: 'smallLabel' };
+
+export const Discount: FC<DiscountProps> = ({ classNames, discount, view }) => {
   const labelView = view === 'smallLabel';
 
   return (
@@ -26,7 +29,7 @@ export function Discount({ classNames, discount, view }) {
       >
         {'%'}
       </div>
-      
+
       <div
         className={cn(style.label__discountOff, {
           [style.smallLabel__discountOff]: labelView,
@@ -36,4 +39,4 @@ export function Discount({ classNames, discount, view }) {
       </div>
     </div>
   );
-}
+};

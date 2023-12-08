@@ -1,19 +1,33 @@
 import cn from 'classnames';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 
 import style from './counter.module.scss';
 
-export function Counter({ classNames, handleInputQuantity, handleMinusProduct, handlePlusProduct, quantity }) {
+type CounterProps = {
+  classNames: string;
+  handleInputQuantity: (quantity: number) => void;
+  handleMinusProduct: () => void;
+  handlePlusProduct: () => void;
+  quantity: number;
+};
+
+export const Counter: FC<CounterProps> = ({
+  classNames,
+  handleInputQuantity,
+  handleMinusProduct,
+  handlePlusProduct,
+  quantity,
+}) => {
   const [count, setCount] = useState(quantity);
 
-  const handleChangeCount = e => {
+  const handleChangeCount = (e: ChangeEvent<HTMLInputElement>) => {
     const counter = e.target.value.replace(/[^0-9]/gi, '');
     if (counter !== '') {
       setCount(+counter);
       handleInputQuantity(+counter);
     } else {
-      setCount('');
+      setCount(0);
     }
   };
 
@@ -41,7 +55,7 @@ export function Counter({ classNames, handleInputQuantity, handleMinusProduct, h
 
       <input
         className={cn(style.buttons__input)}
-        maxLength="2"
+        maxLength={2}
         onChange={handleChangeCount}
         type="text"
         value={count}
@@ -52,7 +66,7 @@ export function Counter({ classNames, handleInputQuantity, handleMinusProduct, h
       </button>
     </div>
   );
-}
+};
 
 Counter.propTypes = {
   handleMinusProduct: PropTypes.func.isRequired,

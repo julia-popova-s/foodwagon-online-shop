@@ -1,4 +1,4 @@
-import { FC, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
@@ -6,7 +6,22 @@ import { v4 as uuidv4 } from 'uuid';
 import { PriceBlock } from '../../pages/CartPage/PriceBlock';
 import style from './popup.module.scss';
 
-export const Popup:FC = forwardRef(({ isLoaded, list, show }, ref) => {
+type Product = {
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  title: string;
+};
+
+type PopupProps = {
+  isLoaded: boolean;
+  list: Product[];
+  show: boolean;
+};
+
+export const Popup = forwardRef<HTMLDivElement, PopupProps>(({ isLoaded, list, show }, ref) => {
   return (
     <CSSTransition classNames="alert" in={show && isLoaded} timeout={300} unmountOnExit>
       <div className={style.popup} ref={ref}>

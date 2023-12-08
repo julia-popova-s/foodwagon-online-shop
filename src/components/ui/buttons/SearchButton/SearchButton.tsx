@@ -1,9 +1,17 @@
 import cn from 'classnames';
+import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import style from './searchButton.module.scss';
 
-export function SearchButton({ classNames, handleClick, icon, label }) {
+type SearchButtonProps = {
+  classNames: string;
+  handleClick?: () => void;
+  icon?: string;
+  label: string;
+};
+
+export const SearchButton: FC<SearchButtonProps> = ({ classNames, handleClick, icon, label }) => {
   return (
     <button className={cn(style.searchButton, classNames)} onClick={handleClick}>
       {icon && icon === 'search' && (
@@ -17,4 +25,4 @@ export function SearchButton({ classNames, handleClick, icon, label }) {
       <span>{label}</span>
     </button>
   );
-}
+};

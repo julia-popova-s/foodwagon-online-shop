@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 
 import style from './cityList.module.scss';
 
-export const CityList: FC = ({ links, title }) => {
+type CityListProps = {
+  links: string[];
+  title: string;
+};
+
+export const CityList: FC<CityListProps> = ({ links, title }) => {
   return (
     <div className={style.cityList}>
       <div className={style.cityList__title}>{title}</div>

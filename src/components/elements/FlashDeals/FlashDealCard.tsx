@@ -3,7 +3,9 @@ import { FC } from 'react';
 import { Discount } from '../../ui/Discount';
 import style from './flashDealCard.module.scss';
 
-export const FlashDealCard: FC = ({ discount, image, restaurantName }) => {
+type FlashDealCardProps = { discount: number; image: string; restaurantName: string };
+
+export const FlashDealCard: FC<FlashDealCardProps> = ({ discount, image, restaurantName }) => {
   return (
     <div className={style.card}>
       <div className={style.card__up}>

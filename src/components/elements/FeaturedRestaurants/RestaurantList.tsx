@@ -4,22 +4,33 @@ import { Link } from 'react-router-dom';
 import { CardFeatured } from './CardFeatured';
 import { Loader } from './Loader';
 import style from './restaurantList.module.scss';
-type RestaurantList ={
-  isLoading:boolean; list:[];
-}
-export const RestaurantList: FC = ({ isLoading, list }) => {
+
+type Restaurant = {
+  backgroundId: string;
+  deliveryTime: number;
+  id: string;
+  imageSrc: string;
+  logo_photos: string;
+  name: string;
+  weighted_rating_value: number;
+};
+
+type RestaurantListProps = {
+  isLoading: boolean;
+  list: Restaurant[];
+};
+
+export const RestaurantList: FC<RestaurantListProps> = ({ isLoading, list }) => {
   const skeleton = new Array(list.length).fill(0).map((_, index) => <Loader key={index} />);
 
   return (
     <div className={style.restaurantListWrapper}>
       {isLoading && list
-        ? list.map((obj) => {
-            return (
-              <Link key={obj.id} to={`restaurant/${obj.id}/product/${obj.backgroundId}`}>
-                <CardFeatured {...obj} />
-              </Link>
-            );
-          })
+        ? list.map((obj) => (
+            <Link key={obj.id} to={`restaurant/${obj.id}/product/${obj.backgroundId}`}>
+              <CardFeatured {...obj} />
+            </Link>
+          ))
         : skeleton}
     </div>
   );

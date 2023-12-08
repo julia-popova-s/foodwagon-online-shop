@@ -6,7 +6,19 @@ import { Counter } from '../../Counter';
 import { SearchButton } from '../SearchButton';
 import style from './counterAndButton.module.scss';
 
-export const CounterAndButton: FC = ({ handleInputQuantity, handleMinusProduct, handlePlusProduct, quantity }) => {
+type CounterAndButtonProps = {
+  handleInputQuantity: (quantity: number) => void;
+  handleMinusProduct: () => void;
+  handlePlusProduct: () => void;
+  quantity: number;
+};
+
+export const CounterAndButton: FC<CounterAndButtonProps> = ({
+  handleInputQuantity,
+  handleMinusProduct,
+  handlePlusProduct,
+  quantity,
+}) => {
   return (
     <div className={style.buttons}>
       <Link className={style.buttons__link} to={'/cart'}>

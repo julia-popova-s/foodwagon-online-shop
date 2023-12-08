@@ -1,13 +1,18 @@
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { validationEmail } from '../../../utils/utilsForForm/validationEmail';
 import { FooterNav } from './FooterNav';
 import style from './footer.module.scss';
 
-export const LINKS = [
+type LinkItem = {
+  links: string[];
+  title: string;
+};
+
+export const LINKS: LinkItem[] = [
   {
     links: ['About us', 'Team', 'Careers', 'Blog'],
     title: 'Company',
@@ -27,17 +32,17 @@ export const Footer: FC = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!validationEmail(e.target.value)) {
       setError('Email is invalid');
     } else {
-      setError(null);
+      setError('');
     }
 
     setEmail(e.target.value);
   };
 
-  const handleSubmitEmail = (e) => {
+  const handleSubmitEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEmail('');
   };

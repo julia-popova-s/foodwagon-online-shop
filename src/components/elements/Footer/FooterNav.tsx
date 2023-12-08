@@ -4,9 +4,15 @@ import { Link } from 'react-router-dom';
 
 import style from './footerNav.module.scss';
 
-export const FooterNav: FC = ({ links, title }) => {
+type LinkItem = {
+  classNames?: string;
+  links: string[];
+  title: string;
+};
+
+export const FooterNav: FC<LinkItem> = ({ classNames, links, title }) => {
   return (
-    <div className={style.cityList}>
+    <div className={cn(style.cityList, classNames)}>
       <div className={style.cityList__title}>{title}</div>
 
       <ul className={cn(style.cityList__items)}>

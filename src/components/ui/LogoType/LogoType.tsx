@@ -1,11 +1,17 @@
 import cn from 'classnames';
+import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import style from './logoType.module.scss';
 
-export function LogoType({ onClick }) {
+type LogoTypeProps = {
+  classNames?: string;
+  handleClick?: () => void;
+};
+
+export const LogoType: FC<LogoTypeProps> = ({ classNames, handleClick }) => {
   return (
-    <div className={style.logo} onClick={onClick}>
+    <div className={cn(style.logo, classNames)} onClick={handleClick}>
       <ReactSVG className={style.logo__image} src={process.env.PUBLIC_URL + '/images/header/logo.svg'} wrapper="span" />
 
       <div className={style.logo__name}>food</div>
@@ -17,4 +23,4 @@ export function LogoType({ onClick }) {
       </div>
     </div>
   );
-}
+};

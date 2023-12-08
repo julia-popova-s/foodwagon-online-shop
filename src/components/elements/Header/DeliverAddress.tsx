@@ -5,7 +5,11 @@ import { FC } from 'react';
 
 import style from './deliverAddress.module.scss';
 
-export const DeliverAddress: FC = ({ classNames }) => {
+type DeliverAddressProps = {
+  classNames?: string;
+};
+
+export const DeliverAddress: FC<DeliverAddressProps> = ({ classNames }) => {
   return (
     <div className={cn(style.address, classNames)}>
       <p className={style.address__deliver}>Deliver to:</p>

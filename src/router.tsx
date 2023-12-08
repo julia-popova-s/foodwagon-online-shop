@@ -1,17 +1,17 @@
 import { lazy } from 'react';
 
-import { ErrorPage } from './components/pages/ErrorPage/index.js';
+import { ErrorPage } from './components/pages/ErrorPage';
 
-const App = lazy(() => import('./components/App/App.js'));
+const App = lazy(() => import('./components/App/App'));
 
-const HomePage = lazy(() => import('./components/pages/HomePage/HomePage.js'));
-const CartPage = lazy(() => import('./components/pages/CartPage/CartPage.js'));
+const HomePage = lazy(() => import('./components/pages/HomePage/HomePage'));
+const CartPage = lazy(() => import('./components/pages/CartPage/CartPage'));
 
-const SignUpPage = lazy(() => import('./components/pages/LoginPage/SignUpPage.js'));
-const LoginPage = lazy(() => import('./components/pages/LoginPage/LoginPage.js'));
+const SignUpPage = lazy(() => import('./components/pages/LoginPage/SignUpPage'));
+const LoginPage = lazy(() => import('./components/pages/LoginPage/LoginPage'));
 
-const ProductPage = lazy(() => import('./components/pages/ProductPage/ProductPage.js'));
-const SearchPage = lazy(() => import('./components/pages/SearchPage/SearchPage.js'));
+const ProductPage = lazy(() => import('./components/pages/ProductPage/ProductPage'));
+const SearchPage = lazy(() => import('./components/pages/SearchPage/SearchPage'));
 
 export const router = [
   {

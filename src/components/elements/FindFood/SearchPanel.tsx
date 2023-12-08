@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import {
   fetchProductsFastAccess,
   isLoadedSelector,
@@ -16,16 +17,21 @@ export const SearchPanel: FC = () => {
   const [searchValue, setSearchValue] = useState('');
   const [visiblePopup, setVisiblePopup] = useState(false);
 
-  const popupRef = useRef(null);
-  const searchRef = useRef(null);
+  // const handleVisiblePopup = () => setVisiblePopup(true);
+  // const handleHiddenPopup = () => setVisiblePopup(false);
 
+  // const popupRef = useOutsideClick(handleVisiblePopup, handleHiddenPopup);
+  // const searchRef = useOutsideClick(handleVisiblePopup, handleHiddenPopup);
+
+  const popupRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   const isLoaded = useSelector(isLoadedSelector);
   const products = useSelector(productListSelector);
   const currentPage = useSelector(currentPageSelector);
 
-  const handleSearchValue = (text) => {
+  const handleSearchValue = (text: string) => {
     setSearchValue(text);
   };
 
@@ -45,8 +51,8 @@ export const SearchPanel: FC = () => {
   };
 
   useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (popupRef.current?.contains(e.target) || searchRef.current?.contains(e.target)) {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (popupRef.current?.contains(e.target as Node) || searchRef.current?.contains(e.target as Node)) {
         setVisiblePopup(true);
       } else {
         setVisiblePopup(false);
