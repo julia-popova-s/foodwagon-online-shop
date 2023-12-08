@@ -1,6 +1,8 @@
+import { FC } from 'react';
+
 import style from './spinner.module.scss';
 
-const Spinner = () => {
+const Spinner: FC = () => {
   return (
     <div className={style.root}>
       <div className={style.loader}>

@@ -61,7 +61,7 @@ export const Card: FC<CardProps> = (props) => {
 
   const cart = useSelector(cartSelector);
 
-  const quantity = cart[restaurantId]?.items[id]?.quantity;
+  const quantity: number = cart[restaurantId]?.items[id]?.quantity;
 
   const handlePlusProduct = () => {
     handleAddProduct(data);

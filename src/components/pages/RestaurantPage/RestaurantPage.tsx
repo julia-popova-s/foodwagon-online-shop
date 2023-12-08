@@ -13,13 +13,36 @@ import {
 } from '../../../store/reducers/products';
 import { orderSelector, setSortType, sortTypeSelector } from '../../../store/reducers/sortingType';
 import { SortPopup } from '../../elements/SortPopup';
-import { SortItem } from '../../elements/SortPopup/SortPopup';
 import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
 import style from './restaurantPage.module.scss';
 
+export type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
 
+export type OrderType = 'asc' | 'desc';
+
+export type SortItem = {
+  name: string;
+  order: OrderType;
+  type: SortType;
+};
+
+type ProductQuantity = {
+  id: string;
+  quantity: number;
+  restaurantId: string;
+};
+
+type Product = {
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
 
 const sortItems: SortItem[] = [
   { name: 'popularity ', order: 'desc', type: 'rating' },
@@ -54,11 +77,11 @@ export const RestaurantPage: FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleChangePage = (number) => {
-    dispatch(setCurrentPage(number));
+  const handleChangePage = (pageNumber: number) => {
+    dispatch(setCurrentPage(pageNumber));
   };
 
-  const handleSelectSortType = (type, order) => {
+  const handleSelectSortType = (type: SortType, order: OrderType) => {
     dispatch(setSortType({ order, type }));
   };
 
@@ -74,16 +97,16 @@ export const RestaurantPage: FC = () => {
     );
   }, [sortType, category, restaurantId, order, currentPage]);
 
-  const handleAddProduct = (obj) => {
-    dispatch(addProduct(obj));
+  const handleAddProduct = (item: Product) => {
+    dispatch(addProduct(item));
   };
 
-  const handleRemoveProduct = (product) => {
-    dispatch(deleteOneProduct(product));
+  const handleRemoveProduct = (item: Product) => {
+    dispatch(deleteOneProduct(item));
   };
 
-  const handleInputCount = (obj) => {
-    dispatch(setProductCount(obj));
+  const handleInputCount = (item: ProductQuantity) => {
+    dispatch(setProductCount(item));
   };
 
   const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);

@@ -4,6 +4,14 @@ import { getSumOfValues } from '../../utils/utilsForCart/getSumOfValues';
 import { updateAddedGoods } from '../../utils/utilsForCart/updateAddedGoods';
 import { updateTotalQuantity } from '../../utils/utilsForCart/updateTotalQuantity';
 import { RootStore } from '../index';
+type CartItem ={
+
+}
+interface CartSliceState ={
+  addedGoods:[],
+  cart:{};
+  totalQuantity:number;
+}
 
 const initialState = {
   addedGoods: [],

@@ -4,13 +4,46 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
+import { cartSelector } from '../../../store/reducers/cart';
 import { getPartOfString } from '../../../utils/getPartOfString';
 import { Discount } from '../../ui/Discount';
 import { CounterAndButton } from '../../ui/buttons/CounterAndButton';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import style from './card.module.scss';
 
-export const Card: FC = ({
+type ProductQuantity = {
+  id: string;
+  price: number;
+  quantity: number;
+  restaurantId: string;
+};
+
+type Product = {
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
+
+type CardProps = {
+  classNames: string;
+  discount: number;
+  handleAddProduct: (item: Product) => void;
+  handleInputCount: (item: ProductQuantity) => void;
+  handleRemoveProduct: (item: Product) => void;
+  id: string;
+  image: string;
+  ingredients: string[];
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
+
+export const Card: FC<CardProps> = ({
   discount,
   handleAddProduct,
   handleInputCount,
@@ -28,11 +61,11 @@ export const Card: FC = ({
     handleRemoveProduct(data);
   };
 
-  const { cart } = useSelector((state) => state.cart);
+  const cart = useSelector(cartSelector);
 
   const quantity = cart[restaurantId]?.items[id]?.quantity;
 
-  const handleInputQuantity = (quantity) => handleInputCount({ id, price, quantity, restaurantId });
+  const handleInputQuantity = (quantity: number) => handleInputCount({ id, price, quantity, restaurantId });
 
   const handlePlusProduct = () => {
     handleAddProduct({
@@ -50,15 +83,8 @@ export const Card: FC = ({
     <div className={style.card}>
       <div className={style.card__left}>
         <img alt={title} className={style.card__image} src={`${process.env.PUBLIC_URL}${image}`} />
-        {/* 
-        {discount ? (
-          <div className={style.card__discount}>
-            {discount}
-            <div className={style.card__discount_size}>%</div>
-            <div className={style.card__discount_off}>off</div>
-          </div>
-        ) : null} */}
         {discount && discount ? <Discount classNames={style.card__discount} discount={discount} /> : null}
+
         <Discount classNames={style.discount} discount={discount} view={'smallLabel'} />
       </div>
 
@@ -72,7 +98,9 @@ export const Card: FC = ({
             wrapper="span"
           />
 
-          <Link className={style.info__nameLink}>{restaurantName}</Link>
+          <Link className={style.info__nameLink} to={''}>
+            {restaurantName}
+          </Link>
         </p>
 
         <div className={style.info__prices}>

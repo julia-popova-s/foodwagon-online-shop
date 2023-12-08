@@ -5,7 +5,14 @@ import { CSSTransition } from 'react-transition-group';
 import { emailSelector } from '../../../store/reducers/user';
 import style from './modal.module.scss';
 
-export const Modal: FC = forwardRef(({ handleCloseModal, name, orderNumber, show }, ref) => {
+type ModalProps = {
+  handleCloseModal: () => void;
+  name: string;
+  orderNumber: number;
+  show: boolean;
+};
+
+export const Modal = forwardRef<HTMLDivElement, ModalProps>(({ handleCloseModal, name, orderNumber, show }, ref) => {
   const email = useSelector(emailSelector);
   return (
     <CSSTransition classNames="alert" in={show} timeout={300} unmountOnExit>

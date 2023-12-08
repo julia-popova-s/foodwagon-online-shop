@@ -9,6 +9,36 @@ import { Discount } from '../../ui/Discount/Discount';
 import { PriceBlock } from './PriceBlock';
 import style from './productCard.module.scss';
 
+type ProductQuantity = {
+  id: string;
+  quantity: number;
+  restaurantId: string;
+};
+
+type Product = {
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
+
+type ProductCardProps = {
+  classNames: string;
+  discount: number;
+  handleAddProduct: (item: Product) => void;
+  handleInputCount: (item: ProductQuantity) => void;
+  handleRemoveProduct: (item: Product) => void;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
+
 export const ProductCard: FC = ({
   amount,
   discount,

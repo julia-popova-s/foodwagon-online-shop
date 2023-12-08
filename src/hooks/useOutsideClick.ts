@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-type Ref = HTMLButtonElement | HTMLDivElement | HTMLElement;
+type Ref = HTMLButtonElement | HTMLDivElement | HTMLElement | HTMLSpanElement;
 
 export const useOutsideClick = (handleOpen: () => void, handleClose: () => void) => {
   const ref = useRef<Ref>(null);

@@ -183,8 +183,8 @@ const Cart: FC = () => {
                         </p>
                         <OrderButton
                           classNames={style.cart__orderBtn}
+                          handleClick={() => handlePlaceAnOrder(restaurantId, restaurantName)}
                           name={'Place an order'}
-                          onClick={() => handlePlaceAnOrder(restaurantId, restaurantName)}
                         />
                       </div>
                     </>

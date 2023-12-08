@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 
 import style from './sortPopup.module.scss';
 
@@ -9,14 +9,14 @@ export type OrderType = 'asc' | 'desc';
 
 export type SortItem = {
   name: string;
-  order?: OrderType;
+  order: OrderType;
   type: SortType;
 };
 
 type SortPopupProps = {
   activeSortType: SortType;
   classNames?: string;
-  handleClickSortType: (type: SortType, order?: OrderType) => void;
+  handleClickSortType: (type: SortType, order: OrderType) => void;
   items?: SortItem[];
   orderType?: OrderType;
 };
@@ -37,19 +37,16 @@ export const SortPopup: FC<SortPopupProps> = ({
     setVisiblePopup(!visiblePopup);
   };
 
-  const handleSelectFilter = (type: SortType, order: OrderType) => {
-    handleClickSortType(type, order);
-  };
-
   useEffect(() => {
-    const handleOutsideClick = (e: any) => {
-      if (!sortRef.current?.contains(e.target)) {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (!sortRef.current?.contains(e.target as Node)) {
         setVisiblePopup(false);
       }
     };
-    document.body.addEventListener('click', handleOutsideClick);
 
-    return () => document.body.removeEventListener('click', handleOutsideClick);
+    document.body.addEventListener('mousedown', handleOutsideClick);
+
+    return () => document.body.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
   return (
@@ -71,7 +68,7 @@ export const SortPopup: FC<SortPopupProps> = ({
                     [style.sort__item_active]: type === activeSortType && order === orderType,
                   })}
                   key={`${type}_${i}`}
-                  onClick={() => handleSelectFilter(type, order)}
+                  onClick={() => handleClickSortType(type, order)}
                 >
                   {name}
                 </li>

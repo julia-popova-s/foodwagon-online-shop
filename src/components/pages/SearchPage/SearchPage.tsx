@@ -16,6 +16,22 @@ import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
 import style from './searchPage.module.scss';
 
+type ProductQuantity = {
+  id: string;
+  quantity: number;
+  restaurantId: string;
+};
+
+type Product = {
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
+
 const SearchPage: FC = () => {
   const error = useSelector(errorSelector);
   const currentPage = useSelector(currentPageSelector);
@@ -25,20 +41,20 @@ const SearchPage: FC = () => {
 
   const dispatch = useDispatch();
 
-  const handleChangePage = (number) => {
-    dispatch(setCurrentPage(number));
+  const handleChangePage = (pageNumber: number) => {
+    dispatch(setCurrentPage(pageNumber));
   };
 
-  const handleAddProduct = (obj) => {
-    dispatch(addProduct(obj));
+  const handleAddProduct = (item: Product) => {
+    dispatch(addProduct(item));
   };
 
-  const handleRemoveProduct = (product) => {
+  const handleRemoveProduct = (product: Product) => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj) => {
-    dispatch(setProductCount(obj));
+  const handleInputCount = (item: ProductQuantity) => {
+    dispatch(setProductCount(item));
   };
 
   const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
@@ -55,7 +71,7 @@ const SearchPage: FC = () => {
 
         <div className={style.menuList}>
           {isLoaded &&
-            products.map((item, i) => (
+            products.map((item) => (
               <Card
                 classNames={style.menuList__item}
                 key={item.id}
