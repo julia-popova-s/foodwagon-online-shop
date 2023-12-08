@@ -4,19 +4,41 @@ import { getSumOfValues } from '../../utils/utilsForCart/getSumOfValues';
 import { updateAddedGoods } from '../../utils/utilsForCart/updateAddedGoods';
 import { updateTotalQuantity } from '../../utils/utilsForCart/updateTotalQuantity';
 import { RootStore } from '../index';
-type CartItem ={
 
-}
-interface CartSliceState ={
-  addedGoods:[],
-  cart:{};
-  totalQuantity:number;
+interface CartProduct {
+  amount: number;
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  quantity: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
 }
 
-const initialState = {
+interface ListItem {
+  [id: string]: CartProduct;
+}
+interface ProductList {
+  items: ListItem;
+  totalAmount: number;
+  totalCount: number;
+}
+interface CartType {
+  [restaurantId: string]: ProductList;
+}
+type AddedGoodsItem = [string, ProductList];
+interface CartSliceState {
+  addedGoods: AddedGoodsItem[];
+  cart: CartType;
+  totalQuantity: number;
+}
+
+const initialState: CartSliceState = {
   addedGoods: [],
   cart: {},
-  totalQuantity: null,
+  totalQuantity: 0,
 };
 
 const cartSlice = createSlice({

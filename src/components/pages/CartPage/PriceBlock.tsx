@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import style from './priceBlock.module.scss';
 
-type PriceBlockProps = { classNames: string; discount: number; price: number };
+type PriceBlockProps = { classNames?: string; discount: number; price: number };
 
 export const PriceBlock: FC<PriceBlockProps> = ({ classNames, discount, price }) => {
   return (

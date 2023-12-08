@@ -11,6 +11,7 @@ import style from './productCard.module.scss';
 
 type ProductQuantity = {
   id: string;
+  price: number;
   quantity: number;
   restaurantId: string;
 };
@@ -25,21 +26,26 @@ type Product = {
   title: string;
 };
 
+type Idx = { id: string; restaurantId: string };
+
 type ProductCardProps = {
-  classNames: string;
+  amount: number;
+  classNames?: string;
   discount: number;
   handleAddProduct: (item: Product) => void;
+  handleDeleteProduct: ({ id, restaurantId }: Idx) => void;
   handleInputCount: (item: ProductQuantity) => void;
-  handleRemoveProduct: (item: Product) => void;
+  handleRemoveProduct: (item: Idx) => void;
   id: string;
   image: string;
   price: number;
+  quantity: number;
   restaurantId: string;
   restaurantName: string;
   title: string;
 };
 
-export const ProductCard: FC = ({
+export const ProductCard: FC<ProductCardProps> = ({
   amount,
   discount,
   handleAddProduct,
@@ -73,10 +79,10 @@ export const ProductCard: FC = ({
 
   const handleReturnProduct = () => setReturnedProduct(false);
 
-  const handleInputQuantity = (quantity) => {
+  const handleInputQuantity = (quantity: number) => {
     if (!quantity) {
       setReturnedProduct(true);
-    } else handleInputCount({ id, price, quantity: quantity, restaurantId });
+    } else handleInputCount({ id, price, quantity, restaurantId });
   };
 
   useEffect(() => {

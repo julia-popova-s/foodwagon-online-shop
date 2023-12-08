@@ -16,6 +16,24 @@ import { ProductCard } from './ProductCard';
 import style from './cartPage.module.scss';
 
 let orderNumber = 0;
+type ProductQuantity = {
+  id: string;
+  price: number;
+  quantity: number;
+  restaurantId: string;
+};
+
+type Product = {
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
+type Idx = { id: string; restaurantId: string };
+type Restaurant = { restaurantId: string; restaurantName: string };
 
 const Cart: FC = () => {
   const { pathname } = useLocation();
@@ -26,8 +44,8 @@ const Cart: FC = () => {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [visibleModal, setVisibleModal] = useState(false);
 
-  const popupRef = useRef(null);
-  const modalRef = useRef(null);
+  const popupRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const addedGoods = useSelector(addedGoodsSelector);
   const cart = useSelector(cartSelector);
@@ -42,32 +60,31 @@ const Cart: FC = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const handleClearCart = ({ restaurantId, restaurantName }) => {
+  const handleClearCart = ({ restaurantId, restaurantName }: Restaurant) => {
     setName(restaurantName);
     setId(restaurantId);
     setVisiblePopup(true);
   };
 
-  const handleRemoveProduct = ({ id, restaurantId }) => {
-    dispatch(removeProduct({ id, restaurantId }));
+  const handleRemoveProduct = (item: Idx) => {
+    dispatch(removeProduct(item));
   };
 
-  const handleAddProduct = (product) => {
+  const handleAddProduct = (product: Product) => {
     dispatch(addProduct(product));
   };
 
-  const handleDeleteProduct = (obj, count) => {
-    const { id, restaurantId } = obj;
+  const handleDeleteProduct = (item: Idx, count: number) => {
     if (count < 1) {
-      dispatch(removeProduct({ id, restaurantId }));
-    } else dispatch(deleteOneProduct({ id, restaurantId }));
+      dispatch(removeProduct(item));
+    } else dispatch(deleteOneProduct(item));
   };
 
-  const handleInputQuantity = (obj) => {
+  const handleInputQuantity = (obj: ProductQuantity) => {
     dispatch(setProductCount(obj));
   };
 
-  const handlePlaceAnOrder = (id, name) => {
+  const handlePlaceAnOrder = (id: string, name: string) => {
     const list = cart[id];
     if (!isAuth) {
       navigate('/login');
@@ -95,8 +112,8 @@ const Cart: FC = () => {
   };
 
   useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (popupRef.current?.contains(e.target)) {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (popupRef.current?.contains(e.target as Node)) {
         setVisiblePopup(false);
       }
       return;
