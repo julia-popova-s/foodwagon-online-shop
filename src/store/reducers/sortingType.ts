@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { RootStore } from '..';
+
 const sortingTypeSlice = createSlice({
   initialState: {
     order: 'desc',
@@ -14,8 +16,8 @@ const sortingTypeSlice = createSlice({
   },
 });
 
-export const orderSelector = (state) => state.sortingType.order;
-export const sortTypeSelector = (state) => state.sortingType.sortType;
+export const orderSelector = (state: RootStore) => state.sortingType.order;
+export const sortTypeSelector = (state: RootStore) => state.sortingType.sortType;
 
 export const { setSortType } = sortingTypeSlice.actions;
 export default sortingTypeSlice.reducer;

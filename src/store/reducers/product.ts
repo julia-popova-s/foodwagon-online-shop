@@ -2,17 +2,27 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData';
 import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { RootStore } from '../index';
 
 export const fetchProduct = createAsyncThunk('product/fetchProduct', fetchProductsData);
 
+interface ProductSliceState {
+  error: null,
+  isLoaded: false,
+  list: [],
+  status: null,
+}
+
+const initialState: ProductSliceState = {
+  error: null,
+  isLoaded: false,
+  list: [],
+  status: null,
+};
+
 const productSlice = createSlice({
   extraReducers: (builder) => getExtraReducers(builder)(fetchProduct),
-  initialState: {
-    error: null,
-    isLoaded: false,
-    list: [],
-    status: null,
-  },
+  initialState,
 
   name: 'product',
 
@@ -23,10 +33,10 @@ const productSlice = createSlice({
   },
 });
 
-export const productSelector = (state) => state.product.list;
-export const errorSelector = (state) => state.product.error;
-export const isLoadedSelector = (state) => state.product.isLoaded;
-export const statusSelector = (state) => state.product.status;
+export const productSelector = (state: RootStore) => state.product.list;
+export const errorSelector = (state: RootStore) => state.product.error;
+export const isLoadedSelector = (state: RootStore) => state.product.isLoaded;
+export const statusSelector = (state: RootStore) => state.product.status;
 
 export const { setLoaded } = productSlice.actions;
 export default productSlice.reducer;

@@ -1,12 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+import { RootStore } from '..';
 import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData';
 import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
 
-export const fetchProductsSearch = createAsyncThunk(
-  'products/fetchProductsSearch',
-  fetchProductsData,
-);
+export const fetchProductsSearch = createAsyncThunk('products/fetchProductsSearch', fetchProductsData);
 
 const productsSlice = createSlice({
   extraReducers: (builder) => getExtraReducers(builder)(fetchProductsSearch),
@@ -34,11 +32,11 @@ const productsSlice = createSlice({
   },
 });
 
-export const productListSelector = (state) => state.productsSearch.list;
-export const errorSelector = (state) => state.productsSearch.error;
-export const isLoadedSelector = (state) => state.productsSearch.isLoaded;
-export const statusSelector = (state) => state.productsSearch.status;
-export const currentPageSelector = (state) => state.productsSearch.currentPage;
+export const productListSelector = (state: RootStore) => state.productsSearch.list;
+export const errorSelector = (state: RootStore) => state.productsSearch.error;
+export const isLoadedSelector = (state: RootStore) => state.productsSearch.isLoaded;
+export const statusSelector = (state: RootStore) => state.productsSearch.status;
+export const currentPageSelector = (state: RootStore) => state.productsSearch.currentPage;
 
 export const { setCurrentPage, setLoaded } = productsSlice.actions;
 export default productsSlice.reducer;

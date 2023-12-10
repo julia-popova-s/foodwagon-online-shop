@@ -1,6 +1,8 @@
-export const getExtraReducers = (builder) => (fetch) => {
+import type { ActionReducerMapBuilder, PayloadAction, ProductSliceState } from '@reduxjs/toolkit';
+
+export const getExtraReducers = (builder: ActionReducerMapBuilder<ProductSliceState>) => (fetch) => {
   builder
-    .addCase(fetch.fulfilled, (state, action) => {
+    .addCase(fetch.fulfilled, (state, action: PayloadAction) => {
       state.status = 'resolve';
       state.list = action.payload;
       state.isLoaded = true;

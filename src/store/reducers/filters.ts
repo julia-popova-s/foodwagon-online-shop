@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { SortType } from '../../components/elements/SortPopup/SortPopup';
 import { RootStore } from '../index';
+
+export type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
 
 interface FilterSliceState {
   category: number;

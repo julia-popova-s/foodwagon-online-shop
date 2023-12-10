@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+import { RootStore } from '..';
 import { fetchRestaurantsData } from '../../utils/utilsForStore/fetchRestaurantsData';
 import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
 
@@ -23,10 +24,10 @@ const restSlice = createSlice({
   },
 });
 
-export const restaurantListSelector = (state) => state.restaurants.list;
-export const errorSelector = (state) => state.restaurants.error;
-export const isLoadedSelector = (state) => state.restaurants.isLoaded;
-export const statusSelector = (state) => state.restaurants.status;
+export const restaurantListSelector = (state: RootStore) => state.restaurants.list;
+export const errorSelector = (state: RootStore) => state.restaurants.error;
+export const isLoadedSelector = (state: RootStore) => state.restaurants.isLoaded;
+export const statusSelector = (state: RootStore) => state.restaurants.status;
 
 export const { setLoaded } = restSlice.actions;
 export default restSlice.reducer;
