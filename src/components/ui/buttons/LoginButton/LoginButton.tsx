@@ -1,9 +1,12 @@
 import cn from 'classnames';
+import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import style from './loginButton.module.scss';
 
-export function LoginButton({ classNames, handleClick, title }) {
+type LoginButtonProps = { classNames: string; handleClick: () => void; title: string };
+
+export const LoginButton: FC<LoginButtonProps> = ({ classNames, handleClick, title }) => {
   return (
     <button className={cn(classNames, style.loginButton)} onClick={handleClick}>
       <ReactSVG
@@ -15,4 +18,4 @@ export function LoginButton({ classNames, handleClick, title }) {
       <span className={style.loginButton__name}>{title}</span>
     </button>
   );
-}
+};

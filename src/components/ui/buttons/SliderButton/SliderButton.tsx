@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
 import style from './sliderButton.module.scss';
@@ -7,10 +8,14 @@ const arrows = {
   arrowLeftSrc: '/images/ui/arrow_left.svg',
   arrowRightSrc: '/images/ui/arrow_right.svg',
 };
-
-export function SliderButton({ classNames, onClick, type }) {
+type SliderButtonProps = {
+  classNames?: string;
+  handleClick?: () => void;
+  type: 'left' | 'right';
+};
+export const SliderButton: FC<SliderButtonProps> = ({ classNames, handleClick, type }) => {
   return (
-    <button className={cn(style.sliderButton, classNames)} onClick={onClick}>
+    <button className={cn(style.sliderButton, classNames)} onClick={handleClick}>
       {type === 'left' ? (
         <ReactSVG className={style.sliderButton__arrow} src={`${process.env.PUBLIC_URL}${arrows.arrowLeftSrc}`} />
       ) : (
@@ -18,4 +23,4 @@ export function SliderButton({ classNames, onClick, type }) {
       )}
     </button>
   );
-}
+};

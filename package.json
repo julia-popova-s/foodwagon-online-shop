@@ -54,6 +54,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/lodash.debounce": "^4.0.9",
+    "@types/react-scroll": "^1.8.10",
     "@types/react-slick": "^0.23.12",
     "@types/react-transition-group": "^4.4.10",
     "@types/uuid": "^9.0.7",

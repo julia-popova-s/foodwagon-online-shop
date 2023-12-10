@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
-import { regExpEmail } from './regExpEmail.js.js';
-import { regExpPassword } from './regExpPassword.js';
+import { regExpEmail } from './regExpEmail';
+import { regExpPassword } from './regExpPassword';
 
 export const signupSchema = yup
   .object({

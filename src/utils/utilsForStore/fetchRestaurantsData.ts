@@ -1,6 +1,6 @@
 import { Filters, getFilterForRestaurants } from './getFilterForRestaurants';
 
-export const fetchRestaurantsData = async function (params: Filters, { rejectWithValue }) {
+export const fetchRestaurantsData = async function (params: Filters, { rejectWithValue }: any) {
   const filter = getFilterForRestaurants(params);
 
   try {
@@ -9,7 +9,7 @@ export const fetchRestaurantsData = async function (params: Filters, { rejectWit
       return rejectWithValue(response.status);
     }
     return await response.json();
-  } catch (error) {
+  } catch (error: any) {
     return rejectWithValue(error.message);
   }
 };

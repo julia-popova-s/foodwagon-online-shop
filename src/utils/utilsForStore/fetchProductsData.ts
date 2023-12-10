@@ -15,7 +15,7 @@ interface Filters {
   searchValue: string;
   sortType: SortType;
 }
-export const fetchProductsData = async function (params: Filters, { rejectWithValue }: any) {
+export const fetchProductsData = async function (params: Filters, { rejectWithValue }: any): Promise<any> {
   const error = 'Nothing was found according to your request. Try to find another option or shorten your request.';
 
   if (params.searchValue === '') {
@@ -31,7 +31,7 @@ export const fetchProductsData = async function (params: Filters, { rejectWithVa
       return rejectWithValue(error);
     }
     return data;
-  } catch (error) {
+  } catch (error: any) {
     return rejectWithValue('Error: ' + error.message);
   }
 };

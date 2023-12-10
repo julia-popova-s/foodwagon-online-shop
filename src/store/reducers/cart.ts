@@ -5,7 +5,7 @@ import { updateAddedGoods } from '../../utils/utilsForCart/updateAddedGoods';
 import { updateTotalQuantity } from '../../utils/utilsForCart/updateTotalQuantity';
 import { RootStore } from '../index';
 
-interface CartProduct {
+export interface CartProduct {
   amount: number;
   discount: number;
   id: string;
@@ -17,7 +17,7 @@ interface CartProduct {
   title: string;
 }
 
-interface ListItem {
+export interface ListItem {
   [id: string]: CartProduct;
 }
 export interface ProductList {
@@ -67,10 +67,10 @@ const cartSlice = createSlice({
         }
 
         //подсчитать сумму всех товаров из ресторана
-        state.cart[restaurantId].totalAmount = getSumOfValues(Object.values(state.cart[restaurantId].items), 'amount');
+        state.cart[restaurantId].totalAmount = getSumOfValues(state.cart[restaurantId].items, 'amount');
 
         //подсчитать количество всех товаров из ресторана
-        state.cart[restaurantId].totalCount = getSumOfValues(Object.values(state.cart[restaurantId].items), 'quantity');
+        state.cart[restaurantId].totalCount = getSumOfValues(state.cart[restaurantId].items, 'quantity');
       } else {
         //если ресторана нет в корзине, поместить позицию по id ресторана
         state.cart[restaurantId] = {
@@ -175,10 +175,10 @@ const cartSlice = createSlice({
         quantity * state.cart[restaurantId].items[id].price * (1 - state.cart[restaurantId].items[id].discount / 100);
 
       //подсчитать сумму всех товаров из ресторана
-      state.cart[restaurantId].totalAmount = getSumOfValues(Object.values(state.cart[restaurantId].items), 'amount');
+      state.cart[restaurantId].totalAmount = getSumOfValues(state.cart[restaurantId].items, 'amount');
 
       //подсчитать количество всех товаров из ресторана
-      state.cart[restaurantId].totalCount = getSumOfValues(Object.values(state.cart[restaurantId].items), 'quantity');
+      state.cart[restaurantId].totalCount = getSumOfValues(state.cart[restaurantId].items, 'quantity');
 
       //обновить список добавленных товаров
       updateAddedGoods(state);

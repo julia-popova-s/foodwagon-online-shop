@@ -1,10 +1,10 @@
 type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
 export interface Filters {
-  category: string;
-  currentPage: number;
-  limit: number;
-  restaurantId: string;
-  sortType: SortType;
+  category?: string;
+  currentPage?: number;
+  limit?: number;
+  restaurantId?: string;
+  sortType?: SortType;
 }
 
 export function getFilterForRestaurants({ category, currentPage, limit, restaurantId, sortType }: Filters) {

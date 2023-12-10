@@ -1,15 +1,15 @@
 type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
 type OrderType = 'asc' | 'desc';
 interface Filters {
-  category: string;
-  currentPage: number;
-  id: string;
-  limit: number;
-  order: OrderType;
-  rating: number;
-  restaurantId: string;
-  searchValue: string;
-  sortType: SortType;
+  category?: string;
+  currentPage?: number;
+  id?: string;
+  limit?: number;
+  order?: OrderType;
+  rating?: number;
+  restaurantId?: string;
+  searchValue?: string;
+  sortType?: SortType;
 }
 export function getFilterForProducts({
   category,
