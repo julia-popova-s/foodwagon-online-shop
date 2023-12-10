@@ -1,9 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { getSumOfValues } from '../../utils/utilsForCart/getSumOfValues';
 import { updateAddedGoods } from '../../utils/utilsForCart/updateAddedGoods';
 import { updateTotalQuantity } from '../../utils/utilsForCart/updateTotalQuantity';
 import { RootStore } from '../index';
+
+interface PayloadId {
+  id: string;
+  restaurantId: string;
+}
+interface PayloadCount extends PayloadId {
+  quantity: number;
+}
 
 export interface CartProduct {
   amount: number;
@@ -45,7 +53,7 @@ const cartSlice = createSlice({
   initialState,
   name: 'cart',
   reducers: {
-    addProduct(state, { payload: info }) {
+    addProduct(state, { payload: info }: PayloadAction<CartProduct>) {
       const { discount, id, price, restaurantId } = info;
 
       if (state.cart[restaurantId]) {
@@ -93,7 +101,7 @@ const cartSlice = createSlice({
       updateTotalQuantity(state);
     },
 
-    clearCart(state, { payload: { restaurantId } }) {
+    clearCart(state, { payload: { restaurantId } }: PayloadAction<{ restaurantId: string }>) {
       //зафиксировать количество товаров из ресторана
       const currentCount = state.cart[restaurantId].totalCount;
 
@@ -107,7 +115,7 @@ const cartSlice = createSlice({
       state.totalQuantity = state.totalQuantity - currentCount;
     },
 
-    deleteOneProduct(state, { payload: { id, restaurantId } }) {
+    deleteOneProduct(state, { payload: { id, restaurantId } }: PayloadAction<PayloadId>) {
       //зафиксировать цену удаляемого товара
       const currentPrice =
         state.cart[restaurantId].items[id].price * (1 - state.cart[restaurantId].items[id].discount / 100);
@@ -143,7 +151,7 @@ const cartSlice = createSlice({
       updateAddedGoods(state);
     },
 
-    removeProduct(state, { payload: { id, restaurantId } }) {
+    removeProduct(state, { payload: { id, restaurantId } }: PayloadAction<PayloadId>) {
       //зафиксировать количество и сумму удаляемой позиции
       const currentCount = state.cart[restaurantId].items[id].quantity;
       const currentAmount = state.cart[restaurantId].items[id].amount;
@@ -166,7 +174,7 @@ const cartSlice = createSlice({
       updateAddedGoods(state);
     },
 
-    setProductCount(state, { payload: { id, quantity, restaurantId } }) {
+    setProductCount(state, { payload: { id, quantity, restaurantId } }: PayloadAction<PayloadCount>) {
       //установить новое значение количества для данной позиции
       state.cart[restaurantId].items[id].quantity = quantity;
 
