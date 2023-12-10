@@ -20,16 +20,16 @@ interface CartProduct {
 interface ListItem {
   [id: string]: CartProduct;
 }
-interface ProductList {
+export interface ProductList {
   items: ListItem;
   totalAmount: number;
   totalCount: number;
 }
-interface CartType {
+export interface CartType {
   [restaurantId: string]: ProductList;
 }
 type AddedGoodsItem = [string, ProductList];
-interface CartSliceState {
+export interface CartSliceState {
   addedGoods: AddedGoodsItem[];
   cart: CartType;
   totalQuantity: number;

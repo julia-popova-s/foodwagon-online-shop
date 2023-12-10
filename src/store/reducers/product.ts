@@ -6,14 +6,7 @@ import { RootStore } from '../index';
 
 export const fetchProduct = createAsyncThunk('product/fetchProduct', fetchProductsData);
 
-interface ProductSliceState {
-  error: null,
-  isLoaded: false,
-  list: [],
-  status: null,
-}
-
-const initialState: ProductSliceState = {
+const initialState = {
   error: null,
   isLoaded: false,
   list: [],

@@ -1,6 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { RootStore } from '..';
+
+type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
+type OrderType = 'asc' | 'desc';
+interface PayloadActionProps {
+  order: OrderType;
+  type: SortType;
+}
 
 const sortingTypeSlice = createSlice({
   initialState: {
@@ -9,7 +16,7 @@ const sortingTypeSlice = createSlice({
   },
   name: 'sortingType',
   reducers: {
-    setSortType(state, action) {
+    setSortType(state, action: PayloadAction<PayloadActionProps>) {
       state.sortType = action.payload.type;
       state.order = action.payload.order;
     },

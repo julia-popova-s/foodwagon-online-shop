@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { cartSelector } from '../../../store/reducers/cart';
+import { getListProducts } from '../../../utils/getListProducts';
 import { getPartOfString } from '../../../utils/getPartOfString';
 import { Discount } from '../../ui/Discount';
 import { CounterAndButton } from '../../ui/buttons/CounterAndButton';
@@ -117,7 +118,7 @@ export const Card: FC<CardProps> = ({
           ) : null}
         </div>
 
-        <p className={style.info__ingredients}>Ingredients: {getPartOfString(ingredients.join(', '), 215)}</p>
+        <p className={style.info__ingredients}>Ingredients: {getPartOfString(getListProducts(ingredients), 215)}</p>
 
         <div className={cn(style.info__btns, style.buttons)}>
           {quantity ? (
