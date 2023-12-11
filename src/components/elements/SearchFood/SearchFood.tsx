@@ -1,6 +1,7 @@
 import '/node_modules/slick-carousel/slick/slick.css';
 import '/node_modules/slick-carousel/slick/slick-theme.css';
-import { FC, useEffect, useState } from 'react';
+import cn from 'classnames';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { ReactSVG } from 'react-svg';
@@ -10,10 +11,10 @@ import { addProduct, cartSelector, deleteOneProduct, setProductCount } from '../
 import { searchBySelector, setSearchBy } from '../../../store/reducers/filters';
 import { fetchProducts, isLoadedSelector, productListSelector } from '../../../store/reducers/products';
 import { Card } from '../../ui/Card';
+import { SliderButton } from '../../ui/buttons/SliderButton';
 import { CardFood } from './CardFood';
 import { Loader } from './Loader';
 import style from './searchFood.module.scss';
-import { sliderSettings } from './sliderSettings';
 
 type ProductQuantity = {
   id: string;
@@ -61,6 +62,8 @@ export const SearchFood: FC = () => {
 
   const cart = useSelector(cartSelector);
 
+  const slider = useRef<Slider>(null);
+
   useEffect(() => {
     if (searchBy !== -1)
       dispatch(
@@ -89,7 +92,76 @@ export const SearchFood: FC = () => {
   };
 
   const handleViewAll = () => {
-    setLimit(0);
+    setLimit(limit * 2);
+  };
+
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    nextArrow: (
+      <SliderButton
+        classNames={cn(style.searchFood__btn, style.searchFood__btn_right)}
+        handleClick={() => slider?.current?.slickNext()}
+        type={'right'}
+      />
+    ),
+    prevArrow: (
+      <SliderButton
+        classNames={cn(style.searchFood__btn, style.searchFood__btn_left)}
+        handleClick={() => slider?.current?.slickPrev()}
+        type={'left'}
+      />
+    ),
+    responsive: [
+      {
+        breakpoint: 1770,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToScroll: 1,
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 1480,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToScroll: 1,
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 1180,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToScroll: 1,
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 890,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToScroll: 1,
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 625,
+        settings: {
+          dots: false,
+          infinite: true,
+          slidesToScroll: 1,
+          slidesToShow: 1,
+        },
+      },
+    ],
+    slidesToScroll: 1,
+    slidesToShow: 6,
+    speed: 500,
   };
 
   const skeleton = new Array(products?.length).fill(0).map((_, index) => <Loader key={index} />);
@@ -100,7 +172,7 @@ export const SearchFood: FC = () => {
         <div className={style.searchFood}>
           <h5 className={style.searchFood__title}>Search by Food</h5>
 
-          <Slider {...sliderSettings} className={style.searchFood__slider}>
+          <Slider {...sliderSettings} className={style.searchFood__slider} ref={slider}>
             {typeFood &&
               typeFood.map((item, i) => {
                 return (

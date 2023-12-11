@@ -9,11 +9,11 @@ export const ErrorPage = () => {
     return (
       <div className={style.errorPage}>
         <div className={style.errorPage__container}>
-          <h1 className={style.errorPage__text}>Sorry, an unexpected error occurred:</h1>
+          <h1 className={style.errorPage__title}>Sorry, an unexpected error occurred:</h1>
 
           <p className={style.errorPage__text}>
-            <div>{error.status}</div>
-            <div>{error.data?.message}</div>
+            <div className={style.errorPage__text}>{error.status}</div>
+            <div className={style.errorPage__text}>{error.data}</div>
           </p>
         </div>
       </div>
@@ -21,14 +21,21 @@ export const ErrorPage = () => {
   } else if (error instanceof Error) {
     return (
       <div className={style.errorPage}>
-        <h1>Oops! Unexpected Error</h1>
-        <p>Something went wrong.</p>
-        <p>
-          <i>{error.message}</i>
-        </p>
+        <div className={style.errorPage__container}>
+          <h1 className={style.errorPage__title}>Oops! Unexpected Error</h1>
+          <p className={style.errorPage__text}>Something went wrong.</p>
+          <div className={style.errorPage__text}>{error.message}</div>
+        </div>
       </div>
     );
   } else {
-    return <>Oops</>;
+    return (
+      <div className={style.errorPage}>
+        <div className={style.errorPage__container}>
+          <h1 className={style.errorPage__title}>Oops! Unexpected Error</h1>
+          <p className={style.errorPage__text}>Something went wrong.</p>
+        </div>
+      </div>
+    );
   }
 };
