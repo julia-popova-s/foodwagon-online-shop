@@ -2,21 +2,31 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { RootStore } from '..';
 import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData';
-import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { Product, getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { FiltersForProducts } from '../../utils/utilsForStore/getFilterForProducts';
+import { ProductSliceState, Status } from './product';
 
-export const fetchProductsSearch = createAsyncThunk('products/fetchProductsSearch', fetchProductsData);
+export const fetchProductsSearch = createAsyncThunk<Product[], FiltersForProducts>(
+  'products/fetchProductsSearch',
+  fetchProductsData,
+);
+interface ProductSearchState extends ProductSliceState {
+  currentPage: number;
+  searchValue: string;
+}
 
+const initialState: ProductSearchState = {
+  currentPage: 1,
+  error: null,
+  isLoaded: false,
+  list: [],
+  searchValue: '',
+  status: Status.LOADING,
+};
 const productsSlice = createSlice({
   extraReducers: (builder) => getExtraReducers(builder)(fetchProductsSearch),
 
-  initialState: {
-    currentPage: 1,
-    error: null,
-    isLoaded: false,
-    list: [],
-    searchValue: '',
-    status: null,
-  },
+  initialState,
   name: 'productsSearch',
 
   reducers: {

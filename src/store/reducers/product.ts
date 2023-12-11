@@ -1,16 +1,28 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData';
-import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { Product, getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { FiltersForProducts } from '../../utils/utilsForStore/getFilterForProducts';
 import { RootStore } from '../index';
 
-export const fetchProduct = createAsyncThunk('product/fetchProduct', fetchProductsData);
+export const fetchProduct = createAsyncThunk<Product[], FiltersForProducts>('product/fetchProduct', fetchProductsData);
 
-const initialState = {
+export enum Status {
+  LOADING = 'loading',
+  REJECT = 'reject',
+  RESOLVE = 'resolve',
+}
+export interface ProductSliceState {
+  error: Error | null;
+  isLoaded: boolean;
+  list: Product[];
+  status: Status;
+}
+const initialState: ProductSliceState = {
   error: null,
   isLoaded: false,
   list: [],
-  status: null,
+  status: Status.LOADING,
 };
 
 const productSlice = createSlice({
@@ -20,7 +32,7 @@ const productSlice = createSlice({
   name: 'product',
 
   reducers: {
-    setLoaded(state, action) {
+    setLoaded(state, action: PayloadAction<boolean>) {
       state.isLoaded = action.payload;
     },
   },

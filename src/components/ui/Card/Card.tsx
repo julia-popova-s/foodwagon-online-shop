@@ -14,6 +14,7 @@ import style from './card.module.scss';
 
 type ProductQuantity = {
   id: string;
+  price: number;
   quantity: number;
   restaurantId: string;
 };
@@ -37,6 +38,7 @@ type CardProps = {
   id: string;
   image: string;
   price: number;
+  quantity?: number;
   restaurantId: string;
   restaurantName: string;
   title: string;
@@ -71,7 +73,7 @@ export const Card: FC<CardProps> = (props) => {
     handleRemoveProduct(data);
   };
 
-  const handleInputQuantity = (quantity: number) => handleInputCount({ id, quantity, restaurantId });
+  const handleInputQuantity = (quantity: number) => handleInputCount({ id, price, quantity, restaurantId });
 
   return (
     <div className={cn(style.card, classNames)}>

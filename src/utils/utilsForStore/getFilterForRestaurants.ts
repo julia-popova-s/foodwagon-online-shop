@@ -1,5 +1,5 @@
 type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
-export interface Filters {
+export interface FiltersForRestaurants {
   category?: string;
   currentPage?: number;
   limit?: number;
@@ -7,7 +7,13 @@ export interface Filters {
   sortType?: SortType;
 }
 
-export function getFilterForRestaurants({ category, currentPage, limit, restaurantId, sortType }: Filters) {
+export function getFilterForRestaurants({
+  category,
+  currentPage,
+  limit,
+  restaurantId,
+  sortType,
+}: FiltersForRestaurants) {
   const page = currentPage ? `?page=${currentPage}` : '?page=1';
 
   const limitFilter = limit ? `&limit=${limit}` : '&limit=8';

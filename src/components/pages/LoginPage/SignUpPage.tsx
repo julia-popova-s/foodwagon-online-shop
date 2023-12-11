@@ -18,14 +18,13 @@ const SignUp: FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleRegister = (email, password) => {
+  const handleRegister = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(
           setUser({
             email: user.email,
             id: user.uid,
-            token: user.accessToken,
           }),
         );
         navigate('/');

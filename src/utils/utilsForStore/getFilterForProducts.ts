@@ -1,6 +1,6 @@
 type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
 type OrderType = 'asc' | 'desc';
-interface Filters {
+export interface FiltersForProducts {
   category?: string;
   currentPage?: number;
   id?: string;
@@ -21,7 +21,7 @@ export function getFilterForProducts({
   restaurantId,
   searchValue,
   sortType,
-}: Filters): string {
+}: FiltersForProducts): string {
   const currentPageFilter = currentPage ? `?page=${currentPage}` : '?page=1';
 
   const limitFilter = limit ? `&limit=${limit}` : '&limit=4';

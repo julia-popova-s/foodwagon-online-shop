@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { RootStore } from '..';
 
@@ -24,43 +24,45 @@ interface ProductList {
 }
 
 interface OrderListItem {
-  [orderNumber: string]: ProductList;
+  [orderNumber: number]: ProductList;
+  restaurantId: string;
+  restaurantName: string;
 }
 interface UserSliceState {
   email: null | string;
-  id: null | string;
+  id: string;
   isAuth: boolean;
   list: OrderListItem[];
-  token: null | string;
 }
 const initialState: UserSliceState = {
   email: null,
-  id: null,
+  id: '',
   isAuth: false,
   list: [],
-  token: null,
 };
-
+type User = {
+  email: null | string;
+  id: string;
+};
 const userSlice = createSlice({
   initialState,
   name: 'user',
   reducers: {
     removeUser(state) {
       state.email = null;
-      state.token = null;
-      state.id = null;
+      state.id = '';
       state.isAuth = false;
       state.list = [];
     },
-    setOrders(state, action) {
+    setOrders(state, action: PayloadAction<{ id: string; list: ProductList; name: string; orderNumber: number }>) {
       state.list.push({
         [action.payload.orderNumber]: action.payload.list,
-        name: action.payload.name,
+        restaurantId: action.payload.id,
+        restaurantName: action.payload.name,
       });
     },
-    setUser(state, action) {
+    setUser(state, action: PayloadAction<User>) {
       state.email = action.payload.email;
-      state.token = action.payload.token;
       state.id = action.payload.id;
       state.isAuth = true;
     },
@@ -68,7 +70,6 @@ const userSlice = createSlice({
 });
 
 export const emailSelector = (state: RootStore) => state.user.email;
-export const tokenSelector = (state: RootStore) => state.user.token;
 export const idSelector = (state: RootStore) => state.user.id;
 export const isAuthSelector = (state: RootStore) => state.user.isAuth;
 

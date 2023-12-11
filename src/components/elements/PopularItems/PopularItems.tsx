@@ -10,14 +10,30 @@ import { Loader } from './Loader';
 import style from './popularItems.module.scss';
 import { sliderSettings } from './sliderSettings';
 
+type ProductQuantity = {
+  id: string;
+  price: number;
+  quantity: number;
+  restaurantId: string;
+};
+
+type Product = {
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
 export const PopularItems: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   useEffect(() => {
     dispatch(
       fetchProductsPopular({
+        currentPage: 2,
         limit: 10,
-        page: 2,
         rating: 5,
       }),
     );
@@ -26,15 +42,15 @@ export const PopularItems: FC = () => {
   const isLoaded = useSelector(isLoadedSelector);
   const products = useSelector(productListSelector);
 
-  const handleAddProduct = (product) => {
+  const handleAddProduct = (product: Product) => {
     dispatch(addProduct(product));
   };
 
-  const handleRemoveProduct = (product) => {
+  const handleRemoveProduct = (product: Product) => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj) => {
+  const handleInputCount = (obj: ProductQuantity) => {
     dispatch(setProductCount(obj));
   };
 

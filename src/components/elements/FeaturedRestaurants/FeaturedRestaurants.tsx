@@ -23,7 +23,7 @@ const sortItems: SortItem[] = [
 
 export const FeaturedRestaurants: FC = () => {
   const [limit, setLimit] = useState<number>(4);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const category = useSelector(categorySelector);
   const sortType = useSelector(sortTypeSelector);

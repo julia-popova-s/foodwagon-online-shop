@@ -1,24 +1,28 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { RootStore } from '..';
 import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData';
 import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { ProductSliceState } from './product';
+import { Status } from './product';
 
 export const fetchProductsFastAccess = createAsyncThunk('products/fetchProductsFastAccess', fetchProductsData);
+
+const initialState: ProductSliceState = {
+  error: null,
+  isLoaded: false,
+  list: [],
+  status: Status.LOADING,
+};
 
 const productsSlice = createSlice({
   extraReducers: (builder) => getExtraReducers(builder)(fetchProductsFastAccess),
 
-  initialState: {
-    error: null,
-    isLoaded: false,
-    list: [],
-    status: null,
-  },
+  initialState,
   name: 'productsFastAccess',
 
   reducers: {
-    setLoaded(state, action) {
+    setLoaded(state, action: PayloadAction<boolean>) {
       state.isLoaded = action.payload;
     },
   },

@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 import { ReactSVG } from 'react-svg';
 import { v4 as uuidv4 } from 'uuid';
 
-import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
+import { addProduct, cartSelector, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
 import { searchBySelector, setSearchBy } from '../../../store/reducers/filters';
 import { fetchProducts, isLoadedSelector, productListSelector } from '../../../store/reducers/products';
 import { Card } from '../../ui/Card';
@@ -15,6 +15,22 @@ import { Loader } from './Loader';
 import style from './searchFood.module.scss';
 import { sliderSettings } from './sliderSettings';
 
+type ProductQuantity = {
+  id: string;
+  price: number;
+  quantity: number;
+  restaurantId: string;
+};
+
+type Product = {
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
 const typeFood = [
   {
     imageSrc: '/images/search-food/2.png',
@@ -36,44 +52,44 @@ const typeFood = [
 ];
 
 export const SearchFood: FC = () => {
-  const [limit, setLimit] = useState(4);
-  const dispatch = useDispatch();
+  const [limit, setLimit] = useState<number>(4);
+  const dispatch = useDispatch<any>();
   const searchBy = useSelector(searchBySelector);
 
   const isLoaded = useSelector(isLoadedSelector);
   const products = useSelector(productListSelector);
 
-  const cart = useSelector((state) => state.cart.cart);
+  const cart = useSelector(cartSelector);
 
   useEffect(() => {
     if (searchBy !== -1)
       dispatch(
         fetchProducts({
           category: `${typeFood[searchBy].name}`,
+          currentPage: 1,
           limit,
-          page: 1,
         }),
       );
   }, [dispatch, searchBy, limit]);
 
-  const handleSelectCategory = (index) => {
+  const handleSelectCategory = (index: number) => {
     dispatch(setSearchBy(index));
   };
 
-  const handleAddProduct = (product) => {
+  const handleAddProduct = (product: Product) => {
     dispatch(addProduct(product));
   };
 
-  const handleRemoveProduct = (product) => {
+  const handleRemoveProduct = (product: Product) => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj) => {
+  const handleInputCount = (obj: ProductQuantity) => {
     dispatch(setProductCount(obj));
   };
 
   const handleViewAll = () => {
-    setLimit(false);
+    setLimit(0);
   };
 
   const skeleton = new Array(products?.length).fill(0).map((_, index) => <Loader key={index} />);
@@ -92,7 +108,7 @@ export const SearchFood: FC = () => {
                     key={uuidv4()}
                     {...item}
                     classNames={style.searchFood__item}
-                    onClickCategory={() => handleSelectCategory(i)}
+                    handleClickCategory={() => handleSelectCategory(i)}
                   />
                 );
               })}

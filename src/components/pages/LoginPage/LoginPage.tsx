@@ -16,14 +16,13 @@ const Login: FC = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = (email, password) => {
+  const handleLogin = (email: string, password: string) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(
           setUser({
             email: user.email,
             id: user.uid,
-            token: user.accessToken,
           }),
         );
         navigate('/');

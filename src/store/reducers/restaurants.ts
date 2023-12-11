@@ -1,24 +1,41 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { RootStore } from '..';
 import { fetchRestaurantsData } from '../../utils/utilsForStore/fetchRestaurantsData';
-import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { Restaurant, getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { FiltersForRestaurants } from '../../utils/utilsForStore/getFilterForRestaurants';
 
-export const fetchRestaurants = createAsyncThunk('products/fetchRestaurants', fetchRestaurantsData);
+enum Status {
+  LOADING = 'loading',
+  REJECT = 'reject',
+  RESOLVE = 'resolve',
+}
+export interface RestSliceState {
+  error: Error | null;
+  isLoaded: boolean;
+  list: Restaurant[];
+  status: Status;
+}
 
+export const fetchRestaurants = createAsyncThunk<Restaurant[], FiltersForRestaurants>(
+  'products/fetchRestaurants',
+  fetchRestaurantsData,
+);
+
+const initialState: RestSliceState = {
+  error: null,
+  isLoaded: false,
+  list: [],
+  status: Status.LOADING,
+};
 const restSlice = createSlice({
   extraReducers: (builder) => getExtraReducers(builder)(fetchRestaurants),
 
-  initialState: {
-    error: null,
-    isLoaded: false,
-    list: [],
-    status: null,
-  },
+  initialState,
   name: 'restaurants',
 
   reducers: {
-    setLoaded(state, action) {
+    setLoaded(state, action: PayloadAction<boolean>) {
       state.isLoaded = action.payload;
     },
   },

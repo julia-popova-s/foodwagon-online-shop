@@ -23,7 +23,7 @@ type ProductQuantity = {
   restaurantId: string;
 };
 
-type Product = {
+export type Product = {
   discount: number;
   id: string;
   image: string;
@@ -52,7 +52,7 @@ const Cart: FC = () => {
   const totalQuantity = useSelector(totalQuantitySelector);
   const isAuth = useSelector(isAuthSelector);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const navigate = useNavigate();
 
@@ -93,7 +93,7 @@ const Cart: FC = () => {
       setId(id);
       orderNumber++;
       setVisibleModal(true);
-      dispatch(setOrders({ list, name, orderNumber }));
+      dispatch(setOrders({ id, list, name, orderNumber }));
     }
   };
 

@@ -4,19 +4,20 @@ import { RootStore } from '..';
 
 type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
 type OrderType = 'asc' | 'desc';
-interface PayloadActionProps {
+interface SortingTypeSliceState {
   order: OrderType;
-  type: SortType;
+  sortType: SortType;
 }
+const initialState: SortingTypeSliceState = {
+  order: 'desc',
+  sortType: 'rating',
+};
 
 const sortingTypeSlice = createSlice({
-  initialState: {
-    order: 'desc',
-    sortType: 'rating',
-  },
+  initialState,
   name: 'sortingType',
   reducers: {
-    setSortType(state, action: PayloadAction<PayloadActionProps>) {
+    setSortType(state, action: PayloadAction<{ order: OrderType; type: SortType }>) {
       state.sortType = action.payload.type;
       state.order = action.payload.order;
     },

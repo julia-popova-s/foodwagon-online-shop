@@ -3,10 +3,23 @@ import cn from 'classnames';
 import { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import * as yup from 'yup';
 
 import style from './authRegForm.module.scss';
 
-const AuthRegForm: FC = ({ errorMessage, handleClick, schema, title }) => {
+type Data = {
+  email: string;
+  password: string;
+};
+
+type AuthRegFormProps = {
+  errorMessage: string;
+  handleClick: (email: string, password: string) => void;
+  schema: yup.ObjectSchema<Data>;
+  title: string;
+};
+
+const AuthRegForm: FC<AuthRegFormProps> = ({ errorMessage, handleClick, schema, title }) => {
   const {
     control,
     formState: { errors, isValid },
@@ -21,7 +34,7 @@ const AuthRegForm: FC = ({ errorMessage, handleClick, schema, title }) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = ({ email, password }) => {
+  const onSubmit = ({ email, password }: Data) => {
     handleClick(email, password);
     reset();
   };

@@ -10,9 +10,25 @@ import { LoaderLeft } from './LoaderLeft';
 import { LoaderRight } from './LoaderRight';
 import style from './productPage.module.scss';
 
+type ProductQuantity = {
+  id: string;
+  price: number;
+  quantity: number;
+  restaurantId: string;
+};
+
+type Product = {
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
 const ProductPage: FC = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const { pathname } = useLocation();
 
@@ -32,15 +48,15 @@ const ProductPage: FC = () => {
     );
   }, [id, dispatch]);
 
-  const handleAddProduct = (product) => {
+  const handleAddProduct = (product: Product) => {
     dispatch(addProduct(product));
   };
 
-  const handleRemoveProduct = (product) => {
+  const handleRemoveProduct = (product: Product) => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj) => {
+  const handleInputCount = (obj: ProductQuantity) => {
     dispatch(setProductCount(obj));
   };
 

@@ -63,7 +63,7 @@ const sortItems: SortItem[] = [
 export const RestaurantPage: FC = () => {
   const { restaurantId } = useParams();
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const category = useSelector(categorySelector);
   const order = useSelector(orderSelector);

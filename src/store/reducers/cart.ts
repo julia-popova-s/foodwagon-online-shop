@@ -5,6 +5,15 @@ import { updateAddedGoods } from '../../utils/utilsForCart/updateAddedGoods';
 import { updateTotalQuantity } from '../../utils/utilsForCart/updateTotalQuantity';
 import { RootStore } from '../index';
 
+type Product = {
+  discount: number;
+  id: string;
+  image: string;
+  price: number;
+  restaurantId: string;
+  restaurantName: string;
+  title: string;
+};
 interface PayloadId {
   id: string;
   restaurantId: string;
@@ -53,7 +62,7 @@ const cartSlice = createSlice({
   initialState,
   name: 'cart',
   reducers: {
-    addProduct(state, { payload: info }: PayloadAction<CartProduct>) {
+    addProduct(state, { payload: info }: PayloadAction<Product>) {
       const { discount, id, price, restaurantId } = info;
 
       if (state.cart[restaurantId]) {

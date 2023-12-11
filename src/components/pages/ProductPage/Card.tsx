@@ -30,7 +30,7 @@ type Product = {
 };
 
 type CardProps = {
-  classNames: string;
+  classNames?: string;
   discount: number;
   handleAddProduct: (item: Product) => void;
   handleInputCount: (item: ProductQuantity) => void;

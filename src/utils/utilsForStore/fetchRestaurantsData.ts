@@ -1,6 +1,7 @@
-import { Filters, getFilterForRestaurants } from './getFilterForRestaurants';
+import { Restaurant } from './getExtraReducers';
+import { FiltersForRestaurants, getFilterForRestaurants } from './getFilterForRestaurants';
 
-export const fetchRestaurantsData = async function (params: Filters, { rejectWithValue }: any) {
+export const fetchRestaurantsData = async function (params: FiltersForRestaurants, { rejectWithValue }: any) {
   const filter = getFilterForRestaurants(params);
 
   try {
@@ -8,7 +9,7 @@ export const fetchRestaurantsData = async function (params: Filters, { rejectWit
     if (!response.ok) {
       return rejectWithValue(response.status);
     }
-    return await response.json();
+    return (await response.json()) as Restaurant[];
   } catch (error: any) {
     return rejectWithValue(error.message);
   }

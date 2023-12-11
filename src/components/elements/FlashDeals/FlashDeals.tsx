@@ -14,7 +14,7 @@ import style from './flashDeals.module.scss';
 const restaurantId = '333f1471-d10f-4b1d-a654-d3c070cb3500';
 
 export const FlashDeals: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const products = useSelector(productListSelector);
   const status = useSelector(statusSelector);
