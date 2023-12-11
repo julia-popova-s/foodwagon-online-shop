@@ -69,20 +69,6 @@
   }
 
   &__btn {
-    position: absolute;
-
-    width: 75px;
-    height: 75px;
-    border-radius: 100%;
-
-    filter: drop-shadow(0px 5px 8px rgba(222, 151, 0, 0.24)) drop-shadow(0px 14px 32px rgba(255, 178, 14, 0.29));
-
-    transition: all 0.3s ease;
-
-    &:hover {
-      box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22), 0px 20px 40px rgba(250, 99, 35, 0.24);
-      transition: all 0.3s ease;
-    }
 
     &_right,
     &_left {
@@ -120,17 +106,26 @@
   position: static;
 }
 
+@media (max-width:900px) {
+  .searchFood__btn {
+
+    &_right {
+      top: 91px;
+      right: 35px;
+    }
+
+    &_left {
+      top: 91px;
+      right: 110px;
+    }
+  }
+}
+
 @media(max-width:700px) {
   .searchFood {
     &__btnView {
       top: 166px;
       left: 0;
-    }
-
-    &__btn,
-    &__btn svg {
-      width: 50px;
-      height: 50px;
     }
 
     &__btn {

@@ -58,6 +58,13 @@
     }
   }
 
+  &__message {
+    @include setTextStyle(700, 22px, 120%);
+    color: rgb(66, 66, 66);
+
+    margin-bottom: 20px;
+  }
+
   &__image {
     max-width: 50%;
 
