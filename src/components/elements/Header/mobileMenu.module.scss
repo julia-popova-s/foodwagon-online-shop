@@ -73,7 +73,7 @@
   max-width: 400px;
   height: auto;
 
-  top: 78px;
+  top: 77px;
   right: 0;
 
   position: absolute;
@@ -156,5 +156,12 @@
     display: flex;
     gap: 15px;
     align-items: center;
+  }
+}
+
+@media(max-width:430px) {
+
+  .menu {
+    max-width: 100%;
   }
 }
