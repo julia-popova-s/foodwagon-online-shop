@@ -1,8 +1,11 @@
 type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
+type OrderType = 'asc' | 'desc';
+
 export interface FiltersForRestaurants {
   category?: string;
   currentPage?: number;
   limit?: number;
+  orderType?: OrderType;
   restaurantId?: string;
   sortType?: SortType;
 }
@@ -11,6 +14,7 @@ export function getFilterForRestaurants({
   category,
   currentPage,
   limit,
+  orderType,
   restaurantId,
   sortType,
 }: FiltersForRestaurants) {
@@ -19,19 +23,21 @@ export function getFilterForRestaurants({
   const limitFilter = limit ? `&limit=${limit}` : '&limit=8';
 
   const sortFilter =
-    sortType && sortType === 'rating'
-      ? '&sortBy=weighted_rating_value&order=desc'
+    sortType === 'rating'
+      ? '&sortBy=weighted_rating_value'
       : sortType === 'popular'
-        ? '&sortBy=aggregated_rating_count&order=desc'
+        ? '&sortBy=aggregated_rating_count'
         : sortType === 'name'
-          ? '&sortBy=name&order=asc'
+          ? '&sortBy=name'
           : sortType === 'time'
-            ? '&sortBy=deliveryTime&order=asc'
+            ? '&sortBy=deliveryTime'
             : '';
+
+  const orderFilter = sortType && orderType ? `&order=${orderType}` : '';
 
   const categoryFilter = category && category !== 'All' ? `&cuisines=${category}` : '';
 
   const idFilter = restaurantId ? `&id=${restaurantId}` : '';
 
-  return `${page}${limitFilter}${sortFilter}${categoryFilter}${idFilter}`;
+  return `${page}${limitFilter}${sortFilter}${orderFilter}${categoryFilter}${idFilter}`;
 }

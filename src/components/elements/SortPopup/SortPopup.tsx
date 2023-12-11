@@ -9,16 +9,16 @@ export type OrderType = 'asc' | 'desc';
 
 export type SortItem = {
   name: string;
-  order?: OrderType;
+  order: OrderType;
   type: SortType;
 };
 
 type SortPopupProps = {
   activeSortType: SortType;
   classNames?: string;
-  handleClickSortType: (type: SortType, order?: OrderType) => void;
+  handleClickSortType: (type: SortType, order: OrderType) => void;
   items?: SortItem[];
-  orderType?: OrderType;
+  orderType: OrderType;
 };
 
 export const SortPopup: FC<SortPopupProps> = ({

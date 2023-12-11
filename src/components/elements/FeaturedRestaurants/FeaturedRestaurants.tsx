@@ -2,23 +2,23 @@ import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
+import { orderTypeSelector, setCategory, setSortBy } from '../../../store/reducers/filters';
 import { categorySelector, sortTypeSelector } from '../../../store/reducers/filters';
-import { setCategory, setSortBy } from '../../../store/reducers/filters';
-import { fetchRestaurants } from '../../../store/reducers/restaurants';
 import { isLoadedSelector, restaurantListSelector } from '../../../store/reducers/restaurants';
+import { fetchRestaurants } from '../../../store/reducers/restaurants';
 import { Categories } from '../Categories';
 import { SortPopup } from '../SortPopup';
-import { SortItem, SortType } from '../SortPopup/SortPopup';
+import { OrderType, SortItem, SortType } from '../SortPopup/SortPopup';
 import { RestaurantList } from './RestaurantList';
 import style from './featuredRestaurants.module.scss';
 
 const categoryNames = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup', 'Burger'];
 
 const sortItems: SortItem[] = [
-  { name: 'popularity', type: 'popular' },
-  { name: 'rating', type: 'rating' },
-  { name: 'delivery time', type: 'time' },
-  { name: 'alphabetically', type: 'name' },
+  { name: 'popularity', order: 'desc', type: 'popular' },
+  { name: 'rating', order: 'desc', type: 'rating' },
+  { name: 'delivery time', order: 'asc', type: 'time' },
+  { name: 'alphabetically', order: 'asc', type: 'name' },
 ];
 
 export const FeaturedRestaurants: FC = () => {
@@ -27,6 +27,7 @@ export const FeaturedRestaurants: FC = () => {
 
   const category = useSelector(categorySelector);
   const sortType = useSelector(sortTypeSelector);
+  const orderType = useSelector(orderTypeSelector);
 
   const isLoaded = useSelector(isLoadedSelector);
   const list = useSelector(restaurantListSelector);
@@ -35,8 +36,8 @@ export const FeaturedRestaurants: FC = () => {
     dispatch(setCategory(index));
   };
 
-  const handleSelectSortType = (type: SortType) => {
-    dispatch(setSortBy(type));
+  const handleSelectSortType = (sortType: SortType, orderType: OrderType) => {
+    dispatch(setSortBy({ orderType, sortType }));
   };
 
   const handleLimit = () => {
@@ -48,6 +49,7 @@ export const FeaturedRestaurants: FC = () => {
       fetchRestaurants({
         category: categoryNames[category],
         limit,
+        orderType,
         sortType,
       }),
     );
@@ -62,7 +64,12 @@ export const FeaturedRestaurants: FC = () => {
           <div className={style.restaurantList__filters}>
             <Categories activeCategory={category} handleClickCategory={handleSelectCategory} items={categoryNames} />
 
-            <SortPopup activeSortType={sortType} handleClickSortType={handleSelectSortType} items={sortItems} />
+            <SortPopup
+              activeSortType={sortType}
+              handleClickSortType={handleSelectSortType}
+              items={sortItems}
+              orderType={orderType}
+            />
           </div>
 
           <RestaurantList isLoading={isLoaded} list={list} />

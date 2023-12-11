@@ -130,7 +130,7 @@ const Cart: FC = () => {
           <div className={style.cart__inner}>
             <div className={style.cart__empty}>
               <p className={style.cart__name}>Shopping cart is empty</p>
-              <p className={style.cart__result}>Use the search to find everything you need.</p>
+              <p className={style.cart__message}>Use the search to find everything you need.</p>
               <p className={style.cart__links}>
                 Go to{' '}
                 <Link className={style.cart__linkItem} to="/search">

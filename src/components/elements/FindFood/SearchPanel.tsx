@@ -25,7 +25,7 @@ export const SearchPanel: FC = () => {
 
   const popupRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   const isLoaded = useSelector(isLoadedSelector);
   const products = useSelector(productListSelector);

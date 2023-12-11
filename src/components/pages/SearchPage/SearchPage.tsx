@@ -67,7 +67,7 @@ const SearchPage: FC = () => {
           <SearchPanel />
         </div>
 
-        {error && <div className={style.message}>{error}</div>}
+        {error && <div className={style.message}>{error.message}</div>}
 
         <div className={style.menuList}>
           {isLoaded &&

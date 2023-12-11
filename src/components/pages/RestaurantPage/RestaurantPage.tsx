@@ -77,6 +77,10 @@ export const RestaurantPage: FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+  
   const handleChangePage = (pageNumber: number) => {
     dispatch(setCurrentPage(pageNumber));
   };
