@@ -41,7 +41,7 @@ export const FeaturedRestaurants: FC = () => {
   };
 
   const handleLimit = () => {
-    setLimit(0);
+    setLimit(limit * 2);
   };
 
   useEffect(() => {

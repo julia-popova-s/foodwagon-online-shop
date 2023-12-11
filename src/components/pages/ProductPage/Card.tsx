@@ -84,9 +84,9 @@ export const Card: FC<CardProps> = ({
     <div className={style.card}>
       <div className={style.card__left}>
         <img alt={title} className={style.card__image} src={`${process.env.PUBLIC_URL}${image}`} />
-        {discount && discount ? <Discount classNames={style.card__discount} discount={discount} /> : null}
+        {discount ? <Discount classNames={style.card__discount} discount={discount} /> : null}
 
-        <Discount classNames={style.discount} discount={discount} view={'smallLabel'} />
+        {!!discount && <Discount classNames={style.discount} discount={discount} view={'smallLabel'} />}
       </div>
 
       <div className={cn(style.card__info, style.info)}>
