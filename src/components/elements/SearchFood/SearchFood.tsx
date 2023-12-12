@@ -2,11 +2,12 @@ import '/node_modules/slick-carousel/slick/slick.css';
 import '/node_modules/slick-carousel/slick/slick-theme.css';
 import cn from 'classnames';
 import { FC, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { ReactSVG } from 'react-svg';
 import { v4 as uuidv4 } from 'uuid';
 
+import { useAppDispatch } from '../../../store';
 import { addProduct, cartSelector, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
 import { searchBySelector, setSearchBy } from '../../../store/reducers/filters';
 import { fetchProducts, isLoadedSelector, productListSelector } from '../../../store/reducers/products';
@@ -54,7 +55,9 @@ const typeFood = [
 
 export const SearchFood: FC = () => {
   const [limit, setLimit] = useState<number>(4);
-  const dispatch = useDispatch<any>();
+
+  const dispatch = useAppDispatch();
+
   const searchBy = useSelector(searchBySelector);
 
   const isLoaded = useSelector(isLoadedSelector);

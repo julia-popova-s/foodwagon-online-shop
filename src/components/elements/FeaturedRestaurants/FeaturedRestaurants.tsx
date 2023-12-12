@@ -1,11 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
-import { orderTypeSelector, setCategory, setSortBy } from '../../../store/reducers/filters';
+import { useAppDispatch } from '../../../store';
 import { categorySelector, sortTypeSelector } from '../../../store/reducers/filters';
-import { isLoadedSelector, restaurantListSelector } from '../../../store/reducers/restaurants';
+import { orderTypeSelector, setCategory, setSortBy } from '../../../store/reducers/filters';
 import { fetchRestaurants } from '../../../store/reducers/restaurants';
+import { isLoadedSelector, restaurantListSelector } from '../../../store/reducers/restaurants';
 import { Categories } from '../Categories';
 import { SortPopup } from '../SortPopup';
 import { OrderType, SortItem, SortType } from '../SortPopup/SortPopup';
@@ -23,7 +24,7 @@ const sortItems: SortItem[] = [
 
 export const FeaturedRestaurants: FC = () => {
   const [limit, setLimit] = useState<number>(4);
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const category = useSelector(categorySelector);
   const sortType = useSelector(sortTypeSelector);

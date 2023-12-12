@@ -1,8 +1,9 @@
 import cn from 'classnames';
 import { FC, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
+import { useAppDispatch } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
 import { isLoadedSelector, productListSelector } from '../../../store/reducers/productsPopular';
 import { fetchProductsPopular } from '../../../store/reducers/productsPopular';
@@ -28,7 +29,7 @@ type Product = {
   title: string;
 };
 export const PopularItems: FC = () => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const slider = useRef<Slider>(null);
 

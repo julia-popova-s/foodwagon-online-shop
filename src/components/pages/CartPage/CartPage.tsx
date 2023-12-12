@@ -2,10 +2,11 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { FC, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
+import { useAppDispatch } from '../../../store';
 import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/reducers/cart';
 import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
 import { isAuthSelector, setOrders } from '../../../store/reducers/user';
@@ -52,7 +53,7 @@ const Cart: FC = () => {
   const totalQuantity = useSelector(totalQuantitySelector);
   const isAuth = useSelector(isAuthSelector);
 
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 

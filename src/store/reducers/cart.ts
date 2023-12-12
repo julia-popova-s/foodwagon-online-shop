@@ -5,7 +5,7 @@ import { updateAddedGoods } from '../../utils/utilsForCart/updateAddedGoods';
 import { updateTotalQuantity } from '../../utils/utilsForCart/updateTotalQuantity';
 import { RootStore } from '../index';
 
-type Product = {
+export interface Product {
   discount: number;
   id: string;
   image: string;
@@ -13,12 +13,12 @@ type Product = {
   restaurantId: string;
   restaurantName: string;
   title: string;
-};
-interface PayloadId {
+}
+export interface PayloadId {
   id: string;
   restaurantId: string;
 }
-interface PayloadCount extends PayloadId {
+export interface PayloadCount extends PayloadId {
   quantity: number;
 }
 
@@ -42,9 +42,11 @@ export interface ProductList {
   totalAmount: number;
   totalCount: number;
 }
+
 export interface CartType {
   [restaurantId: string]: ProductList;
 }
+
 type AddedGoodsItem = [string, ProductList];
 export interface CartSliceState {
   addedGoods: AddedGoodsItem[];

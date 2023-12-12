@@ -1,8 +1,9 @@
 import cn from 'classnames';
 import { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { useAppDispatch } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
 import { categorySelector, setCurrentPage } from '../../../store/reducers/filters';
 import {
@@ -63,7 +64,7 @@ const sortItems: SortItem[] = [
 export const RestaurantPage: FC = () => {
   const { restaurantId } = useParams();
 
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const category = useSelector(categorySelector);
   const order = useSelector(orderSelector);
@@ -80,7 +81,7 @@ export const RestaurantPage: FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
-  
+
   const handleChangePage = (pageNumber: number) => {
     dispatch(setCurrentPage(pageNumber));
   };

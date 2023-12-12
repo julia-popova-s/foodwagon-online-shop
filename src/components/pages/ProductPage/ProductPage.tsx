@@ -1,7 +1,8 @@
 import { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 
+import { useAppDispatch } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
 import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/reducers/product';
 import { RestaurantPage } from '../RestaurantPage/RestaurantPage';
@@ -28,7 +29,7 @@ type Product = {
 };
 const ProductPage: FC = () => {
   const { id } = useParams();
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const { pathname } = useLocation();
 
