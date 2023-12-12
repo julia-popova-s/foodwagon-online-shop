@@ -1,7 +1,13 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
+import {
+  Product,
+  ProductInfoQuantity,
+  addProduct,
+  deleteOneProduct,
+  setProductCount,
+} from '../../../store/reducers/cart';
 import {
   currentPageSelector,
   errorSelector,
@@ -15,22 +21,6 @@ import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
 import style from './searchPage.module.scss';
-
-type ProductQuantity = {
-  id: string;
-  quantity: number;
-  restaurantId: string;
-};
-
-type Product = {
-  discount: number;
-  id: string;
-  image: string;
-  price: number;
-  restaurantId: string;
-  restaurantName: string;
-  title: string;
-};
 
 const SearchPage: FC = () => {
   const error = useSelector(errorSelector);
@@ -53,7 +43,7 @@ const SearchPage: FC = () => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (item: ProductQuantity) => {
+  const handleInputCount = (item: ProductInfoQuantity) => {
     dispatch(setProductCount(item));
   };
 

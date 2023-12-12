@@ -1,6 +1,5 @@
 import type { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
 
-type Cuisine = 'Dessert' | 'Fish' | 'Meat' | 'Pasta' | 'Salad';
 interface Address {
   city: string;
   country: string;
@@ -12,7 +11,7 @@ export interface Restaurant {
   address: Address;
   aggregated_rating_count: number;
   backgroundId: string;
-  cuisines: Cuisine[];
+  cuisines: string[];
   delivery_enabled: true;
   deliveryTime: number;
   id: string;

@@ -14,11 +14,11 @@ export interface Product {
   restaurantName: string;
   title: string;
 }
-export interface PayloadId {
+export interface ProductInfoIds {
   id: string;
   restaurantId: string;
 }
-export interface PayloadCount extends PayloadId {
+export interface ProductInfoQuantity extends ProductInfoIds {
   quantity: number;
 }
 
@@ -126,7 +126,7 @@ const cartSlice = createSlice({
       state.totalQuantity = state.totalQuantity - currentCount;
     },
 
-    deleteOneProduct(state, { payload: { id, restaurantId } }: PayloadAction<PayloadId>) {
+    deleteOneProduct(state, { payload: { id, restaurantId } }: PayloadAction<ProductInfoIds>) {
       //зафиксировать цену удаляемого товара
       const currentPrice =
         state.cart[restaurantId].items[id].price * (1 - state.cart[restaurantId].items[id].discount / 100);
@@ -162,7 +162,7 @@ const cartSlice = createSlice({
       updateAddedGoods(state);
     },
 
-    removeProduct(state, { payload: { id, restaurantId } }: PayloadAction<PayloadId>) {
+    removeProduct(state, { payload: { id, restaurantId } }: PayloadAction<ProductInfoIds>) {
       //зафиксировать количество и сумму удаляемой позиции
       const currentCount = state.cart[restaurantId].items[id].quantity;
       const currentAmount = state.cart[restaurantId].items[id].amount;
@@ -185,7 +185,7 @@ const cartSlice = createSlice({
       updateAddedGoods(state);
     },
 
-    setProductCount(state, { payload: { id, quantity, restaurantId } }: PayloadAction<PayloadCount>) {
+    setProductCount(state, { payload: { id, quantity, restaurantId } }: PayloadAction<ProductInfoQuantity>) {
       //установить новое значение количества для данной позиции
       state.cart[restaurantId].items[id].quantity = quantity;
 

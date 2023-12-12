@@ -2,23 +2,33 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { RootStore } from '../index';
 
-export type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
-type OrderType = 'asc' | 'desc';
+export enum ProductSortingType {
+  DISCOUNT = 'discount',
+  POPULAR = 'popular',
+  PRICE = 'price',
+  RATING = 'rating',
+  TITLE = 'title',
+}
+
+export enum ProductOrderType {
+  ASC = 'asc',
+  DESC = 'desc',
+}
 
 interface FilterSliceState {
   category: number;
   currentPage: number;
-  orderType: OrderType;
+  orderType: ProductOrderType;
   searchBy: number;
-  sortType: SortType;
+  sortType: ProductSortingType;
 }
 
 const initialState: FilterSliceState = {
   category: 0,
   currentPage: 1,
-  orderType: 'desc',
+  orderType: ProductOrderType.DESC,
   searchBy: -1,
-  sortType: 'popular',
+  sortType: ProductSortingType.RATING,
 };
 
 const filterSlice = createSlice({
@@ -37,8 +47,8 @@ const filterSlice = createSlice({
     setSortBy(
       state,
       action: PayloadAction<{
-        orderType: OrderType;
-        sortType: SortType;
+        orderType: ProductOrderType;
+        sortType: ProductSortingType;
       }>,
     ) {
       state.sortType = action.payload.sortType;

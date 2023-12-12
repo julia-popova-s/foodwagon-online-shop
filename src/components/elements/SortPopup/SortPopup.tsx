@@ -1,11 +1,12 @@
 import cn from 'classnames';
 import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 
+import { ProductOrderType, ProductSortingType } from '../../../store/reducers/filters';
+import { CafeOrderType, CafeSortingType } from '../../../store/reducers/sortingType';
 import style from './sortPopup.module.scss';
 
-export type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
-
-export type OrderType = 'asc' | 'desc';
+export type SortType = CafeSortingType | ProductSortingType;
+export type OrderType = CafeOrderType | ProductOrderType;
 
 export type SortItem = {
   name: string;
@@ -16,8 +17,8 @@ export type SortItem = {
 type SortPopupProps = {
   activeSortType: SortType;
   classNames?: string;
-  handleClickSortType: (type: SortType, order: OrderType) => void;
-  items?: SortItem[];
+  handleClickSortType: (sortType: SortType, orderType: OrderType) => void;
+  items: SortItem[];
   orderType: OrderType;
 };
 

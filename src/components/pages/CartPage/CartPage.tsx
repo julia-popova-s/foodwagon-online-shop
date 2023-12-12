@@ -7,7 +7,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
-import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/reducers/cart';
+import {
+  Product,
+  ProductInfoIds,
+  ProductInfoQuantity,
+  addedGoodsSelector,
+  cartSelector,
+  totalQuantitySelector,
+} from '../../../store/reducers/cart';
 import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
 import { isAuthSelector, setOrders } from '../../../store/reducers/user';
 import { Popup } from '../../ui/Popup';
@@ -17,33 +24,17 @@ import { ProductCard } from './ProductCard';
 import style from './cartPage.module.scss';
 
 let orderNumber = 0;
-type ProductQuantity = {
-  id: string;
-  price: number;
-  quantity: number;
-  restaurantId: string;
-};
 
-export type Product = {
-  discount: number;
-  id: string;
-  image: string;
-  price: number;
-  restaurantId: string;
-  restaurantName: string;
-  title: string;
-};
-type Idx = { id: string; restaurantId: string };
 type Restaurant = { restaurantId: string; restaurantName: string };
 
 const Cart: FC = () => {
   const { pathname } = useLocation();
 
-  const [name, setName] = useState('');
-  const [id, setId] = useState('');
+  const [name, setName] = useState<string>('');
+  const [id, setId] = useState<string>('');
 
-  const [visiblePopup, setVisiblePopup] = useState(false);
-  const [visibleModal, setVisibleModal] = useState(false);
+  const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
 
   const popupRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -67,7 +58,7 @@ const Cart: FC = () => {
     setVisiblePopup(true);
   };
 
-  const handleRemoveProduct = (item: Idx) => {
+  const handleRemoveProduct = (item: ProductInfoIds) => {
     dispatch(removeProduct(item));
   };
 
@@ -75,13 +66,13 @@ const Cart: FC = () => {
     dispatch(addProduct(product));
   };
 
-  const handleDeleteProduct = (item: Idx, count: number) => {
+  const handleDeleteProduct = (item: ProductInfoIds, count: number) => {
     if (count < 1) {
       dispatch(removeProduct(item));
     } else dispatch(deleteOneProduct(item));
   };
 
-  const handleInputQuantity = (obj: ProductQuantity) => {
+  const handleInputQuantity = (obj: ProductInfoQuantity) => {
     dispatch(setProductCount(obj));
   };
 

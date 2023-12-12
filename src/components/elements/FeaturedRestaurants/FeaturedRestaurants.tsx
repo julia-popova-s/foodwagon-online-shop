@@ -3,23 +3,29 @@ import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
 import { useAppDispatch } from '../../../store';
-import { categorySelector, sortTypeSelector } from '../../../store/reducers/filters';
-import { orderTypeSelector, setCategory, setSortBy } from '../../../store/reducers/filters';
 import { fetchRestaurants } from '../../../store/reducers/restaurants';
 import { isLoadedSelector, restaurantListSelector } from '../../../store/reducers/restaurants';
+import {
+  CafeOrderType,
+  CafeSortingType,
+  categorySelector,
+  orderTypeSelector,
+  setCategory,
+  setSortType,
+  sortTypeSelector,
+} from '../../../store/reducers/sortingType';
 import { Categories } from '../Categories';
 import { SortPopup } from '../SortPopup';
-import { OrderType, SortItem, SortType } from '../SortPopup/SortPopup';
 import { RestaurantList } from './RestaurantList';
 import style from './featuredRestaurants.module.scss';
 
-const categoryNames = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup', 'Burger'];
+const categoryNames: string[] = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup', 'Burger'];
 
-const sortItems: SortItem[] = [
-  { name: 'popularity', order: 'desc', type: 'popular' },
-  { name: 'rating', order: 'desc', type: 'rating' },
-  { name: 'delivery time', order: 'asc', type: 'time' },
-  { name: 'alphabetically', order: 'asc', type: 'name' },
+const sortItems = [
+  { name: 'popularity', order: CafeOrderType.DESC, type: CafeSortingType.POPULAR },
+  { name: 'rating', order: CafeOrderType.DESC, type: CafeSortingType.RATING },
+  { name: 'delivery time', order: CafeOrderType.ASC, type: CafeSortingType.TIME },
+  { name: 'alphabetically', order: CafeOrderType.ASC, type: CafeSortingType.NAME },
 ];
 
 export const FeaturedRestaurants: FC = () => {
@@ -37,8 +43,8 @@ export const FeaturedRestaurants: FC = () => {
     dispatch(setCategory(index));
   };
 
-  const handleSelectSortType = (sortType: SortType, orderType: OrderType) => {
-    dispatch(setSortBy({ orderType, sortType }));
+  const handleSelectSortType = (sortType: any, orderType: any) => {
+    dispatch(setSortType({ orderType, sortType }));
   };
 
   const handleLimit = () => {
@@ -54,7 +60,7 @@ export const FeaturedRestaurants: FC = () => {
         sortType,
       }),
     );
-  }, [sortType, category, dispatch, limit]);
+  }, [sortType, category, limit, orderType]);
 
   return (
     <section className={style.restaurants} id="featuredRestaurants">
@@ -67,6 +73,7 @@ export const FeaturedRestaurants: FC = () => {
 
             <SortPopup
               activeSortType={sortType}
+              classNames={style.restaurantList__popup}
               handleClickSortType={handleSelectSortType}
               items={sortItems}
               orderType={orderType}

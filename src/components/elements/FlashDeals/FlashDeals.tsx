@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
+import { ProductOrderType, ProductSortingType } from '../../../store/reducers/filters';
 import {
   fetchProductsWithDiscount,
   productListSelector,
@@ -24,9 +25,9 @@ export const FlashDeals: FC = () => {
     dispatch(
       fetchProductsWithDiscount({
         limit: 4,
-        order: 'desc',
+        orderType: ProductOrderType.DESC,
         restaurantId,
-        sortType: 'discount',
+        sortType: ProductSortingType.DISCOUNT,
       }),
     );
   }, [restaurantId]);

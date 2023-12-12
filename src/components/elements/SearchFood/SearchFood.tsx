@@ -8,7 +8,7 @@ import { ReactSVG } from 'react-svg';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useAppDispatch } from '../../../store';
-import { addProduct, cartSelector, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
+import { Product, ProductInfoQuantity, addProduct, cartSelector, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
 import { searchBySelector, setSearchBy } from '../../../store/reducers/filters';
 import { fetchProducts, isLoadedSelector, productListSelector } from '../../../store/reducers/products';
 import { Card } from '../../ui/Card';
@@ -17,22 +17,6 @@ import { CardFood } from './CardFood';
 import { Loader } from './Loader';
 import style from './searchFood.module.scss';
 
-type ProductQuantity = {
-  id: string;
-  price: number;
-  quantity: number;
-  restaurantId: string;
-};
-
-type Product = {
-  discount: number;
-  id: string;
-  image: string;
-  price: number;
-  restaurantId: string;
-  restaurantName: string;
-  title: string;
-};
 const typeFood = [
   {
     imageSrc: '/images/search-food/2.png',
@@ -90,7 +74,7 @@ export const SearchFood: FC = () => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj: ProductQuantity) => {
+  const handleInputCount = (obj: ProductInfoQuantity) => {
     dispatch(setProductCount(obj));
   };
 
