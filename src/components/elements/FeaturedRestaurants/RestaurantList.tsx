@@ -12,7 +12,7 @@ type RestaurantListProps = {
 };
 
 export const RestaurantList: FC<RestaurantListProps> = ({ isLoading, list }) => {
-  const skeleton = new Array(list.length).fill(0).map((_, index) => <Loader key={index} />);
+  const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
 
   return (
     <div className={style.restaurantListWrapper}>

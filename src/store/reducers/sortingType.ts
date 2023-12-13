@@ -19,6 +19,7 @@ interface SortingTypeSliceState {
   orderType: CafeOrderType;
   sortType: CafeSortingType;
 }
+
 const initialState: SortingTypeSliceState = {
   category: 0,
   orderType: CafeOrderType.DESC,

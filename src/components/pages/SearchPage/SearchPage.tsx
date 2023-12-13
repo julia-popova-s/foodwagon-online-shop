@@ -28,7 +28,6 @@ const SearchPage: FC = () => {
   const products = useSelector(productListSelector);
   const isLoaded = useSelector(isLoadedSelector);
   const status = useSelector(statusSelector);
-
   const dispatch = useDispatch();
 
   const handleChangePage = (pageNumber: number) => {
@@ -46,7 +45,6 @@ const SearchPage: FC = () => {
   const handleInputCount = (item: ProductInfoQuantity) => {
     dispatch(setProductCount(item));
   };
-
   const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
 
   return (
@@ -57,7 +55,7 @@ const SearchPage: FC = () => {
           <SearchPanel />
         </div>
 
-        {error && <div className={style.message}>{error.message}</div>}
+        {status === 'reject' && typeof error === 'string' && <div className={style.message}>{error}</div>}
 
         <div className={style.menuList}>
           {isLoaded &&
@@ -76,8 +74,6 @@ const SearchPage: FC = () => {
         </div>
 
         {status && !error && <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />}
-
-        {!status && <div className={style.message}>Are you ready to order with the best deals?</div>}
       </div>
     </div>
   );

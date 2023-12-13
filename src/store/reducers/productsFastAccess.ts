@@ -2,9 +2,8 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { RootStore } from '..';
 import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData';
-import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { Status, getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
 import { ProductSliceState } from './product';
-import { Status } from './product';
 
 export const fetchProductsFastAccess = createAsyncThunk('products/fetchProductsFastAccess', fetchProductsData);
 
