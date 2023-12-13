@@ -5,8 +5,6 @@ import { ReactSVG } from 'react-svg';
 import { getPartOfString } from '../../../utils/getPartOfString';
 import style from './cardFeatured.module.scss';
 
-const theme = 'close';
-
 type CardFeaturedProps = {
   deliveryTime: number;
   imageSrc: string;

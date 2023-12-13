@@ -1,12 +1,20 @@
 import type { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
 
+export enum CustomErrors {
+  ERROR_EMPTY_REQUEST = 'Are you ready to order with the best deals?',
+  ERROR_NOTHING_FOUND = 'Nothing was found according to request.',
+}
+export interface MyAsyncThunkConfig {
+  rejectValue: CustomErrors;
+}
+
 export enum Status {
   LOADING = 'loading',
   REJECT = 'reject',
   RESOLVE = 'resolve',
 }
 
-export type ErrorType = Error | null | string;
+export type ErrorType = CustomErrors | Error | null;
 
 interface Address {
   city: string;

@@ -1,11 +1,20 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData';
-import { ErrorType, Product, Status, getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import {
+  ErrorType,
+  MyAsyncThunkConfig,
+  Product,
+  Status,
+  getExtraReducers,
+} from '../../utils/utilsForStore/getExtraReducers';
 import { FiltersForProducts } from '../../utils/utilsForStore/getFilterForProducts';
 import { RootStore } from '../index';
 
-export const fetchProduct = createAsyncThunk<Product[], FiltersForProducts>('product/fetchProduct', fetchProductsData);
+export const fetchProduct = createAsyncThunk<Product[], FiltersForProducts, MyAsyncThunkConfig>(
+  'product/fetchProduct',
+  fetchProductsData,
+);
 
 export interface ProductSliceState {
   error: ErrorType;

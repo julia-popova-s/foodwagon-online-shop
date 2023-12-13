@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import { Restaurant } from './getExtraReducers';
+import { CustomErrors, Restaurant } from './getExtraReducers';
 import { FiltersForRestaurants, getFilterForRestaurants } from './getFilterForRestaurants';
 
 export const fetchRestaurantsData = async function (params: FiltersForRestaurants, { rejectWithValue }: any) {
-  const error = 'Nothing was found according to your request.';
+  const error = CustomErrors.ERROR_NOTHING_FOUND;
 
   const filter = getFilterForRestaurants(params);
 
@@ -18,6 +18,6 @@ export const fetchRestaurantsData = async function (params: FiltersForRestaurant
     }
     return data;
   } catch (error: any) {
-    return rejectWithValue('Error: ' + error.message);
+    return rejectWithValue('Error: ' + error?.message);
   }
 };

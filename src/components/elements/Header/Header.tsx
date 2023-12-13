@@ -17,7 +17,6 @@ import style from './header.module.scss';
 
 export const Header: FC = () => {
   const navigate = useNavigate();
-  const goBack = () => navigate('/');
 
   const { pathname } = useLocation();
 

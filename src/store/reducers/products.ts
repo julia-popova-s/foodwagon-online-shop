@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData';
-import { Product, Status, getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { MyAsyncThunkConfig, Product, Status, getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
 import { FiltersForProducts } from '../../utils/utilsForStore/getFilterForProducts';
 import { RootStore } from '../index';
 import { ProductSliceState } from './product';
@@ -18,7 +18,7 @@ const initialState: ProductsSliceState = {
   status: Status.LOADING,
 };
 
-export const fetchProducts = createAsyncThunk<Product[], FiltersForProducts>(
+export const fetchProducts = createAsyncThunk<Product[], FiltersForProducts, MyAsyncThunkConfig>(
   'products/fetchProducts',
   fetchProductsData,
 );

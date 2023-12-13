@@ -1,14 +1,12 @@
 import axios from 'axios';
 
-import { Product } from './getExtraReducers';
+import { CustomErrors, Product } from './getExtraReducers';
 import { FiltersForProducts } from './getFilterForProducts';
 import { getFilterForProducts } from './getFilterForProducts';
 
 export const fetchProductsData = async function (params: FiltersForProducts, { rejectWithValue }: any) {
-  const error = 'Nothing was found according to your request. Try to find another option or shorten your request.';
-
   if (params.searchValue === '') {
-    return rejectWithValue(error);
+    return rejectWithValue(CustomErrors.ERROR_EMPTY_REQUEST);
   }
 
   const filter = getFilterForProducts(params);
@@ -19,10 +17,10 @@ export const fetchProductsData = async function (params: FiltersForProducts, { r
     );
 
     if (data.length === 0) {
-      return rejectWithValue(error);
+      return rejectWithValue(CustomErrors.ERROR_NOTHING_FOUND);
     }
     return data;
   } catch (error: any) {
-    return rejectWithValue('Error: ' + error.message);
+    return rejectWithValue('Error: ' + error?.message);
   }
 };
