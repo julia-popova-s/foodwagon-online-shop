@@ -17,6 +17,7 @@ interface CartProduct {
 interface ListItem {
   [id: string]: CartProduct;
 }
+
 interface ProductList {
   items: ListItem;
   totalAmount: number;
@@ -34,16 +35,26 @@ interface UserSliceState {
   isAuth: boolean;
   list: OrderListItem[];
 }
+
+interface PayloadActionProps {
+  id: string;
+  list: ProductList;
+  name: string;
+  orderNumber: number;
+}
+
+interface User {
+  email: null | string;
+  id: string;
+}
+
 const initialState: UserSliceState = {
   email: null,
   id: '',
   isAuth: false,
   list: [],
 };
-type User = {
-  email: null | string;
-  id: string;
-};
+
 const userSlice = createSlice({
   initialState,
   name: 'user',
@@ -54,7 +65,7 @@ const userSlice = createSlice({
       state.isAuth = false;
       state.list = [];
     },
-    setOrders(state, action: PayloadAction<{ id: string; list: ProductList; name: string; orderNumber: number }>) {
+    setOrders(state, action: PayloadAction<PayloadActionProps>) {
       state.list.push({
         [action.payload.orderNumber]: action.payload.list,
         restaurantId: action.payload.id,

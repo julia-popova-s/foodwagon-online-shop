@@ -1,72 +1,60 @@
 import cn from 'classnames';
 import { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
-import { categorySelector, setCurrentPage } from '../../../store/reducers/filters';
+import { useAppDispatch } from '../../../store';
+import {
+  Product,
+  ProductInfoQuantity,
+  addProduct,
+  deleteOneProduct,
+  setProductCount,
+} from '../../../store/reducers/cart';
+import {
+  ProductOrderType,
+  ProductSortingType,
+  categorySelector,
+  orderTypeSelector,
+  setCurrentPage,
+  setSortBy,
+  sortTypeSelector,
+} from '../../../store/reducers/filters';
 import {
   currentPageSelector,
   fetchProducts,
   isLoadedSelector,
   productListSelector,
 } from '../../../store/reducers/products';
-import { orderSelector, setSortType, sortTypeSelector } from '../../../store/reducers/sortingType';
 import { SortPopup } from '../../elements/SortPopup';
 import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
 import style from './restaurantPage.module.scss';
 
-export type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
-
-export type OrderType = 'asc' | 'desc';
-
-export type SortItem = {
-  name: string;
-  order: OrderType;
-  type: SortType;
-};
-
-type ProductQuantity = {
-  id: string;
-  quantity: number;
-  restaurantId: string;
-};
-
-type Product = {
-  discount: number;
-  id: string;
-  image: string;
-  price: number;
-  restaurantId: string;
-  restaurantName: string;
-  title: string;
-};
-
-const sortItems: SortItem[] = [
-  { name: 'popularity ', order: 'desc', type: 'rating' },
+const SORT_ITEMS = [
+  { name: 'popularity ', order: ProductOrderType.DESC, type: ProductSortingType.RATING },
   {
-    name: 'price ascending',
-    order: 'asc',
-    type: 'price',
+    name: 'increasing price',
+    order: ProductOrderType.ASC,
+    type: ProductSortingType.PRICE,
   },
   {
-    name: 'price descending',
-    order: 'desc',
-    type: 'price',
+    name: 'decreasing price',
+    order: ProductOrderType.DESC,
+    type: ProductSortingType.PRICE,
   },
-  { name: 'discount', order: 'desc', type: 'discount' },
-  { name: 'alphabetically', order: 'asc', type: 'title' },
+  { name: 'discount', order: ProductOrderType.DESC, type: ProductSortingType.DISCOUNT },
+  { name: 'alphabetically', order: ProductOrderType.ASC, type: ProductSortingType.TITLE },
 ];
 
 export const RestaurantPage: FC = () => {
   const { restaurantId } = useParams();
 
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const category = useSelector(categorySelector);
-  const order = useSelector(orderSelector);
+  const orderType = useSelector(orderTypeSelector);
   const sortType = useSelector(sortTypeSelector);
 
   const currentPage = useSelector(currentPageSelector);
@@ -80,13 +68,13 @@ export const RestaurantPage: FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
-  
+
   const handleChangePage = (pageNumber: number) => {
     dispatch(setCurrentPage(pageNumber));
   };
 
-  const handleSelectSortType = (type: SortType, order: OrderType) => {
-    dispatch(setSortType({ order, type }));
+  const handleSelectSortType = (sortType: any, orderType: any) => {
+    dispatch(setSortBy({ orderType, sortType }));
   };
 
   useEffect(() => {
@@ -94,12 +82,12 @@ export const RestaurantPage: FC = () => {
       fetchProducts({
         currentPage,
         limit: 4,
-        order,
+        orderType,
         restaurantId,
         sortType,
       }),
     );
-  }, [sortType, category, restaurantId, order, currentPage]);
+  }, [sortType, category, restaurantId, currentPage,orderType]);
 
   const handleAddProduct = (item: Product) => {
     dispatch(addProduct(item));
@@ -109,7 +97,7 @@ export const RestaurantPage: FC = () => {
     dispatch(deleteOneProduct(item));
   };
 
-  const handleInputCount = (item: ProductQuantity) => {
+  const handleInputCount = (item: ProductInfoQuantity) => {
     dispatch(setProductCount(item));
   };
 
@@ -134,8 +122,8 @@ export const RestaurantPage: FC = () => {
             activeSortType={sortType}
             classNames={style.filters__sortBy}
             handleClickSortType={handleSelectSortType}
-            items={sortItems}
-            orderType={order}
+            items={SORT_ITEMS}
+            orderType={orderType}
           />
         </div>
         <div className={style.menuList}>

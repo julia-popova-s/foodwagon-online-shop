@@ -2,30 +2,47 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { RootStore } from '..';
 
-type SortType = 'discount' | 'name' | 'popular' | 'price' | 'rating' | 'time' | 'title';
-type OrderType = 'asc' | 'desc';
-interface SortingTypeSliceState {
-  order: OrderType;
-  sortType: SortType;
+export enum CafeSortingType {
+  NAME = 'name',
+  POPULAR = 'popular',
+  RATING = 'rating',
+  TIME = 'time',
 }
+
+export enum CafeOrderType {
+  ASC = 'asc',
+  DESC = 'desc',
+}
+
+interface SortingTypeSliceState {
+  category: number;
+  orderType: CafeOrderType;
+  sortType: CafeSortingType;
+}
+
 const initialState: SortingTypeSliceState = {
-  order: 'desc',
-  sortType: 'rating',
+  category: 0,
+  orderType: CafeOrderType.DESC,
+  sortType: CafeSortingType.RATING,
 };
 
 const sortingTypeSlice = createSlice({
   initialState,
   name: 'sortingType',
   reducers: {
-    setSortType(state, action: PayloadAction<{ order: OrderType; type: SortType }>) {
-      state.sortType = action.payload.type;
-      state.order = action.payload.order;
+    setCategory(state, action: PayloadAction<number>) {
+      state.category = action.payload;
+    },
+    setSortType(state, action: PayloadAction<{ orderType: CafeOrderType; sortType: CafeSortingType }>) {
+      state.sortType = action.payload.sortType;
+      state.orderType = action.payload.orderType;
     },
   },
 });
 
-export const orderSelector = (state: RootStore) => state.sortingType.order;
+export const orderTypeSelector = (state: RootStore) => state.sortingType.orderType;
 export const sortTypeSelector = (state: RootStore) => state.sortingType.sortType;
+export const categorySelector = (state: RootStore) => state.sortingType.category;
 
-export const { setSortType } = sortingTypeSlice.actions;
+export const { setCategory, setSortType } = sortingTypeSlice.actions;
 export default sortingTypeSlice.reducer;

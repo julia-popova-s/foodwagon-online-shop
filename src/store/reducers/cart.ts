@@ -5,7 +5,7 @@ import { updateAddedGoods } from '../../utils/utilsForCart/updateAddedGoods';
 import { updateTotalQuantity } from '../../utils/utilsForCart/updateTotalQuantity';
 import { RootStore } from '../index';
 
-type Product = {
+export interface Product {
   discount: number;
   id: string;
   image: string;
@@ -13,12 +13,12 @@ type Product = {
   restaurantId: string;
   restaurantName: string;
   title: string;
-};
-interface PayloadId {
+}
+export interface ProductInfoIds {
   id: string;
   restaurantId: string;
 }
-interface PayloadCount extends PayloadId {
+export interface ProductInfoQuantity extends ProductInfoIds {
   quantity: number;
 }
 
@@ -42,9 +42,11 @@ export interface ProductList {
   totalAmount: number;
   totalCount: number;
 }
+
 export interface CartType {
   [restaurantId: string]: ProductList;
 }
+
 type AddedGoodsItem = [string, ProductList];
 export interface CartSliceState {
   addedGoods: AddedGoodsItem[];
@@ -124,7 +126,7 @@ const cartSlice = createSlice({
       state.totalQuantity = state.totalQuantity - currentCount;
     },
 
-    deleteOneProduct(state, { payload: { id, restaurantId } }: PayloadAction<PayloadId>) {
+    deleteOneProduct(state, { payload: { id, restaurantId } }: PayloadAction<ProductInfoIds>) {
       //зафиксировать цену удаляемого товара
       const currentPrice =
         state.cart[restaurantId].items[id].price * (1 - state.cart[restaurantId].items[id].discount / 100);
@@ -160,7 +162,7 @@ const cartSlice = createSlice({
       updateAddedGoods(state);
     },
 
-    removeProduct(state, { payload: { id, restaurantId } }: PayloadAction<PayloadId>) {
+    removeProduct(state, { payload: { id, restaurantId } }: PayloadAction<ProductInfoIds>) {
       //зафиксировать количество и сумму удаляемой позиции
       const currentCount = state.cart[restaurantId].items[id].quantity;
       const currentAmount = state.cart[restaurantId].items[id].amount;
@@ -183,7 +185,7 @@ const cartSlice = createSlice({
       updateAddedGoods(state);
     },
 
-    setProductCount(state, { payload: { id, quantity, restaurantId } }: PayloadAction<PayloadCount>) {
+    setProductCount(state, { payload: { id, quantity, restaurantId } }: PayloadAction<ProductInfoQuantity>) {
       //установить новое значение количества для данной позиции
       state.cart[restaurantId].items[id].quantity = quantity;
 

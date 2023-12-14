@@ -2,12 +2,20 @@ import '/node_modules/slick-carousel/slick/slick.css';
 import '/node_modules/slick-carousel/slick/slick-theme.css';
 import cn from 'classnames';
 import { FC, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { ReactSVG } from 'react-svg';
 import { v4 as uuidv4 } from 'uuid';
 
-import { addProduct, cartSelector, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
+import { useAppDispatch } from '../../../store';
+import {
+  Product,
+  ProductInfoQuantity,
+  addProduct,
+  cartSelector,
+  deleteOneProduct,
+  setProductCount,
+} from '../../../store/reducers/cart';
 import { searchBySelector, setSearchBy } from '../../../store/reducers/filters';
 import { fetchProducts, isLoadedSelector, productListSelector } from '../../../store/reducers/products';
 import { Card } from '../../ui/Card';
@@ -16,23 +24,12 @@ import { CardFood } from './CardFood';
 import { Loader } from './Loader';
 import style from './searchFood.module.scss';
 
-type ProductQuantity = {
-  id: string;
-  price: number;
-  quantity: number;
-  restaurantId: string;
+type TypeFoodItem = {
+  imageSrc: string;
+  name: string;
 };
 
-type Product = {
-  discount: number;
-  id: string;
-  image: string;
-  price: number;
-  restaurantId: string;
-  restaurantName: string;
-  title: string;
-};
-const typeFood = [
+const TYPE_FOOD: TypeFoodItem[] = [
   {
     imageSrc: '/images/search-food/2.png',
     name: 'Burger',
@@ -54,7 +51,9 @@ const typeFood = [
 
 export const SearchFood: FC = () => {
   const [limit, setLimit] = useState<number>(4);
-  const dispatch = useDispatch<any>();
+
+  const dispatch = useAppDispatch();
+
   const searchBy = useSelector(searchBySelector);
 
   const isLoaded = useSelector(isLoadedSelector);
@@ -68,7 +67,7 @@ export const SearchFood: FC = () => {
     if (searchBy !== -1)
       dispatch(
         fetchProducts({
-          category: `${typeFood[searchBy].name}`,
+          category: `${TYPE_FOOD[searchBy].name}`,
           currentPage: 1,
           limit,
         }),
@@ -87,7 +86,7 @@ export const SearchFood: FC = () => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj: ProductQuantity) => {
+  const handleInputCount = (obj: ProductInfoQuantity) => {
     dispatch(setProductCount(obj));
   };
 
@@ -164,7 +163,7 @@ export const SearchFood: FC = () => {
     speed: 500,
   };
 
-  const skeleton = new Array(products?.length).fill(0).map((_, index) => <Loader key={index} />);
+  const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
 
   return (
     <section className={style.searchFoodBlock} id="searchByFood">
@@ -173,8 +172,8 @@ export const SearchFood: FC = () => {
           <h5 className={style.searchFood__title}>Search by Food</h5>
 
           <Slider {...sliderSettings} className={style.searchFood__slider} ref={slider}>
-            {typeFood &&
-              typeFood.map((item, i) => {
+            {TYPE_FOOD &&
+              TYPE_FOOD.map((item, i) => {
                 return (
                   <CardFood
                     key={uuidv4()}

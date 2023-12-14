@@ -1,12 +1,21 @@
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
-import { FC, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { FC, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/reducers/cart';
+import { useOutsideClick } from '../../../hooks/useOutsideClick';
+import { useAppDispatch } from '../../../store';
+import {
+  Product,
+  ProductInfoIds,
+  ProductInfoQuantity,
+  addedGoodsSelector,
+  cartSelector,
+  totalQuantitySelector,
+} from '../../../store/reducers/cart';
 import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
 import { isAuthSelector, setOrders } from '../../../store/reducers/user';
 import { Popup } from '../../ui/Popup';
@@ -16,43 +25,24 @@ import { ProductCard } from './ProductCard';
 import style from './cartPage.module.scss';
 
 let orderNumber = 0;
-type ProductQuantity = {
-  id: string;
-  price: number;
-  quantity: number;
-  restaurantId: string;
-};
 
-export type Product = {
-  discount: number;
-  id: string;
-  image: string;
-  price: number;
-  restaurantId: string;
-  restaurantName: string;
-  title: string;
-};
-type Idx = { id: string; restaurantId: string };
 type Restaurant = { restaurantId: string; restaurantName: string };
 
 const Cart: FC = () => {
   const { pathname } = useLocation();
 
-  const [name, setName] = useState('');
-  const [id, setId] = useState('');
+  const [name, setName] = useState<string>('');
+  const [id, setId] = useState<string>('');
 
-  const [visiblePopup, setVisiblePopup] = useState(false);
-  const [visibleModal, setVisibleModal] = useState(false);
-
-  const popupRef = useRef<HTMLDivElement>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
+  const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
+  const [visibleModal, setVisibleModal] = useState<boolean>(false);
 
   const addedGoods = useSelector(addedGoodsSelector);
   const cart = useSelector(cartSelector);
   const totalQuantity = useSelector(totalQuantitySelector);
   const isAuth = useSelector(isAuthSelector);
 
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 
@@ -66,7 +56,7 @@ const Cart: FC = () => {
     setVisiblePopup(true);
   };
 
-  const handleRemoveProduct = (item: Idx) => {
+  const handleRemoveProduct = (item: ProductInfoIds) => {
     dispatch(removeProduct(item));
   };
 
@@ -74,13 +64,13 @@ const Cart: FC = () => {
     dispatch(addProduct(product));
   };
 
-  const handleDeleteProduct = (item: Idx, count: number) => {
+  const handleDeleteProduct = (item: ProductInfoIds, count: number) => {
     if (count < 1) {
       dispatch(removeProduct(item));
     } else dispatch(deleteOneProduct(item));
   };
 
-  const handleInputQuantity = (obj: ProductQuantity) => {
+  const handleInputQuantity = (obj: ProductInfoQuantity) => {
     dispatch(setProductCount(obj));
   };
 
@@ -111,17 +101,7 @@ const Cart: FC = () => {
     setVisibleModal(false);
   };
 
-  useEffect(() => {
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (popupRef.current?.contains(e.target as Node)) {
-        setVisiblePopup(false);
-      }
-      return;
-    };
-    document.body.addEventListener('click', handleOutsideClick);
-
-    return () => document.body.removeEventListener('click', handleOutsideClick);
-  }, []);
+  const popupRef = useOutsideClick(handleClosePopup);
 
   if (!totalQuantity) {
     return (
@@ -214,12 +194,11 @@ const Cart: FC = () => {
 
       <Modal
         handleCloseModal={handleCloseModal}
+        isOpen={visibleModal}
         name={name}
         orderNumber={orderNumber}
-        ref={modalRef}
-        show={visibleModal}
       />
-      <Popup handleClickClose={handleClosePopup} handleClickOk={handleClearOrder} ref={popupRef} show={visiblePopup}>
+      <Popup handleClickClose={handleClosePopup} handleClickOk={handleClearOrder} isOpen={visiblePopup} ref={popupRef}>
         <>
           Are you sure you want to empty the cart from <span className={style.popup__name}>«{name}»</span>?
         </>
@@ -227,4 +206,5 @@ const Cart: FC = () => {
     </div>
   );
 };
+
 export default Cart;

@@ -1,8 +1,8 @@
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { FC, Suspense, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { useAppDispatch } from '../../../store';
 import { setUser } from '../../../store/reducers/user';
 import { signupSchema } from '../../../utils/utilsForForm/fieldValidationSchemes';
 import Spinner from '../../ui/Spinner/Spinner';
@@ -15,7 +15,7 @@ const SignUp: FC = () => {
   const auth = getAuth();
   const { pathname } = useLocation();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleRegister = (email: string, password: string) => {

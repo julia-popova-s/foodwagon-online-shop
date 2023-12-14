@@ -1,10 +1,10 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData';
-import { Product, getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { MyAsyncThunkConfig, Product, Status, getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
 import { FiltersForProducts } from '../../utils/utilsForStore/getFilterForProducts';
 import { RootStore } from '../index';
-import { ProductSliceState, Status } from './product';
+import { ProductSliceState } from './product';
 
 interface ProductsSliceState extends ProductSliceState {
   currentPage: number;
@@ -17,7 +17,8 @@ const initialState: ProductsSliceState = {
   list: [],
   status: Status.LOADING,
 };
-export const fetchProducts = createAsyncThunk<Product[], FiltersForProducts>(
+
+export const fetchProducts = createAsyncThunk<Product[], FiltersForProducts, MyAsyncThunkConfig>(
   'products/fetchProducts',
   fetchProductsData,
 );

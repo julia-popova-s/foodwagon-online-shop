@@ -11,6 +11,7 @@ import style from './mobileMenu.module.scss';
 type MobileMenuProps = {
   handleLogOut: () => void;
 };
+
 export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
   const { pathname } = useLocation();
 

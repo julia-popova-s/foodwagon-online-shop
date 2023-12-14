@@ -1,15 +1,11 @@
 import { useEffect, useRef } from 'react';
 
-type Ref = HTMLButtonElement | HTMLDivElement | HTMLElement | HTMLSpanElement;
-
-export const useOutsideClick = (handleOpen: () => void, handleClose: () => void) => {
-  const ref = useRef<Ref>(null);
+export const useOutsideClick = (handleClose: () => void) => {
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
-      if (ref.current?.contains(e.target as Node)) {
-        handleOpen();
-      } else {
+      if (!ref.current?.contains(e.target as Node)) {
         handleClose();
       }
       return;
@@ -18,7 +14,7 @@ export const useOutsideClick = (handleOpen: () => void, handleClose: () => void)
     document.body.addEventListener('mousedown', handleOutsideClick);
 
     return () => document.body.removeEventListener('mousedown', handleOutsideClick);
-  }, [handleOpen, handleClose]);
+  }, [handleClose]);
 
   return ref;
 };

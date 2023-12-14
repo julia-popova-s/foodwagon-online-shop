@@ -20,7 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "server": "json-server --watch server/db.json --port 3001",
-    "lint": " eslint -c .eslintrc --ext .jsx,.js src/",
+    "lint": " eslint -c .eslintrc --ext .tsx,.ts src/",
     "lint:fix": "npm run lint -- --fix"
   },
   "proxy": "http://localhost:3001",

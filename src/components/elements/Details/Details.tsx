@@ -5,14 +5,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { DetailsCard } from './DetailsCard';
 import style from './details.module.scss';
 
-type FoodItem = { description: string; food: string; id: string; imageSrc: string; link: string; title: string };
+type CardItem = { description: string; food: string; id: string; imageSrc: string; link: string; title: string };
 
-type FoodListType = FoodItem[];
-
-const dish: FoodListType = [
+const CARDS: CardItem[] = [
   {
     description:
-      'Enjoy the large size of sandwiches. Complete perfect slice of sandwiches. Crispy Chicken Sandwich: Beats anything from a fast-food joint! A total flavor-bomb and so moist & juicy. You\'ll love the bold spices!',
+      "Enjoy the large size of sandwiches. Complete perfect slice of sandwiches. Crispy Chicken Sandwich: Beats anything from a fast-food joint! A total flavor-bomb and so moist & juicy. You'll love the bold spices!",
     food: 'Crispy Sandwiches',
     id: uuidv4(),
     imageSrc: '/images/cards-big/1.png',
@@ -44,8 +42,8 @@ export const Details: FC = () => {
     <div className={style.cardBigList}>
       <div className="container">
         <div className={style.cardList}>
-          {dish &&
-            dish.map((item, i) => {
+          {CARDS &&
+            CARDS.map((item, i) => {
               const { id } = item;
               return <DetailsCard key={id} {...item} flippedСard={(i + 1) % 2 !== 0} />;
             })}
