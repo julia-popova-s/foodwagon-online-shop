@@ -6,15 +6,15 @@ import style from './popup.module.scss';
 type PopupProps = {
   handleClickClose: () => void;
   handleClickOk: () => void;
-  show: boolean;
+  isOpen: boolean;
 };
 
 export const Popup = forwardRef<HTMLDivElement, PropsWithChildren<PopupProps>>(
-  ({ children, handleClickClose, handleClickOk, show }, ref) => {
+  ({ children, handleClickClose, handleClickOk, isOpen }, ref) => {
     return (
-      <CSSTransition classNames="alert" in={show} timeout={300} unmountOnExit>
-        <div className={style.popupWrapper} ref={ref}>
-          <div className={style.popup}>
+      <CSSTransition classNames="alert" in={isOpen} timeout={300} unmountOnExit>
+        <div className={style.popupWrapper}>
+          <div className={style.popup} ref={ref}>
             <div className={style.popup__title}>{children}</div>
 
             <div className={style.popup__btns}>

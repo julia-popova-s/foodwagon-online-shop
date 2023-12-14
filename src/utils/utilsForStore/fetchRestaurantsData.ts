@@ -4,8 +4,6 @@ import { CustomErrors, Restaurant } from './getExtraReducers';
 import { FiltersForRestaurants, getFilterForRestaurants } from './getFilterForRestaurants';
 
 export const fetchRestaurantsData = async function (params: FiltersForRestaurants, { rejectWithValue }: any) {
-  const error = CustomErrors.ERROR_NOTHING_FOUND;
-
   const filter = getFilterForRestaurants(params);
 
   try {
@@ -14,7 +12,7 @@ export const fetchRestaurantsData = async function (params: FiltersForRestaurant
     );
 
     if (data.length === 0) {
-      return rejectWithValue(error);
+      return rejectWithValue(CustomErrors.ERROR_NOTHING_FOUND);
     }
     return data;
   } catch (error: any) {

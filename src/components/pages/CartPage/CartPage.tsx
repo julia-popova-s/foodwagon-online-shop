@@ -1,11 +1,12 @@
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
+import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { useAppDispatch } from '../../../store';
 import {
   Product,
@@ -35,9 +36,6 @@ const Cart: FC = () => {
 
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
-
-  const popupRef = useRef<HTMLDivElement>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
 
   const addedGoods = useSelector(addedGoodsSelector);
   const cart = useSelector(cartSelector);
@@ -103,17 +101,7 @@ const Cart: FC = () => {
     setVisibleModal(false);
   };
 
-  useEffect(() => {
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (popupRef.current?.contains(e.target as Node)) {
-        setVisiblePopup(false);
-      }
-      return;
-    };
-    document.body.addEventListener('click', handleOutsideClick);
-
-    return () => document.body.removeEventListener('click', handleOutsideClick);
-  }, []);
+  const popupRef = useOutsideClick(handleClosePopup);
 
   if (!totalQuantity) {
     return (
@@ -206,12 +194,11 @@ const Cart: FC = () => {
 
       <Modal
         handleCloseModal={handleCloseModal}
+        isOpen={visibleModal}
         name={name}
         orderNumber={orderNumber}
-        ref={modalRef}
-        show={visibleModal}
       />
-      <Popup handleClickClose={handleClosePopup} handleClickOk={handleClearOrder} ref={popupRef} show={visiblePopup}>
+      <Popup handleClickClose={handleClosePopup} handleClickOk={handleClearOrder} isOpen={visiblePopup} ref={popupRef}>
         <>
           Are you sure you want to empty the cart from <span className={style.popup__name}>«{name}»</span>?
         </>
@@ -219,4 +206,5 @@ const Cart: FC = () => {
     </div>
   );
 };
+
 export default Cart;
