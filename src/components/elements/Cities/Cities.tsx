@@ -1,14 +1,9 @@
 import { FC } from 'react';
 
-import { CityList } from './CityList';
+import { CityList, CityListProps } from './CityList';
 import style from './cities.module.scss';
 
-type CityListType = {
-  links: string[];
-  title: string;
-};
-
-export const CITY_LIST: CityListType = {
+export const CITY_LIST: CityListProps = {
   links: [
     'San Francisco',
     'Los Angeles',

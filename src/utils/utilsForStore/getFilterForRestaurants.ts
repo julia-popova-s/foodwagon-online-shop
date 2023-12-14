@@ -18,7 +18,7 @@ export function getFilterForRestaurants({
   restaurantId,
   sortType,
 }: FiltersForRestaurants) {
-  const page = currentPage ? `?page=${currentPage}` : '?page=1';
+  const pageFilter = currentPage ? `?page=${currentPage}` : '?page=1';
 
   const limitFilter = limit ? `&limit=${limit}` : '&limit=8';
 
@@ -39,5 +39,5 @@ export function getFilterForRestaurants({
 
   const idFilter = restaurantId ? `&id=${restaurantId}` : '';
 
-  return `${page}${limitFilter}${sortFilter}${orderFilter}${categoryFilter}${idFilter}`;
+  return `${pageFilter}${limitFilter}${sortFilter}${orderFilter}${categoryFilter}${idFilter}`;
 }

@@ -1,7 +1,13 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
+import {
+  Product,
+  ProductInfoQuantity,
+  addProduct,
+  deleteOneProduct,
+  setProductCount,
+} from '../../../store/reducers/cart';
 import {
   currentPageSelector,
   errorSelector,
@@ -16,29 +22,12 @@ import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
 import style from './searchPage.module.scss';
 
-type ProductQuantity = {
-  id: string;
-  quantity: number;
-  restaurantId: string;
-};
-
-type Product = {
-  discount: number;
-  id: string;
-  image: string;
-  price: number;
-  restaurantId: string;
-  restaurantName: string;
-  title: string;
-};
-
 const SearchPage: FC = () => {
   const error = useSelector(errorSelector);
   const currentPage = useSelector(currentPageSelector);
   const products = useSelector(productListSelector);
   const isLoaded = useSelector(isLoadedSelector);
   const status = useSelector(statusSelector);
-
   const dispatch = useDispatch();
 
   const handleChangePage = (pageNumber: number) => {
@@ -53,10 +42,9 @@ const SearchPage: FC = () => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (item: ProductQuantity) => {
+  const handleInputCount = (item: ProductInfoQuantity) => {
     dispatch(setProductCount(item));
   };
-
   const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
 
   return (
@@ -67,7 +55,7 @@ const SearchPage: FC = () => {
           <SearchPanel />
         </div>
 
-        {error && <div className={style.message}>{error.message}</div>}
+        {status === 'reject' && typeof error === 'string' && <div className={style.message}>{error}</div>}
 
         <div className={style.menuList}>
           {isLoaded &&
@@ -86,8 +74,6 @@ const SearchPage: FC = () => {
         </div>
 
         {status && !error && <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />}
-
-        {!status && <div className={style.message}>Are you ready to order with the best deals?</div>}
       </div>
     </div>
   );

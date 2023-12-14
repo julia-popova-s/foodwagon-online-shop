@@ -1,9 +1,16 @@
 import cn from 'classnames';
 import { FC, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
-import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
+import { useAppDispatch } from '../../../store';
+import {
+  Product,
+  ProductInfoQuantity,
+  addProduct,
+  deleteOneProduct,
+  setProductCount,
+} from '../../../store/reducers/cart';
 import { isLoadedSelector, productListSelector } from '../../../store/reducers/productsPopular';
 import { fetchProductsPopular } from '../../../store/reducers/productsPopular';
 import { Card } from '../../ui/Card';
@@ -11,24 +18,8 @@ import { SliderButton } from '../../ui/buttons/SliderButton';
 import { Loader } from './Loader';
 import style from './popularItems.module.scss';
 
-type ProductQuantity = {
-  id: string;
-  price: number;
-  quantity: number;
-  restaurantId: string;
-};
-
-type Product = {
-  discount: number;
-  id: string;
-  image: string;
-  price: number;
-  restaurantId: string;
-  restaurantName: string;
-  title: string;
-};
 export const PopularItems: FC = () => {
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const slider = useRef<Slider>(null);
 
@@ -53,7 +44,7 @@ export const PopularItems: FC = () => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj: ProductQuantity) => {
+  const handleInputCount = (obj: ProductInfoQuantity) => {
     dispatch(setProductCount(obj));
   };
 

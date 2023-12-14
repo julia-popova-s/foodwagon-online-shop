@@ -2,11 +2,14 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { RootStore } from '..';
 import { fetchProductsData } from '../../utils/utilsForStore/fetchProductsData';
-import { getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { MyAsyncThunkConfig, Product, Status, getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import { FiltersForProducts } from '../../utils/utilsForStore/getFilterForProducts';
 import { ProductSliceState } from './product';
-import { Status } from './product';
 
-export const fetchProductsFastAccess = createAsyncThunk('products/fetchProductsFastAccess', fetchProductsData);
+export const fetchProductsFastAccess = createAsyncThunk<Product[], FiltersForProducts, MyAsyncThunkConfig>(
+  'products/fetchProductsFastAccess',
+  fetchProductsData,
+);
 
 const initialState: ProductSliceState = {
   error: null,

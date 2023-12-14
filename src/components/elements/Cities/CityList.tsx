@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import style from './cityList.module.scss';
 
-type CityListProps = {
+export type CityListProps = {
   links: string[];
   title: string;
 };

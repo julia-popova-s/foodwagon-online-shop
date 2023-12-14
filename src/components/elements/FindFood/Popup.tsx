@@ -3,17 +3,9 @@ import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
 
+import { Product } from '../../../store/reducers/cart';
 import { PriceBlock } from '../../pages/CartPage/PriceBlock';
 import style from './popup.module.scss';
-
-type Product = {
-  discount: number;
-  id: string;
-  image: string;
-  price: number;
-  restaurantId: string;
-  title: string;
-};
 
 type PopupProps = {
   isLoaded: boolean;

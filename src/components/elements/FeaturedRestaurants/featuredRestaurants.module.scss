@@ -40,7 +40,7 @@
     @include setTextStyle(700, 18px, 100%);
     color: $white-color;
     text-align: center;
-    
+
     margin: 0 auto;
     padding: 21px 0;
 
@@ -50,10 +50,14 @@
     background: linear-gradient(97.86deg, #ffba26 -8.95%, #ff9a0e 109.24%);
     box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26),
       0px 20px 40px rgba(255, 174, 0, 0.29);
-    border-radius: 14px;    
+    border-radius: 14px;
   }
 
   &__btn>span {
     margin-left: 10px;
   }
+}
+
+.restaurantList__popup {
+  margin-left: auto;
 }

@@ -1,6 +1,21 @@
 import type { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
 
-type Cuisine = 'Dessert' | 'Fish' | 'Meat' | 'Pasta' | 'Salad';
+export enum CustomErrors {
+  ERROR_EMPTY_REQUEST = 'Are you ready to order with the best deals?',
+  ERROR_NOTHING_FOUND = 'Nothing was found according to request.',
+}
+export interface MyAsyncThunkConfig {
+  rejectValue: CustomErrors;
+}
+
+export enum Status {
+  LOADING = 'loading',
+  REJECT = 'reject',
+  RESOLVE = 'resolve',
+}
+
+export type ErrorType = CustomErrors | Error | null;
+
 interface Address {
   city: string;
   country: string;
@@ -12,7 +27,7 @@ export interface Restaurant {
   address: Address;
   aggregated_rating_count: number;
   backgroundId: string;
-  cuisines: Cuisine[];
+  cuisines: string[];
   delivery_enabled: true;
   deliveryTime: number;
   id: string;
@@ -37,8 +52,9 @@ export interface Product {
   restaurantName: string;
   title: string;
 }
+
 interface ProductSliceState {
-  error: Error | null;
+  error: ErrorType;
   isLoaded: boolean;
   list: Product[] | Restaurant[];
   status: Status;
@@ -46,18 +62,12 @@ interface ProductSliceState {
 
 type ListType = Product[] | Restaurant[];
 
-enum Status {
-  LOADING = 'loading',
-  REJECT = 'reject',
-  RESOLVE = 'resolve',
-}
-
 export const getExtraReducers = (builder: ActionReducerMapBuilder<ProductSliceState>) => (fetch: any) => {
   builder
     .addCase(fetch.fulfilled, (state, action: PayloadAction<ListType>) => {
       state.status = Status.RESOLVE;
-      state.list = action.payload;
       state.isLoaded = true;
+      state.list = action.payload;
       state.error = null;
     })
     .addCase(fetch.pending, (state) => {
@@ -66,7 +76,7 @@ export const getExtraReducers = (builder: ActionReducerMapBuilder<ProductSliceSt
       state.list = [];
       state.error = null;
     })
-    .addCase(fetch.rejected, (state, action: PayloadAction<Error>) => {
+    .addCase(fetch.rejected, (state, action: PayloadAction<ErrorType>) => {
       state.status = Status.REJECT;
       state.isLoaded = false;
       state.list = [];

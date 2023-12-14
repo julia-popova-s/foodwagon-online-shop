@@ -2,22 +2,23 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { RootStore } from '..';
 import { fetchRestaurantsData } from '../../utils/utilsForStore/fetchRestaurantsData';
-import { Restaurant, getExtraReducers } from '../../utils/utilsForStore/getExtraReducers';
+import {
+  ErrorType,
+  MyAsyncThunkConfig,
+  Restaurant,
+  Status,
+  getExtraReducers,
+} from '../../utils/utilsForStore/getExtraReducers';
 import { FiltersForRestaurants } from '../../utils/utilsForStore/getFilterForRestaurants';
 
-enum Status {
-  LOADING = 'loading',
-  REJECT = 'reject',
-  RESOLVE = 'resolve',
-}
 export interface RestSliceState {
-  error: Error | null;
+  error: ErrorType;
   isLoaded: boolean;
   list: Restaurant[];
   status: Status;
 }
 
-export const fetchRestaurants = createAsyncThunk<Restaurant[], FiltersForRestaurants>(
+export const fetchRestaurants = createAsyncThunk<Restaurant[], FiltersForRestaurants, MyAsyncThunkConfig>(
   'products/fetchRestaurants',
   fetchRestaurantsData,
 );
@@ -28,6 +29,7 @@ const initialState: RestSliceState = {
   list: [],
   status: Status.LOADING,
 };
+
 const restSlice = createSlice({
   extraReducers: (builder) => getExtraReducers(builder)(fetchRestaurants),
 

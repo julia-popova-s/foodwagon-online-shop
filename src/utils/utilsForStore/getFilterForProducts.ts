@@ -5,7 +5,7 @@ export interface FiltersForProducts {
   currentPage?: number;
   id?: string;
   limit?: number;
-  order?: OrderType;
+  orderType?: OrderType;
   rating?: number;
   restaurantId?: string;
   searchValue?: string;
@@ -16,7 +16,7 @@ export function getFilterForProducts({
   currentPage,
   id,
   limit,
-  order,
+  orderType,
   rating,
   restaurantId,
   searchValue,
@@ -28,7 +28,7 @@ export function getFilterForProducts({
 
   const sortFilter = sortType ? `&sortBy=${sortType}` : '';
 
-  const orderFilter = sortType && order ? `&order=${order}` : '';
+  const orderFilter = sortType && orderType ? `&order=${orderType}` : '';
 
   const categoryFilter = category && category !== 'All' ? `&category=${category}` : '';
 

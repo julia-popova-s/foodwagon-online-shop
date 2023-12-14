@@ -1,19 +1,10 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
+import { Restaurant } from '../../../utils/utilsForStore/getExtraReducers';
 import { CardFeatured } from './CardFeatured';
 import { Loader } from './Loader';
 import style from './restaurantList.module.scss';
-
-type Restaurant = {
-  backgroundId: string;
-  deliveryTime: number;
-  id: string;
-  imageSrc: string;
-  logo_photos: string;
-  name: string;
-  weighted_rating_value: number;
-};
 
 type RestaurantListProps = {
   isLoading: boolean;
@@ -21,7 +12,7 @@ type RestaurantListProps = {
 };
 
 export const RestaurantList: FC<RestaurantListProps> = ({ isLoading, list }) => {
-  const skeleton = new Array(list.length).fill(0).map((_, index) => <Loader key={index} />);
+  const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
 
   return (
     <div className={style.restaurantListWrapper}>

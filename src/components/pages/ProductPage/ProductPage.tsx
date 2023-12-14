@@ -1,8 +1,15 @@
 import { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { addProduct, deleteOneProduct, setProductCount } from '../../../store/reducers/cart';
+import { useAppDispatch } from '../../../store';
+import {
+  Product,
+  ProductInfoQuantity,
+  addProduct,
+  deleteOneProduct,
+  setProductCount,
+} from '../../../store/reducers/cart';
 import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/reducers/product';
 import { RestaurantPage } from '../RestaurantPage/RestaurantPage';
 import { Card } from './Card';
@@ -10,25 +17,9 @@ import { LoaderLeft } from './LoaderLeft';
 import { LoaderRight } from './LoaderRight';
 import style from './productPage.module.scss';
 
-type ProductQuantity = {
-  id: string;
-  price: number;
-  quantity: number;
-  restaurantId: string;
-};
-
-type Product = {
-  discount: number;
-  id: string;
-  image: string;
-  price: number;
-  restaurantId: string;
-  restaurantName: string;
-  title: string;
-};
 const ProductPage: FC = () => {
   const { id } = useParams();
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const { pathname } = useLocation();
 
@@ -56,7 +47,7 @@ const ProductPage: FC = () => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj: ProductQuantity) => {
+  const handleInputCount = (obj: ProductInfoQuantity) => {
     dispatch(setProductCount(obj));
   };
 

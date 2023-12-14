@@ -1,8 +1,8 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { FC, Suspense, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { useAppDispatch } from '../../../store';
 import { setUser } from '../../../store/reducers/user';
 import { loginSchema } from '../../../utils/utilsForForm/fieldValidationSchemes';
 import Spinner from '../../ui/Spinner/Spinner';
@@ -12,7 +12,7 @@ import style from './loginPage.module.scss';
 const Login: FC = () => {
   const auth = getAuth();
   const { pathname } = useLocation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
 
