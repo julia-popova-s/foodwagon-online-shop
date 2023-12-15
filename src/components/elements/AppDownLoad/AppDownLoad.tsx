@@ -20,7 +20,7 @@ const links: LinkType[] = [
   { name: 'app-store', src: '/images/install-app/app-store.png' },
 ];
 
-export const AppDownLoad: FC = () => {
+const AppDownLoad: FC = () => {
   return (
     <div className={style.installBlock}>
       <div className={style.appDownLoad}>
@@ -77,3 +77,4 @@ export const AppDownLoad: FC = () => {
     </div>
   );
 };
+export default AppDownLoad;

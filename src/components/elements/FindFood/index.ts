@@ -1,1 +1,0 @@
-export { FindFood } from './FindFood';

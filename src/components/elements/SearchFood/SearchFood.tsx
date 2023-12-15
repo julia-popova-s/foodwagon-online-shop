@@ -49,7 +49,7 @@ const TYPE_FOOD: TypeFoodItem[] = [
   { imageSrc: '/images/search-food/6.png', name: 'Meat' },
 ];
 
-export const SearchFood: FC = () => {
+const SearchFood: FC = () => {
   const [limit, setLimit] = useState<number>(4);
 
   const dispatch = useAppDispatch();
@@ -163,7 +163,7 @@ export const SearchFood: FC = () => {
     speed: 500,
   };
 
-  const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
+  const skeleton = new Array(products?.length).fill(0).map((_, index) => <Loader key={index} />);
 
   return (
     <section className={style.searchFoodBlock} id="searchByFood">
@@ -216,3 +216,5 @@ export const SearchFood: FC = () => {
     </section>
   );
 };
+
+export default SearchFood;

@@ -18,7 +18,7 @@ import { SliderButton } from '../../ui/buttons/SliderButton';
 import { Loader } from './Loader';
 import style from './popularItems.module.scss';
 
-export const PopularItems: FC = () => {
+const PopularItems: FC = () => {
   const dispatch = useAppDispatch();
 
   const slider = useRef<Slider>(null);
@@ -139,3 +139,5 @@ export const PopularItems: FC = () => {
     </section>
   );
 };
+
+export default PopularItems;

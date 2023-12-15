@@ -15,14 +15,19 @@
   box-shadow: rgba(255, 174, 0, 0.26) 0px 5px 10px,
     rgba(255, 174, 0, 0.29) 0px 20px 40px;
 
+  &:hover {
+    transform: translateY(1px);
+    transition: transform $transition-short ease;
+  }
+
   &:hover &__icon {
     color: $base-color;
-    transition: color 0.3s ease;
+    transition: color $transition-long ease;
   }
 
   &__icon {
     color: rgb(255, 138, 0);
-    transition: color 0.3s ease;
+    transition: color $transition-long ease;
   }
 
   &__counter {

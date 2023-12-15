@@ -33,7 +33,7 @@ export const CITY_LIST: CityListProps = {
   title: 'Our top cities',
 };
 
-export const Cities: FC = () => {
+const Cities: FC = () => {
   return (
     <div className={style.cities}>
       <div className="container">
@@ -42,3 +42,5 @@ export const Cities: FC = () => {
     </div>
   );
 };
+
+export default Cities;

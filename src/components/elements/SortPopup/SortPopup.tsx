@@ -1,3 +1,4 @@
+import useWhyDidYouUpdate from 'ahooks/lib/useWhyDidYouUpdate';
 import cn from 'classnames';
 import { FC, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
@@ -19,7 +20,7 @@ export type SortItem = {
 type SortPopupProps = {
   activeSortType: SortType;
   classNames?: string;
-  handleClickSortType: (sortType: SortType, orderType: OrderType) => void;
+  handleChangeSortType: (sortType: SortType, orderType: OrderType) => void;
   items: SortItem[];
   orderType: OrderType;
 };
@@ -27,10 +28,18 @@ type SortPopupProps = {
 export const SortPopup: FC<SortPopupProps> = ({
   activeSortType,
   classNames,
-  handleClickSortType,
+  handleChangeSortType,
   items,
   orderType,
 }) => {
+  useWhyDidYouUpdate('Categories', {
+    activeSortType,
+    classNames,
+    handleChangeSortType,
+    items,
+    orderType,
+  });
+
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
 
   const handleOpenPopup = () => {
@@ -63,7 +72,7 @@ export const SortPopup: FC<SortPopupProps> = ({
                     [style.sort__item_active]: type === activeSortType && order === orderType,
                   })}
                   key={`${type}_${i}`}
-                  onClick={() => handleClickSortType(type, order)}
+                  onClick={() => handleChangeSortType(type, order)}
                 >
                   {name}
                 </li>

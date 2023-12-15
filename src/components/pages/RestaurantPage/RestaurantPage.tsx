@@ -73,7 +73,7 @@ export const RestaurantPage: FC = () => {
     dispatch(setCurrentPage(pageNumber));
   };
 
-  const handleSelectSortType = (sortType: any, orderType: any) => {
+  const handleChangeSortType = (sortType: any, orderType: any) => {
     dispatch(setSortBy({ orderType, sortType }));
   };
 
@@ -121,7 +121,7 @@ export const RestaurantPage: FC = () => {
           <SortPopup
             activeSortType={sortType}
             classNames={style.filters__sortBy}
-            handleClickSortType={handleSelectSortType}
+            handleChangeSortType={handleChangeSortType}
             items={SORT_ITEMS}
             orderType={orderType}
           />

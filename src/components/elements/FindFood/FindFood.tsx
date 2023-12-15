@@ -7,14 +7,14 @@ import { SearchButton } from '../../ui/buttons/SearchButton';
 import { DeliveryMethod } from './DeliveryMethod';
 import style from './findFood.module.scss';
 
-export const FindFood: FC = () => {
+const FindFood: FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = useState<string>('');
 
   const handleSearchValue = (text: string) => {
     setSearchValue(text);
   };
-  
+
   return (
     <main className={style.findFoodWrapper}>
       <div className="container">
@@ -37,3 +37,5 @@ export const FindFood: FC = () => {
     </main>
   );
 };
+
+export default FindFood;
