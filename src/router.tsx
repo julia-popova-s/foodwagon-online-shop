@@ -2,16 +2,13 @@ import { lazy } from 'react';
 
 import { ErrorPage } from './components/pages/ErrorPage';
 
-const App = lazy(() => import('./components/App/App'));
-
-const HomePage = lazy(() => import('./components/pages/HomePage/HomePage'));
-const CartPage = lazy(() => import('./components/pages/CartPage/CartPage'));
-
-const SignUpPage = lazy(() => import('./components/pages/LoginPage/SignUpPage'));
-const LoginPage = lazy(() => import('./components/pages/LoginPage/LoginPage'));
-
-const ProductPage = lazy(() => import('./components/pages/ProductPage/ProductPage'));
-const SearchPage = lazy(() => import('./components/pages/SearchPage/SearchPage'));
+const App = lazy(() => import(/*webpackChunkName: "App"*/ './components/App'));
+const HomePage = lazy(() => import(/*webpackChunkName: "HomePage"*/ './components/pages/HomePage'));
+const CartPage = lazy(() => import(/*webpackChunkName: "CartPage"*/ './components/pages/CartPage'));
+const SignUpPage = lazy(() => import(/*webpackChunkName: "SignUpPage"*/ './components/pages/SignUpPage'));
+const LoginPage = lazy(() => import(/*webpackChunkName: "LoginPage"*/ './components/pages/LoginPage'));
+const ProductPage = lazy(() => import(/*webpackChunkName: "ProductPage"*/ './components/pages/ProductPage'));
+const SearchPage = lazy(() => import(/*webpackChunkName: "SearchPage"*/ './components/pages/SearchPage'));
 
 export const router = [
   {

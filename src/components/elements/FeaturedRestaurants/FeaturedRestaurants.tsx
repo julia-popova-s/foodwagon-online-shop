@@ -28,7 +28,7 @@ const sortItems = [
   { name: 'alphabetically', order: CafeOrderType.ASC, type: CafeSortingType.NAME },
 ];
 
-const FeaturedRestaurants: FC = () => {
+export const FeaturedRestaurants: FC = () => {
   const [limit, setLimit] = useState<number>(4);
   const dispatch = useAppDispatch();
 
@@ -95,5 +95,3 @@ const FeaturedRestaurants: FC = () => {
     </section>
   );
 };
-
-export default FeaturedRestaurants;

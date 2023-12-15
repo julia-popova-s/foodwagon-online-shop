@@ -22,7 +22,7 @@ import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
 import style from './searchPage.module.scss';
 
-const SearchPage: FC = () => {
+export const SearchPage: FC = () => {
   const error = useSelector(errorSelector);
   const currentPage = useSelector(currentPageSelector);
   const products = useSelector(productListSelector);
@@ -78,4 +78,3 @@ const SearchPage: FC = () => {
     </div>
   );
 };
-export default SearchPage;

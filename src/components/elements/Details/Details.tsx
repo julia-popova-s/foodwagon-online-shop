@@ -37,7 +37,7 @@ const CARDS: CardItem[] = [
   },
 ];
 
-const Details: FC = () => {
+export const Details: FC = () => {
   return (
     <div className={style.cardBigList}>
       <div className="container">
@@ -52,5 +52,3 @@ const Details: FC = () => {
     </div>
   );
 };
-
-export default Details;

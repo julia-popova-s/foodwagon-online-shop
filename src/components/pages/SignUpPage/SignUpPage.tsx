@@ -1,23 +1,25 @@
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { FC, Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
 import { setUser } from '../../../store/reducers/user';
-import { loginSchema } from '../../../utils/utilsForForm/fieldValidationSchemes';
+import { signupSchema } from '../../../utils/utilsForForm/fieldValidationSchemes';
 import Spinner from '../../ui/Spinner/Spinner';
-import AuthRegForm from './AuthRegForm';
-import style from './loginPage.module.scss';
+import AuthRegForm from '../LoginPage/AuthRegForm';
+import style from './signUpPage.module.scss';
 
-export const Login: FC = () => {
-  const auth = getAuth();
-  const { pathname } = useLocation();
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+export const SignUp: FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = (email: string, password: string) => {
-    signInWithEmailAndPassword(auth, email, password)
+  const auth = getAuth();
+  const { pathname } = useLocation();
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleRegister = (email: string, password: string) => {
+    createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(
           setUser({
@@ -29,8 +31,8 @@ export const Login: FC = () => {
       })
       .catch(({ code, message }) => {
         switch (code) {
-          case 'auth/invalid-login-credentials':
-            setErrorMessage('Invalid login details');
+          case 'auth/email-already-in-use':
+            setErrorMessage('This email address is already in use by another account.');
             break;
 
           default:
@@ -47,10 +49,8 @@ export const Login: FC = () => {
   return (
     <div className={style.login}>
       <Suspense fallback={<Spinner />}>
-        <AuthRegForm errorMessage={errorMessage} handleClick={handleLogin} schema={loginSchema} title={'Log in'} />
+        <AuthRegForm errorMessage={errorMessage} handleClick={handleRegister} schema={signupSchema} title={'Sign Up'} />
       </Suspense>
     </div>
   );
 };
-
-

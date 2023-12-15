@@ -38,7 +38,7 @@ const algorithm: AlgorithmStep[] = [
   },
 ];
 
-const OrderAlgorithm: FC = () => {
+export const OrderAlgorithm: FC = () => {
   return (
     <section className={style.orderAlgorithmBlock}>
       <div className="container">
@@ -56,5 +56,3 @@ const OrderAlgorithm: FC = () => {
     </section>
   );
 };
-
-export default OrderAlgorithm;

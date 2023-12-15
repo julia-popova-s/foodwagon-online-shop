@@ -25,6 +25,7 @@ import {
   fetchProducts,
   isLoadedSelector,
   productListSelector,
+  statusSelector,
 } from '../../../store/reducers/products';
 import { SortPopup } from '../../elements/SortPopup';
 import { Card } from '../../ui/Card';
@@ -60,7 +61,8 @@ export const RestaurantPage: FC = () => {
   const currentPage = useSelector(currentPageSelector);
   const isLoaded = useSelector(isLoadedSelector);
   const products = useSelector(productListSelector);
-
+  const status = useSelector(statusSelector);
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -87,7 +89,7 @@ export const RestaurantPage: FC = () => {
         sortType,
       }),
     );
-  }, [sortType, category, restaurantId, currentPage,orderType]);
+  }, [sortType, category, restaurantId, currentPage, orderType]);
 
   const handleAddProduct = (item: Product) => {
     dispatch(addProduct(item));
@@ -103,7 +105,7 @@ export const RestaurantPage: FC = () => {
 
   const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
 
-  if (!isLoaded && !products?.length) {
+  if (status === 'reject') {
     return (
       <div className={cn(style.restaurant)}>
         <div className="container">

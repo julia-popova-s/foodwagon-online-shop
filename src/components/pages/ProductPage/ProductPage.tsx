@@ -17,7 +17,7 @@ import { LoaderLeft } from './LoaderLeft';
 import { LoaderRight } from './LoaderRight';
 import style from './productPage.module.scss';
 
-const ProductPage: FC = () => {
+export const ProductPage: FC = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
@@ -82,5 +82,3 @@ const ProductPage: FC = () => {
     </>
   );
 };
-
-export default ProductPage;

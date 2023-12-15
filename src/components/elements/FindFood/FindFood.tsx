@@ -7,7 +7,7 @@ import { SearchButton } from '../../ui/buttons/SearchButton';
 import { DeliveryMethod } from './DeliveryMethod';
 import style from './findFood.module.scss';
 
-const FindFood: FC = () => {
+export const FindFood: FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
   const [searchValue, setSearchValue] = useState<string>('');
 
@@ -37,5 +37,3 @@ const FindFood: FC = () => {
     </main>
   );
 };
-
-export default FindFood;

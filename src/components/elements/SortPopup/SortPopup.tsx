@@ -1,4 +1,3 @@
-import useWhyDidYouUpdate from 'ahooks/lib/useWhyDidYouUpdate';
 import cn from 'classnames';
 import { FC, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
@@ -32,14 +31,6 @@ export const SortPopup: FC<SortPopupProps> = ({
   items,
   orderType,
 }) => {
-  useWhyDidYouUpdate('Categories', {
-    activeSortType,
-    classNames,
-    handleChangeSortType,
-    items,
-    orderType,
-  });
-
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
 
   const handleOpenPopup = () => {

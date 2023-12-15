@@ -9,7 +9,7 @@ import Spinner from '../../ui/Spinner/Spinner';
 import AuthRegForm from './AuthRegForm';
 import style from './loginPage.module.scss';
 
-const SignUp: FC = () => {
+export const SignUp: FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const auth = getAuth();
@@ -54,4 +54,3 @@ const SignUp: FC = () => {
     </div>
   );
 };
-export default SignUp;

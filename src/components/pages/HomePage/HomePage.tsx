@@ -1,21 +1,21 @@
-import { FC, Suspense, lazy } from 'react';
+import { FC, lazy } from 'react';
 
-import FindFood from '../../elements/FindFood/FindFood';
-import Spinner from '../../ui/Spinner/Spinner';
+const AppDownLoad = lazy(() => import(/*webpackChunkName: "AppDownLoad"*/ '../../elements/AppDownLoad'));
+const CallToAction = lazy(() => import(/*webpackChunkName: "CallToAction"*/ '../../elements/CallToAction'));
+const FeaturedRestaurants = lazy(
+  () => import(/*webpackChunkName: "FeaturedRestaurants"*/ '../../elements/FeaturedRestaurants'),
+);
+const Cities = lazy(() => import(/*webpackChunkName: "Cities"*/ '../../elements/Cities'));
+const Details = lazy(() => import(/*webpackChunkName: "Details"*/ '../../elements/Details'));
+const SearchFood = lazy(() => import(/*webpackChunkName: "SearchFood"*/ '../../elements/SearchFood'));
+const PopularItems = lazy(() => import(/*webpackChunkName: "PopularItems"*/ '../../elements/PopularItems'));
+const OrderAlgorithm = lazy(() => import(/*webpackChunkName: "OrderAlgorithm"*/ '../../elements/OrderAlgorithm'));
+const FlashDeals = lazy(() => import(/*webpackChunkName: "FlashDeals"*/ '../../elements/FlashDeals'));
+const FindFood = lazy(() => import(/*webpackChunkName: "FindFood"*/ '../../elements/FindFood'));
 
-const AppDownLoad = lazy(() => import('../../elements/AppDownLoad/AppDownLoad'));
-const CallToAction = lazy(() => import('../../elements/CallToAction/CallToAction'));
-const FeaturedRestaurants = lazy(() => import('../../elements/FeaturedRestaurants/FeaturedRestaurants'));
-const Cities = lazy(() => import('../../elements/Cities/Cities'));
-const Details = lazy(() => import('../../elements/Details/Details'));
-const SearchFood = lazy(() => import('../../elements/SearchFood/SearchFood'));
-const PopularItems = lazy(() => import('../../elements/PopularItems/PopularItems'));
-const OrderAlgorithm = lazy(() => import('../../elements/OrderAlgorithm/OrderAlgorithm'));
-const FlashDeals = lazy(() => import('../../elements/FlashDeals/FlashDeals'));
-
-const Home: FC = () => {
+export const Home: FC = () => {
   return (
-    <Suspense fallback={<Spinner />}>
+    <>
       <FindFood />
       <FlashDeals />
       <OrderAlgorithm />
@@ -26,8 +26,6 @@ const Home: FC = () => {
       <Details />
       <CallToAction />
       <Cities />
-    </Suspense>
+    </>
   );
 };
-
-export default Home;

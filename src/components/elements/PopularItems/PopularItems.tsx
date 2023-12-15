@@ -18,7 +18,7 @@ import { SliderButton } from '../../ui/buttons/SliderButton';
 import { Loader } from './Loader';
 import style from './popularItems.module.scss';
 
-const PopularItems: FC = () => {
+export const PopularItems: FC = () => {
   const dispatch = useAppDispatch();
 
   const slider = useRef<Slider>(null);
@@ -49,6 +49,7 @@ const PopularItems: FC = () => {
   };
 
   const sliderSettings = {
+    autoplay: true,
     dots: false,
     infinite: true,
     nextArrow: (
@@ -139,5 +140,3 @@ const PopularItems: FC = () => {
     </section>
   );
 };
-
-export default PopularItems;

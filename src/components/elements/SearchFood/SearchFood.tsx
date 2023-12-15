@@ -1,5 +1,3 @@
-import '/node_modules/slick-carousel/slick/slick.css';
-import '/node_modules/slick-carousel/slick/slick-theme.css';
 import cn from 'classnames';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -49,7 +47,7 @@ const TYPE_FOOD: TypeFoodItem[] = [
   { imageSrc: '/images/search-food/6.png', name: 'Meat' },
 ];
 
-const SearchFood: FC = () => {
+export const SearchFood: FC = () => {
   const [limit, setLimit] = useState<number>(4);
 
   const dispatch = useAppDispatch();
@@ -216,5 +214,3 @@ const SearchFood: FC = () => {
     </section>
   );
 };
-
-export default SearchFood;

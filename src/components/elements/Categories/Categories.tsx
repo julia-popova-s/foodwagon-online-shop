@@ -1,4 +1,3 @@
-import useWhyDidYouUpdate from 'ahooks/lib/useWhyDidYouUpdate';
 import classNames from 'classnames';
 import { FC } from 'react';
 
@@ -11,7 +10,6 @@ type CategoryProps = {
 };
 
 export const Categories: FC<CategoryProps> = ({ activeCategory, handleChangeCategory, items }) => {
-  useWhyDidYouUpdate('Categories', { activeCategory, handleChangeCategory, items });
   return (
     <div className={style.categories}>
       <ul className={style.categories__list}>
