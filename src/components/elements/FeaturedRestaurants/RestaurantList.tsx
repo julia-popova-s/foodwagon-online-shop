@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Restaurant } from '../../../utils/utilsForStore/getExtraReducers';
+import { Restaurant } from '../../../store/utils/getExtraReducers';
 import { CardFeatured } from './CardFeatured';
 import { Loader } from './Loader';
 import style from './restaurantList.module.scss';

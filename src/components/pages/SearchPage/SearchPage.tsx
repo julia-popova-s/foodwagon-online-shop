@@ -1,21 +1,16 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  Product,
-  ProductInfoQuantity,
-  addProduct,
-  deleteOneProduct,
-  setProductCount,
-} from '../../../store/reducers/cart';
+import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
+import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import {
   currentPageSelector,
   errorSelector,
   isLoadedSelector,
   productListSelector,
-  setCurrentPage,
   statusSelector,
-} from '../../../store/reducers/productsSearch';
+} from '../../../store/slices/productsSearch/selectors';
+import { setCurrentPage } from '../../../store/slices/productsSearch/slice';
 import { SearchPanel } from '../../elements/FindFood/SearchPanel';
 import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
@@ -28,6 +23,7 @@ export const SearchPage: FC = () => {
   const products = useSelector(productListSelector);
   const isLoaded = useSelector(isLoadedSelector);
   const status = useSelector(statusSelector);
+
   const dispatch = useDispatch();
 
   const handleChangePage = (pageNumber: number) => {

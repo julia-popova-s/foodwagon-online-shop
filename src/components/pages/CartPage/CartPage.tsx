@@ -8,16 +8,17 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { useAppDispatch } from '../../../store';
+import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/slices/cart/selectors';
 import {
-  Product,
-  ProductInfoIds,
-  ProductInfoQuantity,
-  addedGoodsSelector,
-  cartSelector,
-  totalQuantitySelector,
-} from '../../../store/reducers/cart';
-import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
-import { isAuthSelector, setOrders } from '../../../store/reducers/user';
+  addProduct,
+  clearCart,
+  deleteOneProduct,
+  removeProduct,
+  setProductCount,
+} from '../../../store/slices/cart/slice';
+import { Product, ProductInfoIds, ProductInfoQuantity } from '../../../store/slices/cart/types';
+import { isAuthSelector } from '../../../store/slices/user/selectors';
+import { setOrders } from '../../../store/slices/user/slice';
 import { Popup } from '../../ui/Popup';
 import { OrderButton } from '../../ui/buttons/OrderButton';
 import { Modal } from './Modal';

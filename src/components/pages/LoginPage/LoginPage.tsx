@@ -3,8 +3,8 @@ import { FC, Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
-import { setUser } from '../../../store/reducers/user';
-import { loginSchema } from '../../../utils/utilsForForm/fieldValidationSchemes';
+import { setUser } from '../../../store/slices/user/slice';
+import { loginSchema } from '../../../utils/fieldValidationSchemes';
 import Spinner from '../../ui/Spinner/Spinner';
 import AuthRegForm from './AuthRegForm';
 import style from './loginPage.module.scss';
@@ -52,5 +52,3 @@ export const Login: FC = () => {
     </div>
   );
 };
-
-

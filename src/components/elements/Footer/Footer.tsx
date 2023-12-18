@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { validationEmail } from '../../../utils/utilsForForm/validationEmail';
+import { validationEmail } from '../../../utils/validationEmail';
 import { FooterNav } from './FooterNav';
 import style from './footer.module.scss';
 

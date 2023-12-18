@@ -15,7 +15,7 @@ import {
   restaurants,
   sortingType,
   user,
-} from './reducers';
+} from './slices';
 
 const persistConfig = {
   key: 'root',

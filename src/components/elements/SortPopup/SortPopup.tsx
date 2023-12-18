@@ -3,12 +3,12 @@ import { FC, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
-import { ProductOrderType, ProductSortingType } from '../../../store/reducers/filters';
-import { CafeOrderType, CafeSortingType } from '../../../store/reducers/sortingType';
+import { ProductOrderType, ProductSortingType } from '../../../store/slices/filters/types';
+import { RestaurantOrderType, RestaurantSortingType } from '../../../store/slices/sortingType/types';
 import style from './sortPopup.module.scss';
 
-export type SortType = CafeSortingType | ProductSortingType;
-export type OrderType = CafeOrderType | ProductOrderType;
+export type SortType = ProductSortingType | RestaurantSortingType;
+export type OrderType = ProductOrderType | RestaurantOrderType;
 
 export type SortItem = {
   name: string;

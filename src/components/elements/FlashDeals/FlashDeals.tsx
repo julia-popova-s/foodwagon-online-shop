@@ -3,12 +3,9 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
-import { ProductOrderType, ProductSortingType } from '../../../store/reducers/filters';
-import {
-  fetchProductsWithDiscount,
-  productListSelector,
-  statusSelector,
-} from '../../../store/reducers/productsWithDiscount';
+import { ProductOrderType, ProductSortingType } from '../../../store/slices/filters/types';
+import { productListSelector, statusSelector } from '../../../store/slices/productsWithDiscount/selectors';
+import { fetchProductsWithDiscount } from '../../../store/slices/productsWithDiscount/slice';
 import { FlashDealCard } from './FlashDealCard';
 import { Loader } from './Loader';
 import style from './flashDeals.module.scss';
