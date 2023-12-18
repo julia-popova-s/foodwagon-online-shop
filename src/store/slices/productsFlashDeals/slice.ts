@@ -18,7 +18,7 @@ const initialState: ProductSliceState = {
   status: Status.LOADING,
 };
 
-const productsFlashDealsSlice = createSlice({
+const productsFlashDeals = createSlice({
   extraReducers: (builder) => getExtraReducers(builder)(fetchProductsFlashDeals),
 
   initialState,
@@ -32,5 +32,5 @@ const productsFlashDealsSlice = createSlice({
   },
 });
 
-export const { setLoaded } = productsFlashDealsSlice.actions;
-export default productsFlashDealsSlice.reducer;
+export const { setLoaded } = productsFlashDeals.actions;
+export default productsFlashDeals.reducer;
