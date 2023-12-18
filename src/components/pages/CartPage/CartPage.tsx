@@ -8,16 +8,17 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { useAppDispatch } from '../../../store';
+import { addedGoodsSelector, cartSelector, totalQuantitySelector } from '../../../store/slices/cart/selectors';
 import {
-  Product,
-  ProductInfoIds,
-  ProductInfoQuantity,
-  addedGoodsSelector,
-  cartSelector,
-  totalQuantitySelector,
-} from '../../../store/reducers/cart';
-import { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } from '../../../store/reducers/cart';
-import { isAuthSelector, setOrders } from '../../../store/reducers/user';
+  addProduct,
+  clearCart,
+  deleteOneProduct,
+  removeProduct,
+  setProductCount,
+} from '../../../store/slices/cart/slice';
+import { Product, ProductInfoIds, ProductInfoQuantity } from '../../../store/slices/cart/types';
+import { isAuthSelector } from '../../../store/slices/user/selectors';
+import { setOrders } from '../../../store/slices/user/slice';
 import { Popup } from '../../ui/Popup';
 import { OrderButton } from '../../ui/buttons/OrderButton';
 import { Modal } from './Modal';
@@ -28,7 +29,7 @@ let orderNumber = 0;
 
 type Restaurant = { restaurantId: string; restaurantName: string };
 
-const Cart: FC = () => {
+export const Cart: FC = () => {
   const { pathname } = useLocation();
 
   const [name, setName] = useState<string>('');
@@ -192,12 +193,7 @@ const Cart: FC = () => {
         </div>
       </div>
 
-      <Modal
-        handleCloseModal={handleCloseModal}
-        isOpen={visibleModal}
-        name={name}
-        orderNumber={orderNumber}
-      />
+      <Modal handleCloseModal={handleCloseModal} isOpen={visibleModal} name={name} orderNumber={orderNumber} />
       <Popup handleClickClose={handleClosePopup} handleClickOk={handleClearOrder} isOpen={visiblePopup} ref={popupRef}>
         <>
           Are you sure you want to empty the cart from <span className={style.popup__name}>«{name}»</span>?
@@ -206,5 +202,3 @@ const Cart: FC = () => {
     </div>
   );
 };
-
-export default Cart;

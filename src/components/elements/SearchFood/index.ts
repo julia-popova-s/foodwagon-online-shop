@@ -1,1 +1,1 @@
-export { SearchFood } from './SearchFood';
+export { SearchFood as default } from './SearchFood';

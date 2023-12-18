@@ -1,5 +1,3 @@
-import '/node_modules/slick-carousel/slick/slick.css';
-import '/node_modules/slick-carousel/slick/slick-theme.css';
 import cn from 'classnames';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -8,16 +6,13 @@ import { ReactSVG } from 'react-svg';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useAppDispatch } from '../../../store';
-import {
-  Product,
-  ProductInfoQuantity,
-  addProduct,
-  cartSelector,
-  deleteOneProduct,
-  setProductCount,
-} from '../../../store/reducers/cart';
-import { searchBySelector, setSearchBy } from '../../../store/reducers/filters';
-import { fetchProducts, isLoadedSelector, productListSelector } from '../../../store/reducers/products';
+import { cartSelector } from '../../../store/slices/cart/selectors';
+import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
+import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
+import { searchBySelector } from '../../../store/slices/filters/selectors';
+import { setSearchBy } from '../../../store/slices/filters/slice';
+import { isLoadedSelector, productListSelector } from '../../../store/slices/products/selectors';
+import { fetchProducts } from '../../../store/slices/products/slice';
 import { Card } from '../../ui/Card';
 import { SliderButton } from '../../ui/buttons/SliderButton';
 import { CardFood } from './CardFood';
@@ -163,7 +158,7 @@ export const SearchFood: FC = () => {
     speed: 500,
   };
 
-  const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
+  const skeleton = new Array(products?.length).fill(0).map((_, index) => <Loader key={index} />);
 
   return (
     <section className={style.searchFoodBlock} id="searchByFood">

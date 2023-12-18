@@ -2,12 +2,10 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import { useOutsideClick } from '../../../hooks/useOutsideClick';
-import {
-  fetchProductsFastAccess,
-  isLoadedSelector,
-  productListSelector,
-} from '../../../store/reducers/productsFastAccess';
-import { currentPageSelector, fetchProductsSearch, setCurrentPage } from '../../../store/reducers/productsSearch';
+import { isLoadedSelector, productListSelector } from '../../../store/slices/productsFastAccess/selectors';
+import { fetchProductsFastAccess } from '../../../store/slices/productsFastAccess/slice';
+import { currentPageSelector } from '../../../store/slices/productsSearch/selectors';
+import { fetchProductsSearch, setCurrentPage } from '../../../store/slices/productsSearch/slice';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Popup } from './Popup';

@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { cartSelector } from '../../../store/reducers/cart';
+import { cartSelector } from '../../../store/slices/cart/selectors';
+import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import { getListProducts } from '../../../utils/getListProducts';
 import { getPartOfString } from '../../../utils/getPartOfString';
 import { Discount } from '../../ui/Discount';
@@ -12,28 +13,11 @@ import { CounterAndButton } from '../../ui/buttons/CounterAndButton';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import style from './card.module.scss';
 
-type ProductQuantity = {
-  id: string;
-  price: number;
-  quantity: number;
-  restaurantId: string;
-};
-
-type Product = {
-  discount: number;
-  id: string;
-  image: string;
-  price: number;
-  restaurantId: string;
-  restaurantName: string;
-  title: string;
-};
-
 type CardProps = {
   classNames?: string;
   discount: number;
   handleAddProduct: (item: Product) => void;
-  handleInputCount: (item: ProductQuantity) => void;
+  handleInputCount: (item: ProductInfoQuantity) => void;
   handleRemoveProduct: (item: Product) => void;
   id: string;
   image: string;
@@ -66,7 +50,7 @@ export const Card: FC<CardProps> = ({
 
   const quantity = cart[restaurantId]?.items[id]?.quantity;
 
-  const handleInputQuantity = (quantity: number) => handleInputCount({ id, price, quantity, restaurantId });
+  const handleInputQuantity = (quantity: number) => handleInputCount({ id, quantity, restaurantId });
 
   const handlePlusProduct = () => {
     handleAddProduct({

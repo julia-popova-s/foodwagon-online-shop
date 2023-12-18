@@ -61,7 +61,10 @@
       border: 2px solid $base-color;
       color: $base-color;
       background-color: $white-color;
-      transition: color $transition-long ease, background-color $transition-long ease;
+
+      transition: transform $transition-short ease, color $transition-long ease, background-color $transition-long ease;
+
+      transform: translateY(1px);
     }
   }
 }

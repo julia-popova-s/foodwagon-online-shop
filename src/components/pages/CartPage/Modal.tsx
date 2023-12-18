@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
-import { emailSelector } from '../../../store/reducers/user';
+import { emailSelector } from '../../../store/slices/user/selectors';
 import style from './modal.module.scss';
 
 type ModalProps = {

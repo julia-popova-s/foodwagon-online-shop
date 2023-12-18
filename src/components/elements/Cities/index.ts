@@ -1,1 +1,1 @@
-export { Cities } from './Cities';
+export { Cities as default } from './Cities';

@@ -4,28 +4,18 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
-import {
-  Product,
-  ProductInfoQuantity,
-  addProduct,
-  deleteOneProduct,
-  setProductCount,
-} from '../../../store/reducers/cart';
-import {
-  ProductOrderType,
-  ProductSortingType,
-  categorySelector,
-  orderTypeSelector,
-  setCurrentPage,
-  setSortBy,
-  sortTypeSelector,
-} from '../../../store/reducers/filters';
+import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
+import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
+import { categorySelector, orderTypeSelector, sortTypeSelector } from '../../../store/slices/filters/selectors';
+import { setCurrentPage, setSortBy } from '../../../store/slices/filters/slice';
+import { ProductOrderType, ProductSortingType } from '../../../store/slices/filters/types';
 import {
   currentPageSelector,
-  fetchProducts,
   isLoadedSelector,
   productListSelector,
-} from '../../../store/reducers/products';
+  statusSelector,
+} from '../../../store/slices/products/selectors';
+import { fetchProducts } from '../../../store/slices/products/slice';
 import { SortPopup } from '../../elements/SortPopup';
 import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
@@ -60,6 +50,7 @@ export const RestaurantPage: FC = () => {
   const currentPage = useSelector(currentPageSelector);
   const isLoaded = useSelector(isLoadedSelector);
   const products = useSelector(productListSelector);
+  const status = useSelector(statusSelector);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -73,7 +64,7 @@ export const RestaurantPage: FC = () => {
     dispatch(setCurrentPage(pageNumber));
   };
 
-  const handleSelectSortType = (sortType: any, orderType: any) => {
+  const handleChangeSortType = (sortType: any, orderType: any) => {
     dispatch(setSortBy({ orderType, sortType }));
   };
 
@@ -87,7 +78,7 @@ export const RestaurantPage: FC = () => {
         sortType,
       }),
     );
-  }, [sortType, category, restaurantId, currentPage,orderType]);
+  }, [sortType, category, restaurantId, currentPage, orderType]);
 
   const handleAddProduct = (item: Product) => {
     dispatch(addProduct(item));
@@ -103,7 +94,7 @@ export const RestaurantPage: FC = () => {
 
   const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
 
-  if (!isLoaded && !products?.length) {
+  if (status === 'reject') {
     return (
       <div className={cn(style.restaurant)}>
         <div className="container">
@@ -121,7 +112,7 @@ export const RestaurantPage: FC = () => {
           <SortPopup
             activeSortType={sortType}
             classNames={style.filters__sortBy}
-            handleClickSortType={handleSelectSortType}
+            handleChangeSortType={handleChangeSortType}
             items={SORT_ITEMS}
             orderType={orderType}
           />

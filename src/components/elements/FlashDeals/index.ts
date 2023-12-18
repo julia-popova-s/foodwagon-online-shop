@@ -1,1 +1,1 @@
-export { FlashDeals } from './FlashDeals';
+export { FlashDeals as default } from './FlashDeals';

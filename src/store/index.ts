@@ -9,13 +9,13 @@ import {
   product,
   products,
   productsFastAccess,
+  productsFlashDeals,
   productsPopular,
   productsSearch,
-  productsWithDiscount,
   restaurants,
   sortingType,
   user,
-} from './reducers';
+} from './slices';
 
 const persistConfig = {
   key: 'root',
@@ -29,9 +29,9 @@ const rootReducer = combineReducers({
   product,
   products,
   productsFastAccess,
+  productsFlashDeals,
   productsPopular,
   productsSearch,
-  productsWithDiscount,
   restaurants,
   sortingType,
   user,

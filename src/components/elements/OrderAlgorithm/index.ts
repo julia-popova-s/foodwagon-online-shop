@@ -1,1 +1,1 @@
-export { OrderAlgorithm } from './OrderAlgorithm';
+export { OrderAlgorithm as default } from './OrderAlgorithm';

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Product } from '../../../store/reducers/cart';
+import { Product } from '../../../store/slices/cart/types';
 import { PriceBlock } from '../../pages/CartPage/PriceBlock';
 import style from './popup.module.scss';
 

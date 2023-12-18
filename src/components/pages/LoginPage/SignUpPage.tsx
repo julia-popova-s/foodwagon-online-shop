@@ -3,13 +3,13 @@ import { FC, Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
-import { setUser } from '../../../store/reducers/user';
-import { signupSchema } from '../../../utils/utilsForForm/fieldValidationSchemes';
+import { setUser } from '../../../store/slices/user/slice';
+import { signupSchema } from '../../../utils/fieldValidationSchemes';
 import Spinner from '../../ui/Spinner/Spinner';
 import AuthRegForm from './AuthRegForm';
 import style from './loginPage.module.scss';
 
-const SignUp: FC = () => {
+export const SignUp: FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const auth = getAuth();
@@ -54,4 +54,3 @@ const SignUp: FC = () => {
     </div>
   );
 };
-export default SignUp;
