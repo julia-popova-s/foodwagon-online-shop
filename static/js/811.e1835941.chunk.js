@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkfoodwagon_online_shop=self.webpackChunkfoodwagon_online_shop||[]).push([[811],{5811:(s,e,n)=>{n.r(e),n.d(e,{default:()=>p});var a=n(2791),o=n(7689),l=n(1201),c=n(8795),h=n(184);const p=()=>(0,h.jsxs)("div",{className:"app",children:[(0,h.jsx)(l.h4,{}),(0,h.jsx)(a.Suspense,{fallback:(0,h.jsx)(c.Z,{}),children:(0,h.jsx)(o.j3,{})}),(0,h.jsx)(l.$_,{})]})}}]);
-//# sourceMappingURL=811.e1835941.chunk.js.map
