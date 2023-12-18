@@ -1,1 +1,1 @@
-export { AppDownLoad } from './AppDownLoad';
+export { AppDownLoad as default } from './AppDownLoad';

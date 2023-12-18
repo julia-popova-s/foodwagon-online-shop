@@ -14,7 +14,7 @@ export const FindFood: FC = () => {
   const handleSearchValue = (text: string) => {
     setSearchValue(text);
   };
-  
+
   return (
     <main className={style.findFoodWrapper}>
       <div className="container">

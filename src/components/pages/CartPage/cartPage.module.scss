@@ -100,7 +100,9 @@
 
     &:hover {
       color: $text-color;
-      transition: all $transition-long ease;
+      transition: transform $transition-short ease, color $transition-long ease;
+
+      transform: translateY(1px);
     }
   }
 

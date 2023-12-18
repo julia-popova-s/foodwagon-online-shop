@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { cartSelector } from '../../../store/reducers/cart';
+import { cartSelector } from '../../../store/slices/cart/selectors';
 import { getPartOfString } from '../../../utils/getPartOfString';
 import { Discount } from '../Discount/Discount';
 import { CounterAndButton } from '../buttons/CounterAndButton';

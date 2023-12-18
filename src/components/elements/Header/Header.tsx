@@ -1,13 +1,13 @@
 import cn from 'classnames';
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { removeUser } from '../../../store/reducers/user';
-import { isAuthSelector } from '../../../store/reducers/user';
+import { isAuthSelector } from '../../../store/slices/user/selectors';
+import { removeUser } from '../../../store/slices/user/slice';
 import { LogoType } from '../../ui/LogoType';
 import { CartButton } from '../../ui/buttons/CartButton';
 import { LoginButton } from '../../ui/buttons/LoginButton';

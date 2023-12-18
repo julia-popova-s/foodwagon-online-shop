@@ -1,1 +1,1 @@
-export { FeaturedRestaurants } from './FeaturedRestaurants';
+export { FeaturedRestaurants as default } from './FeaturedRestaurants';

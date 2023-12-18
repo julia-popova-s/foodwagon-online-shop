@@ -4,15 +4,10 @@ import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
 import { useAppDispatch } from '../../../store';
-import {
-  Product,
-  ProductInfoQuantity,
-  addProduct,
-  deleteOneProduct,
-  setProductCount,
-} from '../../../store/reducers/cart';
-import { isLoadedSelector, productListSelector } from '../../../store/reducers/productsPopular';
-import { fetchProductsPopular } from '../../../store/reducers/productsPopular';
+import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
+import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
+import { isLoadedSelector, productListSelector } from '../../../store/slices/productsPopular/selectors';
+import { fetchProductsPopular } from '../../../store/slices/productsPopular/slice';
 import { Card } from '../../ui/Card';
 import { SliderButton } from '../../ui/buttons/SliderButton';
 import { Loader } from './Loader';
@@ -49,6 +44,7 @@ export const PopularItems: FC = () => {
   };
 
   const sliderSettings = {
+    autoplay: true,
     dots: false,
     infinite: true,
     nextArrow: (

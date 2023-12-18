@@ -3,21 +3,17 @@ import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
-import {
-  Product,
-  ProductInfoQuantity,
-  addProduct,
-  deleteOneProduct,
-  setProductCount,
-} from '../../../store/reducers/cart';
-import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/reducers/product';
+import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
+import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
+import { isLoadedSelector, productSelector } from '../../../store/slices/product/selectors';
+import { fetchProduct } from '../../../store/slices/product/slice';
 import { RestaurantPage } from '../RestaurantPage/RestaurantPage';
 import { Card } from './Card';
 import { LoaderLeft } from './LoaderLeft';
 import { LoaderRight } from './LoaderRight';
 import style from './productPage.module.scss';
 
-const ProductPage: FC = () => {
+export const ProductPage: FC = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
@@ -82,5 +78,3 @@ const ProductPage: FC = () => {
     </>
   );
 };
-
-export default ProductPage;

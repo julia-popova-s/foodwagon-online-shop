@@ -1,19 +1,19 @@
-import { FC } from 'react';
+import { FC, lazy } from 'react';
 
-import {
-  AppDownLoad,
-  CallToAction,
-  Cities,
-  Details,
-  FeaturedRestaurants,
-  FindFood,
-  FlashDeals,
-  OrderAlgorithm,
-  PopularItems,
-  SearchFood,
-} from '../../elements';
+const AppDownLoad = lazy(() => import(/*webpackChunkName: "AppDownLoad"*/ '../../elements/AppDownLoad'));
+const CallToAction = lazy(() => import(/*webpackChunkName: "CallToAction"*/ '../../elements/CallToAction'));
+const FeaturedRestaurants = lazy(
+  () => import(/*webpackChunkName: "FeaturedRestaurants"*/ '../../elements/FeaturedRestaurants'),
+);
+const Cities = lazy(() => import(/*webpackChunkName: "Cities"*/ '../../elements/Cities'));
+const Details = lazy(() => import(/*webpackChunkName: "Details"*/ '../../elements/Details'));
+const SearchFood = lazy(() => import(/*webpackChunkName: "SearchFood"*/ '../../elements/SearchFood'));
+const PopularItems = lazy(() => import(/*webpackChunkName: "PopularItems"*/ '../../elements/PopularItems'));
+const OrderAlgorithm = lazy(() => import(/*webpackChunkName: "OrderAlgorithm"*/ '../../elements/OrderAlgorithm'));
+const FlashDeals = lazy(() => import(/*webpackChunkName: "FlashDeals"*/ '../../elements/FlashDeals'));
+const FindFood = lazy(() => import(/*webpackChunkName: "FindFood"*/ '../../elements/FindFood'));
 
-const Home: FC = () => {
+export const Home: FC = () => {
   return (
     <>
       <FindFood />
@@ -29,5 +29,3 @@ const Home: FC = () => {
     </>
   );
 };
-
-export default Home;

@@ -1,19 +1,13 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
 import { useAppDispatch } from '../../../store';
-import { fetchRestaurants } from '../../../store/reducers/restaurants';
-import { isLoadedSelector, restaurantListSelector } from '../../../store/reducers/restaurants';
-import {
-  CafeOrderType,
-  CafeSortingType,
-  categorySelector,
-  orderTypeSelector,
-  setCategory,
-  setSortType,
-  sortTypeSelector,
-} from '../../../store/reducers/sortingType';
+import { isLoadedSelector, restaurantListSelector } from '../../../store/slices/restaurants/selectors';
+import { fetchRestaurants } from '../../../store/slices/restaurants/slice';
+import { categorySelector, orderTypeSelector, sortTypeSelector } from '../../../store/slices/sortingType/selectors';
+import { setCategory, setSortType } from '../../../store/slices/sortingType/slice';
+import { RestaurantOrderType, RestaurantSortingType } from '../../../store/slices/sortingType/types';
 import { Categories } from '../Categories';
 import { SortPopup } from '../SortPopup';
 import { RestaurantList } from './RestaurantList';
@@ -22,10 +16,10 @@ import style from './featuredRestaurants.module.scss';
 const categoryNames: string[] = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup', 'Burger'];
 
 const sortItems = [
-  { name: 'popularity', order: CafeOrderType.DESC, type: CafeSortingType.POPULAR },
-  { name: 'rating', order: CafeOrderType.DESC, type: CafeSortingType.RATING },
-  { name: 'delivery time', order: CafeOrderType.ASC, type: CafeSortingType.TIME },
-  { name: 'alphabetically', order: CafeOrderType.ASC, type: CafeSortingType.NAME },
+  { name: 'popularity', order: RestaurantOrderType.DESC, type: RestaurantSortingType.POPULAR },
+  { name: 'rating', order: RestaurantOrderType.DESC, type: RestaurantSortingType.RATING },
+  { name: 'delivery time', order: RestaurantOrderType.ASC, type: RestaurantSortingType.TIME },
+  { name: 'alphabetically', order: RestaurantOrderType.ASC, type: RestaurantSortingType.NAME },
 ];
 
 export const FeaturedRestaurants: FC = () => {
@@ -39,13 +33,13 @@ export const FeaturedRestaurants: FC = () => {
   const isLoaded = useSelector(isLoadedSelector);
   const list = useSelector(restaurantListSelector);
 
-  const handleSelectCategory = (index: number) => {
+  const handleChangeCategory = useCallback((index: number) => {
     dispatch(setCategory(index));
-  };
+  }, []);
 
-  const handleSelectSortType = (sortType: any, orderType: any) => {
+  const handleChangeSortType = useCallback((sortType: any, orderType: any) => {
     dispatch(setSortType({ orderType, sortType }));
-  };
+  }, []);
 
   const handleLimit = () => {
     setLimit(limit * 2);
@@ -69,12 +63,12 @@ export const FeaturedRestaurants: FC = () => {
           <h4 className={style.restaurantList__title}>Featured Restaurants</h4>
 
           <div className={style.restaurantList__filters}>
-            <Categories activeCategory={category} handleClickCategory={handleSelectCategory} items={categoryNames} />
+            <Categories activeCategory={category} handleChangeCategory={handleChangeCategory} items={categoryNames} />
 
             <SortPopup
               activeSortType={sortType}
               classNames={style.restaurantList__popup}
-              handleClickSortType={handleSelectSortType}
+              handleChangeSortType={handleChangeSortType}
               items={sortItems}
               orderType={orderType}
             />

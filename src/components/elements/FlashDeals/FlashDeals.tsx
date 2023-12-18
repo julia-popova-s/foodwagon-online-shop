@@ -3,12 +3,9 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
-import { ProductOrderType, ProductSortingType } from '../../../store/reducers/filters';
-import {
-  fetchProductsWithDiscount,
-  productListSelector,
-  statusSelector,
-} from '../../../store/reducers/productsWithDiscount';
+import { ProductOrderType, ProductSortingType } from '../../../store/slices/filters/types';
+import { productListSelector, statusSelector } from '../../../store/slices/productsFlashDeals/selectors';
+import { fetchProductsFlashDeals } from '../../../store/slices/productsFlashDeals/slice';
 import { FlashDealCard } from './FlashDealCard';
 import { Loader } from './Loader';
 import style from './flashDeals.module.scss';
@@ -23,7 +20,7 @@ export const FlashDeals: FC = () => {
 
   useEffect(() => {
     dispatch(
-      fetchProductsWithDiscount({
+      fetchProductsFlashDeals({
         limit: 4,
         orderType: ProductOrderType.DESC,
         restaurantId,

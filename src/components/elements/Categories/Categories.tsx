@@ -5,11 +5,11 @@ import style from './categories.module.scss';
 
 type CategoryProps = {
   activeCategory: number;
-  handleClickCategory: (index: number) => void;
+  handleChangeCategory: (index: number) => void;
   items: string[];
 };
 
-export const Categories: FC<CategoryProps> = ({ activeCategory, handleClickCategory, items }) => {
+export const Categories: FC<CategoryProps> = ({ activeCategory, handleChangeCategory, items }) => {
   return (
     <div className={style.categories}>
       <ul className={style.categories__list}>
@@ -20,7 +20,7 @@ export const Categories: FC<CategoryProps> = ({ activeCategory, handleClickCateg
                 [style.categories__item_active]: activeCategory === i,
               })}
               key={`${item}_${i}`}
-              onClick={() => handleClickCategory(i)}
+              onClick={() => handleChangeCategory(i)}
             >
               {item}
             </li>
