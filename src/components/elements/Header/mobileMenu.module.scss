@@ -106,6 +106,12 @@
   cursor: pointer;
 }
 
+.menu__link.active::before {
+  background-color: $base-color;
+
+  transition: all $transition-short ease;
+}
+
 .menu__link::before {
   position: absolute;
 
@@ -128,7 +134,6 @@
 
   transition: all $transition-short ease;
 }
-
 
 
 @keyframes fadeIn {

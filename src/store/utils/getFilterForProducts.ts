@@ -1,3 +1,4 @@
+/* eslint-disable perfectionist/sort-objects */
 import { ProductOrderType, ProductSortingType } from '../slices/filters/types';
 
 export interface FiltersForProducts {
@@ -23,26 +24,17 @@ export function getFilterForProducts({
   searchValue,
   sortType,
 }: FiltersForProducts): string {
-  const currentPageFilter = currentPage ? `?page=${currentPage}` : '?page=1';
-
-  const limitFilter = limit ? `&limit=${limit}` : '&limit=4';
-
-  const sortFilter = sortType ? `&sortBy=${sortType}` : '';
-
-  const orderFilter = sortType && orderType ? `&order=${orderType}` : '';
-
-  const categoryFilter = category && category !== 'All' ? `&category=${category}` : '';
-
-  const idFilter = restaurantId ? `&restaurantId=${restaurantId}` : '';
-
-  const searchState = searchValue ? `&search=${searchValue.replace(' ', '&')}` : '';
-
-  const idProductFilter = id ? `&id=${id}` : '';
-
-  const ratingFilter = rating ? `&raiting=${rating}` : '';
-
-  return (
-    `${currentPageFilter}${limitFilter}${sortFilter}${orderFilter}${categoryFilter}` +
-    `${idFilter}${searchState}${idProductFilter}${ratingFilter}`
-  );
+  const filters = {
+    currentPage: currentPage ? `?page=${currentPage}` : '?page=1',
+    limit: limit ? `&limit=${limit}` : '&limit=4',
+    category: category && category !== 'All' ? `&category=${category}` : '',
+    id: id ? `&id=${id}` : '',
+    orderType: sortType && orderType ? `&order=${orderType}` : '',
+    rating: rating ? `&raiting=${rating}` : '',
+    restaurantId: restaurantId ? `&restaurantId=${restaurantId}` : '',
+    searchValue: searchValue ? `&search=${searchValue.replace(' ', '&')}` : '',
+    sortType: sortType ? `&sortBy=${sortType}` : '',
+  };
+  
+  return Object.values(filters).join('');
 }
