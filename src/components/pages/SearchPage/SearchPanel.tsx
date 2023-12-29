@@ -1,11 +1,13 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-// import { useOutsideClick } from '../../../hooks/useOutsideClick';
-import { isLoadedSelector, productListSelector } from '../../../store/slices/productsFastAccess/selectors';
-import { fetchProductsFastAccess } from '../../../store/slices/productsFastAccess/slice';
-import { currentPageSelector } from '../../../store/slices/productsSearch/selectors';
-import { fetchProductsSearch, setCurrentPage } from '../../../store/slices/productsSearch/slice';
+import { useAppDispatch } from '../../../store';
+import {
+  fetchProductsFastAccess,
+  isLoadedSelector,
+  productListSelector,
+} from '../../../store/slices/productsFastAccess/slice';
+import { currentPageSelector, fetchProductsSearch, setCurrentPage } from '../../../store/slices/productsSearch/slice';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Popup } from './Popup';
@@ -15,15 +17,9 @@ export const SearchPanel: FC = () => {
   const [searchValue, setSearchValue] = useState('');
   const [visiblePopup, setVisiblePopup] = useState(false);
 
-  // const handleVisiblePopup = () => setVisiblePopup(true);
-  // const handleHiddenPopup = () => setVisiblePopup(false);
-
-  // const popupRef = useOutsideClick(handleVisiblePopup, handleHiddenPopup);
-  // const searchRef = useOutsideClick(handleVisiblePopup, handleHiddenPopup);
-
   const popupRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
 
   const isLoaded = useSelector(isLoadedSelector);
   const products = useSelector(productListSelector);
@@ -91,7 +87,7 @@ export const SearchPanel: FC = () => {
 
       <SearchButton classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
 
-      <Popup isLoaded={isLoaded} list={products} ref={popupRef} show={visiblePopup} />
+      <Popup isLoaded={isLoaded} isOpen={visiblePopup} list={products} ref={popupRef} />
     </div>
   );
 };

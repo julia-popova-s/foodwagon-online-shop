@@ -6,8 +6,11 @@ import Slider from 'react-slick';
 import { useAppDispatch } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
-import { isLoadedSelector, productListSelector } from '../../../store/slices/productsPopular/selectors';
-import { fetchProductsPopular } from '../../../store/slices/productsPopular/slice';
+import {
+  fetchProductsPopular,
+  isLoadedSelector,
+  productListSelector,
+} from '../../../store/slices/productsPopular/slice';
 import { Card } from '../../ui/Card';
 import { SliderButton } from '../../ui/buttons/SliderButton';
 import { Loader } from './Loader';

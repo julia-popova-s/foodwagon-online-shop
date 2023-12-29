@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 export const useOutsideClick = (handleClose: () => void) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<any>(null);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
