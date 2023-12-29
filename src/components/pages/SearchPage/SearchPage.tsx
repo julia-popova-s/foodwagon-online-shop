@@ -8,9 +8,9 @@ import {
   errorSelector,
   isLoadedSelector,
   productListSelector,
+  setCurrentPage,
   statusSelector,
-} from '../../../store/slices/productsSearch/selectors';
-import { setCurrentPage } from '../../../store/slices/productsSearch/slice';
+} from '../../../store/slices/productsSearch/slice';
 import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';

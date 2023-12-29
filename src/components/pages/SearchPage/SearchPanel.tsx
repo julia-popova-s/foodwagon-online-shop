@@ -2,10 +2,12 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '../../../store';
-import { isLoadedSelector, productListSelector } from '../../../store/slices/productsFastAccess/selectors';
-import { fetchProductsFastAccess } from '../../../store/slices/productsFastAccess/slice';
-import { currentPageSelector } from '../../../store/slices/productsSearch/selectors';
-import { fetchProductsSearch, setCurrentPage } from '../../../store/slices/productsSearch/slice';
+import {
+  fetchProductsFastAccess,
+  isLoadedSelector,
+  productListSelector,
+} from '../../../store/slices/productsFastAccess/slice';
+import { currentPageSelector, fetchProductsSearch, setCurrentPage } from '../../../store/slices/productsSearch/slice';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Popup } from './Popup';

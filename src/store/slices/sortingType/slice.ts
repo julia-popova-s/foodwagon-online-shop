@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import { RootStore } from '../..';
 import { RestaurantOrderType, RestaurantSortingType, SortingTypeSliceState } from './types';
 
 const initialState: SortingTypeSliceState = {
@@ -7,7 +8,6 @@ const initialState: SortingTypeSliceState = {
   orderType: RestaurantOrderType.DESC,
   sortType: RestaurantSortingType.RATING,
 };
-
 
 const sortingTypeSlice = createSlice({
   initialState,
@@ -22,6 +22,10 @@ const sortingTypeSlice = createSlice({
     },
   },
 });
+
+export const orderTypeSelector = (state: RootStore) => state.sortingType.orderType;
+export const sortTypeSelector = (state: RootStore) => state.sortingType.sortType;
+export const categorySelector = (state: RootStore) => state.sortingType.category;
 
 export const { setCategory, setSortType } = sortingTypeSlice.actions;
 export default sortingTypeSlice.reducer;

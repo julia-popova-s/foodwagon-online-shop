@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
 import { ProductOrderType, ProductSortingType } from '../../../store/slices/filters/types';
-import { productListSelector, statusSelector } from '../../../store/slices/productsFlashDeals/selectors';
-import { fetchProductsFlashDeals } from '../../../store/slices/productsFlashDeals/slice';
+import {
+  fetchProductsFlashDeals,
+  productListSelector,
+  statusSelector,
+} from '../../../store/slices/productsFlashDeals/slice';
 import { FlashDealCard } from './FlashDealCard';
 import { Loader } from './Loader';
 import style from './flashDeals.module.scss';

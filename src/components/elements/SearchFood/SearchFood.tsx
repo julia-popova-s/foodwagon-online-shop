@@ -6,13 +6,10 @@ import { ReactSVG } from 'react-svg';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useAppDispatch } from '../../../store';
-import { cartSelector } from '../../../store/slices/cart/selectors';
-import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
+import { addProduct, cartSelector, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
-import { searchBySelector } from '../../../store/slices/filters/selectors';
-import { setSearchBy } from '../../../store/slices/filters/slice';
-import { isLoadedSelector, productListSelector } from '../../../store/slices/products/selectors';
-import { fetchProducts } from '../../../store/slices/products/slice';
+import { searchBySelector, setSearchBy } from '../../../store/slices/filters/slice';
+import { fetchProducts, isLoadedSelector, productListSelector } from '../../../store/slices/products/slice';
 import { Card } from '../../ui/Card';
 import { SliderButton } from '../../ui/buttons/SliderButton';
 import { CardFood } from './CardFood';

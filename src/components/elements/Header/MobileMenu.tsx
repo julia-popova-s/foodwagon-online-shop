@@ -3,8 +3,8 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
-import { useOutsideClick } from '../../../hooks/useOutsideClick';
-import { isAuthSelector } from '../../../store/slices/user/selectors';
+// import { useOutsideClick } from '../../../hooks/useOutsideClick';
+import { isAuthSelector } from '../../../store/slices/user/slice';
 import { CartButton } from '../../ui/buttons/CartButton';
 import { DeliverAddress } from './DeliverAddress';
 import style from './mobileMenu.module.scss';

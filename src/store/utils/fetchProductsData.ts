@@ -19,8 +19,12 @@ export const fetchProductsData = async function (params: FiltersForProducts, { r
     if (data.length === 0) {
       return rejectWithValue(CustomErrors.ERROR_NOTHING_FOUND);
     }
+
     return data;
   } catch (error: any) {
+    if (error.toJSON().status === 404) {
+      return rejectWithValue(CustomErrors.ERROR_NOTHING_FOUND);
+    }
     return rejectWithValue('Error: ' + error?.message);
   }
 };

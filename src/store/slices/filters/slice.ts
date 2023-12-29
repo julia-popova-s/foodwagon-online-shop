@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import { RootStore } from '../..';
 import { FilterSliceState, ProductOrderType, ProductSortingType } from './types';
 
 const initialState: FilterSliceState = {
@@ -35,6 +36,12 @@ const filtersSlice = createSlice({
     },
   },
 });
+
+export const categorySelector = (state: RootStore) => state.filters.category;
+export const currentPageSelector = (state: RootStore) => state.filters.currentPage;
+export const searchBySelector = (state: RootStore) => state.filters.searchBy;
+export const sortTypeSelector = (state: RootStore) => state.filters.sortType;
+export const orderTypeSelector = (state: RootStore) => state.filters.orderType;
 
 export const { setCategory, setCurrentPage, setSearchBy, setSortBy } = filtersSlice.actions;
 export default filtersSlice.reducer;

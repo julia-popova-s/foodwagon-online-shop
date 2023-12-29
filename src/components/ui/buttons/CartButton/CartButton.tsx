@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { totalQuantitySelector } from '../../../../store/slices/cart/selectors';
+import { totalQuantitySelector } from '../../../../store/slices/cart/slice';
 import style from './cartButton.module.scss';
 
 export const CartButton: FC = () => {

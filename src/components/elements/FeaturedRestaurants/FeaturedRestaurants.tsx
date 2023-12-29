@@ -3,10 +3,14 @@ import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
 import { useAppDispatch } from '../../../store';
-import { isLoadedSelector, restaurantListSelector } from '../../../store/slices/restaurants/selectors';
-import { fetchRestaurants } from '../../../store/slices/restaurants/slice';
-import { categorySelector, orderTypeSelector, sortTypeSelector } from '../../../store/slices/sortingType/selectors';
-import { setCategory, setSortType } from '../../../store/slices/sortingType/slice';
+import { fetchRestaurants, isLoadedSelector, restaurantListSelector } from '../../../store/slices/restaurants/slice';
+import {
+  categorySelector,
+  orderTypeSelector,
+  setCategory,
+  setSortType,
+  sortTypeSelector,
+} from '../../../store/slices/sortingType/slice';
 import { RestaurantOrderType, RestaurantSortingType } from '../../../store/slices/sortingType/types';
 import { Categories } from '../Categories';
 import { SortPopup } from '../SortPopup';
