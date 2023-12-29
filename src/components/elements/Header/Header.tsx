@@ -6,8 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { isAuthSelector } from '../../../store/slices/user/selectors';
-import { removeUser } from '../../../store/slices/user/slice';
+import { isAuthSelector, removeUser } from '../../../store/slices/user/slice';
 import { LogoType } from '../../ui/LogoType';
 import { CartButton } from '../../ui/buttons/CartButton';
 import { LoginButton } from '../../ui/buttons/LoginButton';

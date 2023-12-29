@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { cartSelector } from '../../../store/slices/cart/selectors';
+import { cartSelector } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import { getListProducts } from '../../../utils/getListProducts';
 import { getPartOfString } from '../../../utils/getPartOfString';

@@ -4,18 +4,18 @@ import { CSSTransition } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Product } from '../../../store/slices/cart/types';
-import { PriceBlock } from '../../pages/CartPage/PriceBlock';
+import { PriceBlock } from '../CartPage/PriceBlock';
 import style from './popup.module.scss';
 
 type PopupProps = {
   isLoaded: boolean;
+  isOpen: boolean;
   list: Product[];
-  show: boolean;
 };
 
-export const Popup = forwardRef<HTMLDivElement, PopupProps>(({ isLoaded, list, show }, ref) => {
+export const Popup = forwardRef<HTMLDivElement, PopupProps>(({ isLoaded, isOpen, list }, ref) => {
   return (
-    <CSSTransition classNames="alert" in={show && isLoaded} timeout={300} unmountOnExit>
+    <CSSTransition classNames="alert" in={isOpen && isLoaded} timeout={300} unmountOnExit>
       <div className={style.popup} ref={ref}>
         {list.map(({ discount, id, image, price, restaurantId, title }) => (
           <Link className={style.link} key={uuidv4()} to={`/restaurant/${restaurantId}/product/${id}`}>

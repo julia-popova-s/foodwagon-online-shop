@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+import { RootStore } from '../..';
 import { fetchProductsData } from '../../utils/fetchProductsData';
 import { MyAsyncThunkConfig, Status, getExtraReducers } from '../../utils/getExtraReducers';
 import { FiltersForProducts } from '../../utils/getFilterForProducts';
@@ -31,6 +32,11 @@ const productsFlashDeals = createSlice({
     },
   },
 });
+
+export const productListSelector = (state: RootStore) => state.productsFlashDeals.list;
+export const errorSelector = (state: RootStore) => state.productsFlashDeals.error;
+export const isLoadedSelector = (state: RootStore) => state.productsFlashDeals.isLoaded;
+export const statusSelector = (state: RootStore) => state.productsFlashDeals.status;
 
 export const { setLoaded } = productsFlashDeals.actions;
 export default productsFlashDeals.reducer;

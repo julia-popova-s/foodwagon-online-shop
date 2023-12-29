@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import { RootStore } from '../..';
 import { getSumOfValues } from '../../utils/getSumOfValues';
 import { updateAddedGoods } from '../../utils/updateAddedGoods';
 import { updateTotalQuantity } from '../../utils/updateTotalQuantity';
@@ -158,6 +159,10 @@ const cartSlice = createSlice({
     },
   },
 });
+
+export const addedGoodsSelector = (state: RootStore) => state.cart.addedGoods;
+export const cartSelector = (state: RootStore) => state.cart.cart;
+export const totalQuantitySelector = (state: RootStore) => state.cart.totalQuantity;
 
 export const { addProduct, clearCart, deleteOneProduct, removeProduct, setProductCount } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -5,8 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
-import { isLoadedSelector, productSelector } from '../../../store/slices/product/selectors';
-import { fetchProduct } from '../../../store/slices/product/slice';
+import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/slices/product/slice';
 import { RestaurantPage } from '../RestaurantPage/RestaurantPage';
 import { Card } from './Card';
 import { LoaderLeft } from './LoaderLeft';
@@ -20,7 +19,7 @@ export const ProductPage: FC = () => {
   const { pathname } = useLocation();
 
   const isLoaded = useSelector(isLoadedSelector);
-  const product = useSelector(productSelector);
+  const [product] = useSelector(productSelector);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,17 +59,16 @@ export const ProductPage: FC = () => {
         <div className="container">
           <h1 className={style.title}>Restaurant menu</h1>
           <div className={style.product}>
-            {isLoaded && product
-              ? product.map((item, i) => (
-                  <Card
-                    {...item}
-                    handleAddProduct={handleAddProduct}
-                    handleInputCount={handleInputCount}
-                    handleRemoveProduct={handleRemoveProduct}
-                    key={`${item.id}${i}`}
-                  />
-                ))
-              : skeleton}
+            {isLoaded ? (
+              <Card
+                {...product}
+                handleAddProduct={handleAddProduct}
+                handleInputCount={handleInputCount}
+                handleRemoveProduct={handleRemoveProduct}
+              />
+            ) : (
+              skeleton
+            )}
           </div>
         </div>
       </div>

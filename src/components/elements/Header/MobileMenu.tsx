@@ -1,9 +1,10 @@
 import cn from 'classnames';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
-import { isAuthSelector } from '../../../store/slices/user/selectors';
+// import { useOutsideClick } from '../../../hooks/useOutsideClick';
+import { isAuthSelector } from '../../../store/slices/user/slice';
 import { CartButton } from '../../ui/buttons/CartButton';
 import { DeliverAddress } from './DeliverAddress';
 import style from './mobileMenu.module.scss';
@@ -23,21 +24,12 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
     setMenuIsVisible(!menuIsVisible);
   };
 
-  const menuRef = useRef<HTMLElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  // const menuRef = useOutsideClick(() => setMenuIsVisible(false));
 
   const isAuth = useSelector(isAuthSelector);
 
-  useEffect(() => {
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (!menuRef.current?.contains(e.target as Node) && !buttonRef.current?.contains(e.target as Node)) {
-        setMenuIsVisible(false);
-      }
-    };
-    document.body.addEventListener('click', handleOutsideClick);
-
-    return () => document.body.removeEventListener('click', handleOutsideClick);
-  }, []);
+  const getActiveClassName = ({ isActive }: { isActive: boolean }) =>
+    [isActive ? style.active : '', style.menu__link].join(' ');
 
   return (
     <div className={style.mobileMenu}>
@@ -49,7 +41,6 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
           [style.buttonClose]: menuIsVisible,
         })}
         onClick={handleClickMenu}
-        ref={buttonRef}
       >
         <div className={cn(style.menuButton__border, style.menuButton__border_top)}></div>
         <div className={cn(style.menuButton__border, style.menuButton__border_center)}></div>
@@ -60,19 +51,19 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
         className={cn(style.menu, {
           [style.menuClosed]: !menuIsVisible,
         })}
-        ref={menuRef}
+        // ref={menuRef}
       >
         <ul className={style.menu__list}>
           <li className={style.menu__item}>
-            <Link className={style.menu__link} to={'/'}>
+            <NavLink className={getActiveClassName} to={'/'}>
               Home
-            </Link>
+            </NavLink>
           </li>
 
           <li className={style.menu__item}>
-            <Link className={style.menu__link} to={'/search'}>
+            <NavLink className={getActiveClassName} to={'/search'}>
               Search
-            </Link>
+            </NavLink>
           </li>
 
           <li className={style.menu__item}>
@@ -81,16 +72,16 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
                 Logout
               </button>
             ) : (
-              <Link className={style.menu__link} to={'/login'}>
+              <NavLink className={getActiveClassName} to={'/login'}>
                 Login
-              </Link>
+              </NavLink>
             )}
           </li>
 
           <li className={style.menu__item}>
-            <Link className={style.menu__link} to={'/cart'}>
+            <NavLink className={getActiveClassName} to={'/cart'}>
               Cart
-            </Link>
+            </NavLink>
           </li>
           <li className={style.menu__item}>
             <DeliverAddress />
