@@ -30,7 +30,7 @@ export function getFilterForProducts({
     category: category && category !== 'All' ? `&category=${category}` : '',
     id: id ? `&id=${id}` : '',
     orderType: sortType && orderType ? `&order=${orderType}` : '',
-    rating: rating ? `&raiting=${rating}` : '',
+    rating: rating ? `&rating=${rating}` : '',
     restaurantId: restaurantId ? `&restaurantId=${restaurantId}` : '',
     searchValue: searchValue ? `&search=${searchValue.replace(' ', '&')}` : '',
     sortType: sortType ? `&sortBy=${sortType}` : '',
