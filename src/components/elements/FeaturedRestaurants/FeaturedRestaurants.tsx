@@ -36,7 +36,6 @@ export const FeaturedRestaurants: FC = () => {
 
   const isLoaded = useSelector(isLoadedSelector);
   const list = useSelector(restaurantListSelector);
-
   const handleChangeCategory = useCallback((index: number) => {
     dispatch(setCategory(index));
   }, []);

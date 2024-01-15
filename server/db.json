@@ -24,7 +24,27 @@
       "is_open": false,
       "weighted_rating_value": 4.6000000000000005,
       "aggregated_rating_count": 1,
-      "backgroundId": "87f07880-8b9f-4e7c-8f01-813d402795c2"
+      "backgroundId": "87f07880-8b9f-4e7c-8f01-813d402795c2",
+      "local_hours": {
+        "delivery": {
+          "Monday": "10:30AM - 05:30PM",
+          "Tuesday": "10:30AM - 05:30PM",
+          "Wednesday": "10:30AM - 05:30PM",
+          "Thursday": "10:30AM - 07:30PM",
+          "Friday": "10:30AM - 07:30PM",
+          "Saturday": "Closed",
+          "Sunday": "Closed"
+        },
+        "pickup": {
+          "Monday": "10:30AM - 05:30PM",
+          "Tuesday": "10:30AM - 05:30PM",
+          "Wednesday": "10:30AM - 05:30PM",
+          "Thursday": "10:30AM - 07:30PM",
+          "Friday": "10:30AM - 07:30PM",
+          "Saturday": "Closed",
+          "Sunday": "Closed"
+        }
+      }
     },
     {
       "id": "09f0fe36-8d60-4c64-ab0d-74f3d61be998",
@@ -49,7 +69,27 @@
       "is_open": false,
       "weighted_rating_value": 4.701339285714286,
       "aggregated_rating_count": 112,
-      "backgroundId": "f9e9cce8-a030-45a3-9f0f-7e4c215f0cf1"
+      "backgroundId": "f9e9cce8-a030-45a3-9f0f-7e4c215f0cf1",
+      "local_hours": {
+        "delivery": {
+          "Monday": "Closed",
+          "Tuesday": "Closed",
+          "Wednesday": "04:00PM - 09:30PM",
+          "Thursday": "04:00PM - 09:30PM",
+          "Friday": "04:00PM - 10:00PM",
+          "Saturday": "04:00PM - 10:00PM",
+          "Sunday": "Closed"
+        },
+        "pickup": {
+          "Monday": "Closed",
+          "Tuesday": "Closed",
+          "Wednesday": "04:00PM - 09:30PM",
+          "Thursday": "04:00PM - 09:30PM",
+          "Friday": "04:00PM - 10:00PM",
+          "Saturday": "04:00PM - 10:00PM",
+          "Sunday": "Closed"
+        }
+      }
     },
     {
       "id": "ff95c008-802f-4473-afe0-0e0275feb942",
@@ -75,7 +115,27 @@
       "is_open": false,
       "weighted_rating_value": 4.7,
       "aggregated_rating_count": 1,
-      "backgroundId": "22bbb7d7-e604-4048-8f75-4c4c3411b7ba"
+      "backgroundId": "22bbb7d7-e604-4048-8f75-4c4c3411b7ba",
+      "local_hours": {
+        "delivery": {
+          "Monday": "Closed",
+          "Tuesday": "12:00PM - 02:45PM, 04:30PM - 09:00PM",
+          "Wednesday": "12:00PM - 02:45PM, 04:30PM - 09:15PM",
+          "Thursday": "12:00PM - 02:45PM, 04:30PM - 09:30PM",
+          "Friday": "12:00PM - 02:45PM, 04:30PM - 09:30PM",
+          "Saturday": "04:15PM - 09:30PM",
+          "Sunday": "Closed"
+        },
+        "pickup": {
+          "Monday": "Closed",
+          "Tuesday": "12:00PM - 02:45PM, 04:30PM - 09:00PM",
+          "Wednesday": "12:00PM - 02:45PM, 04:30PM - 09:15PM",
+          "Thursday": "12:00PM - 02:45PM, 04:30PM - 09:30PM",
+          "Friday": "12:00PM - 02:45PM, 04:30PM - 09:30PM",
+          "Saturday": "04:15PM - 09:30PM",
+          "Sunday": "Closed"
+        }
+      }
     },
     {
       "id": "c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5",
@@ -100,7 +160,27 @@
       "is_open": false,
       "weighted_rating_value": 4.533333333333333,
       "aggregated_rating_count": 15,
-      "backgroundId": "09549ce5-7113-49e2-a3d9-28f17dda9963"
+      "backgroundId": "09549ce5-7113-49e2-a3d9-28f17dda9963",
+      "local_hours": {
+        "delivery": {
+          "Monday": "11:00AM - 09:45PM",
+          "Tuesday": "11:00AM - 09:45PM",
+          "Wednesday": "11:00AM - 09:45PM",
+          "Thursday": "11:00AM - 09:45PM",
+          "Friday": "11:00AM - 10:45PM",
+          "Saturday": "11:00AM - 10:45PM",
+          "Sunday": "11:00AM - 09:45PM"
+        },
+        "pickup": {
+          "Monday": "11:00AM - 09:45PM",
+          "Tuesday": "11:00AM - 09:45PM",
+          "Wednesday": "11:00AM - 09:45PM",
+          "Thursday": "11:00AM - 09:45PM",
+          "Friday": "11:00AM - 10:45PM",
+          "Saturday": "11:00AM - 10:45PM",
+          "Sunday": "11:00AM - 09:45PM"
+        }
+      }
     },
     {
       "id": "7251c374-832e-4fc8-83e1-d89e37c62ee9",
@@ -125,7 +205,27 @@
       "is_open": false,
       "weighted_rating_value": 4.8178875895888345,
       "aggregated_rating_count": 2651,
-      "backgroundId": "87150436-421a-4fae-951e-f4130454e645"
+      "backgroundId": "87150436-421a-4fae-951e-f4130454e645",
+      "local_hours": {
+        "delivery": {
+          "Monday": "09:30AM - 09:00PM",
+          "Tuesday": "09:30AM - 09:00PM",
+          "Wednesday": "09:30AM - 09:00PM",
+          "Thursday": "09:30AM - 09:00PM",
+          "Friday": "09:30AM - 09:00PM",
+          "Saturday": "09:30AM - 09:00PM",
+          "Sunday": "09:30AM - 08:30PM"
+        },
+        "pickup": {
+          "Monday": "09:30AM - 09:00PM",
+          "Tuesday": "09:30AM - 09:00PM",
+          "Wednesday": "09:30AM - 09:00PM",
+          "Thursday": "09:30AM - 09:00PM",
+          "Friday": "09:30AM - 09:00PM",
+          "Saturday": "09:30AM - 09:00PM",
+          "Sunday": "09:30AM - 08:30PM"
+        }
+      }
     },
     {
       "id": "6d5a62e8-e2f2-4481-9d9c-f6159f849c30",
@@ -150,7 +250,27 @@
       "is_open": false,
       "weighted_rating_value": 4.65,
       "aggregated_rating_count": 1,
-      "backgroundId": "2b1a2c8f-7491-4222-937e-e2604e7e1502"
+      "backgroundId": "2b1a2c8f-7491-4222-937e-e2604e7e1502",
+      "local_hours": {
+        "delivery": {
+          "Monday": "Closed",
+          "Tuesday": "12:00PM - 05:30PM",
+          "Wednesday": "12:00PM - 05:30PM",
+          "Thursday": "12:00PM - 05:30PM",
+          "Friday": "12:00PM - 06:30PM",
+          "Saturday": "Closed",
+          "Sunday": "Closed"
+        },
+        "pickup": {
+          "Monday": "Closed",
+          "Tuesday": "12:00PM - 05:30PM",
+          "Wednesday": "12:00PM - 05:30PM",
+          "Thursday": "12:00PM - 05:30PM",
+          "Friday": "12:00PM - 06:30PM",
+          "Saturday": "Closed",
+          "Sunday": "Closed"
+        }
+      }
     },
     {
       "id": "fdcc1108-af68-442f-b623-9c39d8475096",
@@ -175,7 +295,27 @@
       "is_open": false,
       "weighted_rating_value": 4.5,
       "aggregated_rating_count": 1,
-      "backgroundId": "f45f6bc2-677d-4c9b-a6da-e88be83b0f8d"
+      "backgroundId": "f45f6bc2-677d-4c9b-a6da-e88be83b0f8d",
+      "local_hours": {
+        "delivery": {
+          "Monday": "Closed",
+          "Tuesday": "11:00AM - 09:30PM",
+          "Wednesday": "11:00AM - 09:30PM",
+          "Thursday": "11:00AM - 11:30PM",
+          "Friday": "11:00AM - 11:30PM",
+          "Saturday": "11:00AM - 11:30PM",
+          "Sunday": "Closed"
+        },
+        "pickup": {
+          "Monday": "Closed",
+          "Tuesday": "11:00AM - 09:30PM",
+          "Wednesday": "11:00AM - 09:30PM",
+          "Thursday": "11:00AM - 11:30PM",
+          "Friday": "11:00AM - 11:30PM",
+          "Saturday": "11:00AM - 11:30PM",
+          "Sunday": "Closed"
+        }
+      }
     },
     {
       "id": "08e37b01-eb2c-4b54-9646-a0707eb23f18",
@@ -200,7 +340,27 @@
       "is_open": false,
       "weighted_rating_value": 4.9,
       "aggregated_rating_count": 1,
-      "backgroundId": "4616ee74-f953-444a-a7e4-e760d7fb944e"
+      "backgroundId": "4616ee74-f953-444a-a7e4-e760d7fb944e",
+      "local_hours": {
+        "delivery": {
+          "Monday": "Closed",
+          "Tuesday": "04:00PM - 09:00PM",
+          "Wednesday": "04:00PM - 09:00PM",
+          "Thursday": "04:00PM - 09:00PM",
+          "Friday": "04:00PM - 09:00PM",
+          "Saturday": "Closed",
+          "Sunday": "Closed"
+        },
+        "pickup": {
+          "Monday": "Closed",
+          "Tuesday": "04:00PM - 09:00PM",
+          "Wednesday": "04:00PM - 09:00PM",
+          "Thursday": "04:00PM - 09:00PM",
+          "Friday": "04:00PM - 09:00PM",
+          "Saturday": "Closed",
+          "Sunday": "Closed"
+        }
+      }
     },
     {
       "id": "28d1abb8-f79f-4fd7-bb8d-09b5dd6af441",
@@ -225,7 +385,27 @@
       "is_open": false,
       "weighted_rating_value": 4.599635036496349,
       "aggregated_rating_count": 137,
-      "backgroundId": "47f2d874-3d63-4833-8f9d-1357cf50b4bb"
+      "backgroundId": "47f2d874-3d63-4833-8f9d-1357cf50b4bb",
+      "local_hours": {
+        "delivery": {
+          "Monday": "10:30AM - 08:00PM",
+          "Tuesday": "10:30AM - 08:00PM",
+          "Wednesday": "10:30AM - 08:00PM",
+          "Thursday": "10:30AM - 08:00PM",
+          "Friday": "10:30AM - 12:00AM",
+          "Saturday": "10:30AM - 08:00PM",
+          "Sunday": "Closed"
+        },
+        "pickup": {
+          "Monday": "10:30AM - 09:00PM",
+          "Tuesday": "10:30AM - 09:00PM",
+          "Wednesday": "10:30AM - 09:00PM",
+          "Thursday": "10:30AM - 09:00PM",
+          "Friday": "10:30AM - 12:00AM",
+          "Saturday": "10:30AM - 08:00PM",
+          "Sunday": "Closed"
+        }
+      }
     },
     {
       "id": "333f1471-d10f-4b1d-a654-d3c070cb3500",
@@ -251,7 +431,27 @@
       "is_open": false,
       "weighted_rating_value": 3.7,
       "aggregated_rating_count": 1,
-      "backgroundId": "00a0b5e2-00ad-499b-8845-6bddb92080d6"
+      "backgroundId": "00a0b5e2-00ad-499b-8845-6bddb92080d6",
+      "local_hours": {
+        "delivery": {
+          "Monday": "12:00AM - 12:30AM, 12:00PM - 12:30AM",
+          "Tuesday": "12:00PM - 12:30AM",
+          "Wednesday": "12:00PM - 12:30AM",
+          "Thursday": "12:00PM - 12:30AM",
+          "Friday": "12:00PM - 12:00AM",
+          "Saturday": "Closed",
+          "Sunday": "Closed"
+        },
+        "pickup": {
+          "Monday": "12:00AM - 12:30AM, 12:00PM - 12:30AM",
+          "Tuesday": "12:00PM - 12:30AM",
+          "Wednesday": "12:00PM - 12:30AM",
+          "Thursday": "12:00PM - 12:30AM",
+          "Friday": "12:00PM - 12:00AM",
+          "Saturday": "Closed",
+          "Sunday": "Closed"
+        }
+      }
     }
   ],
   "products": [
@@ -964,14 +1164,7 @@
       "restaurantName": "Subway",
       "title": "Sparkling Strawberry Lime Refresher",
       "image": "/images/food/658152.jpg",
-      "ingredients": [
-        "strawberries",
-        "lime",
-        "sparkling water",
-        "sugar",
-        "mint leaves (optional)",
-        "ice cubes"
-      ],
+      "ingredients": ["strawberries", "lime", "sparkling water", "sugar", "mint leaves (optional)", "ice cubes"],
       "price": 4,
       "discount": 0,
       "category": "Drink",

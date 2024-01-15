@@ -2,19 +2,31 @@ import cn from 'classnames';
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
+import { OperatingModes } from '../../../store/utils/getExtraReducers';
+import { OpeningStatus, getOpenStatus } from '../../../store/utils/getOpenStatus';
 import { getPartOfString } from '../../../utils/getPartOfString';
 import style from './cardFeatured.module.scss';
 
 type CardFeaturedProps = {
   deliveryTime: number;
   imageSrc: string;
+  local_hours: OperatingModes;
   logo_photos: string;
   name: string;
   weighted_rating_value: number;
 };
 
 export const CardFeatured: FC<CardFeaturedProps> = (props) => {
-  const { deliveryTime, imageSrc, logo_photos, name, weighted_rating_value } = props;
+  const {
+    deliveryTime,
+    imageSrc,
+    local_hours: { delivery },
+    logo_photos,
+    name,
+    weighted_rating_value,
+  } = props;
+
+  const status = getOpenStatus(delivery);
 
   return (
     <div className={style.card}>
@@ -51,7 +63,13 @@ export const CardFeatured: FC<CardFeaturedProps> = (props) => {
         </div>
       </div>
 
-      <div className={style.card__text}>Open Now</div>
+      <div
+        className={cn(style.card__text, {
+          [style.card__text_theme]: status === OpeningStatus.CLOSED,
+        })}
+      >
+        {status === OpeningStatus.CLOSED ? 'Closed Now' : 'Open Now'}
+      </div>
     </div>
   );
 };

@@ -77,6 +77,11 @@
     border-radius: $border-radius-16;
     color: #79b93c;
   }
+
+  &__text_theme {
+    background: rgba(241, 114, 40, 0.20);
+    color: #F17228;
+  }
 }
 
 .location {
