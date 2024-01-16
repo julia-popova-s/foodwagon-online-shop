@@ -1,8 +1,8 @@
 export enum RestaurantSortingType {
+  DISCOUNT = 'discount',
   NAME = 'name',
   POPULAR = 'popular',
   RATING = 'rating',
-  TIME = 'time',
 }
 
 export enum RestaurantOrderType {

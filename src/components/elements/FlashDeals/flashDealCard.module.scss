@@ -35,18 +35,15 @@
   }
 
   &__text {
+    display: inline-block;
+
     @include setTextStyle($font-bold, 22px, 120%);
     color: $base-color;
-
-    text-align: center;
 
     background: rgba(241, 114, 40, 0.2);
     border-radius: $border-radius-8;
 
-    padding: 8px $border-radius-16;
-
-    width: 204px;
-    height: 42px;
+    padding: 8px 16px;
   }
 }
 

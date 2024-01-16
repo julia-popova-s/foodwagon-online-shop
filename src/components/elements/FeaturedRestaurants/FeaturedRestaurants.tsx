@@ -22,7 +22,7 @@ const categoryNames: string[] = ['All', 'Pasta', 'Salad', 'Fish', 'Meat', 'Soup'
 const sortItems = [
   { name: 'popularity', order: RestaurantOrderType.DESC, type: RestaurantSortingType.POPULAR },
   { name: 'rating', order: RestaurantOrderType.DESC, type: RestaurantSortingType.RATING },
-  { name: 'delivery time', order: RestaurantOrderType.ASC, type: RestaurantSortingType.TIME },
+  { name: 'discount', order: RestaurantOrderType.DESC, type: RestaurantSortingType.DISCOUNT },
   { name: 'alphabetically', order: RestaurantOrderType.ASC, type: RestaurantSortingType.NAME },
 ];
 
