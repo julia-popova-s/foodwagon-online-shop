@@ -24,6 +24,15 @@ interface Address {
   street_addr: string;
 }
 
+export interface OperatingMode {
+  [key: string]: string;
+}
+
+export interface OperatingModes {
+  delivery: OperatingMode;
+  pickup: OperatingMode;
+}
+
 export interface Restaurant {
   address: Address;
   aggregated_rating_count: number;
@@ -31,9 +40,10 @@ export interface Restaurant {
   cuisines: string[];
   delivery_enabled: true;
   deliveryTime: number;
+  discount: number;
   id: string;
   imageSrc: string;
-  is_open: boolean;
+  local_hours: OperatingModes;
   logo_photos: string;
   minSumOrder: number;
   name: string;
@@ -52,6 +62,8 @@ export interface Product {
   rating: number;
   restaurantId: string;
   restaurantName: string;
+  salePeriodEnd: string;
+  salePeriodStart: string;
   title: string;
 }
 

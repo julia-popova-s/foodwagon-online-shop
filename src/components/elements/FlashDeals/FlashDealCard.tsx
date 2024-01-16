@@ -1,11 +1,31 @@
 import { FC } from 'react';
 
+import { getDaysBetweenDates } from '../../../utils/getDaysBetweenDates';
 import { Discount } from '../../ui/Discount';
 import style from './flashDealCard.module.scss';
 
-type FlashDealCardProps = { discount: number; image: string; restaurantName: string };
+export enum SaleMessage {
+  END = 'Promotion has ended',
+  OK = 'Days Remaining',
+}
 
-export const FlashDealCard: FC<FlashDealCardProps> = ({ discount, image, restaurantName }) => {
+type FlashDealCardProps = {
+  discount: number;
+  image: string;
+  restaurantName: string;
+  salePeriodEnd: string;
+  salePeriodStart: string;
+};
+
+export const FlashDealCard: FC<FlashDealCardProps> = ({
+  discount,
+  image,
+  restaurantName,
+  salePeriodEnd,
+  salePeriodStart,
+}) => {
+  const days = getDaysBetweenDates(salePeriodStart, salePeriodEnd);
+
   return (
     <div className={style.card}>
       <div className={style.card__up}>
@@ -16,7 +36,7 @@ export const FlashDealCard: FC<FlashDealCardProps> = ({ discount, image, restaur
       </div>
 
       <p className={style.card__name}>{restaurantName}</p>
-      <p className={style.card__text}>6 Days Remaining</p>
+      <p className={style.card__text}>{days ? `${days} ${SaleMessage.OK}` : SaleMessage.END}</p>
     </div>
   );
 };
