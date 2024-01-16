@@ -21,9 +21,9 @@
 
       "pickup_enabled": true,
       "delivery_enabled": true,
-      "is_open": false,
       "weighted_rating_value": 4.6000000000000005,
       "aggregated_rating_count": 1,
+      "discount": 30,
       "backgroundId": "87f07880-8b9f-4e7c-8f01-813d402795c2",
       "local_hours": {
         "delivery": {
@@ -66,9 +66,9 @@
 
       "pickup_enabled": true,
       "delivery_enabled": true,
-      "is_open": false,
       "weighted_rating_value": 4.701339285714286,
       "aggregated_rating_count": 112,
+      "discount": 10,
       "backgroundId": "f9e9cce8-a030-45a3-9f0f-7e4c215f0cf1",
       "local_hours": {
         "delivery": {
@@ -112,9 +112,9 @@
 
       "pickup_enabled": true,
       "delivery_enabled": true,
-      "is_open": false,
       "weighted_rating_value": 4.7,
       "aggregated_rating_count": 1,
+      "discount": 10,
       "backgroundId": "22bbb7d7-e604-4048-8f75-4c4c3411b7ba",
       "local_hours": {
         "delivery": {
@@ -157,9 +157,9 @@
 
       "pickup_enabled": true,
       "delivery_enabled": true,
-      "is_open": false,
       "weighted_rating_value": 4.533333333333333,
       "aggregated_rating_count": 15,
+      "discount": 15,
       "backgroundId": "09549ce5-7113-49e2-a3d9-28f17dda9963",
       "local_hours": {
         "delivery": {
@@ -202,9 +202,9 @@
       "logo_photos": "/images/logotypes/ruby_tuesday.svg",
       "pickup_enabled": true,
       "delivery_enabled": true,
-      "is_open": false,
       "weighted_rating_value": 4.8178875895888345,
       "aggregated_rating_count": 2651,
+      "discount": 10,
       "backgroundId": "87150436-421a-4fae-951e-f4130454e645",
       "local_hours": {
         "delivery": {
@@ -247,9 +247,9 @@
 
       "pickup_enabled": true,
       "delivery_enabled": true,
-      "is_open": false,
       "weighted_rating_value": 4.65,
       "aggregated_rating_count": 1,
+      "discount": 20,
       "backgroundId": "2b1a2c8f-7491-4222-937e-e2604e7e1502",
       "local_hours": {
         "delivery": {
@@ -292,9 +292,9 @@
 
       "pickup_enabled": true,
       "delivery_enabled": true,
-      "is_open": false,
       "weighted_rating_value": 4.5,
       "aggregated_rating_count": 1,
+      "discount": 10,
       "backgroundId": "f45f6bc2-677d-4c9b-a6da-e88be83b0f8d",
       "local_hours": {
         "delivery": {
@@ -337,9 +337,9 @@
 
       "pickup_enabled": true,
       "delivery_enabled": true,
-      "is_open": false,
       "weighted_rating_value": 4.9,
       "aggregated_rating_count": 1,
+      "discount": 25,
       "backgroundId": "4616ee74-f953-444a-a7e4-e760d7fb944e",
       "local_hours": {
         "delivery": {
@@ -382,9 +382,9 @@
 
       "pickup_enabled": true,
       "delivery_enabled": true,
-      "is_open": false,
       "weighted_rating_value": 4.599635036496349,
       "aggregated_rating_count": 137,
+      "discount": 20,
       "backgroundId": "47f2d874-3d63-4833-8f9d-1357cf50b4bb",
       "local_hours": {
         "delivery": {
@@ -428,9 +428,9 @@
 
       "pickup_enabled": true,
       "delivery_enabled": true,
-      "is_open": false,
       "weighted_rating_value": 3.7,
       "aggregated_rating_count": 1,
+      "discount": 10,
       "backgroundId": "00a0b5e2-00ad-499b-8845-6bddb92080d6",
       "local_hours": {
         "delivery": {
@@ -1307,7 +1307,7 @@
     },
     {
       "category": "Salad",
-      "discount": 0,
+      "discount": 15,
       "id": "09549ce5-7113-49e2-a3d9-28f17dda9963",
       "image": "/images/food/631890.jpg",
       "ingredients": [
@@ -1883,7 +1883,7 @@
     },
     {
       "category": "Meat",
-      "discount": 0,
+      "discount": 20,
       "id": "2b1a2c8f-7491-4222-937e-e2604e7e1502",
       "image": "/images/food/648432.jpg",
       "ingredients": [
@@ -1964,7 +1964,7 @@
     },
     {
       "category": "Soup",
-      "discount": 0,
+      "discount": 10,
       "id": "f45f6bc2-677d-4c9b-a6da-e88be83b0f8d",
       "image": "/images/food/1064362.jpg",
       "ingredients": [
@@ -2258,7 +2258,7 @@
     },
     {
       "category": "Salad",
-      "discount": 0,
+      "discount": 25,
       "id": "4616ee74-f953-444a-a7e4-e760d7fb944e",
       "image": "/images/food/651453.jpg",
       "ingredients": [
@@ -2676,7 +2676,7 @@
     },
     {
       "category": "Meat",
-      "discount": 0,
+      "discount": 10,
       "id": "00a0b5e2-00ad-499b-8845-6bddb92080d6",
       "image": "/images/food/645978.jpg",
       "ingredients": [

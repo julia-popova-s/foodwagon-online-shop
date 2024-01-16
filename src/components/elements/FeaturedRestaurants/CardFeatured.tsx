@@ -9,6 +9,7 @@ import style from './cardFeatured.module.scss';
 
 type CardFeaturedProps = {
   deliveryTime: number;
+  discount: number;
   imageSrc: string;
   local_hours: OperatingModes;
   logo_photos: string;
@@ -19,28 +20,29 @@ type CardFeaturedProps = {
 export const CardFeatured: FC<CardFeaturedProps> = (props) => {
   const {
     deliveryTime,
+    discount,
     imageSrc,
     local_hours: { delivery },
     logo_photos,
     name,
     weighted_rating_value,
   } = props;
-
   const status = getOpenStatus(delivery);
 
   return (
     <div className={style.card}>
       <div className={style.card__up}>
         <img alt={name} className={style.card__image} src={process.env.PUBLIC_URL + imageSrc} />
+        <div className={style.card__upInfo}>
+          <div className={style.card__discount}>
+            <ReactSVG src={`${process.env.PUBLIC_URL}/images/food/label.svg`} wrapper="span" />
+            {discount} % off
+          </div>
 
-        <div className={style.card__discount}>
-          <ReactSVG src={`${process.env.PUBLIC_URL}/images/food/label.svg`} wrapper="span" />
-          time: {deliveryTime} min
-        </div>
-
-        <div className={style.card__fast}>
-          <ReactSVG src={process.env.PUBLIC_URL + '/images/food/watch.svg'} wrapper="span" />
-          {deliveryTime <= 100 ? 'Fast' : 'Not fast'}
+          <div className={style.card__fast}>
+            <ReactSVG src={process.env.PUBLIC_URL + '/images/food/watch.svg'} wrapper="span" />
+            {deliveryTime <= 100 ? 'Fast' : 'Not fast'}
+          </div>
         </div>
       </div>
 

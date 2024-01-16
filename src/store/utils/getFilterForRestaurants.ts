@@ -25,8 +25,8 @@ export function getFilterForRestaurants({
         ? '&sortBy=aggregated_rating_count'
         : sortType === 'name'
           ? '&sortBy=name'
-          : sortType === 'time'
-            ? '&sortBy=deliveryTime'
+          : sortType === 'discount'
+            ? '&sortBy=discount'
             : '';
 
   const filters = {

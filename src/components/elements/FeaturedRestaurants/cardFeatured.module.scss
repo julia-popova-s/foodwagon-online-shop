@@ -4,6 +4,8 @@
   max-width: 357px;
   max-height: 463px;
 
+  @include setTextStyle($font-bold, 22px, 120%);
+
   &__up {
     position: relative;
 
@@ -23,32 +25,31 @@
     margin: 0 auto;
   }
 
-  &__discount,
-  &__fast,
-  &__text {
-    @include setTextStyle($font-bold, 22px, 120%);
+  &__upInfo {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   &__discount,
   &__fast {
-    position: absolute;
-
     color: $white-color;
     text-align: center;
 
-    padding: 8px 0;
+    padding: 8px 16px;
 
     border-radius: 8px;
+
+    height: 42px;
   }
 
   &__discount {
     background: $base-color;
 
-    left: 24px;
-    top: 24px;
-
-    width: 170px;
-    height: 42px;
   }
 
   &__discount>span,
@@ -59,20 +60,16 @@
   }
 
   &__fast {
-    top: 24px;
-    height: 42px;
-
     background: $primary-color;
-
-    right: 40px;
-    width: 115px;
   }
+
 
   &__text {
     display: inline-block;
 
     text-align: center;
     padding: 8px 16px;
+
     background: rgba(121, 185, 60, 0.2);
     border-radius: $border-radius-16;
     color: #79b93c;

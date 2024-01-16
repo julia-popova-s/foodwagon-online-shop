@@ -40,9 +40,9 @@ export interface Restaurant {
   cuisines: string[];
   delivery_enabled: true;
   deliveryTime: number;
+  discount: number;
   id: string;
   imageSrc: string;
-  is_open: boolean;
   local_hours: OperatingModes;
   logo_photos: string;
   minSumOrder: number;
