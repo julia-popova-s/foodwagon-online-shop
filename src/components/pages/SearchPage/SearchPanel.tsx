@@ -16,7 +16,7 @@ import style from './searchPanel.module.scss';
 export const SearchPanel: FC = () => {
   const [searchValue, setSearchValue] = useState('');
   const [visiblePopup, setVisiblePopup] = useState(false);
-  console.log(searchValue);
+
   const popupRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
