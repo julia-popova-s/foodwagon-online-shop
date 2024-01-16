@@ -19,6 +19,7 @@ export const FlashDeals: FC = () => {
   const dispatch = useAppDispatch();
 
   const products = useSelector(productListSelector);
+  console.log(products);
   const status = useSelector(statusSelector);
 
   useEffect(() => {

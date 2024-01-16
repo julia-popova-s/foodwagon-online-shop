@@ -62,6 +62,8 @@ export interface Product {
   rating: number;
   restaurantId: string;
   restaurantName: string;
+  salePeriodEnd: string;
+  salePeriodStart: string;
   title: string;
 }
 
