@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '../../../store';
@@ -81,9 +81,20 @@ export const SearchPanel: FC = () => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <div className={style.search}>
-      <TextInput handleSearchValue={handleSearchValue} iconUrl={'/images/header/search.svg'} ref={searchRef} />
+      <TextInput
+        handleKeyDown={handleKeyDown}
+        handleSearchValue={handleSearchValue}
+        iconUrl={'/images/header/search.svg'}
+        ref={searchRef}
+      />
 
       <SearchButton classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
 

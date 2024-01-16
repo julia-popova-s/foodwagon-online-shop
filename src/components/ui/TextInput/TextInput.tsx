@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
-import { forwardRef, useCallback, useRef, useState } from 'react';
+import { KeyboardEvent, forwardRef, useCallback, useRef, useState } from 'react';
 import { ChangeEvent, PropsWithChildren } from 'react';
 import { ReactSVG } from 'react-svg';
 
@@ -9,13 +9,15 @@ import style from './textInput.module.scss';
 
 type TextInputProps = {
   classNames?: string;
+  handleKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   handleSearchValue: (text: string) => void;
   iconUrl?: string;
 };
 
 export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputProps>>(
-  ({ children, classNames, handleSearchValue, iconUrl }, ref) => {
+  ({ children, classNames, handleKeyDown, handleSearchValue, iconUrl }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
+
     const [value, setValue] = useState<string>('');
 
     const handleClickClear = () => {
@@ -43,6 +45,7 @@ export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputP
           className={style.search__input}
           name="find"
           onChange={handleChangeValue}
+          onKeyDown={handleKeyDown}
           placeholder="Enter your request"
           ref={inputRef}
           type="text"
