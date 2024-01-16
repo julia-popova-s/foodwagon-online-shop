@@ -36,6 +36,8 @@ export const getOpenStatus = (delivery: OperatingMode) => {
             (Number(item.substring(0, 2)) - (Number(item.substring(0, 2)) === 12 ? 12 : 0)) * 60 +
             Number(item.slice(3, -2))
           );
+        } else {
+          return el;
         }
       });
 
