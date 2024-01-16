@@ -43,15 +43,18 @@
     }
   }
 
-  &__clearIcon {
+  &__clearBtn {
     position: absolute;
     right: 10px;
     top: 7px;
 
     width: 35px;
     height: 35px;
+  }
 
-    cursor: pointer;
+  &__clearIcon {
+    width: 35px;
+    height: 35px;
 
     path {
       fill: #ff747490;
