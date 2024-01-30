@@ -5,6 +5,7 @@ import { FC, useRef, useState } from 'react';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { DeliveryMethod } from './DeliveryMethod';
+import { Maps } from './Maps';
 import style from './findFood.module.scss';
 
 export const FindFood: FC = () => {
@@ -31,6 +32,7 @@ export const FindFood: FC = () => {
               </TextInput>
               <SearchButton classNames={style.search__btn} icon="search" label="Find Food" />
             </div>
+            <Maps />
           </div>
         </div>
       </div>
