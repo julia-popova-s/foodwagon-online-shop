@@ -1,7 +1,18 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 
+import { useAppDispatch } from '../../../store';
+import {
+  addressSelector,
+  coordsSelector,
+  placemarkSelector,
+  restaurantListSelector,
+  setLocation,
+  setPlacemarks,
+} from '../../../store/slices/restaurants/slice';
+import { getExactAddress } from '../../../utils/getAddress';
 import { getGeolocationCoordinates } from '../../../utils/getGeolocationCoordinates';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
@@ -12,28 +23,45 @@ import style from './findFood.module.scss';
 
 export const FindFood: FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
 
   const [searchValue, setSearchValue] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
-  const [geolocation, setGeolocation] = useState([59.94971367493227, 30.35151817345885]);
+  const [requestText, setRequestText] = useState<string>('');
+
+  const list = useSelector(restaurantListSelector);
+  const placemarks = useSelector(placemarkSelector);
+  const coords = useSelector(coordsSelector);
+  const address = useSelector(addressSelector);
+
+  useEffect(() => {
+    if (list.length) {
+      dispatch(setPlacemarks());
+    }
+  }, [list]);
 
   const handleSearch = () => {
-    setAddress(searchValue);
+    setRequestText(searchValue);
   };
 
   const handleSearchValue = (text: string) => {
     setSearchValue(text);
   };
-  // const address = 'Дубай, бульвар Мухаммед Бин Рашид, дом 1';
+
   const yandexGeocoder = new YandexGeocoder();
 
   useEffect(() => {
-    if (address)
-      yandexGeocoder.getAddressToGeopoint(address).then((res) => {
+    if (requestText)
+      yandexGeocoder.getAddressAndGeopoint(requestText).then((res) => {
         const [lon, lat] = getGeolocationCoordinates(res);
-        setGeolocation([lat, lon]);
+        const address = getExactAddress(res);
+
+        if (address) {
+          setRequestText(address);
+          dispatch(setLocation({ address, coords: [lat, lon] }));
+        }
       });
-  }, [address]);
+  }, [requestText]);
+
   return (
     <main className={style.findFoodWrapper}>
       <div className="container">
@@ -45,12 +73,18 @@ export const FindFood: FC = () => {
             <DeliveryMethod />
 
             <div className={style.searchPanel}>
-              <TextInput classNames={style.searchPanel__input} handleSearchValue={handleSearchValue} ref={searchRef}>
+              <TextInput
+                classNames={style.searchPanel__input}
+                handleSearchValue={handleSearchValue}
+                placeholder={'Enter Your Address'}
+                ref={searchRef}
+              >
                 <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
               </TextInput>
               <SearchButton classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
             </div>
-            <Maps address={address} geolocation={geolocation} />
+            <Maps address={address} geolocation={coords} placemarks={placemarks} />
+            {/* <Popup isLoaded={isLoaded} isOpen={visiblePopup} list={products} ref={popupRef} /> */}
           </div>
         </div>
       </div>

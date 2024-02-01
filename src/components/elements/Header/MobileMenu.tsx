@@ -84,7 +84,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
             </NavLink>
           </li>
           <li className={style.menu__item}>
-            <DeliverAddress />
+            <DeliverAddress address="" />
           </li>
         </ul>
       </nav>

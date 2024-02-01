@@ -93,6 +93,7 @@ export const SearchPanel: FC = () => {
         handleKeyDown={handleKeyDown}
         handleSearchValue={handleSearchValue}
         iconUrl={'/images/header/search.svg'}
+        placeholder={'Enter Your Request'}
         ref={searchRef}
       />
 

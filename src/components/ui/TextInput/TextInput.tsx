@@ -12,10 +12,11 @@ type TextInputProps = {
   handleKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   handleSearchValue: (text: string) => void;
   iconUrl?: string;
+  placeholder: string;
 };
 
 export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputProps>>(
-  ({ children, classNames, handleKeyDown, handleSearchValue, iconUrl }, ref) => {
+  ({ children, classNames, handleKeyDown, handleSearchValue, iconUrl, placeholder }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [value, setValue] = useState<string>('');
@@ -25,7 +26,7 @@ export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputP
         handleClickClear();
       }
     };
-    
+
     const handleClickClear = () => {
       setValue('');
       handleSearchValue('');
@@ -55,7 +56,7 @@ export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputP
           className={style.search__input}
           name="find"
           onChange={handleChangeValue}
-          placeholder="Enter your request"
+          placeholder={placeholder}
           ref={inputRef}
           type="text"
           value={value}
