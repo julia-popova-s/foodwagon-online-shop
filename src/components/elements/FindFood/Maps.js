@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
-import { GeolocationControl, Map, ObjectManager, Placemark, Polygon, YMaps } from '@pbe/react-yandex-maps';
+import { Map, ObjectManager, Placemark, Polygon, YMaps } from '@pbe/react-yandex-maps';
+import { useEffect, useState } from 'react';
 
 import './balloon.css';
 import { reverseСoordinates } from './getDeliveryZone';
@@ -10,26 +11,72 @@ const getMiniBalloon = (address) => `<div class="balloon">
 </div>`;
 
 export const Maps = ({ address, geolocation, placemarks }) => {
+  const [maps, setMaps] = useState(null);
+  const [address2, setAddress] = useState('');
+  const [coords, setCoords] = useState(geolocation);
+
+  const getGeoLocation = (e) => {
+    console.log(e.get('target'));
+    const coord = e.get('target').getCenter();
+    setCoords(coord);
+
+    const resp = maps.geocode(coord);
+    resp.then((res) => {
+      setAddress(res.geoObjects.get(0).getAddressLine());
+    });
+  };
+
+  const onLoad = (map) => {
+    setMaps(map);
+    console.log(map?.geolocation.get());
+  };
+  const handleActionTick = (e) => {
+    // console.log(e.get('target'));
+  };
+  useEffect(() => {
+    maps?.geocode(geolocation).then((res) => {
+      setAddress(res.geoObjects.get(0).getAddressLine());
+      setCoords(geolocation);
+      console.log(coords);
+      console.log(address2);
+    });
+    console.log(maps);
+  }, [geolocation, maps]);
+
   return (
     <YMaps
       query={{
         apikey: process.env.REACT_APP_YANDEX_API_KEY,
-        load: 'Map,Placemark,control.ZoomControl,control.FullscreenControl,geoObject.addon.balloon,control.GeolocationControl',
-        ns: 'use-load-option',
+        lang: 'en_RU',
       }}
     >
       <Map
         defaultState={{
-          center: geolocation,
+          center: coords,
           controls: ['zoomControl', 'fullscreenControl', 'geolocationControl'],
-          zoom: 9,
+          duration: 1000,
+          timingFunction: 'ease-in',
+          yandexMapDisablePoiInteractivity: false,
+          zoom: 15,
         }}
+        modules={[
+          'geolocation',
+          'geocode',
+          'control.ZoomControl',
+          'control.FullscreenControl',
+          'geoObject.addon.balloon',
+          'control.GeolocationControl',
+        ]}
         className="map"
+        onActionTick={handleActionTick}
+        onBoundsChange={(ymaps) => getGeoLocation(ymaps)}
+        onLoad={(ymaps) => onLoad(ymaps)}
+        state={{ center: coords }}
       >
         <Polygon
           options={{
             fillColor: '#ed4543',
-            opacity: 0.5,
+            opacity: 0.2,
             strokeColor: '#b3b3b3',
             strokeOpacity: 0,
             strokeStyle: 'shortdash',
@@ -37,23 +84,19 @@ export const Maps = ({ address, geolocation, placemarks }) => {
           }}
           geometry={reverseСoordinates}
         />
-        {/* <GeolocationControl
-          options={{
-            float: 'left',
-            noPlacemark: false,
-          }}
-        /> */}
         <Placemark
           options={{
+            duration: 100,
             iconImageHref: `${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`,
             iconImageOffset: [0, 0],
-            iconImageSize: [30, 30],
+            iconImageSize: [30, 42],
             iconLayout: 'default#image',
+            timingFunction: 'ease',
           }}
           properties={{
-            balloonContent: getMiniBalloon(address),
+            balloonContent: getMiniBalloon(address2),
           }}
-          geometry={geolocation}
+          geometry={coords}
         />
         <ObjectManager
           objects={{
