@@ -16,7 +16,10 @@ const initialState: RestaurantSliceState = {
   error: null,
   isLoaded: false,
   list: [],
-  location: { address: 'Санкт-Петербург, Шпалерная улица, 26', coords: [59.94971367493227, 30.35151817345885] },
+  location: {
+    address: 'Saint Petersburg, Shpalernaya Street, 26',
+    coords: [59.94971367493227, 30.35151817345885],
+  },
   placemarks: [],
   status: Status.LOADING,
 };

@@ -6,7 +6,9 @@ export class YandexGeocoder {
 
   async getAddressAndGeopoint(address) {
     try {
-      const response = await fetch(`${this.geocoder_url}?apikey=${this.api_key}&geocode=${address}&format=json`);
+      const response = await fetch(
+        `${this.geocoder_url}?apikey=${this.api_key}&geocode=${address}&format=json&lang=en_RU&results=5`,
+      );
 
       const result = await response.json();
       return result;

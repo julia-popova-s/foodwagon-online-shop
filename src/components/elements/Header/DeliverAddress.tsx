@@ -11,7 +11,6 @@ type DeliverAddressProps = {
 };
 
 export const DeliverAddress: FC<DeliverAddressProps> = ({ address, classNames }) => {
-  console.log(address);
   return (
     <div className={cn(style.address, classNames)}>
       <p className={style.address__deliver}>Deliver to:</p>
