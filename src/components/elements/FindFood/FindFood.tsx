@@ -46,7 +46,7 @@ export const FindFood: FC = () => {
   const handleSearchValue = (text: string) => {
     setSearchValue(text);
   };
-
+  console.log(searchValue);
   const yandexGeocoder = new YandexGeocoder();
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export const FindFood: FC = () => {
               </TextInput>
               <SearchButton classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
             </div>
-            <Maps address={address} geolocation={coords} placemarks={placemarks} />
+            <Maps address={address} geolocation={coords} placemarks={placemarks} setSearchValue={setSearchValue} />
             {/* <Popup isLoaded={isLoaded} isOpen={visiblePopup} list={products} ref={popupRef} /> */}
           </div>
         </div>

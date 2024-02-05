@@ -30,9 +30,36 @@
 
 .pointer {
   position: absolute;
-  top: 50%;
+  top: 48%;
   left: 50%;
-  width: 20px;
-  height: 30px;
+  transition: all 0.3s ease;
   z-index: 20;
+}
+
+.placemark {
+
+  transition: all 0.3s ease;
+
+  path {
+    fill: #f75900;
+  }
+
+  svg {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.pointer.active {
+
+  transition: all 0.3s ease;
+  transform: translateY(-2px);
+}
+
+.placemark.active {
+
+  path {
+    fill: #757575;
+    transition: all 0.3s ease;
+  }
 }
