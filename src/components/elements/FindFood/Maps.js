@@ -1,9 +1,13 @@
 /* eslint-disable max-len */
 import { Map, ObjectManager, Polygon, YMaps } from '@pbe/react-yandex-maps';
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
+import debounce from 'lodash.debounce';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
+import { useAppDispatch } from '../../../store';
+import { coordsSelector, setLocation } from '../../../store/slices/restaurants/slice';
 import './balloon.css';
 import { reverseСoordinates } from './getDeliveryZone';
 
@@ -12,49 +16,80 @@ const getMiniBalloon = (address) => `<div class="balloon">
 <div class="balloon__address">${address}</div>
 </div>`;
 
-export const Maps = ({ address, geolocation, placemarks, setSearchValue }) => {
+let i = 0;
+
+export const Maps = ({ placemarks, requestText }) => {
+  console.log(i++);
   const [maps, setMaps] = useState(null);
   const [isActive, setIsActive] = useState(null);
-  const [address2, setAddress] = useState('');
-  const [coords, setCoords] = useState(geolocation);
 
+  const [coord, setCoord] = useState(null);
+  const [address, setAddress] = useState(null);
+  // console.log(address);
+
+  const dispatch = useAppDispatch();
+  const coords = useSelector(coordsSelector);
+  console.log(coord);
+
+  const updateSearchValue = useCallback(
+    debounce((coords) => {
+      setCoord(coords);
+    }, 50000),
+    [],
+  );
   const getGeoLocation = (e) => {
-    const coord = e.get('target').getCenter();
-    setCoords(coord);
-    const aa = e.get('target').panTo(coord, {
-      delay: 1000,
-      duration: 1000,
-      flying: true,
-      safe: true,
-      timingFunction: 'ease-in-out',
-    });
-    setCoords(coord);
-    const resp = maps?.geocode(coord);
-    resp.then((res) => {
-      setAddress(res.geoObjects.get(0).getAddressLine());
-      setSearchValue(address2);
-      // console.log(res.geoObjects.get(0).geometry.getCoordinates());
-    });
+    const coords = e.get('target').getCenter();
+    updateSearchValue(coords);
+
+    // const resp = maps?.geocode(coord);
+    // resp.then((res) => {
+    //   setAddress(res.geoObjects.get(0).getAddressLine());
+    //   dispatch(setLocation({ address, coords }));
+    // });
   };
 
   const onLoad = (map) => {
     setMaps(map);
   };
+  // console.log(requestText);
 
   useEffect(() => {
-    maps?.geocode(geolocation).then((res) => {
-      setAddress(res.geoObjects.get(0).getAddressLine());
-      setCoords(geolocation);
-    });
-  }, [geolocation, maps]);
+    if (requestText)
+      maps?.geocode(requestText).then((res) => {
+        const coords = res.geoObjects.get(0).geometry.getCoordinates();
+        const address = res.geoObjects.get(0).getAddressLine();
+        setCoord(coords);
+        setLocation(address);
+        dispatch(setLocation({ address, coords }));
+      });
+  }, [requestText]);
+
+  useEffect(() => {
+    if (coord) {
+      const resp = maps?.geocode(coord);
+      resp.then((res) => {
+        setAddress(res.geoObjects.get(0).getAddressLine());
+        dispatch(setLocation({ address, coords }));
+      });
+      mapRef?.current?.panTo(coord, {
+        checkZoomRange: true,
+        delay: 1000,
+        duration: 500,
+        flying: true,
+        timingFunction: 'ease',
+      });
+    }
+  }, [coord]);
 
   const handleActionTick = () => {
     setIsActive(true);
   };
 
-  const handleActionEnd = () => {
+  const handleActionEnd = (e) => {
     setIsActive(false);
   };
+
+  const mapRef = useRef();
 
   return (
     <YMaps
@@ -76,9 +111,10 @@ export const Maps = ({ address, geolocation, placemarks, setSearchValue }) => {
           behaviors: ['default'],
           center: coords,
           controls: ['zoomControl', 'fullscreenControl', 'geolocationControl'],
-          zoom: 9,
+          zoom: 15,
         }}
         className="map"
+        instanceRef={mapRef}
         onActionEnd={handleActionEnd}
         onActionTick={handleActionTick}
         onBoundsChange={(ymaps) => getGeoLocation(ymaps)}

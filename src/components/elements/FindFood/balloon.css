@@ -53,7 +53,7 @@
 .pointer.active {
 
   transition: all 0.3s ease;
-  transform: translateY(-2px);
+  transform: translateY(-15px);
 }
 
 .placemark.active {

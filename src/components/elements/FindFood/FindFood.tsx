@@ -47,20 +47,20 @@ export const FindFood: FC = () => {
     setSearchValue(text);
   };
   console.log(searchValue);
-  const yandexGeocoder = new YandexGeocoder();
+  // const yandexGeocoder = new YandexGeocoder();
 
-  useEffect(() => {
-    if (requestText)
-      yandexGeocoder.getAddressAndGeopoint(requestText).then((res) => {
-        const [lon, lat] = getGeolocationCoordinates(res);
-        const address = getExactAddress(res);
+  // useEffect(() => {
+  //   if (requestText)
+  //     yandexGeocoder.getAddressAndGeopoint(requestText).then((res) => {
+  //       const [lon, lat] = getGeolocationCoordinates(res);
+  //       const address = getExactAddress(res);
 
-        if (address) {
-          setRequestText(address);
-          dispatch(setLocation({ address, coords: [lat, lon] }));
-        }
-      });
-  }, [requestText]);
+  //       if (address) {
+  //         setRequestText(address);
+  //         dispatch(setLocation({ address, coords: [lat, lon] }));
+  //       }
+  //     });
+  // }, [requestText]);
 
   return (
     <main className={style.findFoodWrapper}>
@@ -83,7 +83,7 @@ export const FindFood: FC = () => {
               </TextInput>
               <SearchButton classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
             </div>
-            <Maps address={address} geolocation={coords} placemarks={placemarks} setSearchValue={setSearchValue} />
+            <Maps placemarks={placemarks} requestText={requestText} />
             {/* <Popup isLoaded={isLoaded} isOpen={visiblePopup} list={products} ref={popupRef} /> */}
           </div>
         </div>
