@@ -16,10 +16,10 @@ const getMiniBalloon = (address) => `<div class="balloon">
 <div class="balloon__address">${address}</div>
 </div>`;
 
-let i = 0;
+const i = 0;
 
 export const Maps = ({ placemarks, requestText }) => {
-  console.log(i++);
+  // console.log(i++);
   const [maps, setMaps] = useState(null);
   const [isActive, setIsActive] = useState(null);
 
@@ -29,7 +29,7 @@ export const Maps = ({ placemarks, requestText }) => {
 
   const dispatch = useAppDispatch();
   const coords = useSelector(coordsSelector);
-  console.log(coord);
+  // console.log(coord);
 
   const updateSearchValue = useCallback(
     debounce((coords) => {
@@ -156,6 +156,7 @@ export const Maps = ({ placemarks, requestText }) => {
     </YMaps>
   );
 };
+
 // // Инициализация карты из результата геокодирования
 // var myMap;
 // ymaps.geocode('Москва').then(function (res) {

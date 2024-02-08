@@ -4,6 +4,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '../../../store';
+import { fetchLocation, isLoadedSelector, locationListSelector } from '../../../store/slices/location/slice';
 import {
   addressSelector,
   coordsSelector,
@@ -14,6 +15,7 @@ import {
 } from '../../../store/slices/restaurants/slice';
 import { getExactAddress } from '../../../utils/getAddress';
 import { getGeolocationCoordinates } from '../../../utils/getGeolocationCoordinates';
+import { Popup } from '../../pages/SearchPage/Popup';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { DeliveryMethod } from './DeliveryMethod';
@@ -28,10 +30,17 @@ export const FindFood: FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [requestText, setRequestText] = useState<string>('');
 
-  const list = useSelector(restaurantListSelector);
+  const list = useSelector(locationListSelector);
   const placemarks = useSelector(placemarkSelector);
   const coords = useSelector(coordsSelector);
   const address = useSelector(addressSelector);
+  console.log(list);
+
+  const [visiblePopup, setVisiblePopup] = useState(false);
+  const popupRef = useRef<HTMLDivElement>(null);
+  const isLoaded = useSelector(isLoadedSelector);
+  console.log(isLoaded);
+  console.log(visiblePopup);
 
   useEffect(() => {
     if (list.length) {
@@ -39,28 +48,21 @@ export const FindFood: FC = () => {
     }
   }, [list]);
 
-  const handleSearch = () => {
-    setRequestText(searchValue);
-  };
+  // const handleSearch = () => {
+  //   setRequestText(searchValue);
+  // };
 
   const handleSearchValue = (text: string) => {
     setSearchValue(text);
   };
-  console.log(searchValue);
-  // const yandexGeocoder = new YandexGeocoder();
 
-  // useEffect(() => {
-  //   if (requestText)
-  //     yandexGeocoder.getAddressAndGeopoint(requestText).then((res) => {
-  //       const [lon, lat] = getGeolocationCoordinates(res);
-  //       const address = getExactAddress(res);
+  // console.log(searchValue);
 
-  //       if (address) {
-  //         setRequestText(address);
-  //         dispatch(setLocation({ address, coords: [lat, lon] }));
-  //       }
-  //     });
-  // }, [requestText]);
+  useEffect(() => {
+    if (searchValue) {
+      dispatch(fetchLocation({ searchValue }));
+    }
+  }, [searchValue]);
 
   return (
     <main className={style.findFoodWrapper}>
@@ -81,10 +83,20 @@ export const FindFood: FC = () => {
               >
                 <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
               </TextInput>
-              <SearchButton classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
+              <SearchButton
+                classNames={style.search__btn}
+                // handleClick={handleSearch}
+                icon="search"
+                label="Find Food"
+              />
             </div>
             <Maps placemarks={placemarks} requestText={requestText} />
-            {/* <Popup isLoaded={isLoaded} isOpen={visiblePopup} list={products} ref={popupRef} /> */}
+            {/* <Popup isLoaded={isLoaded} isOpen={visiblePopup} list={list} ref={popupRef} /> */}
+            {list.map((el: any) => (
+              <div>
+                {el.address} {el.coords}
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 export { default as cart } from './cart/slice';
 export { default as filters } from './filters/slice';
+export { default as location } from './location/slice';
 export { default as product } from './product/slice';
 export { default as products } from './products/slice';
 export { default as productsFastAccess } from './productsFastAccess/slice';
