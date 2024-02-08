@@ -2,21 +2,15 @@
 import { Map, ObjectManager, Polygon, YMaps } from '@pbe/react-yandex-maps';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
 import { useAppDispatch } from '../../../store';
 import { addressSelector, coordsSelector, setLocation } from '../../../store/slices/location/slice';
 import { placemarkSelector } from '../../../store/slices/restaurants/slice';
-import { getBalloon } from '../../../utils/getBalloon';
 import './balloon.css';
 import { reverseСoordinates } from './getDeliveryZone';
-
-const getMiniBalloon = (address) => `<div class="balloon">
-<div class="balloon__contact">Your location</div>
-<div class="balloon__address">${address}</div>
-</div>`;
 
 export const Maps = () => {
   const [maps, setMaps] = useState(null);
@@ -24,15 +18,12 @@ export const Maps = () => {
   const [visibleBalloon, setVisibleBalloon] = useState(false);
   const [isLoaded, setIsLoaded] = useState(true);
   const [coord, setCoord] = useState(null);
-  // const [address, setAddress] = useState(null);
   const placemarks = useSelector(placemarkSelector);
 
   const dispatch = useAppDispatch();
   const coords = useSelector(coordsSelector);
   const address = useSelector(addressSelector);
 
-  console.log(coords);
-  console.log(address);
   const updateSearchValue = useCallback(
     debounce((coords) => {
       setCoord(coords);
@@ -55,10 +46,7 @@ export const Maps = () => {
       const resp = maps?.geocode(coord);
       resp.then((res) => {
         setIsLoaded(true);
-        // setAddress(res.geoObjects.get(0).getAddressLine());
         dispatch(setLocation({ address: res.geoObjects.get(0).getAddressLine(), coords: coord }));
-        // handleChangeAddress(address);
-        // console.log(address);
       });
     }
   }, [coord]);
@@ -140,12 +128,3 @@ export const Maps = () => {
     </YMaps>
   );
 };
-
-// // Инициализация карты из результата геокодирования
-// var myMap;
-// ymaps.geocode('Москва').then(function (res) {
-//     myMap = new ymaps.Map('map', {
-//         center: res.geoObjects.get(0).geometry.getCoordinates(),
-//         zoom :
-//      });
-// });

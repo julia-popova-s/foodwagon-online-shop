@@ -2,25 +2,16 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
 import {
+  addressSelector,
   fetchLocation,
   isLoadedSelector,
   locationListSelector,
   setLocation,
 } from '../../../store/slices/location/slice';
-import {
-  addressSelector,
-  coordsSelector,
-  placemarkSelector,
-  restaurantListSelector,
-  setPlacemarks,
-} from '../../../store/slices/restaurants/slice';
-import { getExactAddress } from '../../../utils/getAddress';
-import { getGeolocationCoordinates } from '../../../utils/getGeolocationCoordinates';
-import { Popup } from '../../pages/SearchPage/Popup';
+import { setPlacemarks } from '../../../store/slices/restaurants/slice';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { DeliveryMethod } from './DeliveryMethod';
@@ -34,16 +25,11 @@ export const FindFood: FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
 
   const list = useSelector(locationListSelector);
-  const placemarks = useSelector(placemarkSelector);
-  const coords = useSelector(coordsSelector);
   const address = useSelector(addressSelector);
-  // console.log(list);
 
   const [visiblePopup, setVisiblePopup] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
   const isLoaded = useSelector(isLoadedSelector);
-  // console.log(isLoaded);
-  // console.log(visiblePopup);
 
   useEffect(() => {
     if (list.length) {
@@ -79,6 +65,7 @@ export const FindFood: FC = () => {
 
             <div className={style.searchPanel}>
               <TextInput
+                address={address}
                 classNames={style.searchPanel__input}
                 handleSearchValue={handleSearchValue}
                 placeholder={'Enter Your Address'}
@@ -89,7 +76,6 @@ export const FindFood: FC = () => {
               <SearchButton classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
             </div>
             <Maps />
-            {/* <Popup isLoaded={isLoaded} isOpen={visiblePopup} list={list} ref={popupRef} /> */}
             <ul>
               {list.map((el: any, i: any) => (
                 <li key={i} onClick={() => handleChangeLocation(el)}>
