@@ -12,13 +12,12 @@ import { CustomErrors, MyAsyncThunkConfig, Restaurant, Status, getExtraReducers 
 export const fetchData = async function ({ searchValue }, { rejectWithValue }) {
   try {
     const { data } = await axios.get(
-      `https://geocode-maps.yandex.ru/1.x?apikey=${process.env.REACT_APP_YANDEX_API_KEY}&geocode=${searchValue}&format=json&lang=en_RU&results=5`,
+      `https://geocode-maps.yandex.ru/1.x?apikey=${process.env.REACT_APP_YANDEX_API_KEY}&geocode=Russia,${searchValue}&format=json&lang=en_RU&results=5`,
     );
 
     if (data.length === 0) {
       return rejectWithValue(CustomErrors.ERROR_NOTHING_FOUND);
     }
-
     return getGeolocationCoordinates(data);
   } catch (error) {
     if (error.toJSON().status === 404) {

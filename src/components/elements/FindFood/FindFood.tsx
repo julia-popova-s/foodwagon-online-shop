@@ -2,15 +2,20 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
-import { fetchLocation, isLoadedSelector, locationListSelector } from '../../../store/slices/location/slice';
+import {
+  fetchLocation,
+  isLoadedSelector,
+  locationListSelector,
+  setLocation,
+} from '../../../store/slices/location/slice';
 import {
   addressSelector,
   coordsSelector,
   placemarkSelector,
   restaurantListSelector,
-  setLocation,
   setPlacemarks,
 } from '../../../store/slices/restaurants/slice';
 import { getExactAddress } from '../../../utils/getAddress';
@@ -20,7 +25,6 @@ import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { DeliveryMethod } from './DeliveryMethod';
 import { Maps } from './Maps';
-import { YandexGeocoder } from './YandexGeocoder';
 import style from './findFood.module.scss';
 
 export const FindFood: FC = () => {
@@ -34,13 +38,13 @@ export const FindFood: FC = () => {
   const placemarks = useSelector(placemarkSelector);
   const coords = useSelector(coordsSelector);
   const address = useSelector(addressSelector);
-  console.log(list);
+  // console.log(list);
 
   const [visiblePopup, setVisiblePopup] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
   const isLoaded = useSelector(isLoadedSelector);
-  console.log(isLoaded);
-  console.log(visiblePopup);
+  // console.log(isLoaded);
+  // console.log(visiblePopup);
 
   useEffect(() => {
     if (list.length) {
@@ -48,9 +52,7 @@ export const FindFood: FC = () => {
     }
   }, [list]);
 
-  // const handleSearch = () => {
-  //   setRequestText(searchValue);
-  // };
+  const handleSearch = () => {};
 
   const handleSearchValue = (text: string) => {
     setSearchValue(text);
@@ -63,6 +65,10 @@ export const FindFood: FC = () => {
       dispatch(fetchLocation({ searchValue }));
     }
   }, [searchValue]);
+
+  const handleChangeLocation = (el: any) => {
+    dispatch(setLocation(el));
+  };
 
   return (
     <main className={style.findFoodWrapper}>
@@ -83,20 +89,18 @@ export const FindFood: FC = () => {
               >
                 <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
               </TextInput>
-              <SearchButton
-                classNames={style.search__btn}
-                // handleClick={handleSearch}
-                icon="search"
-                label="Find Food"
-              />
+              <SearchButton classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
             </div>
             <Maps placemarks={placemarks} requestText={requestText} />
             {/* <Popup isLoaded={isLoaded} isOpen={visiblePopup} list={list} ref={popupRef} /> */}
-            {list.map((el: any) => (
-              <div>
-                {el.address} {el.coords}
-              </div>
-            ))}
+            <ul>
+              {list.map((el: any, i: any) => (
+                <li key={i} onClick={() => handleChangeLocation(el)}>
+                  {' '}
+                  {el.address} {el.coords}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

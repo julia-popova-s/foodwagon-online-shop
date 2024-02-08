@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
 import { useAppDispatch } from '../../../store';
-import { coordsSelector, setLocation } from '../../../store/slices/restaurants/slice';
+import { coordsSelector, setLocation } from '../../../store/slices/location/slice';
 import './balloon.css';
 import { reverseСoordinates } from './getDeliveryZone';
 
@@ -22,7 +22,8 @@ export const Maps = ({ placemarks, requestText }) => {
   // console.log(i++);
   const [maps, setMaps] = useState(null);
   const [isActive, setIsActive] = useState(null);
-
+  const mapRef = useRef();
+  const [isLoaded, setIsLoaded] = useState(false);
   const [coord, setCoord] = useState(null);
   const [address, setAddress] = useState(null);
   // console.log(address);
@@ -34,7 +35,7 @@ export const Maps = ({ placemarks, requestText }) => {
   const updateSearchValue = useCallback(
     debounce((coords) => {
       setCoord(coords);
-    }, 50000),
+    }, 500),
     [],
   );
   const getGeoLocation = (e) => {
@@ -53,43 +54,49 @@ export const Maps = ({ placemarks, requestText }) => {
   };
   // console.log(requestText);
 
-  useEffect(() => {
-    if (requestText)
-      maps?.geocode(requestText).then((res) => {
-        const coords = res.geoObjects.get(0).geometry.getCoordinates();
-        const address = res.geoObjects.get(0).getAddressLine();
-        setCoord(coords);
-        setLocation(address);
-        dispatch(setLocation({ address, coords }));
-      });
-  }, [requestText]);
+  // useEffect(() => {
+  //   if (requestText)
+  //     maps?.geocode(requestText).then((res) => {
+  //       const coords = res.geoObjects.get(0).geometry.getCoordinates();
+  //       const address = res.geoObjects.get(0).getAddressLine();
+  //       setCoord(coords);
+  //       setLocation(address);
+  //       dispatch(setLocation({ address, coords }));
+  //     });
+  // }, [requestText]);
 
   useEffect(() => {
     if (coord) {
+      setIsLoaded(false);
+
       const resp = maps?.geocode(coord);
       resp.then((res) => {
+        setIsLoaded(true);
         setAddress(res.geoObjects.get(0).getAddressLine());
         dispatch(setLocation({ address, coords }));
       });
-      mapRef?.current?.panTo(coord, {
-        checkZoomRange: true,
-        delay: 1000,
-        duration: 500,
-        flying: true,
-        timingFunction: 'ease',
-      });
+      // mapRef?.current?.panTo(coord, {
+      //   checkZoomRange: true,
+      //   delay: 1000,
+      //   duration: 500,
+      //   flying: true,
+      //   timingFunction: 'ease',
+      // });
     }
   }, [coord]);
 
-  const handleActionTick = () => {
+  // useEffect(() => {
+  //   maps?.panTo(coords);
+  // }, [maps]);
+
+  const handleActionBegin = () => {
     setIsActive(true);
   };
 
   const handleActionEnd = (e) => {
     setIsActive(false);
   };
-
-  const mapRef = useRef();
+  console.log(isActive);
 
   return (
     <YMaps
@@ -115,8 +122,8 @@ export const Maps = ({ placemarks, requestText }) => {
         }}
         className="map"
         instanceRef={mapRef}
+        onActionBegin={handleActionBegin}
         onActionEnd={handleActionEnd}
-        onActionTick={handleActionTick}
         onBoundsChange={(ymaps) => getGeoLocation(ymaps)}
         onLoad={(ymaps) => onLoad(ymaps)}
       >
@@ -126,6 +133,7 @@ export const Maps = ({ placemarks, requestText }) => {
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
             wrapper="span"
           />
+          {!isLoaded && 'd'}
         </div>
 
         <Polygon
