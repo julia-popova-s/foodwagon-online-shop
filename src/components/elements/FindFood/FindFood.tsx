@@ -32,7 +32,6 @@ export const FindFood: FC = () => {
   const dispatch = useAppDispatch();
 
   const [searchValue, setSearchValue] = useState<string>('');
-  const [requestText, setRequestText] = useState<string>('');
 
   const list = useSelector(locationListSelector);
   const placemarks = useSelector(placemarkSelector);
@@ -57,8 +56,6 @@ export const FindFood: FC = () => {
   const handleSearchValue = (text: string) => {
     setSearchValue(text);
   };
-
-  // console.log(searchValue);
 
   useEffect(() => {
     if (searchValue) {
@@ -91,13 +88,13 @@ export const FindFood: FC = () => {
               </TextInput>
               <SearchButton classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
             </div>
-            <Maps placemarks={placemarks} requestText={requestText} />
+            <Maps />
             {/* <Popup isLoaded={isLoaded} isOpen={visiblePopup} list={list} ref={popupRef} /> */}
             <ul>
               {list.map((el: any, i: any) => (
                 <li key={i} onClick={() => handleChangeLocation(el)}>
                   {' '}
-                  {el.address} {el.coords}
+                  {el.address} {el.coords[0]} {el.coords[1]}
                 </li>
               ))}
             </ul>

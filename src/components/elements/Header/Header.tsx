@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { addressSelector } from '../../../store/slices/restaurants/slice';
+import { addressSelector } from '../../../store/slices/location/slice';
 import { isAuthSelector, removeUser } from '../../../store/slices/user/slice';
 import { LogoType } from '../../ui/LogoType';
 import { CartButton } from '../../ui/buttons/CartButton';

@@ -1,4 +1,11 @@
-.balloon {}
+.balloon {
+  background-color: aliceblue;
+  position: absolute;
+  top: 60%;
+  left: 60%;
+  z-index: 10;
+  max-width: 300px;
+}
 
 .balloon__link {}
 
@@ -34,6 +41,7 @@
   left: 50%;
   transition: all 0.3s ease;
   z-index: 20;
+  cursor: pointer;
 }
 
 .placemark {
@@ -62,4 +70,12 @@
     fill: #757575;
     transition: all 0.3s ease;
   }
+}
+
+.balloon {
+  display: none;
+}
+
+.visible {
+  display: block;
 }

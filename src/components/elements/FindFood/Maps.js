@@ -7,7 +7,9 @@ import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
 import { useAppDispatch } from '../../../store';
-import { coordsSelector, setLocation } from '../../../store/slices/location/slice';
+import { addressSelector, coordsSelector, setLocation } from '../../../store/slices/location/slice';
+import { placemarkSelector } from '../../../store/slices/restaurants/slice';
+import { getBalloon } from '../../../utils/getBalloon';
 import './balloon.css';
 import { reverseСoordinates } from './getDeliveryZone';
 
@@ -16,22 +18,21 @@ const getMiniBalloon = (address) => `<div class="balloon">
 <div class="balloon__address">${address}</div>
 </div>`;
 
-const i = 0;
-
-export const Maps = ({ placemarks, requestText }) => {
-  // console.log(i++);
+export const Maps = () => {
   const [maps, setMaps] = useState(null);
   const [isActive, setIsActive] = useState(null);
-  const mapRef = useRef();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [visibleBalloon, setVisibleBalloon] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
   const [coord, setCoord] = useState(null);
-  const [address, setAddress] = useState(null);
-  // console.log(address);
+  // const [address, setAddress] = useState(null);
+  const placemarks = useSelector(placemarkSelector);
 
   const dispatch = useAppDispatch();
   const coords = useSelector(coordsSelector);
-  // console.log(coord);
+  const address = useSelector(addressSelector);
 
+  console.log(coords);
+  console.log(address);
   const updateSearchValue = useCallback(
     debounce((coords) => {
       setCoord(coords);
@@ -41,53 +42,26 @@ export const Maps = ({ placemarks, requestText }) => {
   const getGeoLocation = (e) => {
     const coords = e.get('target').getCenter();
     updateSearchValue(coords);
-
-    // const resp = maps?.geocode(coord);
-    // resp.then((res) => {
-    //   setAddress(res.geoObjects.get(0).getAddressLine());
-    //   dispatch(setLocation({ address, coords }));
-    // });
   };
 
   const onLoad = (map) => {
     setMaps(map);
   };
-  // console.log(requestText);
-
-  // useEffect(() => {
-  //   if (requestText)
-  //     maps?.geocode(requestText).then((res) => {
-  //       const coords = res.geoObjects.get(0).geometry.getCoordinates();
-  //       const address = res.geoObjects.get(0).getAddressLine();
-  //       setCoord(coords);
-  //       setLocation(address);
-  //       dispatch(setLocation({ address, coords }));
-  //     });
-  // }, [requestText]);
 
   useEffect(() => {
-    if (coord) {
+    if (coord?.length) {
       setIsLoaded(false);
 
       const resp = maps?.geocode(coord);
       resp.then((res) => {
         setIsLoaded(true);
-        setAddress(res.geoObjects.get(0).getAddressLine());
-        dispatch(setLocation({ address, coords }));
+        // setAddress(res.geoObjects.get(0).getAddressLine());
+        dispatch(setLocation({ address: res.geoObjects.get(0).getAddressLine(), coords: coord }));
+        // handleChangeAddress(address);
+        // console.log(address);
       });
-      // mapRef?.current?.panTo(coord, {
-      //   checkZoomRange: true,
-      //   delay: 1000,
-      //   duration: 500,
-      //   flying: true,
-      //   timingFunction: 'ease',
-      // });
     }
   }, [coord]);
-
-  // useEffect(() => {
-  //   maps?.panTo(coords);
-  // }, [maps]);
 
   const handleActionBegin = () => {
     setIsActive(true);
@@ -96,7 +70,6 @@ export const Maps = ({ placemarks, requestText }) => {
   const handleActionEnd = (e) => {
     setIsActive(false);
   };
-  console.log(isActive);
 
   return (
     <YMaps
@@ -121,13 +94,12 @@ export const Maps = ({ placemarks, requestText }) => {
           zoom: 15,
         }}
         className="map"
-        instanceRef={mapRef}
         onActionBegin={handleActionBegin}
         onActionEnd={handleActionEnd}
         onBoundsChange={(ymaps) => getGeoLocation(ymaps)}
         onLoad={(ymaps) => onLoad(ymaps)}
       >
-        <div className={cn('pointer', { active: isActive })}>
+        <div className={cn('pointer', { active: isActive })} onClick={() => setVisibleBalloon(true)}>
           <ReactSVG
             className={cn('placemark', { active: isActive })}
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
@@ -160,6 +132,10 @@ export const Maps = ({ placemarks, requestText }) => {
           features={placemarks}
           modules={['objectManager.addon.objectsBalloon', 'objectManager.addon.objectsHint']}
         />
+        <div className={cn('balloon', { visible: visibleBalloon })}>
+          <div className="balloon__contact">Your location</div>
+          <div className="balloon__address">{address}</div>
+        </div>
       </Map>
     </YMaps>
   );
