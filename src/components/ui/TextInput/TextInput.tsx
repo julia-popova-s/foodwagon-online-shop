@@ -45,13 +45,13 @@ export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputP
       setValue(e.target.value);
       updateSearchValue(e.target.value);
     };
+
     useEffect(() => {
       if (address) {
         setValue(address);
-        updateSearchValue(address);
       }
     }, [address]);
-    console.log(value);
+
     return (
       <div className={cn(style.search, classNames)} ref={ref}>
         <input

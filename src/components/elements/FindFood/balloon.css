@@ -1,10 +1,13 @@
 .balloon {
-  background-color: aliceblue;
+  background-color: white;
   position: absolute;
-  top: 60%;
-  left: 60%;
   z-index: 10;
   max-width: 300px;
+  bottom: 54%;
+  left: 54%;
+  display: none;
+  padding: 10px 20px;
+  box-shadow: -5px 5px 5px #808080;
 }
 
 .balloon__link {}
@@ -70,10 +73,6 @@
     fill: #757575;
     transition: all 0.3s ease;
   }
-}
-
-.balloon {
-  display: none;
 }
 
 .visible {

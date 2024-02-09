@@ -3,36 +3,26 @@ import { Map, ObjectManager, Polygon, YMaps } from '@pbe/react-yandex-maps';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { useCallback, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
-import { useAppDispatch } from '../../../store';
-import { addressSelector, coordsSelector, setLocation } from '../../../store/slices/location/slice';
-import { placemarkSelector } from '../../../store/slices/restaurants/slice';
 import './balloon.css';
 import { reverseСoordinates } from './getDeliveryZone';
 
-export const Maps = () => {
+export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, placemarks }) => {
   const [maps, setMaps] = useState(null);
   const [isActive, setIsActive] = useState(null);
   const [visibleBalloon, setVisibleBalloon] = useState(false);
   const [isLoaded, setIsLoaded] = useState(true);
-  const [coord, setCoord] = useState(null);
-  const placemarks = useSelector(placemarkSelector);
-
-  const dispatch = useAppDispatch();
-  const coords = useSelector(coordsSelector);
-  const address = useSelector(addressSelector);
 
   const updateSearchValue = useCallback(
-    debounce((coords) => {
-      setCoord(coords);
+    debounce((coord) => {
+      handleChangeCoord(coord);
     }, 500),
     [],
   );
   const getGeoLocation = (e) => {
-    const coords = e.get('target').getCenter();
-    updateSearchValue(coords);
+    const coord = e.get('target').getCenter();
+    updateSearchValue(coord);
   };
 
   const onLoad = (map) => {
@@ -40,14 +30,17 @@ export const Maps = () => {
   };
 
   useEffect(() => {
-    if (coord?.length) {
+    if (maps && coord?.length) {
       setIsLoaded(false);
-
       const resp = maps?.geocode(coord);
-      resp.then((res) => {
-        setIsLoaded(true);
-        dispatch(setLocation({ address: res.geoObjects.get(0).getAddressLine(), coords: coord }));
-      });
+      resp
+        .then((res) => {
+          setIsLoaded(true);
+          handleChangeAddress(res.geoObjects.get(0).getAddressLine());
+        })
+        .catch((error) => {
+          console.error('The Promise is rejected!', error);
+        });
     }
   }, [coord]);
 
@@ -57,6 +50,10 @@ export const Maps = () => {
 
   const handleActionEnd = (e) => {
     setIsActive(false);
+  };
+
+  const handleVisibleBalloon = () => {
+    setVisibleBalloon(true);
   };
 
   return (
@@ -77,7 +74,7 @@ export const Maps = () => {
         ]}
         state={{
           behaviors: ['default'],
-          center: coords,
+          center: coord,
           controls: ['zoomControl', 'fullscreenControl', 'geolocationControl'],
           zoom: 15,
         }}
@@ -87,7 +84,7 @@ export const Maps = () => {
         onBoundsChange={(ymaps) => getGeoLocation(ymaps)}
         onLoad={(ymaps) => onLoad(ymaps)}
       >
-        <div className={cn('pointer', { active: isActive })} onClick={() => setVisibleBalloon(true)}>
+        <div className={cn('pointer', { active: isActive })} onClick={handleVisibleBalloon}>
           <ReactSVG
             className={cn('placemark', { active: isActive })}
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
@@ -118,11 +115,11 @@ export const Maps = () => {
             gridSize: 150,
           }}
           features={placemarks}
-          modules={['objectManager.addon.objectsBalloon', 'objectManager.addon.objectsHint']}
+          modules={['objectManager.addon.objectsBalloon', 'objectManager.addon.objectsHint','objectManager.Balloon']}
         />
         <div className={cn('balloon', { visible: visibleBalloon })}>
           <div className="balloon__contact">Your location</div>
-          <div className="balloon__address">{address}</div>
+          <div className="balloon__address">{place}</div>
         </div>
       </Map>
     </YMaps>
