@@ -3,6 +3,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
+import { addressSelector } from '../../../store/slices/location/slice';
 // import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { isAuthSelector } from '../../../store/slices/user/slice';
 import { CartButton } from '../../ui/buttons/CartButton';
@@ -15,6 +16,7 @@ type MobileMenuProps = {
 
 export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
   const { pathname } = useLocation();
+  const address = useSelector(addressSelector);
 
   useEffect(() => setMenuIsVisible(false), [pathname]);
 
@@ -84,7 +86,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
             </NavLink>
           </li>
           <li className={style.menu__item}>
-            <DeliverAddress address="" />
+            <DeliverAddress address={address} />
           </li>
         </ul>
       </nav>

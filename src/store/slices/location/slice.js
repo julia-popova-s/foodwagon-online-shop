@@ -12,7 +12,7 @@ import { CustomErrors, MyAsyncThunkConfig, Restaurant, Status, getExtraReducers 
 export const fetchData = async function ({ searchValue }, { rejectWithValue }) {
   try {
     const { data } = await axios.get(
-      `https://geocode-maps.yandex.ru/1.x?apikey=${process.env.REACT_APP_YANDEX_API_KEY}&geocode=${searchValue}&format=json&lang=en_RU&results=5`,
+      `https://geocode-maps.yandex.ru/1.x?apikey=${process.env.REACT_APP_YANDEX_API_KEY}&geocode=${searchValue}&sco=longlat&format=json&lang=en_RU&results=5`,
     );
 
     if (data.length === 0) {
@@ -34,7 +34,7 @@ const initialState = {
   list: [],
   location: {
     address: 'Saint Petersburg, Shpalernaya Street, 26',
-    coords: [59.94971367493227, 30.35151817345885],
+    coords: [30.35151817345885, 59.94971367493227],
   },
   // placemarks: [],
   status: Status.LOADING,
@@ -66,12 +66,12 @@ const locationSlice = createSlice({
 
         return {
           geometry: {
-            coordinates: [latitude, longitude],
+            coordinates: [longitude, latitude],
             type: 'Point',
           },
           id,
           properties: {
-            balloonContent: getBalloon(
+            balloonContentBody: getBalloon(
               id,
               name,
               logo_photos,

@@ -4,7 +4,6 @@ export interface RestaurantSliceState {
   error: ErrorType;
   isLoaded: boolean;
   list: Restaurant[];
-  location: Location;
   placemarks: Placemark[];
   status: Status;
 }
@@ -21,7 +20,7 @@ type Geometry = {
 };
 
 type Properties = {
-  balloonContent: string;
+  balloonContentBody: string;
 };
 
 type Location = {

@@ -16,10 +16,6 @@ const initialState: RestaurantSliceState = {
   error: null,
   isLoaded: false,
   list: [],
-  location: {
-    address: 'Saint Petersburg, Shpalernaya Street, 26',
-    coords: [59.94971367493227, 30.35151817345885],
-  },
   placemarks: [],
   status: Status.LOADING,
 };
@@ -34,9 +30,6 @@ const restaurantsSlice = createSlice({
     setLoaded(state, action: PayloadAction<boolean>) {
       state.isLoaded = action.payload;
     },
-    setLocation(state, action) {
-      state.location = action.payload;
-    },
     setPlacemarks(state) {
       state.placemarks = state.list.map((item) => {
         const {
@@ -50,12 +43,12 @@ const restaurantsSlice = createSlice({
 
         return {
           geometry: {
-            coordinates: [latitude, longitude],
+            coordinates: [longitude, latitude],
             type: 'Point',
           },
           id,
           properties: {
-            balloonContent: getBalloon(
+            balloonContentBody: getBalloon(
               id,
               name,
               logo_photos,
@@ -79,8 +72,6 @@ export const errorSelector = (state: RootStore) => state.restaurants.error;
 export const isLoadedSelector = (state: RootStore) => state.restaurants.isLoaded;
 export const statusSelector = (state: RootStore) => state.restaurants.status;
 export const placemarkSelector = (state: RootStore) => state.restaurants.placemarks;
-export const addressSelector = (state: RootStore) => state.restaurants.location.address;
-export const coordsSelector = (state: RootStore) => state.restaurants.location.coords;
 
-export const { setLoaded, setLocation, setPlacemarks } = restaurantsSlice.actions;
+export const { setLoaded, setPlacemarks } = restaurantsSlice.actions;
 export default restaurantsSlice.reducer;

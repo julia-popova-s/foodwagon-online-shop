@@ -4,7 +4,7 @@ export const getGeolocationCoordinates = (response) => {
     const geoObject = el?.GeoObject;
     return {
       address: geoObject?.metaDataProperty?.GeocoderMetaData?.Address?.formatted,
-      coords: geoObject?.Point?.pos.split(' ').reverse(),
+      coords: geoObject?.Point?.pos.split(' '),
     };
   });
 };

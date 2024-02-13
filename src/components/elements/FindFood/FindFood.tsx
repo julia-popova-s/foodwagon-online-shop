@@ -27,6 +27,7 @@ export const FindFood: FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
 
   const list = useSelector(locationListSelector);
+  console.log(list);
   const address = useSelector(addressSelector);
 
   const [visiblePopup, setVisiblePopup] = useState(false);
@@ -36,7 +37,7 @@ export const FindFood: FC = () => {
   const listRest = useSelector(restaurantListSelector);
 
   const [place, setPlace] = useState('Saint Petersburg, Shpalernaya Street, 26');
-  const [coord, setCoord] = useState([59.94971367493227, 30.35151817345885]);
+  const [coord, setCoord] = useState([30.35151817345885, 59.94971367493227]);
 
   useEffect(() => {
     if (listRest.length) {
