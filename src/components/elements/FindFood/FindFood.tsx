@@ -27,7 +27,6 @@ export const FindFood: FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
 
   const list = useSelector(locationListSelector);
-  console.log(list);
   const address = useSelector(addressSelector);
 
   const [visiblePopup, setVisiblePopup] = useState(false);

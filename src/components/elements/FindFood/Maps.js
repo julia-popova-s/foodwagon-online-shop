@@ -5,12 +5,14 @@ import debounce from 'lodash.debounce';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
+import { DeliverAddress } from '../Header/DeliverAddress';
 import './balloon.css';
 import { deliveryZones } from './deliveryZones';
 
 export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, placemarks }) => {
   const [maps, setMaps] = useState(null);
-
+  const [status, setStatus] = useState('Delivery available');
+  const [zone, setZone] = useState(null);
   const [isActive, setIsActive] = useState(null);
   const [visibleBalloon, setVisibleBalloon] = useState(false);
   const [isLoaded, setIsLoaded] = useState(true);
@@ -33,8 +35,10 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
   const onLoad = (map) => {
     setMaps(map);
   };
+
   useEffect(() => {
-    if (maps && coord?.length && placemarkRef.current && mapRef.current) {
+    if (maps && placemarkRef.current && mapRef.current) {
+      console.log(maps);
       const deliveryZone = maps?.geoQuery(deliveryZones).addToMap(mapRef.current);
       deliveryZone.each(function (obj) {
         obj.options.set({
@@ -46,18 +50,21 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
         });
         obj.properties.set('balloonContent', obj.properties.get('description'));
       });
-
-      const targetZone = deliveryZone.searchContaining(placemarkRef.current).get(0);
-
-      if (targetZone) {
-        console.log('доставка есть');
-      } else {
-        console.log('нет');
-      }
+      setZone(deliveryZone);
     }
-  }, []);
+  }, [maps]);
 
   useEffect(() => {
+    if (zone) {
+      const targetZone = zone.searchContaining(placemarkRef.current).get(0);
+
+      if (targetZone) {
+        setStatus('Delivery available');
+      } else {
+        setStatus('No delivery');
+      }
+    }
+
     if (maps && coord?.length) {
       setIsLoaded(false);
       const resp = maps?.geocode(coord);
@@ -163,6 +170,7 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
         <div className={cn('balloon', { visible: visibleBalloon })}>
           <div className="balloon__contact">Your location</div>
           <div className="balloon__address">{place}</div>
+          <div>{status}</div>
         </div>
       </Map>
     </YMaps>
