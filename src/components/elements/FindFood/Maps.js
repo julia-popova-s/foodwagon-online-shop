@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { Map, ObjectManager, Placemark, Polygon, YMaps } from '@pbe/react-yandex-maps';
+import { Map, ObjectManager, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -11,7 +11,7 @@ import { deliveryZones } from './deliveryZones';
 
 export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, placemarks }) => {
   const [maps, setMaps] = useState(null);
-  const [status, setStatus] = useState('Delivery available');
+  const [status, setStatus] = useState(true);
   const [zone, setZone] = useState(null);
   const [isActive, setIsActive] = useState(null);
   const [visibleBalloon, setVisibleBalloon] = useState(false);
@@ -19,7 +19,6 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
 
   const mapRef = useRef(null);
   const placemarkRef = useRef(null);
-  const polygonRef = useRef(null);
 
   const updateSearchValue = useCallback(
     debounce((coord) => {
@@ -34,12 +33,9 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
 
   const onLoad = (map) => {
     setMaps(map);
-  };
 
-  useEffect(() => {
-    if (maps && placemarkRef.current && mapRef.current) {
-      console.log(maps);
-      const deliveryZone = maps?.geoQuery(deliveryZones).addToMap(mapRef.current);
+    if (map && mapRef.current) {
+      const deliveryZone = map?.geoQuery(deliveryZones).addToMap(mapRef.current);
       deliveryZone.each(function (obj) {
         obj.options.set({
           fillColor: obj.properties.get('fill'),
@@ -50,23 +46,25 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
         });
         obj.properties.set('balloonContent', obj.properties.get('description'));
       });
+
       setZone(deliveryZone);
     }
-  }, [maps]);
+  };
 
   useEffect(() => {
-    if (zone) {
+    if (zone && placemarkRef.current) {
       const targetZone = zone.searchContaining(placemarkRef.current).get(0);
 
       if (targetZone) {
-        setStatus('Delivery available');
+        setStatus(true);
       } else {
-        setStatus('No delivery');
+        setStatus(false);
       }
     }
 
     if (maps && coord?.length) {
       setIsLoaded(false);
+
       const resp = maps?.geocode(coord);
       resp
         .then((res) => {
@@ -83,7 +81,7 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
     setIsActive(true);
   };
 
-  const handleActionEnd = (e) => {
+  const handleActionEnd = () => {
     setIsActive(false);
   };
 
@@ -128,30 +126,8 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
             wrapper="span"
           />
-          {!isLoaded && 'd'}
+          {!isLoaded && 'pending'}
         </div>
-
-        {/* {deliveryZones.features.map(({ geometry, id, properties }) => {
-          // console.log(polygon);
-          // if (polygon.geometry.coordinates.contains(coord)) {
-          //   console.log(1);
-          // }
-          return (
-            <Polygon
-              options={{
-                fillColor: '#ed4543',
-                opacity: 0.2,
-                strokeColor: '#b3b3b3',
-                strokeOpacity: 0,
-                strokeStyle: 'shortdash',
-                strokeWidth: 0,
-              }}
-              geometry={geometry.coordinates}
-              instanceRef={polygonRef}
-              key={id}
-            />
-          );
-        })} */}
 
         <Placemark geometry={coord} instanceRef={placemarkRef} options={{ iconOffset: [0, 0], visible: false }} />
 
@@ -167,10 +143,11 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
           features={placemarks}
           modules={['objectManager.addon.objectsBalloon', 'objectManager.addon.objectsHint', 'objectManager.Balloon']}
         />
+
         <div className={cn('balloon', { visible: visibleBalloon })}>
           <div className="balloon__contact">Your location</div>
           <div className="balloon__address">{place}</div>
-          <div>{status}</div>
+          <div>{status ? 'Delivery available' : 'No delivery'}</div>
         </div>
       </Map>
     </YMaps>

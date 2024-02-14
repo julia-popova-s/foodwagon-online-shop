@@ -70,7 +70,6 @@ export const FindFood: FC = () => {
     if (searchValue) {
       dispatch(fetchLocation({ searchValue }));
       setVisiblePopup(true);
-      console.log(visiblePopup);
     }
   }, [searchValue]);
 
