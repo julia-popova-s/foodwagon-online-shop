@@ -20,7 +20,7 @@ type Geometry = {
 };
 
 type Properties = {
-  balloonContentBody: string;
+  balloonContent: string;
 };
 
 type Location = {

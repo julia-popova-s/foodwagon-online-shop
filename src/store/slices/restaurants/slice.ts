@@ -48,7 +48,7 @@ const restaurantsSlice = createSlice({
           },
           id,
           properties: {
-            balloonContentBody: getBalloon(
+            balloonContent: getBalloon(
               id,
               name,
               logo_photos,

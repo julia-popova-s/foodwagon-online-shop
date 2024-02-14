@@ -40,7 +40,7 @@
 
 .pointer {
   position: absolute;
-  top: 43.3%;
+  top: 40.55%;
   left: 48.4%;
   transition: all 0.3s ease;
   z-index: 20;
@@ -56,8 +56,8 @@
   }
 
   svg {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 40px;
   }
 }
 
@@ -77,4 +77,10 @@
 
 .visible {
   display: block;
+}
+
+.preloader {
+  position: absolute;
+  top: 4%;
+  left: 7%;
 }

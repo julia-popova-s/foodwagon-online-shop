@@ -23,7 +23,7 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
   const updateSearchValue = useCallback(
     debounce((coord) => {
       handleChangeCoord(coord);
-    }, 500),
+    }, 1000),
     [],
   );
   const getGeoLocation = (e) => {
@@ -126,19 +126,24 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
             wrapper="span"
           />
-          {!isLoaded && 'pending'}
+          {!isLoaded && (
+            <ReactSVG className="preloader" src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`} />
+          )}
         </div>
 
         <Placemark geometry={coord} instanceRef={placemarkRef} options={{ iconOffset: [0, 0], visible: false }} />
 
         <ObjectManager
+          clusters={{
+            preset: 'islands#redClusterIcons',
+          }}
           objects={{
             openBalloonOnClick: true,
             preset: 'islands#redDotIcon',
           }}
           options={{
             clusterize: true,
-            gridSize: 150,
+            gridSize: 50,
           }}
           features={placemarks}
           modules={['objectManager.addon.objectsBalloon', 'objectManager.addon.objectsHint', 'objectManager.Balloon']}
