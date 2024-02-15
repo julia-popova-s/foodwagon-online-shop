@@ -23,9 +23,10 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
   const updateSearchValue = useCallback(
     debounce((coord) => {
       handleChangeCoord(coord);
-    }, 1000),
+    }, 500),
     [],
   );
+  
   const getGeoLocation = (e) => {
     const coord = e.get('target').getCenter();
     updateSearchValue(coord);

@@ -9,6 +9,12 @@
 }
 
 .findFood {
+  &__search {
+    position: relative;
+    
+    max-width: 856px;
+  }
+
   &__title {
     font-size: 88px;
     font-weight: 700;

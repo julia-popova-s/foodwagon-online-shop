@@ -1,13 +1,10 @@
-import { faL, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Placemark } from '@pbe/react-yandex-maps';
-import cn from 'classnames';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '../../../store';
 import {
-  addressSelector,
   fetchLocation,
   isLoadedSelector,
   locationListSelector,
@@ -18,6 +15,7 @@ import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { DeliveryMethod } from './DeliveryMethod';
 import { Maps } from './Maps';
+import { Popup } from './Popup';
 import style from './findFood.module.scss';
 
 export const FindFood: FC = () => {
@@ -27,10 +25,9 @@ export const FindFood: FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
 
   const list = useSelector(locationListSelector);
-  const address = useSelector(addressSelector);
 
   const [visiblePopup, setVisiblePopup] = useState(false);
-  const popupRef = useRef<HTMLDivElement>(null);
+  const popupRef = useRef<HTMLUListElement>(null);
   const isLoaded = useSelector(isLoadedSelector);
   const placemarks = useSelector(placemarkSelector);
   const listRest = useSelector(restaurantListSelector);
@@ -73,6 +70,17 @@ export const FindFood: FC = () => {
     }
   }, [searchValue]);
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (popupRef.current && event.key === 'Enter') {
+      event.preventDefault();
+      popupRef.current?.focus();
+    }
+  };
+
+  const handleChangeStatus = (status: boolean) => {
+    setVisiblePopup(status);
+  };
+
   return (
     <main className={style.findFoodWrapper}>
       <div className="container">
@@ -80,21 +88,38 @@ export const FindFood: FC = () => {
           <h1 className={style.findFood__title}>Are you starving?</h1>
           <p className={style.findFood__text}>Within a few clicks, find meals that are accessible near you</p>
 
-          <div className={style.findFood__search}>
+          <div className={style.findFood__searchPanel}>
             <DeliveryMethod />
+            <div className={style.findFood__search}>
+              <div className={style.searchPanel}>
+                <TextInput
+                  address={place}
+                  classNames={style.searchPanel__input}
+                  handleKeyDown={handleKeyDown}
+                  handleSearchValue={handleSearchValue}
+                  placeholder={'Enter Your Address'}
+                  ref={searchRef}
+                >
+                  <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
+                </TextInput>
+                <SearchButton
+                  classNames={style.search__btn}
+                  handleClick={handleSearch}
+                  icon="search"
+                  label="Find Food"
+                />
+              </div>
 
-            <div className={style.searchPanel}>
-              <TextInput
-                address={place}
-                classNames={style.searchPanel__input}
-                handleSearchValue={handleSearchValue}
-                placeholder={'Enter Your Address'}
-                ref={searchRef}
-              >
-                <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
-              </TextInput>
-              <SearchButton classNames={style.search__btn} handleClick={handleSearch} icon="search" label="Find Food" />
+              <Popup
+                handleChangeLocation={handleChangeLocation}
+                handleChangeStatus={handleChangeStatus}
+                isLoaded={isLoaded}
+                isOpen={visiblePopup}
+                list={list}
+                ref={popupRef}
+              />
             </div>
+
             {searchValue && (
               <Maps
                 coord={coord}
@@ -104,14 +129,6 @@ export const FindFood: FC = () => {
                 placemarks={placemarks}
               />
             )}
-            <ul className={cn(style.popup, { [style.hidden]: !visiblePopup })}>
-              {list.map((el: any, i: any) => (
-                <li key={i} onClick={() => handleChangeLocation(el)}>
-                  {' '}
-                  {el.address} {el.coords[0]} {el.coords[1]}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>
