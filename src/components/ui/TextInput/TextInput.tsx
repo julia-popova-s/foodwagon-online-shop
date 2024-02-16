@@ -24,6 +24,7 @@ export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputP
 
     const handleKeyDeleteDown = (event: KeyboardEvent<HTMLInputElement>) => {
       if (event.key === 'Delete') {
+        event.preventDefault();
         handleClickClear();
       }
     };
@@ -61,6 +62,7 @@ export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputP
           }}
           autoComplete="off"
           className={style.search__input}
+          maxLength={150}
           name="find"
           onChange={handleChangeValue}
           placeholder={placeholder}
