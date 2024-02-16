@@ -20,20 +20,19 @@ import style from './findFood.module.scss';
 
 export const FindFood: FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
+  const popupRef = useRef<HTMLUListElement>(null);
+
   const dispatch = useAppDispatch();
 
-  const [searchValue, setSearchValue] = useState<string>('');
-
   const list = useSelector(locationListSelector);
-
-  const [visiblePopup, setVisiblePopup] = useState(false);
-  const popupRef = useRef<HTMLUListElement>(null);
   const isLoaded = useSelector(isLoadedSelector);
   const placemarks = useSelector(placemarkSelector);
   const listRest = useSelector(restaurantListSelector);
 
-  const [place, setPlace] = useState('Saint Petersburg, Shpalernaya Street, 26');
+  const [place, setPlace] = useState('');
   const [coord, setCoord] = useState([30.35151817345885, 59.94971367493227]);
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [visiblePopup, setVisiblePopup] = useState(false);
 
   useEffect(() => {
     if (listRest.length) {
@@ -71,15 +70,35 @@ export const FindFood: FC = () => {
   }, [searchValue]);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (popupRef.current && event.key === 'Enter') {
+    if (popupRef.current && event.key === 'ArrowDown') {
       event.preventDefault();
       popupRef.current?.focus();
+    }
+
+    if (event.key === 'Enter' && list.length) {
+      event.preventDefault();
+      handleChangeLocation(list[0]);
     }
   };
 
   const handleChangeStatus = (status: boolean) => {
     setVisiblePopup(status);
   };
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (popupRef.current?.contains(e.target as Node) || searchRef.current?.contains(e.target as Node)) {
+        setVisiblePopup(true);
+      } else {
+        setVisiblePopup(false);
+      }
+      return;
+    };
+
+    document.body.addEventListener('mousedown', handleOutsideClick);
+
+    return () => document.body.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
 
   return (
     <main className={style.findFoodWrapper}>
@@ -120,7 +139,7 @@ export const FindFood: FC = () => {
               />
             </div>
 
-            {searchValue && (
+            {place && (
               <Maps
                 coord={coord}
                 handleChangeAddress={handleChangeAddress}

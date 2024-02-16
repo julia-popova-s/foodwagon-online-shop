@@ -5,7 +5,6 @@ import debounce from 'lodash.debounce';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import { DeliverAddress } from '../Header/DeliverAddress';
 import './balloon.css';
 import { deliveryZones } from './deliveryZones';
 
@@ -26,7 +25,7 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
     }, 500),
     [],
   );
-  
+
   const getGeoLocation = (e) => {
     const coord = e.get('target').getCenter();
     updateSearchValue(coord);
@@ -112,7 +111,7 @@ export const Maps = ({ coord, handleChangeAddress, handleChangeCoord, place, pla
           behaviors: ['default'],
           center: coord,
           controls: ['zoomControl', 'fullscreenControl', 'geolocationControl'],
-          zoom: 9,
+          zoom: 15,
         }}
         className="map"
         instanceRef={mapRef}

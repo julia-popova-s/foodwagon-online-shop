@@ -54,9 +54,9 @@ export const SearchPanel: FC = () => {
       return;
     };
 
-    document.body.addEventListener('click', handleOutsideClick);
+    document.body.addEventListener('mousedown', handleOutsideClick);
 
-    return () => document.body.removeEventListener('click', handleOutsideClick);
+    return () => document.body.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
   useEffect(() => {

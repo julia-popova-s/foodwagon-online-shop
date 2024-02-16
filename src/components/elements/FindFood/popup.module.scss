@@ -15,17 +15,16 @@
   width: calc(100% - 199px - 16px - 48px);
 
   box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, .15);
+  border: 2px solid transparent;
 
   transition: all $transition-short ease;
-
-  padding: 10px 0;
 
   &:focus-visible {
     outline: none;
   }
 
   &:focus {
-    box-shadow: 2px 2px 2px 0 $base-color;
+    border: 2px solid rgba(255, 116, 116, 0.5647058824);
   }
 
   &__item {

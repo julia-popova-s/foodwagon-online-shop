@@ -1,8 +1,17 @@
 /* eslint-disable max-len */
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
-import { KeyboardEvent, forwardRef, useCallback, useEffect, useRef, useState } from 'react';
-import { ChangeEvent, PropsWithChildren } from 'react';
+import {
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  PropsWithChildren,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { ReactSVG } from 'react-svg';
 
 import style from './textInput.module.scss';
@@ -52,6 +61,10 @@ export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputP
         setValue(address);
       }
     }, [address]);
+
+    useEffect(() => {
+      inputRef.current?.focus();
+    }, [value]);
 
     return (
       <div className={cn(style.search, classNames)} ref={ref}>
