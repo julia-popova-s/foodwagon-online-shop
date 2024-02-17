@@ -1,11 +1,12 @@
 import cn from 'classnames';
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
+import { addressSelector } from '../../../store/slices/location/slice';
 import { isAuthSelector, removeUser } from '../../../store/slices/user/slice';
 import { LogoType } from '../../ui/LogoType';
 import { CartButton } from '../../ui/buttons/CartButton';
@@ -23,6 +24,8 @@ export const Header: FC = () => {
 
   const dispatch = useDispatch();
 
+  const address = useSelector(addressSelector);
+
   const handleLogOut = () => {
     dispatch(removeUser());
   };
@@ -39,7 +42,7 @@ export const Header: FC = () => {
             <LogoType classNames={style.header__logo} />
           </Link>
 
-          <DeliverAddress classNames={style.header__address} />
+          <DeliverAddress address={address} classNames={style.header__address} />
 
           <div className={cn(style.search, style.header__search)}>
             <Link className={style.search__link} to="search">

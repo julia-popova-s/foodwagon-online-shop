@@ -19,9 +19,10 @@
     width: 100%;
 
     border-radius: 8px;
-    border: 0 solid;
+    border: none;
+    border: 2px solid transparent;
 
-    padding: 11.5px 10px 12.5px 46px;
+    padding: 11.5px 55px 12.5px 46px;
   }
 
   &__input::placeholder {
@@ -30,6 +31,7 @@
 
   &__input:focus {
     outline: none;
+    border: 2px solid rgba(255, 116, 116, 0.5647058824);
   }
 
   &__inputIcon {

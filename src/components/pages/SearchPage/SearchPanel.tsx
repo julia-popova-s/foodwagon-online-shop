@@ -54,9 +54,9 @@ export const SearchPanel: FC = () => {
       return;
     };
 
-    document.body.addEventListener('click', handleOutsideClick);
+    document.body.addEventListener('mousedown', handleOutsideClick);
 
-    return () => document.body.removeEventListener('click', handleOutsideClick);
+    return () => document.body.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
   useEffect(() => {
@@ -93,6 +93,7 @@ export const SearchPanel: FC = () => {
         handleKeyDown={handleKeyDown}
         handleSearchValue={handleSearchValue}
         iconUrl={'/images/header/search.svg'}
+        placeholder={'Enter Your Request'}
         ref={searchRef}
       />
 

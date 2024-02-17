@@ -1,0 +1,68 @@
+@import "../../../styles/variables";
+
+.popup {
+  position: absolute;
+
+  z-index: 999;
+
+  left: 24px;
+  top: 86px;
+
+  background: $white-color;
+  border-radius: 8px;
+
+  min-width: 199px;
+  width: calc(100% - 199px - 16px - 48px);
+
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, .15);
+  border: 2px solid transparent;
+
+  transition: all $transition-short ease;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus {
+    border: 2px solid rgba(255, 116, 116, 0.5647058824);
+  }
+
+  &__item {
+    &__active {
+      color: $base-color;
+
+      transition: all $transition-short ease;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    @include setTextStyle(400, 18px, 100%);
+    color: $text-color;
+
+    padding: 10px 20px;
+
+    transition: all $transition-short ease;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.19);
+
+    cursor: pointer;
+
+    &:hover {
+      color: $base-color;
+
+      transition: all $transition-short ease;
+    }
+
+    &:last-child {
+      border: none;
+    }
+  }
+}
+
+@media(max-width:555px) {
+  .popup {
+    width: 100%;
+  }
+}

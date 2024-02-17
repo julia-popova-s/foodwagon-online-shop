@@ -53,7 +53,7 @@ export const FeaturedRestaurants: FC = () => {
     dispatch(
       fetchRestaurants({
         category: categoryNames[category],
-        limit,
+        limit: 20,
         orderType,
         sortType,
       }),

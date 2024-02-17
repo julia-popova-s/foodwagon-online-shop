@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { RootStore } from '../..';
+import { getBalloon } from '../../../utils/getBalloon';
 import { fetchRestaurantsData } from '../../utils/fetchRestaurantsData';
 import { MyAsyncThunkConfig, Restaurant, Status, getExtraReducers } from '../../utils/getExtraReducers';
 import { FiltersForRestaurants } from '../../utils/getFilterForRestaurants';
@@ -15,6 +16,7 @@ const initialState: RestaurantSliceState = {
   error: null,
   isLoaded: false,
   list: [],
+  placemarks: [],
   status: Status.LOADING,
 };
 
@@ -28,6 +30,40 @@ const restaurantsSlice = createSlice({
     setLoaded(state, action: PayloadAction<boolean>) {
       state.isLoaded = action.payload;
     },
+    setPlacemarks(state) {
+      state.placemarks = state.list.map((item) => {
+        const {
+          address: { city, latitude, longitude, street_addr },
+          backgroundId,
+          id,
+          logo_photos,
+          name,
+          phone_number,
+        } = item;
+
+        return {
+          geometry: {
+            coordinates: [longitude, latitude],
+            type: 'Point',
+          },
+          id,
+          properties: {
+            balloonContent: getBalloon(
+              id,
+              name,
+              logo_photos,
+              phone_number,
+              street_addr,
+              latitude,
+              longitude,
+              backgroundId,
+              city,
+            ),
+          },
+          type: 'Feature',
+        };
+      });
+    },
   },
 });
 
@@ -35,6 +71,7 @@ export const restaurantListSelector = (state: RootStore) => state.restaurants.li
 export const errorSelector = (state: RootStore) => state.restaurants.error;
 export const isLoadedSelector = (state: RootStore) => state.restaurants.isLoaded;
 export const statusSelector = (state: RootStore) => state.restaurants.status;
+export const placemarkSelector = (state: RootStore) => state.restaurants.placemarks;
 
-export const { setLoaded } = restaurantsSlice.actions;
+export const { setLoaded, setPlacemarks } = restaurantsSlice.actions;
 export default restaurantsSlice.reducer;
