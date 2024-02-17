@@ -4,11 +4,17 @@
   background-image: url('../../../../public/images/find-food/background.png');
   background-repeat: no-repeat;
   background-position: 50% 100%;
-
+  background-size: cover;
   padding: 132px + 78px 0 132px 0;
 }
 
 .findFood {
+  &__search {
+    position: relative;
+    
+    max-width: 856px;
+  }
+
   &__title {
     font-size: 88px;
     font-weight: 700;
@@ -111,6 +117,10 @@
   path {
     fill: #ff7474;
   }
+}
+
+.hidden {
+  display: none;
 }
 
 @media(min-width:1921px) {

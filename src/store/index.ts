@@ -6,6 +6,7 @@ import storageSession from 'reduxjs-toolkit-persist/lib/storage/session';
 import {
   cart,
   filters,
+  location,
   product,
   products,
   productsFastAccess,
@@ -26,6 +27,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   cart,
   filters,
+  location,
   product,
   products,
   productsFastAccess,

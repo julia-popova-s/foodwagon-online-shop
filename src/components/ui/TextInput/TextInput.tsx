@@ -1,31 +1,43 @@
 /* eslint-disable max-len */
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
-import { KeyboardEvent, forwardRef, useCallback, useRef, useState } from 'react';
-import { ChangeEvent, PropsWithChildren } from 'react';
+import {
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  PropsWithChildren,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { ReactSVG } from 'react-svg';
 
 import style from './textInput.module.scss';
 
 type TextInputProps = {
+  address?: string;
   classNames?: string;
   handleKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   handleSearchValue: (text: string) => void;
   iconUrl?: string;
+  placeholder: string;
 };
 
 export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputProps>>(
-  ({ children, classNames, handleKeyDown, handleSearchValue, iconUrl }, ref) => {
+  ({ address, children, classNames, handleKeyDown, handleSearchValue, iconUrl, placeholder }, ref) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [value, setValue] = useState<string>('');
 
     const handleKeyDeleteDown = (event: KeyboardEvent<HTMLInputElement>) => {
       if (event.key === 'Delete') {
+        event.preventDefault();
         handleClickClear();
       }
     };
-    
+
     const handleClickClear = () => {
       setValue('');
       handleSearchValue('');
@@ -44,6 +56,16 @@ export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputP
       updateSearchValue(e.target.value);
     };
 
+    useEffect(() => {
+      if (address) {
+        setValue(address);
+      }
+    }, [address]);
+
+    useEffect(() => {
+      inputRef.current?.focus();
+    }, [value]);
+
     return (
       <div className={cn(style.search, classNames)} ref={ref}>
         <input
@@ -53,9 +75,10 @@ export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputP
           }}
           autoComplete="off"
           className={style.search__input}
+          maxLength={150}
           name="find"
           onChange={handleChangeValue}
-          placeholder="Enter your request"
+          placeholder={placeholder}
           ref={inputRef}
           type="text"
           value={value}

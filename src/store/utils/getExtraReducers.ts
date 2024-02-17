@@ -1,5 +1,7 @@
 import type { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
 
+import { LocationItem } from '../slices/location/types';
+
 export enum CustomErrors {
   ERROR_EMPTY_REQUEST = 'Are you ready to order with the best deals?',
   ERROR_NOTHING_FOUND = 'Nothing was found according to request.',
@@ -70,7 +72,7 @@ export interface Product {
 interface ProductSliceState {
   error: ErrorType;
   isLoaded: boolean;
-  list: Product[] | Restaurant[];
+  list: LocationItem[] | Product[] | Restaurant[];
   status: Status;
 }
 
