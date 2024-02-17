@@ -2,6 +2,7 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
 import {
@@ -10,6 +11,7 @@ import {
   locationListSelector,
   setLocation,
 } from '../../../store/slices/location/slice';
+import { Coords, LocationItem } from '../../../store/slices/location/types';
 import { placemarkSelector, restaurantListSelector, setPlacemarks } from '../../../store/slices/restaurants/slice';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
@@ -29,10 +31,12 @@ export const FindFood: FC = () => {
   const placemarks = useSelector(placemarkSelector);
   const listRest = useSelector(restaurantListSelector);
 
-  const [place, setPlace] = useState('');
-  const [coord, setCoord] = useState([30.35151817345885, 59.94971367493227]);
+  const [place, setPlace] = useState<string>('');
+  const [coord, setCoord] = useState<Coords>([30.35151817345885, 59.94971367493227]);
   const [searchValue, setSearchValue] = useState<string>('');
-  const [visiblePopup, setVisiblePopup] = useState(false);
+  const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (listRest.length) {
@@ -42,21 +46,22 @@ export const FindFood: FC = () => {
 
   const handleSearch = () => {
     dispatch(setLocation({ address: place, coords: coord }));
+    navigate('search');
   };
 
   const handleSearchValue = (text: string) => {
     setSearchValue(text);
   };
 
-  const handleChangeCoord = (coord: any) => {
+  const handleChangeCoord = (coord: Coords) => {
     setCoord(coord);
   };
 
-  const handleChangeAddress = (address: any) => {
+  const handleChangeAddress = (address: string) => {
     setPlace(address);
   };
 
-  const handleChangeLocation = ({ address, coords }: any) => {
+  const handleChangeLocation = ({ address, coords }: LocationItem) => {
     setPlace(address);
     setCoord(coords);
     setVisiblePopup(false);

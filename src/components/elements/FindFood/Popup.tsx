@@ -3,14 +3,15 @@ import { KeyboardEvent, forwardRef, useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
 
+import { LocationItem } from '../../../store/slices/location/types';
 import style from './popup.module.scss';
 
 type PopupProps = {
-  handleChangeLocation: (el: any) => void;
+  handleChangeLocation: (el: LocationItem) => void;
   handleChangeStatus: (status: boolean) => void;
   isLoaded: boolean;
   isOpen: boolean;
-  list: string[];
+  list: LocationItem[];
 };
 
 export const Popup = forwardRef<HTMLUListElement, PopupProps>(
@@ -62,7 +63,7 @@ export const Popup = forwardRef<HTMLUListElement, PopupProps>(
     return (
       <CSSTransition classNames="alert" in={isOpen && isLoaded} timeout={300} unmountOnExit>
         <ul className={style.popup} onKeyDown={handleListKeyDown} ref={ref} tabIndex={0}>
-          {list.map((el: any, index) => {
+          {list.map((el: LocationItem, index) => {
             return (
               <li
                 className={classNames(style.popup__item, {

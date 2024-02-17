@@ -4,26 +4,21 @@ export interface RestaurantSliceState {
   error: ErrorType;
   isLoaded: boolean;
   list: Restaurant[];
-  placemarks: Placemark[];
+  placemarks: PlacemarkType[];
   status: Status;
 }
-interface Placemark {
+export interface PlacemarkType {
   geometry: Geometry;
   id: string;
   properties: Properties;
   type: string;
 }
 
-type Geometry = {
+export type Geometry = {
   coordinates: [number, number];
   type: string;
 };
 
-type Properties = {
+export type Properties = {
   balloonContent: string;
-};
-
-type Location = {
-  address: string;
-  coords: [number, number];
 };
