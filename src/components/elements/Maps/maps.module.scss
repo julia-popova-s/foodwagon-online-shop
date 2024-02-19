@@ -1,12 +1,17 @@
 .balloon {
-  background-color: white;
+  display: none;
+
   position: absolute;
   z-index: 10;
-  max-width: 300px;
-  bottom: 57%;
-  left: 54%;
-  display: none;
-  padding: 10px 20px;
+  left: 53%;
+  bottom: 63%;
+
+  background-color: white;
+
+  max-width: 350px;
+
+  padding: 10px 42px 10px 10px;
+
   box-shadow: -5px 5px 5px #808080;
 }
 
@@ -17,34 +22,56 @@
   height: auto;
 }
 
+.balloon__closeIcon {
+  transition: all 0.2s ease;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  &:hover path {
+    fill: #f75900;
+
+    transition: all 0.2s ease;
+  }
+}
+
 .balloon__image {
   max-width: 100%;
   height: auto;
 }
 
-.balloon__rest {}
+.balloon__close {
+  position: absolute;
+  top: 0;
+  right: 0;
 
-.balloon__contact {}
+  background-color: transparent;
 
-.balloon__contact-link {}
-
-.balloon__address {}
+  padding: 5px;
+}
 
 .map {
+  position: relative;
+
   max-width: 856px;
   min-height: 390px;
+
   border-radius: 15px;
+
   padding: 10px 0;
-  position: relative;
 }
 
 .pointer {
   position: absolute;
   top: 40.55%;
   left: 48.4%;
-  transition: all 0.3s ease;
   z-index: 20;
+
   cursor: pointer;
+
+  transition: all 0.3s ease;
 }
 
 .placemark {
@@ -56,8 +83,8 @@
   }
 
   svg {
-    width: 32px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -71,6 +98,7 @@
 
   path {
     fill: #757575;
+
     transition: all 0.3s ease;
   }
 }

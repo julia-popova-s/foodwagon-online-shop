@@ -15,8 +15,8 @@ import { Coords, LocationItem } from '../../../store/slices/location/types';
 import { placemarkSelector, restaurantListSelector, setPlacemarks } from '../../../store/slices/restaurants/slice';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
+import { Maps } from '../Maps';
 import { DeliveryMethod } from './DeliveryMethod';
-import { Maps } from './Maps';
 import { Popup } from './Popup';
 import style from './findFood.module.scss';
 
@@ -32,9 +32,9 @@ export const FindFood: FC = () => {
   const listRest = useSelector(restaurantListSelector);
 
   const [place, setPlace] = useState<string>('');
-  const [coord, setCoord] = useState<Coords>([30.35151817345885, 59.94971367493227]);
   const [searchValue, setSearchValue] = useState<string>('');
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
+  const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
 
   const navigate = useNavigate();
 

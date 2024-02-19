@@ -6,14 +6,15 @@ import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 import { Event } from 'yandex-maps';
 
+import { Coords } from '../../../store/slices/location/types';
 import { PlacemarkType } from '../../../store/slices/restaurants/types';
-import './balloon.css';
 import { deliveryZones } from './deliveryZones';
+import style from './maps.module.scss';
 
 type MapsProps = {
-  coord: [number, number];
+  coord: Coords;
   handleChangeAddress: (address: string) => void;
-  handleChangeCoord: (coord: [number, number]) => void;
+  handleChangeCoord: (coord: Coords) => void;
   place: string;
   placemarks: PlacemarkType[];
 };
@@ -123,21 +124,21 @@ export const Maps: FC<MapsProps> = ({ coord, handleChangeAddress, handleChangeCo
           controls: ['zoomControl', 'fullscreenControl', 'geolocationControl'],
           zoom: 15,
         }}
-        className="map"
+        className={style.map}
         instanceRef={mapRef}
         onActionBegin={handleActionBegin}
         onActionEnd={handleActionEnd}
         onBoundsChange={getGeoLocation}
         onLoad={onLoad}
       >
-        <div className={cn('pointer', { active: isActive })} onClick={handleVisibleBalloon}>
+        <div className={cn(style.pointer, { active: isActive })} onClick={handleVisibleBalloon}>
           <ReactSVG
-            className={cn('placemark', { active: isActive })}
+            className={cn(style.placemark, { active: isActive })}
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
             wrapper="span"
           />
           {!isLoaded && (
-            <ReactSVG className="preloader" src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`} />
+            <ReactSVG className={style.preloader} src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`} />
           )}
         </div>
 
@@ -159,10 +160,18 @@ export const Maps: FC<MapsProps> = ({ coord, handleChangeAddress, handleChangeCo
           modules={['objectManager.addon.objectsBalloon', 'objectManager.addon.objectsHint', 'objectManager.Balloon']}
         />
 
-        <div className={cn('balloon', { visible: visibleBalloon })}>
-          <div className="balloon__contact">Your location</div>
-          <div className="balloon__address">{place}</div>
+        <div className={cn(style.balloon, { [style.visible]: visibleBalloon })}>
+          <div className={style.balloon__contact}>Your location</div>
+          <div className={style.balloon__address}>{place}</div>
           <div>{status ? 'Delivery available' : 'No delivery'}</div>
+
+          <button className={style.balloon__close} onClick={() => setVisibleBalloon(false)}>
+            <ReactSVG
+              className={style.balloon__closeIcon}
+              src={`${process.env.PUBLIC_URL}/images/find-food/close.svg`}
+              wrapper="span"
+            />
+          </button>
         </div>
       </Map>
     </YMaps>

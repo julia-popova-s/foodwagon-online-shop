@@ -3,8 +3,8 @@
 .search {
   position: relative;
 
-  min-width: 199px;
-  width: calc(100% - 199px - 16px);
+  min-width: $input-min-width;
+  width: $input-max-width;
 
   &__input,
   &__input::placeholder {
