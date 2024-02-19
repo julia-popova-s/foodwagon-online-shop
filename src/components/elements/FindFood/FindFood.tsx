@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
 import {
+  deliveryStatusSelector,
   fetchLocation,
   isLoadedSelector,
   locationListSelector,
@@ -35,6 +36,7 @@ export const FindFood: FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
+  const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
 
   const navigate = useNavigate();
 
@@ -45,7 +47,7 @@ export const FindFood: FC = () => {
   }, [listRest]);
 
   const handleSearch = () => {
-    dispatch(setLocation({ address: place, coords: coord }));
+    dispatch(setLocation({ address: place, coords: coord, status: deliveryStatus }));
     navigate('search');
   };
 
@@ -62,8 +64,8 @@ export const FindFood: FC = () => {
   };
 
   const handleChangeLocation = ({ address, coords }: LocationItem) => {
-    setPlace(address);
-    setCoord(coords);
+    handleChangeAddress(address);
+    handleChangeCoord(coords);
     setVisiblePopup(false);
   };
 
@@ -88,6 +90,10 @@ export const FindFood: FC = () => {
 
   const handleChangeStatus = (status: boolean) => {
     setVisiblePopup(status);
+  };
+
+  const handleChangeDeliveryStatus = (status: boolean) => {
+    setDeliveryStatus(status);
   };
 
   useEffect(() => {
@@ -149,6 +155,7 @@ export const FindFood: FC = () => {
                 coord={coord}
                 handleChangeAddress={handleChangeAddress}
                 handleChangeCoord={handleChangeCoord}
+                handleChangeStatus={handleChangeDeliveryStatus}
                 place={place}
                 placemarks={placemarks}
               />

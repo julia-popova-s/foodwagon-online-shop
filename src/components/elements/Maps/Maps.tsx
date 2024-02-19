@@ -8,6 +8,7 @@ import { Event } from 'yandex-maps';
 
 import { Coords } from '../../../store/slices/location/types';
 import { PlacemarkType } from '../../../store/slices/restaurants/types';
+import { Balloon } from './Balloon';
 import { deliveryZones } from './deliveryZones';
 import style from './maps.module.scss';
 
@@ -15,13 +16,21 @@ type MapsProps = {
   coord: Coords;
   handleChangeAddress: (address: string) => void;
   handleChangeCoord: (coord: Coords) => void;
+  handleChangeStatus: (status: boolean) => void;
   place: string;
   placemarks: PlacemarkType[];
 };
 
-export const Maps: FC<MapsProps> = ({ coord, handleChangeAddress, handleChangeCoord, place, placemarks }) => {
+export const Maps: FC<MapsProps> = ({
+  coord,
+  handleChangeAddress,
+  handleChangeCoord,
+  handleChangeStatus,
+  place,
+  placemarks,
+}) => {
   const [maps, setMaps] = useState<any>();
-  const [status, setStatus] = useState<boolean>(true);
+  const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
   const [zone, setZone] = useState<any>(null);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [visibleBalloon, setVisibleBalloon] = useState<boolean>(false);
@@ -67,9 +76,10 @@ export const Maps: FC<MapsProps> = ({ coord, handleChangeAddress, handleChangeCo
       const targetZone = zone.searchContaining(placemarkRef.current).get(0);
 
       if (targetZone) {
-        setStatus(true);
+        setDeliveryStatus(true);
+        handleChangeStatus(deliveryStatus);
       } else {
-        setStatus(false);
+        setDeliveryStatus(false);
       }
     }
 
@@ -96,8 +106,8 @@ export const Maps: FC<MapsProps> = ({ coord, handleChangeAddress, handleChangeCo
     setIsActive(false);
   };
 
-  const handleVisibleBalloon = () => {
-    setVisibleBalloon(true);
+  const handleChangeBalloonStatus = () => {
+    setVisibleBalloon(!visibleBalloon);
   };
 
   return (
@@ -131,7 +141,7 @@ export const Maps: FC<MapsProps> = ({ coord, handleChangeAddress, handleChangeCo
         onBoundsChange={getGeoLocation}
         onLoad={onLoad}
       >
-        <div className={cn(style.pointer, { active: isActive })} onClick={handleVisibleBalloon}>
+        <div className={cn(style.pointer, { active: isActive })} onClick={handleChangeBalloonStatus}>
           <ReactSVG
             className={cn(style.placemark, { active: isActive })}
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
@@ -159,20 +169,12 @@ export const Maps: FC<MapsProps> = ({ coord, handleChangeAddress, handleChangeCo
           features={placemarks}
           modules={['objectManager.addon.objectsBalloon', 'objectManager.addon.objectsHint', 'objectManager.Balloon']}
         />
-
-        <div className={cn(style.balloon, { [style.visible]: visibleBalloon })}>
-          <div className={style.balloon__contact}>Your location</div>
-          <div className={style.balloon__address}>{place}</div>
-          <div>{status ? 'Delivery available' : 'No delivery'}</div>
-
-          <button className={style.balloon__close} onClick={() => setVisibleBalloon(false)}>
-            <ReactSVG
-              className={style.balloon__closeIcon}
-              src={`${process.env.PUBLIC_URL}/images/find-food/close.svg`}
-              wrapper="span"
-            />
-          </button>
-        </div>
+        <Balloon
+          address={place}
+          handleClick={handleChangeBalloonStatus}
+          isActive={visibleBalloon}
+          status={deliveryStatus}
+        />
       </Map>
     </YMaps>
   );
