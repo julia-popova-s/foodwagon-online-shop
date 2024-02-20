@@ -1,6 +1,6 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC, KeyboardEvent, useEffect, useRef, useState } from 'react';
+import { FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,8 +15,8 @@ import { Coords, LocationItem } from '../../../store/slices/location/types';
 import { placemarkSelector, restaurantListSelector, setPlacemarks } from '../../../store/slices/restaurants/slice';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
+import { Maps } from '../Maps';
 import { DeliveryMethod } from './DeliveryMethod';
-import { Maps } from './Maps';
 import { Popup } from './Popup';
 import style from './findFood.module.scss';
 
@@ -31,10 +31,11 @@ export const FindFood: FC = () => {
   const placemarks = useSelector(placemarkSelector);
   const listRest = useSelector(restaurantListSelector);
 
-  const [place, setPlace] = useState<string>('');
-  const [coord, setCoord] = useState<Coords>([30.35151817345885, 59.94971367493227]);
   const [searchValue, setSearchValue] = useState<string>('');
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
+  const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
+  const [place, setPlace] = useState<string>('');
+  const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
 
   const navigate = useNavigate();
 
@@ -45,7 +46,7 @@ export const FindFood: FC = () => {
   }, [listRest]);
 
   const handleSearch = () => {
-    dispatch(setLocation({ address: place, coords: coord }));
+    dispatch(setLocation({ address: place, coords: coord, status: deliveryStatus }));
     navigate('search');
   };
 
@@ -53,19 +54,19 @@ export const FindFood: FC = () => {
     setSearchValue(text);
   };
 
-  const handleChangeCoord = (coord: Coords) => {
+  const handleChangeCoord = useCallback((coord: Coords) => {
     setCoord(coord);
-  };
+  }, []);
 
-  const handleChangeAddress = (address: string) => {
+  const handleChangeAddress = useCallback((address: string) => {
     setPlace(address);
-  };
+  }, []);
 
-  const handleChangeLocation = ({ address, coords }: LocationItem) => {
-    setPlace(address);
-    setCoord(coords);
+  const handleChangeLocation = useCallback(({ address, coords }: LocationItem) => {
+    handleChangeAddress(address);
+    handleChangeCoord(coords);
     setVisiblePopup(false);
-  };
+  }, []);
 
   useEffect(() => {
     if (searchValue) {
@@ -86,9 +87,13 @@ export const FindFood: FC = () => {
     }
   };
 
-  const handleChangeStatus = (status: boolean) => {
+  const handleChangeStatus = useCallback((status: boolean) => {
     setVisiblePopup(status);
-  };
+  }, []);
+
+  const handleChangeDeliveryStatus = useCallback((status: boolean) => {
+    setDeliveryStatus(status);
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -149,6 +154,7 @@ export const FindFood: FC = () => {
                 coord={coord}
                 handleChangeAddress={handleChangeAddress}
                 handleChangeCoord={handleChangeCoord}
+                handleChangeStatus={handleChangeDeliveryStatus}
                 place={place}
                 placemarks={placemarks}
               />

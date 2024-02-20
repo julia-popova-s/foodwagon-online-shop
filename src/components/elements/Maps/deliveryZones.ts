@@ -46,10 +46,9 @@ export const deliveryZones = {
       },
       id: 0,
       properties: {
-        description:
-          '<div style="margin-bottom: 10px;"><strong>Стоимость доставки: 500 р.</strong></div>\nм. КУ, Маршала Новикова 1 корпус 3</br>тел: +7(123)456-789</br>Часы работы: с 09-00 до 02-00</br>Служба доставки: +7(123)456-789',
+        description: '<div style="margin-bottom: 10px;"><strong>Delivery cost: 3$</strong></div>',
         fill: '#ed4543',
-        'fill-opacity': 0.3,
+        'fill-opacity': 0.2,
         stroke: '#b3b3b3',
         'stroke-opacity': 0,
         'stroke-width': '0',
@@ -77,10 +76,9 @@ export const deliveryZones = {
       },
       id: 1,
       properties: {
-        description:
-          '<div style="margin-bottom: 10px;"><strong>Стоимость доставки: 400 р.</strong></div>\nм. ОБ, Итальянская, д. 4</br>тел: +7(123)456-789</br>Часы работы: с 09-00 до 02-00</br>Служба доставки: +7(123)456-789',
-        fill: '#b51eff',
-        'fill-opacity': 0.3,
+        description: '<div style="margin-bottom: 10px;"><strong>Delivery cost: 3$</strong></div>',
+        fill: '#ed4543',
+        'fill-opacity': 0.2,
         stroke: '#b3b3b3',
         'stroke-opacity': 0,
         'stroke-width': '0',
@@ -142,10 +140,9 @@ export const deliveryZones = {
       },
       id: 2,
       properties: {
-        description:
-          '<div style="margin-bottom: 10px;"><strong>Стоимость доставки: 200 р.</strong></div>\nм. ГП, Ул. Тисовая, 4</br>тел. +7(123)456-789</br>Часы работы: пн, вт, ср, чт, вс с 09:00 до 00:00 пт и сб с 09:00 до 02:00</br>Служба доставки: +7(123)456-789',
-        fill: '#56db40',
-        'fill-opacity': 0.3,
+        description: '<div style="margin-bottom: 10px;"><strong>Delivery cost: 3$</strong></div>',
+        fill: '#ed4543',
+        'fill-opacity': 0.2,
         stroke: '#b3b3b3',
         'stroke-opacity': 0,
         'stroke-width': '0',
@@ -203,10 +200,9 @@ export const deliveryZones = {
       },
       id: 3,
       properties: {
-        description:
-          '<div style="margin-bottom: 10px;"><strong>Стоимость доставки: 300 р.</strong></div>\nм. ШХ, Бейкер-стрит, дом 221-б</br>тел. +7(987)654-321</br>Часы работы: с 09:00 до 00:00</br>Служба доставки: +7(987)654-321\n',
-        fill: '#ffd21e',
-        'fill-opacity': 0.3,
+        description: '<div style="margin-bottom: 10px;"><strong>Delivery cost: 3$</strong></div>',
+        fill: '#ed4543',
+        'fill-opacity': 0.2,
         stroke: '#b3b3b3',
         'stroke-opacity': 0,
         'stroke-width': '0',
@@ -220,4 +216,3 @@ export const deliveryZones = {
   },
   type: 'FeatureCollection',
 };
-

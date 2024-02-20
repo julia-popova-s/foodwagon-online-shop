@@ -51,7 +51,8 @@ $border-radius-30: 30px;
 
 $gradient-start: #16a7ff;
 $gradient-end: #1981cc;
-
+$input-min-width: 199px;
+$input-max-width: calc(100% - 199px - 16px);
 
 @mixin setTextStyle($weight, $size, $line-height) {
   font-weight: $weight;

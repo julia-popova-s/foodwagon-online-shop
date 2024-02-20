@@ -1,50 +1,23 @@
-.balloon {
-  background-color: white;
-  position: absolute;
-  z-index: 10;
-  max-width: 300px;
-  bottom: 57%;
-  left: 54%;
-  display: none;
-  padding: 10px 20px;
-  box-shadow: -5px 5px 5px #808080;
-}
-
-.balloon__link {}
-
-.balloon__logo {
-  width: 100px;
-  height: auto;
-}
-
-.balloon__image {
-  max-width: 100%;
-  height: auto;
-}
-
-.balloon__rest {}
-
-.balloon__contact {}
-
-.balloon__contact-link {}
-
-.balloon__address {}
-
 .map {
+  position: relative;
+
   max-width: 856px;
   min-height: 390px;
+
   border-radius: 15px;
+
   padding: 10px 0;
-  position: relative;
 }
 
 .pointer {
   position: absolute;
   top: 40.55%;
   left: 48.4%;
-  transition: all 0.3s ease;
   z-index: 20;
+
   cursor: pointer;
+
+  transition: all 0.3s ease;
 }
 
 .placemark {
@@ -62,7 +35,6 @@
 }
 
 .pointer.active {
-
   transition: all 0.3s ease;
   transform: translateY(-15px);
 }
@@ -71,16 +43,13 @@
 
   path {
     fill: #757575;
+
     transition: all 0.3s ease;
   }
 }
 
-.visible {
-  display: block;
-}
-
 .preloader {
   position: absolute;
-  top: 4%;
-  left: 7%;
+  top: 1px;
+  left: 2px;
 }

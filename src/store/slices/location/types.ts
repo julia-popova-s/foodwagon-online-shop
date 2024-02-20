@@ -5,6 +5,7 @@ export type Coords = [number, number];
 export interface LocationItem {
   address: string;
   coords: Coords;
+  deliveryStatus: boolean;
 }
 
 export interface LocationSliceState {

@@ -4,10 +4,7 @@
   @include setTextStyle(700, 18px, 100%);
   color: #757575;
 
-  padding: 10px 24px;
-
-  width: 148px;
-  height: 38px;
+  padding: 8px 24px;
 
   background-color: transparent;
 
@@ -25,8 +22,12 @@
   vertical-align: top;
 }
 
-.deliveryTab__btnIcon span svg {
+.deliveryTab__btnIcon svg {
+  width: 23px;
+  height: 18px;
+
   vertical-align: middle;
+
 }
 
 .deliveryTabActive {

@@ -1,0 +1,55 @@
+.balloon {
+  display: none;
+
+  position: absolute;
+  z-index: 10;
+  left: 53%;
+  bottom: 63%;
+
+  background-color: white;
+
+  max-width: 350px;
+
+  padding: 10px 43px 10px 10px;
+
+  box-shadow: -5px 5px 5px #808080;
+}
+
+.balloon__logo {
+  width: 100px;
+  height: auto;
+}
+
+.balloon__closeIcon {
+  transition: all 0.2s ease;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  &:hover path {
+    fill: #f75900;
+
+    transition: all 0.2s ease;
+  }
+}
+
+.balloon__image {
+  max-width: 100%;
+  height: auto;
+}
+
+.balloon__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  background-color: transparent;
+
+  padding: 5px;
+}
+
+.visible {
+  display: block;
+}
