@@ -1,12 +1,11 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC, KeyboardEvent, useEffect, useRef, useState } from 'react';
+import { FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
 import {
-  deliveryStatusSelector,
   fetchLocation,
   isLoadedSelector,
   locationListSelector,
@@ -32,10 +31,10 @@ export const FindFood: FC = () => {
   const placemarks = useSelector(placemarkSelector);
   const listRest = useSelector(restaurantListSelector);
 
-  const [place, setPlace] = useState<string>('');
   const [searchValue, setSearchValue] = useState<string>('');
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
+  const [place, setPlace] = useState<string>('');
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
 
   const navigate = useNavigate();
@@ -55,19 +54,19 @@ export const FindFood: FC = () => {
     setSearchValue(text);
   };
 
-  const handleChangeCoord = (coord: Coords) => {
+  const handleChangeCoord = useCallback((coord: Coords) => {
     setCoord(coord);
-  };
+  }, []);
 
-  const handleChangeAddress = (address: string) => {
+  const handleChangeAddress = useCallback((address: string) => {
     setPlace(address);
-  };
+  }, []);
 
-  const handleChangeLocation = ({ address, coords }: LocationItem) => {
+  const handleChangeLocation = useCallback(({ address, coords }: LocationItem) => {
     handleChangeAddress(address);
     handleChangeCoord(coords);
     setVisiblePopup(false);
-  };
+  }, []);
 
   useEffect(() => {
     if (searchValue) {
@@ -88,13 +87,13 @@ export const FindFood: FC = () => {
     }
   };
 
-  const handleChangeStatus = (status: boolean) => {
+  const handleChangeStatus = useCallback((status: boolean) => {
     setVisiblePopup(status);
-  };
+  }, []);
 
-  const handleChangeDeliveryStatus = (status: boolean) => {
+  const handleChangeDeliveryStatus = useCallback((status: boolean) => {
     setDeliveryStatus(status);
-  };
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {

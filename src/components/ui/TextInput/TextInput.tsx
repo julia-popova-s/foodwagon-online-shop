@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+// import useWhyDidYouUpdate from 'ahooks/lib/useWhyDidYouUpdate';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import {
@@ -26,6 +27,15 @@ type TextInputProps = {
 
 export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputProps>>(
   ({ address, children, classNames, handleKeyDown, handleSearchValue, iconUrl, placeholder }, ref) => {
+    // useWhyDidYouUpdate('TextInput', {
+    //   address,
+    //   children,
+    //   classNames,
+    //   handleKeyDown,
+    //   handleSearchValue,
+    //   iconUrl,
+    //   placeholder,
+    // });
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [value, setValue] = useState<string>('');

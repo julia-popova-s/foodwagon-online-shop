@@ -4,7 +4,6 @@ import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { ReactSVG } from 'react-svg';
-import { Event } from 'yandex-maps';
 
 import { Coords } from '../../../store/slices/location/types';
 import { PlacemarkType } from '../../../store/slices/restaurants/types';
@@ -46,9 +45,11 @@ export const Maps: FC<MapsProps> = ({
     [],
   );
 
-  const getGeoLocation = (e: Event) => {
-    const coord = e.get('target').getCenter();
-    updateSearchValue(coord);
+  const getGeoLocation = (event: any) => {
+    if (event.originalEvent?.newZoom === event.originalEvent?.oldZoom) {
+      const coord = event.get('target').getCenter();
+      updateSearchValue(coord);
+    }
   };
 
   const onLoad = (map: any) => {
@@ -77,9 +78,10 @@ export const Maps: FC<MapsProps> = ({
 
       if (targetZone) {
         setDeliveryStatus(true);
-        handleChangeStatus(deliveryStatus);
+        handleChangeStatus(true);
       } else {
         setDeliveryStatus(false);
+        handleChangeStatus(false);
       }
     }
 
@@ -96,7 +98,7 @@ export const Maps: FC<MapsProps> = ({
           console.error('The Promise is rejected!', error);
         });
     }
-  }, [coord]);
+  }, [coord, zone]);
 
   const handleActionBegin = () => {
     setIsActive(true);

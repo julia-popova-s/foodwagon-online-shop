@@ -29,13 +29,12 @@
   }
 
   svg {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 40px;
   }
 }
 
 .pointer.active {
-
   transition: all 0.3s ease;
   transform: translateY(-15px);
 }
@@ -51,6 +50,6 @@
 
 .preloader {
   position: absolute;
-  top: 4%;
-  left: 7%;
+  top: 1px;
+  left: 2px;
 }
