@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import cn from 'classnames';
 import { KeyboardEvent, forwardRef, useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
@@ -66,7 +66,7 @@ export const Popup = forwardRef<HTMLUListElement, PopupProps>(
           {list.map((el: LocationItem, index) => {
             return (
               <li
-                className={classNames(style.popup__item, {
+                className={cn(style.popup__item, {
                   [style.popup__item__active]: index === activeIndex,
                 })}
                 key={uuidv4()}

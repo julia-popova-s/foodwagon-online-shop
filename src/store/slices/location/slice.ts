@@ -41,6 +41,7 @@ const initialState: LocationSliceState = {
   location: {
     address: 'Saint Petersburg, Shpalernaya Street, 26',
     coords: [30.35151817345885, 59.94971367493227],
+    deliveryStatus: false,
   },
   status: Status.LOADING,
 };
@@ -67,6 +68,7 @@ export const isLoadedSelector = (state: RootStore) => state.location.isLoaded;
 export const statusSelector = (state: RootStore) => state.location.status;
 export const addressSelector = (state: RootStore) => state.location.location.address;
 export const coordsSelector = (state: RootStore) => state.location.location.coords;
+export const deliveryStatusSelector = (state: RootStore) => state.location.location.deliveryStatus;
 
 export const { setLoaded, setLocation } = locationSlice.actions;
 export default locationSlice.reducer;
