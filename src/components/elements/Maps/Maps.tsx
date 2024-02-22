@@ -4,6 +4,7 @@ import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { ReactSVG } from 'react-svg';
+import ymaps from 'yandex-maps';
 
 import { Coords } from '../../../store/slices/location/types';
 import { PlacemarkType } from '../../../store/slices/restaurants/types';
@@ -92,7 +93,8 @@ export const Maps: FC<MapsProps> = ({
       resp
         .then((res: any) => {
           setIsLoaded(true);
-          handleChangeAddress(res.geoObjects.get(0).getAddressLine());
+          const geocodeResult: ymaps.GeocodeResult = res.geoObjects.get(0);
+          handleChangeAddress(geocodeResult.getAddressLine());
         })
         .catch((error: any) => {
           console.error('The Promise is rejected!', error);
@@ -101,6 +103,7 @@ export const Maps: FC<MapsProps> = ({
   }, [coord, zone]);
 
   const handleActionBegin = () => {
+    setVisibleBalloon(false);
     setIsActive(true);
   };
 
@@ -143,9 +146,9 @@ export const Maps: FC<MapsProps> = ({
         onBoundsChange={getGeoLocation}
         onLoad={onLoad}
       >
-        <div className={cn(style.pointer, { active: isActive })} onClick={handleChangeBalloonStatus}>
+        <div className={cn(style.pointer, { [style.active]: isActive })} onClick={handleChangeBalloonStatus}>
           <ReactSVG
-            className={cn(style.placemark, { active: isActive })}
+            className={cn(style.placemark, { [style.active]: isActive })}
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
             wrapper="span"
           />
@@ -173,6 +176,7 @@ export const Maps: FC<MapsProps> = ({
         />
         <Balloon
           address={place}
+          coord={coord}
           handleClick={handleChangeBalloonStatus}
           isActive={visibleBalloon}
           status={deliveryStatus}

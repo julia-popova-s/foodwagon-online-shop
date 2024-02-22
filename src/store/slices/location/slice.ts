@@ -5,23 +5,31 @@ import axios from 'axios';
 import { RootStore } from '../..';
 import { getGeolocationCoordinates } from '../../../utils/getGeolocationCoordinates';
 import { CustomErrors, MyAsyncThunkConfig, Status, getExtraReducers } from '../../utils/getExtraReducers';
-import { LocationItem, LocationSliceState } from './types';
+import { GeocoderResponse, LocationItem, LocationSliceState } from './types';
 
 export const fetchData = async function ({ searchValue }: Params, { rejectWithValue }: any) {
   try {
-    const { data } = await axios.get<Location[]>(
+    const { data } = await axios.get<GeocoderResponse>(
       `https://geocode-maps.yandex.ru/1.x?apikey=${process.env.REACT_APP_YANDEX_API_KEY}&geocode=${searchValue}&sco=longlat&format=json&lang=en_RU&results=5`,
     );
 
-    if (data.length === 0) {
+    const result = getGeolocationCoordinates(data);
+
+    if (result.length === 0) {
       return rejectWithValue(CustomErrors.ERROR_NOTHING_FOUND);
     }
-    return getGeolocationCoordinates(data);
+    return result;
   } catch (error: any) {
-    if (error.toJSON().status === 404) {
-      return rejectWithValue(CustomErrors.ERROR_NOTHING_FOUND);
+    switch (error.toJSON().status) {
+      case 400:
+        return rejectWithValue(CustomErrors.ERROR_INVALID_PARAMETER);
+      case 403:
+        return rejectWithValue(CustomErrors.ERROR_INVALID_API_KEY);
+      case 404:
+        return rejectWithValue(CustomErrors.ERROR_NOTHING_FOUND);
+      default:
+        return rejectWithValue('Error: ' + error?.message);
     }
-    return rejectWithValue('Error: ' + error?.message);
   }
 };
 

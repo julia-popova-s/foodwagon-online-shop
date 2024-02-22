@@ -27,15 +27,6 @@ type TextInputProps = {
 
 export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputProps>>(
   ({ address, children, classNames, handleKeyDown, handleSearchValue, iconUrl, placeholder }, ref) => {
-    // useWhyDidYouUpdate('TextInput', {
-    //   address,
-    //   children,
-    //   classNames,
-    //   handleKeyDown,
-    //   handleSearchValue,
-    //   iconUrl,
-    //   placeholder,
-    // });
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [value, setValue] = useState<string>('');
@@ -70,6 +61,10 @@ export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputP
         setValue(address);
       }
     }, [address]);
+
+    useEffect(() => {
+      inputRef.current?.focus();
+    }, []);
 
     return (
       <div className={cn(style.search, classNames)} ref={ref}>

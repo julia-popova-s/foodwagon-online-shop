@@ -7,13 +7,16 @@ import { ReactSVG } from 'react-svg';
 
 import { useAppDispatch } from '../../../store';
 import {
+  errorSelector,
   fetchLocation,
   isLoadedSelector,
   locationListSelector,
   setLocation,
+  statusSelector,
 } from '../../../store/slices/location/slice';
 import { Coords, LocationItem } from '../../../store/slices/location/types';
 import { placemarkSelector, restaurantListSelector, setPlacemarks } from '../../../store/slices/restaurants/slice';
+import { Status } from '../../../store/utils/getExtraReducers';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Maps } from '../Maps';
@@ -28,7 +31,10 @@ export const FindFood: FC = () => {
   const dispatch = useAppDispatch();
 
   const list = useSelector(locationListSelector);
+  const error = useSelector(errorSelector);
+  const status = useSelector(statusSelector);
   const isLoaded = useSelector(isLoadedSelector);
+
   const placemarks = useSelector(placemarkSelector);
   const listRest = useSelector(restaurantListSelector);
 
@@ -133,7 +139,7 @@ export const FindFood: FC = () => {
                   <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
                 </TextInput>
 
-                {!isLoaded && searchValue ? (
+                {status === Status.LOADING && searchValue ? (
                   <div className={style.searchPanel__loader}>
                     <ReactSVG src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/loader.svg`} />
                   </div>

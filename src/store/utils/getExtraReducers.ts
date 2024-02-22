@@ -4,6 +4,8 @@ import { LocationItem } from '../slices/location/types';
 
 export enum CustomErrors {
   ERROR_EMPTY_REQUEST = 'Are you ready to order with the best deals?',
+  ERROR_INVALID_API_KEY = 'The request uses an invalid API key.',
+  ERROR_INVALID_PARAMETER = 'The request uses an invalid parameter or value.',
   ERROR_NOTHING_FOUND = 'Nothing was found according to request.',
 }
 export interface MyAsyncThunkConfig {
