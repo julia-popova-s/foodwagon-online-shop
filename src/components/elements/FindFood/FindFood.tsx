@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 import { useAppDispatch } from '../../../store';
 import {
@@ -51,7 +52,7 @@ export const FindFood: FC = () => {
   };
 
   const handleSearchValue = (text: string) => {
-    setSearchValue(text);
+    setSearchValue(text.replace(';', '%3B'));
   };
 
   const handleChangeCoord = useCallback((coord: Coords) => {
@@ -131,6 +132,13 @@ export const FindFood: FC = () => {
                 >
                   <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
                 </TextInput>
+
+                {!isLoaded && searchValue ? (
+                  <div className={style.searchPanel__loader}>
+                    <ReactSVG src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/loader.svg`} />
+                  </div>
+                ) : null}
+
                 <SearchButton
                   classNames={style.search__btn}
                   handleClick={handleSearch}

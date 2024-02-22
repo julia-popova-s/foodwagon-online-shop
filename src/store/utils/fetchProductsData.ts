@@ -13,7 +13,7 @@ export const fetchProductsData = async function (params: FiltersForProducts, { r
 
   try {
     const { data } = await axios.get<Product[]>(
-      `https://647c7cd1c0bae2880ad0c1a4.mockapi.io/foodwagon/products${filter}`,
+      `https://${process.env.REACT_APP_PROJECT_TOKEN}.mockapi.io/foodwagon/products${filter}`,
     );
 
     if (data.length === 0) {
