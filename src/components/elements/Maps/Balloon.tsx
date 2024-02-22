@@ -2,16 +2,19 @@ import cn from 'classnames';
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
+import { Coords } from '../../../store/slices/location/types';
 import style from './balloon.module.scss';
 
-type BalloonProps = { address: string; handleClick: () => void; isActive: boolean; status: boolean };
+type BalloonProps = { address: string; coord: Coords; handleClick: () => void; isActive: boolean; status: boolean };
 
-export const Balloon: FC<BalloonProps> = ({ address, handleClick, isActive, status }) => {
+export const Balloon: FC<BalloonProps> = ({ address, coord, handleClick, isActive, status }) => {
   return (
     <div className={cn(style.balloon, { [style.visible]: isActive })}>
-      <div className={style.balloon__contact}>Your location</div>
+      <div className={style.balloon__contact}>Your location:</div>
       <div className={style.balloon__address}>{address}</div>
-      <div>{status ? 'Delivery available' : 'No delivery'}</div>
+      <div className={style.balloon__address}>Coordinates: {coord.join(', ')}</div>
+
+      <div>Delivery: {status ? 'Available' : 'No'}</div>
 
       <button className={style.balloon__close} onClick={handleClick}>
         <ReactSVG

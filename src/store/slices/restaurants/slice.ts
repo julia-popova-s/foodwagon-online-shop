@@ -48,17 +48,17 @@ const restaurantsSlice = createSlice({
           },
           id,
           properties: {
-            balloonContent: getBalloon(
-              id,
-              name,
-              logo_photos,
-              phone_number,
-              street_addr,
-              latitude,
-              longitude,
+            balloonContent: getBalloon({
               backgroundId,
               city,
-            ),
+              id,
+              latitude,
+              logo_photos,
+              longitude,
+              name,
+              phone_number,
+              street_addr,
+            }),
           },
           type: 'Feature',
         };

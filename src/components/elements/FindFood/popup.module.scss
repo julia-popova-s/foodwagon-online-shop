@@ -26,38 +26,47 @@
     box-shadow: 5px 5px 5px 0 rgba(255, 116, 116, 0.5647058824);
   }
 
-  &__item {
-    &__active {
-      color: #ff7474;
 
-      transition: all $transition-short ease;
-    }
+}
 
-    &:focus-visible {
-      outline: none;
-    }
+.popup__item {
+  @include setTextStyle(400, 18px, 100%);
+  color: $text-color;
 
-    @include setTextStyle(400, 18px, 100%);
-    color: $text-color;
+  padding: 10px 20px;
 
-    padding: 10px 20px;
+  transition: all $transition-short ease;
 
-    transition: all $transition-short ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.19);
 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+}
 
-    cursor: pointer;
+.popup__item__active {
+  color: #ff7474;
 
-    &:hover {
-      color: #ff7474;
+  transition: all $transition-short ease;
+}
 
-      transition: all $transition-short ease;
-    }
+.popup__item:focus-visible {
+  outline: none;
+}
 
-    &:last-child {
-      border: none;
-    }
-  }
+.popup__item:hover {
+  color: #ff7474;
+
+  transition: all $transition-short ease;
+}
+
+.popup__item:last-child {
+  border: none;
+}
+
+.popup__errorMessage {
+  @include setTextStyle(400, 18px, 100%);
+  color: $text-color;
+
+  padding: 10px 20px;
 }
 
 @media(max-width:555px) {

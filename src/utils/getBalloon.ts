@@ -1,14 +1,26 @@
-export const getBalloon = (
-  id,
-  name,
-  logo_photos,
-  phone_number,
-  street_addr,
-  latitude,
-  longitude,
+export type Balloon = {
+  backgroundId: string;
+  city: string;
+  id: string;
+  latitude: number;
+  logo_photos: string;
+  longitude: number;
+  name: string;
+  phone_number: string;
+  street_addr: string;
+};
+
+export const getBalloon = ({
   backgroundId,
   city,
-) => {
+  id,
+  latitude,
+  logo_photos,
+  longitude,
+  name,
+  phone_number,
+  street_addr,
+}: Balloon) => {
   return `<div class="balloon">
     <a href="/foodwagon/restaurant/${id}/product/${backgroundId}" class="balloon__link"/>
         <div class="balloon__logo">
@@ -28,6 +40,6 @@ export const getBalloon = (
       </a>
     </div>
     <div class="balloon__address">${city}, ${street_addr}</div>
-    <div>${latitude.toFixed(5)}, ${longitude.toFixed(5)}</div>
+    <div>${latitude.toFixed(6)}, ${longitude.toFixed(6)}</div>
   </div>`;
 };

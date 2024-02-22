@@ -7,15 +7,15 @@ import { LocationItem } from '../../../store/slices/location/types';
 import style from './popup.module.scss';
 
 type PopupProps = {
+  errorMessage?: null | string;
   handleChangeLocation: (el: LocationItem) => void;
   handleChangeStatus: (status: boolean) => void;
-  isLoaded: boolean;
   isOpen: boolean;
   list: LocationItem[];
 };
 
 export const Popup = forwardRef<HTMLUListElement, PopupProps>(
-  ({ handleChangeLocation, handleChangeStatus, isLoaded, isOpen, list }, ref) => {
+  ({ errorMessage, handleChangeLocation, handleChangeStatus, isOpen, list }, ref) => {
     const buttonRef = useRef<HTMLLIElement>(null);
     const [activeIndex, setActiveIndex] = useState<number>(-1);
 
@@ -61,7 +61,7 @@ export const Popup = forwardRef<HTMLUListElement, PopupProps>(
     }, [activeIndex]);
 
     return (
-      <CSSTransition classNames="alert" in={isOpen && isLoaded} timeout={300} unmountOnExit>
+      <CSSTransition classNames="alert" in={isOpen} timeout={300} unmountOnExit>
         <ul className={style.popup} onKeyDown={handleListKeyDown} ref={ref} tabIndex={0}>
           {list.map((el: LocationItem, index) => {
             return (
@@ -79,6 +79,7 @@ export const Popup = forwardRef<HTMLUListElement, PopupProps>(
               </li>
             );
           })}
+          {errorMessage && <div className={style.popup__errorMessage}>{errorMessage}</div>}
         </ul>
       </CSSTransition>
     );

@@ -8,7 +8,7 @@ export const fetchRestaurantsData = async function (params: FiltersForRestaurant
 
   try {
     const { data } = await axios.get<Restaurant[]>(
-      `https://647c7cd1c0bae2880ad0c1a4.mockapi.io/foodwagon/restaurants${filter}`,
+      `https://${process.env.REACT_APP_PROJECT_TOKEN}.mockapi.io/foodwagon/restaurants${filter}`,
     );
 
     if (data.length === 0) {
