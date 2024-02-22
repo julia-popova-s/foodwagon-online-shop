@@ -56,7 +56,7 @@ export const FindFood: FC = () => {
   };
 
   const handleSearchValue = (text: string) => {
-    setSearchValue(text.replace(';', '%3B'));
+    setSearchValue(text);
   };
 
   const handleChangeCoord = useCallback((coord: Coords) => {
@@ -75,7 +75,7 @@ export const FindFood: FC = () => {
 
   useEffect(() => {
     if (searchValue) {
-      dispatch(fetchLocation({ searchValue }));
+      dispatch(fetchLocation({ searchValue: searchValue.replace(';', '%3B') }));
       setVisiblePopup(true);
     }
   }, [searchValue]);
