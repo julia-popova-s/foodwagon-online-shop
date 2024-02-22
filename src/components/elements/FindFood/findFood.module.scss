@@ -11,7 +11,7 @@
 .findFood {
   &__search {
     position: relative;
-    
+
     max-width: 856px;
   }
 
@@ -89,6 +89,8 @@
 }
 
 .searchPanel {
+  position: relative;
+
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -105,6 +107,12 @@
 
   &__input {
     min-width: 199px;
+  }
+
+  &__loader {
+    position: absolute;
+    left: 33%;
+    top: 35px;
   }
 }
 

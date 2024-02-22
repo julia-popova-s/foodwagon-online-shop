@@ -3,16 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 
 import { useAppDispatch } from '../../../store';
 import {
+  errorSelector,
   fetchLocation,
-  isLoadedSelector,
   locationListSelector,
   setLocation,
+  statusSelector,
 } from '../../../store/slices/location/slice';
 import { Coords, LocationItem } from '../../../store/slices/location/types';
 import { placemarkSelector, restaurantListSelector, setPlacemarks } from '../../../store/slices/restaurants/slice';
+import { Status } from '../../../store/utils/getExtraReducers';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Maps } from '../Maps';
@@ -27,7 +30,9 @@ export const FindFood: FC = () => {
   const dispatch = useAppDispatch();
 
   const list = useSelector(locationListSelector);
-  const isLoaded = useSelector(isLoadedSelector);
+  const error = useSelector(errorSelector);
+  const status = useSelector(statusSelector);
+
   const placemarks = useSelector(placemarkSelector);
   const listRest = useSelector(restaurantListSelector);
 
@@ -70,7 +75,7 @@ export const FindFood: FC = () => {
 
   useEffect(() => {
     if (searchValue) {
-      dispatch(fetchLocation({ searchValue }));
+      dispatch(fetchLocation({ searchValue: searchValue.replace(';', '%3B') }));
       setVisiblePopup(true);
     }
   }, [searchValue]);
@@ -131,6 +136,13 @@ export const FindFood: FC = () => {
                 >
                   <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
                 </TextInput>
+
+                {status === Status.LOADING && searchValue ? (
+                  <div className={style.searchPanel__loader}>
+                    <ReactSVG src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/loader.svg`} />
+                  </div>
+                ) : null}
+
                 <SearchButton
                   classNames={style.search__btn}
                   handleClick={handleSearch}
@@ -140,9 +152,9 @@ export const FindFood: FC = () => {
               </div>
 
               <Popup
+                errorMessage={error}
                 handleChangeLocation={handleChangeLocation}
                 handleChangeStatus={handleChangeStatus}
-                isLoaded={isLoaded}
                 isOpen={visiblePopup}
                 list={list}
                 ref={popupRef}
