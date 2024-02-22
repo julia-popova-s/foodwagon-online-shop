@@ -9,7 +9,6 @@ import { useAppDispatch } from '../../../store';
 import {
   errorSelector,
   fetchLocation,
-  isLoadedSelector,
   locationListSelector,
   setLocation,
   statusSelector,
@@ -33,7 +32,6 @@ export const FindFood: FC = () => {
   const list = useSelector(locationListSelector);
   const error = useSelector(errorSelector);
   const status = useSelector(statusSelector);
-  const isLoaded = useSelector(isLoadedSelector);
 
   const placemarks = useSelector(placemarkSelector);
   const listRest = useSelector(restaurantListSelector);
@@ -154,9 +152,9 @@ export const FindFood: FC = () => {
               </div>
 
               <Popup
+                errorMessage={error}
                 handleChangeLocation={handleChangeLocation}
                 handleChangeStatus={handleChangeStatus}
-                isLoaded={isLoaded}
                 isOpen={visiblePopup}
                 list={list}
                 ref={popupRef}

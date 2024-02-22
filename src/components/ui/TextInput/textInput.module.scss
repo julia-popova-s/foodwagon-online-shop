@@ -23,6 +23,9 @@
     border: 2px solid transparent;
 
     padding: 11.5px 55px 12.5px 46px;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   &__input::placeholder {
