@@ -23,6 +23,11 @@ import { DeliveryMethod } from './DeliveryMethod';
 import { Popup } from './Popup';
 import style from './findFood.module.scss';
 
+export enum ModeUseMaps {
+  INPUT = 'input',
+  MAPS = 'maps',
+}
+
 export const FindFood: FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLUListElement>(null);
@@ -41,6 +46,7 @@ export const FindFood: FC = () => {
   const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
   const [place, setPlace] = useState<string>('');
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
+  const [mode, setMode] = useState<string>('');
 
   const navigate = useNavigate();
 
@@ -56,6 +62,7 @@ export const FindFood: FC = () => {
   };
 
   const handleSearchValue = (text: string) => {
+    setMode(ModeUseMaps.INPUT);
     setSearchValue(text);
   };
 
@@ -68,6 +75,7 @@ export const FindFood: FC = () => {
   }, []);
 
   const handleChangeLocation = useCallback(({ address, coords }: LocationItem) => {
+    setMode(ModeUseMaps.INPUT);
     handleChangeAddress(address);
     handleChangeCoord(coords);
     setVisiblePopup(false);
@@ -89,6 +97,7 @@ export const FindFood: FC = () => {
     if (event.key === 'Enter' && list.length) {
       event.preventDefault();
       handleChangeLocation(list[0]);
+      setMode(ModeUseMaps.INPUT);
     }
   };
 
@@ -113,6 +122,10 @@ export const FindFood: FC = () => {
     document.body.addEventListener('mousedown', handleOutsideClick);
 
     return () => document.body.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
+
+  const handleChangeMode = useCallback((mode: string) => {
+    setMode(mode);
   }, []);
 
   return (
@@ -166,7 +179,9 @@ export const FindFood: FC = () => {
                 coord={coord}
                 handleChangeAddress={handleChangeAddress}
                 handleChangeCoord={handleChangeCoord}
+                handleChangeMode={handleChangeMode}
                 handleChangeStatus={handleChangeDeliveryStatus}
+                mode={mode}
                 place={place}
                 placemarks={placemarks}
               />

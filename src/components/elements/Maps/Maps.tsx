@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { Map, ObjectManager, Placemark, YMaps } from '@pbe/react-yandex-maps';
+import useWhyDidYouUpdate from 'ahooks/lib/useWhyDidYouUpdate';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
@@ -8,6 +9,7 @@ import ymaps from 'yandex-maps';
 
 import { Coords } from '../../../store/slices/location/types';
 import { PlacemarkType } from '../../../store/slices/restaurants/types';
+import { ModeUseMaps } from '../FindFood/FindFood';
 import { Balloon } from './Balloon';
 import { deliveryZones } from './deliveryZones';
 import style from './maps.module.scss';
@@ -16,7 +18,9 @@ type MapsProps = {
   coord: Coords;
   handleChangeAddress: (address: string) => void;
   handleChangeCoord: (coord: Coords) => void;
+  handleChangeMode: (mode: string) => void;
   handleChangeStatus: (status: boolean) => void;
+  mode: string;
   place: string;
   placemarks: PlacemarkType[];
 };
@@ -25,10 +29,22 @@ export const Maps: FC<MapsProps> = ({
   coord,
   handleChangeAddress,
   handleChangeCoord,
+  handleChangeMode,
   handleChangeStatus,
+  mode,
   place,
   placemarks,
 }) => {
+  useWhyDidYouUpdate('Maps', {
+    coord,
+    handleChangeAddress,
+    handleChangeCoord,
+    handleChangeMode,
+    handleChangeStatus,
+    mode,
+    place,
+    placemarks,
+  });
   const [maps, setMaps] = useState<any>();
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
   const [zone, setZone] = useState<any>(null);
@@ -46,11 +62,18 @@ export const Maps: FC<MapsProps> = ({
     [],
   );
 
+  const handleBoundsChange = (event: any) => {
+    getGeoLocation(event);
+  };
+
   const getGeoLocation = (event: any) => {
-    if (event.originalEvent?.newZoom === event.originalEvent?.oldZoom) {
-      const coord = event.get('target').getCenter();
-      updateSearchValue(coord);
-    }
+    handleChangeMode(ModeUseMaps.MAPS);
+    const coord = event.get('target').getCenter();
+    updateSearchValue(coord);
+  };
+
+  const handleChangeZoom = (event: any) => {
+    getGeoLocation(event);
   };
 
   const onLoad = (map: any) => {
@@ -72,6 +95,11 @@ export const Maps: FC<MapsProps> = ({
       setZone(deliveryZone);
     }
   };
+  useEffect(() => {
+    if (mode === 'input') {
+      mapRef?.current?.panTo(coord);
+    }
+  }, [mode, coord]);
 
   useEffect(() => {
     if (zone && placemarkRef.current) {
@@ -102,7 +130,7 @@ export const Maps: FC<MapsProps> = ({
     }
   }, [coord, zone]);
 
-  const handleActionBegin = () => {
+  const handleActionBegin = (e: any) => {
     setVisibleBalloon(false);
     setIsActive(true);
   };
@@ -124,6 +152,12 @@ export const Maps: FC<MapsProps> = ({
       }}
     >
       <Map
+        defaultState={{
+          behaviors: ['default'],
+          center: coord,
+          controls: ['zoomControl', 'fullscreenControl', 'geolocationControl'],
+          zoom: 15,
+        }}
         modules={[
           'geolocation',
           'geocode',
@@ -133,18 +167,13 @@ export const Maps: FC<MapsProps> = ({
           'control.GeolocationControl',
           'geoQuery',
         ]}
-        state={{
-          behaviors: ['default'],
-          center: coord,
-          controls: ['zoomControl', 'fullscreenControl', 'geolocationControl'],
-          zoom: 15,
-        }}
         className={style.map}
         instanceRef={mapRef}
         onActionBegin={handleActionBegin}
         onActionEnd={handleActionEnd}
-        onBoundsChange={getGeoLocation}
+        onBoundsChange={handleBoundsChange}
         onLoad={onLoad}
+        onWheel={handleChangeZoom}
       >
         <div className={cn(style.pointer, { [style.active]: isActive })} onClick={handleChangeBalloonStatus}>
           <ReactSVG
@@ -156,8 +185,6 @@ export const Maps: FC<MapsProps> = ({
             <ReactSVG className={style.preloader} src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`} />
           )}
         </div>
-
-        <Placemark geometry={coord} instanceRef={placemarkRef} options={{ iconOffset: [0, 0], visible: false }} />
 
         <ObjectManager
           clusters={{
