@@ -1,6 +1,5 @@
-/* eslint-disable max-len */
 import { Map, ObjectManager, Placemark, YMaps } from '@pbe/react-yandex-maps';
-import useWhyDidYouUpdate from 'ahooks/lib/useWhyDidYouUpdate';
+import { YMapsApi } from '@pbe/react-yandex-maps/typings/util/typing';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
@@ -9,7 +8,7 @@ import ymaps from 'yandex-maps';
 
 import { Coords } from '../../../store/slices/location/types';
 import { PlacemarkType } from '../../../store/slices/restaurants/types';
-import { ModeUseMaps } from '../FindFood/FindFood';
+import { ModeOfUsingMaps } from '../FindFood/FindFood';
 import { Balloon } from './Balloon';
 import { deliveryZones } from './deliveryZones';
 import style from './maps.module.scss';
@@ -35,44 +34,33 @@ export const Maps: FC<MapsProps> = ({
   place,
   placemarks,
 }) => {
-  useWhyDidYouUpdate('Maps', {
-    coord,
-    handleChangeAddress,
-    handleChangeCoord,
-    handleChangeMode,
-    handleChangeStatus,
-    mode,
-    place,
-    placemarks,
-  });
-  const [maps, setMaps] = useState<any>();
-  const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
+  const [maps, setMaps] = useState<YMapsApi>();
   const [zone, setZone] = useState<any>(null);
-  const [isActive, setIsActive] = useState<boolean>(false);
+  const [activeAction, setActiveAction] = useState<boolean>(false);
   const [visibleBalloon, setVisibleBalloon] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(true);
-
+  const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
   const mapRef = useRef<ymaps.Map>();
-  const placemarkRef = useRef<any>();
+  const placemarkRef = useRef<ymaps.Map>();
 
   const updateSearchValue = useCallback(
-    debounce((coord) => {
+    debounce((coord: Coords) => {
       handleChangeCoord(coord);
     }, 500),
     [],
   );
 
-  const handleBoundsChange = (event: any) => {
-    getGeoLocation(event);
-  };
-
   const getGeoLocation = (event: any) => {
-    handleChangeMode(ModeUseMaps.MAPS);
+    handleChangeMode(ModeOfUsingMaps.MAPS);
     const coord = event.get('target').getCenter();
     updateSearchValue(coord);
   };
 
-  const handleChangeZoom = (event: any) => {
+  const handleBoundsChange = (event: Event) => {
+    getGeoLocation(event);
+  };
+
+  const handleChangeZoom = (event: Event) => {
     getGeoLocation(event);
   };
 
@@ -95,9 +83,10 @@ export const Maps: FC<MapsProps> = ({
       setZone(deliveryZone);
     }
   };
+
   useEffect(() => {
     if (mode === 'input') {
-      mapRef?.current?.panTo(coord);
+      mapRef?.current?.panTo(coord, { delay: 500, safe: true });
     }
   }, [mode, coord]);
 
@@ -128,15 +117,15 @@ export const Maps: FC<MapsProps> = ({
           console.error('The Promise is rejected!', error);
         });
     }
-  }, [coord, zone]);
+  }, [coord, zone, maps, handleChangeStatus, handleChangeAddress]);
 
-  const handleActionBegin = (e: any) => {
+  const handleActionBegin = () => {
     setVisibleBalloon(false);
-    setIsActive(true);
+    setActiveAction(true);
   };
 
   const handleActionEnd = () => {
-    setIsActive(false);
+    setActiveAction(false);
   };
 
   const handleChangeBalloonStatus = () => {
@@ -175,16 +164,20 @@ export const Maps: FC<MapsProps> = ({
         onLoad={onLoad}
         onWheel={handleChangeZoom}
       >
-        <div className={cn(style.pointer, { [style.active]: isActive })} onClick={handleChangeBalloonStatus}>
+        <div className={cn(style.placemark, { [style.active]: activeAction })} onClick={handleChangeBalloonStatus}>
           <ReactSVG
-            className={cn(style.placemark, { [style.active]: isActive })}
+            className={cn(style.placemark__img, { [style.active]: activeAction })}
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
             wrapper="span"
           />
           {!isLoaded && (
-            <ReactSVG className={style.preloader} src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`} />
+            <ReactSVG
+              className={style.placemark__preloader}
+              src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`}
+            />
           )}
         </div>
+        <Placemark geometry={coord} instanceRef={placemarkRef} options={{ iconOffset: [0, 0], visible: false }} />
 
         <ObjectManager
           clusters={{

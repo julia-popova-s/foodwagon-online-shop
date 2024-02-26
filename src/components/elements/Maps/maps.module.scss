@@ -9,7 +9,7 @@
   padding: 20px 0;
 }
 
-.pointer {
+.placemark {
   position: absolute;
   top: 40.55%;
   left: 48.4%;
@@ -20,7 +20,7 @@
   transition: all 0.3s ease;
 }
 
-.placemark {
+.placemark__img {
 
   transition: all 0.3s ease;
 
@@ -34,12 +34,12 @@
   }
 }
 
-.pointer.active {
+.placemark.active {
   transition: all 0.3s ease;
   transform: translateY(-15px);
 }
 
-.placemark.active {
+.placemark__img.active {
 
   path {
     fill: #757575;
@@ -48,7 +48,7 @@
   }
 }
 
-.preloader {
+.placemark__preloader {
   position: absolute;
   top: 1px;
   left: 2px;
