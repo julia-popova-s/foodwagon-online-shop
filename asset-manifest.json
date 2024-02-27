@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/foodwagon-online-shop/static/css/main.7715ebee.css",
-    "main.js": "/foodwagon-online-shop/static/js/main.4aa76798.js",
+    "main.js": "/foodwagon-online-shop/static/js/main.6db75178.js",
     "App.css": "/foodwagon-online-shop/static/css/App.2569759a.chunk.css",
     "App.js": "/foodwagon-online-shop/static/js/App.a1bd75d7.chunk.js",
     "HomePage.js": "/foodwagon-online-shop/static/js/HomePage.e219f660.chunk.js",
@@ -14,7 +14,7 @@
     "ProductPage.css": "/foodwagon-online-shop/static/css/ProductPage.4da37afd.chunk.css",
     "ProductPage.js": "/foodwagon-online-shop/static/js/ProductPage.dcbe9933.chunk.js",
     "SearchPage.css": "/foodwagon-online-shop/static/css/SearchPage.ba136d4a.chunk.css",
-    "SearchPage.js": "/foodwagon-online-shop/static/js/SearchPage.ba31d2aa.chunk.js",
+    "SearchPage.js": "/foodwagon-online-shop/static/js/SearchPage.ec044bce.chunk.js",
     "AppDownLoad.css": "/foodwagon-online-shop/static/css/AppDownLoad.a19e1d56.chunk.css",
     "AppDownLoad.js": "/foodwagon-online-shop/static/js/AppDownLoad.58cdbdae.chunk.js",
     "CallToAction.css": "/foodwagon-online-shop/static/css/CallToAction.41558829.chunk.css",
@@ -33,8 +33,8 @@
     "OrderAlgorithm.js": "/foodwagon-online-shop/static/js/OrderAlgorithm.6da251ae.chunk.js",
     "FlashDeals.css": "/foodwagon-online-shop/static/css/FlashDeals.227c992c.chunk.css",
     "FlashDeals.js": "/foodwagon-online-shop/static/js/FlashDeals.30f41fd3.chunk.js",
-    "FindFood.css": "/foodwagon-online-shop/static/css/FindFood.bdad55b7.chunk.css",
-    "FindFood.js": "/foodwagon-online-shop/static/js/FindFood.ba0545cc.chunk.js",
+    "FindFood.css": "/foodwagon-online-shop/static/css/FindFood.70f990f4.chunk.css",
+    "FindFood.js": "/foodwagon-online-shop/static/js/FindFood.c9b30b2e.chunk.js",
     "static/js/80.e7eed59e.chunk.js": "/foodwagon-online-shop/static/js/80.e7eed59e.chunk.js",
     "static/js/774.a8b9a83b.chunk.js": "/foodwagon-online-shop/static/js/774.a8b9a83b.chunk.js",
     "static/js/549.40017694.chunk.js": "/foodwagon-online-shop/static/js/549.40017694.chunk.js",
@@ -48,7 +48,7 @@
     "static/media/background.png": "/foodwagon-online-shop/static/media/background.6465b0787fc37e83f3dd.png",
     "index.html": "/foodwagon-online-shop/index.html",
     "main.7715ebee.css.map": "/foodwagon-online-shop/static/css/main.7715ebee.css.map",
-    "main.4aa76798.js.map": "/foodwagon-online-shop/static/js/main.4aa76798.js.map",
+    "main.6db75178.js.map": "/foodwagon-online-shop/static/js/main.6db75178.js.map",
     "App.2569759a.chunk.css.map": "/foodwagon-online-shop/static/css/App.2569759a.chunk.css.map",
     "App.a1bd75d7.chunk.js.map": "/foodwagon-online-shop/static/js/App.a1bd75d7.chunk.js.map",
     "HomePage.e219f660.chunk.js.map": "/foodwagon-online-shop/static/js/HomePage.e219f660.chunk.js.map",
@@ -61,7 +61,7 @@
     "ProductPage.4da37afd.chunk.css.map": "/foodwagon-online-shop/static/css/ProductPage.4da37afd.chunk.css.map",
     "ProductPage.dcbe9933.chunk.js.map": "/foodwagon-online-shop/static/js/ProductPage.dcbe9933.chunk.js.map",
     "SearchPage.ba136d4a.chunk.css.map": "/foodwagon-online-shop/static/css/SearchPage.ba136d4a.chunk.css.map",
-    "SearchPage.ba31d2aa.chunk.js.map": "/foodwagon-online-shop/static/js/SearchPage.ba31d2aa.chunk.js.map",
+    "SearchPage.ec044bce.chunk.js.map": "/foodwagon-online-shop/static/js/SearchPage.ec044bce.chunk.js.map",
     "AppDownLoad.a19e1d56.chunk.css.map": "/foodwagon-online-shop/static/css/AppDownLoad.a19e1d56.chunk.css.map",
     "AppDownLoad.58cdbdae.chunk.js.map": "/foodwagon-online-shop/static/js/AppDownLoad.58cdbdae.chunk.js.map",
     "CallToAction.41558829.chunk.css.map": "/foodwagon-online-shop/static/css/CallToAction.41558829.chunk.css.map",
@@ -80,8 +80,8 @@
     "OrderAlgorithm.6da251ae.chunk.js.map": "/foodwagon-online-shop/static/js/OrderAlgorithm.6da251ae.chunk.js.map",
     "FlashDeals.227c992c.chunk.css.map": "/foodwagon-online-shop/static/css/FlashDeals.227c992c.chunk.css.map",
     "FlashDeals.30f41fd3.chunk.js.map": "/foodwagon-online-shop/static/js/FlashDeals.30f41fd3.chunk.js.map",
-    "FindFood.bdad55b7.chunk.css.map": "/foodwagon-online-shop/static/css/FindFood.bdad55b7.chunk.css.map",
-    "FindFood.ba0545cc.chunk.js.map": "/foodwagon-online-shop/static/js/FindFood.ba0545cc.chunk.js.map",
+    "FindFood.70f990f4.chunk.css.map": "/foodwagon-online-shop/static/css/FindFood.70f990f4.chunk.css.map",
+    "FindFood.c9b30b2e.chunk.js.map": "/foodwagon-online-shop/static/js/FindFood.c9b30b2e.chunk.js.map",
     "80.e7eed59e.chunk.js.map": "/foodwagon-online-shop/static/js/80.e7eed59e.chunk.js.map",
     "774.a8b9a83b.chunk.js.map": "/foodwagon-online-shop/static/js/774.a8b9a83b.chunk.js.map",
     "549.40017694.chunk.js.map": "/foodwagon-online-shop/static/js/549.40017694.chunk.js.map",
@@ -93,6 +93,6 @@
   },
   "entrypoints": [
     "static/css/main.7715ebee.css",
-    "static/js/main.4aa76798.js"
+    "static/js/main.6db75178.js"
   ]
 }
