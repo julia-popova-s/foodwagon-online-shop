@@ -46,6 +46,7 @@ export const FindFood: FC = () => {
   const [mode, setMode] = useState<string>('');
   const [premiseNumber, setPremiseNumber] = useState<null | string>('');
   const [streetName, setStreetName] = useState<null | string>('');
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -149,16 +150,17 @@ export const FindFood: FC = () => {
                   ref={searchRef}
                 >
                   <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
+                  {status === Status.LOADING && searchValue && (
+                    <div className={style.searchPanel__inputLoader}>
+                      <ReactSVG src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`} />
+                    </div>
+                  )}
                 </TextInput>
 
-                {status === Status.LOADING && searchValue ? (
-                  <div className={style.searchPanel__loader}>
-                    <ReactSVG src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/loader.svg`} />
-                  </div>
-                ) : null}
-
                 <SearchButton
-                  classNames={cn(style.search__btn, { [style.search__btn_inactive]: !(premiseNumber && streetName) })}
+                  classNames={cn(style.search__btn, {
+                    [style.search__btn_inactive]: !(premiseNumber && streetName) && searchValue,
+                  })}
                   handleClick={handleFindFood}
                   icon="search"
                   label="Find Food"

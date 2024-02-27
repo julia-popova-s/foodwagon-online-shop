@@ -159,14 +159,13 @@ export const Maps: FC<MapsProps> = ({
         defaultState={{
           behaviors: ['default'],
           center: coord,
-          controls: ['zoomControl', 'fullscreenControl', 'geolocationControl'],
+          controls: ['zoomControl', 'geolocationControl'],
           zoom: 15,
         }}
         modules={[
           'geolocation',
           'geocode',
           'control.ZoomControl',
-          'control.FullscreenControl',
           'geoObject.addon.balloon',
           'control.GeolocationControl',
           'geoQuery',
