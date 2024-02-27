@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-// import useWhyDidYouUpdate from 'ahooks/lib/useWhyDidYouUpdate';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import {
@@ -61,10 +59,6 @@ export const TextInput = forwardRef<HTMLDivElement, PropsWithChildren<TextInputP
         setValue(address);
       }
     }, [address]);
-
-    useEffect(() => {
-      inputRef.current?.focus();
-    }, []);
 
     return (
       <div className={cn(style.search, classNames)} ref={ref}>

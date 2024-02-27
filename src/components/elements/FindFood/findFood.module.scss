@@ -89,8 +89,6 @@
 }
 
 .searchPanel {
-  position: relative;
-
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -106,13 +104,19 @@
   border-radius: 0 0 8px 8px;
 
   &__input {
+    position: relative;
+
     min-width: 199px;
   }
 
-  &__loader {
+  &__inputLoader {
     position: absolute;
-    left: 33%;
-    top: 35px;
+    left: 48%;
+    top: 13px;
+
+    svg path {
+      fill: rgba(255, 116, 116);
+    }
   }
 }
 
@@ -129,6 +133,14 @@
 
 .hidden {
   display: none;
+}
+
+.search__btn_inactive {
+  opacity: 0.6;
+
+  &:hover {
+    box-shadow: none;
+  }
 }
 
 @media(min-width:1921px) {
