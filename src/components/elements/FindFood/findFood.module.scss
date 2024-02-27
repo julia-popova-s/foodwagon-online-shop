@@ -131,6 +131,14 @@
   display: none;
 }
 
+.search__btn_inactive {
+  opacity: 0.5;
+
+  &:hover {
+    box-shadow: none;
+  }
+}
+
 @media(min-width:1921px) {
   .findFoodWrapper {
     background-size: cover;

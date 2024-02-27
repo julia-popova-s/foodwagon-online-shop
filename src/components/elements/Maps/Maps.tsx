@@ -8,14 +8,24 @@ import ymaps from 'yandex-maps';
 
 import { Coords } from '../../../store/slices/location/types';
 import { PlacemarkType } from '../../../store/slices/restaurants/types';
-import { ModeOfUsingMaps } from '../FindFood/FindFood';
 import { Balloon } from './Balloon';
 import { deliveryZones } from './deliveryZones';
 import style from './maps.module.scss';
 
+export enum ModeOfUsingMaps {
+  DRAG = 'drag',
+  SEARCH = 'search',
+}
+
+export type AddressProps = {
+  address: string;
+  premiseNumber: null | string;
+  streetName: null | string;
+};
+
 type MapsProps = {
   coord: Coords;
-  handleChangeAddress: (address: string) => void;
+  handleChangeAddress: ({ address, premiseNumber, streetName }: AddressProps) => void;
   handleChangeCoord: (coord: Coords) => void;
   handleChangeMode: (mode: string) => void;
   handleChangeStatus: (status: boolean) => void;
@@ -40,6 +50,7 @@ export const Maps: FC<MapsProps> = ({
   const [visibleBalloon, setVisibleBalloon] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(true);
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
+
   const mapRef = useRef<ymaps.Map>();
   const placemarkRef = useRef<ymaps.Map>();
 
@@ -51,7 +62,7 @@ export const Maps: FC<MapsProps> = ({
   );
 
   const getGeoLocation = (event: any) => {
-    handleChangeMode(ModeOfUsingMaps.MAPS);
+    handleChangeMode(ModeOfUsingMaps.DRAG);
     const coord = event.get('target').getCenter();
     updateSearchValue(coord);
   };
@@ -85,7 +96,7 @@ export const Maps: FC<MapsProps> = ({
   };
 
   useEffect(() => {
-    if (mode === 'input') {
+    if (mode === ModeOfUsingMaps.SEARCH) {
       mapRef?.current?.panTo(coord, { delay: 500, safe: true });
     }
   }, [mode, coord]);
@@ -111,13 +122,17 @@ export const Maps: FC<MapsProps> = ({
         .then((res: any) => {
           setIsLoaded(true);
           const geocodeResult: ymaps.GeocodeResult = res.geoObjects.get(0);
-          handleChangeAddress(geocodeResult.getAddressLine());
+          handleChangeAddress({
+            address: geocodeResult.getAddressLine(),
+            premiseNumber: geocodeResult.getPremiseNumber(),
+            streetName: geocodeResult.getThoroughfare(),
+          });
         })
         .catch((error: any) => {
           console.error('The Promise is rejected!', error);
         });
     }
-  }, [coord, zone, maps, handleChangeStatus, handleChangeAddress]);
+  }, [coord]);
 
   const handleActionBegin = () => {
     setVisibleBalloon(false);
@@ -166,7 +181,7 @@ export const Maps: FC<MapsProps> = ({
       >
         <div className={cn(style.placemark, { [style.active]: activeAction })} onClick={handleChangeBalloonStatus}>
           <ReactSVG
-            className={cn(style.placemark__img, { [style.active]: activeAction })}
+            className={cn(style.placemark__icon, { [style.active]: activeAction })}
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
             wrapper="span"
           />

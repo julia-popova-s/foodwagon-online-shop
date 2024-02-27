@@ -20,7 +20,12 @@
   transition: all 0.3s ease;
 }
 
-.placemark__img {
+.placemark.active {
+  transition: all 0.3s ease;
+  transform: translateY(-15px);
+}
+
+.placemark__icon {
 
   transition: all 0.3s ease;
 
@@ -34,12 +39,7 @@
   }
 }
 
-.placemark.active {
-  transition: all 0.3s ease;
-  transform: translateY(-15px);
-}
-
-.placemark__img.active {
+.placemark__icon.active {
 
   path {
     fill: #757575;

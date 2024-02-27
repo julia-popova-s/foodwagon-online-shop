@@ -1,8 +1,9 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import cn from 'classnames';
 import { FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
 import { useAppDispatch } from '../../../store';
@@ -19,14 +20,10 @@ import { Status } from '../../../store/utils/getExtraReducers';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Maps } from '../Maps';
+import { AddressProps, ModeOfUsingMaps } from '../Maps/Maps';
 import { DeliveryMethod } from './DeliveryMethod';
 import { Popup } from './Popup';
 import style from './findFood.module.scss';
-
-export enum ModeOfUsingMaps {
-  INPUT = 'input',
-  MAPS = 'maps',
-}
 
 export const FindFood: FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
@@ -47,8 +44,9 @@ export const FindFood: FC = () => {
   const [place, setPlace] = useState<string>('');
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
   const [mode, setMode] = useState<string>('');
-
-  // const navigate = useNavigate();
+  const [premiseNumber, setPremiseNumber] = useState<null | string>('');
+  const [streetName, setStreetName] = useState<null | string>('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (listRest.length) {
@@ -72,19 +70,20 @@ export const FindFood: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (searchValue && mode === ModeOfUsingMaps.INPUT) {
+    if (searchValue) {
       dispatch(fetchLocation({ searchValue: searchValue.replace(';', '%3B') }));
       setVisiblePopup(true);
     }
   }, [searchValue]);
 
   const handleFindFood = () => {
-    dispatch(setLocation({ address: place, coords: coord, deliveryStatus }));
-    // navigate('search');
+    if (premiseNumber && streetName) {
+      dispatch(setLocation({ address: place, coords: coord, deliveryStatus }));
+      navigate('search');
+    }
   };
-
   const handleSearchValue = (text: string) => {
-    setMode(ModeOfUsingMaps.INPUT);
+    setMode(ModeOfUsingMaps.SEARCH);
     setSearchValue(text);
   };
 
@@ -92,12 +91,14 @@ export const FindFood: FC = () => {
     setCoord(coords);
   }, []);
 
-  const handleChangeAddress = useCallback((address: string) => {
+  const handleChangeAddress = useCallback(({ address, premiseNumber, streetName }: AddressProps) => {
     setPlace(address);
+    setStreetName(streetName);
+    setPremiseNumber(premiseNumber);
   }, []);
 
   const handleChangeLocation = useCallback(({ address, coords }: LocationItem) => {
-    setMode(ModeOfUsingMaps.INPUT);
+    setMode(ModeOfUsingMaps.SEARCH);
     setPlace(address);
     setCoord(coords);
     setVisiblePopup(false);
@@ -112,7 +113,7 @@ export const FindFood: FC = () => {
     if (event.key === 'Enter' && list.length) {
       event.preventDefault();
       handleChangeLocation(list[0]);
-      setMode(ModeOfUsingMaps.INPUT);
+      setMode(ModeOfUsingMaps.SEARCH);
     }
   };
 
@@ -157,7 +158,7 @@ export const FindFood: FC = () => {
                 ) : null}
 
                 <SearchButton
-                  classNames={style.search__btn}
+                  classNames={cn(style.search__btn, { [style.search__btn_inactive]: !(premiseNumber && streetName) })}
                   handleClick={handleFindFood}
                   icon="search"
                   label="Find Food"
