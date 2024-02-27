@@ -5,7 +5,7 @@ import { ReactSVG } from 'react-svg';
 import { Coords } from '../../../store/slices/location/types';
 import style from './balloon.module.scss';
 
-type BalloonProps = { address: string; coord: Coords; handleClick: () => void; isActive: boolean; status: boolean };
+type BalloonProps = { address: string; coord: Coords; handleClick: () => void; isActive: boolean; status?: boolean };
 
 export const Balloon: FC<BalloonProps> = ({ address, coord, handleClick, isActive, status }) => {
   return (

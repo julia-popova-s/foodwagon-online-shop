@@ -5,6 +5,7 @@ export const getGeolocationCoordinates = (response: GeocoderResponse): LocationI
     const geoObject = el?.GeoObject;
     return {
       address: geoObject?.metaDataProperty?.GeocoderMetaData?.Address?.formatted,
+      components: geoObject?.metaDataProperty?.GeocoderMetaData?.Address?.Components,
       coords: geoObject?.Point?.pos.split(' ').map((coord) => Number(Number(coord).toFixed(6))),
     };
   });

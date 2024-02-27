@@ -1,5 +1,6 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import cn from 'classnames';
 import { FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +20,7 @@ import { Status } from '../../../store/utils/getExtraReducers';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Maps } from '../Maps';
+import { AddressProps, ModeOfUsingMaps } from '../Maps/Maps';
 import { DeliveryMethod } from './DeliveryMethod';
 import { Popup } from './Popup';
 import style from './findFood.module.scss';
@@ -41,6 +43,9 @@ export const FindFood: FC = () => {
   const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
   const [place, setPlace] = useState<string>('');
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
+  const [mode, setMode] = useState<string>('');
+  const [premiseNumber, setPremiseNumber] = useState<null | string>('');
+  const [streetName, setStreetName] = useState<null | string>('');
 
   const navigate = useNavigate();
 
@@ -49,56 +54,6 @@ export const FindFood: FC = () => {
       dispatch(setPlacemarks());
     }
   }, [listRest]);
-
-  const handleSearch = () => {
-    dispatch(setLocation({ address: place, coords: coord, status: deliveryStatus }));
-    navigate('search');
-  };
-
-  const handleSearchValue = (text: string) => {
-    setSearchValue(text);
-  };
-
-  const handleChangeCoord = useCallback((coord: Coords) => {
-    setCoord(coord);
-  }, []);
-
-  const handleChangeAddress = useCallback((address: string) => {
-    setPlace(address);
-  }, []);
-
-  const handleChangeLocation = useCallback(({ address, coords }: LocationItem) => {
-    handleChangeAddress(address);
-    handleChangeCoord(coords);
-    setVisiblePopup(false);
-  }, []);
-
-  useEffect(() => {
-    if (searchValue) {
-      dispatch(fetchLocation({ searchValue: searchValue.replace(';', '%3B') }));
-      setVisiblePopup(true);
-    }
-  }, [searchValue]);
-
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (popupRef.current && event.key === 'ArrowDown') {
-      event.preventDefault();
-      popupRef.current?.focus();
-    }
-
-    if (event.key === 'Enter' && list.length) {
-      event.preventDefault();
-      handleChangeLocation(list[0]);
-    }
-  };
-
-  const handleChangeStatus = useCallback((status: boolean) => {
-    setVisiblePopup(status);
-  }, []);
-
-  const handleChangeDeliveryStatus = useCallback((status: boolean) => {
-    setDeliveryStatus(status);
-  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -113,6 +68,66 @@ export const FindFood: FC = () => {
     document.body.addEventListener('mousedown', handleOutsideClick);
 
     return () => document.body.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
+
+  useEffect(() => {
+    if (searchValue) {
+      dispatch(fetchLocation({ searchValue: searchValue.replace(';', '%3B') }));
+      setVisiblePopup(true);
+    }
+  }, [searchValue]);
+
+  const handleFindFood = () => {
+    if (premiseNumber && streetName) {
+      dispatch(setLocation({ address: place, coords: coord, deliveryStatus }));
+      navigate('search');
+    }
+  };
+  const handleSearchValue = (text: string) => {
+    setMode(ModeOfUsingMaps.SEARCH);
+    setSearchValue(text);
+  };
+
+  const handleChangeCoord = useCallback((coords: Coords) => {
+    setCoord(coords);
+  }, []);
+
+  const handleChangeAddress = useCallback(({ address, premiseNumber, streetName }: AddressProps) => {
+    setPlace(address);
+    setStreetName(streetName);
+    setPremiseNumber(premiseNumber);
+  }, []);
+
+  const handleChangeLocation = useCallback(({ address, coords }: LocationItem) => {
+    setMode(ModeOfUsingMaps.SEARCH);
+    setPlace(address);
+    setCoord(coords);
+    setVisiblePopup(false);
+  }, []);
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (popupRef.current && event.key === 'ArrowDown') {
+      event.preventDefault();
+      popupRef.current?.focus();
+    }
+
+    if (event.key === 'Enter' && list.length) {
+      event.preventDefault();
+      handleChangeLocation(list[0]);
+      setMode(ModeOfUsingMaps.SEARCH);
+    }
+  };
+
+  const handlePopupVisibility = useCallback((status: boolean) => {
+    setVisiblePopup(status);
+  }, []);
+
+  const handleChangeDeliveryStatus = useCallback((status: boolean) => {
+    setDeliveryStatus(status);
+  }, []);
+
+  const handleChangeMode = useCallback((mode: string) => {
+    setMode(mode);
   }, []);
 
   return (
@@ -135,17 +150,18 @@ export const FindFood: FC = () => {
                   ref={searchRef}
                 >
                   <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
+                  {status === Status.LOADING && searchValue && (
+                    <div className={style.searchPanel__inputLoader}>
+                      <ReactSVG src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`} />
+                    </div>
+                  )}
                 </TextInput>
 
-                {status === Status.LOADING && searchValue ? (
-                  <div className={style.searchPanel__loader}>
-                    <ReactSVG src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/loader.svg`} />
-                  </div>
-                ) : null}
-
                 <SearchButton
-                  classNames={style.search__btn}
-                  handleClick={handleSearch}
+                  classNames={cn(style.search__btn, {
+                    [style.search__btn_inactive]: !(premiseNumber && streetName) && searchValue,
+                  })}
+                  handleClick={handleFindFood}
                   icon="search"
                   label="Find Food"
                 />
@@ -154,7 +170,7 @@ export const FindFood: FC = () => {
               <Popup
                 errorMessage={error}
                 handleChangeLocation={handleChangeLocation}
-                handleChangeStatus={handleChangeStatus}
+                handleChangeStatus={handlePopupVisibility}
                 isOpen={visiblePopup}
                 list={list}
                 ref={popupRef}
@@ -166,7 +182,9 @@ export const FindFood: FC = () => {
                 coord={coord}
                 handleChangeAddress={handleChangeAddress}
                 handleChangeCoord={handleChangeCoord}
+                handleChangeMode={handleChangeMode}
                 handleChangeStatus={handleChangeDeliveryStatus}
+                mode={mode}
                 place={place}
                 placemarks={placemarks}
               />
