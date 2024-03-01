@@ -10,7 +10,7 @@ import { GeocoderResponse, LocationItem, LocationSliceState } from './types';
 export const fetchData = async function ({ searchValue }: Params, { rejectWithValue }: any) {
   try {
     const { data } = await axios.get<GeocoderResponse>(
-      `https://geocode-maps.yandex.ru/1.x?apikey=${process.env.REACT_APP_YANDEX_API_KEY}&geocode=${searchValue}&sco=longlat&format=json&lang=en_RU&results=5`,
+      `https://geocode-maps.yandex.ru/1.x?apikey=${process.env.REACT_APP_YANDEX_API_KEY}&geocode=Russia,${searchValue}&sco=longlat&format=json&lang=en_RU&results=5`,
     );
 
     const result = getGeolocationCoordinates(data);

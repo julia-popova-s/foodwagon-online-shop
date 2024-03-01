@@ -8,11 +8,13 @@ import style from './balloon.module.scss';
 type BalloonProps = { address: string; coord: Coords; handleClick: () => void; isActive: boolean; status?: boolean };
 
 export const Balloon: FC<BalloonProps> = ({ address, coord, handleClick, isActive, status }) => {
+  const coords = coord.map((el) => Number(el.toFixed(6))).join(', ');
+
   return (
     <div className={cn(style.balloon, { [style.visible]: isActive })}>
       <div className={style.balloon__contact}>Your location:</div>
       <div className={style.balloon__address}>{address}</div>
-      <div className={style.balloon__address}>Coordinates: {coord.join(', ')}</div>
+      <div className={style.balloon__address}>Coordinates: {coords}</div>
 
       <div>Delivery: {status ? 'Available' : 'No'}</div>
 

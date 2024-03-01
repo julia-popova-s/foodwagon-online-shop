@@ -191,6 +191,7 @@ export const Maps: FC<MapsProps> = ({
             />
           )}
         </div>
+
         <Placemark geometry={coord} instanceRef={placemarkRef} options={{ iconOffset: [0, 0], visible: false }} />
 
         <ObjectManager
@@ -208,6 +209,7 @@ export const Maps: FC<MapsProps> = ({
           features={placemarks}
           modules={['objectManager.addon.objectsBalloon', 'objectManager.addon.objectsHint', 'objectManager.Balloon']}
         />
+
         <Balloon
           address={place}
           coord={coord}

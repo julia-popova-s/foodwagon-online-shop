@@ -1,7 +1,7 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
-import { FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { FC, KeyboardEvent, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
@@ -21,9 +21,12 @@ import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Maps } from '../Maps';
 import { AddressProps, ModeOfUsingMaps } from '../Maps/Maps';
-import { DeliveryMethod } from './DeliveryMethod';
+import { Button, DeliveryMethod } from './DeliveryMethod';
 import { Popup } from './Popup';
 import style from './findFood.module.scss';
+
+const MemoDeliveryMethod = memo(DeliveryMethod);
+const MemoTextInput = memo(TextInput);
 
 export const FindFood: FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
@@ -49,6 +52,14 @@ export const FindFood: FC = () => {
 
   const navigate = useNavigate();
 
+  const buttons: Button[] = useMemo(
+    () => [
+      { icon: '/images/find-food/delivery/delivery.svg', label: 'Delivery' },
+      { icon: '/images/find-food/delivery/pickup.svg', label: 'Pickup' },
+    ],
+    [],
+  );
+
   useEffect(() => {
     if (listRest.length) {
       dispatch(setPlacemarks());
@@ -71,6 +82,7 @@ export const FindFood: FC = () => {
   }, []);
 
   useEffect(() => {
+    console.log(searchValue);
     if (searchValue) {
       dispatch(fetchLocation({ searchValue: searchValue.replace(';', '%3B') }));
       setVisiblePopup(true);
@@ -96,6 +108,7 @@ export const FindFood: FC = () => {
     setPlace(address);
     setStreetName(streetName);
     setPremiseNumber(premiseNumber);
+    setSearchValue(address);
   }, []);
 
   const handleChangeLocation = useCallback(({ address, coords }: LocationItem) => {
@@ -138,10 +151,10 @@ export const FindFood: FC = () => {
           <p className={style.findFood__text}>Within a few clicks, find meals that are accessible near you</p>
 
           <div className={style.findFood__searchPanel}>
-            <DeliveryMethod />
+            <MemoDeliveryMethod list={buttons} />
             <div className={style.findFood__search}>
               <div className={style.searchPanel}>
-                <TextInput
+                <MemoTextInput
                   address={place}
                   classNames={style.searchPanel__input}
                   handleKeyDown={handleKeyDown}
@@ -155,7 +168,7 @@ export const FindFood: FC = () => {
                       <ReactSVG src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`} />
                     </div>
                   )}
-                </TextInput>
+                </MemoTextInput>
 
                 <SearchButton
                   classNames={cn(style.search__btn, {
