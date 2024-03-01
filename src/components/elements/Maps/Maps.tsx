@@ -1,13 +1,14 @@
 import { Map, ObjectManager, Placemark, YMaps } from '@pbe/react-yandex-maps';
-import { YMapsApi } from '@pbe/react-yandex-maps/typings/util/typing';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import ymaps from 'yandex-maps';
 
+import { isLoadedSelector } from '../../../store/slices/location/slice';
 import { Coords } from '../../../store/slices/location/types';
-import { PlacemarkType } from '../../../store/slices/restaurants/types';
+import { placemarkSelector } from '../../../store/slices/restaurants/slice';
 import { Balloon } from './Balloon';
 import { deliveryZones } from './deliveryZones';
 import style from './maps.module.scss';
@@ -25,31 +26,29 @@ export type AddressProps = {
 
 type MapsProps = {
   coord: Coords;
-  handleChangeAddress: ({ address, premiseNumber, streetName }: AddressProps) => void;
   handleChangeCoord: (coord: Coords) => void;
   handleChangeMode: (mode: string) => void;
   handleChangeStatus: (status: boolean) => void;
   mode: string;
   place: string;
-  placemarks: PlacemarkType[];
 };
 
 export const Maps: FC<MapsProps> = ({
   coord,
-  handleChangeAddress,
   handleChangeCoord,
   handleChangeMode,
   handleChangeStatus,
   mode,
   place,
-  placemarks,
 }) => {
-  const [maps, setMaps] = useState<YMapsApi>();
+  const [maps, setMaps] = useState<any>();
   const [zone, setZone] = useState<any>(null);
   const [activeAction, setActiveAction] = useState<boolean>(false);
   const [visibleBalloon, setVisibleBalloon] = useState<boolean>(false);
-  const [isLoaded, setIsLoaded] = useState<boolean>(true);
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
+
+  const placemarks = useSelector(placemarkSelector);
+  const isLoaded = useSelector(isLoadedSelector);
 
   const mapRef = useRef<ymaps.Map>();
   const placemarkRef = useRef<ymaps.Map>();
@@ -113,26 +112,7 @@ export const Maps: FC<MapsProps> = ({
         handleChangeStatus(false);
       }
     }
-
-    if (maps && coord?.length) {
-      setIsLoaded(false);
-
-      const resp = maps?.geocode(coord);
-      resp
-        .then((res: any) => {
-          setIsLoaded(true);
-          const geocodeResult: ymaps.GeocodeResult = res.geoObjects.get(0);
-          handleChangeAddress({
-            address: geocodeResult.getAddressLine(),
-            premiseNumber: geocodeResult.getPremiseNumber(),
-            streetName: geocodeResult.getThoroughfare(),
-          });
-        })
-        .catch((error: any) => {
-          console.error('The Promise is rejected!', error);
-        });
-    }
-  }, [coord]);
+  }, [coord, handleChangeStatus, zone]);
 
   const handleActionBegin = () => {
     setVisibleBalloon(false);

@@ -14,13 +14,13 @@ import {
   setLocation,
   statusSelector,
 } from '../../../store/slices/location/slice';
-import { Coords, LocationItem } from '../../../store/slices/location/types';
-import { placemarkSelector, restaurantListSelector, setPlacemarks } from '../../../store/slices/restaurants/slice';
+import { AddressDetails, Coords, LocationItem } from '../../../store/slices/location/types';
+import { restaurantListSelector, setPlacemarks } from '../../../store/slices/restaurants/slice';
 import { Status } from '../../../store/utils/getExtraReducers';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Maps } from '../Maps';
-import { AddressProps, ModeOfUsingMaps } from '../Maps/Maps';
+import { ModeOfUsingMaps } from '../Maps/Maps';
 import { Button, DeliveryMethod } from './DeliveryMethod';
 import { Popup } from './Popup';
 import style from './findFood.module.scss';
@@ -38,17 +38,16 @@ export const FindFood: FC = () => {
   const error = useSelector(errorSelector);
   const status = useSelector(statusSelector);
 
-  const placemarks = useSelector(placemarkSelector);
   const listRest = useSelector(restaurantListSelector);
 
-  const [searchValue, setSearchValue] = useState<string>('');
+  const [searchValue, setSearchValue] = useState<Coords | string>('');
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
   const [place, setPlace] = useState<string>('');
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
   const [mode, setMode] = useState<string>('');
   const [premiseNumber, setPremiseNumber] = useState<null | string>('');
-  const [streetName, setStreetName] = useState<null | string>('');
+  const [addressDetails, setAddressDetails] = useState<AddressDetails[] | undefined>([]);
 
   const navigate = useNavigate();
 
@@ -82,19 +81,25 @@ export const FindFood: FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log(searchValue);
     if (searchValue) {
-      dispatch(fetchLocation({ searchValue: searchValue.replace(';', '%3B') }));
+      dispatch(
+        fetchLocation({
+          searchValue,
+        }),
+      );
       setVisiblePopup(true);
     }
   }, [searchValue]);
 
   const handleFindFood = () => {
-    if (premiseNumber && streetName) {
+    const houseNumber = addressDetails?.find((el) => el['house']);
+    if (houseNumber?.house) {
+      setPremiseNumber(houseNumber.house);
       dispatch(setLocation({ address: place, coords: coord, deliveryStatus }));
-      navigate('search');
+      // navigate('search');
     }
   };
+
   const handleSearchValue = (text: string) => {
     setMode(ModeOfUsingMaps.SEARCH);
     setSearchValue(text);
@@ -102,17 +107,12 @@ export const FindFood: FC = () => {
 
   const handleChangeCoord = useCallback((coords: Coords) => {
     setCoord(coords);
+    setSearchValue(coords);
   }, []);
 
-  const handleChangeAddress = useCallback(({ address, premiseNumber, streetName }: AddressProps) => {
-    setPlace(address);
-    setStreetName(streetName);
-    setPremiseNumber(premiseNumber);
-    setSearchValue(address);
-  }, []);
-
-  const handleChangeLocation = useCallback(({ address, coords }: LocationItem) => {
+  const handleChangeLocation = useCallback(({ address, addressDetails, coords }: LocationItem) => {
     setMode(ModeOfUsingMaps.SEARCH);
+    setAddressDetails(addressDetails);
     setPlace(address);
     setCoord(coords);
     setVisiblePopup(false);
@@ -172,7 +172,7 @@ export const FindFood: FC = () => {
 
                 <SearchButton
                   classNames={cn(style.search__btn, {
-                    [style.search__btn_inactive]: !(premiseNumber && streetName) && searchValue,
+                    [style.search__btn_inactive]: !premiseNumber && searchValue,
                   })}
                   handleClick={handleFindFood}
                   icon="search"
@@ -193,13 +193,11 @@ export const FindFood: FC = () => {
             {place && (
               <Maps
                 coord={coord}
-                handleChangeAddress={handleChangeAddress}
                 handleChangeCoord={handleChangeCoord}
                 handleChangeMode={handleChangeMode}
                 handleChangeStatus={handleChangeDeliveryStatus}
                 mode={mode}
                 place={place}
-                placemarks={placemarks}
               />
             )}
           </div>

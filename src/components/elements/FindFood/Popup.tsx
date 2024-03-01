@@ -17,7 +17,7 @@ type PopupProps = {
 
 export const Popup = forwardRef<HTMLUListElement, PopupProps>(
   ({ errorMessage, handleChangeLocation, handleChangeStatus, isOpen, list }, ref) => {
-    useWhyDidYouUpdate('Popup', { errorMessage, handleChangeLocation, handleChangeStatus, isOpen, list });
+    // useWhyDidYouUpdate('Popup', { errorMessage, handleChangeLocation, handleChangeStatus, isOpen, list });
     const buttonRef = useRef<HTMLLIElement>(null);
     const [activeIndex, setActiveIndex] = useState<number>(-1);
 

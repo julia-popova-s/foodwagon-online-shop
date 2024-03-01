@@ -2,8 +2,12 @@ import { Status } from '../../utils/getExtraReducers';
 
 export type Coords = number[];
 
+export type AddressDetails = {
+  [kind: string]: string;
+};
 export interface LocationItem {
   address: string;
+  addressDetails?: AddressDetails[];
   coords: Coords;
   deliveryStatus?: boolean;
 }
@@ -15,6 +19,12 @@ export interface LocationSliceState {
   location: LocationItem;
   status: Status.LOADING;
 }
+
+interface Component {
+  kind: string;
+  name: string;
+}
+
 export interface GeoObject {
   Point: {
     pos: string;
@@ -29,32 +39,7 @@ export interface GeoObject {
   metaDataProperty: {
     GeocoderMetaData: {
       Address: {
-        Components: [
-          {
-            kind: string;
-            name: string;
-          },
-          {
-            kind: string;
-            name: string;
-          },
-          {
-            kind: string;
-            name: string;
-          },
-          {
-            kind: string;
-            name: string;
-          },
-          {
-            kind: string;
-            name: string;
-          },
-          {
-            kind: string;
-            name: string;
-          },
-        ];
+        Components: Component[];
         country_code: string;
         formatted: string;
         postal_code: string;
