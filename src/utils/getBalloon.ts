@@ -22,7 +22,7 @@ export const getBalloon = ({
   street_addr,
 }: Balloon) => {
   return `<div class="balloon">
-    <a href="/foodwagon/restaurant/${id}/product/${backgroundId}" class="balloon__link"/>
+    <a href="/foodwagon-online-shop/#/restaurant/${id}/product/${backgroundId}" class="balloon__link"/>
         <div class="balloon__logo">
           <img
             class="balloon__image"

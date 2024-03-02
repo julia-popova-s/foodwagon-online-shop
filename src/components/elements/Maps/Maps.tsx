@@ -49,7 +49,7 @@ export const Maps: FC<MapsProps> = ({
 
   const placemarks = useSelector(placemarkSelector);
   const isLoaded = useSelector(isLoadedSelector);
-
+  console.log(placemarks);
   const mapRef = useRef<ymaps.Map>();
   const placemarkRef = useRef<ymaps.Map>();
 

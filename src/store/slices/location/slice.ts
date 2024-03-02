@@ -11,10 +11,10 @@ export const fetchData = async function ({ searchValue }: Params, { rejectWithVa
   try {
     const resultCount = typeof searchValue === 'string' ? 5 : 1;
     const geocodeValue =
-      typeof searchValue === 'string' ? `Russia,${searchValue.replace(';', '%3B')}` : searchValue.join(', ');
+      typeof searchValue === 'string' ? `${searchValue.replace(';', '%3B')}` : searchValue.join(', ');
 
     const { data } = await axios.get<GeocoderResponse>(
-      `https://geocode-maps.yandex.ru/1.x?apikey=${process.env.REACT_APP_YANDEX_API_KEY}&geocode=${geocodeValue}&sco=longlat&format=json&lang=en_RU&results=${resultCount}`,
+      `https://geocode-maps.yandex.ru/1.x?apikey=${process.env.REACT_APP_YANDEX_API_KEY}&geocode=${geocodeValue}&kind=house&sco=longlat&format=json&lang=en_RU&results=${resultCount}`,
     );
 
     const result = getGeolocationCoordinates(data);

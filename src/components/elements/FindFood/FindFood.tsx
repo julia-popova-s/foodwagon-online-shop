@@ -14,7 +14,7 @@ import {
   setLocation,
   statusSelector,
 } from '../../../store/slices/location/slice';
-import { AddressDetails, Coords, LocationItem } from '../../../store/slices/location/types';
+import { Coords, LocationItem } from '../../../store/slices/location/types';
 import { restaurantListSelector, setPlacemarks } from '../../../store/slices/restaurants/slice';
 import { Status } from '../../../store/utils/getExtraReducers';
 import { TextInput } from '../../ui/TextInput';
@@ -26,7 +26,6 @@ import { Popup } from './Popup';
 import style from './findFood.module.scss';
 
 const MemoDeliveryMethod = memo(DeliveryMethod);
-const MemoTextInput = memo(TextInput);
 
 export const FindFood: FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
@@ -46,8 +45,7 @@ export const FindFood: FC = () => {
   const [place, setPlace] = useState<string>('');
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
   const [mode, setMode] = useState<string>('');
-  const [premiseNumber, setPremiseNumber] = useState<null | string>('');
-  const [addressDetails, setAddressDetails] = useState<AddressDetails[] | undefined>([]);
+  const [premiseNumber, setPremiseNumber] = useState<string>();
 
   const navigate = useNavigate();
 
@@ -92,11 +90,8 @@ export const FindFood: FC = () => {
   }, [searchValue]);
 
   const handleFindFood = () => {
-    const houseNumber = addressDetails?.find((el) => el['house']);
-    if (houseNumber?.house) {
-      setPremiseNumber(houseNumber.house);
+    if (premiseNumber) {
       dispatch(setLocation({ address: place, coords: coord, deliveryStatus }));
-      // navigate('search');
     }
   };
 
@@ -111,8 +106,9 @@ export const FindFood: FC = () => {
   }, []);
 
   const handleChangeLocation = useCallback(({ address, addressDetails, coords }: LocationItem) => {
+    const premiseNumber = addressDetails?.find((el) => el['house'])?.house;
     setMode(ModeOfUsingMaps.SEARCH);
-    setAddressDetails(addressDetails);
+    setPremiseNumber(premiseNumber);
     setPlace(address);
     setCoord(coords);
     setVisiblePopup(false);
@@ -154,7 +150,7 @@ export const FindFood: FC = () => {
             <MemoDeliveryMethod list={buttons} />
             <div className={style.findFood__search}>
               <div className={style.searchPanel}>
-                <MemoTextInput
+                <TextInput
                   address={place}
                   classNames={style.searchPanel__input}
                   handleKeyDown={handleKeyDown}
@@ -168,7 +164,7 @@ export const FindFood: FC = () => {
                       <ReactSVG src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`} />
                     </div>
                   )}
-                </MemoTextInput>
+                </TextInput>
 
                 <SearchButton
                   classNames={cn(style.search__btn, {
