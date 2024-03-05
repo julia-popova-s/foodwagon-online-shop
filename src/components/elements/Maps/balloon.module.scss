@@ -12,7 +12,24 @@
 
   padding: 10px 43px 10px 10px;
 
-  box-shadow: -5px 5px 5px #808080;
+  box-shadow: -5px 5px 25px #808080;
+  font-size: 14px;
+}
+
+.balloon__title,
+.balloon__coords {
+  margin-bottom: 5px;
+}
+
+.balloon__title,
+.balloon__status {
+  font-weight: 700;
+}
+
+
+
+.balloon__address {
+  margin-bottom: 5px;
 }
 
 .balloon__logo {

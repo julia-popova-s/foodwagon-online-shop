@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import ymaps from 'yandex-maps';
 
-import { isLoadedSelector } from '../../../store/slices/location/slice';
 import { Coords } from '../../../store/slices/location/types';
 import { placemarkSelector } from '../../../store/slices/restaurants/slice';
 import { Balloon } from './Balloon';
@@ -26,6 +25,7 @@ export type AddressProps = {
 
 type MapsProps = {
   coord: Coords;
+  handleChangeAddress: ({ address, premiseNumber }: { address: string; premiseNumber: null | string }) => void;
   handleChangeCoord: (coord: Coords) => void;
   handleChangeMode: (mode: string) => void;
   handleChangeStatus: (status: boolean) => void;
@@ -35,6 +35,7 @@ type MapsProps = {
 
 export const Maps: FC<MapsProps> = ({
   coord,
+  handleChangeAddress,
   handleChangeCoord,
   handleChangeMode,
   handleChangeStatus,
@@ -48,8 +49,8 @@ export const Maps: FC<MapsProps> = ({
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
 
   const placemarks = useSelector(placemarkSelector);
-  const isLoaded = useSelector(isLoadedSelector);
-  console.log(placemarks);
+  const [loaded, setLoaded] = useState<boolean>(false);
+
   const mapRef = useRef<ymaps.Map>();
   const placemarkRef = useRef<ymaps.Map>();
 
@@ -112,7 +113,27 @@ export const Maps: FC<MapsProps> = ({
         handleChangeStatus(false);
       }
     }
-  }, [coord, handleChangeStatus, zone]);
+  }, [coord, zone]);
+
+  useEffect(() => {
+    if (mode === ModeOfUsingMaps.DRAG && maps && coord?.length) {
+      setLoaded(false);
+
+      const resp = maps?.geocode(coord, { kind: 'house' });
+      resp
+        .then((res: any) => {
+          setLoaded(true);
+          const geocodeResult: ymaps.GeocodeResult = res.geoObjects.get(0);
+          handleChangeAddress({
+            address: geocodeResult.getAddressLine(),
+            premiseNumber: geocodeResult.getPremiseNumber(),
+          });
+        })
+        .catch((error: any) => {
+          console.error('The Promise is rejected!', error);
+        });
+    }
+  }, [coord]);
 
   const handleActionBegin = () => {
     setVisibleBalloon(false);
@@ -164,7 +185,7 @@ export const Maps: FC<MapsProps> = ({
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
             wrapper="span"
           />
-          {!isLoaded && (
+          {!loaded && (
             <ReactSVG
               className={style.placemark__preloader}
               src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`}

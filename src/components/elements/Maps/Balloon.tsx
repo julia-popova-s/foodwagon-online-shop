@@ -12,11 +12,11 @@ export const Balloon: FC<BalloonProps> = ({ address, coord, handleClick, isActiv
 
   return (
     <div className={cn(style.balloon, { [style.visible]: isActive })}>
-      <div className={style.balloon__contact}>Your location:</div>
+      <div className={style.balloon__title}>Your location:</div>
       <div className={style.balloon__address}>{address}</div>
-      <div className={style.balloon__address}>Coordinates: {coords}</div>
+      <div className={style.balloon__coords}>Coordinates: {coords}</div>
 
-      <div>Delivery: {status ? 'Available' : 'No'}</div>
+      <div className={style.balloon__status}>Delivery: {status ? 'Available' : 'No'}</div>
 
       <button className={style.balloon__close} onClick={handleClick}>
         <ReactSVG

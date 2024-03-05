@@ -15,7 +15,6 @@ import {
   statusSelector,
 } from '../../../store/slices/location/slice';
 import { Coords, LocationItem } from '../../../store/slices/location/types';
-import { restaurantListSelector, setPlacemarks } from '../../../store/slices/restaurants/slice';
 import { Status } from '../../../store/utils/getExtraReducers';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
@@ -37,15 +36,13 @@ export const FindFood: FC = () => {
   const error = useSelector(errorSelector);
   const status = useSelector(statusSelector);
 
-  const listRest = useSelector(restaurantListSelector);
-
   const [searchValue, setSearchValue] = useState<Coords | string>('');
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
   const [place, setPlace] = useState<string>('');
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
   const [mode, setMode] = useState<string>('');
-  const [premiseNumber, setPremiseNumber] = useState<string>();
+  const [premiseNumber, setPremiseNumber] = useState<null | string>();
 
   const navigate = useNavigate();
 
@@ -56,12 +53,6 @@ export const FindFood: FC = () => {
     ],
     [],
   );
-
-  useEffect(() => {
-    if (listRest.length) {
-      dispatch(setPlacemarks());
-    }
-  }, [listRest]);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -79,7 +70,7 @@ export const FindFood: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (searchValue) {
+    if (searchValue && mode === ModeOfUsingMaps.SEARCH) {
       dispatch(
         fetchLocation({
           searchValue,
@@ -95,10 +86,10 @@ export const FindFood: FC = () => {
     }
   };
 
-  const handleSearchValue = (text: string) => {
+  const handleSearchValue = useCallback((text: string) => {
     setMode(ModeOfUsingMaps.SEARCH);
     setSearchValue(text);
-  };
+  }, []);
 
   const handleChangeCoord = useCallback((coords: Coords) => {
     setCoord(coords);
@@ -138,6 +129,14 @@ export const FindFood: FC = () => {
   const handleChangeMode = useCallback((mode: string) => {
     setMode(mode);
   }, []);
+
+  const handleChangeAddress = useCallback(
+    ({ address, premiseNumber }: { address: string; premiseNumber: null | string }) => {
+      setPlace(address);
+      setPremiseNumber(premiseNumber);
+    },
+    [],
+  );
 
   return (
     <main className={style.findFoodWrapper}>
@@ -189,6 +188,7 @@ export const FindFood: FC = () => {
             {place && (
               <Maps
                 coord={coord}
+                handleChangeAddress={handleChangeAddress}
                 handleChangeCoord={handleChangeCoord}
                 handleChangeMode={handleChangeMode}
                 handleChangeStatus={handleChangeDeliveryStatus}
