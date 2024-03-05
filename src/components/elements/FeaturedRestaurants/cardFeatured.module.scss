@@ -81,6 +81,40 @@
   }
 }
 
+.card__distance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__run {
+  color: #79b93c;
+}
+
+.card__run_theme {
+  color: #F17228;
+}
+
+.card__runIcon {
+  margin-right: 5px;
+  vertical-align: middle;
+
+  svg {
+    width: 30px;
+    height: 30px;
+
+    path {
+      stroke: #79b93c;
+    }
+  }
+}
+
+.card__runIcon_theme {
+  svg path {
+    stroke: #F17228;
+  }
+}
+
 .location {
   display: flex;
   gap: 24px;

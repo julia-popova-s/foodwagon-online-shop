@@ -2,14 +2,20 @@ import { Status } from '../../utils/getExtraReducers';
 
 export type Coords = number[];
 
+
 export type AddressDetails = {
   [kind: string]: string;
 };
+export interface DistanceItem {
+  distance: string;
+  id: string;
+}
 export interface LocationItem {
   address: string;
   addressDetails?: AddressDetails[];
   coords: Coords;
   deliveryStatus?: boolean;
+  listOfDistances?: DistanceItem[];
 }
 
 export interface LocationSliceState {

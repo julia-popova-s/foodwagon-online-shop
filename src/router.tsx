@@ -9,6 +9,9 @@ const SignUpPage = lazy(() => import(/*webpackChunkName: "SignUpPage"*/ './compo
 const LoginPage = lazy(() => import(/*webpackChunkName: "LoginPage"*/ './components/pages/LoginPage'));
 const ProductPage = lazy(() => import(/*webpackChunkName: "ProductPage"*/ './components/pages/ProductPage'));
 const SearchPage = lazy(() => import(/*webpackChunkName: "SearchPage"*/ './components/pages/SearchPage'));
+const RestaurantPage = lazy(
+  () => import(/*webpackChunkName: "RestaurantPage"*/ './components/elements/FeaturedRestaurants'),
+);
 
 export const router = [
   {
@@ -38,6 +41,7 @@ export const router = [
         element: <SignUpPage />,
         path: 'register',
       },
+      { element: <RestaurantPage />, path: 'restaurant' },
     ],
     element: <App />,
     errorElement: <ErrorPage />,

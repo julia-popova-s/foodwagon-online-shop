@@ -55,6 +55,7 @@ const initialState: LocationSliceState = {
     addressDetails: [],
     coords: [30.35151817345885, 59.94971367493227],
     deliveryStatus: false,
+    listOfDistances: [],
   },
   status: Status.LOADING,
 };
@@ -83,6 +84,7 @@ export const addressSelector = (state: RootStore) => state.location.location.add
 export const coordsSelector = (state: RootStore) => state.location.location.coords;
 export const deliveryStatusSelector = (state: RootStore) => state.location.location.deliveryStatus;
 export const addressDetailsSelector = (state: RootStore) => state.location.location.addressDetails;
+export const listOfDistancesSelector = (state: RootStore) => state.location.location.listOfDistances;
 
 export const { setLoaded, setLocation } = locationSlice.actions;
 export default locationSlice.reducer;

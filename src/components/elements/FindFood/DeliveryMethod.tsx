@@ -5,16 +5,22 @@ import style from './deliveryMethod.module.scss';
 
 export type Button = {
   icon: string;
-  label: 'Delivery' | 'Pickup';
+  label: DeliveryType;
 };
 
-type DeliveryMethodProps = { list: Button[] };
+export enum DeliveryType {
+  DELIVERY = 'Delivery',
+  PICKUP = 'Pickup',
+}
 
-export const DeliveryMethod: FC<DeliveryMethodProps> = ({ list }) => {
+type DeliveryMethodProps = { handleChangeDeliveryType: (index: number) => void; list: Button[] };
+
+export const DeliveryMethod: FC<DeliveryMethodProps> = ({ handleChangeDeliveryType, list }) => {
   const [activeBtn, setActiveBtn] = useState(0);
 
   const handleSelectItem = (index: number) => {
     setActiveBtn(index);
+    handleChangeDeliveryType(index);
   };
 
   return (

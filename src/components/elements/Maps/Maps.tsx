@@ -6,26 +6,26 @@ import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import ymaps from 'yandex-maps';
 
-import { Coords } from '../../../store/slices/location/types';
+import { Coords, DistanceItem } from '../../../store/slices/location/types';
 import { placemarkSelector } from '../../../store/slices/restaurants/slice';
 import { Balloon } from './Balloon';
 import { deliveryZones } from './deliveryZones';
 import style from './maps.module.scss';
+
+export type ExtendedAddress = {
+  address: string;
+  listOfDistances: DistanceItem[];
+  premiseNumber: null | string;
+};
 
 export enum ModeOfUsingMaps {
   DRAG = 'drag',
   SEARCH = 'search',
 }
 
-export type AddressProps = {
-  address: string;
-  premiseNumber: null | string;
-  streetName: null | string;
-};
-
 type MapsProps = {
   coord: Coords;
-  handleChangeAddress: ({ address, premiseNumber }: { address: string; premiseNumber: null | string }) => void;
+  handleChangeAddress: ({ address, premiseNumber }: ExtendedAddress) => void;
   handleChangeCoord: (coord: Coords) => void;
   handleChangeMode: (mode: string) => void;
   handleChangeStatus: (status: boolean) => void;
@@ -45,7 +45,7 @@ export const Maps: FC<MapsProps> = ({
   const [maps, setMaps] = useState<any>();
   const [zone, setZone] = useState<any>(null);
   const [cafe, setCafe] = useState<any>(null);
-  const [obj, setObj] = useState({});
+  const [listOfDistances, setListOfDistances] = useState<DistanceItem[]>([]);
   const [activeAction, setActiveAction] = useState<boolean>(false);
   const [visibleBalloon, setVisibleBalloon] = useState<boolean>(false);
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
@@ -140,6 +140,8 @@ export const Maps: FC<MapsProps> = ({
 
   useEffect(() => {
     if (cafe && maps && coord?.length) {
+      setListOfDistances([]);
+
       const sortedCafeList = cafe.sortByDistance(coord);
       sortedCafeList.each((obj: any) => {
         const distance = maps?.formatter?.distance(
@@ -147,8 +149,8 @@ export const Maps: FC<MapsProps> = ({
         );
         const id = obj.properties.get('id');
         obj.properties.set('balloonContentFooter', `Distance to you: ${distance}`);
-        setObj((prev) => {
-          return { ...prev, [id]: distance };
+        setListOfDistances((prev) => {
+          return [...prev, { distance, id }];
         });
       });
     }
@@ -165,6 +167,7 @@ export const Maps: FC<MapsProps> = ({
           const geocodeResult: ymaps.GeocodeResult = res.geoObjects.get(0);
           handleChangeAddress({
             address: geocodeResult?.getAddressLine(),
+            listOfDistances,
             premiseNumber: geocodeResult?.getPremiseNumber(),
           });
         })

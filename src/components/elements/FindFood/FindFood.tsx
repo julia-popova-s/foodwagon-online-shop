@@ -14,13 +14,13 @@ import {
   setLocation,
   statusSelector,
 } from '../../../store/slices/location/slice';
-import { Coords, LocationItem } from '../../../store/slices/location/types';
+import { Coords, DistanceItem, LocationItem } from '../../../store/slices/location/types';
 import { Status } from '../../../store/utils/getExtraReducers';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Maps } from '../Maps';
-import { ModeOfUsingMaps } from '../Maps/Maps';
-import { Button, DeliveryMethod } from './DeliveryMethod';
+import { ExtendedAddress, ModeOfUsingMaps } from '../Maps/Maps';
+import { Button, DeliveryMethod, DeliveryType } from './DeliveryMethod';
 import { Popup } from './Popup';
 import style from './findFood.module.scss';
 
@@ -36,6 +36,7 @@ export const FindFood: FC = () => {
   const error = useSelector(errorSelector);
   const status = useSelector(statusSelector);
 
+  const [listOfDistances, setListOfDistances] = useState<DistanceItem[]>([]);
   const [searchValue, setSearchValue] = useState<Coords | string>('');
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
@@ -43,13 +44,14 @@ export const FindFood: FC = () => {
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
   const [mode, setMode] = useState<string>('');
   const [premiseNumber, setPremiseNumber] = useState<null | string>();
+  const [activeType, setActiveType] = useState<number>(0);
 
   const navigate = useNavigate();
 
   const buttons: Button[] = useMemo(
     () => [
-      { icon: '/images/find-food/delivery/delivery.svg', label: 'Delivery' },
-      { icon: '/images/find-food/delivery/pickup.svg', label: 'Pickup' },
+      { icon: '/images/find-food/delivery/delivery.svg', label: DeliveryType.DELIVERY },
+      { icon: '/images/find-food/delivery/pickup.svg', label: DeliveryType.PICKUP },
     ],
     [],
   );
@@ -81,8 +83,13 @@ export const FindFood: FC = () => {
   }, [searchValue]);
 
   const handleFindFood = () => {
-    if (premiseNumber) {
+    if (premiseNumber && buttons[activeType].label === DeliveryType.DELIVERY) {
       dispatch(setLocation({ address: place, coords: coord, deliveryStatus }));
+      navigate('restaurant');
+    }
+    if (premiseNumber && buttons[activeType].label === DeliveryType.PICKUP) {
+      dispatch(setLocation({ address: place, coords: coord, listOfDistances }));
+      navigate('restaurant');
     }
   };
 
@@ -130,14 +137,15 @@ export const FindFood: FC = () => {
     setMode(mode);
   }, []);
 
-  const handleChangeAddress = useCallback(
-    ({ address, premiseNumber }: { address: string; premiseNumber: null | string }) => {
-      setPlace(address);
-      setPremiseNumber(premiseNumber);
-    },
-    [],
-  );
+  const handleChangeAddress = useCallback(({ address, listOfDistances, premiseNumber }: ExtendedAddress) => {
+    setPlace(address);
+    setPremiseNumber(premiseNumber);
+    setListOfDistances(listOfDistances);
+  }, []);
 
+  const handleChangeDeliveryType = (index: number) => {
+    setActiveType(index);
+  };
   return (
     <main className={style.findFoodWrapper}>
       <div className="container">
@@ -146,7 +154,7 @@ export const FindFood: FC = () => {
           <p className={style.findFood__text}>Within a few clicks, find meals that are accessible near you</p>
 
           <div className={style.findFood__searchPanel}>
-            <MemoDeliveryMethod list={buttons} />
+            <MemoDeliveryMethod handleChangeDeliveryType={handleChangeDeliveryType} list={buttons} />
             <div className={style.findFood__search}>
               <div className={style.searchPanel}>
                 <TextInput
