@@ -1,4 +1,4 @@
-import { Map, ObjectManager, Placemark, YMaps } from '@pbe/react-yandex-maps';
+import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
@@ -44,6 +44,8 @@ export const Maps: FC<MapsProps> = ({
 }) => {
   const [maps, setMaps] = useState<any>();
   const [zone, setZone] = useState<any>(null);
+  const [cafe, setCafe] = useState<any>(null);
+  const [obj, setObj] = useState({});
   const [activeAction, setActiveAction] = useState<boolean>(false);
   const [visibleBalloon, setVisibleBalloon] = useState<boolean>(false);
   const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
@@ -51,7 +53,7 @@ export const Maps: FC<MapsProps> = ({
   const placemarks = useSelector(placemarkSelector);
   const [loaded, setLoaded] = useState<boolean>(false);
 
-  const mapRef = useRef<ymaps.Map>();
+  const mapRef = useRef<any>();
   const placemarkRef = useRef<ymaps.Map>();
 
   const updateSearchValue = useCallback(
@@ -80,6 +82,7 @@ export const Maps: FC<MapsProps> = ({
 
     if (map && mapRef.current) {
       const deliveryZone = map?.geoQuery(deliveryZones).addToMap(mapRef.current);
+
       deliveryZone.each(function (obj: any) {
         obj.options.set({
           fillColor: obj.properties.get('fill'),
@@ -92,6 +95,26 @@ export const Maps: FC<MapsProps> = ({
       });
 
       setZone(deliveryZone);
+    }
+
+    if (map && mapRef.current && placemarks.length) {
+      const cafe = map
+        .geoQuery({
+          features: placemarks,
+          type: 'FeatureCollection',
+        })
+        .addToMap(mapRef.current);
+
+      cafe.each((obj: any) => {
+        obj.options.set({
+          clusterize: true,
+          gridSize: 50,
+          openBalloonOnClick: true,
+          preset: 'islands#redDotIcon',
+        });
+      });
+
+      setCafe(cafe);
     }
   };
 
@@ -116,6 +139,22 @@ export const Maps: FC<MapsProps> = ({
   }, [coord, zone]);
 
   useEffect(() => {
+    if (cafe && maps && coord?.length) {
+      const sortedCafeList = cafe.sortByDistance(coord);
+      sortedCafeList.each((obj: any) => {
+        const distance = maps?.formatter?.distance(
+          maps.coordSystem.geo.getDistance(coord, obj.geometry.getCoordinates()),
+        );
+        const id = obj.properties.get('id');
+        obj.properties.set('balloonContentFooter', `Distance to you: ${distance}`);
+        setObj((prev) => {
+          return { ...prev, [id]: distance };
+        });
+      });
+    }
+  }, [coord, cafe, maps]);
+
+  useEffect(() => {
     if (mode === ModeOfUsingMaps.DRAG && maps && coord?.length) {
       setLoaded(false);
 
@@ -125,15 +164,15 @@ export const Maps: FC<MapsProps> = ({
           setLoaded(true);
           const geocodeResult: ymaps.GeocodeResult = res.geoObjects.get(0);
           handleChangeAddress({
-            address: geocodeResult.getAddressLine(),
-            premiseNumber: geocodeResult.getPremiseNumber(),
+            address: geocodeResult?.getAddressLine(),
+            premiseNumber: geocodeResult?.getPremiseNumber(),
           });
         })
         .catch((error: any) => {
           console.error('The Promise is rejected!', error);
         });
     }
-  }, [coord]);
+  }, [coord, maps]);
 
   const handleActionBegin = () => {
     setVisibleBalloon(false);
@@ -170,6 +209,8 @@ export const Maps: FC<MapsProps> = ({
           'geoObject.addon.balloon',
           'control.GeolocationControl',
           'geoQuery',
+          'coordSystem.geo',
+          'formatter',
         ]}
         className={style.map}
         instanceRef={mapRef}
@@ -194,22 +235,6 @@ export const Maps: FC<MapsProps> = ({
         </div>
 
         <Placemark geometry={coord} instanceRef={placemarkRef} options={{ iconOffset: [0, 0], visible: false }} />
-
-        <ObjectManager
-          clusters={{
-            preset: 'islands#redClusterIcons',
-          }}
-          objects={{
-            openBalloonOnClick: true,
-            preset: 'islands#redDotIcon',
-          }}
-          options={{
-            clusterize: true,
-            gridSize: 50,
-          }}
-          features={placemarks}
-          modules={['objectManager.addon.objectsBalloon', 'objectManager.addon.objectsHint', 'objectManager.Balloon']}
-        />
 
         <Balloon
           address={place}
