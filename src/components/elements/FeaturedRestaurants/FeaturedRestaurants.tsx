@@ -3,7 +3,12 @@ import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
 import { useAppDispatch } from '../../../store';
-import { fetchRestaurants, isLoadedSelector, restaurantListSelector } from '../../../store/slices/restaurants/slice';
+import {
+  fetchRestaurants,
+  isLoadedSelector,
+  restaurantListSelector,
+  setPlacemarks,
+} from '../../../store/slices/restaurants/slice';
 import {
   categorySelector,
   orderTypeSelector,
@@ -27,7 +32,8 @@ const sortItems = [
 ];
 
 export const FeaturedRestaurants: FC = () => {
-  const [limit, setLimit] = useState<number>(4);
+  const [limit, setLimit] = useState<number>(10);
+  
   const dispatch = useAppDispatch();
 
   const category = useSelector(categorySelector);
@@ -45,20 +51,26 @@ export const FeaturedRestaurants: FC = () => {
     dispatch(setSortType({ orderType, sortType }));
   }, []);
 
-  const handleLimit = () => {
-    setLimit(limit * 2);
+  const handleLimitChange = () => {
+    setLimit(limit + 10);
   };
 
   useEffect(() => {
     dispatch(
       fetchRestaurants({
         category: categoryNames[category],
-        limit: 20,
+        limit,
         orderType,
         sortType,
       }),
     );
   }, [sortType, category, limit, orderType]);
+
+  useEffect(() => {
+    if (isLoaded) {
+      dispatch(setPlacemarks());
+    }
+  }, [isLoaded]);
 
   return (
     <section className={style.restaurants} id="featuredRestaurants">
@@ -80,7 +92,7 @@ export const FeaturedRestaurants: FC = () => {
 
           <RestaurantList isLoading={isLoaded} list={list} />
 
-          <button className={style.restaurantList__btn} onClick={handleLimit}>
+          <button className={style.restaurantList__btn} onClick={handleLimitChange}>
             View All
             <ReactSVG
               className={style.restaurantList__btnLeft}

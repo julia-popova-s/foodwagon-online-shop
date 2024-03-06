@@ -47,7 +47,6 @@ export const PopularItems: FC = () => {
   };
 
   const sliderSettings = {
-    autoplay: true,
     dots: false,
     infinite: true,
     nextArrow: (

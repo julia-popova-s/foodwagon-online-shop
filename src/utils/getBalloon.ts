@@ -22,7 +22,7 @@ export const getBalloon = ({
   street_addr,
 }: Balloon) => {
   return `<div class="balloon">
-    <a href="/foodwagon/restaurant/${id}/product/${backgroundId}" class="balloon__link"/>
+    <a href="/foodwagon-online-shop/#/restaurant/${id}/product/${backgroundId}" class="balloon__link"/>
         <div class="balloon__logo">
           <img
             class="balloon__image"
@@ -40,6 +40,6 @@ export const getBalloon = ({
       </a>
     </div>
     <div class="balloon__address">${city}, ${street_addr}</div>
-    <div>${latitude.toFixed(6)}, ${longitude.toFixed(6)}</div>
+    <div>${longitude.toFixed(6)}, ${latitude.toFixed(6)} </div>
   </div>`;
 };
