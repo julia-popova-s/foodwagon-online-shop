@@ -59,6 +59,7 @@ const restaurantsSlice = createSlice({
               phone_number,
               street_addr,
             }),
+            id,
           },
           type: 'Feature',
         };

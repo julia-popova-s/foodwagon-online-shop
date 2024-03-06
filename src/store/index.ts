@@ -21,7 +21,7 @@ import {
 const persistConfig = {
   key: 'root',
   storage: storageSession,
-  whitelist: ['cart', 'user'],
+  whitelist: ['cart', 'user', 'location'],
 };
 
 const rootReducer = combineReducers({

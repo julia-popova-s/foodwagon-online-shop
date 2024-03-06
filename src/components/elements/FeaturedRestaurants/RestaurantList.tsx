@@ -18,7 +18,7 @@ export const RestaurantList: FC<RestaurantListProps> = ({ isLoading, list }) => 
     <div className={style.restaurantListWrapper}>
       {isLoading && list
         ? list.map((obj) => (
-            <Link key={obj.id} to={`restaurant/${obj.id}/product/${obj.backgroundId}`}>
+            <Link key={obj.id} to={`/restaurant/${obj.id}/product/${obj.backgroundId}`}>
               <CardFeatured {...obj} />
             </Link>
           ))

@@ -1,3 +1,4 @@
+import useWhyDidYouUpdate from 'ahooks/lib/useWhyDidYouUpdate';
 import cn from 'classnames';
 import { KeyboardEvent, forwardRef, useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
@@ -16,6 +17,7 @@ type PopupProps = {
 
 export const Popup = forwardRef<HTMLUListElement, PopupProps>(
   ({ errorMessage, handleChangeLocation, handleChangeStatus, isOpen, list }, ref) => {
+    // useWhyDidYouUpdate('Popup', { errorMessage, handleChangeLocation, handleChangeStatus, isOpen, list });
     const buttonRef = useRef<HTMLLIElement>(null);
     const [activeIndex, setActiveIndex] = useState<number>(-1);
 

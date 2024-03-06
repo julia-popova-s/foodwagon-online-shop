@@ -81,6 +81,49 @@
   }
 }
 
+.card__distance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__run {
+  color: #79b93c;
+}
+
+.card__run_theme {
+  color: #F17228;
+}
+
+.card__pickupIcon,
+.card__deliveryIcon {
+  margin-right: 10px;
+  vertical-align: middle;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.card__pickupIcon svg path {
+  stroke: #79b93c;
+  fill: #79b93c;
+}
+
+.card__pickupIcon_theme svg path {
+  stroke: #F17228;
+  fill: #F17228;
+}
+
+.card__deliveryIcon svg path {
+  fill: #79b93c;
+}
+
+.card__deliveryIcon_theme svg path {
+  fill: #F17228;
+}
+
 .location {
   display: flex;
   gap: 24px;

@@ -1,36 +1,36 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useSelector } from 'react-redux';
 
+import { deliveryTypeSelector } from '../../../store/slices/location/slice';
+import { DeliveryType } from '../../../store/slices/location/types';
 import { DeliveryTab } from '../../ui/buttons/DeliveryTab';
 import style from './deliveryMethod.module.scss';
 
-type Button = {
+export type Button = {
   icon: string;
-  label: 'Delivery' | 'Pickup';
+  label: DeliveryType;
 };
 
-const buttons: Button[] = [
-  { icon: '/images/find-food/delivery/delivery.svg', label: 'Delivery' },
-  { icon: '/images/find-food/delivery/pickup.svg', label: 'Pickup' },
-];
+type DeliveryMethodProps = { handleChangeDeliveryType: (label: DeliveryType) => void; list: Button[] };
 
-export const DeliveryMethod: FC = () => {
-  const [activeBtn, setActiveBtn] = useState(0);
+export const DeliveryMethod: FC<DeliveryMethodProps> = ({ handleChangeDeliveryType, list }) => {
+  const deliveryType = useSelector(deliveryTypeSelector);
 
-  const handleSelectItem = (index: number) => {
-    setActiveBtn(index);
+  const handleSelectItem = (label: DeliveryType) => {
+    handleChangeDeliveryType(label);
   };
+
   return (
     <div className={style.delivery}>
-      {buttons &&
-        buttons.map(({ icon, label }, i) => (
-          <DeliveryTab
-            active={activeBtn === i}
-            handleClickItem={() => handleSelectItem(i)}
-            icon={icon}
-            key={`${label}_${i}`}
-            label={label}
-          />
-        ))}
+      {list.map(({ icon, label }, i) => (
+        <DeliveryTab
+          active={deliveryType === label}
+          handleClickItem={() => handleSelectItem(label)}
+          icon={icon}
+          key={`${label}_${i}`}
+          label={label}
+        />
+      ))}
     </div>
   );
 };

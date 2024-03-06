@@ -1,7 +1,7 @@
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
-import { FC, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { FC, KeyboardEvent, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
@@ -11,19 +11,21 @@ import {
   errorSelector,
   fetchLocation,
   locationListSelector,
+  setDeliveryType,
   setLocation,
   statusSelector,
 } from '../../../store/slices/location/slice';
-import { Coords, LocationItem } from '../../../store/slices/location/types';
-import { placemarkSelector, restaurantListSelector, setPlacemarks } from '../../../store/slices/restaurants/slice';
+import { Coords, DeliveryStatus, DeliveryType, DistanceItem, LocationItem } from '../../../store/slices/location/types';
 import { Status } from '../../../store/utils/getExtraReducers';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Maps } from '../Maps';
-import { AddressProps, ModeOfUsingMaps } from '../Maps/Maps';
-import { DeliveryMethod } from './DeliveryMethod';
+import { ExtendedAddress, ModeOfUsingMaps } from '../Maps/Maps';
+import { Button, DeliveryMethod } from './DeliveryMethod';
 import { Popup } from './Popup';
 import style from './findFood.module.scss';
+
+const MemoDeliveryMethod = memo(DeliveryMethod);
 
 export const FindFood: FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
@@ -35,25 +37,25 @@ export const FindFood: FC = () => {
   const error = useSelector(errorSelector);
   const status = useSelector(statusSelector);
 
-  const placemarks = useSelector(placemarkSelector);
-  const listRest = useSelector(restaurantListSelector);
-
-  const [searchValue, setSearchValue] = useState<string>('');
+  const [listOfDistances, setListOfDistances] = useState<DistanceItem[]>([]);
+  const [deliveryStatus, setDeliveryStatus] = useState<DeliveryStatus>();
+  const [premiseNumber, setPremiseNumber] = useState<null | string>();
+  const [searchValue, setSearchValue] = useState<Coords | string>('');
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
+  const [activeType, setActiveType] = useState<DeliveryType>(DeliveryType.DELIVERY);
   const [place, setPlace] = useState<string>('');
-  const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
   const [mode, setMode] = useState<string>('');
-  const [premiseNumber, setPremiseNumber] = useState<null | string>('');
-  const [streetName, setStreetName] = useState<null | string>('');
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (listRest.length) {
-      dispatch(setPlacemarks());
-    }
-  }, [listRest]);
+  const buttons: Button[] = useMemo(
+    () => [
+      { icon: '/images/find-food/delivery/delivery.svg', label: DeliveryType.DELIVERY },
+      { icon: '/images/find-food/delivery/pickup.svg', label: DeliveryType.PICKUP },
+    ],
+    [],
+  );
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -71,35 +73,52 @@ export const FindFood: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (searchValue) {
-      dispatch(fetchLocation({ searchValue: searchValue.replace(';', '%3B') }));
+    if (searchValue && mode === ModeOfUsingMaps.SEARCH) {
+      dispatch(
+        fetchLocation({
+          searchValue,
+        }),
+      );
       setVisiblePopup(true);
     }
   }, [searchValue]);
 
+  const setDeliveryAddress = (item: LocationItem) => {
+    dispatch(setLocation(item));
+    navigate('restaurant');
+  };
+
   const handleFindFood = () => {
-    if (premiseNumber && streetName) {
-      dispatch(setLocation({ address: place, coords: coord, deliveryStatus }));
-      navigate('search');
+    const item: LocationItem = {
+      address: place,
+      coords: coord,
+      deliveryStatus,
+      deliveryType: activeType,
+      listOfDistances,
+    };
+
+    if (premiseNumber && activeType === DeliveryType.DELIVERY && deliveryStatus === DeliveryStatus.YES) {
+      setDeliveryAddress(item);
+    }
+    if (premiseNumber && activeType === DeliveryType.PICKUP) {
+      setDeliveryAddress(item);
     }
   };
-  const handleSearchValue = (text: string) => {
+
+  const handleSearchValue = useCallback((text: string) => {
     setMode(ModeOfUsingMaps.SEARCH);
     setSearchValue(text);
-  };
+  }, []);
 
   const handleChangeCoord = useCallback((coords: Coords) => {
     setCoord(coords);
+    setSearchValue(coords);
   }, []);
 
-  const handleChangeAddress = useCallback(({ address, premiseNumber, streetName }: AddressProps) => {
-    setPlace(address);
-    setStreetName(streetName);
-    setPremiseNumber(premiseNumber);
-  }, []);
-
-  const handleChangeLocation = useCallback(({ address, coords }: LocationItem) => {
+  const handleChangeLocation = useCallback(({ address, addressDetails, coords }: LocationItem) => {
+    const premiseNumber = addressDetails?.find((el) => el['house'])?.house;
     setMode(ModeOfUsingMaps.SEARCH);
+    setPremiseNumber(premiseNumber);
     setPlace(address);
     setCoord(coords);
     setVisiblePopup(false);
@@ -122,12 +141,23 @@ export const FindFood: FC = () => {
     setVisiblePopup(status);
   }, []);
 
-  const handleChangeDeliveryStatus = useCallback((status: boolean) => {
+  const handleChangeDeliveryStatus = useCallback((status: DeliveryStatus) => {
     setDeliveryStatus(status);
   }, []);
 
   const handleChangeMode = useCallback((mode: string) => {
     setMode(mode);
+  }, []);
+
+  const handleChangeAddress = useCallback(({ address, listOfDistances, premiseNumber }: ExtendedAddress) => {
+    setPlace(address);
+    setPremiseNumber(premiseNumber);
+    setListOfDistances(listOfDistances);
+  }, []);
+
+  const handleChangeDeliveryType = useCallback((label: DeliveryType) => {
+    setActiveType(label);
+    dispatch(setDeliveryType(label));
   }, []);
 
   return (
@@ -138,7 +168,7 @@ export const FindFood: FC = () => {
           <p className={style.findFood__text}>Within a few clicks, find meals that are accessible near you</p>
 
           <div className={style.findFood__searchPanel}>
-            <DeliveryMethod />
+            <MemoDeliveryMethod handleChangeDeliveryType={handleChangeDeliveryType} list={buttons} />
             <div className={style.findFood__search}>
               <div className={style.searchPanel}>
                 <TextInput
@@ -159,7 +189,7 @@ export const FindFood: FC = () => {
 
                 <SearchButton
                   classNames={cn(style.search__btn, {
-                    [style.search__btn_inactive]: !(premiseNumber && streetName) && searchValue,
+                    [style.search__btn_inactive]: !premiseNumber && searchValue,
                   })}
                   handleClick={handleFindFood}
                   icon="search"
@@ -177,7 +207,7 @@ export const FindFood: FC = () => {
               />
             </div>
 
-            {place && (
+            {(place || searchValue) && (
               <Maps
                 coord={coord}
                 handleChangeAddress={handleChangeAddress}
@@ -186,7 +216,6 @@ export const FindFood: FC = () => {
                 handleChangeStatus={handleChangeDeliveryStatus}
                 mode={mode}
                 place={place}
-                placemarks={placemarks}
               />
             )}
           </div>

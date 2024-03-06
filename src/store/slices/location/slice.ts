@@ -5,12 +5,16 @@ import axios from 'axios';
 import { RootStore } from '../..';
 import { getGeolocationCoordinates } from '../../../utils/getGeolocationCoordinates';
 import { CustomErrors, MyAsyncThunkConfig, Status, getExtraReducers } from '../../utils/getExtraReducers';
-import { GeocoderResponse, LocationItem, LocationSliceState } from './types';
+import { Coords, DeliveryType, GeocoderResponse, LocationItem, LocationSliceState } from './types';
 
 export const fetchData = async function ({ searchValue }: Params, { rejectWithValue }: any) {
   try {
+    const resultCount = typeof searchValue === 'string' ? 5 : 1;
+    const geocodeValue =
+      typeof searchValue === 'string' ? `Russia,${searchValue.replace(';', '%3B')}` : searchValue.join(', ');
+
     const { data } = await axios.get<GeocoderResponse>(
-      `https://geocode-maps.yandex.ru/1.x?apikey=${process.env.REACT_APP_YANDEX_API_KEY}&geocode=${searchValue}&sco=longlat&format=json&lang=en_RU&results=5`,
+      `https://geocode-maps.yandex.ru/1.x?apikey=${process.env.REACT_APP_YANDEX_API_KEY}&geocode=${geocodeValue}&kind=house&sco=longlat&format=json&lang=en_RU&results=${resultCount}`,
     );
 
     const result = getGeolocationCoordinates(data);
@@ -34,7 +38,7 @@ export const fetchData = async function ({ searchValue }: Params, { rejectWithVa
 };
 
 interface Params {
-  searchValue: string;
+  searchValue: Coords | string;
 }
 
 export const fetchLocation = createAsyncThunk<LocationItem[], Params, MyAsyncThunkConfig>(
@@ -47,9 +51,12 @@ const initialState: LocationSliceState = {
   isLoaded: false,
   list: [],
   location: {
-    address: 'Saint Petersburg, Shpalernaya Street, 26',
+    address: 'Shpalernaya Street, 26',
+    addressDetails: [],
     coords: [30.35151817345885, 59.94971367493227],
-    deliveryStatus: false,
+    deliveryStatus: null,
+    deliveryType: DeliveryType.DELIVERY,
+    listOfDistances: [],
   },
   status: Status.LOADING,
 };
@@ -61,6 +68,9 @@ const locationSlice = createSlice({
   name: 'location',
 
   reducers: {
+    setDeliveryType(state, action) {
+      state.location.deliveryType = action.payload;
+    },
     setLoaded(state, action) {
       state.isLoaded = action.payload;
     },
@@ -74,9 +84,13 @@ export const locationListSelector = (state: RootStore) => state.location.list;
 export const errorSelector = (state: RootStore) => state.location.error;
 export const isLoadedSelector = (state: RootStore) => state.location.isLoaded;
 export const statusSelector = (state: RootStore) => state.location.status;
+
 export const addressSelector = (state: RootStore) => state.location.location.address;
 export const coordsSelector = (state: RootStore) => state.location.location.coords;
 export const deliveryStatusSelector = (state: RootStore) => state.location.location.deliveryStatus;
+export const addressDetailsSelector = (state: RootStore) => state.location.location.addressDetails;
+export const listOfDistancesSelector = (state: RootStore) => state.location.location.listOfDistances;
+export const deliveryTypeSelector = (state: RootStore) => state.location.location.deliveryType;
 
-export const { setLoaded, setLocation } = locationSlice.actions;
+export const { setDeliveryType, setLoaded, setLocation } = locationSlice.actions;
 export default locationSlice.reducer;

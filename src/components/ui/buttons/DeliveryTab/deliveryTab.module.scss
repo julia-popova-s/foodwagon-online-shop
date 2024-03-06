@@ -28,6 +28,9 @@
 
   vertical-align: middle;
 
+  path {
+    fill: #757575;
+  }
 }
 
 .deliveryTabActive {
@@ -36,6 +39,6 @@
   transition: all 50ms;
 }
 
-.deliveryTabActive span>svg>path {
+.deliveryTabActive svg path {
   fill: $base-color;
 }

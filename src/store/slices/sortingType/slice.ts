@@ -6,7 +6,7 @@ import { RestaurantOrderType, RestaurantSortingType, SortingTypeSliceState } fro
 const initialState: SortingTypeSliceState = {
   category: 0,
   orderType: RestaurantOrderType.DESC,
-  sortType: RestaurantSortingType.RATING,
+  sortType: RestaurantSortingType.POPULAR,
 };
 
 const sortingTypeSlice = createSlice({
