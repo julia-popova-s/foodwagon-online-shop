@@ -40,7 +40,7 @@ export const FindFood: FC = () => {
   const [listOfDistances, setListOfDistances] = useState<DistanceItem[]>([]);
   const [deliveryStatus, setDeliveryStatus] = useState<DeliveryStatus>();
   const [premiseNumber, setPremiseNumber] = useState<null | string>();
-  const [searchValue, setSearchValue] = useState<Coords | string>('Shpalernaya Street, 26');
+  const [searchValue, setSearchValue] = useState<Coords | string>('');
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
   const [activeType, setActiveType] = useState<DeliveryType>(DeliveryType.DELIVERY);
@@ -207,7 +207,7 @@ export const FindFood: FC = () => {
               />
             </div>
 
-            {list && (
+            {(place || searchValue) && (
               <Maps
                 coord={coord}
                 handleChangeAddress={handleChangeAddress}

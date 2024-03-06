@@ -203,7 +203,7 @@ export const Maps: FC<MapsProps> = ({
           behaviors: ['default'],
           center: coord,
           controls: ['zoomControl', 'geolocationControl'],
-          zoom: 15,
+          zoom: 11,
         }}
         modules={[
           'geolocation',
