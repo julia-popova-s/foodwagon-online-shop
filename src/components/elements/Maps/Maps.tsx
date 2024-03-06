@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import ymaps from 'yandex-maps';
 
-import { Coords, DistanceItem } from '../../../store/slices/location/types';
+import { Coords, DeliveryStatus, DistanceItem } from '../../../store/slices/location/types';
 import { placemarkSelector } from '../../../store/slices/restaurants/slice';
 import { Balloon } from './Balloon';
 import { deliveryZones } from './deliveryZones';
@@ -28,7 +28,7 @@ type MapsProps = {
   handleChangeAddress: ({ address, premiseNumber }: ExtendedAddress) => void;
   handleChangeCoord: (coord: Coords) => void;
   handleChangeMode: (mode: string) => void;
-  handleChangeStatus: (status: boolean) => void;
+  handleChangeStatus: (status: DeliveryStatus) => void;
   mode: string;
   place: string;
 };
@@ -48,7 +48,7 @@ export const Maps: FC<MapsProps> = ({
   const [listOfDistances, setListOfDistances] = useState<DistanceItem[]>([]);
   const [activeAction, setActiveAction] = useState<boolean>(false);
   const [visibleBalloon, setVisibleBalloon] = useState<boolean>(false);
-  const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
+  const [deliveryStatus, setDeliveryStatus] = useState<DeliveryStatus>();
 
   const placemarks = useSelector(placemarkSelector);
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -129,11 +129,11 @@ export const Maps: FC<MapsProps> = ({
       const targetZone = zone.searchContaining(placemarkRef.current).get(0);
 
       if (targetZone) {
-        setDeliveryStatus(true);
-        handleChangeStatus(true);
+        setDeliveryStatus(DeliveryStatus.YES);
+        handleChangeStatus(DeliveryStatus.YES);
       } else {
-        setDeliveryStatus(false);
-        handleChangeStatus(false);
+        setDeliveryStatus(DeliveryStatus.NO);
+        handleChangeStatus(DeliveryStatus.NO);
       }
     }
   }, [coord, zone]);
@@ -148,7 +148,7 @@ export const Maps: FC<MapsProps> = ({
           maps.coordSystem.geo.getDistance(coord, obj.geometry.getCoordinates()),
         );
         const id = obj.properties.get('id');
-        obj.properties.set('balloonContentFooter', `Distance to you: ${distance}`);
+        obj.properties.set('balloonContentFooter', `Distance to You: ${distance}`);
         setListOfDistances((prev) => {
           return [...prev, { distance, id }];
         });

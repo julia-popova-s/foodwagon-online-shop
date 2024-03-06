@@ -2,7 +2,6 @@ import { Status } from '../../utils/getExtraReducers';
 
 export type Coords = number[];
 
-
 export type AddressDetails = {
   [kind: string]: string;
 };
@@ -10,11 +9,22 @@ export interface DistanceItem {
   distance: string;
   id: string;
 }
+export enum DeliveryStatus {
+  NO = 'Unavailable',
+  YES = 'Available',
+}
+
+export enum DeliveryType {
+  DELIVERY = 'Delivery',
+  PICKUP = 'Pickup',
+}
+
 export interface LocationItem {
   address: string;
   addressDetails?: AddressDetails[];
   coords: Coords;
-  deliveryStatus?: boolean;
+  deliveryStatus?: DeliveryStatus | null;
+  deliveryType?: DeliveryType;
   listOfDistances?: DistanceItem[];
 }
 

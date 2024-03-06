@@ -11,16 +11,17 @@ import {
   errorSelector,
   fetchLocation,
   locationListSelector,
+  setDeliveryType,
   setLocation,
   statusSelector,
 } from '../../../store/slices/location/slice';
-import { Coords, DistanceItem, LocationItem } from '../../../store/slices/location/types';
+import { Coords, DeliveryStatus, DeliveryType, DistanceItem, LocationItem } from '../../../store/slices/location/types';
 import { Status } from '../../../store/utils/getExtraReducers';
 import { TextInput } from '../../ui/TextInput';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { Maps } from '../Maps';
 import { ExtendedAddress, ModeOfUsingMaps } from '../Maps/Maps';
-import { Button, DeliveryMethod, DeliveryType } from './DeliveryMethod';
+import { Button, DeliveryMethod } from './DeliveryMethod';
 import { Popup } from './Popup';
 import style from './findFood.module.scss';
 
@@ -37,14 +38,14 @@ export const FindFood: FC = () => {
   const status = useSelector(statusSelector);
 
   const [listOfDistances, setListOfDistances] = useState<DistanceItem[]>([]);
-  const [searchValue, setSearchValue] = useState<Coords | string>('');
+  const [deliveryStatus, setDeliveryStatus] = useState<DeliveryStatus>();
+  const [premiseNumber, setPremiseNumber] = useState<null | string>();
+  const [searchValue, setSearchValue] = useState<Coords | string>('Shpalernaya Street, 26');
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
+  const [activeType, setActiveType] = useState<DeliveryType>(DeliveryType.DELIVERY);
   const [place, setPlace] = useState<string>('');
-  const [deliveryStatus, setDeliveryStatus] = useState<boolean>(true);
   const [mode, setMode] = useState<string>('');
-  const [premiseNumber, setPremiseNumber] = useState<null | string>();
-  const [activeType, setActiveType] = useState<number>(0);
 
   const navigate = useNavigate();
 
@@ -82,14 +83,25 @@ export const FindFood: FC = () => {
     }
   }, [searchValue]);
 
+  const setDeliveryAddress = (item: LocationItem) => {
+    dispatch(setLocation(item));
+    navigate('restaurant');
+  };
+
   const handleFindFood = () => {
-    if (premiseNumber && buttons[activeType].label === DeliveryType.DELIVERY) {
-      dispatch(setLocation({ address: place, coords: coord, deliveryStatus }));
-      navigate('restaurant');
+    const item: LocationItem = {
+      address: place,
+      coords: coord,
+      deliveryStatus,
+      deliveryType: activeType,
+      listOfDistances,
+    };
+
+    if (premiseNumber && activeType === DeliveryType.DELIVERY && deliveryStatus === DeliveryStatus.YES) {
+      setDeliveryAddress(item);
     }
-    if (premiseNumber && buttons[activeType].label === DeliveryType.PICKUP) {
-      dispatch(setLocation({ address: place, coords: coord, listOfDistances }));
-      navigate('restaurant');
+    if (premiseNumber && activeType === DeliveryType.PICKUP) {
+      setDeliveryAddress(item);
     }
   };
 
@@ -129,7 +141,7 @@ export const FindFood: FC = () => {
     setVisiblePopup(status);
   }, []);
 
-  const handleChangeDeliveryStatus = useCallback((status: boolean) => {
+  const handleChangeDeliveryStatus = useCallback((status: DeliveryStatus) => {
     setDeliveryStatus(status);
   }, []);
 
@@ -143,9 +155,11 @@ export const FindFood: FC = () => {
     setListOfDistances(listOfDistances);
   }, []);
 
-  const handleChangeDeliveryType = (index: number) => {
-    setActiveType(index);
-  };
+  const handleChangeDeliveryType = useCallback((label: DeliveryType) => {
+    setActiveType(label);
+    dispatch(setDeliveryType(label));
+  }, []);
+
   return (
     <main className={style.findFoodWrapper}>
       <div className="container">
@@ -193,7 +207,7 @@ export const FindFood: FC = () => {
               />
             </div>
 
-            {place && (
+            {list && (
               <Maps
                 coord={coord}
                 handleChangeAddress={handleChangeAddress}

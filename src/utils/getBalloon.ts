@@ -40,6 +40,6 @@ export const getBalloon = ({
       </a>
     </div>
     <div class="balloon__address">${city}, ${street_addr}</div>
-    <div>${latitude.toFixed(6)}, ${longitude.toFixed(6)}</div>
+    <div>${longitude.toFixed(6)}, ${latitude.toFixed(6)} </div>
   </div>`;
 };

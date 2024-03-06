@@ -5,7 +5,7 @@ import axios from 'axios';
 import { RootStore } from '../..';
 import { getGeolocationCoordinates } from '../../../utils/getGeolocationCoordinates';
 import { CustomErrors, MyAsyncThunkConfig, Status, getExtraReducers } from '../../utils/getExtraReducers';
-import { Coords, GeocoderResponse, LocationItem, LocationSliceState } from './types';
+import { Coords, DeliveryType, GeocoderResponse, LocationItem, LocationSliceState } from './types';
 
 export const fetchData = async function ({ searchValue }: Params, { rejectWithValue }: any) {
   try {
@@ -54,7 +54,8 @@ const initialState: LocationSliceState = {
     address: 'Shpalernaya Street, 26',
     addressDetails: [],
     coords: [30.35151817345885, 59.94971367493227],
-    deliveryStatus: false,
+    deliveryStatus: null,
+    deliveryType: DeliveryType.DELIVERY,
     listOfDistances: [],
   },
   status: Status.LOADING,
@@ -67,6 +68,9 @@ const locationSlice = createSlice({
   name: 'location',
 
   reducers: {
+    setDeliveryType(state, action) {
+      state.location.deliveryType = action.payload;
+    },
     setLoaded(state, action) {
       state.isLoaded = action.payload;
     },
@@ -80,11 +84,13 @@ export const locationListSelector = (state: RootStore) => state.location.list;
 export const errorSelector = (state: RootStore) => state.location.error;
 export const isLoadedSelector = (state: RootStore) => state.location.isLoaded;
 export const statusSelector = (state: RootStore) => state.location.status;
+
 export const addressSelector = (state: RootStore) => state.location.location.address;
 export const coordsSelector = (state: RootStore) => state.location.location.coords;
 export const deliveryStatusSelector = (state: RootStore) => state.location.location.deliveryStatus;
 export const addressDetailsSelector = (state: RootStore) => state.location.location.addressDetails;
 export const listOfDistancesSelector = (state: RootStore) => state.location.location.listOfDistances;
+export const deliveryTypeSelector = (state: RootStore) => state.location.location.deliveryType;
 
-export const { setLoaded, setLocation } = locationSlice.actions;
+export const { setDeliveryType, setLoaded, setLocation } = locationSlice.actions;
 export default locationSlice.reducer;

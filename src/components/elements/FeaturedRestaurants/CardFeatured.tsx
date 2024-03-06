@@ -3,7 +3,8 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
-import { listOfDistancesSelector } from '../../../store/slices/location/slice';
+import { deliveryTypeSelector, listOfDistancesSelector } from '../../../store/slices/location/slice';
+import { DeliveryType } from '../../../store/slices/location/types';
 import { OperatingModes } from '../../../store/utils/getExtraReducers';
 import { OpeningStatus, getOpenStatus } from '../../../store/utils/getOpenStatus';
 import { getPartOfString } from '../../../utils/getPartOfString';
@@ -19,21 +20,33 @@ type CardFeaturedProps = {
   name: string;
   weighted_rating_value: number;
 };
+
 export const CardFeatured: FC<CardFeaturedProps> = (props) => {
   const {
     deliveryTime,
     discount,
     id,
     imageSrc,
-    local_hours: { delivery },
+    local_hours: { delivery, pickup },
     logo_photos,
     name,
     weighted_rating_value,
   } = props;
-  const status = getOpenStatus(delivery);
+
+  const deliveryType = useSelector(deliveryTypeSelector);
   const listOfDistances = useSelector(listOfDistancesSelector);
+
   const distance = listOfDistances?.find((el) => el.id === id)?.distance;
-  const space = ' ';
+  let status;
+
+  if (deliveryType === DeliveryType.DELIVERY) {
+    status = getOpenStatus(delivery);
+  }
+
+  if (deliveryType === DeliveryType.PICKUP) {
+    status = getOpenStatus(pickup);
+  }
+
   return (
     <div className={style.card}>
       <div className={style.card__up}>
@@ -85,14 +98,26 @@ export const CardFeatured: FC<CardFeaturedProps> = (props) => {
               [style.card__run_theme]: status === OpeningStatus.CLOSED,
             })}
           >
-            <ReactSVG
-              className={cn(style.card__runIcon, {
-                [style.card__runIcon_theme]: status === OpeningStatus.CLOSED,
-              })}
-              src={process.env.PUBLIC_URL + '/images/run.svg'}
-              wrapper="span"
-            />
-            {distance.replace('&#160;', space)}
+            {deliveryType === DeliveryType.PICKUP && (
+              <ReactSVG
+                className={cn(style.card__pickupIcon, {
+                  [style.card__pickupIcon_theme]: status === OpeningStatus.CLOSED,
+                })}
+                src={process.env.PUBLIC_URL + '/images/run.svg'}
+                wrapper="span"
+              />
+            )}
+            {deliveryType === DeliveryType.DELIVERY && (
+              <ReactSVG
+                className={cn(style.card__deliveryIcon, {
+                  [style.card__deliveryIcon_theme]: status === OpeningStatus.CLOSED,
+                })}
+                src={process.env.PUBLIC_URL + '/images/find-food/delivery/delivery.svg'}
+                wrapper="span"
+              />
+            )}
+
+            {distance.replace('&#160;', ' ')}
           </div>
         )}
       </div>

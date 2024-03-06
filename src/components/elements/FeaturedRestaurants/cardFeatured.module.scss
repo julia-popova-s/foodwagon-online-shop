@@ -95,24 +95,33 @@
   color: #F17228;
 }
 
-.card__runIcon {
-  margin-right: 5px;
+.card__pickupIcon,
+.card__deliveryIcon {
+  margin-right: 10px;
   vertical-align: middle;
 
   svg {
     width: 30px;
     height: 30px;
-
-    path {
-      stroke: #79b93c;
-    }
   }
 }
 
-.card__runIcon_theme {
-  svg path {
-    stroke: #F17228;
-  }
+.card__pickupIcon svg path {
+  stroke: #79b93c;
+  fill: #79b93c;
+}
+
+.card__pickupIcon_theme svg path {
+  stroke: #F17228;
+  fill: #F17228;
+}
+
+.card__deliveryIcon svg path {
+  fill: #79b93c;
+}
+
+.card__deliveryIcon_theme svg path {
+  fill: #F17228;
 }
 
 .location {
