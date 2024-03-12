@@ -3,7 +3,7 @@ import { FC, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
-import { useAppDispatch } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import {
@@ -31,8 +31,8 @@ export const PopularItems: FC = () => {
     );
   }, []);
 
-  const isLoaded = useSelector(isLoadedSelector);
-  const products = useSelector(productListSelector);
+  const isLoaded = useAppSelector(isLoadedSelector);
+  const products = useAppSelector(productListSelector);
 
   const handleAddProduct = (product: Product) => {
     dispatch(addProduct(product));

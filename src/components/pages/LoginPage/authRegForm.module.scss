@@ -59,7 +59,7 @@
 
 
   &__label {
-    @include setTextStyle($font-normal, 16px, normal);
+    @include setTextStyle($font-normal, 16px, 24px);
     color: #666;
 
     margin-bottom: 7px;
@@ -102,4 +102,34 @@
 
 .formWrapper {
   padding: 0 30px;
+}
+
+.regForm__hide {
+  display: flex;
+  justify-content: space-between;
+}
+
+.regForm__btnHide {
+  @include setTextStyle($font-normal, 18px, 27px);
+
+  color: #666;
+  background-color: transparent;
+
+  margin-bottom: 7px;
+  padding-right: 10px;
+
+  outline: none;
+  border: none;
+
+  svg {
+    vertical-align: bottom;
+  }
+}
+
+.regForm__btnHideIcon {
+  padding-right: 6px;
+}
+
+.regForm__btnHideIcon svg path {
+  fill: #666;
 }

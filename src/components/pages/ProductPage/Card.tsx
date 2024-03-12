@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
+import { useAppSelector } from '../../../store';
 import { cartSelector } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import { getListProducts } from '../../../utils/getListProducts';
@@ -46,7 +46,7 @@ export const Card: FC<CardProps> = ({
     handleRemoveProduct(data);
   };
 
-  const cart = useSelector(cartSelector);
+  const cart = useAppSelector(cartSelector);
 
   const quantity = cart[restaurantId]?.items[id]?.quantity;
 

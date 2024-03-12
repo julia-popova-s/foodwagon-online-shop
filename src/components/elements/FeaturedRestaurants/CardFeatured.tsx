@@ -1,8 +1,8 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
+import { useAppSelector } from '../../../store';
 import { deliveryTypeSelector, listOfDistancesSelector } from '../../../store/slices/location/slice';
 import { DeliveryType } from '../../../store/slices/location/types';
 import { OperatingModes } from '../../../store/utils/getExtraReducers';
@@ -33,8 +33,8 @@ export const CardFeatured: FC<CardFeaturedProps> = (props) => {
     weighted_rating_value,
   } = props;
 
-  const deliveryType = useSelector(deliveryTypeSelector);
-  const listOfDistances = useSelector(listOfDistancesSelector);
+  const deliveryType = useAppSelector(deliveryTypeSelector);
+  const listOfDistances = useAppSelector(listOfDistancesSelector);
 
   const distance = listOfDistances?.find((el) => el.id === id)?.distance;
   let status;

@@ -1,8 +1,9 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import cn from 'classnames';
-import { FC } from 'react';
+import { FC, MouseEvent, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { ReactSVG } from 'react-svg';
 import * as yup from 'yup';
 
 import style from './authRegForm.module.scss';
@@ -33,10 +34,18 @@ const AuthRegForm: FC<AuthRegFormProps> = ({ errorMessage, handleClick, schema, 
     mode: 'onBlur',
     resolver: yupResolver(schema),
   });
+  const [isHidden, setIsHidden] = useState(false);
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onSubmit = ({ email, password }: Data) => {
     handleClick(email, password);
     reset();
+  };
+
+  const handlePasswordVisibility = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setIsHidden(!isHidden);
   };
 
   return (
@@ -63,6 +72,7 @@ const AuthRegForm: FC<AuthRegFormProps> = ({ errorMessage, handleClick, schema, 
               type="email"
               {...field}
               aria-invalid={errors.email ? 'true' : 'false'}
+              autoComplete="email"
             />
           )}
           control={control}
@@ -73,20 +83,43 @@ const AuthRegForm: FC<AuthRegFormProps> = ({ errorMessage, handleClick, schema, 
           {errors.email?.message}{' '}
         </div>
 
-        <label className={style.regForm__label} htmlFor="password">
-          Password
-        </label>
+        <div className={style.regForm__hide}>
+          <label className={style.regForm__label} htmlFor="password">
+            Password
+          </label>
+
+          <button className={style.regForm__btnHide} onClick={handlePasswordVisibility}>
+            {isHidden ? (
+              <ReactSVG
+                className={style.regForm__btnHideIcon}
+                src={`${process.env.PUBLIC_URL}/images/login/hide.svg`}
+                wrapper="span"
+              />
+            ) : (
+              <ReactSVG
+                className={style.regForm__btnHideIcon}
+                src={`${process.env.PUBLIC_URL}/images/login/see.svg`}
+                wrapper="span"
+              />
+            )}
+            {isHidden ? 'Hide' : 'Visible'}
+          </button>
+        </div>
 
         <Controller
-          render={({ field }) => (
-            <input
-              className={style.regForm__input}
-              id="password"
-              type="password"
-              {...field}
-              aria-invalid={errors.password ? 'true' : 'false'}
-            />
-          )}
+          render={({ field }) => {
+            return (
+              <input
+                autoComplete="current-password"
+                className={style.regForm__input}
+                id="password"
+                type={isHidden ? 'password' : 'text'}
+                {...field}
+                aria-invalid={errors.password ? 'true' : 'false'}
+                ref={inputRef}
+              />
+            );
+          }}
           control={control}
           name="password"
         />

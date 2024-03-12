@@ -1,11 +1,10 @@
 import cn from 'classnames';
 import { FC, useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { ReactSVG } from 'react-svg';
 import { v4 as uuidv4 } from 'uuid';
 
-import { useAppDispatch } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import { addProduct, cartSelector, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import { searchBySelector, setSearchBy } from '../../../store/slices/filters/slice';
@@ -46,12 +45,12 @@ export const SearchFood: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const searchBy = useSelector(searchBySelector);
+  const searchBy = useAppSelector(searchBySelector);
 
-  const isLoaded = useSelector(isLoadedSelector);
-  const products = useSelector(productListSelector);
+  const isLoaded = useAppSelector(isLoadedSelector);
+  const products = useAppSelector(productListSelector);
 
-  const cart = useSelector(cartSelector);
+  const cart = useAppSelector(cartSelector);
 
   const slider = useRef<Slider>(null);
 

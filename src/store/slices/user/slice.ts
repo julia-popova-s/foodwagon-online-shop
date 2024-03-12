@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { IdTokenResult } from 'firebase/auth/cordova/dist/auth';
 
 import { RootStore } from '../..';
 import { PayloadActionProps, User, UserSliceState } from './types';
@@ -8,6 +9,7 @@ const initialState: UserSliceState = {
   id: '',
   isAuth: false,
   list: [],
+  token: '',
 };
 
 const userSlice = createSlice({
@@ -19,6 +21,7 @@ const userSlice = createSlice({
       state.id = '';
       state.isAuth = false;
       state.list = [];
+      state.token = '';
     },
     setOrders(state, action: PayloadAction<PayloadActionProps>) {
       state.list.push({
@@ -26,6 +29,9 @@ const userSlice = createSlice({
         restaurantId: action.payload.id,
         restaurantName: action.payload.name,
       });
+    },
+    setToken(state, action: PayloadAction<string>) {
+      state.token = action.payload;
     },
     setUser(state, action: PayloadAction<User>) {
       state.email = action.payload.email;
@@ -39,5 +45,5 @@ export const emailSelector = (state: RootStore) => state.user.email;
 export const idSelector = (state: RootStore) => state.user.id;
 export const isAuthSelector = (state: RootStore) => state.user.isAuth;
 
-export const { removeUser, setOrders, setUser } = userSlice.actions;
+export const { removeUser, setOrders, setToken, setUser } = userSlice.actions;
 export default userSlice.reducer;

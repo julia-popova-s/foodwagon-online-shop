@@ -2,10 +2,10 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 import ymaps from 'yandex-maps';
 
+import { useAppSelector } from '../../../store';
 import { Coords, DeliveryStatus, DistanceItem } from '../../../store/slices/location/types';
 import { placemarkSelector } from '../../../store/slices/restaurants/slice';
 import { Balloon } from './Balloon';
@@ -50,8 +50,8 @@ export const Maps: FC<MapsProps> = ({
   const [visibleBalloon, setVisibleBalloon] = useState<boolean>(false);
   const [deliveryStatus, setDeliveryStatus] = useState<DeliveryStatus>();
 
-  const placemarks = useSelector(placemarkSelector);
-  const [loaded, setLoaded] = useState<boolean>(false);
+  const placemarks = useAppSelector(placemarkSelector);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   const mapRef = useRef<any>();
   const placemarkRef = useRef<ymaps.Map>();
@@ -158,12 +158,12 @@ export const Maps: FC<MapsProps> = ({
 
   useEffect(() => {
     if (mode === ModeOfUsingMaps.DRAG && maps && coord?.length) {
-      setLoaded(false);
+      setIsLoaded(false);
 
       const resp = maps?.geocode(coord, { kind: 'house' });
       resp
         .then((res: any) => {
-          setLoaded(true);
+          setIsLoaded(true);
           const geocodeResult: ymaps.GeocodeResult = res.geoObjects.get(0);
           handleChangeAddress({
             address: geocodeResult?.getAddressLine(),
@@ -229,7 +229,7 @@ export const Maps: FC<MapsProps> = ({
             src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
             wrapper="span"
           />
-          {!loaded && (
+          {!isLoaded && (
             <ReactSVG
               className={style.placemark__preloader}
               src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`}
