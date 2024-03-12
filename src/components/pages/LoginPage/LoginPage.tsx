@@ -3,7 +3,8 @@ import { FC, Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
-import { setUser } from '../../../store/slices/user/slice';
+import { setToken, setUser } from '../../../store/slices/user/slice';
+import { AuthAPIErrors } from '../../../store/slices/user/types';
 import { loginSchema } from '../../../utils/fieldValidationSchemes';
 import Spinner from '../../ui/Spinner/Spinner';
 import AuthRegForm from './AuthRegForm';
@@ -26,10 +27,14 @@ export const Login: FC = () => {
           }),
         );
         navigate('/');
+        return user.getIdTokenResult();
+      })
+      .then(({ token }) => {
+        dispatch(setToken(token));
       })
       .catch(({ code, message }) => {
         switch (code) {
-          case 'auth/invalid-login-credentials':
+          case AuthAPIErrors.INVALID_CREDENTIAL:
             setErrorMessage('Invalid login details');
             break;
 

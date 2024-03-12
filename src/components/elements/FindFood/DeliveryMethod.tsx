@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 
+import { useAppSelector } from '../../../store';
 import { deliveryTypeSelector } from '../../../store/slices/location/slice';
 import { DeliveryType } from '../../../store/slices/location/types';
 import { DeliveryTab } from '../../ui/buttons/DeliveryTab';
@@ -14,7 +14,7 @@ export type Button = {
 type DeliveryMethodProps = { handleChangeDeliveryType: (label: DeliveryType) => void; list: Button[] };
 
 export const DeliveryMethod: FC<DeliveryMethodProps> = ({ handleChangeDeliveryType, list }) => {
-  const deliveryType = useSelector(deliveryTypeSelector);
+  const deliveryType = useAppSelector(deliveryTypeSelector);
 
   const handleSelectItem = (label: DeliveryType) => {
     handleChangeDeliveryType(label);

@@ -1,9 +1,8 @@
 import cn from 'classnames';
 import { FC, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import {
@@ -48,14 +47,14 @@ export const RestaurantPage: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const category = useSelector(categorySelector);
-  const orderType = useSelector(orderTypeSelector);
-  const sortType = useSelector(sortTypeSelector);
+  const category = useAppSelector(categorySelector);
+  const orderType = useAppSelector(orderTypeSelector);
+  const sortType = useAppSelector(sortTypeSelector);
 
-  const currentPage = useSelector(currentPageSelector);
-  const isLoaded = useSelector(isLoadedSelector);
-  const products = useSelector(productListSelector);
-  const status = useSelector(statusSelector);
+  const currentPage = useAppSelector(currentPageSelector);
+  const isLoaded = useAppSelector(isLoadedSelector);
+  const products = useAppSelector(productListSelector);
+  const status = useAppSelector(statusSelector);
 
   useEffect(() => {
     window.scrollTo(0, 0);

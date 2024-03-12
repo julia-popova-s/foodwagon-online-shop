@@ -2,11 +2,10 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { FC, KeyboardEvent, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
-import { useAppDispatch } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import {
   errorSelector,
   fetchLocation,
@@ -33,9 +32,9 @@ export const FindFood: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const list = useSelector(locationListSelector);
-  const error = useSelector(errorSelector);
-  const status = useSelector(statusSelector);
+  const list = useAppSelector(locationListSelector);
+  const error = useAppSelector(errorSelector);
+  const status = useAppSelector(statusSelector);
 
   const [listOfDistances, setListOfDistances] = useState<DistanceItem[]>([]);
   const [deliveryStatus, setDeliveryStatus] = useState<DeliveryStatus>();

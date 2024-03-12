@@ -3,7 +3,8 @@ import { FC, Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../store';
-import { setUser } from '../../../store/slices/user/slice';
+import { setToken, setUser } from '../../../store/slices/user/slice';
+import { AuthAPIErrors } from '../../../store/slices/user/types';
 import { signupSchema } from '../../../utils/fieldValidationSchemes';
 import Spinner from '../../ui/Spinner/Spinner';
 import AuthRegForm from './AuthRegForm';
@@ -28,10 +29,14 @@ export const SignUp: FC = () => {
           }),
         );
         navigate('/');
+        return user.getIdTokenResult();
+      })
+      .then(({ token }) => {
+        dispatch(setToken(token));
       })
       .catch(({ code, message }) => {
         switch (code) {
-          case 'auth/email-already-in-use':
+          case AuthAPIErrors.EMAIL_ALREADY_EXISTS:
             setErrorMessage('This email address is already in use by another account.');
             break;
 

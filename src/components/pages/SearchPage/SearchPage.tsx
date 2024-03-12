@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
+import { useAppDispatch, useAppSelector } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import {
@@ -18,13 +18,13 @@ import { SearchPanel } from './SearchPanel';
 import style from './searchPage.module.scss';
 
 export const SearchPage: FC = () => {
-  const error = useSelector(errorSelector);
-  const currentPage = useSelector(currentPageSelector);
-  const products = useSelector(productListSelector);
-  const isLoaded = useSelector(isLoadedSelector);
-  const status = useSelector(statusSelector);
+  const error = useAppSelector(errorSelector);
+  const currentPage = useAppSelector(currentPageSelector);
+  const products = useAppSelector(productListSelector);
+  const isLoaded = useAppSelector(isLoadedSelector);
+  const status = useAppSelector(statusSelector);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleChangePage = (pageNumber: number) => {
     dispatch(setCurrentPage(pageNumber));

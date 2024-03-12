@@ -1,10 +1,9 @@
 import cn from 'classnames';
-import { FC, useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
+import { useAppSelector } from '../../../store';
 import { addressSelector } from '../../../store/slices/location/slice';
-// import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { isAuthSelector } from '../../../store/slices/user/slice';
 import { CartButton } from '../../ui/buttons/CartButton';
 import { DeliverAddress } from './DeliverAddress';
@@ -16,7 +15,9 @@ type MobileMenuProps = {
 
 export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
   const { pathname } = useLocation();
-  const address = useSelector(addressSelector);
+
+  const address = useAppSelector(addressSelector);
+  const isAuth = useAppSelector(isAuthSelector);
 
   useEffect(() => setMenuIsVisible(false), [pathname]);
 
@@ -25,10 +26,6 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
   const handleClickMenu = () => {
     setMenuIsVisible(!menuIsVisible);
   };
-
-  // const menuRef = useOutsideClick(() => setMenuIsVisible(false));
-
-  const isAuth = useSelector(isAuthSelector);
 
   const getActiveClassName = ({ isActive }: { isActive: boolean }) =>
     [isActive ? style.active : '', style.menu__link].join(' ');
@@ -53,7 +50,6 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
         className={cn(style.menu, {
           [style.menuClosed]: !menuIsVisible,
         })}
-        // ref={menuRef}
       >
         <ul className={style.menu__list}>
           <li className={style.menu__item}>
