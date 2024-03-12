@@ -1,8 +1,7 @@
 import { FC, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import { ProductOrderType, ProductSortingType } from '../../../store/slices/filters/types';
 import {
   fetchProductsFlashDeals,
@@ -18,8 +17,8 @@ const restaurantId = '333f1471-d10f-4b1d-a654-d3c070cb3500';
 export const FlashDeals: FC = () => {
   const dispatch = useAppDispatch();
 
-  const products = useSelector(productListSelector);
-  const status = useSelector(statusSelector);
+  const products = useAppSelector(productListSelector);
+  const status = useAppSelector(statusSelector);
 
   useEffect(() => {
     dispatch(

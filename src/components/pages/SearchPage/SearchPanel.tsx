@@ -1,7 +1,6 @@
 import { FC, KeyboardEvent, useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 
-import { useAppDispatch } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import {
   fetchProductsFastAccess,
   isLoadedSelector,
@@ -21,9 +20,9 @@ export const SearchPanel: FC = () => {
   const searchRef = useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
 
-  const isLoaded = useSelector(isLoadedSelector);
-  const products = useSelector(productListSelector);
-  const currentPage = useSelector(currentPageSelector);
+  const isLoaded = useAppSelector(isLoadedSelector);
+  const products = useAppSelector(productListSelector);
+  const currentPage = useAppSelector(currentPageSelector);
 
   const handleSearchValue = (text: string) => {
     setSearchValue(text);

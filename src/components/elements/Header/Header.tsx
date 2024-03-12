@@ -1,11 +1,11 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
+import { useAppDispatch, useAppSelector } from '../../../store';
 import { addressSelector } from '../../../store/slices/location/slice';
 import { isAuthSelector, removeUser } from '../../../store/slices/user/slice';
 import { LogoType } from '../../ui/LogoType';
@@ -20,11 +20,11 @@ export const Header: FC = () => {
 
   const { pathname } = useLocation();
 
-  const isAuth = useSelector(isAuthSelector);
+  const isAuth = useAppSelector(isAuthSelector);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const address = useSelector(addressSelector);
+  const address = useAppSelector(addressSelector);
 
   const handleLogOut = () => {
     dispatch(removeUser());

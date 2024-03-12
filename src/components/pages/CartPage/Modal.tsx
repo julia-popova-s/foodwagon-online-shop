@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
-import { useSelector } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 
+import { useAppSelector } from '../../../store';
 import { emailSelector } from '../../../store/slices/user/slice';
 import style from './modal.module.scss';
 
@@ -13,7 +13,8 @@ type ModalProps = {
 };
 
 export const Modal = forwardRef<HTMLDivElement, ModalProps>(({ handleCloseModal, isOpen, name, orderNumber }, ref) => {
-  const email = useSelector(emailSelector);
+  const email = useAppSelector(emailSelector);
+  
   return (
     <CSSTransition classNames="alert" in={isOpen} timeout={300} unmountOnExit>
       <div className={style.popupWrapper}>

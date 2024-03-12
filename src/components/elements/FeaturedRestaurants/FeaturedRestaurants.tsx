@@ -1,8 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { ReactSVG } from 'react-svg';
 
-import { useAppDispatch } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import {
   fetchRestaurants,
   isLoadedSelector,
@@ -33,15 +32,15 @@ const sortItems = [
 
 export const FeaturedRestaurants: FC = () => {
   const [limit, setLimit] = useState<number>(10);
-  
+
   const dispatch = useAppDispatch();
 
-  const category = useSelector(categorySelector);
-  const sortType = useSelector(sortTypeSelector);
-  const orderType = useSelector(orderTypeSelector);
+  const category = useAppSelector(categorySelector);
+  const sortType = useAppSelector(sortTypeSelector);
+  const orderType = useAppSelector(orderTypeSelector);
 
-  const isLoaded = useSelector(isLoadedSelector);
-  const list = useSelector(restaurantListSelector);
+  const isLoaded = useAppSelector(isLoadedSelector);
+  const list = useAppSelector(restaurantListSelector);
 
   const handleChangeCategory = useCallback((index: number) => {
     dispatch(setCategory(index));

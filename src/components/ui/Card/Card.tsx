@@ -2,9 +2,9 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { useAppSelector } from '../../../store';
 import { cartSelector } from '../../../store/slices/cart/slice';
 import { getPartOfString } from '../../../utils/getPartOfString';
 import { Discount } from '../Discount/Discount';
@@ -61,7 +61,7 @@ export const Card: FC<CardProps> = (props) => {
 
   const data: Product = { discount, id, image, price, restaurantId, restaurantName, title };
 
-  const cart = useSelector(cartSelector);
+  const cart = useAppSelector(cartSelector);
 
   const quantity: number = cart[restaurantId]?.items[id]?.quantity;
 

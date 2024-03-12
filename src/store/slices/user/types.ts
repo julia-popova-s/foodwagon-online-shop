@@ -30,6 +30,7 @@ export interface UserSliceState {
   id: string;
   isAuth: boolean;
   list: OrderListItem[];
+  token: string;
 }
 
 export interface PayloadActionProps {
@@ -42,4 +43,9 @@ export interface PayloadActionProps {
 export interface User {
   email: null | string;
   id: string;
+}
+
+export enum AuthAPIErrors {
+  EMAIL_ALREADY_EXISTS = 'auth/email-already-exists',
+  INVALID_CREDENTIAL = 'auth/invalid-credential',
 }

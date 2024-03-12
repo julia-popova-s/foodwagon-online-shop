@@ -1,8 +1,7 @@
 import { FC, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/slices/product/slice';
@@ -18,8 +17,8 @@ export const ProductPage: FC = () => {
 
   const { pathname } = useLocation();
 
-  const isLoaded = useSelector(isLoadedSelector);
-  const [product] = useSelector(productSelector);
+  const isLoaded = useAppSelector(isLoadedSelector);
+  const [product] = useAppSelector(productSelector);
 
   useEffect(() => {
     window.scrollTo(0, 0);

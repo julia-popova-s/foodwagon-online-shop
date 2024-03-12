@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
-import { useAppDispatch } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import {
   addProduct,
   addedGoodsSelector,
@@ -39,10 +39,10 @@ export const Cart: FC = () => {
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
 
-  const addedGoods = useSelector(addedGoodsSelector);
-  const cart = useSelector(cartSelector);
-  const totalQuantity = useSelector(totalQuantitySelector);
-  const isAuth = useSelector(isAuthSelector);
+  const totalQuantity = useAppSelector(totalQuantitySelector);
+  const addedGoods = useAppSelector(addedGoodsSelector);
+  const isAuth = useAppSelector(isAuthSelector);
+  const cart = useAppSelector(cartSelector);
 
   const dispatch = useAppDispatch();
 
