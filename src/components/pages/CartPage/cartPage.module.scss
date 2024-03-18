@@ -1,7 +1,7 @@
 @import "../../../styles/variables";
 
 .cart {
-  padding-top: 78px + 60px;
+  padding-top: $header-max-height + $padding-top;
 
   background: linear-gradient(rgba(255, 206, 103, 0.22) -42.47%,
       rgba(253, 237, 202, 0) 100%);

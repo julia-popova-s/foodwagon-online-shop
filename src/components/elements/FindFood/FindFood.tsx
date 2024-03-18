@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { FC, KeyboardEvent, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ReactSVG } from 'react-svg';
 
+import { ReactComponent as Spinner } from '../../../assets/images/search-panel/spinner.svg';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import {
   errorSelector,
@@ -45,16 +45,17 @@ export const FindFood: FC = () => {
   const [activeType, setActiveType] = useState<DeliveryType>(DeliveryType.DELIVERY);
   const [place, setPlace] = useState<string>('');
   const [mode, setMode] = useState<string>('');
+  const [isVisibleMap, setIsVisibleMap] = useState(false);
 
   const navigate = useNavigate();
 
-  const buttons: Button[] = useMemo(
-    () => [
-      { icon: '/images/find-food/delivery/delivery.svg', label: DeliveryType.DELIVERY },
-      { icon: '/images/find-food/delivery/pickup.svg', label: DeliveryType.PICKUP },
-    ],
-    [],
-  );
+  const buttons: Button[] = useMemo(() => [{ label: DeliveryType.DELIVERY }, { label: DeliveryType.PICKUP }], []);
+
+  useEffect(() => {
+    if (mode === ModeOfUsingMaps.SEARCH) {
+      setIsVisibleMap(true);
+    }
+  }, [mode]);
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -181,7 +182,7 @@ export const FindFood: FC = () => {
                   <FontAwesomeIcon className={style.searchPanel__inputIcon} icon={faLocationDot} size="xl" />
                   {status === Status.LOADING && searchValue && (
                     <div className={style.searchPanel__inputLoader}>
-                      <ReactSVG src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`} />
+                      <Spinner />
                     </div>
                   )}
                 </TextInput>
@@ -206,7 +207,7 @@ export const FindFood: FC = () => {
               />
             </div>
 
-            {(place || searchValue) && (
+            {isVisibleMap && (
               <Maps
                 coord={coord}
                 handleChangeAddress={handleChangeAddress}

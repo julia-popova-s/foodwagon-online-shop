@@ -37,8 +37,11 @@
 
   &__discount,
   &__fast {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+
     color: $white-color;
-    text-align: center;
 
     padding: 8px 16px;
 
@@ -52,17 +55,9 @@
 
   }
 
-  &__discount>span,
-  &__fast>span {
-    vertical-align: middle;
-
-    padding-right: 10px;
-  }
-
   &__fast {
     background: $primary-color;
   }
-
 
   &__text {
     display: inline-block;
@@ -81,46 +76,47 @@
   }
 }
 
-.card__distance {
+.card__status {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .card__run {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.card__distanceValue {
   color: #79b93c;
 }
 
-.card__run_theme {
+.card__distanceValue_theme {
   color: #F17228;
 }
 
 .card__pickupIcon,
 .card__deliveryIcon {
-  margin-right: 10px;
-  vertical-align: middle;
-
-  svg {
-    width: 30px;
-    height: 30px;
-  }
+  width: 30px;
+  height: 30px;
 }
 
-.card__pickupIcon svg path {
+.card__pickupIcon path {
   stroke: #79b93c;
-  fill: #79b93c;
+  fill: none;
 }
 
-.card__pickupIcon_theme svg path {
+.card__pickupIcon_theme path {
   stroke: #F17228;
-  fill: #F17228;
+  fill: none;
 }
 
-.card__deliveryIcon svg path {
+.card__deliveryIcon path {
   fill: #79b93c;
 }
 
-.card__deliveryIcon_theme svg path {
+.card__deliveryIcon_theme path {
   fill: #F17228;
 }
 
@@ -147,7 +143,7 @@
 
     margin-right: 8px;
 
-    vertical-align: middle;
+    vertical-align: bottom;
   }
 
   &__img {
@@ -156,6 +152,10 @@
   }
 
   &__rating {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+
     @include setTextStyle(400, 22px, 120%);
     color: $primary-color;
   }

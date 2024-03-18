@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
+import discount from '../../../assets/images/app-downLoad/discount.svg';
 import style from './appDownLoad.module.scss';
 
 type LinkType = {
@@ -31,11 +32,7 @@ export const AppDownLoad: FC = () => {
                 titles.map(([oneTitle, twoTitle], i) => {
                   return (
                     <div className={cn(style.upBlock__item, style.upBlock__item_border)} key={`${oneTitle}_${i}`}>
-                      <ReactSVG
-                        className={style.upBlock__img}
-                        src={process.env.PUBLIC_URL + '/images/install-app/discount.svg'}
-                      />
-
+                      <ReactSVG className={style.upBlock__img} src={discount} />
                       <div className={style.upBlock__text}>
                         <p>{oneTitle}</p>
                         <p>{twoTitle}</p>

@@ -1,17 +1,20 @@
 @import "../../../../styles/variables";
 
 .loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   @include setTextStyle(700, 18px, 100%);
 
-  width: 118px;
-  height: 46px;
+  padding: 13.5px 24px;
 
   border: none;
   border-radius: $border-radius-8;
 
   box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26),
     0px 20px 40px rgba(255, 174, 0, 0.29);
-    
+
   background: $white-color;
   background: linear-gradient(92.84deg, #ffb800 -47.72%, #ff8a00 136.81%);
   -webkit-background-clip: text;
@@ -21,7 +24,12 @@
 
   transition: all $transition-long ease;
 
-  &:hover &__icon svg>path {
+  &:hover {
+    transform: translateY(1px);
+    transition: transform $transition-short ease;
+  }
+
+  &:hover &__icon path {
     fill: $base-color;
 
     transition: all $transition-long ease;
@@ -35,21 +43,9 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
-
-    transition: all $transition-long ease;
   }
 
   &__icon {
-    margin-right: 10px;
-
-    vertical-align: middle;
-
     transition: all $transition-long ease;
-  }
-
-  &__name {
-    transition: all $transition-long ease;
-
-    margin-bottom: 15px;
   }
 }

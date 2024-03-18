@@ -8,8 +8,9 @@
   flex-wrap: wrap;
   gap: 16px;
   align-items: center;
+  max-width: 856px;
 
   &__btn {
-    height: 49px;
+    max-width: 199px;
   }
 }

@@ -4,16 +4,13 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap-reverse;
-  row-gap: 10px;
+  row-gap: 15px;
 
   margin-top: auto;
 
   &__btnToCart {
     background: $base-color;
     mix-blend-mode: normal;
-
-    width: 120px;
-    height: 60px;
 
     margin-top: auto;
     margin-right: 15px;

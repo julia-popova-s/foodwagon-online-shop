@@ -4,16 +4,18 @@ import { Link } from 'react-router-dom';
 
 import { Counter } from '../../Counter';
 import { SearchButton } from '../SearchButton';
-import style from './counterAndButton.module.scss';
+import style from './counterWithButton.module.scss';
 
-type CounterAndButtonProps = {
+type CounterWithButtonProps = {
+  classNames?: string;
   handleInputQuantity: (quantity: number) => void;
   handleMinusProduct: () => void;
   handlePlusProduct: () => void;
   quantity: number;
 };
 
-export const CounterAndButton: FC<CounterAndButtonProps> = ({
+export const CounterWithButton: FC<CounterWithButtonProps> = ({
+  classNames,
   handleInputQuantity,
   handleMinusProduct,
   handlePlusProduct,
@@ -22,7 +24,10 @@ export const CounterAndButton: FC<CounterAndButtonProps> = ({
   return (
     <div className={style.buttons}>
       <Link className={style.buttons__link} to={'/cart'}>
-        <SearchButton classNames={cn(style.buttons__btnToCart, style.buttons__btnToCart_color)} label="To Cart" />
+        <SearchButton
+          classNames={cn(style.buttons__btnToCart, style.buttons__btnToCart_color, classNames)}
+          label="To Cart"
+        />
       </Link>
 
       <Counter

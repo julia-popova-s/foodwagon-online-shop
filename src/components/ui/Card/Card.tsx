@@ -8,7 +8,7 @@ import { useAppSelector } from '../../../store';
 import { cartSelector } from '../../../store/slices/cart/slice';
 import { getPartOfString } from '../../../utils/getPartOfString';
 import { Discount } from '../Discount/Discount';
-import { CounterAndButton } from '../buttons/CounterAndButton';
+import { CounterWithButton } from '../buttons/CounterWithButton';
 import { SearchButton } from '../buttons/SearchButton';
 import style from './card.module.scss';
 
@@ -96,7 +96,7 @@ export const Card: FC<CardProps> = (props) => {
       <p className={style.card__price}>&#36; {price}</p>
 
       {quantity ? (
-        <CounterAndButton
+        <CounterWithButton
           handleInputQuantity={handleInputQuantity}
           handleMinusProduct={handleMinusProduct}
           handlePlusProduct={handlePlusProduct}

@@ -146,11 +146,14 @@
   }
 }
 
+.info__btns_theme,
+.buttons__order {
+  width: 283px;
+}
+
 .buttons {
   &__order {
     display: block;
-
-    width: 283px;
 
     transition: all $transition-long ease;
 
@@ -182,9 +185,14 @@
   }
 }
 
-@media (max-width:500px) {
+@media (max-width:515px) {
+
   .buttons__order {
     width: 100%;
+  }
+
+  .info__btns_theme {
+    width: calc(100% - 15px);
   }
 }
 

@@ -1,6 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { ReactSVG } from 'react-svg';
 
+import { ReactComponent as ButtonLeft } from '../../../assets/images/food/btn_left.svg';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import {
   fetchRestaurants,
@@ -92,12 +93,8 @@ export const FeaturedRestaurants: FC = () => {
           <RestaurantList isLoading={isLoaded} list={list} />
 
           <button className={style.restaurantList__btn} onClick={handleLimitChange}>
-            View All
-            <ReactSVG
-              className={style.restaurantList__btnLeft}
-              src={process.env.PUBLIC_URL + '/images/food/btn_left.svg'}
-              wrapper="span"
-            />
+            <span className={style.restaurantList__btnName}>View All</span>
+            <ButtonLeft className={style.restaurantList__btnIcon} />
           </button>
         </div>
       </div>

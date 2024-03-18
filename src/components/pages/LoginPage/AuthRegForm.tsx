@@ -3,9 +3,9 @@ import cn from 'classnames';
 import { FC, MouseEvent, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { ReactSVG } from 'react-svg';
 import * as yup from 'yup';
 
+import { HideButton } from '../../ui/buttons/HideButton';
 import style from './authRegForm.module.scss';
 
 type Data = {
@@ -34,7 +34,7 @@ const AuthRegForm: FC<AuthRegFormProps> = ({ errorMessage, handleClick, schema, 
     mode: 'onBlur',
     resolver: yupResolver(schema),
   });
-  const [isHidden, setIsHidden] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -87,23 +87,7 @@ const AuthRegForm: FC<AuthRegFormProps> = ({ errorMessage, handleClick, schema, 
           <label className={style.regForm__label} htmlFor="password">
             Password
           </label>
-
-          <button className={style.regForm__btnHide} onClick={handlePasswordVisibility}>
-            {isHidden ? (
-              <ReactSVG
-                className={style.regForm__btnHideIcon}
-                src={`${process.env.PUBLIC_URL}/images/login/hide.svg`}
-                wrapper="span"
-              />
-            ) : (
-              <ReactSVG
-                className={style.regForm__btnHideIcon}
-                src={`${process.env.PUBLIC_URL}/images/login/see.svg`}
-                wrapper="span"
-              />
-            )}
-            {isHidden ? 'Hide' : 'Visible'}
-          </button>
+          <HideButton handleClick={handlePasswordVisibility} isHidden={isHidden} />
         </div>
 
         <Controller

@@ -1,7 +1,7 @@
 @import "../../../styles/variables";
 
 .productPage {
-  padding-top: 138px;
+  padding-top: $header-max-height + $padding-top;
 }
 
 .product {

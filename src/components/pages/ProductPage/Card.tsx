@@ -9,7 +9,7 @@ import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import { getListProducts } from '../../../utils/getListProducts';
 import { getPartOfString } from '../../../utils/getPartOfString';
 import { Discount } from '../../ui/Discount';
-import { CounterAndButton } from '../../ui/buttons/CounterAndButton';
+import { CounterWithButton } from '../../ui/buttons/CounterWithButton';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import style from './card.module.scss';
 
@@ -106,7 +106,8 @@ export const Card: FC<CardProps> = ({
 
         <div className={cn(style.info__btns, style.buttons)}>
           {quantity ? (
-            <CounterAndButton
+            <CounterWithButton
+              classNames={style.info__btns_theme}
               handleInputQuantity={handleInputQuantity}
               handleMinusProduct={handleMinusProduct}
               handlePlusProduct={handlePlusProduct}

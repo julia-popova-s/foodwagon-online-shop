@@ -7,7 +7,6 @@ import { DeliveryTab } from '../../ui/buttons/DeliveryTab';
 import style from './deliveryMethod.module.scss';
 
 export type Button = {
-  icon: string;
   label: DeliveryType;
 };
 
@@ -22,11 +21,10 @@ export const DeliveryMethod: FC<DeliveryMethodProps> = ({ handleChangeDeliveryTy
 
   return (
     <div className={style.delivery}>
-      {list.map(({ icon, label }, i) => (
+      {list.map(({ label }, i) => (
         <DeliveryTab
           active={deliveryType === label}
           handleClickItem={() => handleSelectItem(label)}
-          icon={icon}
           key={`${label}_${i}`}
           label={label}
         />

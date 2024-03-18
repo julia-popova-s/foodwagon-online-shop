@@ -5,7 +5,7 @@
   background-repeat: no-repeat;
   background-position: 50% 100%;
   background-size: cover;
-  padding: 132px + 78px 0 132px 0;
+  padding: 132px + $header-max-height 0 132px 0;
 }
 
 .findFood {
@@ -88,6 +88,17 @@
   }
 }
 
+.search__btn:hover {
+  transform: translateY(1px);
+  transition: transform $transition-short ease;
+}
+
+.search__btn {
+  max-width: 199px;
+
+  transition: transform $transition-short ease;
+}
+
 .searchPanel {
   display: flex;
   flex-wrap: wrap;
@@ -114,7 +125,7 @@
     left: 48%;
     top: 13px;
 
-    svg path {
+    path {
       fill: rgba(255, 116, 116);
     }
   }
