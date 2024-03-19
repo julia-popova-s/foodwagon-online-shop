@@ -467,7 +467,7 @@
   "products": [
     {
       "category": "Meat",
-      "discount": 20,
+      "discount": 0,
       "id": "d8b1bfa0-7ba0-4abf-bce7-e9b6f80400cf",
       "image": "/images/food/633624.jpg",
       "ingredients": [
@@ -491,13 +491,13 @@
       "rating": 1,
       "restaurantId": "f8c6d4e8-5be0-425b-9aa3-4eead7924a40",
       "restaurantName": "Foodworld",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-26T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Crispy Oven-Baked Chicken With Creamy Cauliflower Mash"
     },
     {
       "category": "Fish",
-      "discount": 0,
+      "discount": 20,
       "id": "0f2c0499-70c4-41fe-b0c6-b0581c876322",
       "image": "/images/food/640461.jpg",
       "ingredients": [
@@ -522,13 +522,13 @@
       "rating": 2,
       "restaurantId": "f8c6d4e8-5be0-425b-9aa3-4eead7924a40",
       "restaurantName": "Foodworld",
-      "salePeriodEnd": "2024-01-28T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-01T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Creole Crawfish Cake Sliders"
     },
     {
       "category": "Fish",
-      "discount": 20,
+      "discount": 0,
       "id": "06bbd270-44b1-4ab2-b2da-290ae56b6d5b",
       "image": "/images/food/662363.jpg",
       "ingredients": [
@@ -553,13 +553,13 @@
       "rating": 3,
       "restaurantId": "f8c6d4e8-5be0-425b-9aa3-4eead7924a40",
       "restaurantName": "Foodworld",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-11T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Zesty Spicy Sweet and Sour Shrimp"
     },
     {
       "category": "Fish",
-      "discount": 20,
+      "discount": 10,
       "id": "537e7a55-4b86-4912-bcb6-4cc9536c69db",
       "image": "/images/food/639836.jpg",
       "ingredients": [
@@ -581,13 +581,13 @@
       "rating": 4,
       "restaurantId": "f8c6d4e8-5be0-425b-9aa3-4eead7924a40",
       "restaurantName": "Foodworld",
-      "salePeriodEnd": "2024-01-26T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-03T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Tropical Crusted Tilapia"
     },
     {
       "category": "Salad",
-      "discount": 20,
+      "discount": 10,
       "id": "6cc9d31e-8bbc-472f-b83f-4f7364b2085f",
       "image": "/images/food/638779.jpg",
       "ingredients": [
@@ -601,13 +601,13 @@
       "rating": 5,
       "restaurantId": "f8c6d4e8-5be0-425b-9aa3-4eead7924a40",
       "restaurantName": "Foodworld",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-13T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Wholesome Yogurt Fruit Medley"
     },
     {
       "category": "Salad",
-      "discount": 20,
+      "discount": 30,
       "id": "56a5b9f9-69c0-45b7-86b8-e26729ff8032",
       "image": "/images/food/1098387.jpg",
       "ingredients": [
@@ -628,13 +628,13 @@
       "rating": 1,
       "restaurantId": "f8c6d4e8-5be0-425b-9aa3-4eead7924a40",
       "restaurantName": "Foodworld",
-      "salePeriodEnd": "2024-01-28T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-30T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Exotic Quinoa Nut Salad"
     },
     {
       "category": "Dessert",
-      "discount": 30,
+      "discount": 10,
       "id": "87f07880-8b9f-4e7c-8f01-813d402795c2",
       "image": "/images/food/1003464.jpg",
       "ingredients": [
@@ -653,8 +653,8 @@
       "rating": 2,
       "restaurantId": "f8c6d4e8-5be0-425b-9aa3-4eead7924a40",
       "restaurantName": "Foodworld",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-29T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Tangy Blueberry Rhubarb Pie"
     },
     {
@@ -678,8 +678,8 @@
       "rating": 3,
       "restaurantId": "f8c6d4e8-5be0-425b-9aa3-4eead7924a40",
       "restaurantName": "Foodworld",
-      "salePeriodEnd": "2024-01-28T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-25T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Italian Pork and Pasta Bruschetta"
     },
     {
@@ -702,13 +702,13 @@
       "rating": 4,
       "restaurantId": "f8c6d4e8-5be0-425b-9aa3-4eead7924a40",
       "restaurantName": "Foodworld",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-07T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Garlic and Cauliflower Pasta with Crunchy Breadcrumbs"
     },
     {
       "category": "Meat",
-      "discount": 30,
+      "discount": 20,
       "id": "a36e532c-6b41-4c2a-bcfc-c7faf52f16bf",
       "image": "/images/food/209128.jpg",
       "ingredients": [
@@ -728,13 +728,13 @@
       "rating": 5,
       "restaurantId": "f8c6d4e8-5be0-425b-9aa3-4eead7924a40",
       "restaurantName": "Foodworld",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-07T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Grilled Pork with Romesco Sauce"
     },
     {
       "category": "Meat",
-      "discount": 20,
+      "discount": 30,
       "id": "8abf3c72-091c-4449-a27d-c75733311f72",
       "image": "/images/food/640803.jpg",
       "ingredients": [
@@ -754,13 +754,13 @@
       "rating": 1,
       "restaurantId": "09f0fe36-8d60-4c64-ab0d-74f3d61be998",
       "restaurantName": "Pizzahub",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-07T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Golden Buttermilk Fried Chicken"
     },
     {
       "category": "Fish",
-      "discount": 20,
+      "discount": 0,
       "id": "804c174c-1560-4266-875c-70a052d2f487",
       "image": "/images/food/660736.jpg",
       "ingredients": [
@@ -783,13 +783,13 @@
       "rating": 2,
       "restaurantId": "09f0fe36-8d60-4c64-ab0d-74f3d61be998",
       "restaurantName": "Pizzahub",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-13T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Ginger Teriyaki Halibut with Peach and Ginger Relish"
     },
     {
       "category": "Fish",
-      "discount": 10,
+      "discount": 0,
       "id": "fe278514-092c-4126-a817-7f55f1009de2",
       "image": "/images/food/645721.jpg",
       "ingredients": [
@@ -805,13 +805,13 @@
       "rating": 3,
       "restaurantId": "09f0fe36-8d60-4c64-ab0d-74f3d61be998",
       "restaurantName": "Pizzahub",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-04T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Herb-Infused Grilled Garlic Shrimp"
     },
     {
       "category": "Dessert",
-      "discount": 20,
+      "discount": 0,
       "id": "762af0dc-9e32-4a5d-8315-c750edda145c",
       "image": "/images/food/639303.jpg",
       "ingredients": [
@@ -832,8 +832,8 @@
       "rating": 4,
       "restaurantId": "09f0fe36-8d60-4c64-ab0d-74f3d61be998",
       "restaurantName": "Pizzahub",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-30T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Velvety Chocolate Berry Bliss Overnight Oats"
     },
     {
@@ -856,8 +856,8 @@
       "rating": 5,
       "restaurantId": "09f0fe36-8d60-4c64-ab0d-74f3d61be998",
       "restaurantName": "Pizzahub",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-16T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Zesty Fennel Citrus Salad with Crunchy Hazelnuts and Tangy Cranberries"
     },
     {
@@ -880,13 +880,13 @@
       "rating": 1,
       "restaurantId": "09f0fe36-8d60-4c64-ab0d-74f3d61be998",
       "restaurantName": "Pizzahub",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-16T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Wholesome Vegetable Quinoa Salad with Crunchy Cashews"
     },
     {
       "category": "Dessert",
-      "discount": 30,
+      "discount": 0,
       "id": "9f77d838-27cb-4373-bfa3-e3f19eecd030",
       "image": "/images/food/716379.jpg",
       "ingredients": [
@@ -905,13 +905,13 @@
       "rating": 2,
       "restaurantId": "09f0fe36-8d60-4c64-ab0d-74f3d61be998",
       "restaurantName": "Pizzahub",
-      "salePeriodEnd": "2024-01-28T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-03T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Coconut Chocolate Chip Banana Bread"
     },
     {
       "category": "Pasta",
-      "discount": 20,
+      "discount": 10,
       "id": "50720825-a154-4bfa-9618-aa1a4255a64b",
       "image": "/images/food/639629.jpg",
       "ingredients": [
@@ -928,13 +928,13 @@
       "rating": 3,
       "restaurantId": "09f0fe36-8d60-4c64-ab0d-74f3d61be998",
       "restaurantName": "Pizzahub",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-14T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Ultimate Creamy Mac and Cheese"
     },
     {
       "category": "Soup",
-      "discount": 10,
+      "discount": 0,
       "id": "082b281b-7cea-48e3-ae6f-d31886a85996",
       "image": "/images/food/640713.jpg",
       "ingredients": [
@@ -954,13 +954,13 @@
       "rating": 4,
       "restaurantId": "09f0fe36-8d60-4c64-ab0d-74f3d61be998",
       "restaurantName": "Pizzahub",
-      "salePeriodEnd": "2024-01-26T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-14T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Velvety Tomato Bisque"
     },
     {
       "category": "Meat",
-      "discount": 20,
+      "discount": 0,
       "id": "187d81f3-d149-4c0f-ba70-0082b563140c",
       "image": "/images/food/646651.jpg",
       "ingredients": [
@@ -980,13 +980,13 @@
       "rating": 5,
       "restaurantId": "09f0fe36-8d60-4c64-ab0d-74f3d61be998",
       "restaurantName": "Pizzahub",
-      "salePeriodEnd": "2024-01-26T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-05T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Herb-Infused Chicken with Creamy Sweet Potato Mash and Sautéed Broccoli"
     },
     {
       "category": "Meat",
-      "discount": 20,
+      "discount": 30,
       "id": "20791162-6f9d-45a3-afca-9d84f7c9bc26",
       "image": "/images/food/716358.jpg",
       "ingredients": [
@@ -1005,13 +1005,13 @@
       "rating": 1,
       "restaurantId": "ff95c008-802f-4473-afe0-0e0275feb942",
       "restaurantName": "Donuts hut",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-01T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Savory Bite-sized Chicken Bites"
     },
     {
       "category": "Dessert",
-      "discount": 10,
+      "discount": 0,
       "id": "9005dda2-d4dc-487f-81c2-ea66ccd66996",
       "image": "/images/food/642648.jpg",
       "ingredients": [
@@ -1035,13 +1035,13 @@
       "rating": 2,
       "restaurantId": "ff95c008-802f-4473-afe0-0e0275feb942",
       "restaurantName": "Donuts hut",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-15T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Decadent Chocolate Delight Cake"
     },
     {
       "category": "Dessert",
-      "discount": 10,
+      "discount": 0,
       "id": "4560b1c5-5a80-4ee7-8d8f-8bc94d9f5cc4",
       "image": "/images/food/716417.jpg",
       "ingredients": [
@@ -1061,13 +1061,13 @@
       "rating": 3,
       "restaurantId": "ff95c008-802f-4473-afe0-0e0275feb942",
       "restaurantName": "Donuts hut",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-05T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Delicious Strawberry Delight with Mini Strawberry PopTarts"
     },
     {
       "category": "Dessert",
-      "discount": 20,
+      "discount": 10,
       "id": "0cb26ce3-55b5-4c3e-b4c2-0148a9c6e7fc",
       "image": "/images/food/642413.jpg",
       "ingredients": [
@@ -1083,13 +1083,13 @@
       "rating": 4,
       "restaurantId": "ff95c008-802f-4473-afe0-0e0275feb942",
       "restaurantName": "Donuts hut",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-27T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Summertime Berry Deligh"
     },
     {
       "category": "Salad",
-      "discount": 10,
+      "discount": 0,
       "id": "22bbb7d7-e604-4048-8f75-4c4c3411b7ba",
       "image": "/images/food/640311.jpg",
       "ingredients": [
@@ -1108,13 +1108,13 @@
       "rating": 5,
       "restaurantId": "ff95c008-802f-4473-afe0-0e0275feb942",
       "restaurantName": "Donuts hut",
-      "salePeriodEnd": "2024-01-28T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-27T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Avocado Stuffed with Crab Salad"
     },
     {
       "category": "Salad",
-      "discount": 0,
+      "discount": 20,
       "id": "2d7aa0be-eb5a-4667-8e9c-1b3b607b9341",
       "image": "/images/food/660685.jpg",
       "ingredients": [
@@ -1134,13 +1134,13 @@
       "rating": 1,
       "restaurantId": "ff95c008-802f-4473-afe0-0e0275feb942",
       "restaurantName": "Donuts hut",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-16T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Layered Southern Salad in a Mason Jar"
     },
     {
       "category": "Dessert",
-      "discount": 20,
+      "discount": 10,
       "id": "d9177373-0c17-4085-8ec1-14959da8fa6f",
       "image": "/images/food/637761.jpg",
       "ingredients": ["cherries", "heavy cream", "whole milk", "sugar", "vanilla extract"],
@@ -1148,13 +1148,13 @@
       "rating": 2,
       "restaurantId": "ff95c008-802f-4473-afe0-0e0275feb942",
       "restaurantName": "Donuts hut",
-      "salePeriodEnd": "2024-01-26T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-27T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Velvety Cherry Delight"
     },
     {
       "category": "Pasta",
-      "discount": 30,
+      "discount": 0,
       "id": "a189700f-c5ba-4b59-9de5-35b63765408b",
       "image": "/images/food/633765.jpg",
       "ingredients": [
@@ -1175,8 +1175,8 @@
       "rating": 3,
       "restaurantId": "ff95c008-802f-4473-afe0-0e0275feb942",
       "restaurantName": "Donuts hut",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-16T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Savory Sausage Rigatoni Bake"
     },
     {
@@ -1202,13 +1202,13 @@
       "rating": 4,
       "restaurantId": "ff95c008-802f-4473-afe0-0e0275feb942",
       "restaurantName": "Donuts hut",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-11T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Tropical Grilled Chicken Skewers"
     },
     {
       "category": "Potato",
-      "discount": 10,
+      "discount": 0,
       "id": "5fd2ef9f-dfd2-42f9-ac5c-04b0ddb0e01f",
       "image": "/images/food/660322.jpg",
       "ingredients": [
@@ -1224,8 +1224,8 @@
       "rating": 5,
       "restaurantId": "ff95c008-802f-4473-afe0-0e0275feb942",
       "restaurantName": "Donuts hut",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-01T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Crispy Lemon Herb Potatoes"
     },
     {
@@ -1238,8 +1238,8 @@
       "rating": 1,
       "restaurantId": "c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5",
       "restaurantName": "Subway",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-30T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Sparkling Strawberry Lime Refresher"
     },
     {
@@ -1263,13 +1263,13 @@
       "rating": 2,
       "restaurantId": "c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5",
       "restaurantName": "Subway",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-14T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Zesty Lemon Strawberry Bread"
     },
     {
       "category": "Salad",
-      "discount": 20,
+      "discount": 10,
       "id": "6dee6b8d-de1c-433e-9ad0-83cfefd9a250",
       "image": "/images/food/715540.jpg",
       "ingredients": [
@@ -1285,8 +1285,8 @@
       "rating": 3,
       "restaurantId": "c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5",
       "restaurantName": "Subway",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-16T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Vibrant Mixed Berry Salad"
     },
     {
@@ -1311,13 +1311,13 @@
       "rating": 4,
       "restaurantId": "c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5",
       "restaurantName": "Subway",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-13T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Crispy Shrimp with Zesty Spicy Mayo"
     },
     {
       "category": "Salad",
-      "discount": 15,
+      "discount": 0,
       "id": "09549ce5-7113-49e2-a3d9-28f17dda9963",
       "image": "/images/food/631890.jpg",
       "ingredients": [
@@ -1338,13 +1338,13 @@
       "rating": 5,
       "restaurantId": "c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5",
       "restaurantName": "Subway",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-06T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Traditional Caesar Salad"
     },
     {
       "category": "Dessert",
-      "discount": 20,
+      "discount": 10,
       "id": "5452bd6c-654a-46d7-830a-e3b5b673de64",
       "image": "/images/food/655525.png",
       "ingredients": [
@@ -1363,13 +1363,13 @@
       "rating": 1,
       "restaurantId": "c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5",
       "restaurantName": "Subway",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-11T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Autumn Harvest Dessert Pizza"
     },
     {
       "category": "Meat",
-      "discount": 0,
+      "discount": 20,
       "id": "42c90812-087e-44bb-bba1-d69104d4605c",
       "image": "/images/food/636599.jpg",
       "ingredients": [
@@ -1389,13 +1389,13 @@
       "rating": 2,
       "restaurantId": "c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5",
       "restaurantName": "Subway",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-16T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Savory Butternut Squash Gnocchi in Whiskey Cream Sauce"
     },
     {
       "category": "Fish",
-      "discount": 10,
+      "discount": 0,
       "id": "9729d283-6be5-4825-a48f-125ab4e514f6",
       "image": "/images/food/1098393.jpg",
       "ingredients": [
@@ -1421,8 +1421,8 @@
       "rating": 3,
       "restaurantId": "c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5",
       "restaurantName": "Subway",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-01T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Spicy Cajun Shrimp Stew"
     },
     {
@@ -1450,13 +1450,13 @@
       "rating": 4,
       "restaurantId": "c8cf7e48-a4c2-4ef8-a2bd-adeb3d7b2ad5",
       "restaurantName": "Subway",
-      "salePeriodEnd": "2024-01-28T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-06T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Macau-style Salted Cod Fish"
     },
     {
       "category": "Dessert",
-      "discount": 10,
+      "discount": 0,
       "id": "a63f02d1-f53d-4e0d-9951-fc6767a45253",
       "image": "/images/food/661886.jpg",
       "ingredients": [
@@ -1476,8 +1476,8 @@
       "rating": 5,
       "restaurantId": "7251c374-832e-4fc8-83e1-d89e37c62ee9",
       "restaurantName": "Ruby Tuesday",
-      "salePeriodEnd": "2024-01-26T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-11T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Fluffy Strawberry Pancakes with Whipped Cream"
     },
     {
@@ -1498,8 +1498,8 @@
       "rating": 1,
       "restaurantId": "7251c374-832e-4fc8-83e1-d89e37c62ee9",
       "restaurantName": "Ruby Tuesday",
-      "salePeriodEnd": "2024-01-26T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-29T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Creamy Banana Chocolate Shake"
     },
     {
@@ -1525,13 +1525,13 @@
       "rating": 2,
       "restaurantId": "7251c374-832e-4fc8-83e1-d89e37c62ee9",
       "restaurantName": "Ruby Tuesday",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-25T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Indulgent Chocolate Raspberry Bliss Cake"
     },
     {
       "category": "Fish",
-      "discount": 20,
+      "discount": 30,
       "id": "a2de074e-75b7-4950-8c4e-460e3060944a",
       "image": "/images/food/631748.jpg",
       "ingredients": [
@@ -1556,8 +1556,8 @@
       "rating": 3,
       "restaurantId": "7251c374-832e-4fc8-83e1-d89e37c62ee9",
       "restaurantName": "Ruby Tuesday",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-04T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Savory Garlic Shrimp Stir-Fry"
     },
     {
@@ -1582,13 +1582,13 @@
       "rating": 4,
       "restaurantId": "7251c374-832e-4fc8-83e1-d89e37c62ee9",
       "restaurantName": "Ruby Tuesday",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-15T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Hearty Bean and Asparagus Salad with Mushroom Medley"
     },
     {
       "category": "Dessert",
-      "discount": 0,
+      "discount": 20,
       "id": "f66190dc-9e82-4023-9b29-ebeb393fbc72",
       "image": "/images/food/653445.jpg",
       "ingredients": [
@@ -1607,8 +1607,8 @@
       "rating": 5,
       "restaurantId": "7251c374-832e-4fc8-83e1-d89e37c62ee9",
       "restaurantName": "Ruby Tuesday",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-01T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Coconut Oat Cookies"
     },
     {
@@ -1637,8 +1637,8 @@
       "rating": 1,
       "restaurantId": "7251c374-832e-4fc8-83e1-d89e37c62ee9",
       "restaurantName": "Ruby Tuesday",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-07T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Velvety Ramen Soup with Creamy Broth"
     },
     {
@@ -1670,13 +1670,13 @@
       "rating": 2,
       "restaurantId": "7251c374-832e-4fc8-83e1-d89e37c62ee9",
       "restaurantName": "Ruby Tuesday",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-07T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Spiced Chicken Curry Soup"
     },
     {
       "category": "Potato",
-      "discount": 20,
+      "discount": 30,
       "id": "880295aa-7dcf-4795-a3bd-08f011e8de3a",
       "image": "/images/food/716356.jpg",
       "ingredients": [
@@ -1695,8 +1695,8 @@
       "rating": 3,
       "restaurantId": "7251c374-832e-4fc8-83e1-d89e37c62ee9",
       "restaurantName": "Ruby Tuesday",
-      "salePeriodEnd": "2024-01-26T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-25T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Creamy Yogurt Chicken with Roasted Garlic Potatoes"
     },
     {
@@ -1725,13 +1725,13 @@
       "rating": 4,
       "restaurantId": "6d5a62e8-e2f2-4481-9d9c-f6159f849c30",
       "restaurantName": "Kuakata Fried Chicken",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-30T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Decadent Peppermint Chocolate Cupcakes"
     },
     {
       "category": "Dessert",
-      "discount": 20,
+      "discount": 0,
       "id": "1f511840-5cdf-4efa-ac68-0129d3b9a329",
       "image": "/images/food/631841.jpg",
       "ingredients": [
@@ -1746,13 +1746,13 @@
       "rating": 5,
       "restaurantId": "6d5a62e8-e2f2-4481-9d9c-f6159f849c30",
       "restaurantName": "Kuakata Fried Chicken",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-03T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Quick and Healthy Dark Chocolate Truffles"
     },
     {
       "category": "Dessert",
-      "discount": 20,
+      "discount": 10,
       "id": "1cacf917-b992-4aca-8772-0d946a4e3be9",
       "image": "/images/food/646491.jpg",
       "ingredients": [
@@ -1773,13 +1773,13 @@
       "rating": 1,
       "restaurantId": "6d5a62e8-e2f2-4481-9d9c-f6159f849c30",
       "restaurantName": "Kuakata Fried Chicken",
-      "salePeriodEnd": "2024-01-26T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-11T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Nourishing Mint Chocolate Brownies"
     },
     {
       "category": "Burger",
-      "discount": 20,
+      "discount": 10,
       "id": "44beadfe-3a82-4efe-aa22-f1ab8f4f2c6c",
       "image": "/images/food/632874.jpg",
       "ingredients": [
@@ -1804,13 +1804,13 @@
       "rating": 2,
       "restaurantId": "6d5a62e8-e2f2-4481-9d9c-f6159f849c30",
       "restaurantName": "Kuakata Fried Chicken",
-      "salePeriodEnd": "2024-01-28T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-30T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Asian-inspired Salmon Burgers With Tangy Ginger Lime Sauce"
     },
     {
       "category": "Salad",
-      "discount": 0,
+      "discount": 10,
       "id": "303bc71e-6dce-4a19-8e9d-7a0f11a04ca3",
       "image": "/images/food/633171.jpg",
       "ingredients": [
@@ -1831,13 +1831,13 @@
       "rating": 3,
       "restaurantId": "6d5a62e8-e2f2-4481-9d9c-f6159f849c30",
       "restaurantName": "Kuakata Fried Chicken",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-04T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Tropical Shrimp Salad with Avocado and Mango"
     },
     {
       "category": "Dessert",
-      "discount": 10,
+      "discount": 0,
       "id": "f8d69c23-4b9b-4590-ab88-b327ecca0679",
       "image": "/images/food/653005.jpg",
       "ingredients": [
@@ -1857,13 +1857,13 @@
       "rating": 4,
       "restaurantId": "6d5a62e8-e2f2-4481-9d9c-f6159f849c30",
       "restaurantName": "Kuakata Fried Chicken",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-11T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Ultimate Oatmeal Chocolate Chip Cookies"
     },
     {
       "category": "Pasta",
-      "discount": 30,
+      "discount": 20,
       "id": "df8a30cb-6ce9-46be-9835-e7c35aa558d2",
       "image": "/images/food/654835.jpg",
       "ingredients": [
@@ -1887,8 +1887,8 @@
       "rating": 5,
       "restaurantId": "6d5a62e8-e2f2-4481-9d9c-f6159f849c30",
       "restaurantName": "Kuakata Fried Chicken",
-      "salePeriodEnd": "2024-01-26T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-10T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Italian Pasta and Bean Soup"
     },
     {
@@ -1920,8 +1920,8 @@
       "rating": 1,
       "restaurantId": "6d5a62e8-e2f2-4481-9d9c-f6159f849c30",
       "restaurantName": "Kuakata Fried Chicken",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-06T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Spicy Cajun Rice and Sausage Stew"
     },
     {
@@ -1944,13 +1944,13 @@
       "rating": 2,
       "restaurantId": "6d5a62e8-e2f2-4481-9d9c-f6159f849c30",
       "restaurantName": "Kuakata Fried Chicken",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-11T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Hearty Portuguese Kale and Potato Soup"
     },
     {
       "category": "Dessert",
-      "discount": 20,
+      "discount": 0,
       "id": "4d9774f3-5bd6-446a-b44c-1668e1c9eecf",
       "image": "/images/food/665182.jpg",
       "ingredients": [
@@ -1968,13 +1968,13 @@
       "rating": 3,
       "restaurantId": "fdcc1108-af68-442f-b623-9c39d8475096",
       "restaurantName": "Red Square",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-14T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Indulgent Banana Bread with White Chocolate and Macadamia Nuts"
     },
     {
       "category": "Soup",
-      "discount": 10,
+      "discount": 0,
       "id": "f45f6bc2-677d-4c9b-a6da-e88be83b0f8d",
       "image": "/images/food/1064362.jpg",
       "ingredients": [
@@ -1999,13 +1999,13 @@
       "rating": 4,
       "restaurantId": "fdcc1108-af68-442f-b623-9c39d8475096",
       "restaurantName": "Red Square",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-30T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Hearty Slow Cooker Potato Chowder"
     },
     {
       "category": "Vegetables",
-      "discount": 0,
+      "discount": 20,
       "id": "baeee381-7f52-40a4-a40e-487b3299b4e6",
       "image": "/images/food/641060.jpg",
       "ingredients": [
@@ -2025,13 +2025,13 @@
       "rating": 5,
       "restaurantId": "fdcc1108-af68-442f-b623-9c39d8475096",
       "restaurantName": "Red Square",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-25T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Spiced Cabbage and Kale Bake"
     },
     {
       "category": "Pasta",
-      "discount": 10,
+      "discount": 0,
       "id": "8ca77fc7-cf94-47f2-a460-ce87620d8428",
       "image": "/images/food/660381.jpg",
       "ingredients": [
@@ -2051,13 +2051,13 @@
       "rating": 1,
       "restaurantId": "fdcc1108-af68-442f-b623-9c39d8475096",
       "restaurantName": "Red Square",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-13T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Creamy Smoked Salmon Linguine"
     },
     {
       "category": "Salad",
-      "discount": 20,
+      "discount": 0,
       "id": "aadc06f2-62db-4774-9f0c-3d55d89b5c4c",
       "image": "/images/food/646512.jpg",
       "ingredients": [
@@ -2076,13 +2076,13 @@
       "rating": 2,
       "restaurantId": "fdcc1108-af68-442f-b623-9c39d8475096",
       "restaurantName": "Red Square",
-      "salePeriodEnd": "2024-01-28T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-05T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Grilled Salmon Caesar Salad"
     },
     {
       "category": "Dessert",
-      "discount": 20,
+      "discount": 10,
       "id": "81b5f965-3c13-4e86-b2e2-33a90aaaaac8",
       "image": "/images/food/637824.jpg",
       "ingredients": [
@@ -2101,13 +2101,13 @@
       "rating": 3,
       "restaurantId": "fdcc1108-af68-442f-b623-9c39d8475096",
       "restaurantName": "Red Square",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-28T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Soft and Spicy Ginger Cookies"
     },
     {
       "category": "Cheese",
-      "discount": 10,
+      "discount": 20,
       "id": "7d4cc5d9-add4-4dd9-b185-a20e97f2f346",
       "image": "/images/food/637591.jpg",
       "ingredients": [
@@ -2125,13 +2125,13 @@
       "rating": 4,
       "restaurantId": "fdcc1108-af68-442f-b623-9c39d8475096",
       "restaurantName": "Red Square",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-12T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Creamy Cheese Tortellini"
     },
     {
       "category": "Meat",
-      "discount": 20,
+      "discount": 0,
       "id": "5273c58e-1df7-4f3b-82ce-1d6c76c010ab",
       "image": "/images/food/633955.jpg",
       "ingredients": [
@@ -2150,13 +2150,13 @@
       "rating": 5,
       "restaurantId": "fdcc1108-af68-442f-b623-9c39d8475096",
       "restaurantName": "Red Square",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-08T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Glazed Balsamic-Honey Chicken Drumsticks"
     },
     {
       "category": "Meat",
-      "discount": 0,
+      "discount": 10,
       "id": "c7ad1c4f-562b-4523-9132-04e888348922",
       "image": "/images/food/638343.jpg",
       "ingredients": [
@@ -2180,13 +2180,13 @@
       "rating": 1,
       "restaurantId": "fdcc1108-af68-442f-b623-9c39d8475096",
       "restaurantName": "Red Square",
-      "salePeriodEnd": "2024-01-26T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-11T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Hearty Chicken Stew"
     },
     {
       "category": "Pasta",
-      "discount": 30,
+      "discount": 0,
       "id": "1a70e036-02af-4367-95a7-e11629063f4b",
       "image": "/images/food/715537.jpg",
       "ingredients": [
@@ -2206,8 +2206,8 @@
       "rating": 2,
       "restaurantId": "08e37b01-eb2c-4b54-9646-a0707eb23f18",
       "restaurantName": "Taco Bell",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-13T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Pork and Pasta with Bruschetta Flavors"
     },
     {
@@ -2231,13 +2231,13 @@
       "rating": 3,
       "restaurantId": "08e37b01-eb2c-4b54-9646-a0707eb23f18",
       "restaurantName": "Taco Bell",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-25T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Quinoa and Brown Rice Stir-Fry with Chicken"
     },
     {
       "category": "Pasta",
-      "discount": 20,
+      "discount": 10,
       "id": "b2717158-dfd0-4d18-a781-39e165bfbea6",
       "image": "/images/food/634900.jpg",
       "ingredients": [
@@ -2262,13 +2262,13 @@
       "rating": 4,
       "restaurantId": "08e37b01-eb2c-4b54-9646-a0707eb23f18",
       "restaurantName": "Taco Bell",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-26T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Ultimate Bolognese Sauce"
     },
     {
       "category": "Salad",
-      "discount": 25,
+      "discount": 10,
       "id": "4616ee74-f953-444a-a7e4-e760d7fb944e",
       "image": "/images/food/651453.jpg",
       "ingredients": [
@@ -2289,13 +2289,13 @@
       "rating": 5,
       "restaurantId": "08e37b01-eb2c-4b54-9646-a0707eb23f18",
       "restaurantName": "Taco Bell",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-16T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Zesty Tuna and Mediterranean Salad"
     },
     {
       "category": "Salad",
-      "discount": 0,
+      "discount": 20,
       "id": "e8d6932f-0093-4704-8ed6-a7d29343ec76",
       "image": "/images/food/792072.jpg",
       "ingredients": [
@@ -2315,13 +2315,13 @@
       "rating": 1,
       "restaurantId": "08e37b01-eb2c-4b54-9646-a0707eb23f18",
       "restaurantName": "Taco Bell",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-10T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Vibrant Kale and Citrus Salad"
     },
     {
       "category": "Dessert",
-      "discount": 30,
+      "discount": 10,
       "id": "d8f5e273-470f-4467-b6c5-21a971d4820b",
       "image": "/images/food/638797.jpg",
       "ingredients": [
@@ -2342,8 +2342,8 @@
       "rating": 2,
       "restaurantId": "08e37b01-eb2c-4b54-9646-a0707eb23f18",
       "restaurantName": "Taco Bell",
-      "salePeriodEnd": "2024-01-28T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-08T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Decadent Dark Chocolate Chiffon Cake"
     },
     {
@@ -2367,13 +2367,13 @@
       "rating": 3,
       "restaurantId": "08e37b01-eb2c-4b54-9646-a0707eb23f18",
       "restaurantName": "Taco Bell",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-05T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Creamy Smoked Salmon Linguine"
     },
     {
       "category": "Meat",
-      "discount": 20,
+      "discount": 10,
       "id": "d50c6236-ec75-42de-b7f5-5afec1efb4b4",
       "image": "/images/food/635675.jpg",
       "ingredients": [
@@ -2392,13 +2392,13 @@
       "rating": 4,
       "restaurantId": "08e37b01-eb2c-4b54-9646-a0707eb23f18",
       "restaurantName": "Taco Bell",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-28T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Whiskey-Glazed Barbecue Chicken"
     },
     {
       "category": "Fish",
-      "discount": 20,
+      "discount": 30,
       "id": "12c851ef-3714-4017-8388-2731f41a5e25",
       "image": "/images/food/640336.jpg",
       "ingredients": [
@@ -2420,13 +2420,13 @@
       "rating": 5,
       "restaurantId": "08e37b01-eb2c-4b54-9646-a0707eb23f18",
       "restaurantName": "Taco Bell",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-14T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Creamy Crab and Corn Chowder"
     },
     {
       "category": "Burger",
-      "discount": 0,
+      "discount": 20,
       "id": "ef2e9063-e4e2-45e8-9a8f-9635fa5097ef",
       "image": "/images/food/632502.jpg",
       "ingredients": [
@@ -2450,8 +2450,8 @@
       "rating": 1,
       "restaurantId": "28d1abb8-f79f-4fd7-bb8d-09b5dd6af441",
       "restaurantName": "Burger Arena",
-      "salePeriodEnd": "2024-01-28T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-15T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Smoky Apple Cheddar Turkey Burgers with Spicy Yogurt Sauce"
     },
     {
@@ -2476,8 +2476,8 @@
       "rating": 2,
       "restaurantId": "28d1abb8-f79f-4fd7-bb8d-09b5dd6af441",
       "restaurantName": "Burger Arena",
-      "salePeriodEnd": "2024-01-22T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-15T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Savory Cheese-Stuffed Turkey Meatballs"
     },
     {
@@ -2505,8 +2505,8 @@
       "rating": 3,
       "restaurantId": "28d1abb8-f79f-4fd7-bb8d-09b5dd6af441",
       "restaurantName": "Burger Arena",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-27T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Smoky Bacon Cheddar Burger with Spicy Chipotle Aioli Sauce"
     },
     {
@@ -2537,13 +2537,13 @@
       "rating": 4,
       "restaurantId": "28d1abb8-f79f-4fd7-bb8d-09b5dd6af441",
       "restaurantName": "Burger Arena",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-16T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Mediterranean-Style Cod with Tomato-Olive-Chorizo Sauce and Creamy Mashed Potatoes"
     },
     {
       "category": "Salad",
-      "discount": 0,
+      "discount": 20,
       "id": "ae4c5061-6164-4806-a910-b8046a703a80",
       "image": "/images/food/1098388.jpg",
       "ingredients": [
@@ -2563,8 +2563,8 @@
       "rating": 5,
       "restaurantId": "28d1abb8-f79f-4fd7-bb8d-09b5dd6af441",
       "restaurantName": "Burger Arena",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-12T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Refreshing Watermelon Salad with Feta, Walnut & Nigella Seeds"
     },
     {
@@ -2589,13 +2589,13 @@
       "rating": 1,
       "restaurantId": "28d1abb8-f79f-4fd7-bb8d-09b5dd6af441",
       "restaurantName": "Burger Arena",
-      "salePeriodEnd": "2024-01-23T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-06T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Crispy Oven-Baked Chicken"
     },
     {
       "category": "Pasta",
-      "discount": 20,
+      "discount": 10,
       "id": "42031890-e0eb-40d8-b276-a6386c24cd52",
       "image": "/images/food/654936.jpg",
       "ingredients": [
@@ -2612,13 +2612,13 @@
       "rating": 2,
       "restaurantId": "28d1abb8-f79f-4fd7-bb8d-09b5dd6af441",
       "restaurantName": "Burger Arena",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-28T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Fresh Tomato Pasta with Zesty Lemon-Infused Olive Oil"
     },
     {
       "category": "Meat",
-      "discount": 20,
+      "discount": 10,
       "id": "054d7d2c-8acc-4a97-b403-b084267eb6c1",
       "image": "/images/food/715397.jpg",
       "ingredients": [
@@ -2638,13 +2638,13 @@
       "rating": 3,
       "restaurantId": "28d1abb8-f79f-4fd7-bb8d-09b5dd6af441",
       "restaurantName": "Burger Arena",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-25T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Creamy Cheesy Chicken and Rice Casserole"
     },
     {
       "category": "Potato",
-      "discount": 10,
+      "discount": 30,
       "id": "0f8ba663-5d46-43a1-928f-e65c746e8e2c",
       "image": "/images/food/636632.jpg",
       "ingredients": ["Bread dough", "Butter", "Sugar", "Cinnamon", "Vanilla extract"],
@@ -2652,13 +2652,13 @@
       "rating": 4,
       "restaurantId": "28d1abb8-f79f-4fd7-bb8d-09b5dd6af441",
       "restaurantName": "Burger Arena",
-      "salePeriodEnd": "2024-01-28T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-09T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Fluffy Buttered Pull-Apart Bread"
     },
     {
       "category": "Potato",
-      "discount": 0,
+      "discount": 20,
       "id": "edb52a79-698c-4899-a9ab-bbffea0cd75a",
       "image": "/images/food/1046982.jpg",
       "ingredients": [
@@ -2680,8 +2680,8 @@
       "rating": 5,
       "restaurantId": "333f1471-d10f-4b1d-a654-d3c070cb3500",
       "restaurantName": "Greys Vage",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-29T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Savory Sweet Potato Sloppy Joes"
     },
     {
@@ -2705,8 +2705,8 @@
       "rating": 1,
       "restaurantId": "333f1471-d10f-4b1d-a654-d3c070cb3500",
       "restaurantName": "Greys Vage",
-      "salePeriodEnd": "2024-01-26T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-03-30T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Turkey and Rice Stuffed Peppers"
     },
     {
@@ -2737,13 +2737,13 @@
       "rating": 2,
       "restaurantId": "333f1471-d10f-4b1d-a654-d3c070cb3500",
       "restaurantName": "Greys Vage",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-02T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Crispy Korean Fried Chicken with Sweet and Spicy Glaze"
     },
     {
       "category": "Fish",
-      "discount": 0,
+      "discount": 20,
       "id": "622a0ff8-84f6-41e0-8b19-fe8f783bce14",
       "image": "/images/food/655733.jpg",
       "ingredients": [
@@ -2763,13 +2763,13 @@
       "rating": 3,
       "restaurantId": "333f1471-d10f-4b1d-a654-d3c070cb3500",
       "restaurantName": "Greys Vage",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-06T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Savory Fish Patties"
     },
     {
       "category": "Salad",
-      "discount": 10,
+      "discount": 0,
       "id": "ce69d603-42cd-4861-bf89-68b0d8ab394f",
       "image": "/images/food/661340.jpg",
       "ingredients": [
@@ -2789,13 +2789,13 @@
       "rating": 4,
       "restaurantId": "333f1471-d10f-4b1d-a654-d3c070cb3500",
       "restaurantName": "Greys Vage",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-05T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Fresh Spinach Salad with Tangy Strawberry Dressing"
     },
     {
       "category": "Dessert",
-      "discount": 10,
+      "discount": 20,
       "id": "dc5f6fab-9208-4ff9-9723-02004e17d6a1",
       "image": "/images/food/715514.jpg",
       "ingredients": [
@@ -2810,13 +2810,13 @@
       "rating": 5,
       "restaurantId": "333f1471-d10f-4b1d-a654-d3c070cb3500",
       "restaurantName": "Greys Vage",
-      "salePeriodEnd": "2024-01-25T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-11T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Festive Holiday Rice Krispie Treats"
     },
     {
       "category": "Fish",
-      "discount": 0,
+      "discount": 30,
       "id": "1ceb80b6-9ec6-48a4-ba26-69239e225642",
       "image": "/images/food/642594.jpg",
       "ingredients": [
@@ -2834,13 +2834,13 @@
       "rating": 1,
       "restaurantId": "333f1471-d10f-4b1d-a654-d3c070cb3500",
       "restaurantName": "Greys Vage",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-14T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Shrimp Farfalle with Tomato Basil Sauce"
     },
     {
       "category": "Cheese",
-      "discount": 0,
+      "discount": 10,
       "id": "eb26ddd0-695c-480d-af18-7b3741dd9389",
       "image": "/images/food/149425.jpg",
       "ingredients": [
@@ -2859,8 +2859,8 @@
       "rating": 2,
       "restaurantId": "333f1471-d10f-4b1d-a654-d3c070cb3500",
       "restaurantName": "Greys Vage",
-      "salePeriodEnd": "2024-01-24T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-10T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Cheesy Herb-Stuffed Chicken with Ham"
     },
     {
@@ -2881,8 +2881,8 @@
       "rating": 3,
       "restaurantId": "333f1471-d10f-4b1d-a654-d3c070cb3500",
       "restaurantName": "Greys Vage",
-      "salePeriodEnd": "2024-01-27T21:00:00.000Z",
-      "salePeriodStart": "2024-01-15T21:00:00.000Z",
+      "salePeriodEnd": "2024-04-08T21:00:00.000Z",
+      "salePeriodStart": "2024-03-18T21:00:00.000Z",
       "title": "Roasted Vegetables with Balsamic Glaze"
     }
   ]

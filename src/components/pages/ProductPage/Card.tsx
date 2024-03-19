@@ -58,7 +58,7 @@ export const Card: FC<CardProps> = ({
   const item = listOfOperatingStatus.find((el) => el.id === restaurantId);
   const status = deliveryType === DeliveryType.DELIVERY ? item?.deliveryEnabled : item?.pickupEnabled;
   const isClosed = status === OpeningStatus.CLOSED;
-  
+
   const quantity = cart[restaurantId]?.items[id]?.quantity;
 
   const handleInputQuantity = (quantity: number) => handleInputCount({ id, quantity, restaurantId });
@@ -87,7 +87,7 @@ export const Card: FC<CardProps> = ({
       <div className={cn(style.card__info, style.info)}>
         <p className={style.info__title}>{title}</p>
 
-        <p className={style.info__name}>
+        <div className={style.info__name}>
           <ReactSVG
             className={style.info__nameIcon}
             src={process.env.PUBLIC_URL + '/images/popular-items/map.svg'}
@@ -98,7 +98,7 @@ export const Card: FC<CardProps> = ({
             {restaurantName}
           </Link>
           <OperatingStatus classNames={style.info__nameStatus} isClosed={isClosed} />
-        </p>
+        </div>
 
         <div className={style.info__prices}>
           <div

@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { FC } from 'react';
 
 import { ReactComponent as Delivery } from '../../../assets/images/delivery/delivery.svg';
-import { ReactComponent as Run } from '../../../assets/images/food/run.svg';
+import { ReactComponent as Run } from '../../../assets/images/delivery/pickup.svg';
 import { DeliveryType } from '../../../store/slices/location/types';
 import style from './cardFeatured.module.scss';
 
