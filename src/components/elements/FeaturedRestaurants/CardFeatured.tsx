@@ -1,17 +1,18 @@
 import cn from 'classnames';
 import { FC } from 'react';
 
-import { ReactComponent as Delivery } from '../../../assets/images/delivery/delivery.svg';
 import { ReactComponent as Label } from '../../../assets/images/food/label.svg';
-import { ReactComponent as Run } from '../../../assets/images/food/run.svg';
 import { ReactComponent as Star } from '../../../assets/images/food/star.svg';
 import { ReactComponent as Watch } from '../../../assets/images/food/watch.svg';
 import { useAppSelector } from '../../../store';
 import { deliveryTypeSelector, listOfDistancesSelector } from '../../../store/slices/location/slice';
 import { DeliveryType } from '../../../store/slices/location/types';
+import { listOfOperatingStatusSelector } from '../../../store/slices/restaurants/slice';
 import { OperatingModes } from '../../../store/utils/getExtraReducers';
 import { OpeningStatus, getOpenStatus } from '../../../store/utils/getOpenStatus';
 import { getPartOfString } from '../../../utils/getPartOfString';
+import { Distance } from './Distance';
+import { OperatingStatus } from './OperatingStatus';
 import style from './cardFeatured.module.scss';
 
 type CardFeaturedProps = {
@@ -31,24 +32,25 @@ export const CardFeatured: FC<CardFeaturedProps> = (props) => {
     discount,
     id,
     imageSrc,
-    local_hours: { delivery, pickup },
     logo_photos,
     name,
     weighted_rating_value,
   } = props;
-
   const deliveryType = useAppSelector(deliveryTypeSelector);
   const listOfDistances = useAppSelector(listOfDistancesSelector);
-
+  const istOfOperatingStatus = useAppSelector(listOfOperatingStatusSelector);
+  
+  const statusEnabled = istOfOperatingStatus.find((el) => el.id === id);
   const distance = listOfDistances?.find((el) => el.id === id)?.distance;
+  
   let status;
 
   if (deliveryType === DeliveryType.DELIVERY) {
-    status = getOpenStatus(delivery);
+    status = statusEnabled?.deliveryEnabled;
   }
 
   if (deliveryType === DeliveryType.PICKUP) {
-    status = getOpenStatus(pickup);
+    status = statusEnabled?.pickupEnabled;
   }
 
   const isClosed = status === OpeningStatus.CLOSED;
@@ -86,40 +88,8 @@ export const CardFeatured: FC<CardFeaturedProps> = (props) => {
       </div>
 
       <div className={cn(style.card__status)}>
-        <div
-          className={cn(style.card__text, {
-            [style.card__text_theme]: isClosed,
-          })}
-        >
-          {isClosed ? 'Closed Now' : 'Open Now'}
-        </div>
-
-        {distance && (
-          <div className={cn(style.card__run)}>
-            {deliveryType === DeliveryType.PICKUP && (
-              <Run
-                className={cn(style.card__pickupIcon, {
-                  [style.card__pickupIcon_theme]: isClosed,
-                })}
-              />
-            )}
-            {deliveryType === DeliveryType.DELIVERY && (
-              <Delivery
-                className={cn(style.card__deliveryIcon, {
-                  [style.card__deliveryIcon_theme]: isClosed,
-                })}
-              />
-            )}
-
-            <div
-              className={cn(style.card__distanceValue, {
-                [style.card__distanceValue_theme]: isClosed,
-              })}
-            >
-              {distance.replace('&#160;', ' ')}
-            </div>
-          </div>
-        )}
+        <OperatingStatus isClosed={isClosed} />
+        {distance && <Distance deliveryType={deliveryType} distance={distance} isClosed={isClosed} />}
       </div>
     </div>
   );

@@ -40,10 +40,8 @@
 .balloon__closeIcon {
   transition: all 0.2s ease;
 
-  svg {
-    width: 30px;
-    height: 30px;
-  }
+  width: 30px;
+  height: 30px;
 
   &:hover path {
     fill: #f75900;

@@ -60,6 +60,8 @@
   }
 
   &__text {
+    @include setTextStyle($font-bold, 22px, 120%);
+
     display: inline-block;
 
     text-align: center;
@@ -86,6 +88,15 @@
   display: flex;
   align-items: center;
   column-gap: 10px;
+
+  @include setTextStyle($font-bold, 22px, 120%);
+  padding: 3px 16px;
+  background: rgba(121, 185, 60, 0.2);
+  border-radius: 16px;
+}
+
+.card__run_theme {
+  background-color: rgba(241, 114, 40, 0.2);
 }
 
 .card__distanceValue {

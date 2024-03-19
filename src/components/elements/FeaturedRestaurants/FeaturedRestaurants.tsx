@@ -1,5 +1,4 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import { ReactSVG } from 'react-svg';
 
 import { ReactComponent as ButtonLeft } from '../../../assets/images/food/btn_left.svg';
 import { useAppDispatch, useAppSelector } from '../../../store';
@@ -7,6 +6,7 @@ import {
   fetchRestaurants,
   isLoadedSelector,
   restaurantListSelector,
+  setListOfOperatingStatus,
   setPlacemarks,
 } from '../../../store/slices/restaurants/slice';
 import {
@@ -69,6 +69,7 @@ export const FeaturedRestaurants: FC = () => {
   useEffect(() => {
     if (isLoaded) {
       dispatch(setPlacemarks());
+      dispatch(setListOfOperatingStatus());
     }
   }, [isLoaded]);
 

@@ -2,9 +2,10 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { ReactSVG } from 'react-svg';
 import ymaps from 'yandex-maps';
 
+import { ReactComponent as Preloader } from '../../../assets/images/find-food/preloader.svg';
+import { ReactComponent as LocationMark } from '../../../assets/images/search-panel/location.svg';
 import { useAppSelector } from '../../../store';
 import { Coords, DeliveryStatus, DistanceItem } from '../../../store/slices/location/types';
 import { placemarkSelector } from '../../../store/slices/restaurants/slice';
@@ -224,17 +225,8 @@ export const Maps: FC<MapsProps> = ({
         onWheel={handleChangeZoom}
       >
         <div className={cn(style.placemark, { [style.active]: activeAction })} onClick={handleChangeBalloonStatus}>
-          <ReactSVG
-            className={cn(style.placemark__icon, { [style.active]: activeAction })}
-            src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
-            wrapper="span"
-          />
-          {!isLoaded && (
-            <ReactSVG
-              className={style.placemark__preloader}
-              src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`}
-            />
-          )}
+          <LocationMark className={cn(style.placemark__icon, { [style.active]: activeAction })} />
+          {!isLoaded && <Preloader className={style.placemark__preloader} />}
         </div>
 
         <Placemark geometry={coord} instanceRef={placemarkRef} options={{ iconOffset: [0, 0], visible: false }} />

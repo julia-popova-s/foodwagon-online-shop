@@ -20,9 +20,10 @@ export enum Status {
 
 export type ErrorType = CustomErrors | Error | null;
 
-interface Address {
+export interface CafeAddress {
   city: string;
   country: string;
+  house: string;
   latitude: number;
   longitude: number;
   street_addr: string;
@@ -38,7 +39,7 @@ export interface OperatingModes {
 }
 
 export interface Restaurant {
-  address: Address;
+  address: CafeAddress;
   aggregated_rating_count: number;
   backgroundId: string;
   cuisines: string[];

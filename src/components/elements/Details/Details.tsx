@@ -2,10 +2,10 @@
 import { FC } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { DetailsCard } from './DetailsCard';
+import { CardList } from './CardList';
 import style from './details.module.scss';
 
-type CardItem = { description: string; food: string; id: string; imageSrc: string; link: string; title: string };
+export type CardItem = { description: string; food: string; id: string; imageSrc: string; link: string; title: string };
 
 const CARDS: CardItem[] = [
   {
@@ -41,13 +41,7 @@ export const Details: FC = () => {
   return (
     <div className={style.cardBigList}>
       <div className="container">
-        <div className={style.cardList}>
-          {CARDS &&
-            CARDS.map((item, i) => {
-              const { id } = item;
-              return <DetailsCard key={id} {...item} flippedСard={(i + 1) % 2 !== 0} />;
-            })}
-        </div>
+        <CardList items={CARDS} />
       </div>
     </div>
   );

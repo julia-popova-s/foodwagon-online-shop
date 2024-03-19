@@ -6,8 +6,13 @@ import { ReactSVG } from 'react-svg';
 import { useAppSelector } from '../../../store';
 import { cartSelector } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
+import { deliveryTypeSelector } from '../../../store/slices/location/slice';
+import { DeliveryType } from '../../../store/slices/location/types';
+import { listOfOperatingStatusSelector } from '../../../store/slices/restaurants/slice';
+import { OpeningStatus } from '../../../store/utils/getOpenStatus';
 import { getListProducts } from '../../../utils/getListProducts';
 import { getPartOfString } from '../../../utils/getPartOfString';
+import { OperatingStatus } from '../../elements/FeaturedRestaurants/OperatingStatus';
 import { Discount } from '../../ui/Discount';
 import { CounterWithButton } from '../../ui/buttons/CounterWithButton';
 import { SearchButton } from '../../ui/buttons/SearchButton';
@@ -47,7 +52,13 @@ export const Card: FC<CardProps> = ({
   };
 
   const cart = useAppSelector(cartSelector);
+  const listOfOperatingStatus = useAppSelector(listOfOperatingStatusSelector);
+  const deliveryType = useAppSelector(deliveryTypeSelector);
 
+  const item = listOfOperatingStatus.find((el) => el.id === restaurantId);
+  const status = deliveryType === DeliveryType.DELIVERY ? item?.deliveryEnabled : item?.pickupEnabled;
+  const isClosed = status === OpeningStatus.CLOSED;
+  
   const quantity = cart[restaurantId]?.items[id]?.quantity;
 
   const handleInputQuantity = (quantity: number) => handleInputCount({ id, quantity, restaurantId });
@@ -86,6 +97,7 @@ export const Card: FC<CardProps> = ({
           <Link className={style.info__nameLink} to={''}>
             {restaurantName}
           </Link>
+          <OperatingStatus classNames={style.info__nameStatus} isClosed={isClosed} />
         </p>
 
         <div className={style.info__prices}>

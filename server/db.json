@@ -9,9 +9,10 @@
       "phone_number": "(472) 443-2272",
 
       "address": {
-        "street_addr": "6537 Andreane Port",
-        "city": "Severn",
-        "country": "country 1",
+        "street_addr": "Politekhnicheskaya Street",
+        "city": "Saint Petersburg",
+        "country": "Russia",
+        "house": "29АИ",
         "latitude": 60.00848488418119,
         "longitude": 30.373654649244
       },
@@ -54,9 +55,10 @@
       "imageSrc": "/images/food/782600.jpg",
       "phone_number": "(361) 351-8315 x2463",
       "address": {
-        "street_addr": "094 Bruen Street",
-        "city": "San Marcos",
-        "country": "country 2",
+        "house": "37",
+        "street_addr": "Matrosa Zheleznyaka Street",
+        "city": "Saint Petersburg",
+        "country": "Russia",
         "latitude": 59.996641098320616,
         "longitude": 30.310119756150584
       },
@@ -99,9 +101,10 @@
       "imageSrc": "/images/food/640311.jpg",
       "phone_number": "(847) 439-7119 x014",
       "address": {
-        "street_addr": "9997 Jakob Corners",
-        "city": "Modesto",
-        "country": "country 3",
+        "house": "3Б",
+        "street_addr": "2nd Murinskiy Avenue",
+        "city": "Saint Petersburg",
+        "country": "Russia",
         "latitude": 60.00204853867346,
         "longitude": 30.331706172686342
       },
@@ -145,9 +148,10 @@
       "imageSrc": "/images/food/631890.jpg",
       "phone_number": "1-748-684-5124",
       "address": {
-        "street_addr": "7351 Romaguera Corners",
-        "city": "Stockton",
-        "country": "country 4",
+        "house": "1",
+        "street_addr": "Mira Street",
+        "city": "Saint Petersburg",
+        "country": "Russia",
         "latitude": 59.91026197874759,
         "longitude": 30.350260173905216
       },
@@ -190,9 +194,10 @@
       "imageSrc": "/images/food/782585.jpg",
       "phone_number": "263-949-9355 x209",
       "address": {
-        "street_addr": "10662 Gia Vista",
-        "city": "Watsonville",
-        "country": "country 5",
+        "house": "9",
+        "street_addr": "Chehova Street",
+        "city": "Saint Petersburg",
+        "country": "Russia",
         "latitude": 59.89909148920797,
         "longitude": 30.28278088781597
       },
@@ -235,9 +240,10 @@
       "imageSrc": "/images/food/648432.jpg",
       "phone_number": "1-941-706-8734 x80801",
       "address": {
-        "street_addr": "61770 Julianne Streets",
-        "city": "Anaheim",
-        "country": "country 6",
+        "house": "21",
+        "street_addr": "Kurskaya Street",
+        "city": "Saint Petersburg",
+        "country": "Russia",
         "latitude": 59.89605420164614,
         "longitude": 30.420334817151748
       },
@@ -280,9 +286,10 @@
       "imageSrc": "/images/food/1064362.jpg",
       "phone_number": "586.823.5792 x98742",
       "address": {
-        "street_addr": "0436 Doyle Forges",
-        "city": "Visalia",
-        "country": "country 7",
+        "house": ", 7Б",
+        "street_addr": "Partizanskaya Street",
+        "city": "Saint Petersburg",
+        "country": "Russia",
         "latitude": 59.94450916474497,
         "longitude": 30.42768832909737
       },
@@ -325,9 +332,10 @@
       "imageSrc": "/images/food/651453.jpg",
       "phone_number": "1-271-853-3135 x04153",
       "address": {
-        "street_addr": "8231 Sanford Well",
-        "city": "Schenectady",
-        "country": "country 8",
+        "house": "1АШ",
+        "street_addr": "Khimicheskiy Lane",
+        "city": "Saint Petersburg",
+        "country": "Russia",
         "latitude": 59.8881605509532,
         "longitude": 30.28789787909819
       },
@@ -370,9 +378,10 @@
       "imageSrc": "/images/food/647577.jpg",
       "phone_number": "1-231-854-2578 x483",
       "address": {
-        "street_addr": "10374 Klein Curve",
-        "city": "Edmond",
-        "country": "country 9",
+        "house": "1",
+        "street_addr": "Mira Street",
+        "city": "Saint Petersburg",
+        "country": "Russia",
         "latitude": 59.95907081547236,
         "longitude": 30.312995784191564
       },
@@ -415,9 +424,10 @@
       "imageSrc": "/images/food/645978.jpg",
       "phone_number": "756.673.4835 x0592",
       "address": {
-        "street_addr": "11987 Treutel Land",
-        "city": "Huntington",
-        "country": "country 10",
+        "house": "9",
+        "street_addr": "Chehova Street",
+        "city": "Saint Petersburg",
+        "country": "Russia",
         "latitude": 59.93757677133212,
         "longitude": 30.353006937238973
       },

@@ -168,6 +168,15 @@
   display: none;
 }
 
+.info__nameLink {
+  margin-right: 25px;
+}
+
+.info__nameStatus {
+  font-size: 18px;
+  padding: 5px 12px;
+}
+
 @media (max-width:1160px) {
   .buttons__order {
     margin-left: 0;
