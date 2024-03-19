@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IdTokenResult } from 'firebase/auth/cordova/dist/auth';
 
 import { RootStore } from '../..';
 import { PayloadActionProps, User, UserSliceState } from './types';
@@ -26,6 +25,8 @@ const userSlice = createSlice({
     setOrders(state, action: PayloadAction<PayloadActionProps>) {
       state.list.push({
         [action.payload.orderNumber]: action.payload.list,
+        deliveryType: action.payload.deliveryType,
+        location: action.payload.location,
         restaurantId: action.payload.id,
         restaurantName: action.payload.name,
       });

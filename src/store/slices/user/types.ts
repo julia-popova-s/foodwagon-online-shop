@@ -1,3 +1,6 @@
+import { CafeAddress } from '../../utils/getExtraReducers';
+import { Coords, DeliveryType } from '../location/types';
+
 export interface CartProduct {
   amount: number;
   discount: number;
@@ -22,6 +25,8 @@ export interface ProductList {
 
 export interface OrderListItem {
   [orderNumber: number]: ProductList;
+  deliveryType: DeliveryType;
+  location: UserLocation;
   restaurantId: string;
   restaurantName: string;
 }
@@ -32,10 +37,15 @@ export interface UserSliceState {
   list: OrderListItem[];
   token: string;
 }
-
+export interface UserLocation {
+  address: CafeAddress | string;
+  coords?: Coords;
+}
 export interface PayloadActionProps {
+  deliveryType: DeliveryType;
   id: string;
   list: ProductList;
+  location: UserLocation;
   name: string;
   orderNumber: number;
 }

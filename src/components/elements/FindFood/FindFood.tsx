@@ -97,10 +97,7 @@ export const FindFood: FC = () => {
       listOfDistances,
     };
 
-    if (premiseNumber && activeType === DeliveryType.DELIVERY && deliveryStatus === DeliveryStatus.YES) {
-      setDeliveryAddress(item);
-    }
-    if (premiseNumber && activeType === DeliveryType.PICKUP) {
+    if (premiseNumber) {
       setDeliveryAddress(item);
     }
   };

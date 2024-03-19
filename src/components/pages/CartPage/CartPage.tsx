@@ -2,8 +2,8 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { FC, useCallback, useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { useAppDispatch, useAppSelector } from '../../../store';
@@ -20,12 +20,13 @@ import {
 import { Product, ProductInfoIds, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import {
   addressSelector,
+  coordsSelector,
   deliveryStatusSelector,
   deliveryTypeSelector,
   listOfDistancesSelector,
   setDeliveryType,
 } from '../../../store/slices/location/slice';
-import { DeliveryType } from '../../../store/slices/location/types';
+import { DeliveryStatus, DeliveryType } from '../../../store/slices/location/types';
 import { listOfOperatingStatusSelector } from '../../../store/slices/restaurants/slice';
 import { isAuthSelector, setOrders } from '../../../store/slices/user/slice';
 import { OpeningStatus } from '../../../store/utils/getOpenStatus';
@@ -34,6 +35,7 @@ import { OperatingStatus } from '../../elements/FeaturedRestaurants/OperatingSta
 import { Button, DeliveryMethod } from '../../elements/FindFood/DeliveryMethod';
 import { Popup } from '../../ui/Popup';
 import { OrderButton } from '../../ui/buttons/OrderButton';
+import { DeliveryAddress } from './DeliveryAddress';
 import { Modal } from './Modal';
 import { ProductCard } from './ProductCard';
 import style from './cartPage.module.scss';
@@ -47,11 +49,9 @@ export const Cart: FC = () => {
 
   const [name, setName] = useState<string>('');
   const [id, setId] = useState<string>('');
-  const [activeTabNumber, setActiveTabNumber] = useState<number>(0);
 
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
-  const [activeType, setActiveType] = useState<DeliveryType>(DeliveryType.DELIVERY);
 
   const totalQuantity = useAppSelector(totalQuantitySelector);
   const addedGoods = useAppSelector(addedGoodsSelector);
@@ -60,11 +60,11 @@ export const Cart: FC = () => {
   const deliveryType = useAppSelector(deliveryTypeSelector);
   const deliveryStatus = useAppSelector(deliveryStatusSelector);
   const address = useAppSelector(addressSelector);
+  const coords = useAppSelector(coordsSelector);
   const listOfDistance = useAppSelector(listOfDistancesSelector);
   const listOfOperatingStatus = useAppSelector(listOfOperatingStatusSelector);
 
   const handleChangeDeliveryType = useCallback((label: DeliveryType) => {
-    setActiveType(label);
     dispatch(setDeliveryType(label));
   }, []);
 
@@ -112,8 +112,14 @@ export const Cart: FC = () => {
         setName(name);
         setId(id);
         orderNumber++;
+        const item = listOfOperatingStatus.find((el) => el.id === id);
+        if (!isClosed && deliveryStatus === DeliveryStatus.YES && deliveryType === DeliveryType.DELIVERY) {
+          dispatch(setOrders({ deliveryType, id, list, location: { address, coords }, name, orderNumber }));
+        }
+        if (!isClosed && deliveryType === DeliveryType.PICKUP && item?.address) {
+          dispatch(setOrders({ deliveryType, id, list, location: { address: item?.address }, name, orderNumber }));
+        }
         setVisibleModal(true);
-        dispatch(setOrders({ id, list, name, orderNumber }));
       }
     }
   };
@@ -163,16 +169,6 @@ export const Cart: FC = () => {
     <div className={style.cart}>
       <div className={cn(style.cart__container, 'container')}>
         <h1 className={style.cart__title}>Shopping cart</h1>
-
-        {/* <DeliveryMethod handleChangeDeliveryType={handleChangeDeliveryType} list={buttons} />
-        <div className={style.cart__address}>
-          {activeType === DeliveryType.DELIVERY && (
-            <>
-              <p>Status: {deliveryStatus}</p>
-              <p>Address: {address}</p>
-            </>
-          )}
-        </div> */}
         <div className={style.cart__inner}>
           {totalQuantity &&
             addedGoods.map((restaurant) => {
@@ -213,19 +209,7 @@ export const Cart: FC = () => {
                   </div>
                   <div className={style.cart__deliveryСhoice}>
                     <DeliveryMethod handleChangeDeliveryType={handleChangeDeliveryType} list={buttons} />
-                    <div className={style.cart__address}>
-                      {activeType === DeliveryType.DELIVERY && (
-                        <div className={style.cart__addressItem}>
-                          <p>Delivery status: {deliveryStatus}</p>
-                          <p>Address: {address}</p>
-                        </div>
-                      )}
-                      {activeType === DeliveryType.PICKUP && item?.address && (
-                        <div className={style.cart__addressItem}>
-                          Address: {item?.address.city}, {item?.address.street_addr}, {item?.address.house}
-                        </div>
-                      )}
-                    </div>
+                    <DeliveryAddress address={address} item={item} status={deliveryStatus} type={deliveryType} />
                   </div>
 
                   {quantity ? (

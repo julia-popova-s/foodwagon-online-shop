@@ -30,13 +30,15 @@ export const Distance: FC<DistanceProps> = ({ classNames, deliveryType, distance
           })}
         />
       )}
-      <div
-        className={cn(style.card__distanceValue, {
-          [style.card__distanceValue_theme]: isClosed,
-        })}
-      >
-        {distance && distance.replace('&#160;', ' ')}
-      </div>
+      {distance && (
+        <div
+          className={cn(style.card__distanceValue, {
+            [style.card__distanceValue_theme]: isClosed,
+          })}
+        >
+          {distance.replace('&#160;', ' ')}
+        </div>
+      )}
     </div>
   );
 };
