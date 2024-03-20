@@ -14,15 +14,16 @@ type ModalProps = {
 
 export const Modal = forwardRef<HTMLDivElement, ModalProps>(({ handleCloseModal, isOpen, name, orderNumber }, ref) => {
   const email = useAppSelector(emailSelector);
-  
+
   return (
     <CSSTransition classNames="alert" in={isOpen} timeout={300} unmountOnExit>
       <div className={style.popupWrapper}>
         <div className={style.popup} ref={ref}>
           <div className={style.popup__title}>
-            <span className={style.popup__name}>
-              Order №{orderNumber} from restaurant «{name}» was created, user: {email}
-            </span>
+            <p className={style.popup__name}>
+              Order № {orderNumber} created from «{name}» restaurant
+            </p>
+            <p className={style.popup__name}>user: {email}</p>
           </div>
 
           <div className={style.popup__btns}>

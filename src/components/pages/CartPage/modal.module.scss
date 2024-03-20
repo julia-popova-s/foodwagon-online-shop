@@ -38,6 +38,8 @@
   &__name {
     @include setTextStyle($font-bold, 22px, 120%);
     color: rgb(66, 66, 66);
+
+    margin-bottom: 10px;
   }
 
   &__btns {

@@ -35,7 +35,7 @@ export interface UserSliceState {
   id: string;
   isAuth: boolean;
   list: OrderListItem[];
-  orderNumber: number;
+  orderCounter: number;
   token: string;
 }
 export interface UserLocation {

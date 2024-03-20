@@ -23,7 +23,7 @@ import {
 } from '../../../store/slices/location/slice';
 import { DeliveryStatus, DeliveryType } from '../../../store/slices/location/types';
 import { listOfOperatingStatusSelector } from '../../../store/slices/restaurants/slice';
-import { isAuthSelector, orderNumberSelector, setOrders } from '../../../store/slices/user/slice';
+import { isAuthSelector, orderCounterSelector, setOrders } from '../../../store/slices/user/slice';
 import { OpeningStatus } from '../../../store/utils/getOpenStatus';
 import { Distance } from '../../elements/FeaturedRestaurants/Distance';
 import { OperatingStatus } from '../../elements/FeaturedRestaurants/OperatingStatus';
@@ -62,9 +62,9 @@ export const ProductList = ({
   const coords = useAppSelector(coordsSelector);
   const address = useAppSelector(addressSelector);
   const deliveryStatus = useAppSelector(deliveryStatusSelector);
-  const orderNumber = useAppSelector(orderNumberSelector);
+  const orderCounter = useAppSelector(orderCounterSelector);
 
-  const [order, setOrder] = useState(orderNumber);
+  const [order, setOrder] = useState(orderCounter);
 
   const buttons: Button[] = useMemo(() => [{ label: DeliveryType.DELIVERY }, { label: DeliveryType.PICKUP }], []);
 
@@ -78,7 +78,7 @@ export const ProductList = ({
   const status = deliveryType === DeliveryType.DELIVERY ? item?.deliveryEnabled : item?.pickupEnabled;
   const isClosed = status === OpeningStatus.CLOSED;
 
-  const handlePlaceAnOrder = (id: string, name: string, isClosed: boolean) => {
+  const handlePlaceOrder = (id: string, name: string, isClosed: boolean) => {
     if (isClosed) {
     } else {
       const list = cart[id];
@@ -184,7 +184,7 @@ export const ProductList = ({
             </p>
             <OrderButton
               classNames={style.cart__orderBtn}
-              handleClick={() => handlePlaceAnOrder(restaurantId, restaurantName, isClosed)}
+              handleClick={() => handlePlaceOrder(restaurantId, restaurantName, isClosed)}
               name={'Place an order'}
             />
           </div>

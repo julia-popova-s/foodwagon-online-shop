@@ -45,6 +45,16 @@
   transition: all $transition-long ease;
 }
 
+.cart__clearBtn:hover {
+  color: $text-color;
+  transition: all $transition-long ease;
+
+  .cart__clearIcon {
+    color: $text-color;
+    transition: all $transition-long ease;
+  }
+}
+
 .cart__clearBtn {
   display: block;
 
@@ -56,13 +66,6 @@
   margin-left: auto;
 
   transition: all $transition-long ease;
-
-  &:hover {
-    color: $text-color;
-    transition: transform $transition-short ease, color $transition-long ease;
-
-    transform: translateY(1px);
-  }
 }
 
 .cart__deliveryСhoice {
@@ -80,6 +83,7 @@
 
   padding-bottom: 70px;
 }
+
 .cart__orderInfo {
   display: flex;
   flex-wrap: wrap;
@@ -88,6 +92,7 @@
 
   padding-bottom: 70px;
 }
+
 .cart__result {
   @include setTextStyle(700, 22px, 120%);
   color: rgb(66, 66, 66);

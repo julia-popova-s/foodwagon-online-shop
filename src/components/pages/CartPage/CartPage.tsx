@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { addedGoodsSelector, clearCart, totalQuantitySelector } from '../../../store/slices/cart/slice';
-import { changeOrderNumber, orderNumberSelector } from '../../../store/slices/user/slice';
+import { changeOrderCounter, orderCounterSelector } from '../../../store/slices/user/slice';
 import { Popup } from '../../ui/Popup';
 import { Modal } from './Modal';
 import { ProductList, RestaurantInfo } from './ProductList';
@@ -24,7 +24,7 @@ export const Cart: FC = () => {
 
   const totalQuantity = useAppSelector(totalQuantitySelector);
   const addedGoods = useAppSelector(addedGoodsSelector);
-  const orderNumber = useAppSelector(orderNumberSelector);
+  const orderCounter = useAppSelector(orderCounterSelector);
 
   const dispatch = useAppDispatch();
 
@@ -87,7 +87,7 @@ export const Cart: FC = () => {
   };
 
   const handleOrderNumberChange = () => {
-    dispatch(changeOrderNumber());
+    dispatch(changeOrderCounter());
   };
 
   return (
@@ -109,7 +109,7 @@ export const Cart: FC = () => {
         </div>
       </div>
 
-      <Modal handleCloseModal={handleCloseModal} isOpen={visibleModal} name={name} orderNumber={orderNumber} />
+      <Modal handleCloseModal={handleCloseModal} isOpen={visibleModal} name={name} orderNumber={orderCounter} />
       <Popup handleClickClose={handleClosePopup} handleClickOk={handleClearOrder} isOpen={visiblePopup} ref={popupRef}>
         <>
           Are you sure you want to empty the cart from <span className={style.popup__name}>«{name}»</span>?
