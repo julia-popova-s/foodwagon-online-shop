@@ -26,20 +26,20 @@ export enum ModeOfUsingMaps {
 
 type MapsProps = {
   coord: Coords;
-  handleChangeAddress: ({ address, premiseNumber }: ExtendedAddress) => void;
-  handleChangeCoord: (coord: Coords) => void;
-  handleChangeMode: (mode: string) => void;
-  handleChangeStatus: (status: DeliveryStatus) => void;
+  handleAddressChange: ({ address, premiseNumber }: ExtendedAddress) => void;
+  handleCoordChange: (coord: Coords) => void;
+  handleModeChange: (mode: string) => void;
+  handleStatusChange: (status: DeliveryStatus) => void;
   mode: string;
   place: string;
 };
 
 export const Maps: FC<MapsProps> = ({
   coord,
-  handleChangeAddress,
-  handleChangeCoord,
-  handleChangeMode,
-  handleChangeStatus,
+  handleAddressChange,
+  handleCoordChange,
+  handleModeChange,
+  handleStatusChange,
   mode,
   place,
 }) => {
@@ -59,13 +59,13 @@ export const Maps: FC<MapsProps> = ({
 
   const updateSearchValue = useCallback(
     debounce((coord: Coords) => {
-      handleChangeCoord(coord);
+      handleCoordChange(coord);
     }, 500),
     [],
   );
 
   const getGeoLocation = (event: any) => {
-    handleChangeMode(ModeOfUsingMaps.DRAG);
+    handleModeChange(ModeOfUsingMaps.DRAG);
     const coord = event.get('target').getCenter();
     updateSearchValue(coord);
   };
@@ -131,10 +131,10 @@ export const Maps: FC<MapsProps> = ({
 
       if (targetZone) {
         setDeliveryStatus(DeliveryStatus.YES);
-        handleChangeStatus(DeliveryStatus.YES);
+        handleStatusChange(DeliveryStatus.YES);
       } else {
         setDeliveryStatus(DeliveryStatus.NO);
-        handleChangeStatus(DeliveryStatus.NO);
+        handleStatusChange(DeliveryStatus.NO);
       }
     }
   }, [coord, zone]);
@@ -166,7 +166,7 @@ export const Maps: FC<MapsProps> = ({
         .then((res: any) => {
           setIsLoaded(true);
           const geocodeResult: ymaps.GeocodeResult = res.geoObjects.get(0);
-          handleChangeAddress({
+          handleAddressChange({
             address: geocodeResult?.getAddressLine(),
             listOfDistances,
             premiseNumber: geocodeResult?.getPremiseNumber(),
@@ -187,7 +187,7 @@ export const Maps: FC<MapsProps> = ({
     setActiveAction(false);
   };
 
-  const handleChangeBalloonStatus = () => {
+  const handleBalloonStatusChange = () => {
     setVisibleBalloon(!visibleBalloon);
   };
 
@@ -224,7 +224,7 @@ export const Maps: FC<MapsProps> = ({
         onLoad={onLoad}
         onWheel={handleChangeZoom}
       >
-        <div className={cn(style.placemark, { [style.active]: activeAction })} onClick={handleChangeBalloonStatus}>
+        <div className={cn(style.placemark, { [style.active]: activeAction })} onClick={handleBalloonStatusChange}>
           <LocationMark className={cn(style.placemark__icon, { [style.active]: activeAction })} />
           {!isLoaded && <Preloader className={style.placemark__preloader} />}
         </div>
@@ -234,7 +234,7 @@ export const Maps: FC<MapsProps> = ({
         <Balloon
           address={place}
           coord={coord}
-          handleClick={handleChangeBalloonStatus}
+          handleClick={handleBalloonStatusChange}
           isActive={visibleBalloon}
           status={deliveryStatus}
         />

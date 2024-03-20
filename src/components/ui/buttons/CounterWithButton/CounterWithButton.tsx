@@ -8,17 +8,17 @@ import style from './counterWithButton.module.scss';
 
 type CounterWithButtonProps = {
   classNames?: string;
-  handleInputQuantity: (quantity: number) => void;
-  handleMinusProduct: () => void;
-  handlePlusProduct: () => void;
+  handleProductMinus: () => void;
+  handleProductPlus: () => void;
+  handleQuantityInput: (quantity: number) => void;
   quantity: number;
 };
 
 export const CounterWithButton: FC<CounterWithButtonProps> = ({
   classNames,
-  handleInputQuantity,
-  handleMinusProduct,
-  handlePlusProduct,
+  handleProductMinus,
+  handleProductPlus,
+  handleQuantityInput,
   quantity,
 }) => {
   return (
@@ -32,9 +32,9 @@ export const CounterWithButton: FC<CounterWithButtonProps> = ({
 
       <Counter
         classNames={style.buttons__counter}
-        handleInputQuantity={handleInputQuantity}
-        handleMinusProduct={handleMinusProduct}
-        handlePlusProduct={handlePlusProduct}
+        handleProductMinus={handleProductMinus}
+        handleProductPlus={handleProductPlus}
+        handleQuantityInput={handleQuantityInput}
         quantity={quantity}
       />
     </div>

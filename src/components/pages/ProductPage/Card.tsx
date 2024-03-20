@@ -21,9 +21,9 @@ import style from './card.module.scss';
 type CardProps = {
   classNames?: string;
   discount: number;
-  handleAddProduct: (item: Product) => void;
-  handleInputCount: (item: ProductInfoQuantity) => void;
-  handleRemoveProduct: (item: Product) => void;
+  handleCountInput: (item: ProductInfoQuantity) => void;
+  handleProductAdd: (item: Product) => void;
+  handleProductRemove: (item: Product) => void;
   id: string;
   image: string;
   ingredients: string[];
@@ -35,9 +35,9 @@ type CardProps = {
 
 export const Card: FC<CardProps> = ({
   discount,
-  handleAddProduct,
-  handleInputCount,
-  handleRemoveProduct,
+  handleCountInput,
+  handleProductAdd,
+  handleProductRemove,
   id,
   image,
   ingredients,
@@ -46,9 +46,9 @@ export const Card: FC<CardProps> = ({
   restaurantName,
   title,
 }) => {
-  const handleMinusProduct = () => {
+  const handleProductMinus = () => {
     const data = { discount, id, image, price, restaurantId, restaurantName, title };
-    handleRemoveProduct(data);
+    handleProductRemove(data);
   };
 
   const cart = useAppSelector(cartSelector);
@@ -61,10 +61,10 @@ export const Card: FC<CardProps> = ({
 
   const quantity = cart[restaurantId]?.items[id]?.quantity;
 
-  const handleInputQuantity = (quantity: number) => handleInputCount({ id, quantity, restaurantId });
+  const handleInputQuantity = (quantity: number) => handleCountInput({ id, quantity, restaurantId });
 
-  const handlePlusProduct = () => {
-    handleAddProduct({
+  const handleProductPlus = () => {
+    handleProductAdd({
       discount,
       id,
       image,
@@ -120,13 +120,13 @@ export const Card: FC<CardProps> = ({
           {quantity ? (
             <CounterWithButton
               classNames={style.info__btns_theme}
-              handleInputQuantity={handleInputQuantity}
-              handleMinusProduct={handleMinusProduct}
-              handlePlusProduct={handlePlusProduct}
+              handleProductMinus={handleProductMinus}
+              handleProductPlus={handleProductPlus}
+              handleQuantityInput={handleInputQuantity}
               quantity={quantity ? quantity : 0}
             />
           ) : (
-            <SearchButton classNames={style.buttons__order} handleClick={handlePlusProduct} label="Order Now" />
+            <SearchButton classNames={style.buttons__order} handleClick={handleProductPlus} label="Order Now" />
           )}
         </div>
       </div>

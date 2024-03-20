@@ -32,10 +32,10 @@ type ProductCardProps = {
   amount: number;
   classNames?: string;
   discount: number;
-  handleAddProduct: (item: Product) => void;
-  handleDeleteProduct: ({ id, restaurantId }: Idx) => void;
-  handleInputCount: (item: ProductQuantity) => void;
-  handleRemoveProduct: (item: Idx) => void;
+  handleCountInput: (item: ProductQuantity) => void;
+  handleProductAdd: (item: Product) => void;
+  handleProductDelete: ({ id, restaurantId }: Idx) => void;
+  handleProductRemove: (item: Idx) => void;
   id: string;
   image: string;
   price: number;
@@ -48,10 +48,10 @@ type ProductCardProps = {
 export const ProductCard: FC<ProductCardProps> = ({
   amount,
   discount,
-  handleAddProduct,
-  handleDeleteProduct,
-  handleInputCount,
-  handleRemoveProduct,
+  handleCountInput,
+  handleProductAdd,
+  handleProductDelete,
+  handleProductRemove,
   id,
   image,
   price,
@@ -73,22 +73,22 @@ export const ProductCard: FC<ProductCardProps> = ({
     title,
   };
 
-  const handlePlusProduct = () => handleAddProduct(productInfo);
+  const handleProductPlus = () => handleProductAdd(productInfo);
 
-  const handleMinusProduct = () => handleDeleteProduct({ id, restaurantId });
+  const handleProductMinus = () => handleProductDelete({ id, restaurantId });
 
-  const handleReturnProduct = () => setReturnedProduct(false);
+  const handleProductReturn = () => setReturnedProduct(false);
 
-  const handleInputQuantity = (quantity: number) => {
+  const handleQuantityInput = (quantity: number) => {
     if (!quantity) {
       setReturnedProduct(true);
-    } else handleInputCount({ id, price, quantity, restaurantId });
+    } else handleCountInput({ id, price, quantity, restaurantId });
   };
 
   useEffect(() => {
     if (returnedProduct) {
       const timer = setTimeout(() => {
-        handleRemoveProduct({ id, restaurantId });
+        handleProductRemove({ id, restaurantId });
       }, 2000);
       return () => clearTimeout(timer);
     }
@@ -126,9 +126,9 @@ export const ProductCard: FC<ProductCardProps> = ({
           <div className={cn(style.product__counter, style.counter)}>
             <Counter
               classNames={style.counter__btns}
-              handleInputQuantity={handleInputQuantity}
-              handleMinusProduct={handleMinusProduct}
-              handlePlusProduct={handlePlusProduct}
+              handleProductMinus={handleProductMinus}
+              handleProductPlus={handleProductPlus}
+              handleQuantityInput={handleQuantityInput}
               quantity={quantity}
             />
 
@@ -141,7 +141,7 @@ export const ProductCard: FC<ProductCardProps> = ({
         </>
       ) : (
         <div className={style.returnedBlock}>
-          <button className={cn(style.btnReturn, style.product__btnReturn)} onClick={handleReturnProduct}>
+          <button className={cn(style.btnReturn, style.product__btnReturn)} onClick={handleProductReturn}>
             Restore to cart
           </button>
 

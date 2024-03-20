@@ -1,6 +1,5 @@
 import cn from 'classnames';
 import { FC, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 
 import { useAppDispatch, useAppSelector } from '../../../store';
@@ -34,15 +33,15 @@ export const PopularItems: FC = () => {
   const isLoaded = useAppSelector(isLoadedSelector);
   const products = useAppSelector(productListSelector);
 
-  const handleAddProduct = (product: Product) => {
+  const handleProductAdd = (product: Product) => {
     dispatch(addProduct(product));
   };
 
-  const handleRemoveProduct = (product: Product) => {
+  const handleProductRemove = (product: Product) => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj: ProductInfoQuantity) => {
+  const handleCountInput = (obj: ProductInfoQuantity) => {
     dispatch(setProductCount(obj));
   };
 
@@ -123,9 +122,9 @@ export const PopularItems: FC = () => {
                         key={item.id}
                         {...item}
                         classNames={style.popularItems__card}
-                        handleAddProduct={(obj) => handleAddProduct(obj)}
-                        handleInputCount={(obj) => handleInputCount(obj)}
-                        handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
+                        handleCountInput={(obj) => handleCountInput(obj)}
+                        handleProductAdd={(obj) => handleProductAdd(obj)}
+                        handleProductRemove={(obj) => handleProductRemove(obj)}
                       />
                     );
                   })

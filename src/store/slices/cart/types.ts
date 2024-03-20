@@ -42,7 +42,7 @@ export interface CartType {
   [restaurantId: string]: ProductList;
 }
 
-type AddedGoodsItem = [string, ProductList];
+export type AddedGoodsItem = [string, ProductList];
 
 export interface CartSliceState {
   addedGoods: AddedGoodsItem[];

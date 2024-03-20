@@ -10,13 +10,13 @@ export type Button = {
   label: DeliveryType;
 };
 
-type DeliveryMethodProps = { handleChangeDeliveryType: (label: DeliveryType) => void; list: Button[] };
+type DeliveryMethodProps = { handleDeliveryTypeChange: (label: DeliveryType) => void; list: Button[] };
 
-export const DeliveryMethod: FC<DeliveryMethodProps> = ({ handleChangeDeliveryType, list }) => {
+export const DeliveryMethod: FC<DeliveryMethodProps> = ({ handleDeliveryTypeChange, list }) => {
   const deliveryType = useAppSelector(deliveryTypeSelector);
 
   const handleSelectItem = (label: DeliveryType) => {
-    handleChangeDeliveryType(label);
+    handleDeliveryTypeChange(label);
   };
 
   return (

@@ -33,15 +33,15 @@ export const ProductPage: FC = () => {
     );
   }, [id, dispatch]);
 
-  const handleAddProduct = (product: Product) => {
+  const handleProductAdd = (product: Product) => {
     dispatch(addProduct(product));
   };
 
-  const handleRemoveProduct = (product: Product) => {
+  const handleProductRemove = (product: Product) => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj: ProductInfoQuantity) => {
+  const handleCountInput = (obj: ProductInfoQuantity) => {
     dispatch(setProductCount(obj));
   };
 
@@ -61,9 +61,9 @@ export const ProductPage: FC = () => {
             {isLoaded ? (
               <Card
                 {...product}
-                handleAddProduct={handleAddProduct}
-                handleInputCount={handleInputCount}
-                handleRemoveProduct={handleRemoveProduct}
+                handleCountInput={handleCountInput}
+                handleProductAdd={handleProductAdd}
+                handleProductRemove={handleProductRemove}
               />
             ) : (
               skeleton

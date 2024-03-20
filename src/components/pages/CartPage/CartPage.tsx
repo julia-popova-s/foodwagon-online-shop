@@ -1,48 +1,17 @@
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
-import { FC, useCallback, useEffect, useMemo, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { useAppDispatch, useAppSelector } from '../../../store';
-import {
-  addProduct,
-  addedGoodsSelector,
-  cartSelector,
-  clearCart,
-  deleteOneProduct,
-  removeProduct,
-  setProductCount,
-  totalQuantitySelector,
-} from '../../../store/slices/cart/slice';
-import { Product, ProductInfoIds, ProductInfoQuantity } from '../../../store/slices/cart/types';
-import {
-  addressSelector,
-  coordsSelector,
-  deliveryStatusSelector,
-  deliveryTypeSelector,
-  listOfDistancesSelector,
-  setDeliveryType,
-} from '../../../store/slices/location/slice';
-import { DeliveryStatus, DeliveryType } from '../../../store/slices/location/types';
-import { listOfOperatingStatusSelector } from '../../../store/slices/restaurants/slice';
-import { isAuthSelector, setOrders } from '../../../store/slices/user/slice';
-import { OpeningStatus } from '../../../store/utils/getOpenStatus';
-import { Distance } from '../../elements/FeaturedRestaurants/Distance';
-import { OperatingStatus } from '../../elements/FeaturedRestaurants/OperatingStatus';
-import { Button, DeliveryMethod } from '../../elements/FindFood/DeliveryMethod';
+import { addedGoodsSelector, clearCart, totalQuantitySelector } from '../../../store/slices/cart/slice';
+import { changeOrderNumber, orderNumberSelector } from '../../../store/slices/user/slice';
 import { Popup } from '../../ui/Popup';
-import { OrderButton } from '../../ui/buttons/OrderButton';
-import { DeliveryAddress } from './DeliveryAddress';
 import { Modal } from './Modal';
-import { ProductCard } from './ProductCard';
+import { ProductList, RestaurantInfo } from './ProductList';
 import style from './cartPage.module.scss';
-
-let orderNumber = 0;
-
-type Restaurant = { restaurantId: string; restaurantName: string };
 
 export const Cart: FC = () => {
   const { pathname } = useLocation();
@@ -55,74 +24,13 @@ export const Cart: FC = () => {
 
   const totalQuantity = useAppSelector(totalQuantitySelector);
   const addedGoods = useAppSelector(addedGoodsSelector);
-  const isAuth = useAppSelector(isAuthSelector);
-  const cart = useAppSelector(cartSelector);
-  const deliveryType = useAppSelector(deliveryTypeSelector);
-  const deliveryStatus = useAppSelector(deliveryStatusSelector);
-  const address = useAppSelector(addressSelector);
-  const coords = useAppSelector(coordsSelector);
-  const listOfDistance = useAppSelector(listOfDistancesSelector);
-  const listOfOperatingStatus = useAppSelector(listOfOperatingStatusSelector);
-
-  const handleChangeDeliveryType = useCallback((label: DeliveryType) => {
-    dispatch(setDeliveryType(label));
-  }, []);
-
-  const buttons: Button[] = useMemo(() => [{ label: DeliveryType.DELIVERY }, { label: DeliveryType.PICKUP }], []);
+  const orderNumber = useAppSelector(orderNumberSelector);
 
   const dispatch = useAppDispatch();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
-  const handleClearCart = ({ restaurantId, restaurantName }: Restaurant) => {
-    setName(restaurantName);
-    setId(restaurantId);
-    setVisiblePopup(true);
-  };
-
-  const handleRemoveProduct = (item: ProductInfoIds) => {
-    dispatch(removeProduct(item));
-  };
-
-  const handleAddProduct = (product: Product) => {
-    dispatch(addProduct(product));
-  };
-
-  const handleDeleteProduct = (item: ProductInfoIds, count: number) => {
-    if (count < 1) {
-      dispatch(removeProduct(item));
-    } else dispatch(deleteOneProduct(item));
-  };
-
-  const handleInputQuantity = (obj: ProductInfoQuantity) => {
-    dispatch(setProductCount(obj));
-  };
-
-  const handlePlaceAnOrder = (id: string, name: string, isClosed: boolean) => {
-    if (isClosed) {
-    } else {
-      const list = cart[id];
-      if (!isAuth) {
-        navigate('/login');
-      } else {
-        setName(name);
-        setId(id);
-        orderNumber++;
-        const item = listOfOperatingStatus.find((el) => el.id === id);
-        if (!isClosed && deliveryStatus === DeliveryStatus.YES && deliveryType === DeliveryType.DELIVERY) {
-          dispatch(setOrders({ deliveryType, id, list, location: { address, coords }, name, orderNumber }));
-        }
-        if (!isClosed && deliveryType === DeliveryType.PICKUP && item?.address) {
-          dispatch(setOrders({ deliveryType, id, list, location: { address: item?.address }, name, orderNumber }));
-        }
-        setVisibleModal(true);
-      }
-    }
-  };
 
   const handleClosePopup = () => {
     setVisiblePopup(false);
@@ -165,85 +73,39 @@ export const Cart: FC = () => {
     );
   }
 
+  const handleRestaurantInfoChange = ({ restaurantId, restaurantName }: RestaurantInfo) => {
+    setName(restaurantName);
+    setId(restaurantId);
+  };
+
+  const handleVisibleModal = (status: boolean) => {
+    setVisibleModal(status);
+  };
+
+  const handleVisiblePopup = (status: boolean) => {
+    setVisiblePopup(status);
+  };
+
+  const handleOrderNumberChange = () => {
+    dispatch(changeOrderNumber());
+  };
+
   return (
     <div className={style.cart}>
       <div className={cn(style.cart__container, 'container')}>
         <h1 className={style.cart__title}>Shopping cart</h1>
         <div className={style.cart__inner}>
           {totalQuantity &&
-            addedGoods.map((restaurant) => {
-              const [restaurantId, info] = restaurant;
-              const products = Object.values(info.items);
-
-              const price = info.totalAmount;
-              const quantity = info.totalCount;
-              const restaurantName = products[0] && products[0].restaurantName;
-              const distance = listOfDistance?.find((el: any) => el.id === restaurantId)?.distance;
-              const item = listOfOperatingStatus.find((el) => el.id === restaurantId);
-              const status = deliveryType === DeliveryType.DELIVERY ? item?.deliveryEnabled : item?.pickupEnabled;
-              const isClosed = status === OpeningStatus.CLOSED;
-              return (
-                <div className={style.cart__list} key={restaurantId}>
-                  <div className={style.cart__top}>
-                    <div className={style.cart__status}>
-                      <div className={style.cart__restaurantName}>{restaurantName}</div>
-
-                      <OperatingStatus classNames={style.cart__operatStatus} isClosed={isClosed} />
-                      <Distance
-                        classNames={style.cart__distanceItem}
-                        deliveryType={deliveryType}
-                        distance={distance}
-                        isClosed={isClosed}
-                      />
-                    </div>
-
-                    <div className={style.cart__clear}>
-                      <button
-                        className={style.cart__clearBtn}
-                        onClick={() => handleClearCart({ restaurantId, restaurantName })}
-                      >
-                        <FontAwesomeIcon className={style.cart__clearIcon} icon={faTrashCan} size="lg" />
-                        clear
-                      </button>
-                    </div>
-                  </div>
-                  <div className={style.cart__deliveryСhoice}>
-                    <DeliveryMethod handleChangeDeliveryType={handleChangeDeliveryType} list={buttons} />
-                    <DeliveryAddress address={address} item={item} status={deliveryStatus} type={deliveryType} />
-                  </div>
-
-                  {quantity ? (
-                    <>
-                      {products.map(({ quantity, ...item }) => {
-                        return (
-                          <ProductCard
-                            {...item}
-                            handleAddProduct={(item) => handleAddProduct(item)}
-                            handleDeleteProduct={(obj) => handleDeleteProduct(obj, quantity)}
-                            handleInputCount={(obj) => handleInputQuantity(obj)}
-                            handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
-                            key={item.id}
-                            quantity={quantity}
-                          />
-                        );
-                      })}
-                      <div className={cn(style.cart__orderInfo, style.cart__orderInfo_border)}>
-                        <p className={style.cart__result}>
-                          Your order for the total amount{' '}
-                          <span className={style.cart__result_color}>&#36;{price && price.toFixed(2)}</span> and{' '}
-                          <span className={style.cart__result_color}>{quantity}</span> items
-                        </p>
-                        <OrderButton
-                          classNames={style.cart__orderBtn}
-                          handleClick={() => handlePlaceAnOrder(restaurantId, restaurantName, isClosed)}
-                          name={'Place an order'}
-                        />
-                      </div>
-                    </>
-                  ) : null}
-                </div>
-              );
-            })}
+            addedGoods.map((restaurant) => (
+              <ProductList
+                handleOrderNumberChange={handleOrderNumberChange}
+                handleRestaurantInfoChange={handleRestaurantInfoChange}
+                handleVisibleModal={handleVisibleModal}
+                handleVisiblePopup={handleVisiblePopup}
+                key={uuidv4()}
+                restaurantInfo={restaurant}
+              />
+            ))}
         </div>
       </div>
 

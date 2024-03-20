@@ -107,12 +107,12 @@ export const FindFood: FC = () => {
     setSearchValue(text);
   }, []);
 
-  const handleChangeCoord = useCallback((coords: Coords) => {
+  const handleCoordChange = useCallback((coords: Coords) => {
     setCoord(coords);
     setSearchValue(coords);
   }, []);
 
-  const handleChangeLocation = useCallback(({ address, addressDetails, coords }: LocationItem) => {
+  const handleLocationChange = useCallback(({ address, addressDetails, coords }: LocationItem) => {
     const premiseNumber = addressDetails?.find((el) => el['house'])?.house;
     setMode(ModeOfUsingMaps.SEARCH);
     setPremiseNumber(premiseNumber);
@@ -129,7 +129,7 @@ export const FindFood: FC = () => {
 
     if (event.key === 'Enter' && list.length) {
       event.preventDefault();
-      handleChangeLocation(list[0]);
+      handleLocationChange(list[0]);
       setMode(ModeOfUsingMaps.SEARCH);
     }
   };
@@ -138,21 +138,21 @@ export const FindFood: FC = () => {
     setVisiblePopup(status);
   }, []);
 
-  const handleChangeDeliveryStatus = useCallback((status: DeliveryStatus) => {
+  const handleDeliveryStatusChange = useCallback((status: DeliveryStatus) => {
     setDeliveryStatus(status);
   }, []);
 
-  const handleChangeMode = useCallback((mode: string) => {
+  const handleModeChange = useCallback((mode: string) => {
     setMode(mode);
   }, []);
 
-  const handleChangeAddress = useCallback(({ address, listOfDistances, premiseNumber }: ExtendedAddress) => {
+  const handleAddressChange = useCallback(({ address, listOfDistances, premiseNumber }: ExtendedAddress) => {
     setPlace(address);
     setPremiseNumber(premiseNumber);
     setListOfDistances(listOfDistances);
   }, []);
 
-  const handleChangeDeliveryType = useCallback((label: DeliveryType) => {
+  const handleDeliveryTypeChange = useCallback((label: DeliveryType) => {
     setActiveType(label);
     dispatch(setDeliveryType(label));
   }, []);
@@ -165,7 +165,7 @@ export const FindFood: FC = () => {
           <p className={style.findFood__text}>Within a few clicks, find meals that are accessible near you</p>
 
           <div className={style.findFood__searchPanel}>
-            <MemoDeliveryMethod handleChangeDeliveryType={handleChangeDeliveryType} list={buttons} />
+            <MemoDeliveryMethod handleDeliveryTypeChange={handleDeliveryTypeChange} list={buttons} />
             <div className={style.findFood__search}>
               <div className={style.searchPanel}>
                 <TextInput
@@ -196,8 +196,8 @@ export const FindFood: FC = () => {
 
               <Popup
                 errorMessage={error}
-                handleChangeLocation={handleChangeLocation}
-                handleChangeStatus={handlePopupVisibility}
+                handleLocationChange={handleLocationChange}
+                handleStatusChange={handlePopupVisibility}
                 isOpen={visiblePopup}
                 list={list}
                 ref={popupRef}
@@ -207,10 +207,10 @@ export const FindFood: FC = () => {
             {isVisibleMap && (
               <Maps
                 coord={coord}
-                handleChangeAddress={handleChangeAddress}
-                handleChangeCoord={handleChangeCoord}
-                handleChangeMode={handleChangeMode}
-                handleChangeStatus={handleChangeDeliveryStatus}
+                handleAddressChange={handleAddressChange}
+                handleCoordChange={handleCoordChange}
+                handleModeChange={handleModeChange}
+                handleStatusChange={handleDeliveryStatusChange}
                 mode={mode}
                 place={place}
               />

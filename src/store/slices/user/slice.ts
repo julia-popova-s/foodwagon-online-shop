@@ -8,6 +8,7 @@ const initialState: UserSliceState = {
   id: '',
   isAuth: false,
   list: [],
+  orderNumber: 0,
   token: '',
 };
 
@@ -15,6 +16,9 @@ const userSlice = createSlice({
   initialState,
   name: 'user',
   reducers: {
+    changeOrderNumber(state) {
+      state.orderNumber = state.orderNumber + 1;
+    },
     removeUser(state) {
       state.email = null;
       state.id = '';
@@ -45,6 +49,7 @@ const userSlice = createSlice({
 export const emailSelector = (state: RootStore) => state.user.email;
 export const idSelector = (state: RootStore) => state.user.id;
 export const isAuthSelector = (state: RootStore) => state.user.isAuth;
+export const orderNumberSelector = (state: RootStore) => state.user.orderNumber;
 
-export const { removeUser, setOrders, setToken, setUser } = userSlice.actions;
+export const { changeOrderNumber, removeUser, setOrders, setToken, setUser } = userSlice.actions;
 export default userSlice.reducer;

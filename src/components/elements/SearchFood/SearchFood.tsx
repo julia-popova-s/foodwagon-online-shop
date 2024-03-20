@@ -65,19 +65,19 @@ export const SearchFood: FC = () => {
       );
   }, [dispatch, searchBy, limit]);
 
-  const handleSelectCategory = (index: number) => {
+  const handleCategorySelect = (index: number) => {
     dispatch(setSearchBy(index));
   };
 
-  const handleAddProduct = (product: Product) => {
+  const handleProductAdd = (product: Product) => {
     dispatch(addProduct(product));
   };
 
-  const handleRemoveProduct = (product: Product) => {
+  const handleProductRemove = (product: Product) => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (obj: ProductInfoQuantity) => {
+  const handleCountInput = (obj: ProductInfoQuantity) => {
     dispatch(setProductCount(obj));
   };
 
@@ -170,7 +170,7 @@ export const SearchFood: FC = () => {
                     key={uuidv4()}
                     {...item}
                     classNames={style.searchFood__item}
-                    handleClickCategory={() => handleSelectCategory(i)}
+                    handleClickCategory={() => handleCategorySelect(i)}
                   />
                 );
               })}
@@ -184,9 +184,9 @@ export const SearchFood: FC = () => {
                       key={`${item.id}${i}`}
                       {...item}
                       classNames={style.menuList__item}
-                      handleAddProduct={(obj) => handleAddProduct(obj)}
-                      handleInputCount={(obj) => handleInputCount(obj)}
-                      handleRemoveProduct={(obj) => handleRemoveProduct(obj)}
+                      handleCountInput={(obj) => handleCountInput(obj)}
+                      handleProductAdd={(obj) => handleProductAdd(obj)}
+                      handleProductRemove={(obj) => handleProductRemove(obj)}
                       quantity={cart[item.restaurantId]?.items[item.id]?.quantity}
                     />
                   );

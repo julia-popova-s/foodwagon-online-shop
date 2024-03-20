@@ -8,14 +8,14 @@ import style from './popup.module.scss';
 
 type PopupProps = {
   errorMessage?: null | string;
-  handleChangeLocation: (el: LocationItem) => void;
-  handleChangeStatus: (status: boolean) => void;
+  handleLocationChange: (el: LocationItem) => void;
+  handleStatusChange: (status: boolean) => void;
   isOpen: boolean;
   list: LocationItem[];
 };
 
 export const Popup = forwardRef<HTMLUListElement, PopupProps>(
-  ({ errorMessage, handleChangeLocation, handleChangeStatus, isOpen, list }, ref) => {
+  ({ errorMessage, handleLocationChange, handleStatusChange, isOpen, list }, ref) => {
     const buttonRef = useRef<HTMLLIElement>(null);
     const [activeIndex, setActiveIndex] = useState<number>(-1);
 
@@ -43,7 +43,7 @@ export const Popup = forwardRef<HTMLUListElement, PopupProps>(
 
       if (event.key === 'Escape') {
         event.preventDefault();
-        handleChangeStatus(false);
+        handleStatusChange(false);
         setActiveIndex(-1);
       }
     };
@@ -51,7 +51,7 @@ export const Popup = forwardRef<HTMLUListElement, PopupProps>(
     const handleButtonKeyDown = (event: KeyboardEvent<HTMLLIElement>, el: any) => {
       if (event.key === 'Enter') {
         event.preventDefault();
-        handleChangeLocation(el);
+        handleLocationChange(el);
         setActiveIndex(-1);
       }
     };
@@ -70,7 +70,7 @@ export const Popup = forwardRef<HTMLUListElement, PopupProps>(
                   [style.popup__item__active]: index === activeIndex,
                 })}
                 key={uuidv4()}
-                onClick={() => handleChangeLocation(el)}
+                onClick={() => handleLocationChange(el)}
                 onKeyDown={(e) => handleButtonKeyDown(e, el)}
                 ref={index === activeIndex ? buttonRef : undefined}
                 tabIndex={0}
