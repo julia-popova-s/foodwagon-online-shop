@@ -1,6 +1,5 @@
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import cn from 'classnames';
 import { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -59,13 +58,14 @@ export const ProductList = ({
   const listOfDistance = useAppSelector(listOfDistancesSelector);
   const listOfOperatingStatus = useAppSelector(listOfOperatingStatusSelector);
   const deliveryType = useAppSelector(deliveryTypeSelector);
+  const deliveryStatus = useAppSelector(deliveryStatusSelector);
   const isAuth = useAppSelector(isAuthSelector);
   const cart = useAppSelector(cartSelector);
   const coords = useAppSelector(coordsSelector);
   const address = useAppSelector(addressSelector);
-  const deliveryStatus = useAppSelector(deliveryStatusSelector);
   const orderCounter = useAppSelector(orderCounterSelector);
 
+  const [activeType, setActiveType] = useState(deliveryType);
   const [order, setOrder] = useState(orderCounter);
 
   const buttons: Button[] = useMemo(() => [{ label: DeliveryType.DELIVERY }, { label: DeliveryType.PICKUP }], []);
@@ -110,7 +110,7 @@ export const ProductList = ({
   };
 
   const handleDeliveryTypeChange = useCallback((label: DeliveryType) => {
-    dispatch(setDeliveryType(label));
+    setActiveType(label);
   }, []);
 
   const handleClearCart = ({ restaurantId, restaurantName }: RestaurantInfo) => {
@@ -161,8 +161,8 @@ export const ProductList = ({
         </div>
       </div>
       <div className={style.cart__deliveryСhoice}>
-        <DeliveryMethod handleDeliveryTypeChange={handleDeliveryTypeChange} list={buttons} />
-        <PanelWithAddress address={address} item={item} status={deliveryStatus} type={deliveryType} />
+        <DeliveryMethod deliveryType={activeType} handleDeliveryTypeChange={handleDeliveryTypeChange} list={buttons} />
+        <PanelWithAddress address={address} item={item} status={deliveryStatus} type={activeType} />
       </div>
 
       {quantity ? (

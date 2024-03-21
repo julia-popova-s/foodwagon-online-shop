@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as Spinner } from '../../../assets/images/search-panel/spinner.svg';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import {
+  deliveryTypeSelector,
   errorSelector,
   fetchLocation,
   locationListSelector,
@@ -35,6 +36,7 @@ export const FindFood: FC = () => {
   const list = useAppSelector(locationListSelector);
   const error = useAppSelector(errorSelector);
   const status = useAppSelector(statusSelector);
+  const deliveryType = useAppSelector(deliveryTypeSelector);
 
   const [listOfDistances, setListOfDistances] = useState<DistanceItem[]>([]);
   const [deliveryStatus, setDeliveryStatus] = useState<DeliveryStatus>();
@@ -42,7 +44,7 @@ export const FindFood: FC = () => {
   const [searchValue, setSearchValue] = useState<Coords | string>('');
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [coord, setCoord] = useState<Coords>([30.3515, 59.9497]);
-  const [activeType, setActiveType] = useState<DeliveryType>(DeliveryType.DELIVERY);
+  const [activeType, setActiveType] = useState<DeliveryType>(deliveryType);
   const [place, setPlace] = useState<string>('');
   const [mode, setMode] = useState<string>('');
   const [isVisibleMap, setIsVisibleMap] = useState(false);
@@ -165,7 +167,11 @@ export const FindFood: FC = () => {
           <p className={style.findFood__text}>Within a few clicks, find meals that are accessible near you</p>
 
           <div className={style.findFood__searchPanel}>
-            <MemoDeliveryMethod handleDeliveryTypeChange={handleDeliveryTypeChange} list={buttons} />
+            <MemoDeliveryMethod
+              deliveryType={activeType}
+              handleDeliveryTypeChange={handleDeliveryTypeChange}
+              list={buttons}
+            />
             <div className={style.findFood__search}>
               <div className={style.searchPanel}>
                 <TextInput

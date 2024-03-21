@@ -24,7 +24,7 @@ export interface LocationItem {
   addressDetails?: AddressDetails[];
   coords: Coords;
   deliveryStatus?: DeliveryStatus | null;
-  deliveryType?: DeliveryType;
+  deliveryType: DeliveryType;
   listOfDistances?: DistanceItem[];
 }
 
