@@ -1,0 +1,27 @@
+@import "../../../styles/variables";
+
+
+
+.orderInfo {
+  @include setTextStyle(700, 22px, 120%);
+  color: rgb(66, 66, 66);
+
+  margin-bottom: 20px;
+  padding-right: 20px;
+}
+
+.orderInfo__result_color {
+  color: $base-color;
+}
+
+@media (max-width:1350px) {
+  .orderInfo__result {
+    max-width: calc(100% - 407px);
+  }
+}
+
+@media (max-width:800px) {
+  .orderInfo {
+    max-width: 100%;
+  }
+}

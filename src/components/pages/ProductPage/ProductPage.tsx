@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/slices/product/slice';
+import { ProductDetails } from '../../elements/ProductDetails';
 import { RestaurantPage } from '../RestaurantPage/RestaurantPage';
-import { Card } from './Card';
 import { LoaderLeft } from './LoaderLeft';
 import { LoaderRight } from './LoaderRight';
 import style from './productPage.module.scss';
@@ -59,7 +59,7 @@ export const ProductPage: FC = () => {
           <h1 className={style.title}>Restaurant menu</h1>
           <div className={style.product}>
             {isLoaded ? (
-              <Card
+              <ProductDetails
                 {...product}
                 handleCountInput={handleCountInput}
                 handleProductAdd={handleProductAdd}

@@ -8,9 +8,10 @@ import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { addedGoodsSelector, clearCart, totalQuantitySelector } from '../../../store/slices/cart/slice';
 import { changeOrderCounter, orderCounterSelector } from '../../../store/slices/user/slice';
+import { ProductList } from '../../elements/ProductList';
+import { RestaurantInfo } from '../../elements/ProductList/ProductList';
+import { Modal } from '../../ui/Modal';
 import { Popup } from '../../ui/Popup';
-import { Modal } from './Modal';
-import { ProductList, RestaurantInfo } from './ProductList';
 import style from './cartPage.module.scss';
 
 export const Cart: FC = () => {

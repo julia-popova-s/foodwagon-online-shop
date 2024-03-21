@@ -1,0 +1,15 @@
+@import "../../../styles/variables";
+
+
+.search {
+  position: relative;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+
+  &__btn {
+    max-width: 199px;
+  }
+}

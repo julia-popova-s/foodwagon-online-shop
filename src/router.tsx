@@ -10,7 +10,7 @@ const LoginPage = lazy(() => import(/*webpackChunkName: "LoginPage"*/ './compone
 const ProductPage = lazy(() => import(/*webpackChunkName: "ProductPage"*/ './components/pages/ProductPage'));
 const SearchPage = lazy(() => import(/*webpackChunkName: "SearchPage"*/ './components/pages/SearchPage'));
 const RestaurantPage = lazy(
-  () => import(/*webpackChunkName: "RestaurantPage"*/ './components/elements/FeaturedRestaurants'),
+  () => import(/*webpackChunkName: "RestaurantPage"*/ './components/blocks/FeaturedRestaurants'),
 );
 
 export const router = [

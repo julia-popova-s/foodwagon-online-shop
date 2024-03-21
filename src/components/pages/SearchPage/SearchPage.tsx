@@ -11,10 +11,10 @@ import {
   setCurrentPage,
   statusSelector,
 } from '../../../store/slices/productsSearch/slice';
+import { SearchPanel } from '../../elements/SearchPanel';
 import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
-import { SearchPanel } from './SearchPanel';
 import style from './searchPage.module.scss';
 
 export const SearchPage: FC = () => {
