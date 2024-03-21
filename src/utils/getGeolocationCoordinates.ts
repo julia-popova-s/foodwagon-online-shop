@@ -1,6 +1,6 @@
-import { GeoObject, GeocoderResponse, LocationItem } from '../store/slices/location/types';
+import { GeoObject, GeocoderResponse } from '../store/slices/location/types';
 
-export const getGeolocationCoordinates = (response: GeocoderResponse): LocationItem[] => {
+export const getGeolocationCoordinates = (response: GeocoderResponse) => {
   return response?.response?.GeoObjectCollection?.featureMember.map((el: { GeoObject: GeoObject }) => {
     const geoObject = el?.GeoObject;
     const addressDetails = geoObject?.metaDataProperty?.GeocoderMetaData?.Address?.Components.map(({ kind, name }) => {

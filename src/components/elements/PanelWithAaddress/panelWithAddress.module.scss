@@ -1,0 +1,35 @@
+@import "../../../styles/variables";
+
+.cart__addressItem {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+  color: #757575;
+
+  padding: 24px;
+
+  background-color: #ffffff;
+  border-radius: 0 0 8px 8px;
+}
+
+.cart__addressItem_theme {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 120%;
+  color: rgb(66, 66, 66);
+}
+
+.cart__addressLink {
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background-color: #f17228;
+    border-radius: 10px;
+  }
+}

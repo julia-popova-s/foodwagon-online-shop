@@ -1,19 +1,17 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { ReactSVG } from 'react-svg';
 
+import { ReactComponent as Logo } from '../../../assets/images/header/logo.svg';
 import style from './logoType.module.scss';
 
 type LogoTypeProps = {
   classNames?: string;
-  handleClick?: () => void;
 };
 
-export const LogoType: FC<LogoTypeProps> = ({ classNames, handleClick }) => {
+export const LogoType: FC<LogoTypeProps> = ({ classNames }) => {
   return (
-    <div className={cn(style.logo, classNames)} onClick={handleClick}>
-      <ReactSVG className={style.logo__image} src={process.env.PUBLIC_URL + '/images/header/logo.svg'} wrapper="span" />
-
+    <div className={cn(style.logo, classNames)}>
+      <Logo className={style.logo__image} />
       <div className={style.logo__name}>food</div>
 
       <div className={cn(style.logo__name, style.logo__name_color)}>

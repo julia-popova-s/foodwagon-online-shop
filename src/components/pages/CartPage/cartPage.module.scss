@@ -1,7 +1,7 @@
 @import "../../../styles/variables";
 
 .cart {
-  padding-top: 78px + 60px;
+  padding-top: $header-max-height + $padding-top;
 
   background: linear-gradient(rgba(255, 206, 103, 0.22) -42.47%,
       rgba(253, 237, 202, 0) 100%);
@@ -129,8 +129,6 @@
 .cart__restaurantName {
   @include setTextStyle(700, 28px, 120%);
   color: $base-color;
-
-  margin-bottom: 4px;
 }
 
 .cart__links {
@@ -154,6 +152,35 @@
   font-weight: 700;
 }
 
+.cart__operatStatus {
+  font-size: 16px;
+}
+
+.cart__distanceItem {
+  font-size: 16px;
+}
+
+.cart__address {
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 0 0 8px 8px;
+}
+
+.cart__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 25px;
+
+  margin-right: 15px;
+}
+
+.cart__deliveryСhoice {
+  margin-bottom: 20px;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.15);
+  max-width: 856px;
+  border-radius: 8px;
+}
 
 
 @media (max-width:1350px) {

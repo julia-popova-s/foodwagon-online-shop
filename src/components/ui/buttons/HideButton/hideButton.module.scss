@@ -1,0 +1,22 @@
+@import "../../../../styles/variables";
+
+.regForm__btnHide {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  
+  @include setTextStyle($font-normal, 18px, 27px);
+
+  color: #666;
+  background-color: transparent;
+
+  margin-bottom: 7px;
+  padding-right: 10px;
+
+  outline: none;
+  border: none;
+}
+
+.regForm__btnHideIcon path {
+  fill: #666;
+}

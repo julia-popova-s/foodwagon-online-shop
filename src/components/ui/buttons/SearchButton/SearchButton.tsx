@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { ReactSVG } from 'react-svg';
 
+import { ReactComponent as Search } from '../../../../assets/images/search-panel/search.svg';
 import style from './searchButton.module.scss';
 
 type SearchButtonProps = {
@@ -14,13 +14,7 @@ type SearchButtonProps = {
 export const SearchButton: FC<SearchButtonProps> = ({ classNames, handleClick, icon, label }) => {
   return (
     <button className={cn(style.searchButton, classNames)} onClick={handleClick}>
-      {icon && icon === 'search' && (
-        <ReactSVG
-          className={style.searchButton__icon}
-          src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/search.svg`}
-          wrapper="span"
-        />
-      )}
+      {icon && icon === 'search' && <Search className={style.searchButton__icon} />}
 
       <span>{label}</span>
     </button>

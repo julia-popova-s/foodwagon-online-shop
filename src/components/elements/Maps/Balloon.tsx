@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { ReactSVG } from 'react-svg';
 
+import { ReactComponent as Close } from '../../../assets/images/find-food/close.svg';
 import { Coords, DeliveryStatus } from '../../../store/slices/location/types';
 import style from './balloon.module.scss';
 
@@ -25,11 +25,7 @@ export const Balloon: FC<BalloonProps> = ({ address, coord, handleClick, isActiv
       <div className={style.balloon__status}>Delivery: {status}</div>
 
       <button className={style.balloon__close} onClick={handleClick}>
-        <ReactSVG
-          className={style.balloon__closeIcon}
-          src={`${process.env.PUBLIC_URL}/images/find-food/close.svg`}
-          wrapper="span"
-        />
+        <Close className={style.balloon__closeIcon} />
       </button>
     </div>
   );

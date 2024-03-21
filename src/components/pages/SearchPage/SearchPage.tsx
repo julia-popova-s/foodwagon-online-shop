@@ -11,10 +11,10 @@ import {
   setCurrentPage,
   statusSelector,
 } from '../../../store/slices/productsSearch/slice';
+import { SearchPanel } from '../../elements/SearchPanel';
 import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
-import { SearchPanel } from './SearchPanel';
 import style from './searchPage.module.scss';
 
 export const SearchPage: FC = () => {
@@ -26,19 +26,19 @@ export const SearchPage: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const handleChangePage = (pageNumber: number) => {
+  const handlePageChange = (pageNumber: number) => {
     dispatch(setCurrentPage(pageNumber));
   };
 
-  const handleAddProduct = (item: Product) => {
+  const handleProductAdd = (item: Product) => {
     dispatch(addProduct(item));
   };
 
-  const handleRemoveProduct = (product: Product) => {
+  const handleProductRemove = (product: Product) => {
     dispatch(deleteOneProduct(product));
   };
 
-  const handleInputCount = (item: ProductInfoQuantity) => {
+  const handleCountInput = (item: ProductInfoQuantity) => {
     dispatch(setProductCount(item));
   };
   const skeleton = new Array(4).fill(0).map((_, index) => <Loader key={index} />);
@@ -60,16 +60,16 @@ export const SearchPage: FC = () => {
                 classNames={style.menuList__item}
                 key={item.id}
                 {...item}
-                handleAddProduct={handleAddProduct}
-                handleInputCount={handleInputCount}
-                handleRemoveProduct={handleRemoveProduct}
+                handleCountInput={handleCountInput}
+                handleProductAdd={handleProductAdd}
+                handleProductRemove={handleProductRemove}
               />
             ))}
 
           {status === 'loading' && skeleton}
         </div>
 
-        {status && !error && <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={3} />}
+        {status && !error && <Pagination currentPage={currentPage} handleChangePage={handlePageChange} pageCount={3} />}
       </div>
     </div>
   );

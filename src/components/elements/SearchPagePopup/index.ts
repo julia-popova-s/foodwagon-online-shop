@@ -1,0 +1,1 @@
+export { SearchPagePopup } from './SearchPagePopup';

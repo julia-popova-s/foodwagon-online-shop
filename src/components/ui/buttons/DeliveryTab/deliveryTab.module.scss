@@ -1,10 +1,14 @@
 @import "../../../../styles/variables";
 
 .deliveryTab {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+
   @include setTextStyle(700, 18px, 100%);
   color: #757575;
 
-  padding: 8px 24px;
+  padding: 10px 24px;
 
   background-color: transparent;
 
@@ -15,30 +19,24 @@
   border-radius: 8px;
 }
 
-.deliveryTab__btnName {
-  padding-left: 9px;
-  margin-bottom: 5px;
+.deliveryTab__btnName {}
 
-  vertical-align: top;
-}
-
-.deliveryTab__btnIcon svg {
+.deliveryTab__btnIcon {
   width: 23px;
   height: 18px;
 
-  vertical-align: middle;
 
   path {
     fill: #757575;
   }
 }
 
-.deliveryTabActive {
+.deliveryTab_active {
   background-color: rgba(241, 114, 40, 0.1);
   color: $base-color;
   transition: all 50ms;
 }
 
-.deliveryTabActive svg path {
+.deliveryTab_active svg path {
   fill: $base-color;
 }

@@ -2,9 +2,10 @@ import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps';
 import cn from 'classnames';
 import debounce from 'lodash.debounce';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { ReactSVG } from 'react-svg';
 import ymaps from 'yandex-maps';
 
+import { ReactComponent as Preloader } from '../../../assets/images/find-food/preloader.svg';
+import { ReactComponent as LocationMark } from '../../../assets/images/search-panel/location.svg';
 import { useAppSelector } from '../../../store';
 import { Coords, DeliveryStatus, DistanceItem } from '../../../store/slices/location/types';
 import { placemarkSelector } from '../../../store/slices/restaurants/slice';
@@ -25,20 +26,20 @@ export enum ModeOfUsingMaps {
 
 type MapsProps = {
   coord: Coords;
-  handleChangeAddress: ({ address, premiseNumber }: ExtendedAddress) => void;
-  handleChangeCoord: (coord: Coords) => void;
-  handleChangeMode: (mode: string) => void;
-  handleChangeStatus: (status: DeliveryStatus) => void;
+  handleAddressChange: ({ address, premiseNumber }: ExtendedAddress) => void;
+  handleCoordChange: (coord: Coords) => void;
+  handleModeChange: (mode: string) => void;
+  handleStatusChange: (status: DeliveryStatus) => void;
   mode: string;
   place: string;
 };
 
 export const Maps: FC<MapsProps> = ({
   coord,
-  handleChangeAddress,
-  handleChangeCoord,
-  handleChangeMode,
-  handleChangeStatus,
+  handleAddressChange,
+  handleCoordChange,
+  handleModeChange,
+  handleStatusChange,
   mode,
   place,
 }) => {
@@ -58,13 +59,13 @@ export const Maps: FC<MapsProps> = ({
 
   const updateSearchValue = useCallback(
     debounce((coord: Coords) => {
-      handleChangeCoord(coord);
+      handleCoordChange(coord);
     }, 500),
     [],
   );
 
   const getGeoLocation = (event: any) => {
-    handleChangeMode(ModeOfUsingMaps.DRAG);
+    handleModeChange(ModeOfUsingMaps.DRAG);
     const coord = event.get('target').getCenter();
     updateSearchValue(coord);
   };
@@ -130,10 +131,10 @@ export const Maps: FC<MapsProps> = ({
 
       if (targetZone) {
         setDeliveryStatus(DeliveryStatus.YES);
-        handleChangeStatus(DeliveryStatus.YES);
+        handleStatusChange(DeliveryStatus.YES);
       } else {
         setDeliveryStatus(DeliveryStatus.NO);
-        handleChangeStatus(DeliveryStatus.NO);
+        handleStatusChange(DeliveryStatus.NO);
       }
     }
   }, [coord, zone]);
@@ -165,7 +166,7 @@ export const Maps: FC<MapsProps> = ({
         .then((res: any) => {
           setIsLoaded(true);
           const geocodeResult: ymaps.GeocodeResult = res.geoObjects.get(0);
-          handleChangeAddress({
+          handleAddressChange({
             address: geocodeResult?.getAddressLine(),
             listOfDistances,
             premiseNumber: geocodeResult?.getPremiseNumber(),
@@ -186,7 +187,7 @@ export const Maps: FC<MapsProps> = ({
     setActiveAction(false);
   };
 
-  const handleChangeBalloonStatus = () => {
+  const handleBalloonStatusChange = () => {
     setVisibleBalloon(!visibleBalloon);
   };
 
@@ -223,18 +224,9 @@ export const Maps: FC<MapsProps> = ({
         onLoad={onLoad}
         onWheel={handleChangeZoom}
       >
-        <div className={cn(style.placemark, { [style.active]: activeAction })} onClick={handleChangeBalloonStatus}>
-          <ReactSVG
-            className={cn(style.placemark__icon, { [style.active]: activeAction })}
-            src={`${process.env.PUBLIC_URL}/images/find-food/search-panel/location.svg`}
-            wrapper="span"
-          />
-          {!isLoaded && (
-            <ReactSVG
-              className={style.placemark__preloader}
-              src={`${process.env.PUBLIC_URL}/images/find-food/preloader.svg`}
-            />
-          )}
+        <div className={cn(style.placemark, { [style.active]: activeAction })} onClick={handleBalloonStatusChange}>
+          <LocationMark className={cn(style.placemark__icon, { [style.active]: activeAction })} />
+          {!isLoaded && <Preloader className={style.placemark__preloader} />}
         </div>
 
         <Placemark geometry={coord} instanceRef={placemarkRef} options={{ iconOffset: [0, 0], visible: false }} />
@@ -242,7 +234,7 @@ export const Maps: FC<MapsProps> = ({
         <Balloon
           address={place}
           coord={coord}
-          handleClick={handleChangeBalloonStatus}
+          handleClick={handleBalloonStatusChange}
           isActive={visibleBalloon}
           status={deliveryStatus}
         />
