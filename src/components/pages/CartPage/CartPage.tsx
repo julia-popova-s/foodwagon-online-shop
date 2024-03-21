@@ -7,7 +7,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { addedGoodsSelector, clearCart, totalQuantitySelector } from '../../../store/slices/cart/slice';
-import { changeOrderCounter, orderCounterSelector } from '../../../store/slices/user/slice';
+import {
+  changeOrderCounter,
+  emailSelector,
+  orderCounterSelector,
+} from '../../../store/slices/user/slice';
 import { ProductList } from '../../elements/ProductList';
 import { RestaurantInfo } from '../../elements/ProductList/ProductList';
 import { Modal } from '../../ui/Modal';
@@ -16,6 +20,8 @@ import style from './cartPage.module.scss';
 
 export const Cart: FC = () => {
   const { pathname } = useLocation();
+
+  const dispatch = useAppDispatch();
 
   const [name, setName] = useState<string>('');
   const [id, setId] = useState<string>('');
@@ -26,8 +32,7 @@ export const Cart: FC = () => {
   const totalQuantity = useAppSelector(totalQuantitySelector);
   const addedGoods = useAppSelector(addedGoodsSelector);
   const orderCounter = useAppSelector(orderCounterSelector);
-
-  const dispatch = useAppDispatch();
+  const email = useAppSelector(emailSelector);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -110,7 +115,13 @@ export const Cart: FC = () => {
         </div>
       </div>
 
-      <Modal handleCloseModal={handleCloseModal} isOpen={visibleModal} name={name} orderNumber={orderCounter} />
+      <Modal
+        email={email || ''}
+        handleCloseModal={handleCloseModal}
+        isOpen={visibleModal}
+        name={name}
+        orderNumber={orderCounter}
+      />
       <Popup handleClickClose={handleClosePopup} handleClickOk={handleClearOrder} isOpen={visiblePopup} ref={popupRef}>
         <>
           Are you sure you want to empty the cart from <span className={style.popup__name}>«{name}»</span>?
