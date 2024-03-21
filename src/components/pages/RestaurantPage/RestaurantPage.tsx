@@ -64,11 +64,11 @@ export const RestaurantPage: FC = () => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
-  const handleChangePage = (pageNumber: number) => {
+  const handlePageChange = (pageNumber: number) => {
     dispatch(setCurrentPage(pageNumber));
   };
 
-  const handleChangeSortType = (sortType: any, orderType: any) => {
+  const handleSortTypeChange = (sortType: any, orderType: any) => {
     dispatch(setSortBy({ orderType, sortType }));
   };
 
@@ -84,15 +84,15 @@ export const RestaurantPage: FC = () => {
     );
   }, [sortType, category, restaurantId, currentPage, orderType]);
 
-  const handleAddProduct = (item: Product) => {
+  const handleProductAdd = (item: Product) => {
     dispatch(addProduct(item));
   };
 
-  const handleRemoveProduct = (item: Product) => {
+  const handleProductRemove = (item: Product) => {
     dispatch(deleteOneProduct(item));
   };
 
-  const handleInputCount = (item: ProductInfoQuantity) => {
+  const handleCountInput = (item: ProductInfoQuantity) => {
     dispatch(setProductCount(item));
   };
 
@@ -103,7 +103,7 @@ export const RestaurantPage: FC = () => {
       <div className={cn(style.restaurant)}>
         <div className="container">
           <div className={style.alert}>Nothing was found according to your request. Go to another page.</div>
-          <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={5} />
+          <Pagination currentPage={currentPage} handleChangePage={handlePageChange} pageCount={5} />
         </div>
       </div>
     );
@@ -116,7 +116,7 @@ export const RestaurantPage: FC = () => {
           <SortPopup
             activeSortType={sortType}
             classNames={style.filters__sortBy}
-            handleChangeSortType={handleChangeSortType}
+            handleChangeSortType={handleSortTypeChange}
             items={SORT_ITEMS}
             orderType={orderType}
           />
@@ -128,9 +128,9 @@ export const RestaurantPage: FC = () => {
                   classNames={style.menuList__item}
                   key={item.id}
                   {...item}
-                  handleAddProduct={handleAddProduct}
-                  handleInputCount={handleInputCount}
-                  handleRemoveProduct={handleRemoveProduct}
+                  handleCountInput={handleCountInput}
+                  handleProductAdd={handleProductAdd}
+                  handleProductRemove={handleProductRemove}
                 />
               ))
             : skeleton}
@@ -138,7 +138,7 @@ export const RestaurantPage: FC = () => {
       </div>
 
       <div className="container">
-        <Pagination currentPage={currentPage} handleChangePage={handleChangePage} pageCount={5} />
+        <Pagination currentPage={currentPage} handleChangePage={handlePageChange} pageCount={5} />
       </div>
     </div>
   );

@@ -1,17 +1,17 @@
 import { FC, lazy } from 'react';
 
-const AppDownLoad = lazy(() => import(/*webpackChunkName: "AppDownLoad"*/ '../../elements/AppDownLoad'));
-const CallToAction = lazy(() => import(/*webpackChunkName: "CallToAction"*/ '../../elements/CallToAction'));
+const AppDownLoad = lazy(() => import(/*webpackChunkName: "AppDownLoad"*/ '../../blocks/AppDownLoad'));
+const CallToAction = lazy(() => import(/*webpackChunkName: "CallToAction"*/ '../../blocks/CallToAction'));
 const FeaturedRestaurants = lazy(
-  () => import(/*webpackChunkName: "FeaturedRestaurants"*/ '../../elements/FeaturedRestaurants'),
+  () => import(/*webpackChunkName: "FeaturedRestaurants"*/ '../../blocks/FeaturedRestaurants'),
 );
-const Cities = lazy(() => import(/*webpackChunkName: "Cities"*/ '../../elements/Cities'));
-const Details = lazy(() => import(/*webpackChunkName: "Details"*/ '../../elements/Details'));
-const SearchFood = lazy(() => import(/*webpackChunkName: "SearchFood"*/ '../../elements/SearchFood'));
-const PopularItems = lazy(() => import(/*webpackChunkName: "PopularItems"*/ '../../elements/PopularItems'));
-const OrderAlgorithm = lazy(() => import(/*webpackChunkName: "OrderAlgorithm"*/ '../../elements/OrderAlgorithm'));
-const FlashDeals = lazy(() => import(/*webpackChunkName: "FlashDeals"*/ '../../elements/FlashDeals'));
-const FindFood = lazy(() => import(/*webpackChunkName: "FindFood"*/ '../../elements/FindFood'));
+const Cities = lazy(() => import(/*webpackChunkName: "Cities"*/ '../../blocks/Cities'));
+const Details = lazy(() => import(/*webpackChunkName: "Details"*/ '../../blocks/Details'));
+const SearchFood = lazy(() => import(/*webpackChunkName: "SearchFood"*/ '../../blocks/SearchFood'));
+const PopularItems = lazy(() => import(/*webpackChunkName: "PopularItems"*/ '../../blocks/PopularItems'));
+const OrderAlgorithm = lazy(() => import(/*webpackChunkName: "OrderAlgorithm"*/ '../../blocks/OrderAlgorithm'));
+const FlashDeals = lazy(() => import(/*webpackChunkName: "FlashDeals"*/ '../../blocks/FlashDeals'));
+const FindFood = lazy(() => import(/*webpackChunkName: "FindFood"*/ '../../blocks/FindFood'));
 
 export const Home: FC = () => {
   return (

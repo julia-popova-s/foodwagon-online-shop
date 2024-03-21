@@ -1,7 +1,7 @@
 @import "../../../styles/variables";
 
 .searchPage {
-  padding-top: 138px;
+  padding-top: $header-max-height + $padding-top;
   min-height: 100vh;
 }
 

@@ -1,23 +1,22 @@
 import classNames from 'classnames';
 import { FC } from 'react';
-import { ReactSVG } from 'react-svg';
 
+import { ReactComponent as Delivery } from '../../../../assets/images/delivery/delivery.svg';
+import { ReactComponent as Pickup } from '../../../../assets/images/delivery/pickup.svg';
 import style from './deliveryTab.module.scss';
 
 type DeliveryTabProps = {
   active: boolean;
   handleClickItem: () => void;
-  icon: string;
   label: string;
 };
-
-export const DeliveryTab: FC<DeliveryTabProps> = ({ active, handleClickItem, icon, label }) => {
+export const DeliveryTab: FC<DeliveryTabProps> = ({ active, handleClickItem, label }) => {
   return (
-    <button className={classNames(style.deliveryTab, { [style.deliveryTabActive]: active })} onClick={handleClickItem}>
+    <button className={classNames(style.deliveryTab, { [style.deliveryTab_active]: active })} onClick={handleClickItem}>
       {label === 'Delivery' ? (
-        <ReactSVG className={style.deliveryTab__btnIcon} src={`${process.env.PUBLIC_URL}${icon}`} wrapper="span" />
+        <Delivery className={style.deliveryTab__btnIcon} />
       ) : (
-        <ReactSVG className={style.deliveryTab__btnIcon} src={`${process.env.PUBLIC_URL}${icon}`} wrapper="span" />
+        <Pickup className={style.deliveryTab__btnIcon} />
       )}
 
       <span className={style.deliveryTab__btnName}>{label}</span>

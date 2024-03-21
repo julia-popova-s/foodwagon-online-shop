@@ -6,15 +6,19 @@ import { useAppDispatch } from '../../../store';
 import { setToken, setUser } from '../../../store/slices/user/slice';
 import { AuthAPIErrors } from '../../../store/slices/user/types';
 import { loginSchema } from '../../../utils/fieldValidationSchemes';
+import { AuthRegForm } from '../../elements/AuthRegForm';
 import Spinner from '../../ui/Spinner/Spinner';
-import AuthRegForm from './AuthRegForm';
 import style from './loginPage.module.scss';
 
 export const Login: FC = () => {
   const auth = getAuth();
+
   const { pathname } = useLocation();
+
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
+
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = (email: string, password: string) => {

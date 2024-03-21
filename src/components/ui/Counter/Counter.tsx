@@ -6,17 +6,17 @@ import style from './counter.module.scss';
 
 type CounterProps = {
   classNames: string;
-  handleInputQuantity: (quantity: number) => void;
-  handleMinusProduct: () => void;
-  handlePlusProduct: () => void;
+  handleProductMinus: () => void;
+  handleProductPlus: () => void;
+  handleQuantityInput: (quantity: number) => void;
   quantity: number;
 };
 
 export const Counter: FC<CounterProps> = ({
   classNames,
-  handleInputQuantity,
-  handleMinusProduct,
-  handlePlusProduct,
+  handleProductMinus,
+  handleProductPlus,
+  handleQuantityInput,
   quantity,
 }) => {
   const [count, setCount] = useState(quantity);
@@ -25,19 +25,19 @@ export const Counter: FC<CounterProps> = ({
     const counter = e.target.value.replace(/[^0-9]/gi, '');
     if (counter !== '') {
       setCount(+counter);
-      handleInputQuantity(+counter);
+      handleQuantityInput(+counter);
     } else {
       setCount(0);
     }
   };
 
-  const handleClickPlusProduct = () => {
-    handlePlusProduct();
+  const handleClickProductPlus = () => {
+    handleProductPlus();
     setCount(count + 1);
   };
 
-  const handleClickMinusProduct = () => {
-    handleMinusProduct();
+  const handleClickProductMinus = () => {
+    handleProductMinus();
     setCount(count - 1);
   };
 
@@ -48,7 +48,7 @@ export const Counter: FC<CounterProps> = ({
           [style.disabledBtn]: count > 98,
         })}
         disabled={count > 98}
-        onClick={handleClickPlusProduct}
+        onClick={handleClickProductPlus}
       >
         {'+'}
       </button>
@@ -61,7 +61,7 @@ export const Counter: FC<CounterProps> = ({
         value={count}
       />
 
-      <button className={cn(style.buttons__minus, style.button)} onClick={handleClickMinusProduct}>
+      <button className={cn(style.buttons__minus, style.button)} onClick={handleClickProductMinus}>
         {'–'}
       </button>
     </div>
@@ -69,8 +69,8 @@ export const Counter: FC<CounterProps> = ({
 };
 
 Counter.propTypes = {
-  handleMinusProduct: PropTypes.func.isRequired,
-  handlePlusProduct: PropTypes.func.isRequired,
+  handleProductMinus: PropTypes.func.isRequired,
+  handleProductPlus: PropTypes.func.isRequired,
   quantity: PropTypes.number.isRequired,
 };
 

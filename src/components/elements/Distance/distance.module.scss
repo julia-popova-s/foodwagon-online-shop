@@ -1,0 +1,42 @@
+@import "../../../styles/variables";
+
+.distance {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+
+  @include setTextStyle($font-bold, 22px, 120%);
+
+  padding: 8px 16px;
+
+  background: rgba(121, 185, 60, 0.2);
+  border-radius: 16px;
+}
+
+.theme {
+  background-color: rgba(241, 114, 40, 0.2);
+}
+
+.distance__pickupIcon path {
+  fill: #79b93c;
+}
+
+.distance__pickupIcon_theme path {
+  fill: #F17228;
+}
+
+.distance__deliveryIcon path {
+  fill: #79b93c;
+}
+
+.distance__deliveryIcon_theme path {
+  fill: #F17228;
+}
+
+.distance__distanceValue {
+  color: #79b93c;
+}
+
+.distance__distanceValue_theme {
+  color: #F17228;
+}

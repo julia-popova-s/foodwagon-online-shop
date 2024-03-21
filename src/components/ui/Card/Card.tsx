@@ -8,7 +8,7 @@ import { useAppSelector } from '../../../store';
 import { cartSelector } from '../../../store/slices/cart/slice';
 import { getPartOfString } from '../../../utils/getPartOfString';
 import { Discount } from '../Discount/Discount';
-import { CounterAndButton } from '../buttons/CounterAndButton';
+import { CounterWithButton } from '../buttons/CounterWithButton';
 import { SearchButton } from '../buttons/SearchButton';
 import style from './card.module.scss';
 
@@ -32,9 +32,9 @@ type Product = {
 type CardProps = {
   classNames: string;
   discount: number;
-  handleAddProduct: (item: Product) => void;
-  handleInputCount: (item: ProductQuantity) => void;
-  handleRemoveProduct: (item: Product) => void;
+  handleCountInput: (item: ProductQuantity) => void;
+  handleProductAdd: (item: Product) => void;
+  handleProductRemove: (item: Product) => void;
   id: string;
   image: string;
   price: number;
@@ -48,9 +48,9 @@ export const Card: FC<CardProps> = (props) => {
   const {
     classNames,
     discount,
-    handleAddProduct,
-    handleInputCount,
-    handleRemoveProduct,
+    handleCountInput,
+    handleProductAdd,
+    handleProductRemove,
     id,
     image,
     price,
@@ -65,15 +65,15 @@ export const Card: FC<CardProps> = (props) => {
 
   const quantity: number = cart[restaurantId]?.items[id]?.quantity;
 
-  const handlePlusProduct = () => {
-    handleAddProduct(data);
+  const handleProductPlus = () => {
+    handleProductAdd(data);
   };
 
-  const handleMinusProduct = () => {
-    handleRemoveProduct(data);
+  const handleProductMinus = () => {
+    handleProductRemove(data);
   };
 
-  const handleInputQuantity = (quantity: number) => handleInputCount({ id, price, quantity, restaurantId });
+  const handleQuantityInput = (quantity: number) => handleCountInput({ id, price, quantity, restaurantId });
 
   return (
     <div className={cn(style.card, classNames)}>
@@ -96,14 +96,14 @@ export const Card: FC<CardProps> = (props) => {
       <p className={style.card__price}>&#36; {price}</p>
 
       {quantity ? (
-        <CounterAndButton
-          handleInputQuantity={handleInputQuantity}
-          handleMinusProduct={handleMinusProduct}
-          handlePlusProduct={handlePlusProduct}
+        <CounterWithButton
+          handleProductMinus={handleProductMinus}
+          handleProductPlus={handleProductPlus}
+          handleQuantityInput={handleQuantityInput}
           quantity={quantity ? quantity : 0}
         />
       ) : (
-        <SearchButton classNames={style.card__btn} handleClick={handlePlusProduct} label="Order Now" />
+        <SearchButton classNames={style.card__btn} handleClick={handleProductPlus} label="Order Now" />
       )}
     </div>
   );

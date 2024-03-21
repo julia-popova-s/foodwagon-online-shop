@@ -1,0 +1,175 @@
+@import "../../../styles/variables";
+
+.card {
+  max-width: 357px;
+  max-height: 463px;
+
+  @include setTextStyle($font-bold, 22px, 120%);
+
+  &__up {
+    position: relative;
+
+    margin-bottom: 24px;
+  }
+
+  &__image {
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+
+    text-align: center;
+
+    border-radius: 16px;
+
+    margin: 0 auto;
+  }
+
+  &__upInfo {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__discount,
+  &__fast {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+
+    color: $white-color;
+
+    padding: 8px 16px;
+
+    border-radius: 8px;
+
+    height: 42px;
+  }
+
+  &__discount {
+    background: $base-color;
+
+  }
+
+  &__fast {
+    background: $primary-color;
+  }
+
+  &__text {
+    @include setTextStyle($font-bold, 22px, 120%);
+
+    display: inline-block;
+
+    text-align: center;
+    padding: 8px 16px;
+
+    background: rgba(121, 185, 60, 0.2);
+    border-radius: $border-radius-16;
+    color: #79b93c;
+  }
+
+  &__text_theme {
+    background: rgba(241, 114, 40, 0.20);
+    color: #F17228;
+  }
+}
+
+.card__status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__run {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+
+  @include setTextStyle($font-bold, 22px, 120%);
+
+  padding: 8px 16px;
+
+  background: rgba(121, 185, 60, 0.2);
+  border-radius: 16px;
+}
+
+.card__run_theme {
+  background-color: rgba(241, 114, 40, 0.2);
+}
+
+.card__distanceValue {
+  color: #79b93c;
+}
+
+.card__distanceValue_theme {
+  color: #F17228;
+}
+
+
+.card__pickupIcon path {
+  fill: #79b93c;
+}
+
+.card__pickupIcon_theme path {
+  fill: #F17228;
+}
+
+.card__deliveryIcon path {
+  fill: #79b93c;
+}
+
+.card__deliveryIcon_theme path {
+  fill: #F17228;
+}
+
+.location {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  margin-bottom: 32px;
+
+  height: 64px;
+
+  &__name {
+    @include setTextStyle(700, 22px, 120%);
+    color: $text-color;
+
+    margin-bottom: 4px;
+  }
+
+  &__icon {
+    max-width: 100%;
+    height: auto;
+
+    margin-right: 8px;
+
+    vertical-align: bottom;
+  }
+
+  &__img {
+    width: 50px;
+    height: 50px;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+
+    @include setTextStyle(400, 22px, 120%);
+    color: $primary-color;
+  }
+}
+
+@media(max-width:440px) {
+  .card__fast {
+    left: 24px;
+    top: 75px;
+  }
+}

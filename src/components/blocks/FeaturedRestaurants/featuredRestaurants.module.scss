@@ -1,0 +1,63 @@
+@import "../../../styles/variables";
+
+.restaurantList {
+  position: relative;
+
+  margin-bottom: 80px;
+
+
+  &__filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    @include setTextStyle(700, 43px, 112%);
+    color: $main-color-gray;
+    text-align: center;
+
+    padding-top: 30px;
+    margin-bottom: 88px;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(357px, 1fr));
+    column-gap: 16px;
+    row-gap: 64px;
+    justify-items: center;
+
+    margin-bottom: 88px;
+  }
+
+  &__btn {
+    display: block;
+
+    @include setTextStyle(700, 18px, 100%);
+    color: $white-color;
+    text-align: center;
+
+    margin: 0 auto;
+    padding: 21px 0;
+
+    width: 178px;
+    height: 60px;
+
+    background: linear-gradient(97.86deg, #ffba26 -8.95%, #ff9a0e 109.24%);
+    box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26),
+      0px 20px 40px rgba(255, 174, 0, 0.29);
+    border-radius: 14px;
+  }
+
+  &__btnIcon {
+    margin-left: 10px;
+  }
+}
+
+.restaurantList__popup {
+  margin-left: auto;
+}

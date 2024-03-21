@@ -1,0 +1,99 @@
+@import "../../../styles/variables";
+
+.cart {
+  max-width: 1250px;
+
+  margin-bottom: 70px;
+}
+
+.cart__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+  padding-top: 30px;
+}
+
+.cart__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 25px;
+
+  margin-right: 15px;
+}
+
+.cart__restaurantName {
+  @include setTextStyle(700, 28px, 120%);
+  color: $base-color;
+}
+
+.cart__operatStatus {
+  font-size: 16px;
+}
+
+.cart__distanceItem {
+  font-size: 16px;
+}
+
+.cart__clearIcon {
+  color: #9e9e9e;
+
+  margin-right: 8px;
+
+  transition: all $transition-long ease;
+}
+
+.cart__clearBtn:hover {
+  color: $text-color;
+  transition: all $transition-long ease;
+
+  .cart__clearIcon {
+    color: $text-color;
+    transition: all $transition-long ease;
+  }
+}
+
+.cart__clearBtn {
+  display: block;
+
+  @include setTextStyle(400, 22px, 120%);
+  color: #9e9e9e;
+
+  background-color: transparent;
+
+  margin-left: auto;
+
+  transition: all $transition-long ease;
+}
+
+.cart__deliveryСhoice {
+  margin-bottom: 20px;
+
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.cart__orderInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 70px;
+}
+
+
+@media (max-width:1350px) {
+  .cart {
+    max-width: 900px;
+  }
+}
+
+@media (max-width:500px) {
+  .cart__orderBtn {
+    width: 100%;
+    padding: 21px;
+  }
+}
