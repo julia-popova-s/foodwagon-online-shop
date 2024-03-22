@@ -1,33 +1,26 @@
 @import "../../../styles/variables";
 
+.priceBlock {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+
 .priceBlock__price {
   display: inline-block;
 
   @include setTextStyle($font-bold, 22px, 120%);
   color: rgb(66, 66, 66);
 
-  margin-right: 30px;
+  margin-right: 15px;
 
   &_theme {
-    position: relative;
-
+    font-size: 20px;
     color: rgba(130, 126, 126, 0.9);
-
     font-weight: 500;
+    text-decoration: line-through;
 
     margin-right: 0;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 12px;
-      right: 0;
-      z-index: 10;
-
-      width: calc(100% - 11px);
-      height: 2px;
-
-      background-color: #868695;
-    }
   }
 }

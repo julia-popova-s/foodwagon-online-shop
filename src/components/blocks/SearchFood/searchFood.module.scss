@@ -98,7 +98,6 @@
 
   &__item {
     max-width: 357px;
-    height: 525px;
   }
 }
 
@@ -152,18 +151,9 @@
   }
 }
 
-@media(max-width:380px) {
-  .menuList__item {
-    max-height: 490px;
-  }
-}
 
 @media(max-width:300px) {
   .searchFood__title {
     margin-bottom: 75px;
-  }
-
-  .menuList__item {
-    max-height: 460px;
   }
 }
