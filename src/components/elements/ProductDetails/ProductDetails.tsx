@@ -16,6 +16,7 @@ import { Discount } from '../../ui/Discount';
 import { CounterWithButton } from '../../ui/buttons/CounterWithButton';
 import { SearchButton } from '../../ui/buttons/SearchButton';
 import { OperatingStatus } from '../OperatingStatus';
+import { PriceBlock } from '../PriceBlock';
 import style from './productDetails.module.scss';
 
 type ProductDetailsProps = {
@@ -88,31 +89,17 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
         <p className={style.info__title}>{title}</p>
 
         <div className={style.info__name}>
-          <ReactSVG
-            className={style.info__nameIcon}
-            src={process.env.PUBLIC_URL + '/images/popular-items/map.svg'}
-            wrapper="span"
-          />
-
           <Link className={style.info__nameLink} to={''}>
+            <ReactSVG
+              className={style.info__nameIcon}
+              src={process.env.PUBLIC_URL + '/images/popular-items/map.svg'}
+              wrapper="span"
+            />
             {restaurantName}
           </Link>
           <OperatingStatus classNames={style.info__nameStatus} isClosed={isClosed} />
         </div>
-
-        <div className={style.info__prices}>
-          <div
-            className={cn(style.info__price, {
-              [style.info__price_theme]: discount,
-            })}
-          >
-            &#36; {price}
-          </div>
-
-          {discount ? (
-            <div className={style.info__price}>&#36; {(price - (price * discount) / 100).toFixed(2)}</div>
-          ) : null}
-        </div>
+        <PriceBlock classNames={style.info__prices} discount={discount} price={price} />
 
         <p className={style.info__ingredients}>Ingredients: {getPartOfString(getListProducts(ingredients), 215)}</p>
 

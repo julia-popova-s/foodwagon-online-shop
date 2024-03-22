@@ -1,6 +1,6 @@
 @import "../../../styles/variables";
 
-.cart__addressItem {
+.address {
   font-weight: 400;
   font-size: 18px;
   line-height: 120%;
@@ -10,16 +10,18 @@
 
   background-color: #ffffff;
   border-radius: 0 0 8px 8px;
+
+  min-height: 92px;
 }
 
-.cart__addressItem_theme {
+.address_theme {
   font-weight: 700;
   font-size: 18px;
   line-height: 120%;
   color: rgb(66, 66, 66);
 }
 
-.cart__addressLink {
+.addressLink {
   position: relative;
 
   &:before {
@@ -32,4 +34,8 @@
     background-color: #f17228;
     border-radius: 10px;
   }
+}
+
+.addressTitle{
+  font-weight: 700;
 }

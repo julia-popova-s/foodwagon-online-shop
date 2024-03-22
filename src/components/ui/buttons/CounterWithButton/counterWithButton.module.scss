@@ -8,43 +8,34 @@
 
   margin-top: auto;
 
-  &__btnToCart {
-    background: $base-color;
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include setTextStyle(700, 18px, 100%);
+    color: $white-color;
+
+    background: $btn-active;
     mix-blend-mode: normal;
 
     margin-top: auto;
     margin-right: 15px;
+    padding: 21px 48px;
+
+    max-height: 60px;
 
     border: none;
+    border-radius: $border-radius-8;
 
     transition: all $transition-long ease;
 
     &:hover {
+      color: $white-color;
       background: $base-color;
-
-      transition: all $transition-long ease;
-
-      box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
-        0px 20px 40px rgba(250, 99, 35, 0.24);
-    }
-
-    &_color {
-      background: $btn-active;
-
       mix-blend-mode: normal;
 
-      color: $white-color;
-
-      border: none;
-
       transition: all $transition-long ease;
-
-      &:hover {
-        box-shadow: 0px 5px 10px rgba(253, 114, 92, 0.22),
-          0px 20px 40px rgba(250, 99, 35, 0.24);
-
-        transition: all $transition-long ease;
-      }
     }
   }
 }
