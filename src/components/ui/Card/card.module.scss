@@ -6,7 +6,6 @@
   justify-content: flex-start;
 
   max-width: 283px;
-  height: 469px;
 
   &__up {
     margin-bottom: 16px;
@@ -29,6 +28,8 @@
     min-height: 53px;
 
     margin-bottom: 8px;
+
+    overflow: hidden;
   }
 
   &__location {
@@ -46,9 +47,6 @@
   }
 
   &__price {
-    @include setTextStyle(700, 22px, 120%);
-    color: #212121;
-
     margin-bottom: 16px;
   }
 
@@ -81,14 +79,15 @@
   }
 }
 
+.card__counter {
+  width: calc(100% - 140px - 30px);
+  padding: 21px 0;
+}
+
 @media(max-width:440px) {
-  .card {
-    height: 490px;
+  .card__counter {
+    width: 100%;
+    margin-right: 0;
   }
 }
 
-@media(max-width:$mobile-s) {
-  .card {
-    height: 410px;
-  }
-}

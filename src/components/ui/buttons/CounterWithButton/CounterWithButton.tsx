@@ -23,11 +23,8 @@ export const CounterWithButton: FC<CounterWithButtonProps> = ({
 }) => {
   return (
     <div className={style.buttons}>
-      <Link className={style.buttons__link} to={'/cart'}>
-        <SearchButton
-          classNames={cn(style.buttons__btnToCart, style.buttons__btnToCart_color, classNames)}
-          label="To Cart"
-        />
+      <Link className={cn(style.buttons__link, style.buttons__link_color, classNames)} to={'/cart'}>
+        To Cart
       </Link>
 
       <Counter

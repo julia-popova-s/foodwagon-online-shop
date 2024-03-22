@@ -2,7 +2,6 @@
 
 .card {
   max-width: 357px;
-  max-height: 463px;
 
   @include setTextStyle($font-bold, 22px, 120%);
 

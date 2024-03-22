@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../store';
 import { cartSelector } from '../../../store/slices/cart/slice';
 import { getPartOfString } from '../../../utils/getPartOfString';
+import { PriceBlock } from '../../elements/PriceBlock';
 import { Discount } from '../Discount/Discount';
 import { CounterWithButton } from '../buttons/CounterWithButton';
 import { SearchButton } from '../buttons/SearchButton';
@@ -93,10 +94,11 @@ export const Card: FC<CardProps> = (props) => {
         {getPartOfString(restaurantName, 24)}
       </Link>
 
-      <p className={style.card__price}>&#36; {price}</p>
+      <PriceBlock classNames={style.card__price} discount={discount} price={price} />
 
       {quantity ? (
         <CounterWithButton
+          classNames={style.card__counter}
           handleProductMinus={handleProductMinus}
           handleProductPlus={handleProductPlus}
           handleQuantityInput={handleQuantityInput}

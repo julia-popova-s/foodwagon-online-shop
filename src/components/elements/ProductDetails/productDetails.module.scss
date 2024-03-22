@@ -77,7 +77,6 @@
   justify-content: center;
   align-items: stretch;
 
-  height: 301px;
   max-width: 700px;
 
   &__title {
@@ -86,52 +85,43 @@
 
     margin-bottom: 14px;
 
-    min-height: 50px;
+    overflow: hidden;
   }
 
   &__name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 25px;
+    row-gap: 10px;
+
     margin-bottom: 15px;
   }
 
   &__nameIcon {
     margin-right: 8px;
+
+    vertical-align: middle;
   }
 
   &__nameLink {
     @include setTextStyle(400, 22px, 120%);
     color: rgb(255, 179, 14);
+
+    &:hover {
+      color: $btn-active;
+      transition: all $transition-short ease;
+
+      svg path {
+        fill: $btn-active;
+
+        transition: all $transition-short ease;
+      }
+    }
   }
 
   &__prices {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-  }
-
-  &__price {
-    @include setTextStyle(700, 24px, 120%);
-    color: rgb(33, 33, 33);
-
-    margin-bottom: 10px;
-
-    &_theme {
-      position: relative;
-      color: rgba(130, 126, 126, .9);
-
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 15px;
-        left: 14px;
-        z-index: 10;
-
-        width: 50px;
-        height: 2px;
-
-        background-color: rgba(130, 126, 126, 0.9);
-      }
-    }
+    margin-bottom: 15px;
   }
 
   &__ingredients {
@@ -166,10 +156,6 @@
 
 .discount {
   display: none;
-}
-
-.info__nameLink {
-  margin-right: 25px;
 }
 
 .info__nameStatus {

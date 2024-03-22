@@ -52,11 +52,11 @@ a {
   text-decoration: none;
   background-color: transparent;
   transition: color 0.15s ease;
+}
 
-  &:hover {
-    color: var(--base-color);
-    transition: color 0.15s ease;
-  }
+a:hover {
+  color: #f17228;
+  transition: color 0.15s ease;
 }
 
 @media(max-width:320px) {
