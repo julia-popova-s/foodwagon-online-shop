@@ -76,6 +76,34 @@
   margin-right: 30px;
 }
 
+.box {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 46px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26), 0px 20px 40px rgba(255, 174, 0, 0.29);
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: translateY(1px);
+    transition: transform 0.15s ease;
+
+    svg path {
+      fill: #f17228;
+    }
+  }
+
+  svg {
+    path {
+      fill: rgb(255, 138, 0);
+    }
+  }
+}
+
 @media(max-width:1190px) {
 
   .header__address,

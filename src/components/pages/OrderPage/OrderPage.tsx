@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../../../store';
 import { idSelector } from '../../../store/slices/user/slice';
 import { OrderItem } from '../../../store/slices/user/types';
-import { OrderCard } from './OrderCard';
+import { OrderCard } from '../../elements/OrderCard/OrderCard';
 import style from './orderPage.module.scss';
 
 export const OrderPage: FC = () => {
@@ -32,9 +32,9 @@ export const OrderPage: FC = () => {
   };
 
   useEffect(() => {
-    getUserData(userId);
+    if (userId) getUserData(userId);
   }, [userId]);
-
+  console.log(data);
   return (
     <div className={style.productPage}>
       <div className="container">

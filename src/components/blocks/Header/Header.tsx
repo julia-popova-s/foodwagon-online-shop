@@ -1,10 +1,11 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 
+import { ReactComponent as Box } from '../../../assets/images/header/box.svg';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { addressSelector } from '../../../store/slices/location/slice';
 import { isAuthSelector, removeUser } from '../../../store/slices/user/slice';
@@ -33,7 +34,7 @@ export const Header: FC = () => {
   const handleLogin = () => {
     navigate('/login');
   };
-  
+
   const handleOrders = () => {
     navigate('orders');
   };
@@ -60,7 +61,9 @@ export const Header: FC = () => {
 
             {isAuth ? (
               <>
-                <button onClick={handleOrders}>Orders</button>
+                <button className={style.box} onClick={handleOrders}>
+                  <Box height={40} width={40} />
+                </button>
                 <LoginButton classNames={style.search__login} handleClick={handleLogOut} title={'Logout'} />
               </>
             ) : (
