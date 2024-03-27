@@ -1,6 +1,7 @@
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useCallback, useMemo, useState } from 'react';
+import { getDatabase, push, ref, set } from 'firebase/database';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../store';
@@ -22,7 +23,8 @@ import {
 } from '../../../store/slices/location/slice';
 import { DeliveryStatus, DeliveryType } from '../../../store/slices/location/types';
 import { listOfOperatingStatusSelector } from '../../../store/slices/restaurants/slice';
-import { isAuthSelector, orderCounterSelector, setOrders } from '../../../store/slices/user/slice';
+import { idSelector, isAuthSelector, orderCounterSelector, setOrders } from '../../../store/slices/user/slice';
+import { OrderItem } from '../../../store/slices/user/types';
 import { OpeningStatus } from '../../../store/utils/getOpenStatus';
 import { DeliveryMethod } from '../../elements/DeliveryMethod';
 import { Button } from '../../elements/DeliveryMethod/DeliveryMethod';
@@ -79,24 +81,45 @@ export const ProductList = ({
   const item = listOfOperatingStatus.find((el) => el.id === restaurantId);
   const status = deliveryType === DeliveryType.DELIVERY ? item?.deliveryEnabled : item?.pickupEnabled;
   const isClosed = status === OpeningStatus.CLOSED;
+  const userId = useAppSelector(idSelector);
+
+  const writeUserData = (userId: string, orderInfo: OrderItem) => {
+    const db = ref(getDatabase(), 'users/' + userId + '/');
+    const newOrder = push(db);
+    set(newOrder, orderInfo);
+  };
 
   const handlePlaceOrder = (id: string, name: string, isClosed: boolean) => {
-    if (isClosed) {
-    } else {
-      const list = cart[id];
+    if (true) {
       if (!isAuth) {
         navigate('/login');
       } else {
+        const list = cart[id];
         const item = listOfOperatingStatus.find((el) => el.id === id);
-        if (!isClosed && deliveryStatus === DeliveryStatus.YES && deliveryType === DeliveryType.DELIVERY) {
+
+        if (deliveryType === DeliveryType.DELIVERY && deliveryStatus) {
+          const date = Date();
+          const orderInfo = { date, deliveryType, id, list, location: { address, coords }, name, orderNumber: order };
           changeOrderNumber(id, name);
-          dispatch(setOrders({ deliveryType, id, list, location: { address, coords }, name, orderNumber: order }));
-        }
-        if (!isClosed && deliveryType === DeliveryType.PICKUP && item?.address) {
+          dispatch(setOrders(orderInfo));
+
+          writeUserData(userId, orderInfo);
+        } else if (deliveryType === DeliveryType.PICKUP && item?.address) {
+          const date = Date();
+          const orderInfo = {
+            date,
+            deliveryType,
+            id,
+            list,
+            location: { address: item?.address },
+            name,
+            orderNumber: order,
+          };
           changeOrderNumber(id, name);
-          dispatch(
-            setOrders({ deliveryType, id, list, location: { address: item?.address }, name, orderNumber: order }),
-          );
+          dispatch(setOrders(orderInfo));
+          writeUserData(userId, orderInfo);
+        } else {
+          console.log('error');
         }
       }
     }

@@ -54,6 +54,23 @@ export const Cart: FC = () => {
 
   const popupRef = useOutsideClick(handleClosePopup);
 
+  const handleRestaurantInfoChange = ({ restaurantId, restaurantName }: RestaurantInfo) => {
+    setName(restaurantName);
+    setId(restaurantId);
+  };
+
+  const handleVisibleModal = (status: boolean) => {
+    setVisibleModal(status);
+  };
+
+  const handleVisiblePopup = (status: boolean) => {
+    setVisiblePopup(status);
+  };
+
+  const handleOrderNumberChange = () => {
+    dispatch(changeOrderCounter());
+  };
+
   if (!totalQuantity) {
     return (
       <div className={style.cart}>
@@ -78,23 +95,6 @@ export const Cart: FC = () => {
       </div>
     );
   }
-
-  const handleRestaurantInfoChange = ({ restaurantId, restaurantName }: RestaurantInfo) => {
-    setName(restaurantName);
-    setId(restaurantId);
-  };
-
-  const handleVisibleModal = (status: boolean) => {
-    setVisibleModal(status);
-  };
-
-  const handleVisiblePopup = (status: boolean) => {
-    setVisiblePopup(status);
-  };
-
-  const handleOrderNumberChange = () => {
-    dispatch(changeOrderCounter());
-  };
 
   return (
     <div className={style.cart}>

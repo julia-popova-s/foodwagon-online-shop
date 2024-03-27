@@ -25,6 +25,7 @@ export interface ProductList {
 
 export interface OrderListItem {
   [orderNumber: number]: ProductList;
+  date: string;
   deliveryType: DeliveryType;
   location: UserLocation;
   restaurantId: string;
@@ -42,7 +43,8 @@ export interface UserLocation {
   address: CafeAddress | string;
   coords?: Coords;
 }
-export interface PayloadActionProps {
+export interface OrderItem {
+  date: string;
   deliveryType: DeliveryType;
   id: string;
   list: ProductList;

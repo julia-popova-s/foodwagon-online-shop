@@ -18,7 +18,8 @@ export const ProductPage: FC = () => {
   const { pathname } = useLocation();
 
   const isLoaded = useAppSelector(isLoadedSelector);
-  const [product] = useAppSelector(productSelector);
+  const product = useAppSelector(productSelector);
+  const [productItem] = product;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,7 +61,7 @@ export const ProductPage: FC = () => {
           <div className={style.product}>
             {isLoaded ? (
               <ProductDetails
-                {...product}
+                {...productItem}
                 handleCountInput={handleCountInput}
                 handleProductAdd={handleProductAdd}
                 handleProductRemove={handleProductRemove}

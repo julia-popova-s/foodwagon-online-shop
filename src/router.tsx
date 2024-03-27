@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 
 import { ErrorPage } from './components/pages/ErrorPage';
+import OrderPage from './components/pages/OrderPage';
 
 const App = lazy(() => import(/*webpackChunkName: "App"*/ './components/App'));
 const HomePage = lazy(() => import(/*webpackChunkName: "HomePage"*/ './components/pages/HomePage'));
@@ -42,6 +43,7 @@ export const router = [
         path: 'register',
       },
       { element: <RestaurantPage />, path: 'restaurant' },
+      { element: <OrderPage />, path: 'orders' },
     ],
     element: <App />,
     errorElement: <ErrorPage />,

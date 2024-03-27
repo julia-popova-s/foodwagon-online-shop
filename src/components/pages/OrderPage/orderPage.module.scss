@@ -1,0 +1,26 @@
+@import "../../../styles/variables";
+
+.productPage {
+  padding-top: $header-max-height + $padding-top;
+}
+
+.product {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  margin-bottom: 50px;
+}
+
+.placeholder {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 40px;
+}
+
+.title {
+  @include setTextStyle(700, 28px, 120%);
+  color: $text-color;
+
+  margin-bottom: 30px;
+}

@@ -10,7 +10,7 @@ export const LoginButton: FC<LoginButtonProps> = ({ classNames, handleClick, tit
   return (
     <button className={cn(classNames, style.loginButton)} onClick={handleClick}>
       <User className={style.loginButton__icon} />
-      <span className={style.loginButton__name}>{title}</span>
+      {title && <span className={style.loginButton__name}>{title}</span>}
     </button>
   );
 };

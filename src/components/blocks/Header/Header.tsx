@@ -33,6 +33,10 @@ export const Header: FC = () => {
   const handleLogin = () => {
     navigate('/login');
   };
+  
+  const handleOrders = () => {
+    navigate('orders');
+  };
 
   return (
     <header className={style.headerBlock}>
@@ -55,7 +59,10 @@ export const Header: FC = () => {
             </Link>
 
             {isAuth ? (
-              <LoginButton classNames={style.search__login} handleClick={handleLogOut} title={'Logout'} />
+              <>
+                <button onClick={handleOrders}>Orders</button>
+                <LoginButton classNames={style.search__login} handleClick={handleLogOut} title={'Logout'} />
+              </>
             ) : (
               <LoginButton classNames={style.search__login} handleClick={handleLogin} title={'Login'} />
             )}
