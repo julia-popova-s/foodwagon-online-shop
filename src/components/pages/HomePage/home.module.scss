@@ -1,0 +1,12 @@
+@import "../../../styles/variables";
+
+.homePage {
+  padding-top: $header-max-height;
+}
+
+@media(max-width:$mobile-menu-visible) {
+
+  .homePage {
+    padding-top: $header-min-height;
+  }
+}

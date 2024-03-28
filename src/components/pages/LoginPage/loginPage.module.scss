@@ -12,3 +12,10 @@
   background-position: 50% 50%;
   background-size: cover;
 }
+
+@media(max-width:$mobile-menu-visible) {
+
+  .login {
+    padding-top: $header-min-height + $padding-top;
+  }
+}

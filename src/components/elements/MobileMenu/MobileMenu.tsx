@@ -2,11 +2,14 @@ import cn from 'classnames';
 import { FC, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
+import { RouteNames } from '../../../router';
 import { useAppSelector } from '../../../store';
 import { addressSelector } from '../../../store/slices/location/slice';
 import { isAuthSelector } from '../../../store/slices/user/slice';
 import { CartButton } from '../../ui/buttons/CartButton';
+import { MenuButton } from '../../ui/buttons/MenuButton';
 import { DeliveryAddress } from '../DeliveryAddress';
+import { NavItem } from '../NavItem';
 import style from './mobileMenu.module.scss';
 
 type MobileMenuProps = {
@@ -30,21 +33,16 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
   const getActiveClassName = ({ isActive }: { isActive: boolean }) =>
     [isActive ? style.active : '', style.menu__link].join(' ');
 
+  const LINKS = [
+    { name: 'Home', path: RouteNames.HOME },
+    { name: 'Search', path: RouteNames.SEARCH },
+    { name: 'Cart', path: RouteNames.CART },
+    { name: 'Your Orders', path: RouteNames.ORDERS },
+  ];
+
   return (
     <div className={style.mobileMenu}>
-      <Link to={'cart'}>
-        <CartButton />
-      </Link>
-      <button
-        className={cn(style.menuButton, {
-          [style.buttonClose]: menuIsVisible,
-        })}
-        onClick={handleClickMenu}
-      >
-        <div className={cn(style.menuButton__border, style.menuButton__border_top)}></div>
-        <div className={cn(style.menuButton__border, style.menuButton__border_center)}></div>
-        <div className={cn(style.menuButton__border, style.menuButton__border_bottom)}></div>
-      </button>
+      <MenuButton handleClick={handleClickMenu} isVisible={menuIsVisible} />
 
       <nav
         className={cn(style.menu, {
@@ -52,17 +50,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
         })}
       >
         <ul className={style.menu__list}>
-          <li className={style.menu__item}>
-            <NavLink className={getActiveClassName} to={'/'}>
-              Home
-            </NavLink>
-          </li>
-
-          <li className={style.menu__item}>
-            <NavLink className={getActiveClassName} to={'/search'}>
-              Search
-            </NavLink>
-          </li>
+          {LINKS?.length && LINKS.map(({ name, path }) => <NavItem key={path} name={name} path={path} />)}
 
           <li className={style.menu__item}>
             {isAuth ? (
@@ -77,12 +65,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
           </li>
 
           <li className={style.menu__item}>
-            <NavLink className={getActiveClassName} to={'/cart'}>
-              Cart
-            </NavLink>
-          </li>
-          <li className={style.menu__item}>
-            <DeliveryAddress address={address} />
+            <DeliveryAddress address={address} classNames={style.menu__method} />
           </li>
         </ul>
       </nav>

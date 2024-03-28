@@ -59,6 +59,6 @@ export interface User {
 }
 
 export enum AuthAPIErrors {
-  EMAIL_ALREADY_EXISTS = 'auth/email-already-exists',
+  EMAIL_ALREADY_IN_USE = 'auth/email-already-in-use',
   INVALID_CREDENTIAL = 'auth/invalid-credential',
 }

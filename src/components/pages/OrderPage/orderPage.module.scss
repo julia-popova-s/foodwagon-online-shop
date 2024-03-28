@@ -2,6 +2,8 @@
 
 .productPage {
   padding-top: $header-max-height + $padding-top;
+
+  min-height: 100vh;
 }
 
 .product {
@@ -22,5 +24,26 @@
   @include setTextStyle(700, 28px, 120%);
   color: $text-color;
 
-  margin-bottom: 30px;
+  margin-bottom: 50px;
+}
+
+.productPage__message {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 120%;
+  color: rgb(66, 66, 66);
+
+  margin-bottom: 20px;
+}
+
+.productPage__link {
+  color: #f17228;
+  font-weight: 600;
+}
+
+@media(max-width:$mobile-menu-visible) {
+
+  .productPage {
+    padding-top: $header-min-height + $padding-top;
+  }
 }

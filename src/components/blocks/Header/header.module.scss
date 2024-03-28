@@ -104,7 +104,7 @@
   }
 }
 
-@media(max-width:1190px) {
+@media(max-width:$mobile-menu-visible) {
 
   .header__address,
   .header__search {

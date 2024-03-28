@@ -58,14 +58,12 @@ export const Header: FC = () => {
               />
               <span className={style.search__name}>Search Food</span>
             </Link>
+            <button className={style.box} onClick={handleOrders}>
+              <Box height={40} width={40} />
+            </button>
 
             {isAuth ? (
-              <>
-                <button className={style.box} onClick={handleOrders}>
-                  <Box height={40} width={40} />
-                </button>
-                <LoginButton classNames={style.search__login} handleClick={handleLogOut} title={'Logout'} />
-              </>
+              <LoginButton classNames={style.search__login} handleClick={handleLogOut} title={'Logout'} />
             ) : (
               <LoginButton classNames={style.search__login} handleClick={handleLogin} title={'Login'} />
             )}

@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/slices/product/slice';
+import { RestaurantMenu } from '../../blocks/RestaurantMenu';
 import { ProductDetails } from '../../elements/ProductDetails';
-import { RestaurantPage } from '../RestaurantPage/RestaurantPage';
 import { LoaderLeft } from './LoaderLeft';
 import { LoaderRight } from './LoaderRight';
 import style from './productPage.module.scss';
@@ -72,7 +72,7 @@ export const ProductPage: FC = () => {
           </div>
         </div>
       </div>
-      <RestaurantPage />
+      <RestaurantMenu />
     </>
   );
 };

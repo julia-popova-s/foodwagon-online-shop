@@ -1,8 +1,9 @@
 import { getDatabase, limitToLast, onValue, query, ref } from 'firebase/database';
 import { FC, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
+import { RouteNames } from '../../../router';
 import { useAppSelector } from '../../../store';
 import { idSelector } from '../../../store/slices/user/slice';
 import { OrderItem } from '../../../store/slices/user/types';
@@ -25,8 +26,7 @@ export const OrderPage: FC = () => {
     onValue(recentOrdersRef, (snapshot) => {
       const data = snapshot.val();
       if (data != null) {
-        const aa = Object.values(data).reverse();
-        setData(aa);
+        setData(Object.values(data).reverse());
       }
     });
   };
@@ -34,20 +34,26 @@ export const OrderPage: FC = () => {
   useEffect(() => {
     if (userId) getUserData(userId);
   }, [userId]);
-  console.log(data);
+
   return (
     <div className={style.productPage}>
       <div className="container">
         <h1 className={style.title}>Your orders</h1>
         <div className={style.product}>
-          {data?.length &&
+          {data?.length ? (
             data.map((props: OrderItem) => {
               return (
                 <div key={uuidv4()}>
                   <OrderCard {...props} />
                 </div>
               );
-            })}
+            })
+          ) : (
+            <div className={style.productPage__message}>
+              Do you want to be the first among your friends to try our new product?{' '}
+              <Link className={style.productPage__link} to={RouteNames.HOME}>Place your order now</Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

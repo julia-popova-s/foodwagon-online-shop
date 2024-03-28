@@ -1,138 +1,58 @@
 @import "../../../styles/variables";
 
-.menuButton {
-  position: relative;
-
-  width: 35px;
-  height: 30px;
-
-  background-color: transparent;
-
-  @media(max-width:410px) {
-    width: 25px;
-  }
-}
-
-.menuButton__border {
-  position: absolute;
-
-  width: 100%;
-  height: 4px;
-
-  background-color: $base-color;
-  border-radius: $border-radius-20;
-
-  transition: transform $transition-long linear;
-}
-
-.menuButton__border_top {
-  bottom: 0;
-  left: 0;
-}
-
-.menuButton__border_center {
-  bottom: 10px;
-  left: 0;
-}
-
-.menuButton__border_bottom {
-  bottom: 20px;
-  left: 0;
-}
-
-.buttonClose {
-  transition: transform 300ms ease-out;
-}
-
-.buttonClose .menuButton__border_top,
-.buttonClose .menuButton__border_bottom {
-  top: 13px;
-}
-
-.buttonClose .menuButton__border_top {
-  transform: rotate(45deg);
-}
-
-.buttonClose .menuButton__border_center {
-  display: none;
-}
-
-.buttonClose .menuButton__border_bottom {
-  transform: rotate(-45deg);
-}
-
-.buttonClose .menuButton__border {
-  background-color: $base-color;
-}
 
 .menu {
   display: block;
 
-  padding: 50px;
+  padding: 20px 10px;
 
-  max-width: 400px;
+  max-width: 350px;
   height: auto;
 
-  top: 77px;
+  top: 78px;
   right: 0;
 
   position: absolute;
 
   background-color: $white-color;
   box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15);
-  border-radius: 0 0 0 $border-radius-8;
+  border-radius: 0 0 0 6px;
 
   animation: fadeIn 0.4s forwards;
 }
 
-.menu__item {
-  margin-bottom: 30px;
-
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 100%;
-  color: $text-color;
+.menu__method {
+  padding: 10px;
 }
 
 .menu__link {
-  @include setTextStyle($font-bold, 18px, 100%);
+  display: block;
+
+  @include setTextStyle($font-bold, 18px, 120%);
   color: $text-color;
   text-decoration: none;
 
-  background-color: transparent;
+  width: 100%;
+  text-align: left;
 
-  position: relative;
+  background-color: transparent;
+  border-radius: 6px;
 
   cursor: pointer;
+
+  margin-bottom: 10px;
+  padding: 10px;
+
+  transition: all 0.15s ease;
 }
 
-.menu__link.active::before {
-  background-color: $base-color;
+.menu__link.active,
+.menu__link:hover {
+  color: #fff;
 
-  transition: all $transition-short ease;
-}
+  background-color: rgb(255, 138, 0);
 
-.menu__link::before {
-  position: absolute;
-
-  content: "";
-
-  left: 0;
-  bottom: -3px;
-
-  width: 100%;
-  height: 3px;
-
-  background-color: transparent;
-  border-radius: 10px;
-
-  transition: all $transition-short ease;
-}
-
-.menu__link:hover::before {
-  background-color: $base-color;
-
-  transition: all $transition-short ease;
+  transition: all 0.15s ease;
 }
 
 
@@ -155,7 +75,7 @@
   display: none;
 }
 
-@media(max-width:1190px) {
+@media(max-width:$mobile-menu-visible) {
 
   .mobileMenu {
     display: flex;

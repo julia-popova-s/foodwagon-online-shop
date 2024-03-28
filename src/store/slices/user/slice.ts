@@ -8,7 +8,7 @@ const initialState: UserSliceState = {
   id: '',
   isAuth: false,
   list: [],
-  orderCounter: 1,
+  orderCounter: 0,
   token: '',
 };
 
@@ -16,8 +16,8 @@ const userSlice = createSlice({
   initialState,
   name: 'user',
   reducers: {
-    changeOrderCounter(state) {
-      state.orderCounter = state.orderCounter + 1;
+    changeOrderCounter(state, { payload }: { payload: number }) {
+      state.orderCounter = payload;
     },
     removeUser(state) {
       state.email = null;

@@ -5,13 +5,10 @@ import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
+import { RouteNames } from '../../../router';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { addedGoodsSelector, clearCart, totalQuantitySelector } from '../../../store/slices/cart/slice';
-import {
-  changeOrderCounter,
-  emailSelector,
-  orderCounterSelector,
-} from '../../../store/slices/user/slice';
+import { changeOrderCounter, emailSelector, orderCounterSelector } from '../../../store/slices/user/slice';
 import { ProductList } from '../../elements/ProductList';
 import { RestaurantInfo } from '../../elements/ProductList/ProductList';
 import { Modal } from '../../ui/Modal';
@@ -28,10 +25,11 @@ export const Cart: FC = () => {
 
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
+  const [order, setOrder] = useState(0);
 
   const totalQuantity = useAppSelector(totalQuantitySelector);
   const addedGoods = useAppSelector(addedGoodsSelector);
-  const orderCounter = useAppSelector(orderCounterSelector);
+  // const orderCounter = useAppSelector(orderCounterSelector);
   const email = useAppSelector(emailSelector);
 
   useEffect(() => {
@@ -67,8 +65,9 @@ export const Cart: FC = () => {
     setVisiblePopup(status);
   };
 
-  const handleOrderNumberChange = () => {
-    dispatch(changeOrderCounter());
+  const handleOrderNumberChange = (counter: number) => {
+    // dispatch(changeOrderCounter(counter));
+    setOrder(counter);
   };
 
   if (!totalQuantity) {
@@ -81,11 +80,11 @@ export const Cart: FC = () => {
               <p className={style.cart__message}>Use the search to find everything you need.</p>
               <p className={style.cart__links}>
                 Go to{' '}
-                <Link className={style.cart__linkItem} to="/search">
+                <Link className={style.cart__linkItem} to={RouteNames.SEARCH}>
                   search page
                 </Link>{' '}
                 or{' '}
-                <Link className={style.cart__linkItem} to={'/'}>
+                <Link className={style.cart__linkItem} to={RouteNames.HOME}>
                   menu
                 </Link>
               </p>
@@ -120,7 +119,7 @@ export const Cart: FC = () => {
         handleCloseModal={handleCloseModal}
         isOpen={visibleModal}
         name={name}
-        orderNumber={orderCounter}
+        orderNumber={order}
       />
       <Popup handleClickClose={handleClosePopup} handleClickOk={handleClearOrder} isOpen={visiblePopup} ref={popupRef}>
         <>

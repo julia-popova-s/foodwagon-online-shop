@@ -1,0 +1,67 @@
+@import "../../../../styles/variables";
+
+
+.menuButton {
+  position: relative;
+
+  width: 35px;
+  height: 30px;
+
+  background-color: transparent;
+
+  @media(max-width:410px) {
+    width: 25px;
+  }
+}
+
+.menuButton__border {
+  position: absolute;
+
+  width: 100%;
+  height: 4px;
+
+  background-color: $base-color;
+  border-radius: $border-radius-20;
+
+  transition: transform $transition-long linear;
+}
+
+.menuButton__border_top {
+  bottom: 0;
+  left: 0;
+}
+
+.menuButton__border_center {
+  bottom: 10px;
+  left: 0;
+}
+
+.menuButton__border_bottom {
+  bottom: 20px;
+  left: 0;
+}
+
+.buttonClose {
+  transition: transform 300ms ease-out;
+}
+
+.buttonClose .menuButton__border_top,
+.buttonClose .menuButton__border_bottom {
+  top: 13px;
+}
+
+.buttonClose .menuButton__border_top {
+  transform: rotate(45deg);
+}
+
+.buttonClose .menuButton__border_center {
+  display: none;
+}
+
+.buttonClose .menuButton__border_bottom {
+  transform: rotate(-45deg);
+}
+
+.buttonClose .menuButton__border {
+  background-color: $base-color;
+}

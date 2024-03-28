@@ -24,3 +24,10 @@
 
   margin-bottom: 30px;
 }
+
+@media(max-width:$mobile-menu-visible) {
+
+  .productPage {
+    padding-top: $header-min-height + $padding-top;
+  }
+}

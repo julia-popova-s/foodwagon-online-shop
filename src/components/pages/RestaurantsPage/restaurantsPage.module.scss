@@ -1,0 +1,11 @@
+@import "../../../styles/variables";
+
+.restaurants {
+  padding-top: $header-max-height + $padding-top;
+}
+
+@media(max-width:$mobile-menu-visible) {
+  .restaurants {
+    padding-top: $header-min-height + $padding-top;
+  }
+}

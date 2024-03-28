@@ -19,10 +19,10 @@ export const OrderCard: FC<OrderItem> = ({
 
   const orderDate = new Date(date).toLocaleDateString('en-RU', {
     day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
     month: 'long',
-    // minute: '2-digit',
-    // hour: '2-digit',
-    // year: 'numeric',
+    year: 'numeric',
   });
 
   return (

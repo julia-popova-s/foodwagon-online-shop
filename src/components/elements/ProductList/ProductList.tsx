@@ -1,6 +1,6 @@
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getDatabase, push, ref, set } from 'firebase/database';
+import { getDatabase, onValue, push, query, ref, set, update } from 'firebase/database';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ import style from './productList.module.scss';
 export type RestaurantInfo = { restaurantId: string; restaurantName: string };
 
 type ProductListProps = {
-  handleOrderNumberChange: () => void;
+  handleOrderNumberChange: (counter: number) => void;
   handleRestaurantInfoChange: ({ restaurantId, restaurantName }: RestaurantInfo) => void;
   handleVisibleModal: (status: boolean) => void;
   handleVisiblePopup: (status: boolean) => void;
@@ -65,10 +65,10 @@ export const ProductList = ({
   const cart = useAppSelector(cartSelector);
   const coords = useAppSelector(coordsSelector);
   const address = useAppSelector(addressSelector);
-  const orderCounter = useAppSelector(orderCounterSelector);
+  const userId = useAppSelector(idSelector);
 
   const [activeType, setActiveType] = useState(deliveryType);
-  const [order, setOrder] = useState(orderCounter);
+  const [order, setOrder] = useState(0);
 
   const buttons: Button[] = useMemo(() => [{ label: DeliveryType.DELIVERY }, { label: DeliveryType.PICKUP }], []);
 
@@ -81,12 +81,24 @@ export const ProductList = ({
   const item = listOfOperatingStatus.find((el) => el.id === restaurantId);
   const status = deliveryType === DeliveryType.DELIVERY ? item?.deliveryEnabled : item?.pickupEnabled;
   const isClosed = status === OpeningStatus.CLOSED;
-  const userId = useAppSelector(idSelector);
+
+  const updateOrderCounter = () => {
+    const counterRef = ref(getDatabase(), 'counter/');
+    let count = 0;
+    onValue(counterRef, (snapshot) => {
+      const counter = snapshot.val() || 0;
+      count = counter + 1;
+      setOrder(count);
+      return;
+    });
+    return update(ref(getDatabase()), { counter: count });
+  };
 
   const writeUserData = (userId: string, orderInfo: OrderItem) => {
     const db = ref(getDatabase(), 'users/' + userId + '/');
+
     const newOrder = push(db);
-    set(newOrder, orderInfo);
+    return set(newOrder, orderInfo);
   };
 
   const handlePlaceOrder = (id: string, name: string, isClosed: boolean) => {
@@ -96,16 +108,20 @@ export const ProductList = ({
       } else {
         const list = cart[id];
         const item = listOfOperatingStatus.find((el) => el.id === id);
+        const date = Date();
 
         if (deliveryType === DeliveryType.DELIVERY && deliveryStatus) {
-          const date = Date();
+          updateOrderCounter();
           const orderInfo = { date, deliveryType, id, list, location: { address, coords }, name, orderNumber: order };
-          changeOrderNumber(id, name);
+
+          updateModalInfo(id, name);
+
           dispatch(setOrders(orderInfo));
 
           writeUserData(userId, orderInfo);
         } else if (deliveryType === DeliveryType.PICKUP && item?.address) {
-          const date = Date();
+          updateOrderCounter();
+
           const orderInfo = {
             date,
             deliveryType,
@@ -115,7 +131,9 @@ export const ProductList = ({
             name,
             orderNumber: order,
           };
-          changeOrderNumber(id, name);
+
+          updateModalInfo(id, name);
+
           dispatch(setOrders(orderInfo));
           writeUserData(userId, orderInfo);
         } else {
@@ -125,11 +143,10 @@ export const ProductList = ({
     }
   };
 
-  const changeOrderNumber = (id: string, name: string) => {
-    handleOrderNumberChange();
+  const updateModalInfo = (id: string, name: string) => {
     handleRestaurantInfoChange({ restaurantId: id, restaurantName: name });
     handleVisibleModal(true);
-    setOrder(order + 1);
+    handleOrderNumberChange(order);
   };
 
   const handleDeliveryTypeChange = useCallback((label: DeliveryType) => {
