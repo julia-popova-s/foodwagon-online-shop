@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { FC, useCallback, useEffect, useState } from 'react';
 
 import { ReactComponent as ButtonLeft } from '../../../assets/images/food/btn_left.svg';
@@ -32,10 +33,11 @@ const sortItems = [
 ];
 
 type FeaturedRestaurantsProps = {
+  classNames?: string;
   title?: string;
 };
 
-export const FeaturedRestaurants: FC<FeaturedRestaurantsProps> = ({ title }) => {
+export const FeaturedRestaurants: FC<FeaturedRestaurantsProps> = ({ classNames, title }) => {
   const [limit, setLimit] = useState<number>(10);
 
   const dispatch = useAppDispatch();
@@ -81,7 +83,7 @@ export const FeaturedRestaurants: FC<FeaturedRestaurantsProps> = ({ title }) => 
     <section className={style.restaurants} id="featuredRestaurants">
       <div className="container">
         <div className={style.restaurantList}>
-          <h4 className={style.restaurantList__title}>{title ? title : 'Featured Restaurants'}</h4>
+          <h4 className={cn(style.restaurantList__title, classNames)}>{title ? title : 'Featured Restaurants'}</h4>
 
           <div className={style.restaurantList__filters}>
             <Categories activeCategory={category} handleChangeCategory={handleChangeCategory} items={categoryNames} />

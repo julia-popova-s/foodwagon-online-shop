@@ -6,7 +6,7 @@ import style from './restaurantsPage.module.scss';
 export const RestaurantsPage: FC = () => {
   return (
     <div className={style.restaurants}>
-      <FeaturedRestaurants />
+      <FeaturedRestaurants classNames={style.restaurants__list} title={'Restaurants Near Me'} />
     </div>
   );
 };

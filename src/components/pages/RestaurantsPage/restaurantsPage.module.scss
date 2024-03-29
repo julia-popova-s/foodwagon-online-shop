@@ -4,6 +4,16 @@
   padding-top: $header-max-height + $padding-top;
 }
 
+.restaurants__list {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 120%;
+  color: #424242;
+  margin-bottom: 50px;
+  padding: 0;
+  text-align: start;
+}
+
 @media(max-width:$mobile-menu-visible) {
   .restaurants {
     padding-top: $header-min-height + $padding-top;

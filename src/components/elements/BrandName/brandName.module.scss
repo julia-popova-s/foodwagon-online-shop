@@ -1,0 +1,32 @@
+@import "../../../styles/variables";
+
+.name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  transition: all $transition-short ease;
+
+  &:hover {
+    svg {
+      color: $base-color;
+      transition: all $transition-short ease;
+    }
+  }
+}
+
+.name__icon {
+  margin-right: 8px;
+  color: $primary-color;
+}
+
+.name__link {
+  @include setTextStyle(400, 22px, 120%);
+  color: $primary-color;
+  transition: all $transition-short ease;
+
+  &:hover {
+    color: $base-color;
+    transition: all $transition-short ease;
+  }
+}

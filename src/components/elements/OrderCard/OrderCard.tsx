@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 
 import { CartProduct } from '../../../store/slices/cart/types';
 import { DeliveryType } from '../../../store/slices/location/types';
-import { OrderItem } from '../../../store/slices/user/types';
+import { Order } from '../../../store/slices/user/types';
 import style from './orderCard.module.scss';
 
-export const OrderCard: FC<OrderItem> = ({
+export const OrderCard: FC<Order> = ({
   date,
   deliveryType,
-  id: restId,
-  list: { items, totalAmount },
+  list: { items, totalAmount, totalCount },
   location: { address },
-  name,
   orderNumber,
-}: OrderItem) => {
+  restaurantId,
+  restaurantName,
+}) => {
   const productList = Object.values(items);
 
   const orderDate = new Date(date).toLocaleDateString('en-RU', {
@@ -28,21 +28,28 @@ export const OrderCard: FC<OrderItem> = ({
   return (
     <div className={style.card}>
       <div className={style.card__top}>
-        <div className={style.card__text}>
-          <div className={style.card__date}>Order dated {orderDate}</div>
-          <div className={style.card__counter}>Order № {orderNumber}</div>
+        <div className={style.card__detail}>
+          <div className={style.card__detailItem}>Order dated {orderDate}</div>
+          <div className={style.card__detailItem}>Order № {orderNumber}</div>
         </div>
-        <div className={style.card__pay}>payable: &#36; {totalAmount.toFixed(2)}</div>
+        <div className={style.card__detail}>
+          <div className={style.card__detailItem}> payable: &#36; {totalAmount.toFixed(2)}</div>
+          <div className={style.card__detailItem}>
+            {totalCount} {totalCount > 1 ? 'items' : 'item'}
+          </div>
+        </div>
       </div>
 
       <div className={style.card__bottom}>
         <div className={style.card__bottomText}>
           <div className={style.card__address}>
-            {deliveryType === DeliveryType.DELIVERY ? 'Delivery to address: ' : 'Pickup from address: '}
+            <span className={style.card__delivery}>
+              {deliveryType === DeliveryType.DELIVERY ? 'Delivery: ' : 'Pickup: '}
+            </span>
             {typeof address === 'string' ? address : `${address.city}, ${address.street_addr}, ${address.house}`}
           </div>
           <div className={style.card__name}>
-            <Link to={`/restaurant/${restId}/product/${productList[0].id}`}>{name}</Link>
+            <Link to={`/restaurant/${restaurantId}/product/${productList[0].id}`}>{restaurantName}</Link>
           </div>
         </div>
 
@@ -50,7 +57,7 @@ export const OrderCard: FC<OrderItem> = ({
           {productList?.length &&
             productList.map(({ id, image, title }: CartProduct) => {
               return (
-                <Link className={style.card__listItem} key={id} to={`/restaurant/${restId}/product/${id}`}>
+                <Link className={style.card__listItem} key={id} to={`/restaurant/${restaurantId}/product/${id}`}>
                   <img alt={title} className={style.card__listImg} src={image} width={100} />
                 </Link>
               );

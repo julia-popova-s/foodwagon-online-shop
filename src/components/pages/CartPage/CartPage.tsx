@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { FC, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -8,7 +8,7 @@ import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { RouteNames } from '../../../router';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { addedGoodsSelector, clearCart, totalQuantitySelector } from '../../../store/slices/cart/slice';
-import { changeOrderCounter, emailSelector, orderCounterSelector } from '../../../store/slices/user/slice';
+import { emailSelector } from '../../../store/slices/user/slice';
 import { ProductList } from '../../elements/ProductList';
 import { RestaurantInfo } from '../../elements/ProductList/ProductList';
 import { Modal } from '../../ui/Modal';
@@ -25,11 +25,10 @@ export const Cart: FC = () => {
 
   const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
   const [visibleModal, setVisibleModal] = useState<boolean>(false);
-  const [order, setOrder] = useState(0);
+  const [orderNumber, setOrderNumber] = useState(0);
 
   const totalQuantity = useAppSelector(totalQuantitySelector);
   const addedGoods = useAppSelector(addedGoodsSelector);
-  // const orderCounter = useAppSelector(orderCounterSelector);
   const email = useAppSelector(emailSelector);
 
   useEffect(() => {
@@ -52,9 +51,10 @@ export const Cart: FC = () => {
 
   const popupRef = useOutsideClick(handleClosePopup);
 
-  const handleRestaurantInfoChange = ({ restaurantId, restaurantName }: RestaurantInfo) => {
+  const handleRestaurantInfoChange = ({ orderNumber, restaurantId, restaurantName }: RestaurantInfo) => {
     setName(restaurantName);
     setId(restaurantId);
+    if (orderNumber) setOrderNumber(orderNumber);
   };
 
   const handleVisibleModal = (status: boolean) => {
@@ -64,12 +64,8 @@ export const Cart: FC = () => {
   const handleVisiblePopup = (status: boolean) => {
     setVisiblePopup(status);
   };
-
-  const handleOrderNumberChange = (counter: number) => {
-    // dispatch(changeOrderCounter(counter));
-    setOrder(counter);
-  };
-
+  const aa = useLocation();
+  console.log(aa);
   if (!totalQuantity) {
     return (
       <div className={style.cart}>
@@ -94,16 +90,15 @@ export const Cart: FC = () => {
       </div>
     );
   }
-
   return (
     <div className={style.cart}>
       <div className={cn(style.cart__container, 'container')}>
         <h1 className={style.cart__title}>Shopping cart</h1>
+        <div>Link</div>
         <div className={style.cart__inner}>
           {totalQuantity &&
             addedGoods.map((restaurant) => (
               <ProductList
-                handleOrderNumberChange={handleOrderNumberChange}
                 handleRestaurantInfoChange={handleRestaurantInfoChange}
                 handleVisibleModal={handleVisibleModal}
                 handleVisiblePopup={handleVisiblePopup}
@@ -119,7 +114,7 @@ export const Cart: FC = () => {
         handleCloseModal={handleCloseModal}
         isOpen={visibleModal}
         name={name}
-        orderNumber={order}
+        orderNumber={orderNumber}
       />
       <Popup handleClickClose={handleClosePopup} handleClickOk={handleClearOrder} isOpen={visiblePopup} ref={popupRef}>
         <>

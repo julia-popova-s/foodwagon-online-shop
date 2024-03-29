@@ -1,6 +1,7 @@
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getDatabase, onValue, push, query, ref, set, update } from 'firebase/database';
+import cn from 'classnames';
+import { child, get, getDatabase, push, ref, set, update } from 'firebase/database';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,12 +20,11 @@ import {
   deliveryStatusSelector,
   deliveryTypeSelector,
   listOfDistancesSelector,
-  setDeliveryType,
 } from '../../../store/slices/location/slice';
 import { DeliveryStatus, DeliveryType } from '../../../store/slices/location/types';
 import { listOfOperatingStatusSelector } from '../../../store/slices/restaurants/slice';
-import { idSelector, isAuthSelector, orderCounterSelector, setOrders } from '../../../store/slices/user/slice';
-import { OrderItem } from '../../../store/slices/user/types';
+import { idSelector, isAuthSelector, setOrders } from '../../../store/slices/user/slice';
+import { Order, OrderListItem } from '../../../store/slices/user/types';
 import { OpeningStatus } from '../../../store/utils/getOpenStatus';
 import { DeliveryMethod } from '../../elements/DeliveryMethod';
 import { Button } from '../../elements/DeliveryMethod/DeliveryMethod';
@@ -36,18 +36,16 @@ import { OrderButton } from '../../ui/buttons/OrderButton';
 import { OrderInfoBlock } from '../OrderInfoBlock';
 import style from './productList.module.scss';
 
-export type RestaurantInfo = { restaurantId: string; restaurantName: string };
+export type RestaurantInfo = { orderNumber?: number; restaurantId: string; restaurantName: string };
 
 type ProductListProps = {
-  handleOrderNumberChange: (counter: number) => void;
-  handleRestaurantInfoChange: ({ restaurantId, restaurantName }: RestaurantInfo) => void;
+  handleRestaurantInfoChange: ({ orderNumber, restaurantId, restaurantName }: RestaurantInfo) => void;
   handleVisibleModal: (status: boolean) => void;
   handleVisiblePopup: (status: boolean) => void;
   restaurantInfo: AddedGoodsItem;
 };
 
 export const ProductList = ({
-  handleOrderNumberChange,
   handleRestaurantInfoChange,
   handleVisibleModal,
   handleVisiblePopup,
@@ -68,7 +66,9 @@ export const ProductList = ({
   const userId = useAppSelector(idSelector);
 
   const [activeType, setActiveType] = useState(deliveryType);
-  const [order, setOrder] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [orderNumber, setOrderNumber] = useState(0);
+  const [orderInfo, setOrderInfo] = useState<OrderListItem>();
 
   const buttons: Button[] = useMemo(() => [{ label: DeliveryType.DELIVERY }, { label: DeliveryType.PICKUP }], []);
 
@@ -83,78 +83,78 @@ export const ProductList = ({
   const isClosed = status === OpeningStatus.CLOSED;
 
   const updateOrderCounter = () => {
-    const counterRef = ref(getDatabase(), 'counter/');
-    let count = 0;
-    onValue(counterRef, (snapshot) => {
-      const counter = snapshot.val() || 0;
-      count = counter + 1;
-      setOrder(count);
-      return;
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, 'counter/')).then((snapshot) => {
+      const count: number = snapshot.val() + 1 || 0;
+      setIsLoaded(true);
+      setOrderNumber(count);
     });
-    return update(ref(getDatabase()), { counter: count });
   };
 
-  const writeUserData = (userId: string, orderInfo: OrderItem) => {
+  useEffect(() => {
+    if (isLoaded && orderNumber && orderInfo) {
+      const order: Order = { ...orderInfo, orderNumber };
+      writeUserData(userId, order);
+      updateDatabase(order);
+    }
+  }, [isLoaded]);
+
+  const updateDatabase = (order: Order) => {
+    update(ref(getDatabase()), { 'counter/': orderNumber });
+    updateModalInfo({ orderNumber, restaurantId, restaurantName });
+    dispatch(setOrders(order));
+  };
+
+  const writeUserData = (userId: string, orderInfo: Order) => {
     const db = ref(getDatabase(), 'users/' + userId + '/');
 
     const newOrder = push(db);
     return set(newOrder, orderInfo);
   };
 
-  const handlePlaceOrder = (id: string, name: string, isClosed: boolean) => {
-    if (true) {
-      if (!isAuth) {
-        navigate('/login');
+  const handlePlaceOrder = (restaurantId: string, restaurantName: string, isClosed: boolean) => {
+    if (!isAuth && !isClosed) {
+      navigate('/login');
+      return;
+    }
+    if (!isClosed && isAuth) {
+      const list = cart[restaurantId];
+      const item = listOfOperatingStatus.find((el) => el.id === restaurantId);
+      const date = Date();
+
+      if (activeType === DeliveryType.DELIVERY && deliveryStatus === DeliveryStatus.YES) {
+        updateOrderCounter();
+        const orderInfo = { date, deliveryType, list, location: { address, coords }, restaurantId, restaurantName };
+        setOrderInfo(orderInfo);
+      } else if (activeType === DeliveryType.PICKUP && item?.address) {
+        updateOrderCounter();
+        const orderInfo = {
+          date,
+          deliveryType,
+          list,
+          location: { address: item?.address },
+          restaurantId,
+          restaurantName,
+        };
+        setOrderInfo(orderInfo);
       } else {
-        const list = cart[id];
-        const item = listOfOperatingStatus.find((el) => el.id === id);
-        const date = Date();
-
-        if (deliveryType === DeliveryType.DELIVERY && deliveryStatus) {
-          updateOrderCounter();
-          const orderInfo = { date, deliveryType, id, list, location: { address, coords }, name, orderNumber: order };
-
-          updateModalInfo(id, name);
-
-          dispatch(setOrders(orderInfo));
-
-          writeUserData(userId, orderInfo);
-        } else if (deliveryType === DeliveryType.PICKUP && item?.address) {
-          updateOrderCounter();
-
-          const orderInfo = {
-            date,
-            deliveryType,
-            id,
-            list,
-            location: { address: item?.address },
-            name,
-            orderNumber: order,
-          };
-
-          updateModalInfo(id, name);
-
-          dispatch(setOrders(orderInfo));
-          writeUserData(userId, orderInfo);
-        } else {
-          console.log('error');
-        }
+        console.log('error');
       }
+      return;
     }
   };
 
-  const updateModalInfo = (id: string, name: string) => {
-    handleRestaurantInfoChange({ restaurantId: id, restaurantName: name });
+  const updateModalInfo = (options: RestaurantInfo) => {
+    handleRestaurantInfoChange(options);
     handleVisibleModal(true);
-    handleOrderNumberChange(order);
   };
 
   const handleDeliveryTypeChange = useCallback((label: DeliveryType) => {
     setActiveType(label);
   }, []);
 
-  const handleClearCart = ({ restaurantId, restaurantName }: RestaurantInfo) => {
-    handleRestaurantInfoChange({ restaurantId, restaurantName });
+  const handleClearCart = (options: RestaurantInfo) => {
+    handleRestaurantInfoChange(options);
     handleVisiblePopup(true);
   };
 
@@ -223,7 +223,7 @@ export const ProductList = ({
           <div className={style.cart__orderInfo}>
             <OrderInfoBlock price={price} quantity={quantity} />
             <OrderButton
-              classNames={style.cart__orderBtn}
+              classNames={cn(style.cart__orderBtn)}
               handleClick={() => handlePlaceOrder(restaurantId, restaurantName, isClosed)}
               name={'Place an order'}
             />

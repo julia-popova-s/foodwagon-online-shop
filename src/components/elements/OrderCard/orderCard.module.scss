@@ -27,7 +27,7 @@
 
 .card__name {
   font-size: 20px;
-  color: #ffb30e;
+  color: #da3802;;
   margin-bottom: 8px;
 }
 
@@ -66,4 +66,13 @@
 .card__listImg {
   max-width: 100%;
   height: auto;
+}
+
+.card__detail {
+
+  font-weight: 700;
+}
+
+.card__detailItem {
+  margin-bottom: 5px;
 }

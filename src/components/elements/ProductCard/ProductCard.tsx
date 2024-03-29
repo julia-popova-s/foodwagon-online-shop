@@ -1,11 +1,10 @@
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Counter } from '../../ui/Counter';
 import { Discount } from '../../ui/Discount/Discount';
+import { BrandName } from '../BrandName';
 import { PriceBlock } from '../PriceBlock';
 import style from './productCard.module.scss';
 
@@ -60,8 +59,8 @@ export const ProductCard: FC<ProductCardProps> = ({
   restaurantName,
   title,
 }) => {
-  const [returnedProduct, setReturnedProduct] = useState(false);
-  const handleProductExclusion = () => setReturnedProduct(true);
+  const [isReturned, setIsReturned] = useState(false);
+  const handleProductExclusion = () => setIsReturned(true);
 
   const productInfo = {
     discount,
@@ -77,22 +76,22 @@ export const ProductCard: FC<ProductCardProps> = ({
 
   const handleProductMinus = () => handleProductDelete({ id, restaurantId });
 
-  const handleProductReturn = () => setReturnedProduct(false);
+  const handleProductReturn = () => setIsReturned(false);
 
   const handleQuantityInput = (quantity: number) => {
     if (!quantity) {
-      setReturnedProduct(true);
+      setIsReturned(true);
     } else handleCountInput({ id, price, quantity, restaurantId });
   };
 
   useEffect(() => {
-    if (returnedProduct) {
+    if (isReturned) {
       const timer = setTimeout(() => {
         handleProductRemove({ id, restaurantId });
       }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [returnedProduct]);
+  }, [isReturned]);
 
   return (
     <div className={style.product}>
@@ -104,7 +103,7 @@ export const ProductCard: FC<ProductCardProps> = ({
         </Link>
       </div>
 
-      {!returnedProduct ? (
+      {!isReturned ? (
         <>
           <div className={cn(style.product__info, style.info)}>
             <p className={style.info__title}>
@@ -113,12 +112,12 @@ export const ProductCard: FC<ProductCardProps> = ({
               </Link>
             </p>
 
-            <p className={style.info__name}>
-              <FontAwesomeIcon className={style.info__nameIcon} icon={faLocationDot} />
-              <Link className={style.info__nameLink} to={`/restaurant/${restaurantId}/product/${id}`}>
-                {restaurantName}
-              </Link>
-            </p>
+            <BrandName
+              classNames={style.info__name}
+              id={id}
+              restaurantId={restaurantId}
+              restaurantName={restaurantName}
+            />
 
             <PriceBlock discount={discount} price={price} />
           </div>
