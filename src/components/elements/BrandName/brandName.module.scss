@@ -2,7 +2,6 @@
 
 .name {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
 
   transition: all $transition-short ease;
@@ -18,8 +17,10 @@
 .name__icon {
   width: 14px;
   height: 22px;
-  margin-right: 8px;
+
   color: $primary-color;
+
+  margin-right: 8px;
 }
 
 .name__link {

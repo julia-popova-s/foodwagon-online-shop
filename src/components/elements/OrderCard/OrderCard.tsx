@@ -51,7 +51,7 @@ export const OrderCard: FC<Order> = ({
             {typeof address === 'string' ? address : `${address.city}, ${address.street_addr}, ${address.house}`}
           </div>
 
-          <BrandName id={productList[0].id} restaurantId={restaurantId} restaurantName={restaurantName} />
+          <BrandName id={productList[0]?.id} restaurantId={restaurantId} restaurantName={restaurantName} />
         </div>
 
         <div className={style.card__list}>
