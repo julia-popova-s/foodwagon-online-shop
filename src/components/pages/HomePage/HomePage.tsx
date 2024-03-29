@@ -1,5 +1,7 @@
 import { FC, lazy } from 'react';
 
+import style from './home.module.scss';
+
 const AppDownLoad = lazy(() => import(/*webpackChunkName: "AppDownLoad"*/ '../../blocks/AppDownLoad'));
 const CallToAction = lazy(() => import(/*webpackChunkName: "CallToAction"*/ '../../blocks/CallToAction'));
 const FeaturedRestaurants = lazy(
@@ -15,7 +17,7 @@ const FindFood = lazy(() => import(/*webpackChunkName: "FindFood"*/ '../../block
 
 export const Home: FC = () => {
   return (
-    <>
+    <div className={style.homePage}>
       <FindFood />
       <FlashDeals />
       <OrderAlgorithm />
@@ -26,6 +28,6 @@ export const Home: FC = () => {
       <Details />
       <CallToAction />
       <Cities />
-    </>
+    </div>
   );
 };

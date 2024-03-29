@@ -33,13 +33,15 @@
   }
 
   &__location {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+
     @include setTextStyle(400, 22px, 120%);
     color: $primary-color;
+    
     margin-bottom: 8px;
-  }
-
-  &__location span {
-    vertical-align: middle;
   }
 
   &__locationIcon {
@@ -90,4 +92,3 @@
     margin-right: 0;
   }
 }
-

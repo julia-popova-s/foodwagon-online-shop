@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
 import { fetchProduct, isLoadedSelector, productSelector } from '../../../store/slices/product/slice';
+import { RestaurantMenu } from '../../blocks/RestaurantMenu';
 import { ProductDetails } from '../../elements/ProductDetails';
-import { RestaurantPage } from '../RestaurantPage/RestaurantPage';
 import { LoaderLeft } from './LoaderLeft';
 import { LoaderRight } from './LoaderRight';
 import style from './productPage.module.scss';
@@ -18,7 +18,8 @@ export const ProductPage: FC = () => {
   const { pathname } = useLocation();
 
   const isLoaded = useAppSelector(isLoadedSelector);
-  const [product] = useAppSelector(productSelector);
+  const product = useAppSelector(productSelector);
+  const [productItem] = product;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -60,7 +61,7 @@ export const ProductPage: FC = () => {
           <div className={style.product}>
             {isLoaded ? (
               <ProductDetails
-                {...product}
+                {...productItem}
                 handleCountInput={handleCountInput}
                 handleProductAdd={handleProductAdd}
                 handleProductRemove={handleProductRemove}
@@ -71,7 +72,7 @@ export const ProductPage: FC = () => {
           </div>
         </div>
       </div>
-      <RestaurantPage />
+      <RestaurantMenu />
     </>
   );
 };

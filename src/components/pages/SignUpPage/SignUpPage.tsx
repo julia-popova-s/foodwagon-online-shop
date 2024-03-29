@@ -35,8 +35,9 @@ export const SignUp: FC = () => {
         dispatch(setToken(token));
       })
       .catch(({ code, message }) => {
+        console.log(code);
         switch (code) {
-          case AuthAPIErrors.EMAIL_ALREADY_EXISTS:
+          case AuthAPIErrors.EMAIL_ALREADY_IN_USE:
             setErrorMessage('This email address is already in use by another account.');
             break;
 

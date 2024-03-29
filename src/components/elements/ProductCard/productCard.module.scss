@@ -91,15 +91,6 @@
     margin-bottom: 8px;
   }
 
-  &__nameIcon {
-    margin-right: 8px;
-    color: $primary-color;
-  }
-
-  &__nameLink {
-    @include setTextStyle(400, 22px, 120%);
-    color: $primary-color;
-  }
 
   &__price {
     display: inline-block;
@@ -157,7 +148,7 @@
 }
 
 .loadingBar {
-  width: 350px;
+  width: 150px;
   height: 100px;
 
   &__inner {
@@ -194,13 +185,11 @@
 .btnReturn {
   @include setTextStyle(600, 18px, 100%);
 
-  width: 180px;
-
   transition: background $transition-long ease,
     color $transition-long ease;
 
   margin-bottom: 20px;
-  padding: 5px;
+  padding: 5px 15px;
 
   border: 3px solid;
   border-image-source: linear-gradient(to right, $primary-color,
@@ -216,7 +205,7 @@
 }
 
 .returnedBlock {
-  padding-top: 20px;
+  padding: 20px 30px 0 10px;
 }
 
 @media (max-width:1350px) {

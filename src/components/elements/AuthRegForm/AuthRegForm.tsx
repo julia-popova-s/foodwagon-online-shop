@@ -108,7 +108,7 @@ const AuthRegForm: FC<AuthRegFormProps> = ({ errorMessage, handleClick, schema, 
           name="password"
         />
 
-        <div className={style.regForm__error} role="alert">
+        <div className={cn(style.regForm__error, style.regForm__error_theme)} role="alert">
           {errors.password?.message}
         </div>
 
