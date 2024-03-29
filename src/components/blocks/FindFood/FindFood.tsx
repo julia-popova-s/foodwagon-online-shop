@@ -5,6 +5,7 @@ import { FC, KeyboardEvent, memo, useCallback, useEffect, useMemo, useRef, useSt
 import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as Spinner } from '../../../assets/images/search-panel/spinner.svg';
+import { RouteNames } from '../../../router';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import {
   deliveryTypeSelector,
@@ -87,7 +88,7 @@ export const FindFood: FC = () => {
 
   const setDeliveryAddress = (item: LocationItem) => {
     dispatch(setLocation(item));
-    navigate('restaurant');
+    navigate(RouteNames.RESTAURANTS);
   };
 
   const handleFindFood = () => {

@@ -10,7 +10,7 @@
   background: $white-color;
 
   max-width: 480px;
-  height: 485px;
+  min-height: 485px;
 
   margin: 0 auto;
   padding: 42px 42px 19px 42px;
@@ -76,9 +76,9 @@
     opacity: 0.25;
     background: #111;
 
-    height: 56px;
+    min-height: 56px;
 
-    padding: 12.5px 0px 13.5px 0px;
+    padding: 15px 0;
 
     cursor: pointer;
 
@@ -87,10 +87,11 @@
   }
 
   &__error {
-    @include setTextStyle($font-normal, 14px, normal);
+    @include setTextStyle($font-normal, 18px, normal);
     color: #EE1D52;
     padding-top: 3px;
     margin-bottom: 13px;
+    text-align: center;
 
     min-height: 16px;
   }
@@ -102,9 +103,14 @@
 
 .formWrapper {
   padding: 0 30px;
+  margin-bottom: 60px;
 }
 
 .regForm__hide {
   display: flex;
   justify-content: space-between;
+}
+
+.regForm__error_theme {
+  min-height: 37px;
 }

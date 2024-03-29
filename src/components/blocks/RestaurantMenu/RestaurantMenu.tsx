@@ -24,7 +24,7 @@ import { SortPopup } from '../../elements/SortPopup';
 import { Card } from '../../ui/Card';
 import { Pagination } from '../../ui/Pagination/Pagination';
 import { Loader } from './Loader';
-import style from './restaurantPage.module.scss';
+import style from './restaurantMenu.module.scss';
 
 const SORT_ITEMS = [
   { name: 'popularity ', order: ProductOrderType.DESC, type: ProductSortingType.RATING },
@@ -42,7 +42,7 @@ const SORT_ITEMS = [
   { name: 'alphabetically', order: ProductOrderType.ASC, type: ProductSortingType.TITLE },
 ];
 
-export const RestaurantPage: FC = () => {
+export const RestaurantMenu: FC = () => {
   const { restaurantId } = useParams();
 
   const dispatch = useAppDispatch();

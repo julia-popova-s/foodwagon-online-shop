@@ -40,6 +40,13 @@
   padding-top: 50px;
 }
 
+@media(max-width:$mobile-menu-visible) {
+
+  .searchPage {
+    padding-top: $header-min-height + $padding-top;
+  }
+}
+
 @media(max-width:365px) {
   .menuList {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

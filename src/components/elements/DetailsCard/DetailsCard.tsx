@@ -42,7 +42,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({ description, flippedСard, f
         })}
       >
         <p className={style.cardBig__title}>
-          {title}
+          {title}{' '}
           <Link className={style.cardBig__link} to={link}>
             {food}
           </Link>

@@ -4,15 +4,15 @@ import { FC } from 'react';
 
 import { useAppSelector } from '../../../../store';
 import { totalQuantitySelector } from '../../../../store/slices/cart/slice';
-import style from './cartButton.module.scss';
+import style from './cartLink.module.scss';
 
-export const CartButton: FC = () => {
+export const CartLink: FC = () => {
   const totalQuantity = useAppSelector(totalQuantitySelector);
   return (
-    <button className={style.cartButton}>
-      <FontAwesomeIcon className={style.cartButton__icon} icon={faCartShopping} size="xl" />
+    <div className={style.cartLink}>
+      <FontAwesomeIcon className={style.cartLink__icon} icon={faCartShopping} size="xl" />
 
-      {!!totalQuantity && <div className={style.cartButton__counter}>{totalQuantity}</div>}
-    </button>
+      {!!totalQuantity && <div className={style.cartLink__counter}>{totalQuantity}</div>}
+    </div>
   );
 };

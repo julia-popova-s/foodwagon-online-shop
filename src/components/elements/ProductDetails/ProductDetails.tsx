@@ -58,7 +58,6 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
 
   const item = listOfOperatingStatus.find((el) => el.id === restaurantId);
   const status = deliveryType === DeliveryType.DELIVERY ? item?.deliveryEnabled : item?.pickupEnabled;
-  const isClosed = status === OpeningStatus.CLOSED;
 
   const quantity = cart[restaurantId]?.items[id]?.quantity;
 
@@ -97,7 +96,13 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
             />
             {restaurantName}
           </Link>
-          <OperatingStatus classNames={style.info__nameStatus} isClosed={isClosed} />
+          {status && (
+            <OperatingStatus
+              classNames={style.info__nameStatus}
+              isClosed={status === OpeningStatus.CLOSED}
+              isOpened={status === OpeningStatus.OPENED}
+            />
+          )}
         </div>
         <PriceBlock classNames={style.info__prices} discount={discount} price={price} />
 

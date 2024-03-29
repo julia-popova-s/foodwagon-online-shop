@@ -22,10 +22,21 @@ export interface ProductList {
   totalAmount: number;
   totalCount: number;
 }
-
+// export interface OrderItem {
+//   date: string;
+//   deliveryType: DeliveryType;
+//   id: string;
+//   list: ProductList;
+//   location: UserLocation;
+//   name: string;
+// }
+export interface Order extends OrderListItem {
+  orderNumber: number;
+}
 export interface OrderListItem {
-  [orderNumber: number]: ProductList;
+  date: string;
   deliveryType: DeliveryType;
+  list: ProductList;
   location: UserLocation;
   restaurantId: string;
   restaurantName: string;
@@ -35,20 +46,11 @@ export interface UserSliceState {
   id: string;
   isAuth: boolean;
   list: OrderListItem[];
-  orderCounter: number;
   token: string;
 }
 export interface UserLocation {
   address: CafeAddress | string;
   coords?: Coords;
-}
-export interface PayloadActionProps {
-  deliveryType: DeliveryType;
-  id: string;
-  list: ProductList;
-  location: UserLocation;
-  name: string;
-  orderNumber: number;
 }
 
 export interface User {
@@ -57,6 +59,6 @@ export interface User {
 }
 
 export enum AuthAPIErrors {
-  EMAIL_ALREADY_EXISTS = 'auth/email-already-exists',
+  EMAIL_ALREADY_IN_USE = 'auth/email-already-in-use',
   INVALID_CREDENTIAL = 'auth/invalid-credential',
 }

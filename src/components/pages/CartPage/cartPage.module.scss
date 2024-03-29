@@ -193,6 +193,13 @@
   }
 }
 
+@media(max-width:$mobile-menu-visible) {
+
+  .cart {
+    padding-top: $header-min-height + $padding-top;
+  }
+}
+
 @media (max-width:800px) {
   .cart__result {
     max-width: 100%;
