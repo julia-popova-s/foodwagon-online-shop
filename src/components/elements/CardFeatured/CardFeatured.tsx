@@ -80,7 +80,7 @@ export const CardFeatured: FC<CardFeaturedProps> = (props) => {
       </div>
 
       <div className={cn(style.card__status)}>
-        <OperatingStatus isClosed={isClosed} />
+        {status && <OperatingStatus isClosed={isClosed} isOpened={status === OpeningStatus.OPENED} />}
         {distance && <Distance deliveryType={deliveryType} distance={distance} isClosed={isClosed} />}
       </div>
     </div>

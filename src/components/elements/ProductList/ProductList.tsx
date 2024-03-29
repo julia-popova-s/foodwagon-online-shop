@@ -182,7 +182,13 @@ export const ProductList = ({
         <div className={style.cart__status}>
           <div className={style.cart__restaurantName}>{restaurantName}</div>
 
-          <OperatingStatus classNames={style.cart__operatStatus} isClosed={isClosed} />
+          {status && (
+            <OperatingStatus
+              classNames={style.cart__operatStatus}
+              isClosed={isClosed}
+              isOpened={status === OpeningStatus.OPENED}
+            />
+          )}
           {distance && (
             <Distance
               classNames={style.cart__distanceItem}
