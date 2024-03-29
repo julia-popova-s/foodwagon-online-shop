@@ -59,7 +59,7 @@ export const OrderCard: FC<Order> = ({
             productList.map(({ id, image, title }: CartProduct) => {
               return (
                 <Link className={style.card__listItem} key={id} to={`/restaurant/${restaurantId}/product/${id}`}>
-                  <img alt={title} className={style.card__listImg} src={image} width={100} />
+                  <img alt={title} className={style.card__listImg} src={process.env.PUBLIC_URL + image} width={100} />
                 </Link>
               );
             })}

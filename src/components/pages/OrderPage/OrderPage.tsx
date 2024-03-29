@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { RouteNames } from '../../../router';
 import { useAppSelector } from '../../../store';
-import { idSelector } from '../../../store/slices/user/slice';
+import { idSelector, isAuthSelector } from '../../../store/slices/user/slice';
 import { Order } from '../../../store/slices/user/types';
 import { OrderCard } from '../../elements/OrderCard';
 import style from './orderPage.module.scss';
@@ -16,6 +16,7 @@ export const OrderPage: FC = () => {
   const { pathname } = useLocation();
 
   const userId = useAppSelector(idSelector);
+  const isAuth = useAppSelector(isAuthSelector);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -34,21 +35,32 @@ export const OrderPage: FC = () => {
   useEffect(() => {
     if (userId) getUserData(userId);
   }, [userId]);
-
+ 
   return (
     <div className={style.productPage}>
       <div className="container">
         <h1 className={style.title}>Your orders</h1>
         <div className={style.product}>
-          {data?.length ? (
+          {!isAuth && (
+            <div className={style.productPage__message}>
+              You are not authorized. To access your personal account you need{' '}
+              <Link className={style.productPage__link} to={RouteNames.LOGIN}>
+                log in
+              </Link>
+            </div>
+          )}
+
+          {isAuth &&
+            data?.length &&
             data.map((props: Order) => {
               return (
                 <div key={uuidv4()}>
                   <OrderCard {...props} />
                 </div>
               );
-            })
-          ) : (
+            })}
+
+          {isAuth && !data?.length && (
             <div className={style.productPage__message}>
               Do you want to be the first among your friends to try our new product?{' '}
               <Link className={style.productPage__link} to={RouteNames.HOME}>
