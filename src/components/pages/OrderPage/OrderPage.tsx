@@ -7,7 +7,7 @@ import { RouteNames } from '../../../router';
 import { useAppSelector } from '../../../store';
 import { idSelector } from '../../../store/slices/user/slice';
 import { Order } from '../../../store/slices/user/types';
-import { OrderCard } from '../../elements/OrderCard/OrderCard';
+import { OrderCard } from '../../elements/OrderCard';
 import style from './orderPage.module.scss';
 
 export const OrderPage: FC = () => {

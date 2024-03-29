@@ -1,9 +1,11 @@
+import cn from 'classnames';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { CartProduct } from '../../../store/slices/cart/types';
 import { DeliveryType } from '../../../store/slices/location/types';
 import { Order } from '../../../store/slices/user/types';
+import { BrandName } from '../BrandName';
 import style from './orderCard.module.scss';
 
 export const OrderCard: FC<Order> = ({
@@ -32,7 +34,7 @@ export const OrderCard: FC<Order> = ({
           <div className={style.card__detailItem}>Order dated {orderDate}</div>
           <div className={style.card__detailItem}>Order № {orderNumber}</div>
         </div>
-        <div className={style.card__detail}>
+        <div className={cn(style.card__detail, style.card__detail_theme)}>
           <div className={style.card__detailItem}> payable: &#36; {totalAmount.toFixed(2)}</div>
           <div className={style.card__detailItem}>
             {totalCount} {totalCount > 1 ? 'items' : 'item'}
@@ -48,9 +50,8 @@ export const OrderCard: FC<Order> = ({
             </span>
             {typeof address === 'string' ? address : `${address.city}, ${address.street_addr}, ${address.house}`}
           </div>
-          <div className={style.card__name}>
-            <Link to={`/restaurant/${restaurantId}/product/${productList[0].id}`}>{restaurantName}</Link>
-          </div>
+
+          <BrandName id={productList[0].id} restaurantId={restaurantId} restaurantName={restaurantName} />
         </div>
 
         <div className={style.card__list}>

@@ -1,19 +1,20 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { ReactSVG } from 'react-svg';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { ReactComponent as Box } from '../../../assets/images/header/box.svg';
+import { RouteNames } from '../../../router';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { addressSelector } from '../../../store/slices/location/slice';
 import { isAuthSelector, removeUser } from '../../../store/slices/user/slice';
 import { DeliveryAddress } from '../../elements/DeliveryAddress';
 import { MobileMenu } from '../../elements/MobileMenu';
 import { LogoType } from '../../ui/LogoType';
-import { CartButton } from '../../ui/buttons/CartButton';
 import { LoginButton } from '../../ui/buttons/LoginButton';
+import { CartLink } from '../../ui/links/CartLink';
+import { OrdersLink } from '../../ui/links/OrdersLink';
+import { SearchLink } from '../../ui/links/SearchLink';
 import style from './header.module.scss';
 
 export const Header: FC = () => {
@@ -35,10 +36,6 @@ export const Header: FC = () => {
     navigate('/login');
   };
 
-  const handleOrders = () => {
-    navigate('orders');
-  };
-
   return (
     <header className={style.headerBlock}>
       <div className="container">
@@ -50,17 +47,13 @@ export const Header: FC = () => {
           <DeliveryAddress address={address} classNames={style.header__address} />
 
           <div className={cn(style.search, style.header__search)}>
-            <Link className={style.search__link} to="search">
-              <ReactSVG
-                className={style.search__icon}
-                src={process.env.PUBLIC_URL + '/images/header/search.svg'}
-                wrapper="span"
-              />
-              <span className={style.search__name}>Search Food</span>
+            <Link to={RouteNames.SEARCH}>
+              <SearchLink />
             </Link>
-            <button className={style.box} onClick={handleOrders}>
-              <Box height={40} width={40} />
-            </button>
+
+            <Link to={RouteNames.ORDERS}>
+              <OrdersLink />
+            </Link>
 
             {isAuth ? (
               <LoginButton classNames={style.search__login} handleClick={handleLogOut} title={'Logout'} />
@@ -68,9 +61,9 @@ export const Header: FC = () => {
               <LoginButton classNames={style.search__login} handleClick={handleLogin} title={'Login'} />
             )}
 
-            {pathname !== '/cart' && (
-              <Link to={'cart'}>
-                <CartButton />
+            {pathname !== RouteNames.CART && (
+              <Link to={RouteNames.CART}>
+                <CartLink />
               </Link>
             )}
           </div>

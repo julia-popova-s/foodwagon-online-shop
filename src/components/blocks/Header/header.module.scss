@@ -30,78 +30,10 @@
   row-gap: 15px;
   justify-content: stretch;
   align-items: center;
-
-  &__link {
-    position: relative;
-
-    @include setTextStyle($font-bold, 18px, 100%);
-    color: $text-color;
-    text-decoration: none;
-
-    background-color: transparent;
-
-    cursor: pointer;
-
-    &::before {
-      position: absolute;
-      content: '';
-
-      top: 22px;
-      right: 0;
-
-      width: 97px;
-      height: 2px;
-
-      background-color: transparent;
-      border-radius: 10px;
-      transition: all $transition-short ease;
-    }
-
-    &:hover::before {
-      background-color: $base-color;
-      transition: all $transition-short ease;
-    }
-  }
-
-  &__icon {
-    margin-right: 8px;
-  }
-
-  &__name {
-    vertical-align: top;
-  }
 }
 
 .header__logoLink {
   margin-right: 30px;
-}
-
-.box {
-  background-color: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60px;
-  height: 46px;
-  border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0px 5px 10px rgba(255, 174, 0, 0.26), 0px 20px 40px rgba(255, 174, 0, 0.29);
-  transition: transform 0.15s ease;
-
-  &:hover {
-    transform: translateY(1px);
-    transition: transform 0.15s ease;
-
-    svg path {
-      fill: #f17228;
-    }
-  }
-
-  svg {
-    path {
-      fill: rgb(255, 138, 0);
-    }
-  }
 }
 
 @media(max-width:$mobile-menu-visible) {

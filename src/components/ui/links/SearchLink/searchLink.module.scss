@@ -1,0 +1,46 @@
+@import "../../../../styles//variables";
+
+.searchLink {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @include setTextStyle($font-bold, 18px, 100%);
+  color: $text-color;
+  text-decoration: none;
+
+  background-color: transparent;
+
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    content: '';
+
+    top: 22px;
+    right: 0;
+
+    width: 97px;
+    height: 2px;
+
+    background-color: transparent;
+    border-radius: 10px;
+    transition: all $transition-short ease;
+  }
+
+  &:hover::before {
+    background-color: $base-color;
+    transition: all $transition-short ease;
+  }
+
+  &:hover svg path {
+    fill: #f17228;
+    transition: all $transition-short ease;
+  }
+
+  svg path {
+    transition: all $transition-short ease;
+  }
+}

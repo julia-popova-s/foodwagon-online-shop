@@ -1,12 +1,11 @@
 import cn from 'classnames';
 import { FC, useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import { RouteNames } from '../../../router';
 import { useAppSelector } from '../../../store';
 import { addressSelector } from '../../../store/slices/location/slice';
 import { isAuthSelector } from '../../../store/slices/user/slice';
-import { CartButton } from '../../ui/buttons/CartButton';
 import { MenuButton } from '../../ui/buttons/MenuButton';
 import { DeliveryAddress } from '../DeliveryAddress';
 import { NavItem } from '../NavItem';

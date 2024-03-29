@@ -27,7 +27,8 @@
 
 .card__name {
   font-size: 20px;
-  color: #da3802;;
+  color: #da3802;
+  ;
   margin-bottom: 8px;
 }
 
@@ -69,10 +70,13 @@
 }
 
 .card__detail {
-
   font-weight: 700;
 }
 
 .card__detailItem {
   margin-bottom: 5px;
+}
+
+.card__detail_theme {
+  text-align: right;
 }

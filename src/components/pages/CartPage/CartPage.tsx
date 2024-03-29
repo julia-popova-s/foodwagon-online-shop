@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { FC, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -64,8 +64,7 @@ export const Cart: FC = () => {
   const handleVisiblePopup = (status: boolean) => {
     setVisiblePopup(status);
   };
-  const aa = useLocation();
-  console.log(aa);
+
   if (!totalQuantity) {
     return (
       <div className={style.cart}>
@@ -90,11 +89,11 @@ export const Cart: FC = () => {
       </div>
     );
   }
+
   return (
     <div className={style.cart}>
       <div className={cn(style.cart__container, 'container')}>
         <h1 className={style.cart__title}>Shopping cart</h1>
-        <div>Link</div>
         <div className={style.cart__inner}>
           {totalQuantity &&
             addedGoods.map((restaurant) => (
