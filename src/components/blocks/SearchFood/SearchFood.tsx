@@ -81,7 +81,7 @@ export const SearchFood: FC = () => {
     dispatch(setProductCount(obj));
   };
 
-  const handleViewAll = () => {
+  const handleAllView = () => {
     setLimit(limit * 2);
   };
 
@@ -170,7 +170,7 @@ export const SearchFood: FC = () => {
                     key={uuidv4()}
                     {...item}
                     classNames={style.searchFood__item}
-                    handleClickCategory={() => handleCategorySelect(i)}
+                    handleCategoryClick={() => handleCategorySelect(i)}
                   />
                 );
               })}
@@ -194,7 +194,7 @@ export const SearchFood: FC = () => {
               : skeleton}
           </div>
 
-          <button className={style.searchFood__btnView} onClick={handleViewAll}>
+          <button className={style.searchFood__btnView} onClick={handleAllView}>
             View All
             <ReactSVG
               className={style.searchFood__btnViewArrow}

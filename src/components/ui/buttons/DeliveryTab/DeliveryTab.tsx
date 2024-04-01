@@ -7,12 +7,12 @@ import style from './deliveryTab.module.scss';
 
 type DeliveryTabProps = {
   active: boolean;
-  handleClickItem: () => void;
+  handleItemClick: () => void;
   label: string;
 };
-export const DeliveryTab: FC<DeliveryTabProps> = ({ active, handleClickItem, label }) => {
+export const DeliveryTab: FC<DeliveryTabProps> = ({ active, handleItemClick, label }) => {
   return (
-    <button className={classNames(style.deliveryTab, { [style.deliveryTab_active]: active })} onClick={handleClickItem}>
+    <button className={classNames(style.deliveryTab, { [style.deliveryTab_active]: active })} onClick={handleItemClick}>
       {label === 'Delivery' ? (
         <Delivery className={style.deliveryTab__btnIcon} />
       ) : (

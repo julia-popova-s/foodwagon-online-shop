@@ -1,6 +1,7 @@
 import { FC, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
+import { useScrollTo } from '../../../hooks/useScrollTo';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
@@ -15,15 +16,11 @@ export const ProductPage: FC = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
-  const { pathname } = useLocation();
-
   const isLoaded = useAppSelector(isLoadedSelector);
   const product = useAppSelector(productSelector);
   const [productItem] = product;
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  useScrollTo();
 
   useEffect(() => {
     dispatch(

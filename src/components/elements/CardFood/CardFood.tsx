@@ -5,14 +5,14 @@ import style from './cardFood.module.scss';
 
 type CardFoodProps = {
   classNames?: string;
-  handleClickCategory: () => void;
+  handleCategoryClick: () => void;
   imageSrc: string;
   name: string;
 };
 
-export const CardFood: FC<CardFoodProps> = ({ classNames, handleClickCategory, imageSrc, name }) => {
+export const CardFood: FC<CardFoodProps> = ({ classNames, handleCategoryClick, imageSrc, name }) => {
   return (
-    <div className={cn(classNames, style.cardFoodBlock)} onClick={handleClickCategory}>
+    <div className={cn(classNames, style.cardFoodBlock)} onClick={handleCategoryClick}>
       <div className={style.cardFood__up}>
         <img alt={name} className={style.cardFood__image} src={process.env.PUBLIC_URL + imageSrc} />
       </div>
