@@ -42,7 +42,7 @@ export const Footer: FC = () => {
     setEmail(e.target.value);
   };
 
-  const handleSubmitEmail = (e: FormEvent<HTMLFormElement>) => {
+  const handleEmailSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEmail('');
   };
@@ -71,7 +71,7 @@ export const Footer: FC = () => {
               </Link>
             </div>
 
-            <form className={style.footer__form} onSubmit={handleSubmitEmail}>
+            <form className={style.footer__form} onSubmit={handleEmailSubmit}>
               <p className={style.footer__label}>Receive exclusive offers in your mailbox</p>
               <input
                 className={style.footer__input}

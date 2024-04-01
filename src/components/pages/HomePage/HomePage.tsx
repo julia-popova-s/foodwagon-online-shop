@@ -1,5 +1,6 @@
 import { FC, lazy } from 'react';
 
+import { useScrollTo } from '../../../hooks/useScrollTo';
 import style from './home.module.scss';
 
 const AppDownLoad = lazy(() => import(/*webpackChunkName: "AppDownLoad"*/ '../../blocks/AppDownLoad'));
@@ -16,6 +17,7 @@ const FlashDeals = lazy(() => import(/*webpackChunkName: "FlashDeals"*/ '../../b
 const FindFood = lazy(() => import(/*webpackChunkName: "FindFood"*/ '../../blocks/FindFood'));
 
 export const Home: FC = () => {
+  useScrollTo();
   return (
     <div className={style.homePage}>
       <FindFood />

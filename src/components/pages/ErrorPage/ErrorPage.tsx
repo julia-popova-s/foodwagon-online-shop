@@ -1,8 +1,11 @@
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 
+import { useScrollTo } from '../../../hooks/useScrollTo';
 import style from './errorPage.module.scss';
 
 export const ErrorPage = () => {
+  useScrollTo();
+
   const error = useRouteError();
 
   if (isRouteErrorResponse(error)) {

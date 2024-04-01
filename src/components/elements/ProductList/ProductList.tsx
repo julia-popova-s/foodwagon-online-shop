@@ -153,7 +153,7 @@ export const ProductList = ({
     setActiveType(label);
   }, []);
 
-  const handleClearCart = (options: RestaurantInfo) => {
+  const handleCartDelete = (options: RestaurantInfo) => {
     handleRestaurantInfoChange(options);
     handleVisiblePopup(true);
   };
@@ -200,7 +200,7 @@ export const ProductList = ({
         </div>
 
         <div className={style.cart__clear}>
-          <button className={style.cart__clearBtn} onClick={() => handleClearCart({ restaurantId, restaurantName })}>
+          <button className={style.cart__clearBtn} onClick={() => handleCartDelete({ restaurantId, restaurantName })}>
             <FontAwesomeIcon className={style.cart__clearIcon} icon={faTrashCan} size="lg" />
             clear
           </button>

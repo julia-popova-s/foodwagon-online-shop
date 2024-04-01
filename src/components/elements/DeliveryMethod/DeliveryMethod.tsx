@@ -15,7 +15,7 @@ type DeliveryMethodProps = {
 };
 
 export const DeliveryMethod: FC<DeliveryMethodProps> = ({ deliveryType, handleDeliveryTypeChange, list }) => {
-  const handleSelectItem = (label: DeliveryType) => {
+  const handleItemSelect = (label: DeliveryType) => {
     handleDeliveryTypeChange(label);
   };
 
@@ -24,7 +24,7 @@ export const DeliveryMethod: FC<DeliveryMethodProps> = ({ deliveryType, handleDe
       {list.map(({ label }, i) => (
         <DeliveryTab
           active={deliveryType === label}
-          handleClickItem={() => handleSelectItem(label)}
+          handleItemClick={() => handleItemSelect(label)}
           key={`${label}_${i}`}
           label={label}
         />

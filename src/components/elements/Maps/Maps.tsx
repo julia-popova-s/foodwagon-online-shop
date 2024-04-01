@@ -74,7 +74,7 @@ export const Maps: FC<MapsProps> = ({
     getGeoLocation(event);
   };
 
-  const handleChangeZoom = (event: Event) => {
+  const handleZoomChange = (event: Event) => {
     getGeoLocation(event);
   };
 
@@ -222,7 +222,7 @@ export const Maps: FC<MapsProps> = ({
         onActionEnd={handleActionEnd}
         onBoundsChange={handleBoundsChange}
         onLoad={onLoad}
-        onWheel={handleChangeZoom}
+        onWheel={handleZoomChange}
       >
         <div className={cn(style.placemark, { [style.active]: activeAction })} onClick={handleBalloonStatusChange}>
           <LocationMark className={cn(style.placemark__icon, { [style.active]: activeAction })} />

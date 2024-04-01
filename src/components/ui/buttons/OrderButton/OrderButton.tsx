@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { ReactSVG } from 'react-svg';
 
+import { ReactComponent as Arrow } from '../../../../assets/images/call-to-action/btn.svg';
 import style from './orderButton.module.scss';
 
 type OrderButtonProps = {
@@ -14,12 +14,7 @@ export const OrderButton: FC<OrderButtonProps> = ({ classNames, handleClick, nam
   return (
     <button className={cn(style.orderButton, classNames)} onClick={handleClick}>
       {name}
-
-      <ReactSVG
-        className={style.orderButton__icon}
-        src={`${process.env.PUBLIC_URL}/images/cards-big/btn.svg`}
-        wrapper="span"
-      />
+      <Arrow className={style.orderButton__icon} />
     </button>
   );
 };

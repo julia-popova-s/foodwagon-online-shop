@@ -1,6 +1,6 @@
 @import "../../../styles/variables";
 
-.callToActionBlock {
+.actionBlock {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,7 +12,7 @@
 
 }
 
-.callToAction {
+.action {
 
   padding: 91px 0 75px 0;
 
@@ -47,7 +47,7 @@
 }
 
 @media(max-width:650px) {
-  .callToAction__title {
+  .action__title {
     font-size: 42px;
   }
 }

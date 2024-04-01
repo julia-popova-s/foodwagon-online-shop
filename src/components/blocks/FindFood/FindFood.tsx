@@ -5,6 +5,7 @@ import { FC, KeyboardEvent, memo, useCallback, useEffect, useMemo, useRef, useSt
 import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as Spinner } from '../../../assets/images/search-panel/spinner.svg';
+import { useOutsideClick } from '../../../hooks/useOutsideClick';
 import { RouteNames } from '../../../router';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import {
@@ -60,20 +61,15 @@ export const FindFood: FC = () => {
     }
   }, [mode]);
 
-  useEffect(() => {
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (popupRef.current?.contains(e.target as Node) || searchRef.current?.contains(e.target as Node)) {
-        setVisiblePopup(true);
-      } else {
-        setVisiblePopup(false);
-      }
-      return;
-    };
+  const getOutsideClickStatus = (e: MouseEvent) => {
+    return popupRef.current?.contains(e.target as Node) || searchRef.current?.contains(e.target as Node) || false;
+  };
 
-    document.body.addEventListener('mousedown', handleOutsideClick);
+  const handleOpenPopup = () => setVisiblePopup(true);
 
-    return () => document.body.removeEventListener('mousedown', handleOutsideClick);
-  }, []);
+  const handleClosePopup = () => setVisiblePopup(false);
+
+  useOutsideClick(getOutsideClickStatus, handleOpenPopup, handleClosePopup);
 
   useEffect(() => {
     if (searchValue && mode === ModeOfUsingMaps.SEARCH) {
@@ -91,7 +87,7 @@ export const FindFood: FC = () => {
     navigate(RouteNames.RESTAURANTS);
   };
 
-  const handleFindFood = () => {
+  const handleFoodSearch = () => {
     const item: LocationItem = {
       address: place,
       coords: coord,
@@ -195,7 +191,7 @@ export const FindFood: FC = () => {
                   classNames={cn(style.search__btn, {
                     [style.search__btn_inactive]: !premiseNumber && searchValue,
                   })}
-                  handleClick={handleFindFood}
+                  handleClick={handleFoodSearch}
                   icon="search"
                   label="Find Food"
                 />
