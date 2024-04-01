@@ -1,8 +1,9 @@
 import { getDatabase, limitToLast, onValue, query, ref } from 'firebase/database';
 import { FC, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
+import { useScrollTo } from '../../../hooks/useScrollTo';
 import { RouteNames } from '../../../router';
 import { useAppSelector } from '../../../store';
 import { idSelector, isAuthSelector } from '../../../store/slices/user/slice';
@@ -13,14 +14,10 @@ import style from './orderPage.module.scss';
 export const OrderPage: FC = () => {
   const [data, setData] = useState<any>();
 
-  const { pathname } = useLocation();
-
   const userId = useAppSelector(idSelector);
   const isAuth = useAppSelector(isAuthSelector);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  useScrollTo();
 
   const getUserData = (userId: string) => {
     const recentOrdersRef = query(ref(getDatabase(), 'users/' + userId), limitToLast(10));
@@ -35,7 +32,7 @@ export const OrderPage: FC = () => {
   useEffect(() => {
     if (userId) getUserData(userId);
   }, [userId]);
- 
+
   return (
     <div className={style.productPage}>
       <div className="container">

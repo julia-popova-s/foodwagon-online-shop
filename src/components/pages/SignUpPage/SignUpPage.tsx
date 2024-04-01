@@ -1,7 +1,8 @@
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { FC, Suspense, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { FC, Suspense, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { useScrollTo } from '../../../hooks/useScrollTo';
 import { useAppDispatch } from '../../../store';
 import { setToken, setUser } from '../../../store/slices/user/slice';
 import { AuthAPIErrors } from '../../../store/slices/user/types';
@@ -14,12 +15,13 @@ export const SignUp: FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const auth = getAuth();
-  const { pathname } = useLocation();
+
+  useScrollTo();
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleRegister = (email: string, password: string) => {
+  const handleRegistration = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(
@@ -35,7 +37,6 @@ export const SignUp: FC = () => {
         dispatch(setToken(token));
       })
       .catch(({ code, message }) => {
-        console.log(code);
         switch (code) {
           case AuthAPIErrors.EMAIL_ALREADY_IN_USE:
             setErrorMessage('This email address is already in use by another account.');
@@ -48,14 +49,15 @@ export const SignUp: FC = () => {
       });
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
   return (
     <div className={style.signUp}>
       <Suspense fallback={<Spinner />}>
-        <AuthRegForm errorMessage={errorMessage} handleClick={handleRegister} schema={signupSchema} title={'Sign Up'} />
+        <AuthRegForm
+          errorMessage={errorMessage}
+          handleClick={handleRegistration}
+          schema={signupSchema}
+          title={'Sign Up'}
+        />
       </Suspense>
     </div>
   );

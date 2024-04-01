@@ -2,6 +2,7 @@ import cn from 'classnames';
 import { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { useScrollTo } from '../../../hooks/useScrollTo';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
@@ -56,13 +57,7 @@ export const RestaurantMenu: FC = () => {
   const products = useAppSelector(productListSelector);
   const status = useAppSelector(statusSelector);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [currentPage]);
+  useScrollTo(0, 530, currentPage);
 
   const handlePageChange = (pageNumber: number) => {
     dispatch(setCurrentPage(pageNumber));
@@ -103,7 +98,7 @@ export const RestaurantMenu: FC = () => {
       <div className={cn(style.restaurant)}>
         <div className="container">
           <div className={style.alert}>Nothing was found according to your request. Go to another page.</div>
-          <Pagination currentPage={currentPage} handleChangePage={handlePageChange} pageCount={5} />
+          <Pagination currentPage={currentPage} handlePageChange={handlePageChange} pageCount={5} />
         </div>
       </div>
     );
@@ -116,7 +111,7 @@ export const RestaurantMenu: FC = () => {
           <SortPopup
             activeSortType={sortType}
             classNames={style.filters__sortBy}
-            handleChangeSortType={handleSortTypeChange}
+            handleSortTypeChange={handleSortTypeChange}
             items={SORT_ITEMS}
             orderType={orderType}
           />
@@ -138,7 +133,7 @@ export const RestaurantMenu: FC = () => {
       </div>
 
       <div className="container">
-        <Pagination currentPage={currentPage} handleChangePage={handlePageChange} pageCount={5} />
+        <Pagination currentPage={currentPage} handlePageChange={handlePageChange} pageCount={5} />
       </div>
     </div>
   );

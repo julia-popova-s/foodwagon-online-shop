@@ -1,7 +1,8 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { FC, Suspense, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { FC, Suspense, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { useScrollTo } from '../../../hooks/useScrollTo';
 import { useAppDispatch } from '../../../store';
 import { setToken, setUser } from '../../../store/slices/user/slice';
 import { AuthAPIErrors } from '../../../store/slices/user/types';
@@ -13,7 +14,7 @@ import style from './loginPage.module.scss';
 export const Login: FC = () => {
   const auth = getAuth();
 
-  const { pathname } = useLocation();
+  useScrollTo();
 
   const dispatch = useAppDispatch();
 
@@ -48,10 +49,6 @@ export const Login: FC = () => {
         }
       });
   };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
 
   return (
     <div className={style.login}>

@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
@@ -19,7 +19,7 @@ export type SortItem = {
 type SortPopupProps = {
   activeSortType: SortType;
   classNames?: string;
-  handleChangeSortType: (sortType: SortType, orderType: OrderType) => void;
+  handleSortTypeChange: (sortType: SortType, orderType: OrderType) => void;
   items: SortItem[];
   orderType: OrderType;
 };
@@ -27,7 +27,7 @@ type SortPopupProps = {
 export const SortPopup: FC<SortPopupProps> = ({
   activeSortType,
   classNames,
-  handleChangeSortType,
+  handleSortTypeChange,
   items,
   orderType,
 }) => {
@@ -40,8 +40,13 @@ export const SortPopup: FC<SortPopupProps> = ({
   const handleClosePopup = () => {
     setVisiblePopup(false);
   };
+  const sortRef = useRef<HTMLDivElement>(null);
 
-  const sortRef = useOutsideClick(handleClosePopup);
+  const getOutsideClickStatus = (e: MouseEvent) => {
+    return sortRef.current?.contains(e.target as Node) || false;
+  };
+
+  useOutsideClick(getOutsideClickStatus, handleOpenPopup, handleClosePopup);
 
   const activeLabel = items?.find((obj) => obj.type === activeSortType)?.name;
 
@@ -63,7 +68,7 @@ export const SortPopup: FC<SortPopupProps> = ({
                     [style.sort__item_active]: type === activeSortType && order === orderType,
                   })}
                   key={`${type}_${i}`}
-                  onClick={() => handleChangeSortType(type, order)}
+                  onClick={() => handleSortTypeChange(type, order)}
                 >
                   {name}
                 </li>

@@ -49,11 +49,11 @@ export const FeaturedRestaurants: FC<FeaturedRestaurantsProps> = ({ classNames, 
   const isLoaded = useAppSelector(isLoadedSelector);
   const list = useAppSelector(restaurantListSelector);
 
-  const handleChangeCategory = useCallback((index: number) => {
+  const handleCategoryChange = useCallback((index: number) => {
     dispatch(setCategory(index));
   }, []);
 
-  const handleChangeSortType = useCallback((sortType: any, orderType: any) => {
+  const handleSortTypeChange = useCallback((sortType: any, orderType: any) => {
     dispatch(setSortType({ orderType, sortType }));
   }, []);
 
@@ -86,12 +86,12 @@ export const FeaturedRestaurants: FC<FeaturedRestaurantsProps> = ({ classNames, 
           <h4 className={cn(style.restaurantList__title, classNames)}>{title ? title : 'Featured Restaurants'}</h4>
 
           <div className={style.restaurantList__filters}>
-            <Categories activeCategory={category} handleChangeCategory={handleChangeCategory} items={categoryNames} />
+            <Categories activeCategory={category} handleCategoryChange={handleCategoryChange} items={categoryNames} />
 
             <SortPopup
               activeSortType={sortType}
               classNames={style.restaurantList__popup}
-              handleChangeSortType={handleChangeSortType}
+              handleSortTypeChange={handleSortTypeChange}
               items={sortItems}
               orderType={orderType}
             />

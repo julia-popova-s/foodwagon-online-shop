@@ -61,7 +61,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
 
   const quantity = cart[restaurantId]?.items[id]?.quantity;
 
-  const handleInputQuantity = (quantity: number) => handleCountInput({ id, quantity, restaurantId });
+  const handleQuantityInput = (quantity: number) => handleCountInput({ id, quantity, restaurantId });
 
   const handleProductPlus = () => {
     handleProductAdd({
@@ -114,7 +114,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
               classNames={style.info__btns_theme}
               handleProductMinus={handleProductMinus}
               handleProductPlus={handleProductPlus}
-              handleQuantityInput={handleInputQuantity}
+              handleQuantityInput={handleQuantityInput}
               quantity={quantity ? quantity : 0}
             />
           ) : (

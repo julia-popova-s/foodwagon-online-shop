@@ -25,7 +25,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
 
   const [menuIsVisible, setMenuIsVisible] = useState(false);
 
-  const handleClickMenu = () => {
+  const handleMenuClick = () => {
     setMenuIsVisible(!menuIsVisible);
   };
 
@@ -41,7 +41,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({ handleLogOut }) => {
 
   return (
     <div className={style.mobileMenu}>
-      <MenuButton handleClick={handleClickMenu} isVisible={menuIsVisible} />
+      <MenuButton handleClick={handleMenuClick} isVisible={menuIsVisible} />
 
       <nav
         className={cn(style.menu, {

@@ -1,10 +1,10 @@
 import cn from 'classnames';
-import { FC, useEffect, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
+import { useScrollTo } from '../../../hooks/useScrollTo';
 import { RouteNames } from '../../../router';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { addedGoodsSelector, clearCart, totalQuantitySelector } from '../../../store/slices/cart/slice';
@@ -16,8 +16,6 @@ import { Popup } from '../../ui/Popup';
 import style from './cartPage.module.scss';
 
 export const Cart: FC = () => {
-  const { pathname } = useLocation();
-
   const dispatch = useAppDispatch();
 
   const [name, setName] = useState<string>('');
@@ -31,25 +29,33 @@ export const Cart: FC = () => {
   const addedGoods = useAppSelector(addedGoodsSelector);
   const email = useAppSelector(emailSelector);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  useScrollTo();
 
   const handleClosePopup = () => {
     setVisiblePopup(false);
   };
 
-  const handleClearOrder = () => {
+  const handleOpenPopup = () => {
+    setVisiblePopup(true);
+  };
+
+  const handleClearOrder = (id: string) => {
     dispatch(clearCart({ restaurantId: id }));
     setVisiblePopup(false);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (id: string) => {
     dispatch(clearCart({ restaurantId: id }));
     setVisibleModal(false);
   };
 
-  const popupRef = useOutsideClick(handleClosePopup);
+  // const getOutsideClickStatus = (e: MouseEvent) => {
+  //   return popupRef.current?.contains(e.target as Node) || false;
+  // };
+
+  // const popupRef = useRef<HTMLDivElement>(null);
+
+  // useOutsideClick(getOutsideClickStatus, handleOpenPopup, handleClosePopup);
 
   const handleRestaurantInfoChange = ({ orderNumber, restaurantId, restaurantName }: RestaurantInfo) => {
     setName(restaurantName);
@@ -111,11 +117,19 @@ export const Cart: FC = () => {
       <Modal
         email={email || ''}
         handleCloseModal={handleCloseModal}
+        id={id}
         isOpen={visibleModal}
         name={name}
         orderNumber={orderNumber}
       />
-      <Popup handleClickClose={handleClosePopup} handleClickOk={handleClearOrder} isOpen={visiblePopup} ref={popupRef}>
+
+      <Popup
+        handleClose={handleClosePopup}
+        handleOk={handleClearOrder}
+        id={id}
+        isOpen={visiblePopup}
+        // ref={popupRef}
+      >
         <>
           Are you sure you want to empty the cart from <span className={style.popup__name}>«{name}»</span>?
         </>

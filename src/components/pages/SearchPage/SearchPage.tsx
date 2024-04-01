@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { useScrollTo } from '../../../hooks/useScrollTo';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { addProduct, deleteOneProduct, setProductCount } from '../../../store/slices/cart/slice';
 import { Product, ProductInfoQuantity } from '../../../store/slices/cart/types';
@@ -18,6 +19,8 @@ import { Loader } from './Loader';
 import style from './searchPage.module.scss';
 
 export const SearchPage: FC = () => {
+  useScrollTo();
+
   const error = useAppSelector(errorSelector);
   const currentPage = useAppSelector(currentPageSelector);
   const products = useAppSelector(productListSelector);
@@ -69,7 +72,7 @@ export const SearchPage: FC = () => {
           {status === 'loading' && skeleton}
         </div>
 
-        {status && !error && <Pagination currentPage={currentPage} handleChangePage={handlePageChange} pageCount={3} />}
+        {status && !error && <Pagination currentPage={currentPage} handlePageChange={handlePageChange} pageCount={3} />}
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .card {
   background-color: white;
   margin-bottom: 50px;
@@ -28,7 +30,7 @@
 .card__name {
   font-size: 20px;
   color: #da3802;
-  ;
+
   margin-bottom: 8px;
 }
 
@@ -79,4 +81,14 @@
 
 .card__detail_theme {
   text-align: right;
+}
+
+@media (max-width:$tablet) {
+  .card__detail {
+    width: 100%;
+  }
+
+  .card__detail_theme {
+    text-align: left;
+  }
 }
