@@ -2,7 +2,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from 'classnames';
 import { child, get, getDatabase, push, ref, set, update } from 'firebase/database';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../store';
@@ -45,12 +45,12 @@ type ProductListProps = {
   restaurantInfo: AddedGoodsItem;
 };
 
-export const ProductList = ({
+export const ProductList: FC<ProductListProps> = ({
   handleRestaurantInfoChange,
   handleVisibleModal,
   handleVisiblePopup,
   restaurantInfo,
-}: ProductListProps) => {
+}) => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -69,6 +69,7 @@ export const ProductList = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [orderNumber, setOrderNumber] = useState(0);
   const [orderInfo, setOrderInfo] = useState<OrderListItem>();
+  const [isMessage, setIsMessage] = useState(false);
 
   const buttons: Button[] = useMemo(() => [{ label: DeliveryType.DELIVERY }, { label: DeliveryType.PICKUP }], []);
 
@@ -79,8 +80,9 @@ export const ProductList = ({
   const restaurantName = products[0] && products[0]?.restaurantName;
   const distance = listOfDistance?.find((el: any) => el.id === restaurantId)?.distance;
   const item = listOfOperatingStatus.find((el) => el.id === restaurantId);
-  const status = deliveryType === DeliveryType.DELIVERY ? item?.deliveryEnabled : item?.pickupEnabled;
+  const status = activeType === DeliveryType.DELIVERY ? item?.deliveryEnabled : item?.pickupEnabled;
   const isClosed = status === OpeningStatus.CLOSED;
+  const isOpened = status === OpeningStatus.OPENED;
 
   const updateOrderCounter = () => {
     const dbRef = ref(getDatabase());
@@ -112,25 +114,35 @@ export const ProductList = ({
     return set(newOrder, orderInfo);
   };
 
-  const handlePlaceOrder = (restaurantId: string, restaurantName: string, isClosed: boolean) => {
-    if (!isAuth && !isClosed) {
-      navigate('/login');
-      return;
+  const handlePlaceOrder = (restaurantId: string, restaurantName: string) => {
+    if (isClosed) {
+      setIsMessage(true);
     }
-    if (!isClosed && isAuth) {
+
+    if (!isAuth && isOpened) {
+      navigate('/login');
+    }
+
+    if (isAuth && isOpened) {
       const list = cart[restaurantId];
-      const item = listOfOperatingStatus.find((el) => el.id === restaurantId);
       const date = Date();
 
       if (activeType === DeliveryType.DELIVERY && deliveryStatus === DeliveryStatus.YES) {
         updateOrderCounter();
-        const orderInfo = { date, deliveryType, list, location: { address, coords }, restaurantId, restaurantName };
+        const orderInfo = {
+          date,
+          deliveryType: activeType,
+          list,
+          location: { address, coords },
+          restaurantId,
+          restaurantName,
+        };
         setOrderInfo(orderInfo);
       } else if (activeType === DeliveryType.PICKUP && item?.address) {
         updateOrderCounter();
         const orderInfo = {
           date,
-          deliveryType,
+          deliveryType: activeType,
           list,
           location: { address: item?.address },
           restaurantId,
@@ -182,13 +194,7 @@ export const ProductList = ({
         <div className={style.cart__status}>
           <div className={style.cart__restaurantName}>{restaurantName}</div>
 
-          {status && (
-            <OperatingStatus
-              classNames={style.cart__operatStatus}
-              isClosed={isClosed}
-              isOpened={status === OpeningStatus.OPENED}
-            />
-          )}
+          {status && <OperatingStatus classNames={style.cart__operatStatus} isClosed={isClosed} isOpened={isOpened} />}
           {distance && (
             <Distance
               classNames={style.cart__distanceItem}
@@ -208,7 +214,13 @@ export const ProductList = ({
       </div>
       <div className={style.cart__deliveryСhoice}>
         <DeliveryMethod deliveryType={activeType} handleDeliveryTypeChange={handleDeliveryTypeChange} list={buttons} />
-        <PanelWithAddress address={address} item={item} status={deliveryStatus} type={activeType} />
+        <PanelWithAddress
+          address={address}
+          isClosed={isMessage}
+          item={item}
+          status={deliveryStatus}
+          type={activeType}
+        />
       </div>
 
       {quantity ? (
@@ -230,7 +242,7 @@ export const ProductList = ({
             <OrderInfoBlock price={price} quantity={quantity} />
             <OrderButton
               classNames={cn(style.cart__orderBtn)}
-              handleClick={() => handlePlaceOrder(restaurantId, restaurantName, isClosed)}
+              handleClick={() => handlePlaceOrder(restaurantId, restaurantName)}
               name={'Place an order'}
             />
           </div>

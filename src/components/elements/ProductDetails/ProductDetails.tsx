@@ -1,7 +1,5 @@
 import cn from 'classnames';
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import { ReactSVG } from 'react-svg';
 
 import { useAppSelector } from '../../../store';
 import { cartSelector } from '../../../store/slices/cart/slice';
@@ -15,6 +13,7 @@ import { getPartOfString } from '../../../utils/getPartOfString';
 import { Discount } from '../../ui/Discount';
 import { CounterWithButton } from '../../ui/buttons/CounterWithButton';
 import { SearchButton } from '../../ui/buttons/SearchButton';
+import { BrandName } from '../BrandName';
 import { OperatingStatus } from '../OperatingStatus';
 import { PriceBlock } from '../PriceBlock';
 import style from './productDetails.module.scss';
@@ -88,14 +87,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
         <p className={style.info__title}>{title}</p>
 
         <div className={style.info__name}>
-          <Link className={style.info__nameLink} to={''}>
-            <ReactSVG
-              className={style.info__nameIcon}
-              src={process.env.PUBLIC_URL + '/images/popular-items/map.svg'}
-              wrapper="span"
-            />
-            {restaurantName}
-          </Link>
+          <BrandName id={id} restaurantId={restaurantId} restaurantName={restaurantName} />
           {status && (
             <OperatingStatus
               classNames={style.info__nameStatus}
