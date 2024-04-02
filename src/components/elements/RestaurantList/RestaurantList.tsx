@@ -8,7 +8,7 @@ import style from './restaurantList.module.scss';
 
 type RestaurantListProps = {
   isLoading: boolean;
-  list: Restaurant[];
+  list?: Restaurant[];
 };
 
 export const RestaurantList: FC<RestaurantListProps> = ({ isLoading, list }) => {
@@ -16,7 +16,7 @@ export const RestaurantList: FC<RestaurantListProps> = ({ isLoading, list }) => 
 
   return (
     <div className={style.restaurantListWrapper}>
-      {isLoading && list
+      {isLoading && list?.length
         ? list.map((obj) => (
             <Link key={obj.id} to={`/restaurant/${obj.id}/product/${obj.backgroundId}`}>
               <CardFeatured {...obj} />
