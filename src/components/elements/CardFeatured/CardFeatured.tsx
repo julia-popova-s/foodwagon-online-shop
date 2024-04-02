@@ -30,9 +30,9 @@ export const CardFeatured: FC<CardFeaturedProps> = (props) => {
   const { deliveryTime, discount, id, imageSrc, logo_photos, name, weighted_rating_value } = props;
   const deliveryType = useAppSelector(deliveryTypeSelector);
   const listOfDistances = useAppSelector(listOfDistancesSelector);
-  const istOfOperatingStatus = useAppSelector(listOfOperatingStatusSelector);
+  const listOfOperatingStatus = useAppSelector(listOfOperatingStatusSelector);
 
-  const statusEnabled = istOfOperatingStatus.find((el) => el.id === id);
+  const statusEnabled = listOfOperatingStatus.find((el) => el.id === id);
   const distance = listOfDistances?.find((el) => el.id === id)?.distance;
 
   let status;

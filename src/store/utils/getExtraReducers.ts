@@ -46,6 +46,7 @@ export interface Restaurant {
   delivery_enabled: true;
   deliveryTime: number;
   discount: number;
+  distance?: string;
   id: string;
   imageSrc: string;
   local_hours: OperatingModes;

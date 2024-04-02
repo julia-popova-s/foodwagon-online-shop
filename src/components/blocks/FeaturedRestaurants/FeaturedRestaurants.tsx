@@ -3,6 +3,7 @@ import { FC, useCallback, useEffect, useState } from 'react';
 
 import { ReactComponent as ButtonLeft } from '../../../assets/images/food/btn_left.svg';
 import { useAppDispatch, useAppSelector } from '../../../store';
+import { listOfDistancesSelector } from '../../../store/slices/location/slice';
 import {
   fetchRestaurants,
   isLoadedSelector,
@@ -18,6 +19,8 @@ import {
   sortTypeSelector,
 } from '../../../store/slices/sortingType/slice';
 import { RestaurantOrderType, RestaurantSortingType } from '../../../store/slices/sortingType/types';
+import { Restaurant } from '../../../store/utils/getExtraReducers';
+import { getListOfNearbyRestaurants } from '../../../utils/getListOfNearbyRestaurants';
 import { Categories } from '../../elements/Categories';
 import { RestaurantList } from '../../elements/RestaurantList';
 import { SortPopup } from '../../elements/SortPopup';
@@ -48,6 +51,9 @@ export const FeaturedRestaurants: FC<FeaturedRestaurantsProps> = ({ classNames, 
 
   const isLoaded = useAppSelector(isLoadedSelector);
   const list = useAppSelector(restaurantListSelector);
+  const listOfDistances = useAppSelector(listOfDistancesSelector);
+
+  const listCopy = getListOfNearbyRestaurants(listOfDistances, list) as Restaurant[];
 
   const handleCategoryChange = useCallback((index: number) => {
     dispatch(setCategory(index));
@@ -97,7 +103,7 @@ export const FeaturedRestaurants: FC<FeaturedRestaurantsProps> = ({ classNames, 
             />
           </div>
 
-          <RestaurantList isLoading={isLoaded} list={list} />
+          <RestaurantList isLoading={isLoaded} list={listOfDistances?.length ? listCopy : list} />
 
           <button className={style.restaurantList__btn} onClick={handleLimitChange}>
             <span className={style.restaurantList__btnName}>View All</span>
