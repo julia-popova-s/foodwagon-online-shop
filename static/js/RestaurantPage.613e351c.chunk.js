@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfoodwagon_online_shop=self.webpackChunkfoodwagon_online_shop||[]).push([[589,636],{5497:(s,a,e)=>{e.r(a),e.d(a,{default:()=>l});var t=e(4843),n=e(2883);const r="restaurantsPage_restaurants__4+6fP",o="restaurantsPage_restaurants__list__9SzWR";var _=e(184);const l=()=>((0,t.q)(),(0,_.jsx)("div",{className:r,children:(0,_.jsx)(n.default,{classNames:o,title:"Restaurants Near Me"})}))}}]);
+//# sourceMappingURL=RestaurantPage.613e351c.chunk.js.map
